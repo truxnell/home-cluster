@@ -6,6 +6,10 @@ metadata:
   namespace: downloads
 spec:
   interval: 5m
+  podSecurityContext:
+    runAsUser: 1031
+    runAsGroup: 100
+    fsGroup: 100
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
@@ -24,7 +28,7 @@ spec:
     env:
       TZ: "Australia/Melbourne"
     ingress:
-      # FIXME1
+      # FIXME
       enabled: false
       annotations:
         kubernetes.io/ingress.class: "external"
@@ -45,8 +49,9 @@ spec:
         existingClaim: nfs-nas-media
         mountPath: /downloads
     # FIXME
-    # podAnnotations:
-    #   backup.velero.io/backup-volumes: config
+    podAnnotations:
+      #   backup.velero.io/backup-volumes: config
+      replicas-max: "1"
     resources:
       requests:
         memory: 250Mi
