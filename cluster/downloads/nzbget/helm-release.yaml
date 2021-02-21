@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: nzbget
-  namespace: default
+  namespace: downloads
 spec:
   interval: 5m
   chart:
@@ -24,6 +24,32 @@ spec:
     env:
       TZ: "Australia/Melbourne"
     ingress:
+      # FIXME
       enabled: false
       annotations:
         kubernetes.io/ingress.class: "external"
+      hosts:
+        - host: nzbget.devbu.io
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - "nzbget.devbu.io"
+    persistence:
+      config:
+        enabled: true
+        existingClaim: nzbget-config
+      downloads:
+        enabled: true
+        existingClaim: nfs-moya-downloads
+        mountPath: /downloads
+    # FIXME
+    # podAnnotations:
+    #   backup.velero.io/backup-volumes: config
+    resources:
+      requests:
+        memory: 250Mi
+        cpu: 500m
+      limits:
+        memory: 7500Mi

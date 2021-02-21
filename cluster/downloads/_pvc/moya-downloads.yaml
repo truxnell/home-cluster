@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-moya-downloads
+  namespace: downloads
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nfs-moya-downloads-pv
+  resources:
+    requests:
+      storage: 1Mi
