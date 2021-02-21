@@ -1,15 +1,15 @@
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: voltaicforge-com
-  namespace: kube-system
-spec:
-  secretName: voltaicforge-com-tls
-  issuerRef:
-    name: letsencrypt-production
-    kind: ClusterIssuer
-  commonName: "devbu.io"
-  dnsNames:
-    - "l.voltaicforge.com"
-    - "*.l.voltaicforge.com"
+# ---
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: voltaicforge-com
+#   namespace: kube-system
+# spec:
+#   secretName: voltaicforge-com-tls
+#   issuerRef:
+#     name: letsencrypt-production
+#     kind: ClusterIssuer
+#   commonName: "devbu.io"
+#   dnsNames:
+#     - "l.voltaicforge.com"
+#     - "*.l.voltaicforge.com"
