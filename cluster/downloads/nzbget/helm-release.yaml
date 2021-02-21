@@ -40,10 +40,10 @@ spec:
       config:
         enabled: true
         existingClaim: nzbget-config
-      # downloads:
-      #   enabled: true
-      #   existingClaim: nfs-nas-media
-      #   mountPath: /downloads
+      downloads:
+        enabled: true
+        existingClaim: nfs-nas-media
+        mountPath: /downloads
     # FIXME
     # podAnnotations:
     #   backup.velero.io/backup-volumes: config
