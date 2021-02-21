@@ -1,8 +1,29 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: HelmRepository
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
 metadata:
-  name: podinfo
-  namespace: default
+  name: nzbget
+  namespace: media
 spec:
-  interval: 1m
-  url: https://stefanprodan.github.io/podinfo
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: nzbget
+      version: 8.0.1
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    controllerType: deployment
+    image:
+      repository: ghcr.io/k8s-at-home/nzbget
+      tag: v21.0
+    env:
+      TZ: "Australia/Melbourne"
+    ingress:
+      enabled: false
+      annotations:
+        kubernetes.io/ingress.class: "external"
