@@ -42,7 +42,7 @@ spec:
         existingClaim: nzbget-config
       downloads:
         enabled: true
-        existingClaim: nfs-moya-downloads
+        existingClaim: nfs-nas-media
         mountPath: /downloads
     # FIXME
     # podAnnotations:

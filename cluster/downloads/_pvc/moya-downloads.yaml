@@ -1,13 +1,28 @@
 ---
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: downloads-nfs-nas-media
+spec:
+  storageClassName: downloads-nas-media
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: 192.168.2.253
+    path: /volume1/downloads
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nfs-moya-downloads
+  name: nfs-nas-media
   namespace: downloads
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: nfs-moya-downloads-pv
+  storageClassName: downloads-nas-media
   resources:
     requests:
       storage: 1Mi
