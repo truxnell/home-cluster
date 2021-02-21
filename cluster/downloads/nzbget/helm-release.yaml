@@ -28,7 +28,7 @@ spec:
     env:
       TZ: "Australia/Melbourne"
     ingress:
-      # FIXME1
+      # FIXME
       enabled: false
       annotations:
         kubernetes.io/ingress.class: "external"
@@ -54,7 +54,7 @@ spec:
       replicas-max: "1"
     resources:
       requests:
-        memory: 250Mi
+        memory: 251Mi
         cpu: 500m
       limits:
         memory: 7500Mi
