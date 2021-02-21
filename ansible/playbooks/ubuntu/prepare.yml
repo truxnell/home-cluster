@@ -1,0 +1,22 @@
+ansi---
+
+- hosts:
+  - control-nodes
+  - generic-nodes
+  become: true
+  gather_facts: true
+  vars_prompt:
+  - name: "restart_confirmation"
+    prompt: "Restart nodes when complete? [Y/n]"
+    default: "n"
+    private: false
+  roles:
+  - ubuntu
+  tasks:
+  - name: reboot
+    ignore_errors: true
+    ansible.builtin.reboot:
+      msg: "Nodes are being rebooted..."
+    when: restart_confirmation == "Y"
+    tags:
+    - always

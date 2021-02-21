@@ -1,0 +1,23 @@
+
+# Trash
+.DS_Store
+Thumbs.db
+bin/
+flux
+*.iso
+
+# Temp
+ignore/
+rebuild/
+logs/
+.task/
+tmp/
+
+# Ansible
+ansible/roles/xanmanning.k3s*
+ansible/roles/andrewrothstein.calicoctl*
+node_modules
+mitogen*
+
+#secrets
+kubeconfig
