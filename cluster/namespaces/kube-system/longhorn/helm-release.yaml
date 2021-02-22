@@ -25,13 +25,13 @@ spec:
       reclaimPolicy: Retain
     defaultSettings:
       backupstorePollInterval: 300
-      backupTarget: nfs://192.168.2.253:/volume1/backups/longhorn/
+      backupTarget: nfs://192.168.2.253:/volume1/backup/longhorn/
       createDefaultDiskLabeledNodes: true
       defaultDataLocality: best-effort
       defaultDataPath: /var/lib/longhorn
       defaultReplicaCount: 2
       replicaSoftAntiAffinity: false
-      storageMinimalAvailablePercentage: 9
+      storageMinimalAvailablePercentage: 10
     # ingress:
     #   enabled: true
     #   host: longhorn.nathanpawelek.com
