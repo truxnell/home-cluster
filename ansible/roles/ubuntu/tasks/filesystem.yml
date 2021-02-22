@@ -1,5 +1,4 @@
 ---
-
 - name: filesystem | update max_user_watches
   ansible.posix.sysctl:
     name: fs.inotify.max_user_watches
@@ -19,19 +18,19 @@
 - name: filesystem | swap
   become: true
   block:
-  - name: filesystem | disable swap
-    ansible.builtin.command: swapoff -a
-    when: ansible_swaptotal_mb > 0
-  - name: filesystem | disable swap system start
-    ansible.posix.mount:
-      name: "{{ item }}"
-      fstype: swap
-      state: absent
-    loop:
-      - swap
-      - none
+    - name: filesystem | disable swap
+      ansible.builtin.command: swapoff -a
+      when: ansible_swaptotal_mb > 0
+    - name: filesystem | disable swap system start
+      ansible.posix.mount:
+        name: "{{ item }}"
+        fstype: swap
+        state: absent
+      loop:
+        - swap
+        - none
   when:
-  - molecule_is_test is defined and not molecule_is_test
+    - molecule_is_test is defined and not molecule_is_test
 
 - name: filesystem | journald sdcard fix
   ansible.builtin.copy:
