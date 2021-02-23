@@ -18,6 +18,3 @@ ansible/roles/xanmanning.k3s*
 ansible/roles/andrewrothstein.calicoctl*
 node_modules
 mitogen*
-
-#secrets
-kubeconfig
