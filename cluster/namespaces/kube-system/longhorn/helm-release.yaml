@@ -18,7 +18,15 @@ spec:
       interval: 5m
   values:
     ingress:
-      enabled: false
+      enabled: true
+      annotations:
+        kubernetes.io/tls-acme: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-production
+      #   kubernetes.io/ingress.class: "external"
+      host: longhorn.l.voltaicforge.com
+      path: /
+      tls: true
+      secretName: voltaicforge-com-tls
     persistence:
       defaultClass: true
       defaultClassReplicaCount: 2
