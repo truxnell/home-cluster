@@ -13,6 +13,6 @@ spec:
       - dns01:
           cloudflare:
             email: acct.letsencrypt@voltaicforge.com
-            apiKeySecretRef:
-              name: cloudflare-token
-              key: cloudflare-token
+            apiTokenSecretRef:
+              name: cloudflare-api-token-secret
+              key: api-token
