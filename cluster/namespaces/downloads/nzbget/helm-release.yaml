@@ -29,17 +29,17 @@ spec:
       TZ: "Australia/Melbourne"
     ingress:
       # FIXME
-      enabled: false
-      annotations:
-        kubernetes.io/ingress.class: "external"
+      enabled: true
+      # annotations:
+      #   kubernetes.io/ingress.class: "external"
       hosts:
-        - host: nzbget.devbu.io
+        - host: nzbget.l.voltaicforge.com
           paths:
             - path: /
               pathType: Prefix
       tls:
         - hosts:
-            - "nzbget.devbu.io"
+            - "nzbget.l.voltaicforge.com"
     persistence:
       config:
         enabled: true
@@ -54,7 +54,7 @@ spec:
       replicas-max: "1"
     resources:
       requests:
-        memory: 251Mi
+        memory: 250Mi
         cpu: 500m
       limits:
         memory: 7500Mi
