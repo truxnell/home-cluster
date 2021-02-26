@@ -30,7 +30,9 @@ spec:
     ingress:
       # FIXME
       enabled: true
-      # annotations:
+      annotations:
+        kubernetes.io/tls-acme: "true"
+        cert-manager.io/cluster-issuer: letsencrypt-production
       #   kubernetes.io/ingress.class: "external"
       hosts:
         - host: nzbget.l.voltaicforge.com
@@ -40,6 +42,7 @@ spec:
       tls:
         - hosts:
             - "nzbget.l.voltaicforge.com"
+          secretName: voltaicforge-com-tls
     persistence:
       config:
         enabled: true

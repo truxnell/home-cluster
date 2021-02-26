@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+# Blank secret with correct annotation to allow kubed to copy the secret
+# This is just a 'primer' so when the tls cert is generated it is already annotated to be copied.
+metadata:
+  name: voltaicforge-tls-com
+  namespace: system-cert-manager
+stringData:
+  tls.crt: ""
+  tls.key: ""

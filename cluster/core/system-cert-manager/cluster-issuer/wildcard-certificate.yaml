@@ -11,7 +11,7 @@ metadata:
 spec:
   secretName: voltaicforge-com-tls
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-production
     kind: ClusterIssuer
   commonName: "*.l.voltaicforge.com"
   dnsNames:
