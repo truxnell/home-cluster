@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: httpbin
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/tls-acme: "true"
+      cert-manager.io/cluster-issuer: letsencrypt-production
+      kubernetes.io/ingress.class: "nginx"
+    hosts:
+      - host: httpbin.l.voltaicforge.com
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - hosts:
+          - "httpbin.l.voltaicforge.com"
+        secretName: voltaicforge-com-tls

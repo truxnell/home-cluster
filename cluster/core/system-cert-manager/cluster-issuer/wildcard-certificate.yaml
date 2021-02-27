@@ -7,7 +7,6 @@ metadata:
   annotations:
     reflector.v1.k8s.emberstack.com/secret-reflection-allowed: "true"
     reflector.v1.k8s.emberstack.com/secret-reflection-auto-enabled: "true"
-    reflector.v1.k8s.emberstack.com/secret-reflection-auto-namespaces: "default, traefik, monitoring, flux-system"
 spec:
   secretName: voltaicforge-com-tls
   issuerRef:

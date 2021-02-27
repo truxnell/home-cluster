@@ -18,7 +18,7 @@ spec:
       interval: 5m
   values:
     ingress:
-      enabled: true
+      enabled: false
       annotations:
         kubernetes.io/tls-acme: "true"
         cert-manager.io/cluster-issuer: letsencrypt-production
@@ -27,6 +27,9 @@ spec:
       path: /
       tls: true
       secretName: voltaicforge-com-tls
+    service:
+      type: LoadBalancer
+      loadBalancerIP: 192.168.2.180
     persistence:
       defaultClass: true
       defaultClassReplicaCount: 2
