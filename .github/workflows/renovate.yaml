@@ -1,36 +1,36 @@
----
-name: renovate
+# ---
+# name: renovate
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 * * * *"
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     - cron: "0 * * * *"
 
-jobs:
-  annotate-helm-releases:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.ACCESS_TOKEN }}
-          fetch-depth: 1
+# jobs:
+#   annotate-helm-releases:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           token: ${{ secrets.ACCESS_TOKEN }}
+#           fetch-depth: 1
 
-      - name: Renovate Helm Releases
-        uses: k8s-at-home/renovate-helm-releases@v1.1.3
-        with:
-          cluster-path: "./cluster"
+#       - name: Renovate Helm Releases
+#         uses: k8s-at-home/renovate-helm-releases@v1.1.3
+#         with:
+#           cluster-path: "./cluster"
 
-      - name: Create pull request for HelmRelease annotations
-        uses: peter-evans/create-pull-request@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: helmrelease-annotations
-          delete-branch: true
-          title: "Update renovatebot helm-release annotations"
-          signoff: true
-          committer: "Bᴇʀɴᴅ Sᴄʜᴏʀɢᴇʀs <me@bjw-s.dev>"
-          author: "Bᴇʀɴᴅ Sᴄʜᴏʀɢᴇʀs <me@bjw-s.dev>"
-          commit-message: "Update renovatebot helm-release annotations"
-          body: |
-            Add special annotations to HelmReleases inorder for Renovate to pick up new versions of Helm charts
-          labels: renovate/helmrelease-annotations
+#       - name: Create pull request for HelmRelease annotations
+#         uses: peter-evans/create-pull-request@v3
+#         with:
+#           token: ${{ secrets.GITHUB_TOKEN }}
+#           branch: helmrelease-annotations
+#           delete-branch: true
+#           title: "Update renovatebot helm-release annotations"
+#           signoff: true
+#           committer: "Bᴇʀɴᴅ Sᴄʜᴏʀɢᴇʀs <me@bjw-s.dev>"
+#           author: "Bᴇʀɴᴅ Sᴄʜᴏʀɢᴇʀs <me@bjw-s.dev>"
+#           commit-message: "Update renovatebot helm-release annotations"
+#           body: |
+#             Add special annotations to HelmReleases inorder for Renovate to pick up new versions of Helm charts
+#           labels: renovate/helmrelease-annotations
