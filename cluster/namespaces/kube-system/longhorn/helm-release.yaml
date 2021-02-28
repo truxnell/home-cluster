@@ -30,7 +30,7 @@ spec:
     service:
       ui:
         type: LoadBalancer
-        loadBalancerIP: 192.168.2.180
+        loadBalancerIP: 192.168.2.161
     persistence:
       defaultClass: true
       defaultClassReplicaCount: 2
