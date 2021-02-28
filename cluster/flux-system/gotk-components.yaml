@@ -1,4 +1,3 @@
----
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -2209,81 +2208,6 @@ kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/instance: flux-system
-<<<<<<< HEAD
-    app.kubernetes.io/version: v0.8.2
-  name: crd-controller-flux-system
-rules:
-  - apiGroups:
-      - source.toolkit.fluxcd.io
-    resources:
-      - "*"
-    verbs:
-      - "*"
-  - apiGroups:
-      - kustomize.toolkit.fluxcd.io
-    resources:
-      - "*"
-    verbs:
-      - "*"
-  - apiGroups:
-      - helm.toolkit.fluxcd.io
-    resources:
-      - "*"
-    verbs:
-      - "*"
-  - apiGroups:
-      - notification.toolkit.fluxcd.io
-    resources:
-      - "*"
-    verbs:
-      - "*"
-  - apiGroups:
-      - image.toolkit.fluxcd.io
-    resources:
-      - "*"
-    verbs:
-      - "*"
-  - apiGroups:
-      - ""
-    resources:
-      - secrets
-    verbs:
-      - get
-      - list
-      - watch
-  - apiGroups:
-      - ""
-    resources:
-      - events
-    verbs:
-      - create
-      - patch
-  - apiGroups:
-      - ""
-    resources:
-      - configmaps
-      - configmaps/status
-    verbs:
-      - get
-      - list
-      - watch
-      - create
-      - update
-      - patch
-      - delete
-  - apiGroups:
-      - coordination.k8s.io
-    resources:
-      - leases
-    verbs:
-      - get
-      - list
-      - watch
-      - create
-      - update
-      - patch
-      - delete
-=======
     app.kubernetes.io/version: v0.9.0
   name: crd-controller-flux-system
 rules:
@@ -2357,7 +2281,6 @@ rules:
   - update
   - patch
   - delete
->>>>>>> d6bef2398679c790f91650ee977ecdc1fc7f6fab
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
