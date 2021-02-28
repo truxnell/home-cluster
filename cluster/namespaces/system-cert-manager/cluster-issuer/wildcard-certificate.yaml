@@ -1,18 +1,18 @@
-# ---
-# apiVersion: cert-manager.io/v1
-# kind: Certificate
-# metadata:
-#   name: voltaicforge-com
-#   namespace: system-cert-manager
-#   annotations:
-#     reflector.v1.k8s.emberstack.com/secret-reflection-allowed: "true"
-#     reflector.v1.k8s.emberstack.com/secret-reflection-auto-enabled: "true"
-# spec:
-#   secretName: voltaicforge-com-tls
-#   issuerRef:
-#     name: letsencrypt-production
-#     kind: ClusterIssuer
-#   commonName: "*.l.voltaicforge.com"
-#   dnsNames:
-#     - "*.l.voltaicforge.com"
-#     - "l.voltaicforge.com"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: voltaicforge-com
+  namespace: system-cert-manager
+  annotations:
+    reflector.v1.k8s.emberstack.com/secret-reflection-allowed: "true"
+    reflector.v1.k8s.emberstack.com/secret-reflection-auto-enabled: "true"
+spec:
+  secretName: voltaicforge-com-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "*.l.voltaicforge.com"
+  dnsNames:
+    - "*.l.voltaicforge.com"
+    - "l.voltaicforge.com"
