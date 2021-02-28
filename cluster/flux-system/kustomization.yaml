@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
@@ -5,3 +6,10 @@ resources:
   - gotk-components.yaml
   - gotk-custom-kustomization.yaml
   - gotk-sync.yaml
+=======
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- gotk-components.yaml
+- gotk-sync.yaml
+>>>>>>> d6bef2398679c790f91650ee977ecdc1fc7f6fab
