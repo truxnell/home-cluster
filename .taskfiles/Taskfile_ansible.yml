@@ -38,7 +38,7 @@ tasks:
   flux:install:
     desc: Install FluxV2 to cluster
     cmds:
-      - flux bootstrap github --owner=Truxnell --repository=home-cluster --path=cluster --personal --network-policy=false
+      - flux bootstrap github --owner=Truxnell --repository=home-cluster --path=cluster/production --personal --network-policy=false
   # helm-operator:install:
   #   desc: Install helm-operator to cluster
   #   cmds:
