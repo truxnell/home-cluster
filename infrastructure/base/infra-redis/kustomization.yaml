@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: infra-redis
 resources:
   - namespace.yaml
-  - release.yaml
+  - infra-redis.yaml
 configMapGenerator:
   - name: redis-values
     files:
