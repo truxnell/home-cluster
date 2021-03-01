@@ -20,7 +20,7 @@ spec:
   postBuild:
     substitute: {}
     substituteFrom:
-    - kind: ConfigMap
-      name: global-settings
-    - kind: ConfigMap
-      name: cluster-settings
+      - kind: ConfigMap
+        name: global-settings
+      - kind: ConfigMap
+        name: cluster-settings
