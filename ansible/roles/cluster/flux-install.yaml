@@ -1,0 +1,100 @@
+- name: "Prepare nodes"
+  hosts: nodes
+  tasks:
+    - name: "Check flux prerequisites"
+      shell: flux check --pre
+
+    - name: Create flux NS
+      shell: |
+        {{ KUBECTL_BIN }} create ns {{ FLUX_NAMESPACE }}
+      run_once: True
+      register: result
+      failed_when:
+        - "'already exists' not in result.stderr"
+        - result.rc != 0
+      changed_when:
+        - "'already exists'  not in result.stderr|join('')"
+
+    - name: Download flux2 installer
+      get_url:
+        url: https://toolkit.fluxcd.io/install.sh
+        dest: /tmp/flux2-installer.sh
+        mode: u+rwx
+      register: flux2_download
+
+    - name: Execute the flux2-installer.sh
+      shell: /tmp/flux2-installer.sh
+
+      #when: flux2_download.changed
+    - name: Install SOPS
+      apt:
+        deb: https://github.com/mozilla/sops/releases/download/v{{ SOPS_VERSION }}/sops_{{ SOPS_VERSION }}_amd64.deb
+      when: ansible_architecture == "x86_64"
+
+    - name: Install SOPS GPG key
+      shell: >
+        echo "{{ SOPS_GPG }}"| gpg --batch
+        --pinentry-mode loopback
+        --import /dev/stdin
+
+    - name: Create secret with SOPS GPG key
+      shell: >
+        {{ KUBECTL_BIN }} create -n {{ FLUX_NAMESPACE }} secret generic sops-gpg
+        --save-config --dry-run=client
+        --from-literal=sops.asc="{{ SOPS_GPG }}"
+        -o yaml
+        | {{ KUBECTL_BIN }} apply -f -
+      run_once: True
+      register: result
+      changed_when:
+        - "'unchanged'  not in result.stdout| join('')"
+        - "'configured' not in result.stdout| join('')"
+
+- name: "Install (if needed) flux"
+  hosts: workers[0]
+  gather_facts: false #Already queried
+  tasks:
+    - name: Install GitHub secret
+      shell: >
+        {{ KUBECTL_BIN }} create -n {{ FLUX_NAMESPACE }} secret generic github
+        --save-config --dry-run=client
+        --from-literal=token="{{ FLUX2_GITHUB_TOKEN }}"
+        -o yaml
+        | {{ KUBECTL_BIN }} apply -f -
+      register: result
+      changed_when:
+        - "'unchanged'  not in result.stdout| join('')"
+        - "'configured' not in result.stdout| join('')"
+
+    - name: Check if ./{{ FLUX_GIT_PATH }} exists
+      stat:
+        path: ./{{ FLUX_GIT_PATH }}
+      register: flux_in_git
+
+    - name: "Install flux in git repository"
+      shell: >
+        export GITHUB_TOKEN={{ FLUX2_GITHUB_TOKEN }};
+        echo flux bootstrap github
+        --context={{ FLUX2_CONTEXT }}
+        --owner={{FLUX_GIT_USER}}
+        --repository={{FLUX_GIT_REPO}}
+        --branch={{ FLUX_GIT_BRANCH }}
+        --personal \
+        --path={{ FLUX_GIT_PATH }}
+        --namespace={{ FLUX_NAMESPACE }}
+      when: flux_in_git.stat.exists
+      register: result
+      changed_when:
+        - "'unchanged'  not in result.stdout| join('')"
+        - "'configured' not in result.stdout| join('')"
+
+    - name: Query CRD
+      shell: >
+        {{ KUBECTL_BIN }} get crd
+      register: kube_crd
+      changed_when: false
+
+    - name: "Deploy flux to cluster if crd fluxcd.io missing"
+      shell: >
+        {{ KUBECTL_BIN }} apply -k {{ FLUX_GIT_PATH }}/{{ FLUX_NAMESPACE }}
+      when: "'fluxcd.io' not in kube_crd.stdout| join('')"
