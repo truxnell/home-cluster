@@ -6,6 +6,7 @@ metadata:
 spec:
   chart:
     spec:
+      # renovate: registryUrl=https://charts.helm.sh/stable
       chart: metallb
       sourceRef:
         kind: HelmRepository
