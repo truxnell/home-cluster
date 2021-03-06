@@ -1,7 +1,6 @@
 ---
 - include: post-install.yaml
   tags: post-install-k3s
-
----
-- include: flux-install.yaml
-  tags: flux
+# ---
+# - include: flux-install.yaml
+#   tags: flux
