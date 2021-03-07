@@ -26,24 +26,24 @@ jobs:
         with:
           fetch-depth: 1
       - uses: ministryofjustice/setup-git-crypt@main
-      - name: Unlock secrets
-        run: github-bin/git-crypt unlock
-        env:
-          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
-      - name: Configure GPG Key
+      - name: Configure sops GPG Key
         run: |
           mkdir -p ~/.gnupg/
           printf "$GPG_SIGNING_KEY" | base64 --decode > ~/.gnupg/private.key
           gpg --import ~/.gnupg/private.key
+          printf "$GIT_CRYPT_KEY" | base64 --decode > ~/.gnupg/private.key
+          gpg --import ~/.gnupg/private.key
         env:
           GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
       - name: Sops Binary Installer
         uses: mdgreenwald/mozilla-sops-action@v1
         id: install
+      - name: Unlock secrets
+        run: github-bin/git-crypt unlock
       - name: Encrypt sops secrets
         run: |
           .github/scripts/encrypt_sops.sh
-
       - name: Commit and push sops encrypted secrets
         run: |
           if [[ -n $(git status --porcelain) ]]; then
