@@ -1,5 +1,5 @@
 ---
-name: sops
+name: sops-encrypt
 
 on:
   push:
