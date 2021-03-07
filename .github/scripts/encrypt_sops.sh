@@ -34,7 +34,9 @@ message() {
   echo "######################################################################"
 }
 
-FILES_TO_PROCESS=$(find "${CLUSTER_ROOT}" -type f -name "*.sops")
+FILES_TO_PROCESS=$(find "${OPERATOR_ROOT}" -type f -name "*.yaml")
+FILES_TO_PROCESS="${FILES_TO_PROCESS}\n$(find "${INFRASTRUCTURE_ROOT}" -type f -name "*.yaml")"
+FILES_TO_PROCESS="${FILES_TO_PROCESS}\n$(find "${APPS_ROOT}" -type f -name "*.yaml")"
 
 
 message "Processing sops files and outputting encrypted yaml in same folder"
