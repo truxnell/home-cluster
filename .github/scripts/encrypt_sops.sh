@@ -78,4 +78,4 @@ while IFS= read -r file; do
   
 done <<< "$FILES_TO_PROCESS"
 
-message "Completed!"
+message "Completedall done!"
