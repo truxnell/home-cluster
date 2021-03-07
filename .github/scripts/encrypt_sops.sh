@@ -34,10 +34,13 @@ message() {
   echo "######################################################################"
 }
 
-FILES_TO_PROCESS=$(find "${OPERATOR_ROOT}" -type f -name "*.yaml")
-FILES_TO_PROCESS="${FILES_TO_PROCESS}\n$(find "${INFRASTRUCTURE_ROOT}" -type f -name "*.yaml")"
-FILES_TO_PROCESS="${FILES_TO_PROCESS}\n$(find "${APPS_ROOT}" -type f -name "*.yaml")"
+FILES_TO_PROCESS=$(find "${OPERATOR_ROOT}" -type f -name "*.sops")
+FILES_TO_PROCESS="${FILES_TO_PROCESS}
+$(find "${INFRASTRUCTURE_ROOT}" -type f -name "*.sops")"
+FILES_TO_PROCESS="${FILES_TO_PROCESS}
+$(find "${APPS_ROOT}" -type f -name "*.sops")"
 
+message "Files to process: ${FILES_TO_PROCESS}"
 
 message "Processing sops files and outputting encrypted yaml in same folder"
 
@@ -80,4 +83,4 @@ while IFS= read -r file; do
   
 done <<< "$FILES_TO_PROCESS"
 
-message "Completedall done!"
+message "Completed!"
