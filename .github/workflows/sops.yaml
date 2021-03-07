@@ -42,7 +42,7 @@ jobs:
       - name: Encrypt sops secrets
         run: |
           .github/scripts/encrypt_sops.sh
-      - name: HACK: Remove .gitattributes to disable cit-crypt on push
+      - name: HACK - Remove .gitattributes to disable cit-crypt on push
         run: |
           rm .gitattributes
       - name: Commit and push sops encrypted secrets
