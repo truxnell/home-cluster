@@ -1,20 +1,18 @@
 ---
 - hosts:
-    - control-nodes
-    - generic-nodes
-  become: true
-  gather_facts: true
+    - localhost
+  become: false
+  gather_facts: false
   vars_prompt:
     - name: "run_confirmation"
       prompt: "Are you sure you want to run this over the cluster? [Y/n]"
       default: "n"
       private: false
-  any_errors_fatal: true
+  any_errors_fatal: false
   pre_tasks:
     - name: check confirmation
       fail:
         msg: "Abort."
       when: run_confirmation != "Y"
   roles:
-    - xanmanning.k3s
-    - k3s
+    - cluster

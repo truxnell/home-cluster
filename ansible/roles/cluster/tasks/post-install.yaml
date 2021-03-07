@@ -1,0 +1,34 @@
+- name: Create Docker secret
+  shell: |
+    {{ KUBECTL_BIN }} create secret docker-registry docker-regcred \
+    --docker-username={{ DOCKER_USER }} \
+    --docker-password={{ DOCKER_PASSWORD }} \
+  # --docker-server=<your-registry-server> \
+  # --docker-email=<your-email>
+  register: result
+  failed_when:
+    - "'already exists' in result.stderr"
+    - result.rc != 0
+  changed_when:
+    - "'already exists'  not in result.stderr|join('')"
+  retries: 60
+  delay: 5
+
+- name: Install SOPS GPG key
+  shell: >
+    echo "{{ SOPS_GPG }}"| gpg --batch
+    --pinentry-mode loopback
+    --import /dev/stdin
+
+- name: Create secret with SOPS GPG key
+  shell: >
+    {{ KUBECTL_BIN }} create -n {{ FLUX_NAMESPACE }} secret generic sops-gpg
+    --save-config --dry-run=client
+    --from-literal=sops.asc="{{ SOPS_GPG }}"
+    -o yaml
+    | {{ KUBECTL_BIN }} apply -f -
+  run_once: True
+  register: result
+  changed_when:
+    - "'unchanged'  not in result.stdout| join('')"
+    - "'configured' not in result.stdout| join('')"
