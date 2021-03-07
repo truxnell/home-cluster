@@ -1,0 +1,36 @@
+apiVersion: v1
+data:
+    password: ENC[AES256_GCM,data:2JH5+pu+vLOwgiqq,iv:B0n0A63vdIrvn4O+CSV8BkJQzIoEI2NgggeGRSjoI9s=,tag:3lkYqlk3rphHJdIRdl5EWg==,type:str]
+kind: Secret
+metadata:
+    creationTimestamp: null
+    name: redis-auth
+    namespace: redis
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-03-07T03:51:33Z'
+    mac: ENC[AES256_GCM,data:6XFgxRhU/URdEqbKGJ2ubcnzg+Yv7R1kyko6tkfflaFtMgt8DDBFJlMkUGXqjZIPZXI398VrnhsQi4BPUdR8g4RB11Yr9ITG1doD7p/buuMHiaZGtalvw097DqbVOvTw5GQbdX+DtZ5adWGA5hZPs2VqK5Srs72uvyDLEWeX4KM=,iv:y6q6ZxpBe6edsl/CnvLqJc+8YdlQOmLEdmAHLnnQMgk=,tag:XWgNrwz7bfxBbBOl25UDdQ==,type:str]
+    pgp:
+    -   created_at: '2021-03-07T03:51:30Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQGMA94SucntcLeJAQv8DcoXQQNmk6HUjzROl8rH/JlePX5XaHw3Ws6QLTZKpR+Q
+            b1QDU7gF8LPKfvMKVfOQT2OB30WfIUTpAhrFDz2YuAPVKFF7slxcgqNg9FIg+oi+
+            7f4I5c3XZNXv7d9EM7ITY4Da3ry/kpZGHubh+xXGy1oY/tM/u4vjrbH28ezswfeH
+            7FELP3/Ylf0vc/cSEn5Ly1NdkThPM0aZDh5q8tckhb2DkJBFbErYt1jsRIqh275E
+            9OBmToLLSEmG1tsPPS0g/SEA+gHk/zvFBT3DThBS87j4SM2CDHq73Y2DKjzFnMY/
+            8tHLGiFhjnXn5M0CNFUDTRe2tkV+acKtR4j6jx4Kl1CKKdSkIsMtWPIBsBvydt64
+            VWw/c+8lOJQXI3Ty7nDPv5KISDbEeZGBihmafmf/ZJosQY8ZawpYrP8tROL+pG0+
+            1S/kBQ9kNhD7cHK/vwXahcpMHdYR6s5peQRM/FnQ5KMneerKM73egi7p390Y/OsK
+            M3WGmx6e3EGjBVW7M0CQ0l4Bz7AeE7NWVv57Y3So6VslV8QKhBYQfthzVHmgTXR1
+            n7KdLbssztDXa8Jq1wQVHOjh+hMBzgBXG0A2u4WEGZrKYgvnXdxAJwLzEKFLOiOO
+            LQX6xefEjsZJe6U7lRUU
+            =UhmE
+            -----END PGP MESSAGE-----
+        fp: 30DA87702717C0310E1BE81E612328766D06D7DD
+    encrypted_regex: ^(data|stringData)$
+    version: 3.6.1
