@@ -57,7 +57,7 @@ jobs:
             git config user.name "$GITHUB_ACTOR"
             git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
             git pull
-            git add "**/*.yaml"
+            git add "**/*.sops.yaml"
             git commit -m "Auto-encrypt sops secrets [ci-skip]" || exit 0
             git push
           fi
