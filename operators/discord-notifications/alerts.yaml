@@ -23,7 +23,7 @@ metadata:
 spec:
   providerRef:
     name: discord
-  eventSeverity: error
+  eventSeverity: info
   eventSources:
     - kind: HelmRelease
       namespace: "*"
