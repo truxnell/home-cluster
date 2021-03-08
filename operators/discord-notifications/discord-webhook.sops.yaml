@@ -1,8 +1,36 @@
 apiVersion: v1
 stringData:
-    address: https://discordapp.com/api/webhooks/818308718398930945/595XJzc8ZrYQpYaoaofDEazX8n6GQ6QykqTLBhmLkVJ4vX3HxB4WBS7w28X-qlQ5tdBz
+    address: ENC[AES256_GCM,data:0CMdF+goamj5q7uTvwl3kz2cH8DAZilDbQzdwswfg8FA/7cH8uh0wZADiFVOIm7pPmj7HXOs5QJhMhG4zuYanMkWCLiH8HXuQ1+pV0CQHltJJpbm+llg5je7M5Psn0dtsPoqOCtKEwobjjVYfF2tJyR8AqnXe4tgfbar,iv:ApMdWHsjzhPDyArvnWBOgsl+0cm65AW20miHNDfSIEI=,tag:cv27cgiJLyKEahC7uFqbfg==,type:str]
 kind: Secret
 type: Opaque
 metadata:
     name: discord-webhook
     namespace: flux-system
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-03-08T05:19:04Z'
+    mac: ENC[AES256_GCM,data:TpatV33HfFDibZFcNbsZfp9rs9gWYne8d4QpzWcWLAAQysdXTisedYBOjyKr50qarthXcw0KO+m8+uUYiMX4YxwuNCK3z6K7b2XaGh+lzuzucEBNUTdUfHR/UwFS9z9FF5uhlU0wNMyfCxXXW4XhnIi1ATKzdTaobgoRdHL7o3o=,iv:eAStU/9KTm/7MjwNkYLOu2VegB15+ZSGgzsSgHCAuoc=,tag:rh+8pNzGzQ0nGON+8ByEDg==,type:str]
+    pgp:
+    -   created_at: '2021-03-08T05:19:03Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQGMA94SucntcLeJAQv+IjB+6EPf/23B0OfKzn4jrHfbe/FTiNtfTtAKs7lcf8EE
+            pCZWT7SUrPqWIRnFutesY5IJ1OLeWQDyE/tlngPrjET/NZvh6HQz2gT+ryi5XFHE
+            MOXuVaCLK2urUGrAYjIRxyEatFY8IIa9r4FY6U5dsL2Q6Wt3BPCwf9uYWbDusq/7
+            TjHyny2oxd2Oh+xBpSvQRAxpGEHFK5tWdodUxstttxvVB//gzE7C1CqYStKNtOGd
+            u4RxMULegTJ5BoixeLmXlNpQjhfOkv5N6FB2qwxR8it9fdkSg44TtWBHzGvmKKA3
+            eFxtlkGA0/JpE6TO7hFScjzlOqX22HpksBHWacF7Qqk9hMCHwRY9HtINTnZglvo2
+            dCe1P1p+IG+ZBSRdw8j5HGI4lTR3ODLGtNd550S9Mw+2IsogApdBEYxX7qCM9RMQ
+            HRVnjtWhIp4YHpS9v9YRXQFXUuNot23uvOL/zjy+IFC46xEIqf1IRzo2JGFYMuLr
+            eWXTL0KenKIs/+gy6+J40l4BxA81Hmmc1PAtrKpw16v2NWcoavXS6F51jbZAsLuK
+            H4HXNEKUaluCDtRaQcvd/08U3fkaBgwZW3s/6fP3jjUXVqUoQwXubgtEX3aIJua8
+            2Xkz1wwc/GeqMjQ6fp49
+            =pxch
+            -----END PGP MESSAGE-----
+        fp: 30DA87702717C0310E1BE81E612328766D06D7DD
+    encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData$))
+    version: 3.6.1
