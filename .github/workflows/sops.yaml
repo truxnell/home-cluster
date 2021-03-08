@@ -11,7 +11,7 @@ on:
       - "infrastructure/**/*.sops"
       - "infrastructure/**/*.sops.yaml"
       - "apps/**/*.sops"
-      - "apps/**/*.stemplatesops.yaml"
+      - "apps/**/*.sops.yaml"
 
 env:
   DEBIAN_FRONTEND: "noninteractive"
@@ -39,10 +39,9 @@ jobs:
           GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
       - name: Configure git-crypt Key and unlock files
         run: |
-          export PATH="github-bin:$PATH"
           mkdir -p ~/.gnupg/
           printf "$GIT_CRYPT_KEY" | base64 --decode > ~/.gnupg/git-crypt.key
-          git-crypt unlock ~/.gnupg/git-crypt.key
+          github-bin/git-crypt unlock ~/.gnupg/git-crypt.key
         env:
           GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
       - name: Sops Binary Installer
@@ -53,6 +52,7 @@ jobs:
           .github/scripts/encrypt_sops.sh
       - name: Commit and push sops encrypted secrets
         run: |
+          export PATH="github-bin:$PATH"
           if [[ -n $(git status --porcelain) ]]; then
             git config user.name "$GITHUB_ACTOR"
             git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
