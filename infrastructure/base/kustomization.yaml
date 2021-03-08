@@ -9,3 +9,4 @@ resources:
   # - postgres
   - infra-redis
   - infra-longhorn
+  - infra-metallb

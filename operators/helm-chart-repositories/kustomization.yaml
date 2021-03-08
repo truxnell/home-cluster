@@ -11,3 +11,4 @@ resources:
   - longhorn-charts.yaml
   - sealed-secrets-charts.yaml
   - authelia-charts.yaml
+  - podinfo-charts.yaml

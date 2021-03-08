@@ -2,6 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: metallb
+  namespace: infra-metallb
 spec:
   releaseName: metallb
   chart:
@@ -14,9 +15,9 @@ spec:
         name: bitnami
         namespace: flux-system
   interval: 60m
-  install:
-    remediation:
-      retries: 3
+  # install:
+  #   remediation:
+  #     retries: 3
   # Default values
   # https://github.com/bitnami/charts/tree/master/bitnami/metallb/
   values:
