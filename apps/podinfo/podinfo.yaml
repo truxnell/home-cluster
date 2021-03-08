@@ -28,7 +28,6 @@ spec:
 
       hosts:
         - podinfo.${CLUSTER_DOMAIN}
-        - podinfo.${CLUSTER_DOMAIN}
       tls:
         - hosts:
             - podinfo.${CLUSTER_DOMAIN}
