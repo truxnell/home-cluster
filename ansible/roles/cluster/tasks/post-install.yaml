@@ -14,6 +14,13 @@
   retries: 60
   delay: 5
 
+- name: "Define docker secret as default"
+  shell: |
+    {{ KUBECTL_BIN }} patch serviceaccount default -p '{"imagePullSecrets": [{"name": "regcred"}]}'
+  register: result
+  changed_when:
+    - "'(no change)'  not in result.stdout|join('')"
+
 - name: Install SOPS GPG key
   shell: >
     echo "{{ SOPS_GPG }}"| gpg --batch

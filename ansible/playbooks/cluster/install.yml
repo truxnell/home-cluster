@@ -9,6 +9,7 @@
       default: "n"
       private: false
   any_errors_fatal: false
+  ignore_errors: true
   pre_tasks:
     - name: check confirmation
       fail:
