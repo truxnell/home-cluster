@@ -4,3 +4,4 @@ resources:
   - discord-notifications
   - helm-chart-repositories
   - infra-cert-manager
+  - registry-creds-controller
