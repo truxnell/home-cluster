@@ -16,7 +16,7 @@
 
 - name: "Define docker secret as default"
   shell: |
-    {{ KUBECTL_BIN }} patch serviceaccount default -p '{"imagePullSecrets": [{"name": "regcred"}]}'
+    {{ KUBECTL_BIN }} patch serviceaccount default -p '{"imagePullSecrets": [{"name": "docker-regcred"}]}'
   register: result
   changed_when:
     - "'(no change)'  not in result.stdout|join('')"
