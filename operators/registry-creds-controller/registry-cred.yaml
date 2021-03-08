@@ -1,10 +1,3 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    control-plane: registry-creds-controller
-  name: registry-creds-system
----
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
@@ -66,21 +59,34 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: registry-creds-leader-election-role
-  namespace: registry-creds-system
+  namespace: kube-system
 rules:
   - apiGroups:
       - ""
     resources:
       - configmaps
-    resourceNames:
-      - 8bdecb1a.alexellis.io
     verbs:
       - get
+      - list
+      - watch
       - create
       - update
       - patch
----
-
+      - delete
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps/status
+    verbs:
+      - get
+      - update
+      - patch
+  - apiGroups:
+      - ""
+    resources:
+      - events
+    verbs:
+      - create
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -93,18 +99,41 @@ rules:
     resources:
       - namespaces
     verbs:
+      - create
+      - delete
       - get
       - list
+      - patch
+      - update
       - watch
+  - apiGroups:
+      - ""
+    resources:
+      - namespaces/status
+    verbs:
+      - get
+      - patch
+      - update
   - apiGroups:
       - ""
     resources:
       - secrets
     verbs:
       - create
+      - delete
       - get
       - list
+      - patch
+      - update
       - watch
+  - apiGroups:
+      - ""
+    resources:
+      - secrets/status
+    verbs:
+      - get
+      - patch
+      - update
   - apiGroups:
       - ""
     resources:
@@ -116,19 +145,39 @@ rules:
       - update
       - watch
   - apiGroups:
+      - ""
+    resources:
+      - serviceaccounts/status
+    verbs:
+      - get
+      - patch
+      - update
+  - apiGroups:
       - ops.alexellis.io
     resources:
       - clusterpullsecrets
     verbs:
+      - create
+      - delete
       - get
       - list
+      - patch
+      - update
       - watch
+  - apiGroups:
+      - ops.alexellis.io
+    resources:
+      - clusterpullsecrets/status
+    verbs:
+      - get
+      - patch
+      - update
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: registry-creds-leader-election-rolebinding
-  namespace: registry-creds-system
+  namespace: kube-system
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -136,7 +185,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: default
-    namespace: registry-creds-system
+    namespace: kube-system
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -149,7 +198,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: default
-    namespace: registry-creds-system
+    namespace: kube-system
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -157,7 +206,7 @@ metadata:
   labels:
     control-plane: registry-creds-controller
   name: registry-creds-registry-creds-controller
-  namespace: registry-creds-system
+  namespace: kube-system
 spec:
   replicas: 1
   selector:
@@ -178,9 +227,11 @@ spec:
           name: controller
           resources:
             limits:
-              cpu: 100m
-              memory: 64Mi
+              memory: 200Mi
             requests:
               cpu: 100m
               memory: 45Mi
       terminationGracePeriodSeconds: 10
+      tolerations:
+        - key: arm
+          operator: Exists
