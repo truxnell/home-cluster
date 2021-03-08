@@ -3,8 +3,9 @@ kind: Kustomization
 resources:
   - infra-cert-manager
   # - default
-  # - flux-system
+  - flux-system
   # - monitoring
   - infra-ingress-nginx
   # - postgres
   - infra-redis
+  - infra-longhorn

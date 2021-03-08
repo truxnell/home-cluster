@@ -1,0 +1,35 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: authelia
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: authelia
+      sourceRef:
+        kind: HelmRepository
+        name: authelia-charts
+        namespace: flux-system
+      version: 0.2.11
+  install:
+    remediation:
+      retries: 3
+
+  # Default values
+  # https://github.com/authelia/chartrepo/blob/master/charts/authelia/values.yaml
+  values:
+    domain: voltaicforge.com
+    ingress:
+      enabled: true
+      subdomain: auth
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+    tls:
+      enabled: true
+      secret: prod-wildcard-voltaicforge-com-tls
+    podSecurityContext:
+      runAsUser: 1031
+      runAsGroup: 100
+      fsGroup: 100

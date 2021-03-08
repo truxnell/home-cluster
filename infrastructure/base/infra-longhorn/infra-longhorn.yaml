@@ -1,0 +1,35 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: longhorn
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.longhorn.io
+      chart: longhorn
+      version: 1.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: longhorn-charts
+        namespace: flux-system
+      interval: 6m
+  values:
+    persistence:
+      defaultClassReplicaCount: 2
+    defaultSettings:
+      backupTarget: nfs://192.168.2.253/volume1/backups/longhorn/
+      createDefaultDiskLabeledNodes: true
+      defaultReplicaCount: 2
+      defaultDataPath: /longhorn
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/tls-acme: "true"
+        # kubernetes.io/ingress.class: "internal"
+        # nginx.ingress.kubernetes.io/auth-url: "https://gate.sko.ai/api/verify"
+        # nginx.ingress.kubernetes.io/auth-signin: "https://gate.sko.ai/"
+      host: longhorn.l.voltaicforge.com
+      tlsSecret: prod-wildcard-voltaicforge-com-tls
+      tls: true
