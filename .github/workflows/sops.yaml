@@ -25,10 +25,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
-      - name: Unlock secrets
-        uses: sliteteam/github-action-git-crypt-unlock@1.2.0
-        env:
-          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+      - uses: ministryofjustice/setup-git-crypt@main
+      # - name: Unlock secrets
+      #   uses: sliteteam/github-action-git-crypt-unlock@1.2.0
+      #   env:
+      #     GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
       - name: Configure sops GPG Key
         run: |
           mkdir -p ~/.gnupg/
@@ -36,15 +37,20 @@ jobs:
           gpg --import ~/.gnupg/private.key
         env:
           GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+      - name: Configure git-crypt Key and unlock files
+        run: |
+          export PATH="github-bin:$PATH"
+          mkdir -p ~/.gnupg/
+          printf "$GIT_CRYPT_KEY" | base64 --decode > ~/.gnupg/git-crypt.key
+          git-crypt unlock ~/.gnupg/git-crypt.key
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
       - name: Sops Binary Installer
         uses: mdgreenwald/mozilla-sops-action@v1
         id: install
       - name: Encrypt sops secrets
         run: |
           .github/scripts/encrypt_sops.sh
-      - name: HACK - Remove .gitattributes to disable cit-crypt on push
-        run: |
-          rm .gitattributes
       - name: Commit and push sops encrypted secrets
         run: |
           if [[ -n $(git status --porcelain) ]]; then
@@ -57,80 +63,3 @@ jobs:
             git commit -m "Auto-encrypt sops secrets [ci-skip]" || exit 0
             git push
           fi
-
-# ---
-# name: sops
-
-# on: # yamllint disable-line rule:truthy
-#   push:
-#     branches:
-#       - main
-#     paths:
-#       - "operators/**/*.sops"
-#       - "operators/**/*.sops.yaml"
-#       - "infrastructure/**/*.sops"
-#       - "infrastructure/**/*.sops.yaml"
-#       - "apps/**/*.sops"
-#       - "apps/**/*.sops.yaml"
-
-# env:
-#   DEBIAN_FRONTEND: "noninteractive"
-
-# jobs:
-#   render:
-#     runs-on:
-#       - self-hosted
-#     if: "!contains(github.event.head_commit.message, '[ci-skip]')"
-#     steps:
-#       - uses: actions/checkout@v2
-#         # with:
-#         #   token: ${{ secrets.ACCESS_TOKEN }}
-#         #   fetch-depth: 1
-#       - name: Unlock secrets
-#         env:
-#           GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
-#         run: |
-#           echo "$GIT_CRYPT_KEY" | base64 -d > ./git-crypt-key
-#           git-crypt unlock ./git-crypt-key
-#           rm ./git-crypt-key
-
-#       - uses: jitterbit/get-changed-files@v1
-#         id: changed_files
-#         with:
-#           format: "csv"
-
-#       - name: Store changed and removed files
-#         run: |
-#           mapfile -d ',' -t changed_files < <(printf '%s,' '${{ steps.changed_files.outputs.all }}')
-#           for changed_file in "${changed_files[@]}"; do
-#             echo "${changed_file}" >> /tmp/changed_files
-#           done
-
-#       - uses: lra/setup-kubeval@v1
-#         with:
-#           version: 0.15.0
-
-#       # Regenerate only the new or update secrets, unless the script logic or sealing certificate have changed
-#       - name: Generate new/updated templates
-#         if: "!contains(steps.changed_files.outputs.added_modified, '.github/scripts/render_templates.sh') && !contains(steps.changed_files.outputs.added_modified, '_setup/sealedsecret-cert.pem')"
-#         env:
-#           INPUT_FILE: /tmp/changed_files
-#         run: |
-#           task render-templates
-
-#       # If the script logic or sealing certificate have changed, regenerate all certificates
-#       - name: Regenerate all templates
-#         if: "contains(steps.changed_files.outputs.added_modified, '.github/scripts/render_templates.sh') || contains(steps.changed_files.outputs.added_modified, '_setup/sealedsecret-cert.pem')"
-#         run: |
-#           task render-templates
-
-#       - name: Commit and push rendered templates
-#         run: |
-#           if [[ -n $(git status --porcelain) ]]; then
-#             git config user.name "$GITHUB_ACTOR"
-#             git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-#             git pull
-#             git add "cluster/namespaces/**/*.yaml"
-#             git commit -m "Auto-render templates [ci-skip]" || exit 0
-#             git push
-#           fi
