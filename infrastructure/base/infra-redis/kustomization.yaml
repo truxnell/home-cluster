@@ -4,7 +4,7 @@ namespace: infra-redis
 resources:
   - namespace.yaml
   - infra-redis.yaml
-  - redis-auth.yaml
+  - redis-auth.sops.yaml
 configMapGenerator:
   - name: redis-values
     files:
