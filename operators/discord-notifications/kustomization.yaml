@@ -4,4 +4,4 @@ namespace: flux-system
 resources:
   - alerts.yaml
   - provider.yaml
-  - discord-webook.sops.yaml
+  - discord-webhook.sops.yaml
