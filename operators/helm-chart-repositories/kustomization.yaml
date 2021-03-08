@@ -10,3 +10,4 @@ resources:
   - k8s-at-home-charts.yaml
   - longhorn-charts.yaml
   - sealed-secrets-charts.yaml
+  - authelia-charts.yaml
