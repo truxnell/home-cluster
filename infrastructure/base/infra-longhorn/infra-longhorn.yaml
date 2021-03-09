@@ -19,19 +19,19 @@ spec:
     persistence:
       defaultClassReplicaCount: 2
     defaultSettings:
-      backupTarget: nfs://192.168.2.253/volume1/backups/longhorn/
+      backupTarget: nfs://192.168.2.253:/volume1/backups/longhorn/
       createDefaultDiskLabeledNodes: true
       defaultReplicaCount: 2
       defaultDataPath: /longhorn
     ingress:
       enabled: true
       annotations:
-        # kubernetes.io/tls-acme: "true"
-        # kubernetes.io/ingress.class: "internal"
+        kubernetes.io/tls-acme: "true"
+        kubernetes.io/ingress.class: "internal"
         # nginx.ingress.kubernetes.io/auth-url: "https://gate.sko.ai/api/verify"
         # nginx.ingress.kubernetes.io/auth-signin: "https://gate.sko.ai/"
       hosts:
         - longhorn.${CLUSTER_DOMAIN}
       tls:
         - hosts:
-            - podinfo.l.voltaicforge.com
+            - longhorn.${CLUSTER_DOMAIN}
