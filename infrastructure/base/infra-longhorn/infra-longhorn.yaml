@@ -7,8 +7,8 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://charts.longhorn.io
       # values: https://github.com/longhorn/longhorn/blob/master/chart/values.yaml
+      # renovate: registryUrl=https://charts.longhorn.io
       chart: longhorn
       version: 1.1.0
       sourceRef:
