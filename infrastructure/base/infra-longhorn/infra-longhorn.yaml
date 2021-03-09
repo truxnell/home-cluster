@@ -20,7 +20,7 @@ spec:
     persistence:
       defaultClassReplicaCount: 2
     defaultSettings:
-      backupTarget: nfs://192.168.2.253:/volume1/backups/longhorn/
+      backupTarget: nfs://192.168.2.253:/volume1/backup/longhorn/
       createDefaultDiskLabeledNodes: true
       defaultReplicaCount: 2
       defaultDataPath: /longhorn
