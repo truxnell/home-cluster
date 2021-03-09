@@ -8,6 +8,7 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://charts.longhorn.io
+      # values: https://github.com/longhorn/longhorn/blob/master/chart/values.yaml
       chart: longhorn
       version: 1.1.0
       sourceRef:
@@ -29,8 +30,7 @@ spec:
         kubernetes.io/ingress.class: "nginx"
         # nginx.ingress.kubernetes.io/auth-url: "https://gate.sko.ai/api/verify"
         # nginx.ingress.kubernetes.io/auth-signin: "https://gate.sko.ai/"
-      hosts:
-        - longhorn.${CLUSTER_DOMAIN}
-      tls:
-        - hosts:
-            - longhorn.${CLUSTER_DOMAIN}
+      host: longhorn.${CLUSTER_DOMAIN}
+      tls: true
+      tlsSecret: "${CLUSTER_DOMAIN_CERT}"
+      namespaceOverride: "infra-longhorn"
