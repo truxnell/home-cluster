@@ -1,0 +1,36 @@
+apiVersion: v1
+stringData:
+    api-token: ENC[AES256_GCM,data:kTb3g4Fz5i/FU8pE949Kp5jdvSCSgOMz0YRJNQxUaoHlPitcz3ZzEQ==,iv:p8TJ8eKe8+YHjUNVHmvymIB+xPUbRh2/u9RAwZnQ2kY=,tag:5YSO+2rS10WDoOkDiGkBZg==,type:str]
+kind: Secret
+type: Opaque
+metadata:
+    name: cloudflare-api-token-secret
+    namespace: infra-cert-manager
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-03-10T08:53:41Z'
+    mac: ENC[AES256_GCM,data:iom20zI1o874doPItNrp3pQeQrDXXn1Uv0U9qf4IQAuu3B6d43tpv5nelsqa1AqkpXv18q5Cy2CGFzCWSec3ewd9knvNhSjzsMXPJOZ6FqUI+hq7gPsD89T1EK/oRHSGDcXESwdLJOOhAPUe02j7B5x/WjRMPi+CRiUrf6ewzc4=,iv:sLaW+Qh3kf2j+YZ0qcWS4OQoat3fyWWEzplve5f2+tY=,tag:ja5wSbmQ5rhlTTBWz//HCQ==,type:str]
+    pgp:
+    -   created_at: '2021-03-10T08:53:40Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQGMA94SucntcLeJAQv/bnQsJVuVOEQSp2uI21IdqZOLMcYScH8eP6r347NNIWuT
+            cjnwfD1JW9hE8dOnSBiATRJr5m4kQIsquxPRpvMCkHWZI+57uAAwrEfobk664haA
+            Vb6pryh48Vo92E9+862lS2Ll/P6G9AKsjuxw+xgqDvU6XX20jnjZsDpNiBJDX9DX
+            WEkiRLRodpyTB00K3lqforvWPsgKvNuPLoYKhg9PKSrfd9DMrJ0sd4VWAqkeOGys
+            sQRSORCHCMPByP1CNDFPPAWpMqlpdAQrMIOUSi3gTX8KgE0y16OFgUew7sfYcU10
+            8dV4x8M8uJKmfCRqVCy/oLu9Sf8eGib4UuvKktlPvv6R7SusxqE5y6MFXtpUmySP
+            nyXtdynCekRgCjOzXiUtbu9F2kZ8WhVfCwbE3WimAWZpk/ksdCtZqVy36JdbWiyE
+            kmvgUhF9YRVhCkcRm1tZ84e1nyUFyrSY7jw3SWezu9BIskfqUx17mJwYaVusrQ5v
+            +0D9bJS+1pZLuP/51BW70lwBZgs0x1aAK+HxL6fBXm7XzcK1ozKgN+99SxjDw7a4
+            JU7R99s+GErQBbBy18ttIixi/DJ8df6iy9irwSy5ND8NR2AggrToCcTXxj1+hqwr
+            trKmPzsZoPMFutE0pQ==
+            =FhgA
+            -----END PGP MESSAGE-----
+        fp: 30DA87702717C0310E1BE81E612328766D06D7DD
+    encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData$))
+    version: 3.6.1
