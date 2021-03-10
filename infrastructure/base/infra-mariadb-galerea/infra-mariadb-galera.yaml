@@ -18,7 +18,7 @@ spec:
       retries: 3
 
   # Default values
-  # https://github.com/authelia/chartrepo/blob/master/charts/authelia/values.yaml
+  # https://github.com/bitnami/charts/blob/master/bitnami/mariadb-galera/values.yaml
   values:
     galera:
       name: maraidb
@@ -28,5 +28,4 @@ spec:
       enabled: true
       size: 10Gi
     service:
-      type: LoadBalancer
       loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_MARIADB}"
