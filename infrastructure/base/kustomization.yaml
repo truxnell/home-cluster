@@ -8,5 +8,5 @@ resources:
   - infra-ingress-nginx
   # - postgres
   - infra-redis
-  - longhorn-systems
+  - longhorn-system
   - infra-metallb
