@@ -24,7 +24,7 @@ spec:
       backupTarget: nfs://192.168.2.253:/volume1/backup/longhorn/
       createDefaultDiskLabeledNodes: true
       defaultReplicaCount: 2
-      defaultDataPath: /longhorn
+      # defaultDataPath: /longhorn
     ingress:
       enabled: true
       annotations:
