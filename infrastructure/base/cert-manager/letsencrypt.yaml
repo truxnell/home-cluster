@@ -58,4 +58,3 @@ spec:
   dnsNames:
     - "${CLUSTER_DOMAIN}"
     - "*.${CLUSTER_DOMAIN}"
-    - "*.l.${CLUSTER_DOMAIN}"
