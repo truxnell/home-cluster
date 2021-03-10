@@ -49,7 +49,6 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: acme-crt
-  namespace: cert-manager
 spec:
   secretName: "${CLUSTER_DOMAIN_CERT}"
   issuerRef:

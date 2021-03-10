@@ -1,4 +1,13 @@
-
+- name: Create flux NS
+  shell: |
+    {{ KUBECTL_BIN }} create ns {{ FLUX_NAMESPACE }}
+  run_once: True
+  register: result
+  failed_when:
+    - "'already exists' not in result.stderr"
+    - result.rc != 0
+  changed_when:
+    - "'already exists'  not in result.stderr|join('')"
 - name: Install SOPS GPG key
   shell: >
     echo "{{ SOPS_GPG }}"| gpg --batch

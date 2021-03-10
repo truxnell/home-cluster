@@ -35,11 +35,22 @@ tasks:
     cmds:
       - ansible-playbook -i {{.ANSIBLE_HOSTS}} ./ansible/playbooks/ubuntu/upgrade.yml
 
-  flux:install:
-    desc: Install FluxV2 to cluster
+  k3s:install:
+    desc: Install k3s on nodes
     cmds:
-      - flux bootstrap github --owner=Truxnell --repository=home-cluster --path=cluster/production --personal --network-policy=false
-  # helm-operator:install:
-  #   desc: Install helm-operator to cluster
-  #   cmds:
-  #     -
+      - ansible-playbook -i {{.ANSIBLE_HOSTS}} ./ansible/playbooks/k3s/install.yml
+
+  k3s:nuke:
+    desc: Nuke k3s on nodes
+    cmds:
+      - ansible-playbook -i {{.ANSIBLE_HOSTS}} ./ansible/playbooks/k3s/nuke.yml
+
+  cluster:install:
+    desc: Install flux + cluster github on cluster
+    cmds:
+      - cd ansible && ansible-playbook -i ../{{.ANSIBLE_HOSTS}} ./playbooks/cluster/install.yml --ask-vault-password
+
+  full:install:
+    desc: Full install k3s + flux cluster
+    cmds:
+      - ansible-playbook -i {{.ANSIBLE_HOSTS}} ./ansible/playbooks/k3s/install.yml && ansible-playbook -i {{.ANSIBLE_HOSTS}} ./ansible/playbooks/cluster/install.yml  --ask-vault-password
