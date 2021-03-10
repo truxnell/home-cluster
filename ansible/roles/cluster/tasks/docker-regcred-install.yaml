@@ -20,22 +20,3 @@
   register: result
   changed_when:
     - "'(no change)'  not in result.stdout|join('')"
-
-- name: Install SOPS GPG key
-  shell: >
-    echo "{{ SOPS_GPG }}"| gpg --batch
-    --pinentry-mode loopback
-    --import /dev/stdin
-
-- name: Create secret with SOPS GPG key
-  shell: >
-    {{ KUBECTL_BIN }} create -n {{ FLUX_NAMESPACE }} secret generic sops-gpg
-    --save-config --dry-run=client
-    --from-literal=sops.asc="{{ SOPS_GPG }}"
-    -o yaml
-    | {{ KUBECTL_BIN }} apply -f -
-  run_once: True
-  register: result
-  changed_when:
-    - "'unchanged'  not in result.stdout| join('')"
-    - "'configured' not in result.stdout| join('')"

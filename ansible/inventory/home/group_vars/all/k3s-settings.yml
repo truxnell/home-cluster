@@ -39,7 +39,6 @@ FLUX_GIT_USER: Truxnell
 FLUX_GIT_REPO: home-cluster
 FLUX_GIT_BRANCH: main
 FLUX_GIT_PATH: "cluster/production/"
-#FLUX2_CONTEXT: microk8s
 FLUX_NAMESPACE: flux-system
 FLUX2_GITHUB_TOKEN: !vault |
   $ANSIBLE_VAULT;1.1;AES256

@@ -1,6 +1,9 @@
 ---
-- include: post-install.yaml
-  tags: post-install-k3s
-# ---
-# - include: flux-install.yaml
-#   tags: flux
+- include: docker-regcred-install.yaml
+  tags: docker-install
+
+- include: flux-install.yaml
+  tags: flux-install
+
+- include: sops-install.yaml
+  tags: sops-install
