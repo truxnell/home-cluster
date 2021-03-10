@@ -25,7 +25,7 @@ spec:
       reclaimPolicy: Retain
     defaultSettings:
       backupTarget: nfs://192.168.2.253:/volume1/backup/longhorn/
-      createDefaultDiskLabeledNodes: true
+      createDefaultDiskLabeledNodes: false
       defaultReplicaCount: 2
       defaultDataLocality: best-effort
       defaultDataPath: /var/lib/longhorn
