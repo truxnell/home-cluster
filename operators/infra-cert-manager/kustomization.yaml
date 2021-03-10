@@ -6,3 +6,4 @@ namespace: infra-cert-manager
 resources:
   - namespace.yaml
   - cert-manager.yaml
+  - cloudflare-api.sops.yaml
