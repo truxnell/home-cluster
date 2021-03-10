@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - appscode-chart.yaml
-  - bitnami.yaml
+  - bitnami-charts.yaml
   - helm-stable-charts.yaml
   - ingress-nginx-charts.yaml
   - jetstack-charts.yaml
