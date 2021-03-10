@@ -4,6 +4,7 @@ kind: HelmRelease
 metadata:
   name: longhorn
 spec:
+  releaseName: longhorn
   interval: 5m
   chart:
     spec:
@@ -19,12 +20,18 @@ spec:
 
   values:
     persistence:
+      defaultClass: true
       defaultClassReplicaCount: 2
+      reclaimPolicy: Retain
     defaultSettings:
       backupTarget: nfs://192.168.2.253:/volume1/backup/longhorn/
       createDefaultDiskLabeledNodes: true
       defaultReplicaCount: 2
+      defaultDataLocality: best-effort
       # defaultDataPath: /longhorn
+      replicaSoftAntiAffinity: false
+      storageMinimalAvailablePercentage: 10
+
     ingress:
       enabled: true
       annotations:
