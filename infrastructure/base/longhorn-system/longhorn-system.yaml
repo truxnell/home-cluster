@@ -16,6 +16,7 @@ spec:
         name: longhorn-charts
         namespace: flux-system
       interval: 6m
+
   values:
     persistence:
       defaultClassReplicaCount: 2
