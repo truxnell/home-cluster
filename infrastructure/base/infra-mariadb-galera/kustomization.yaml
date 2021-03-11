@@ -4,4 +4,4 @@ namespace: infra-mariadb-galera
 resources:
   - namespace.yaml
   - infra-mariadb-galera.yaml
-  - infra-mariadb-galera-sops.yaml
+  - infra-mariadb-galera.sops.yaml
