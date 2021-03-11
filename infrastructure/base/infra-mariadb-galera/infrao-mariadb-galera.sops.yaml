@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+    name: infra-mariadb-galera-secret
+stringData:
+    rootUser.password: ENC[AES256_GCM,data:5JOaFJdvJjY=,iv:V4aKC2A55jf3kjsHjyO7kTlSt/xq/clbycSt+3LskQI=,tag:2HxGccizr7i0wXxLb3K0Rg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-03-11T10:49:07Z'
+    mac: ENC[AES256_GCM,data:6YBa98y5uFALaO2L/Nz/wehdqkdNptidmufElSzrJ1rfUZH8nmOeIQUMkWz3TX7k9EWgGnJgNvyCWxpTdICaftaLcl6MPNIpt/51vwBTWt3JEckBzzv4JXuLf1E1NEsOvyEySRC/hejd6c0YghwfAE2xtXjbwlSxFI1C3ayj+vo=,iv:skpoLpqBRx26ZnhFGB4neav8hbeBXs8TFaezZ3ruC14=,tag:nqr16Ik4vcvkyWN3D8bFfg==,type:str]
+    pgp:
+    -   created_at: '2021-03-11T10:49:07Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQGMA94SucntcLeJAQv+LoyOAmHYRIcSN4sXgaeVIplinKIlG8fEH4F/ck77mX76
+            VAZ3lg66PV6p1dgI57DE1Kl+3gDur23ZsSm/gbyHSZv614XVwkoBzCNtcOsYuFe3
+            P8L5GY4gl9IIiN16Fv3FtxPK3t+8ZxZP+Z3KdRa5g+8hga1r76puM1SiN+8lnFfn
+            YErS2JbgnsRT7Pnm9InDb22utKpwgySrQsDRSY6ayB5W48wBdM0C6Ir3n8gZLGYw
+            lf9snkLaM9ly4SWg4QtnnnzG1Un1rbBvpjcaKyUEHTiTzhFociEBJVg5/pa0p7v8
+            kfMJDZyV4U9a2EP18gsv1/pdDn6lXsD8hMKD8ae4W10A5tFxGt8n3vo651+PZffD
+            emZwzxH54uvxsIWtMERjfcgZcDiL2K+yiRag6nnyFo3hzMv3hshwCJbpF6FoLgaU
+            e3Sb1zx7WjwW3oZpIUZpxuvqBH3IzOtDXQtzBN8lHtRcCSVt2jE03Ck2C/0DN/ki
+            HyKESUI6yzC1rI9oODYj0l4BnKQnLbNQ8sqo5J+UqhLkE4QrSOR9hDoG42QQc+6X
+            pSCQ0d5vgeEcrNaPjqbiBTl32TGkt1HfhL+gPcgn+tE4ZkQsLT3Se+XXNs5KSvA5
+            GMqlCIrfp/24F7lnFQuT
+            =texG
+            -----END PGP MESSAGE-----
+        fp: 30DA87702717C0310E1BE81E612328766D06D7DD
+    encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData$))
+    version: 3.6.1
