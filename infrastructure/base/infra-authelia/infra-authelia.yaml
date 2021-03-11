@@ -46,3 +46,5 @@ spec:
           port: 3306
           database: authelia
           username: authelia
+      secret:
+        existingSecret: infra-authelia-secret
