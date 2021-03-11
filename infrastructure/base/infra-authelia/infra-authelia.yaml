@@ -34,3 +34,15 @@ spec:
       runAsUser: 1031
       runAsGroup: 100
       fsGroup: 100
+    configMap:
+      enabled: true
+      redis:
+        enabled: true
+        host: redis-master
+        port: 6379
+      storage:
+        mysql:
+          host: mariadb-galera
+          port: 3306
+          database: authelia
+          username: authelia

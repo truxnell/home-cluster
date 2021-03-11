@@ -10,3 +10,4 @@ resources:
   - infra-redis
   - longhorn-system
   - infra-metallb
+  - infra-mariadb-galera
