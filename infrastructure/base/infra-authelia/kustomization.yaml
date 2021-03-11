@@ -4,4 +4,4 @@ namespace: infra-authelia
 resources:
   - namespace.yaml
   - infra-authelia.sops.yaml
-  # - infra-authelia.yaml
+  - infra-authelia.yaml

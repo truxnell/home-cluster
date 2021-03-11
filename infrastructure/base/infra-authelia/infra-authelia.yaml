@@ -21,7 +21,7 @@ spec:
   # Default values
   # https://github.com/authelia/chartrepo/blob/master/charts/authelia/values.yaml
   values:
-    domain: voltaicforge.com
+    domain: l.voltaicforge.com
     ingress:
       enabled: true
       subdomain: auth
@@ -48,3 +48,19 @@ spec:
           username: authelia
       secret:
         existingSecret: infra-authelia-secret
+    authentication_backend:
+      file:
+        path: /config/users.yml
+        password:
+          algorithm: argon2id
+          iterations: 1
+          salt_length: 16
+          parallelism: 8
+          memory: 64
+    notifier:
+      # You can disable the notifier startup check by setting this to true.
+      disable_startup_check: false
+
+      # For testing purpose, notifications can be sent in a file.
+      filesystem:
+        filename: /config/notification.txt
