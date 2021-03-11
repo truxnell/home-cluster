@@ -42,7 +42,7 @@ spec:
         port: 6379
       storage:
         mysql:
-          host: mariadb-galera
+          host: 192.168.2.129
           port: 3306
           database: authelia
           username: authelia
