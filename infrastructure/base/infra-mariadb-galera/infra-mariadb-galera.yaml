@@ -23,10 +23,11 @@ spec:
     galera:
       name: maraidb
       user: root
-      pass: temp
+      pass: "temp"
     persistence:
       enabled: true
       size: 10Gi
     service:
       type: LoadBalancer
       loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_MARIADB}"
+    existingSecret: infra-mariadb-galera-secret
