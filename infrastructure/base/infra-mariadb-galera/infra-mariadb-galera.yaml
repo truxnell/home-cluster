@@ -3,6 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: mariadb-galera
+  namespace: infra-mariadb-galera
 spec:
   interval: 5m
   chart:
@@ -22,8 +23,9 @@ spec:
   values:
     galera:
       name: maraidb
-      user: root
-      pass: "temp"
+      bootstrap:
+        bootstrapFromNode: mariadb-galera-0
+        forceSafeToBootstrap: true
     persistence:
       enabled: true
       size: 10Gi
