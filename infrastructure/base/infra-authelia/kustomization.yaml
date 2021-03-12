@@ -4,4 +4,4 @@ namespace: infra-authelia
 resources:
   - namespace.yaml
   - pvc.yaml
-  - autelia.yaml
+  - authelia.yaml
