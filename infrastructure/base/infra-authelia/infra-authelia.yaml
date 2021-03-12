@@ -69,3 +69,6 @@ spec:
         # For testing purpose, notifications can be sent in a file.
         filesystem:
           filename: /config/notification.txt
+    persistence:
+      enabled: true
+      size: 10Gi
