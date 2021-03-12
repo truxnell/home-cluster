@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: infra-authelia
 resources:
   - namespace.yaml
-  - pvc.yaml
-  - authelia.yaml
+  - infra-authelia.yaml
