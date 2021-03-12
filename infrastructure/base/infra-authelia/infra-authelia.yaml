@@ -43,12 +43,14 @@ spec:
         host: redis-master
         port: 6379
       storage:
-        mysql:
-          host: "mariadb-galera.infra-mariadb-galera.svc.cluster.local"
-          port: 3306
-          database: "authelia"
-          username: "authelia"
-          password: "k5RBQRfyPRx4j7"
+        local:
+          path: /config/db.sqlite3
+        # mysql:
+        #   host: "mariadb-galera.infra-mariadb-galera.svc.cluster.local"
+        #   port: 3306
+        #   database: "authelia"
+        #   username: "authelia"
+        #   password: "k5RBQRfyPRx4j7"
       # secret:
       #   existingSecret: infra-authelia-secret
       authentication_backend:
