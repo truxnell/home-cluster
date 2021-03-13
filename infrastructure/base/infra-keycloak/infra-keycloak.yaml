@@ -53,9 +53,9 @@ spec:
       - name: DB_PASSWORD_FILE
         value: /secrets/db-creds/DB_PASSWORD
       - name: ADMIN_USER_FILE
-        value: /secrets/admin-creds/DB_USER
+        value: /secrets/admin-creds/KEYCLOAK_USER
       - name: ADMIN_PASSWORD_FILE
-        value: /secrets/admin-creds/DB_PASSWORD
+        value: /secrets/admin-creds/KEYCLOAK_PASSWORD
     extraVolumeMounts: |
       - name: db-creds
         mountPath: /secrets/db-creds
