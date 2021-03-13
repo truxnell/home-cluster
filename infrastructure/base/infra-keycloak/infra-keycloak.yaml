@@ -48,14 +48,6 @@ spec:
         value: "3306"
       - name: DB_DATABASE
         value: keycloak
-      - name: DB_USER_FILE
-        value: /secrets/db-creds/DB_USER
-      - name: DB_PASSWORD_FILE
-        value: /secrets/db-creds/DB_PASSWORD
-      - name: ADMIN_USER_FILE
-        value: /secrets/admin-creds/KEYCLOAK_USER
-      - name: ADMIN_PASSWORD_FILE
-        value: /secrets/admin-creds/KEYCLOAK_PASSWORD
     extraVolumeMounts: |
       - name: db-creds
         mountPath: /secrets/db-creds
@@ -70,3 +62,6 @@ spec:
       - name: admin-creds
         secret:
           secretName: keycloak-admin-secrets
+    extraEnvFrom: |
+      - secretRef:
+          name: 'keycloak-env-values'
