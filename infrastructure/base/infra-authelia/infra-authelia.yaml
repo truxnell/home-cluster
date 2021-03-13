@@ -44,7 +44,7 @@ spec:
         port: 6379
       storage:
         mysql:
-          host: mariadb-galera.infra-mariadb.galera.svc.cluster.local
+          host: mariadb-galera.infra-mariadb-galera.svc.cluster.local
           port: 3306
           database: authelia
           username: authelia
