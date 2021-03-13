@@ -22,26 +22,36 @@ spec:
     image:
       repository: jboss/keycloak
       tag: 12.0.3
-    extraEnvFrom: |
-      - secretRef:
-          name: 'keycloak-env-values'
     ingress:
       enabled: true
       annotations:
-        kubernetes.io/ingress.class: nginx
-        kubernetes.io/tls-acme: "true"
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-      rules:
-        - host: keycloak.holthome.net
-          paths:
-            - /
+        kubernetes.io/ingress.class: "nginx"
+        # nginx.ingress.kubernetes.io/auth-url: "https://gate.sko.ai/api/verify"
+        # nginx.ingress.kubernetes.io/auth-signin: "https://gate.sko.ai/"
       tls:
-        - hosts:
-            - keycloak.holthome.net
-          secretName: keycloak-cert
+        host: keycloak.${CLUSTER_DOMAIN}
+        tlsSecret: "${CLUSTER_DOMAIN_CERT}"
+      namespaceOverride: "infra-keycloak"
     postgresql:
-      enabled: true
-    serviceMonitor:
-      enabled: true
-    prometheusRule:
-      enabled: true
+      enabled: false
+    extraEnv: |
+      - name: DB_VENDOR
+        value: mariadb
+      - name: DB_ADDR
+        value: mariadb-galera.infra-mariadb-galera.svc.cluster.local
+      - name: DB_PORT
+        value: "3306"
+      - name: DB_DATABASE
+        value: keycloak
+      - name: DB_USER_FILE
+        value: /secrets/db-creds/KEYCLOAK_USER
+      - name: DB_PASSWORD_FILE
+        value: /secrets/db-creds/KEYCLOAK_PASSWORD
+    extraVolumeMounts: |
+      - name: db-creds
+        mountPath: /secrets/db-creds
+        readOnly: true
+    extraVolumes: |
+      - name: db-creds
+        secret:
+          secretName: keycloak-secrets
