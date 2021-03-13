@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: keycloak
-  namespace: security
+  namespace: infra-keycloak
 spec:
   interval: 5m
   chart:
@@ -32,13 +32,13 @@ spec:
         kubernetes.io/tls-acme: "true"
         cert-manager.io/cluster-issuer: letsencrypt-prod
       rules:
-      - host: keycloak.holthome.net
-        paths:
-        - /
+        - host: keycloak.holthome.net
+          paths:
+            - /
       tls:
-      - hosts:
-        - keycloak.holthome.net
-        secretName: keycloak-cert
+        - hosts:
+            - keycloak.holthome.net
+          secretName: keycloak-cert
     postgresql:
       enabled: true
     serviceMonitor:
