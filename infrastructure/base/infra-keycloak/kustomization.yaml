@@ -4,5 +4,4 @@ namespace: infra-keycloak
 resources:
   - namespace.yaml
   - infra-keycloak.sops.yaml
-  - infra-keycloak-admin.sops.yaml
   - infra-keycloak.yaml
