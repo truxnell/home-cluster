@@ -35,7 +35,7 @@ spec:
       tls:
         - hosts:
             - keycloak.l.voltaicforge.com
-          secretName: prod-wildcared-voltaicforge-com-tls
+          secretName: prod-wildcard-voltaicforge-com-tls
       namespaceOverride: "infra-keycloak"
     postgresql:
       enabled: false
