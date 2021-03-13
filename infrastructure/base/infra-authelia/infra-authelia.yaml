@@ -23,6 +23,14 @@ spec:
   # Default values
   # https://github.com/authelia/chartrepo/blob/master/charts/authelia/values.yaml
   values:
+    volumeMounts:
+      - name: pv-authelia
+        mountPath: /config
+    volumes:
+      - name: pv-authelia
+        persistentVolumeClaim:
+          claimName: authelia
+
     domain: l.voltaicforge.com
     ingress:
       enabled: true
@@ -684,7 +692,7 @@ spec:
     # ## Configuration Use Case: when you want to manually configure the configuration entirely (set configMap.enabled = false).
     # ##
     # persistence:
-    #   enabled: false
+    #   enabled: true
     #   annotations: {}
     #   # annotations:
     #   #   myAnnotation: myValue
