@@ -44,6 +44,8 @@ spec:
         value: "3306"
       - name: DB_DATABASE
         value: keycloak
+      - name: PROXY_ADDRESS_FORWARDING
+        value: true
     extraEnvFrom: |
       - secretRef:
           name: 'keycloak-secrets'
