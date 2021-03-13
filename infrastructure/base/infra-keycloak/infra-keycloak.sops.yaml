@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+    name: keycloak-secrets
+data:
+    KEYCLOAK_PASSWORD: ENC[AES256_GCM,data:iTrQAMR5cdY=,iv:DxkxR68k0XtZFxmPB1+S0JCn9lesWHiEG5PbqwVQPKw=,tag:BqJkZ1TAYRvBe5z0YeT0dw==,type:str]
+    KEYCLOAK_USER: ENC[AES256_GCM,data:In3aoY9S7aU=,iv:Z1TEQ8jnqY48QECF5g/Qvelyw5O/s/mW9F+ZFK4NABM=,tag:ggnz7X1lTP9N9bETdwVYFw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-03-13T04:47:46Z'
+    mac: ENC[AES256_GCM,data:+si8mICEqPck2zchAIllJtZT4N7ZNr0LM4zwkY49sU5XUZuAuqT+KaX2k/erf5Dcfb610zSnJ4oJ88SOPeHKiKI+AvT1tARKLJoxmJm/VTKr2Fq989g/edK2WVmlzXETQkj5OVh/KQc8uSTpxrxE5K1UaA6+8SaYOPZOiqkR6qc=,iv:UN0UkCTtPL6sMiqmNlU84VGw9i5SYcmAcDAz+jGhx+k=,tag:hJElJF7ObLjKWuouGu1YAg==,type:str]
+    pgp:
+    -   created_at: '2021-03-13T04:47:45Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQGMA94SucntcLeJAQwAiOEDo9Ff0WXOYsAgYvQVO5FwJ8egYIj0WanKcY3BkxqC
+            2eFsdqcSTFmV1LKuX23qayAb6U57IO6OHj0NnAMMIeMMD5rqjsvfDbKM87DC1rd+
+            3/CIyl5iqk2urAqcQK/amsDOiZebf2uAi2q+hVLaMEq+0MtgoFejXT47NB91jrIO
+            QGYfK0ob+9R4GvGq19TX19Ar5FMAh3+n0dNaFdhgdJ+LsUbi9ZMYk78MA41nJ3aC
+            ykTMVV9v2ElpgwAEyJpqm6bkSew/1wCsA5WVqRhCHvpPqzgGAUbutnlEqJQ9oMOT
+            GXR4PLAlGAXBOtd3fEKjHz4wBxyyrawYuf6Q2sNYHS+lcH5bzYlwZwY4kun50wuM
+            hno+5wwMnhAWl34BCoBFKpQa6xeQjyLRgW+RfcsdYDz4VxlEfLRspC0ym1f4/HzX
+            ijSUK14eh+2QYSxw7XO7eRlu3GnrnvNOJ8zXvipYm33ranC+7T1VWdbeLHA0ZDPT
+            QEUqrCVC7s5V3p2Gxo0K0lwBHP80ALh4RPjhgG8lddemthTqsp/g7V9qYsjRx7In
+            UUErhRgCbQ2uPb0tDqaX6rSLS4g+Bw5e0Xjx2Lo4fNMW3zpW5Iue+nEOge8LkPgR
+            Iq7rIKWFObd1f80abA==
+            =xHeZ
+            -----END PGP MESSAGE-----
+        fp: 30DA87702717C0310E1BE81E612328766D06D7DD
+    encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData$))
+    version: 3.6.1
