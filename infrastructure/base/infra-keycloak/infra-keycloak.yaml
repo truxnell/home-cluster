@@ -49,14 +49,24 @@ spec:
       - name: DB_DATABASE
         value: keycloak
       - name: DB_USER_FILE
-        value: /secrets/db-creds/KEYCLOAK_USER
+        value: /secrets/db-creds/DB_USER
       - name: DB_PASSWORD_FILE
-        value: /secrets/db-creds/KEYCLOAK_PASSWORD
+        value: /secrets/db-creds/DB_PASSWORD
+      - name: ADMIN_USER_FILE
+        value: /secrets/admin-creds/DB_USER
+      - name: ADMIN_PASSWORD_FILE
+        value: /secrets/admin-creds/DB_PASSWORD
     extraVolumeMounts: |
       - name: db-creds
         mountPath: /secrets/db-creds
+        readOnly: true
+      - name: admin-creds
+        mountPath: /secrets/admin-creds
         readOnly: true
     extraVolumes: |
       - name: db-creds
         secret:
           secretName: keycloak-secrets
+      - name: admin-creds
+        secret:
+          secretName: keycloak-admin-secrets
