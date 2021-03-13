@@ -48,20 +48,6 @@ spec:
         value: "3306"
       - name: DB_DATABASE
         value: keycloak
-    extraVolumeMounts: |
-      - name: db-creds
-        mountPath: /secrets/db-creds
-        readOnly: true
-      - name: admin-creds
-        mountPath: /secrets/admin-creds
-        readOnly: true
-    extraVolumes: |
-      - name: db-creds
-        secret:
-          secretName: keycloak-secrets
-      - name: admin-creds
-        secret:
-          secretName: keycloak-admin-secrets
     extraEnvFrom: |
       - secretRef:
           name: 'keycloak-env-values'
