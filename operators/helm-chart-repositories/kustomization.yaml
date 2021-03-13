@@ -12,3 +12,4 @@ resources:
   - sealed-secrets-charts.yaml
   - authelia-charts.yaml
   - podinfo-charts.yaml
+  - codecentric-charts.yaml
