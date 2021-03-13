@@ -11,4 +11,5 @@ resources:
   - longhorn-system
   - infra-metallb
   - infra-mariadb-galera
-  - infra-authelia
+  # - infra-authelia
+  - infra-keycloak
