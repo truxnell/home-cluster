@@ -50,4 +50,4 @@ spec:
         value: keycloak
     extraEnvFrom: |
       - secretRef:
-          name: 'infra-keycloak.sops.yaml'
+          name: 'keycloak-secrets'
