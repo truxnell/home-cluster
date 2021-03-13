@@ -50,6 +50,8 @@ spec:
           username: authelia
       secret:
         existingSecret: infra-authelia-secret
+        storage:
+          key: STORAGE_PASSWORD
       authentication_backend:
         file:
           path: /config/users.yml
