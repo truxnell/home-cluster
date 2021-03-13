@@ -36,6 +36,10 @@ spec:
       runAsUser: 1031
       runAsGroup: 100
       fsGroup: 100
+    secret:
+      existingSecret: infra-authelia-secret
+      storage:
+        key: STORAGE_PASSWORD
     configMap:
       enabled: true
       redis:
@@ -48,10 +52,6 @@ spec:
           port: 3306
           database: authelia
           username: authelia
-      secret:
-        existingSecret: infra-authelia-secret
-        storage:
-          key: STORAGE_PASSWORD
       authentication_backend:
         file:
           path: /config/users.yml
