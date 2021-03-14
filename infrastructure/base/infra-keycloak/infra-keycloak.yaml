@@ -39,11 +39,5 @@ spec:
     adminUser: truxnell
     proxyAddressForwarding: true
 
-    existingSecret:
+    extraEnvVarsSecret:
       name: keycloak-secrets
-      keyMapping:
-        admin-password: KEYCLOAK_ADMIN_PASSWORD
-        # management-password: myManagementPasswordKey
-        database-password: DATABASE_PASSWORD
-        # tls-keystore-password: myTlsKeystorePasswordKey
-        # tls-truestore-password: myTlsTruestorePasswordKey
