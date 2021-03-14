@@ -26,8 +26,8 @@ spec:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: "nginx"
-        # nginx.ingress.kubernetes.io/auth-url: "https://gate.sko.ai/api/verify"
-        # nginx.ingress.kubernetes.io/auth-signin: "https://gate.sko.ai/"
+        nginx.ingress.kubernetes.io/auth-url: "https://keycloak.${CLUSTER_DOMAIN}/auth/realms/NatSWARM/protocol/openid-connect/auth"
+        nginx.ingress.kubernetes.io/auth-signin: "https://keycloak.${CLUSTER_DOMAIN}/auth/realms/NatSWARM/protocol/openid-connect/token"
       rules:
         - host: keycloak.l.voltaicforge.com
           paths:
