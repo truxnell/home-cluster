@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://codecentric.github.io/helm-charts
       chart: keycloak
-      version: 9.9.3
+      version: 12.0.4
       sourceRef:
         kind: HelmRepository
         name: bitnami-charts
@@ -19,9 +19,6 @@ spec:
   values:
     fullnameOverride: keycloak
     nameOverride: keycloak
-    image:
-      repository: jboss/keycloak
-      tag: 12.0.3
     ingress:
       enabled: true
       annotations:
