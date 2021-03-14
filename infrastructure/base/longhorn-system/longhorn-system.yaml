@@ -42,4 +42,4 @@ spec:
       host: longhorn.${CLUSTER_DOMAIN}
       tls: true
       tlsSecret: "${CLUSTER_DOMAIN_CERT}"
-      namespaceOverride: "infra-longhorn"
+      namespaceOverride: "longhorn-system"
