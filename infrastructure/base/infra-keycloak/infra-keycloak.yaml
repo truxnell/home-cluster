@@ -8,7 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://codecentric.github.io/helm-charts
+      # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: keycloak
       version: 2.3.0
       sourceRef:
