@@ -13,7 +13,7 @@ spec:
       version: 9.9.3
       sourceRef:
         kind: HelmRepository
-        name: codecentric-charts
+        name: bitnami-charts
         namespace: flux-system
       interval: 5m
   values:
@@ -28,24 +28,25 @@ spec:
         kubernetes.io/ingress.class: "nginx"
         # nginx.ingress.kubernetes.io/auth-url: "https://gate.sko.ai/api/verify"
         # nginx.ingress.kubernetes.io/auth-signin: "https://gate.sko.ai/"
-      rules:
-        - host: keycloak.l.voltaicforge.com
-          paths:
-            - /
+      hostnamee: auth.l.voltaicforge.com
+      Path: /
       namespaceOverride: "infra-keycloak"
     postgresql:
       enabled: false
-    extraEnv: |
-      - name: DB_VENDOR
-        value: mariadb
-      - name: DB_ADDR
-        value: mariadb-galera.infra-mariadb-galera.svc.cluster.local
-      - name: DB_PORT
-        value: "3306"
-      - name: DB_DATABASE
-        value: keycloak
-      - name: PROXY_ADDRESS_FORWARDING
-        value: true
-    extraEnvFrom: |
-      - secretRef:
-          name: 'keycloak-secrets'
+    externalDatabase:
+      host: "mariadb-galera.infra-mariadb-galera.svc.cluster.local"
+      port: 3306
+      user: keycloak
+      database: keycloak
+    createAdminUser: true
+    adminUser: truxnell
+    proxyAddressForwarding: true
+
+    existingSecret:
+      name: keycloak-secrets
+      keyMapping:
+        admin-password: KEYCLOAK_ADMIN_PASSWORD
+        # management-password: myManagementPasswordKey
+        database-password: DATABASE_PASSWORD
+        # tls-keystore-password: myTlsKeystorePasswordKey
+        # tls-truestore-password: myTlsTruestorePasswordKey
