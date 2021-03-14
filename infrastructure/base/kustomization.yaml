@@ -12,4 +12,4 @@ resources:
   - infra-metallb
   - infra-mariadb-galera
   # - infra-authelia
-  # - infra-keycloak
+  - infra-keycloak
