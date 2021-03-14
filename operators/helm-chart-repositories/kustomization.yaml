@@ -13,3 +13,4 @@ resources:
   - authelia-charts.yaml
   - podinfo-charts.yaml
   - codecentric-charts.yaml
+  - oauth2-proxy-charts.yaml
