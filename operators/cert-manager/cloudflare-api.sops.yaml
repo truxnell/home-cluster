@@ -1,6 +1,6 @@
 apiVersion: v1
 stringData:
-    api-token: ENC[AES256_GCM,data:oasVwK08xuvubtIaS6kwHNUMQB3P9CKtgnOncMteOrszvKlDhEZozQ==,iv:acGZbFNf3xvyKJYpGgkaXD2ZC1nwC1seQJpbSWkUfVw=,tag:kFjNCzdntNOBOZGIeKw5sw==,type:str]
+    api-token: ENC[AES256_GCM,data:5dZ9CSG1BuigdzTrFGj4+VGk/dmrnpg2goVbxhSLhLT1v27kcK4HQg==,iv:Uc1N+E5t2CE64CPWa362r9iKZp6VezW1SVTcG5YGDQ8=,tag:ESwdmfiIqiUXgIFRp5wcaA==,type:str]
 kind: Secret
 type: Opaque
 metadata:
@@ -11,25 +11,25 @@ sops:
     gcp_kms: []
     azure_kv: []
     hc_vault: []
-    lastmodified: '2021-03-13T11:51:44Z'
-    mac: ENC[AES256_GCM,data:lhWWQ1a2bpQtKYsTxfVKL3DK5rsyqYblAklN7j0KtVXpA/BrHT0cqaErDC4YoEiYdVb5qRxHJ57d6bfBI1lSIARQpljXZbRZ3zMiKX+pDifcz0kVP4kMP9Hs5wY7g/yOW2m0CcxYztaNi38vnyo9ilAtRo47qJFHX+1eACKJzMA=,iv:YU/lGVBqW66Drlz6FU7QRKcSwxrsaHHzpMkQkNchNZA=,tag:gsogfoekNsUOmIRcmS4YIA==,type:str]
+    lastmodified: '2021-03-14T00:08:38Z'
+    mac: ENC[AES256_GCM,data:Bk+DUgV5z9EnaMjwvCmg6Ib+BrPwhYYExQKVmWkNS7BWBJOFOOHB29pqPhrPVJr9xyPD8TkMfy3yVp0OOgjNA8vxciwUmVT7BQCQMBtYUdkhsd0J2MCDW8DAeH6e0DMFGFmPahQ4nwsFmExcWUDxsm706+YuYq6kMQER9OPCMu8=,iv:FoHqrc64J6RJ53Nj9wke3VUXUaguQjovoeOBe4e/6Cs=,tag:TAd/pSJD5N/N0GmUAHdp8w==,type:str]
     pgp:
-    -   created_at: '2021-03-13T11:51:43Z'
+    -   created_at: '2021-03-14T00:08:37Z'
         enc: |
             -----BEGIN PGP MESSAGE-----
 
-            hQGMA94SucntcLeJAQv9E8dv+m5npDs9aKv6BrNvHaLWQXKtNhVHk08o+ggz3Eq1
-            pcEFnq3gJBls7oq7K8JlIlfEhxieYRq6kQnfwdWCoICq8jX+47wtpXoCvTVxkhNR
-            lL6YszJbuT7HoAMXfOoxnztTzWy6XAC9nhA0Rw02m812tDkT5J46Hkrbv5+DuBOC
-            L5hvChft6spBNf5BnfVe5wX9IrlDnkFwr8purw+iUPsxv8NRfzBF+hxLDsbbbuhR
-            iXKuOt4OY1ahoEs912LRXsDZi9PUe6/FDSSxlZp+FTPKYZqqHCj1yqL2ToSrv3y6
-            rUk4zze6blVc/WdxhNcX/Kz4ESkdXxCxaCXV1A7mxPVyuTQZoatXQhglMF1CadXH
-            YbhKpUGzazgUj0OMWFK5V+WnIeJh1VeYZszDg2wcaiSNx5AQHlixnz+cXZB4JYHx
-            YMtSRMnMZa0DQignIoavJ3WVS+YZZWavWTdx2Yxt2N/bLcO0fj8A+vM/k7mRqH9o
-            m/Ntcg91VOgTj6ZHcD5n0lwBtD43WGfVux4RW9DQIklpK+Deanpzvx/V5CEkJ4wG
-            sF3zPmYrtLy+LTcuRX1Co1zEkiSl3ulmeOV0BDRhRHgT0ivFbiTuDaMdKIPMcAWx
-            U6Z/hJpIqzvUTO5Zmw==
-            =b1Yi
+            hQGMA94SucntcLeJAQwAgaF9G18ifFvKCY33LGpdWuX+XWiwNO38ZNFGteeM7xIQ
+            p6GrF7Ug1O33QRWibGC8daveAjlpqcdR4U/V5GRqU91By39IJlb6ABHO7fPj2UiL
+            YrHN8CbR8FwVB1xus+rF6Oop7TJGt3Swz3TxV7YtIDMPL4uPc7kli7VCNRkLpXAc
+            h+bdvGsgumXUM908NB/Dmw+EzZGo8uEMeDoDXdnpAe0/Z0dfPWFsN9JnJKcRticY
+            lRLQ91xsVj3Z4uJPy21etzfrcaCWefFbeQb+AiUM5Wx4Q5y3obgJyKCA70ZdPw06
+            lLf9cJENGbK9g8s3Frkn2TMcwbD2AL+rY99OHJZ1v6n9hwX3GaoPd6vnuwIIIvSv
+            RcI0YrtlSXeWfIpOxY5vMSVsyhK/DU0Grw+2vv0OMLLsjfWGu15f45a6n47Nbc+c
+            pLCkAUNU5ETkLWQj9wR7ih1RPuruUadUwTaK4wfs/T0Dz/vOAiSCIaIjcoshOS26
+            fKqasQVOVGPublU4aK7y0lwBVeJze/wC7YYoeBSTIqZQVo0x1Gyd1za+dTnAdA6e
+            crRxjgp6Mk55nSTc1hqLWXxoH+t771zkRypHpLaWrfGhX8xy5LMWolvdQoIDYJiO
+            f/C+U1YCMGfBWcoKRg==
+            =XgFe
             -----END PGP MESSAGE-----
         fp: 30DA87702717C0310E1BE81E612328766D06D7DD
     encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData$))
