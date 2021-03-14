@@ -38,6 +38,5 @@ spec:
     createAdminUser: true
     adminUser: truxnell
     proxyAddressForwarding: true
-
     extraEnvVarsSecret:
       name: keycloak-secrets
