@@ -11,6 +11,7 @@ spec:
   chart:
     spec:
       # https://github.com/k8s-at-home/charts/blob/master/charts/oauth2-proxy/values.yaml
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: oauth2-proxy
       version: 5.0.1
       sourceRef:
