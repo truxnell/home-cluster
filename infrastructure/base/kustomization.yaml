@@ -13,3 +13,4 @@ resources:
   - infra-mariadb-galera
   # - infra-authelia
   - infra-keycloak
+  - infra-oauth2-proxy

@@ -27,7 +27,7 @@ spec:
         nginx.ingress.kubernetes.io/auth-url: "https://keycloak.l.voltaicforge.com/auth/realms/NatSWARM/protocol/openid-connect/auth"
         nginx.ingress.kubernetes.io/auth-signin: "https://keycloak.l.voltaicforge.com/auth/realms/NatSWARM/protocol/openid-connect/token"
         kubernetes.io/tls-acme: "true"
-        kubernetes.io/ingress.class: "nginx"
+        kubernetes.io/ingress.class: "nginx`"
       hosts:
         - podinfo.l.voltaicforge.com
       tls:
