@@ -129,11 +129,14 @@ spec:
       enabled: true
       # -- Ingress accepted path
       # path: /
-      # -- Ingress accepted hostnames
+      # -- Ingress accepted hostname
       hosts:
-        - host: auth.l.voltaicforge.com
-          paths:
-            - /
+        host:
+          "auth.l.voltaicforge.com"
+          # paths:
+          #   - path: /
+          #     pathType: Prefix
+
       # -- Ingress extra paths to prepend to every host configuration. Useful when configuring [custom actions with AWS ALB Ingress Controller](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/ingress/annotation/#actions).
       extraPaths: []
       # - path: /*
