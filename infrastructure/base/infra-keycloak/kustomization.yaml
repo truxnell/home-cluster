@@ -3,5 +3,5 @@ kind: Kustomization
 namespace: infra-keycloak
 resources:
   - namespace.yaml
-  # - infra-keycloak.sops.yaml
+  - infra-keycloak.sops.yaml
   # - infra-keycloak.yaml
