@@ -22,13 +22,13 @@ spec:
 
   values:
     # # Oauth client configuration specifics
-    # config:
-    #   # -- OAuth client ID
-    #   clientID: "XXXXXXX"
-    #   # -- OAuth client secret
-    #   clientSecret: "XXXXXXXX"
-    #   # -- server specific cookie for the secret; create a new one with `openssl rand -base64 32 | head -c 32 | base64`
-    #   cookieSecret: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    config:
+      #   # -- OAuth client ID
+      clientID: "longhorn"
+      #   # -- OAuth client secret
+      clientSecret: "18a90886-1c85-4671-b9cc-ed6ada788181"
+      #   # -- server specific cookie for the secret; create a new one with `openssl rand -base64 32 | head -c 32 | base64`
+      cookieSecret: "VU54d2UrVjl1NlFHb1hPbjU5NlhENXpFUE5wMDJUNWQ="
     #   google:
     #     {}
     #     # -- user impersonated by the google service account
@@ -69,7 +69,7 @@ spec:
       provider: keycloak
       keycloak-group: oauth2-proxy
       set-xauthrequest: true
-      scope: "openid profile email"
+      scope: "openid profile email oauth2-proxy"
 
       login-url: "https://keycloak.l.voltaicforge.com/auth/realms/NatSWARM/protocol/openid-connect/auth"
       redeem-url: "https://keycloak.l.voltaicforge.com/auth/realms/NatSWARM/protocol/openid-connect/token"
