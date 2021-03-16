@@ -33,7 +33,7 @@ spec:
     solvers:
       # An empty 'selector' means that this solver matches all domains
       - selector: {}
-        dns01:      keycloak-group: oauth2-proxy      keycloak-group: oauth2-proxy
+        dns01:
           webhook:
             groupName: "${CLUSTER_DOMAIN}"
             solverName: dnsmadeeasy
