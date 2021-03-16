@@ -33,7 +33,7 @@ spec:
     solvers:
       # An empty 'selector' means that this solver matches all domains
       - selector: {}
-        dns01:
+        dns01:      keycloak-group: oauth2-proxy      keycloak-group: oauth2-proxy
           webhook:
             groupName: "${CLUSTER_DOMAIN}"
             solverName: dnsmadeeasy
@@ -52,8 +52,8 @@ metadata:
 spec:
   secretName: "${CLUSTER_DOMAIN_CERT}"
   issuerRef:
-    name: letsencrypt-test
-    # name: letsencrypt-prod
+    # name: letsencrypt-test
+    name: letsencrypt-prod
     kind: ClusterIssuer
   dnsNames:
     - "${CLUSTER_DOMAIN}"
