@@ -32,6 +32,10 @@ spec:
         - host: keycloak.l.voltaicforge.com
           paths:
             - /
+      tls:
+        - hosts:
+            - keycloak.l.voltaicforge.com
+
       namespaceOverride: "infra-keycloak"
     postgresql:
       enabled: false

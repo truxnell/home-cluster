@@ -67,19 +67,22 @@ spec:
     # # -- key:value list of extra arguments to give the binary
     extraArgs:
       provider: keycloak
-      keycloak-group: oauth2-proxy
+      keycloak-group: /oauth2-proxy
       set-xauthrequest: true
       scope: "openid profile email oauth2-proxy"
 
       login-url: "https://keycloak.l.voltaicforge.com/auth/realms/NatSWARM/protocol/openid-connect/auth"
       redeem-url: "https://keycloak.l.voltaicforge.com/auth/realms/NatSWARM/protocol/openid-connect/token"
       validate-url: "https://keycloak.l.voltaicforge.com/auth/realms/NatSWARM/protocol/openid-connect/userinfo"
+      profile-url: "https://keycloak.l.voltaicforge.com/auth/realms/NatSWARM/protocol/openid-connect/userinfo"
 
-      skip-provider-button:
-
+      # skip-provider-button:
+      #client-id: "longhorn"
+      #client-secret: "18a90886-1c85-4671-b9cc-ed6ada788181"
       email-domain: "*"
       cookie-domain: ".l.voltaicforge.com"
       whitelist-domain: ".l.voltaicforge.com"
+      cookie-secure: "true"
     # # -- key:value list of extra environment variables to give the binary
     # extraEnv: []
 
@@ -128,7 +131,7 @@ spec:
       # -- Enable Ingress
       enabled: true
       # -- Ingress accepted path
-      # path: /
+      path: /oauth2
       # -- Ingress accepted hostname
       hosts:
         host:
@@ -136,7 +139,9 @@ spec:
           # paths:
           #   - path: /
           #     pathType: Prefix
-
+      tls:
+        - hosts:
+            - "auth.l.voltaicforge.com"
       # -- Ingress extra paths to prepend to every host configuration. Useful when configuring [custom actions with AWS ALB Ingress Controller](https://kubernetes-sigs.github.io/aws-alb-ingress-controller/guide/ingress/annotation/#actions).
       extraPaths: []
       # - path: /*

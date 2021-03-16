@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: infra-oauth2-proxy
 resources:
   - namespace.yaml
-  # - infra-oauth2-proxy.yaml
+  - infra-oauth2-proxy.yaml
