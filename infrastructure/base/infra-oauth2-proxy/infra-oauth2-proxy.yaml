@@ -67,7 +67,7 @@ spec:
     # # -- key:value list of extra arguments to give the binary
     extraArgs:
       provider: keycloak
-      keycloak-group: /oauth2-proxy
+      allowed-group: oauth2-proxy
       set-xauthrequest: true
       scope: "openid profile email oauth2-proxy"
 
@@ -82,7 +82,14 @@ spec:
       email-domain: "*"
       cookie-domain: ".l.voltaicforge.com"
       whitelist-domain: ".l.voltaicforge.com"
-      cookie-secure: "true"
+      cookie-secure: true
+      # pass-access-token: "true"
+      # pass-authorization-header: "true"
+      # pass-basic-auth: "true"
+      # pass-host-header: "true"
+      # pass-user-headers: "true"
+      # set-xauthrequest: "true"
+      # set-authorization-header: "true "
     # # -- key:value list of extra environment variables to give the binary
     # extraEnv: []
 
