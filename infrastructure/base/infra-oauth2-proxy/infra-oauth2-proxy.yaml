@@ -24,9 +24,9 @@ spec:
     # # Oauth client configuration specifics
     config:
       #   # -- OAuth client ID
-      clientID: "longhorn"
+      #    clientID: "longhorn"
       #   # -- OAuth client secret
-      clientSecret: "18a90886-1c85-4671-b9cc-ed6ada788181"
+      #   clientSecret: "18a90886-1c85-4671-b9cc-ed6ada788181"
       #   # -- server specific cookie for the secret; create a new one with `openssl rand -base64 32 | head -c 32 | base64`
       cookieSecret: "VU54d2UrVjl1NlFHb1hPbjU5NlhENXpFUE5wMDJUNWQ="
     #   google:
@@ -67,22 +67,24 @@ spec:
     # # -- key:value list of extra arguments to give the binary
     extraArgs:
       provider: keycloak
-      allowed-group: oauth2-proxy
+      allowed-group: "natswarm"
       set-xauthrequest: true
-      scope: "openid profile email oauth2-proxy"
+      scope: "openid profile email"
 
       login-url: "https://keycloak.l.voltaicforge.com/auth/realms/NatSWARM/protocol/openid-connect/auth"
       redeem-url: "https://keycloak.l.voltaicforge.com/auth/realms/NatSWARM/protocol/openid-connect/token"
       validate-url: "https://keycloak.l.voltaicforge.com/auth/realms/NatSWARM/protocol/openid-connect/userinfo"
       profile-url: "https://keycloak.l.voltaicforge.com/auth/realms/NatSWARM/protocol/openid-connect/userinfo"
 
+      # redirect-url: "http://auth.l.voltaicforge.com/oauth2/callback"
       # skip-provider-button:
-      #client-id: "longhorn"
-      #client-secret: "18a90886-1c85-4671-b9cc-ed6ada788181"
+      client-id: "longhorn"
+      client-secret: "db0b7498-e0e2-4d72-a960-1df790c94acf"
       email-domain: "*"
       cookie-domain: ".l.voltaicforge.com"
       whitelist-domain: ".l.voltaicforge.com"
-      cookie-secure: true
+      # cookie-secure: true
+      # upstream: http://127.0.0.1:8080/
       # pass-access-token: "true"
       # pass-authorization-header: "true"
       # pass-basic-auth: "true"
@@ -138,7 +140,7 @@ spec:
       # -- Enable Ingress
       enabled: true
       # -- Ingress accepted path
-      path: /oauth2
+      # path: /oauth2
       # -- Ingress accepted hostname
       hosts:
         host:
