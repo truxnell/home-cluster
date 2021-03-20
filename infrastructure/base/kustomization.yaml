@@ -5,7 +5,7 @@ resources:
   # - default
   - flux-system
   # - monitoring
-  - infra-ingress-nginx
+  # - infra-ingress-nginx
   # - postgres
   - infra-redis
   - longhorn-system
@@ -13,4 +13,4 @@ resources:
   - infra-mariadb-galera
   # - infra-authelia
   - infra-keycloak
-  - infra-oauth2-proxy
+  # - infra-oauth2-proxy
