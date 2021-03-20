@@ -83,6 +83,7 @@ spec:
       email-domain: "*"
       cookie-domain: ".l.voltaicforge.com"
       whitelist-domain: ".l.voltaicforge.com"
+
       # cookie-secure: true
       # upstream: http://127.0.0.1:8080/
       # pass-access-token: "true"
