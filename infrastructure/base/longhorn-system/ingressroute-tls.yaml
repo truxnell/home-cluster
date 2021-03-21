@@ -3,7 +3,6 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: longhorn-tls
-  namespace: default
 spec:
   entryPoints:
     - websecure
@@ -12,6 +11,6 @@ spec:
       match: Host(`longhorn.${CLUSTER_DOMAIN}`)
       services:
         - name: longhorn
-          port: 80
+          port: 8000
   tls:
     certResolver: cloudflare
