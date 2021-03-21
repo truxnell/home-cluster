@@ -10,7 +10,7 @@ spec:
     - kind: Rule
       match: Host(`longhorn.${CLUSTER_DOMAIN}`)
       services:
-        - name: longhorn
-          port: 8000
+        - name: longhorn-frontend
+          port: 80
   tls:
     certResolver: cloudflare
