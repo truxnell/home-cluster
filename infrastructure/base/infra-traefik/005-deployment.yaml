@@ -49,6 +49,7 @@ spec:
             # instead of "to=:443", then the browser would be redirected to port 8443.
             - --entrypoints.web.http.redirections.entrypoint.to=:443
             - --entrypoints.web.http.redirections.entrypoint.scheme=https
+            - --entrypoints.web.http.redirections.entrypoint.permanent=true
             - --providers.kubernetescrd
             - --providers.kubernetesingress
             # TODO: Replace with variable email
