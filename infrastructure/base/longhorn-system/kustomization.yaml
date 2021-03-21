@@ -4,3 +4,4 @@ namespace: longhorn-system
 resources:
   - namespace.yaml
   - longhorn-system.yaml
+  - ingressroute-tls.yaml
