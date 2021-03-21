@@ -12,5 +12,7 @@ spec:
       services:
         - name: longhorn-frontend
           port: 80
+      middlewares:
+        - name: traefik-secure-headers
   tls:
     certResolver: cloudflare
