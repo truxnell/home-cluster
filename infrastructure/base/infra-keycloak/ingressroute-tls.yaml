@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: keycloak-tls
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`keycloak.l.voltaicforge.com`)
+      services:
+        - name: keycloak-http
+          port: 8080
+      # middlewares:
+      #   - name: traefik-secure-headers
+      #     namespace: kube-system
+  tls:
+    certResolver: cloudflare
