@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+    name: traefik-forward-auth
+    namespace: kube-system
+stringData:
+    PROVIDERS_OIDC_CLIENT_SECRET: ENC[AES256_GCM,data:Igb15e+VEvQRvVkNDBjF3FZQim4y2u3YDlUGe7MEfeTp+lhcS44RJ0Y/rqtp6o0A,iv:IpU1YSV9UXQEg5dui2DygKyyhEwMiII7f5nCkr7lqKU=,tag:pN33o0NeVr6+b3YVWi35dQ==,type:str]
+    SECRET: ENC[AES256_GCM,data:QUzMWuRasaY8M2ZfC6GwhBrfGuOZ5m6fJes1+yDcwo1X18sJeJ9blrYgS74=,iv:hqNU3luFXvT26JMYqHAM8GhklQ4WxsgcIxCyKSIRVOM=,tag:Sc546veBpc0RBKQ7CyGWyQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-03-22T23:07:56Z'
+    mac: ENC[AES256_GCM,data:MvrQOVYmgxxsSqOC878Jm4SbZvNWQrsqRjxoe8GBG21SFedPvZAloQXWAa6i1N7ILgw2TmycI+c99BetCGIJm8EFAqFmDTr5tBxa9KBc4lGPLLomz3/usJbG42Hpw6U80PhTR9l6ItjW0xGFrKMscbBmE+M23EGmWCjBMSLZ2bA=,iv:FvCDwAYRdpSeKjr4RAJ+0NqFo6ehNwq8Kfmq9Nmfoh8=,tag:dT9i6fGgtbMGWqSPL5AaBA==,type:str]
+    pgp:
+    -   created_at: '2021-03-22T23:07:56Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQGMA94SucntcLeJAQwAnHcRFyTCw8QihM0Wwdoex/fsOVh0YzxxnyuAY1V6uJdu
+            sGoR+FQAWAsg0xijWQ18JsNcMlBOBZR2MYXcWXwotydzlNA5Pch10jLjA676j51W
+            TsVOcDx9B5OXUgqocVXXEd/DU1uuUd87cZtG/KQeqf3WNhYY7ivvgjCIRiXv/jLU
+            2BKu9l+BO7cJ0pM/Xx5TiFsbV9ZPQ8ibqcrJQF3d+3T+XBDovlPF6FzggTvCfxww
+            mVDbqFk1Qpq3xbRhLwp6faTtN7Q7SHBGioduNKVytIbvtg3Dd1cUONoiEvBnj/G3
+            K6LQzjr/d+595LFkGC/OOMLsl2c90O8dFQm5CJN2l6EBEVhKgh5vCsZcRrw9UcYg
+            /UnfYdBEE6W7f40ZEWNIcj3Cp5IFYrjh2hUpu7QDnybEFr1pQTWs9idIc0OSJBix
+            jDazDEdrOvT2hq7GY3DmRD+darp8aHCTiqqtVi3ZXlNFHBfp7jEnaXRCKhPWErjK
+            fsJ14LcF3UanL3BagIiO0lsBxKZeDXTp9nEswgmXU3gz12SCYe/bi67s/rG2CxNj
+            bUWihTKisRHsJugh0m5oLuNMbFNDXwKDEakCQ+Ff115DsSA6x3MPXOuU6WMMfl5d
+            XwaFeffKeaK/ceUG
+            =bmFH
+            -----END PGP MESSAGE-----
+        fp: 30DA87702717C0310E1BE81E612328766D06D7DD
+    encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData$))
+    version: 3.6.1
