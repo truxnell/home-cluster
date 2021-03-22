@@ -6,8 +6,8 @@ metadata:
   namespace: kube-system
 spec:
   accessModes:
-    - ReadWriteOnce
-  storageClassName: local-path
+    - ReadWritemany
+  storageClassName: persistent-nas-media
   resources:
     requests:
       storage: 5Mi
