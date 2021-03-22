@@ -16,3 +16,4 @@ resources:
   # - infra-oauth2-proxy
   - infra-traefik
   - traefik-forward-auth
+  - descheduler
