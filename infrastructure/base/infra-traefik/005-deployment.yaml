@@ -36,7 +36,7 @@ spec:
           image: traefik:v2.4
           args:
             - --api.dashboard=true
-            - --api.insecure=true
+            # - --api.insecure=true
             - --ping=true
             - --accesslog
             - --entrypoints.traefik.address=:9080
