@@ -4,5 +4,5 @@ resources:
   - helm-chart-repositories
   - infra-traefik
   - pvc
-  # - cert-manager
+  - cert-manager
   # - registry-creds-controller
