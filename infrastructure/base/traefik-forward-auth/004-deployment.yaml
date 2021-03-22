@@ -1,0 +1,91 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: kube-system
+  name: traefik-forward-auth
+  labels:
+    app: traefik-forward-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik-forward-auth
+  template:
+    metadata:
+      labels:
+        app: traefik-forward-auth
+      # annotations:
+      #   container.apparmor.security.beta.kubernetes.io/traefik-forward-auth: runtime/default
+    spec:
+      containers:
+        - name: traefik-forward-auth
+          image: thomseddon/traefik-forward-auth
+          imagePullPolicy: Always
+          securityContext:
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65534
+            runAsGroup: 65534
+            capabilities:
+              drop:
+                - ALL
+          livenessProbe:
+            failureThreshold: 3
+            tcpSocket:
+              port: 4181
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            limits:
+              memory: "10Mi"
+              cpu: "100m"
+          ports:
+            - name: http
+              containerPort: 4181
+          env:
+            - name: PROVIDERS_OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: traefik-forward-auth
+                  key: PROVIDERS_OIDC_CLIENT_SECRET
+            - name: SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: traefik-forward-auth
+                  key: SECRET
+            - name: DEFAULT_PROVIDER
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: DEFAULT_PROVIDER
+            - name: PROVIDERS_OIDC_ISSUER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: PROVIDERS_OIDC_ISSUER_URL
+            - name: PROVIDERS_OIDC_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: PROVIDERS_OIDC_CLIENT_ID
+            - name: INSECURE_COOKIE
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: INSECURE_COOKIE
+            - name: COOKIE_DOMAIN
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: COOKIE_DOMAIN
+            - name: DOMAINS
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: DOMAINS
+            - name: AUTH_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: AUTH_HOST

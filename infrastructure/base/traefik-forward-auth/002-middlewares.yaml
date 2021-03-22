@@ -1,0 +1,13 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: traefik-forward-auth
+  namespace: kube-system
+
+spec:
+  forwardAuth:
+    address: http://traefik-forward-auth
+    trustForwardHeader: true
+    authResponseHeaders:
+      - X-Forwarded-User

@@ -2,18 +2,20 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: keycloak-tls
+  name: traefik-forward-auth
+  namespace: kube-system
+
 spec:
   entryPoints:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`keycloak.l.voltaicforge.com`)
-      services:
-        - name: keycloak-http
-          port: 80
+      match: Host(`auth.${CLUSTER_DOMAIN}`)
       middlewares:
-        - name: traefik-secure-headers
+        - name: traefik-forward-auth
           namespace: kube-system
+      services:
+        - name: traefik-forward-auth
+          port: 80
   tls:
     certResolver: cloudflare
