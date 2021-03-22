@@ -14,4 +14,4 @@ resources:
   # - infra-authelia
   - infra-keycloak
   # - infra-oauth2-proxy
-  - infra-traefik
+  # - infra-traefik

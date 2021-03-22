@@ -35,7 +35,6 @@ spec:
         - name: traefik
           image: traefik:v2.4
           args:
-            - --api=true
             - --api.dashboard=true
             # - --api.insecure=true
             - --ping=true
