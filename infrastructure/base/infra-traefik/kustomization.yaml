@@ -3,11 +3,11 @@ kind: Kustomization
 namespace: kube-system
 resources:
   - cloudflare-api.sops.yaml
-  # - 001-crd.yaml
-  # - 001-rbac.yaml
-  # - 001-tls-options.yaml
-  # - 002-middlewares-secure-headers.yaml
-  # - 003-pvc.yaml
-  # - 004-service.yaml
-  # - 005-deployment.yaml
-  # - 006-ingressroute.yaml
+  - 001-crd.yaml
+  - 001-rbac.yaml
+  - 001-tls-options.yaml
+  - 002-middlewares-secure-headers.yaml
+  - 003-pvc.yaml
+  - 004-service.yaml
+  - 005-deployment.yaml
+  - 006-ingressroute.yaml
