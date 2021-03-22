@@ -9,12 +9,15 @@ spec:
     - websecure
   routes:
     # TODO put back in variables
-    - match: Host(`traefik.${CLUSTER_DOMAIN}`) # && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
+    - match: Host(`traefik.${CLUSTER_DOMAIN}`)  && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
       kind: Rule
       services:
         - name: api@internal
           kind: TraefikService
-      # middlewares:
-      #   - name: traefik-basic-auth
-  # tls:
-  #   certResolver: godaddy
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+        - name: traefik-forward-auth
+          namespace: kube-system
+  tls:
+    certResolver: cloudflare
