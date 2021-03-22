@@ -13,6 +13,7 @@ spec:
         - name: longhorn-frontend
           port: 80
       middlewares:
-        - name: kube-system-traefik-secure-headers
+        - name: traefik-secure-headers
+          namespace: kube-system
   tls:
     certResolver: cloudflare
