@@ -15,4 +15,3 @@ resources:
   - codecentric-charts.yaml
   - oauth2-proxy-charts.yaml
   - nfs-subdir-external-provisioner-charts.yaml
-  - stakater-charts.yaml
