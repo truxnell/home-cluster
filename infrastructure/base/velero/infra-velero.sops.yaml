@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+    name: valero-secrets
+stringData: ENC[AES256_GCM,data:jSFBfXwf5MWpGldou+Vgp1SFeTKc0wmAWoqhtmcm53nPyxqQqdcWOsS8BtPpqNYjMQgfO96Nh7wkA2YTDtzpLvv2+Z1/BfD9OJ4pzGx5OyBJqukybCkscXo/Bs4mmk+wSmvfvbKPoTuF,iv:V+ruTI2P7NnAcZpfE7bJFPwstwER2Qucvd6WeL8gEZA=,tag:qg9BwsFQ3yWy0aFfZ1OvYA==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-03-23T06:08:42Z'
+    mac: ENC[AES256_GCM,data:sq0jotCQdwTM4mUwd954OZQDx9vGpPdE6gLPFOKNSGUYdN76JbxL9+xm7EVEv5VSbzDN0lMToVvrrkXMwYVJ9/2EVlCkwbEGys9zrGRbfkL+4BRadUpC4kPUBfLtZtCncNpwYOKT2Gi98xV3ymGGoOYukeygpkjfcGwHJ2Sv/2o=,iv:z0h6JYre4JNvPS5xy8VMxgcp7iFOlPnNMAkmYAX1MCQ=,tag:zR6eRum+i8kh5e1eoLqM3Q==,type:str]
+    pgp:
+    -   created_at: '2021-03-23T06:08:42Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQGMA94SucntcLeJAQv9HsRAXGsFEJadZK/ccFuwtSpp788dgeACVRpZslF+4LxM
+            fiPFd9KucSVyPosQWzW3trWMJYCZVa7uC9X250T2S6xIZU/i08VzyrnFo6/PrD1i
+            ehmtndtgWDmlPSU62yWvjuxS6rO89PlgT6tahqvFeCvr9Bo+jn59wxtPexO2QjIE
+            FsroPr65yaUpW+kgTAZfggGdfuonPsfuLRAMOBli2aqpH6ljZr4Po787X6c+gFgo
+            NjGDIKqK8erhMQu0RXicliMxVebQE8eDICaKOQEPMJvg0On/NP+zWwJVaQnmIQej
+            h1UhvvM94ulefM+ib7tsaUbgHrIax17TYQSFvK+ZysNB51d+z1I35sVBqbUIQ0kI
+            8kYO9ODgEoJH7aotxfAPn0CzX4ELijo4drSYYUseE0YagMMr3fBDrNM1XkqMMrd/
+            7NxP9fzZqm5t8BcWx1hmYP3qLYgrIkIby3gcY6a59E/2c31wSKI46S9/8JZSPom0
+            ZBrGu7aRoRDrLIqJ5G230lwB47OcS9ZAhsoI2V3Dk8OYYSozTPuGe6iT6R5j/m5L
+            xrTIrDLuNTGkyFHeldBENKAkdxuzt0HYSgdyiYQ5MpVrImg6DGjkJGU/+FneTsNN
+            6lXWqrQIZMJ9UlGhtg==
+            =Wrsn
+            -----END PGP MESSAGE-----
+        fp: 30DA87702717C0310E1BE81E612328766D06D7DD
+    encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData$))
+    version: 3.6.1
