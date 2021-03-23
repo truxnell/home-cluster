@@ -101,6 +101,7 @@ spec:
     # # snapshotsEnabled: true
     snapshotsEnabled: false
     deployRestic: true
+    defaultVolumesToRestic: true
     restic:
       podVolumePath: /var/lib/kubelet/pods
       privileged: false
