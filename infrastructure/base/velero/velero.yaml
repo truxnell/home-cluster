@@ -44,12 +44,12 @@ spec:
       backupStorageLocation:
         # name is the name of the backup storage location where backups should be stored. If a name is not provided,
         # a backup storage location will be created with the name "default". Optional.
-        name: trux-valero
+        name: default
         # provider is the name for the backup storage location provider. If omitted
         # `configuration.provider` will be used instead.
         # provider:
         # bucket is the name of the bucket to store backups in. Required.
-        bucket: "trux-valero"
+        bucket: "trux-velero"
         # caCert defines a base64 encoded CA bundle to use when verifying TLS connections to the provider.
         # caCert:
         # prefix is the directory under which all Velero data should be stored within the bucket. Optional.
@@ -58,20 +58,20 @@ spec:
         # for details of required/optional fields for your provider.
         config:
           #  region:
-          s3ForcePathStyle: true
-          s3Url: "s3.us-west-002.backblazeb2.com"
+          # s3ForcePathStyle: true
+          s3Url: "https://s3.us-west-002.backblazeb2.com"
           #  kmsKeyId:
           #  resourceGroup:
           #  The ID of the subscription containing the storage account, if different from the cluster’s subscription. (Azure only)
           #  subscriptionId:
           #  storageAccount:
-          publicUrl: "s3.us-west-002.backblazeb2.com"
+          publicUrl: "https://s3.us-west-002.backblazeb2.com"
         #  Name of the GCP service account to use for this backup storage location. Specify the
         #  service account here if you want to use workload identity instead of providing the key file.(GCP only)
         #  serviceAccount:
         # volumeSnapshotLocation:
         #   # name is the name of the volume snapshot location where snapshots are being taken. Required.
-        #   name: trux-valero
+        #   name: trux-velero
         #   # provider is the name for the volume snapshot provider. If omitted
         #   # `configuration.provider` will be used instead.
         #   provider: aws
@@ -92,11 +92,11 @@ spec:
         volumeMounts:
           - mountPath: /target
             name: plugins
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: true
-    # snapshotsEnabled: true
+    # metrics:
+    #   enabled: true
+    #   serviceMonitor:
+    #     enabled: true
+    # # snapshotsEnabled: true
     snapshotsEnabled: false
     deployRestic: true
     restic:
@@ -107,6 +107,5 @@ spec:
         schedule: "0 6,18 * * *"
         template:
           ttl: "120h"
-  valuesFrom:
-    - kind: Secret
-      name: "velero-secrets"
+    credentials:
+      existingSecret: velero-secrets
