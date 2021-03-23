@@ -18,9 +18,9 @@ spec:
       interval: 6m
   test:
     enable: true
-  install:
-    remediation:
-      retries: 3
+  # install:
+  #   remediation:
+  #     retries: 3
   upgrade:
     remediation:
       remediateLastFailure: true
@@ -29,61 +29,61 @@ spec:
     timeout: 10m
     recreate: true
     cleanupOnFail: true
-values:
-  # https://github.com/vmware-tanzu/helm-charts/blob/main/charts/velero/values.yaml
-  configuration:
-    extraEnvVars:
-      TZ: "Australia/Melbourne"
+  values:
+    # https://github.com/vmware-tanzu/helm-charts/blob/main/charts/velero/values.yaml
+    configuration:
+      extraEnvVars:
+        TZ: "Australia/Melbourne"
 
-  # Cloud provider being used (e.g. aws, azure, gcp).
-  provider: aws
+      # Cloud provider being used (e.g. aws, azure, gcp).
+      provider: aws
 
-  # Parameters for the `default` BackupStorageLocation. See
-  # https://velero.io/docs/v1.5/api-types/backupstoragelocation/
-  backupStorageLocation:
-    # name is the name of the backup storage location where backups should be stored. If a name is not provided,
-    # a backup storage location will be created with the name "default". Optional.
-    name: trux-valero
-    # provider is the name for the backup storage location provider. If omitted
-    # `configuration.provider` will be used instead.
-    # provider:
-    # bucket is the name of the bucket to store backups in. Required.
-    bucket: "trux-valero"
-    # caCert defines a base64 encoded CA bundle to use when verifying TLS connections to the provider.
-    # caCert:
-    # prefix is the directory under which all Velero data should be stored within the bucket. Optional.
-    # prefix:
-    # Additional provider-specific configuration. See link above
-    # for details of required/optional fields for your provider.
-    config:
-      #  region:
-      s3ForcePathStyle: true
-      s3Url: "s3.us-west-002.backblazeb2.com"
-      #  kmsKeyId:
-      #  resourceGroup:
-      #  The ID of the subscription containing the storage account, if different from the cluster’s subscription. (Azure only)
-      #  subscriptionId:
-      #  storageAccount:
-      publicUrl: "s3.us-west-002.backblazeb2.com"
-    #  Name of the GCP service account to use for this backup storage location. Specify the
-    #  service account here if you want to use workload identity instead of providing the key file.(GCP only)
-    #  serviceAccount:
-    # volumeSnapshotLocation:
-    #   # name is the name of the volume snapshot location where snapshots are being taken. Required.
-    #   name: trux-valero
-    #   # provider is the name for the volume snapshot provider. If omitted
-    #   # `configuration.provider` will be used instead.
-    #   provider: aws
-    #   # Additional provider-specific configuration. See link above
-    #   # for details of required/optional fields for your provider.
-    #   config: {}
-    # #    region:
-    # #    apitimeout:
-    # #    resourceGroup:
-    # #    The ID of the subscription where volume snapshots should be stored, if different from the cluster’s subscription. If specified, also requires `configuration.volumeSnapshotLocation.config.resourceGroup`to be set. (Azure only)
-    # #    subscriptionId:
-    # #    snapshotLocation:
-    # #    project:
+      # Parameters for the `default` BackupStorageLocation. See
+      # https://velero.io/docs/v1.5/api-types/backupstoragelocation/
+      backupStorageLocation:
+        # name is the name of the backup storage location where backups should be stored. If a name is not provided,
+        # a backup storage location will be created with the name "default". Optional.
+        name: trux-valero
+        # provider is the name for the backup storage location provider. If omitted
+        # `configuration.provider` will be used instead.
+        # provider:
+        # bucket is the name of the bucket to store backups in. Required.
+        bucket: "trux-valero"
+        # caCert defines a base64 encoded CA bundle to use when verifying TLS connections to the provider.
+        # caCert:
+        # prefix is the directory under which all Velero data should be stored within the bucket. Optional.
+        # prefix:
+        # Additional provider-specific configuration. See link above
+        # for details of required/optional fields for your provider.
+        config:
+          #  region:
+          s3ForcePathStyle: true
+          s3Url: "s3.us-west-002.backblazeb2.com"
+          #  kmsKeyId:
+          #  resourceGroup:
+          #  The ID of the subscription containing the storage account, if different from the cluster’s subscription. (Azure only)
+          #  subscriptionId:
+          #  storageAccount:
+          publicUrl: "s3.us-west-002.backblazeb2.com"
+        #  Name of the GCP service account to use for this backup storage location. Specify the
+        #  service account here if you want to use workload identity instead of providing the key file.(GCP only)
+        #  serviceAccount:
+        # volumeSnapshotLocation:
+        #   # name is the name of the volume snapshot location where snapshots are being taken. Required.
+        #   name: trux-valero
+        #   # provider is the name for the volume snapshot provider. If omitted
+        #   # `configuration.provider` will be used instead.
+        #   provider: aws
+        #   # Additional provider-specific configuration. See link above
+        #   # for details of required/optional fields for your provider.
+        #   config: {}
+        # #    region:
+        # #    apitimeout:
+        # #    resourceGroup:
+        # #    The ID of the subscription where volume snapshots should be stored, if different from the cluster’s subscription. If specified, also requires `configuration.volumeSnapshotLocation.config.resourceGroup`to be set. (Azure only)
+        # #    subscriptionId:
+        # #    snapshotLocation:
+        # #    project:
     initContainers:
       - name: velero-plugin-for-aws
         image: velero/velero-plugin-for-aws:v1.1.0
@@ -97,6 +97,7 @@ values:
         enabled: true
     # snapshotsEnabled: true
     snapshotsEnabled: false
+    deployRestic: true
     restic:
       podVolumePath: /var/lib/kubelet/pods
       privileged: false
@@ -105,7 +106,6 @@ values:
         schedule: "0 6,18 * * *"
         template:
           ttl: "120h"
-    valuesFrom:
-      - kind: Secret
-        name: "velero-secrets"
-    deployRestic: true
+  valuesFrom:
+    - kind: Secret
+      name: "velero-secrets"
