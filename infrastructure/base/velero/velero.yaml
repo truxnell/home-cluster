@@ -47,9 +47,9 @@ spec:
         name: default
         # provider is the name for the backup storage location provider. If omitted
         # `configuration.provider` will be used instead.
-        # provider:
+        # provider: aws
         # bucket is the name of the bucket to store backups in. Required.
-        bucket: "trux-velero"
+        bucket: "velero"
         # caCert defines a base64 encoded CA bundle to use when verifying TLS connections to the provider.
         # caCert:
         # prefix is the directory under which all Velero data should be stored within the bucket. Optional.
@@ -57,15 +57,17 @@ spec:
         # Additional provider-specific configuration. See link above
         # for details of required/optional fields for your provider.
         config:
+          region: us-east-1
+          s3ForcePathStyle: true
           #  region:
           # s3ForcePathStyle: true
-          s3Url: "https://s3.us-west-002.backblazeb2.com"
+          s3Url: "http://192.168.2.253:9000"
           #  kmsKeyId:
           #  resourceGroup:
           #  The ID of the subscription containing the storage account, if different from the cluster’s subscription. (Azure only)
           #  subscriptionId:
           #  storageAccount:
-          publicUrl: "https://s3.us-west-002.backblazeb2.com"
+          publicUrl: "http://192.168.2.253:9000"
         #  Name of the GCP service account to use for this backup storage location. Specify the
         #  service account here if you want to use workload identity instead of providing the key file.(GCP only)
         #  serviceAccount:
