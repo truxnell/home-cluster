@@ -24,7 +24,7 @@ spec:
       defaultClassReplicaCount: 2
       reclaimPolicy: Retain
     defaultSettings:
-      backupTarget: nfs://192.168.2.253:/volume1/backup/longhorn/
+      backupTarget: nfs://${SYNOLOGY_IP}:/volume1/backup/longhorn/
       createDefaultDiskLabeledNodes: false
       defaultReplicaCount: 2
       defaultDataLocality: best-effort

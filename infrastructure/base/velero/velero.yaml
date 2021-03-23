@@ -61,13 +61,13 @@ spec:
           s3ForcePathStyle: true
           #  region:
           # s3ForcePathStyle: true
-          s3Url: "http://192.168.2.253:9000"
+          s3Url: "http://${SYNOLOGY_IP}:9000"
           #  kmsKeyId:
           #  resourceGroup:
           #  The ID of the subscription containing the storage account, if different from the cluster’s subscription. (Azure only)
           #  subscriptionId:
           #  storageAccount:
-          publicUrl: "http://192.168.2.253:9000"
+          publicUrl: "http://${SYNOLOGY_IP}:9000"
         #  Name of the GCP service account to use for this backup storage location. Specify the
         #  service account here if you want to use workload identity instead of providing the key file.(GCP only)
         #  serviceAccount:

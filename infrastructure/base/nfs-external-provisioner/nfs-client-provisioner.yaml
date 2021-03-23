@@ -21,7 +21,7 @@ spec:
       repository: gcr.io/k8s-staging-sig-storage/nfs-subdir-external-provisioner
       tag: v4.0.1
     nfs:
-      server: "192.168.2.253"
+      server: "${SYNOLOGY_IP}"
       path: "/volume1/persistent"
     storageClass:
       defaultClass: false

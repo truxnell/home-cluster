@@ -12,7 +12,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     # TODO replace with variable (Ip and path)
-    server: 192.168.2.253
+    server: ${SYNOLOGY_IP}
     path: /volume1/downloads
 ---
 apiVersion: v1

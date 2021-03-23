@@ -8,7 +8,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`keycloak.${CLUSTER_DOMAIN}`)
+      match: Host(`keycloak.l.voltaicforge.com`)
       services:
         - name: keycloak-http
           port: 80
