@@ -31,14 +31,3 @@ spec:
       defaultDataPath: /var/lib/longhorn
       replicaSoftAntiAffinity: false
       storageMinimalAvailablePercentage: 10
-
-    ingress:
-      enabled: true
-      annotations:
-        kubernetes.io/ingress.class: "nginx"
-        # nginx.ingress.kubernetes.io/auth-url: "https://auth.${CLUSTER_DOMAIN}/oauth2/auth"
-        # nginx.ingress.kubernetes.io/auth-signin: "https://auth.${CLUSTER_DOMAIN}/oauth2/start?rd=$scheme://$host$request_uri"
-      host: longhorn.${CLUSTER_DOMAIN}
-      tls: true
-      tlsSecret: "${CLUSTER_DOMAIN_CERT}"
-      namespaceOverride: "longhorn-system"
