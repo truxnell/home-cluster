@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+    name: kured-helm-values
+    namespace: kube-system
+stringData:
+    slack-hook-url: ENC[AES256_GCM,data:iujhlCk+gdCCJuEjj7CeTquFGuL62r4jrF4MSEeSbX/O6HoPPhk+2B4dduWia0/CvkpvK+tdjfLht8b/5T6hTkdaSBsm7BiQXSS6H0hRGAbUQYyizC4gHMBgng0e6fyAyJqldozGFwypGpP895NKDKURyGDuvJOBtC38IV++lgm3,iv:AbKrtELMEl+CfIFN6x+TrQLx6GA06v0j+JWXP1TQS1Q=,tag:qwS6RslJLONeG8aU1MvinA==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-03-24T02:41:03Z'
+    mac: ENC[AES256_GCM,data:BhMMtoElbNdheOEiwbfjFOU1jpdrxFnl1b20M66Pbkyj/4QTzBU31+JWHbtVSQ6RYVzK0NtZQsCojQ1TVFSaF0ybWw/VD8cQ2LTO1L6ZCz5kCCSRev3S/noOq5wk//q6yKsRNbO/lYGM/u4PZe18PdrjJTQXRaljwGNb81E4Xcw=,iv:7DBFrdm314dAWbfjzGq4+66W+6NRU2Q6q2SbOH/UO+g=,tag:k/CkfQPHj2zKfnsz8pvK/Q==,type:str]
+    pgp:
+    -   created_at: '2021-03-24T02:41:02Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQGMA94SucntcLeJAQv+KWtMjUIRAJGyfl2/8OzwT4MNA44z42TbFIb/Ft7BSz1x
+            2lIdnZtl1V/LlJgMvi4yC28glXy+EO78Ur452HfpRGSVEICrKRasNX3R1ftz6p45
+            rDj9JHVwMw/vXfuy2HgWHrizBEyC2vN5WhFWLHa8AS2+292QzciWFr02i6YFE7q+
+            3PrrY/fSFkAMOIEDH/gFCbvEU7U/uAWC18orgYMHfvShLC0BnalWng/GWX59rk4L
+            ZrFeXorgD4KScBsCP2UvbBHnh1soVmMH6qqB74EU3IPMrBHQyFS88f1ThsCJE+Qc
+            GTlyMb4mwIspxwE+2FskujCph5bEyWpzTV+IDWxZSSMazlNBe1QeVqPRe0gjG6Rv
+            N5p5/ZTEyP5AVNb1ysorIhv07ONgvBlSU53PIP8Sx5k6pkIvWnRZKy5dLvuhv/KB
+            1zoq0OeHBn9AUsE7Ifw2gdXTzru1LhQyA0sVvTTfZGKb5HHHhp8jwDt8KtZTlH/K
+            jShDxrWprp/fcGvWstYP0l4BKdHWBB8K1I0MQ36SYjXNU5c6x7H5jCjMnmmzY+N5
+            2SqI9rW9QaSnWnPGFRG3yIJqF4/tSODQ3kI/GW0zhm1vqr0g33XBCVGKWqcEkaN/
+            LZ/AgkRvIGzPZSZZvuCc
+            =5fpi
+            -----END PGP MESSAGE-----
+        fp: 30DA87702717C0310E1BE81E612328766D06D7DD
+    encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData$))
+    version: 3.6.1
