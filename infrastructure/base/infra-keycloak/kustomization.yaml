@@ -5,3 +5,4 @@ resources:
   - namespace.yaml
   - infra-keycloak.sops.yaml
   - infra-keycloak.yaml
+  - ingressroute-tls.yaml
