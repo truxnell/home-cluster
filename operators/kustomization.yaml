@@ -5,4 +5,5 @@ resources:
   - infra-traefik
   - pvc
   - cert-manager
-  # - registry-creds-controller
+  - longhorn-system
+  - nfs-external-provisioner

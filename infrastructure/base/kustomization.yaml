@@ -4,7 +4,6 @@ resources:
   - cert-manager
   - flux-system
   - infra-redis
-  - longhorn-system
   - infra-metallb
   - infra-mariadb-galera
   - infra-keycloak

@@ -1,0 +1,165 @@
+{
+    "apiVersion": "helm.toolkit.fluxcd.io/v2beta1",
+    "kind": "HelmRelease",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"helm.toolkit.fluxcd.io/v2beta1\",\"kind\":\"HelmRelease\",\"metadata\":{\"annotations\":{},\"name\":\"velero\",\"namespace\":\"default\"},\"spec\":{\"chart\":{\"spec\":{\"chart\":\"velero\",\"interval\":\"6m\",\"sourceRef\":{\"kind\":\"HelmRepository\",\"name\":\"vmware-charts\",\"namespace\":\"flux-system\"},\"version\":\"2.15.0\"}},\"install\":{\"remediation\":{\"retries\":3}},\"interval\":\"5m\",\"rollback\":{\"cleanupOnFail\":true,\"recreate\":true,\"timeout\":\"10m\"},\"test\":{\"enable\":true},\"upgrade\":{\"cleanupOnFail\":true,\"remediation\":{\"remediateLastFailure\":true}},\"values\":{\"configuration\":{\"backupStorageLocation\":{\"bucket\":\"velero\",\"config\":{\"publicUrl\":\"https://minio.${CLUSTER_DOMAIN}\",\"region\":\"us-east-1\",\"s3ForcePathStyle\":true,\"s3Url\":\"http://${SYNOLOGY_IP}:9000\"},\"name\":\"default\",\"volumeSnapshotLocation\":{\"config\":{},\"name\":\"trux-velero\",\"provider\":\"aws\"}},\"extraEnvVars\":{\"TZ\":\"Australia/Melbourne\"},\"provider\":\"aws\"},\"credentials\":{\"existingSecret\":\"velero-secrets\"},\"defaultVolumesToRestic\":true,\"deployRestic\":true,\"initContainers\":[{\"image\":\"velero/velero-plugin-for-aws:v1.1.0\",\"imagePullPolicy\":\"IfNotPresent\",\"name\":\"velero-plugin-for-aws\",\"volumeMounts\":[{\"mountPath\":\"/target\",\"name\":\"plugins\"}]}],\"restic\":{\"podVolumePath\":\"/var/lib/kubelet/pods\",\"privileged\":false},\"schedules\":{\"bi-daily-backup\":{\"schedule\":\"0 6,18 * * *\",\"template\":{\"ttl\":\"120h\"}}},\"snapshotsEnabled\":false}}}\n"
+        },
+        "creationTimestamp": "2021-03-24T09:07:17Z",
+        "generation": 1,
+        "managedFields": [
+            {
+                "apiVersion": "helm.toolkit.fluxcd.io/v2beta1",
+                "fieldsType": "FieldsV1",
+                "fieldsV1": {
+                    "f:metadata": {
+                        "f:annotations": {
+                            ".": {},
+                            "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                        }
+                    },
+                    "f:spec": {
+                        ".": {},
+                        "f:chart": {
+                            ".": {},
+                            "f:spec": {
+                                ".": {},
+                                "f:chart": {},
+                                "f:interval": {},
+                                "f:sourceRef": {
+                                    ".": {},
+                                    "f:kind": {},
+                                    "f:name": {},
+                                    "f:namespace": {}
+                                },
+                                "f:version": {}
+                            }
+                        },
+                        "f:install": {
+                            ".": {},
+                            "f:remediation": {
+                                ".": {},
+                                "f:retries": {}
+                            }
+                        },
+                        "f:interval": {},
+                        "f:rollback": {
+                            ".": {},
+                            "f:cleanupOnFail": {},
+                            "f:recreate": {},
+                            "f:timeout": {}
+                        },
+                        "f:test": {
+                            ".": {},
+                            "f:enable": {}
+                        },
+                        "f:upgrade": {
+                            ".": {},
+                            "f:cleanupOnFail": {},
+                            "f:remediation": {
+                                ".": {},
+                                "f:remediateLastFailure": {}
+                            }
+                        },
+                        "f:values": {}
+                    }
+                },
+                "manager": "kubectl-client-side-apply",
+                "operation": "Update",
+                "time": "2021-03-24T09:07:17Z"
+            }
+        ],
+        "name": "velero",
+        "namespace": "default",
+        "resourceVersion": "7651992",
+        "uid": "431c5846-8f24-4f1e-b57b-62b2b18595be"
+    },
+    "spec": {
+        "chart": {
+            "spec": {
+                "chart": "velero",
+                "interval": "6m",
+                "sourceRef": {
+                    "kind": "HelmRepository",
+                    "name": "vmware-charts",
+                    "namespace": "flux-system"
+                },
+                "version": "2.15.0"
+            }
+        },
+        "install": {
+            "remediation": {
+                "retries": 3
+            }
+        },
+        "interval": "5m",
+        "rollback": {
+            "cleanupOnFail": true,
+            "recreate": true,
+            "timeout": "10m"
+        },
+        "test": {
+            "enable": true
+        },
+        "upgrade": {
+            "cleanupOnFail": true,
+            "remediation": {
+                "remediateLastFailure": true
+            }
+        },
+        "values": {
+            "configuration": {
+                "backupStorageLocation": {
+                    "bucket": "velero",
+                    "config": {
+                        "publicUrl": "https://minio.${CLUSTER_DOMAIN}",
+                        "region": "us-east-1",
+                        "s3ForcePathStyle": true,
+                        "s3Url": "http://${SYNOLOGY_IP}:9000"
+                    },
+                    "name": "default",
+                    "volumeSnapshotLocation": {
+                        "config": {},
+                        "name": "trux-velero",
+                        "provider": "aws"
+                    }
+                },
+                "extraEnvVars": {
+                    "TZ": "Australia/Melbourne"
+                },
+                "provider": "aws"
+            },
+            "credentials": {
+                "existingSecret": "velero-secrets"
+            },
+            "defaultVolumesToRestic": true,
+            "deployRestic": true,
+            "initContainers": [
+                {
+                    "image": "velero/velero-plugin-for-aws:v1.1.0",
+                    "imagePullPolicy": "IfNotPresent",
+                    "name": "velero-plugin-for-aws",
+                    "volumeMounts": [
+                        {
+                            "mountPath": "/target",
+                            "name": "plugins"
+                        }
+                    ]
+                }
+            ],
+            "restic": {
+                "podVolumePath": "/var/lib/kubelet/pods",
+                "privileged": false
+            },
+            "schedules": {
+                "bi-daily-backup": {
+                    "schedule": "0 6,18 * * *",
+                    "template": {
+                        "ttl": "120h"
+                    }
+                }
+            },
+            "snapshotsEnabled": false
+        }
+    }
+}
