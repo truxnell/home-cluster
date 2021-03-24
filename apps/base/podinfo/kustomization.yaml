@@ -4,3 +4,4 @@ namespace: podinfo
 resources:
   - namespace.yaml
   - podinfo.yaml
+  - ingressroute-tls.yaml
