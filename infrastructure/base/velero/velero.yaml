@@ -41,7 +41,7 @@ spec:
           region: "us-east-1"
           s3ForcePathStyle: true
           s3Url: "http://${SYNOLOGY_IP}:9000"
-          publicUrl: "https://${SYNOLOGY_IP}:9000"
+          publicUrl: "http://${SYNOLOGY_IP}:9000"
         volumeSnapshotLocation:
           name: trux-velero
           provider: aws
