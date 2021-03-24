@@ -17,5 +17,5 @@ resources:
   - infra-traefik
   - traefik-forward-auth
   - descheduler
-  - velero
+  # - velero
   - infra-kured
