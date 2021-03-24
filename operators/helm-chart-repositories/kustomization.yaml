@@ -17,3 +17,4 @@ resources:
   - nfs-subdir-external-provisioner-charts.yaml
   - kubernetes-sigs-descheduler-charts.yaml
   - vmware-charts.yaml
+  - weaveworks-kured-charts.yaml
