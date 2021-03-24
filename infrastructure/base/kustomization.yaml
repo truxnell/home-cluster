@@ -18,3 +18,4 @@ resources:
   - traefik-forward-auth
   - descheduler
   - velero
+  - infra-kured
