@@ -11,9 +11,16 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    # TODO replace with variable (Ip and path)
     server: ${SYNOLOGY_IP}
-    path: /volume1/downloads
+    path: "/volume1/downloads"
+  mountOptions:
+    - nfsvers=3
+    - tcp
+    - intr
+    - hard
+    - noatime
+    - nodiratime
+
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
