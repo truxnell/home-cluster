@@ -1,0 +1,21 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: longhorn-tls
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`podinfo.${CLUSTER_DOMAIN}`)
+      services:
+        - name: podinfo
+          port: 9898
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+        - name: traefik-forward-auth
+          namespace: kube-system
+  tls:
+    certResolver: cloudflare
