@@ -21,16 +21,3 @@ spec:
   # https://github.com/stefanprodan/podinfo/blob/master/charts/podinfo/values.yaml
   values:
     cache: redis-master.redis:6379
-    ingress:
-      enabled: true
-      path: /
-      annotations:
-        nginx.ingress.kubernetes.io/auth-url: "https://auth.l.voltaicforge.com/oauth2/auth"
-        nginx.ingress.kubernetes.io/auth-signin: "https://auth.l.voltaicforge.com/oauth2/start?rd=$scheme://$host$request_uri"
-        kubernetes.io/tls-acme: "true"
-        kubernetes.io/ingress.class: "nginx"
-      hosts:
-        - podinfo.l.voltaicforge.com
-      tls:
-        - hosts:
-            - podinfo.l.voltaicforge.com
