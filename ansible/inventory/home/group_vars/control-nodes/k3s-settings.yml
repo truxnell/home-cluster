@@ -17,7 +17,7 @@ k3s_server:
     - traefik
     - servicelb
     - metrics-server
-    # - local-storage
+    - local-storage
   disable-network-policy: true
   disable-cloud-controller: true
   write-kubeconfig-mode: "644"

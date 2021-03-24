@@ -62,7 +62,7 @@ spec:
             # Once you get things working, you should remove that whole line altogether.
             # - --certificatesresolvers.cloudflare.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
             - --log
-            - --log.level=DEBUG
+            - --log.level=INFO
           securityContext:
             readOnlyRootFilesystem: true
             runAsNonRoot: true
