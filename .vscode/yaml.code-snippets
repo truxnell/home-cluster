@@ -7,8 +7,6 @@
 			"kind: HelmRelease",
 			"metadata:",
 			"  name: $1",
-			"  namespace: $2",
-			"",
 			"spec:",
 			"  interval: 5m",
 			"  chart:",
@@ -46,7 +44,7 @@
 		"body": [
 			"apiVersion: kustomize.config.k8s.io/v1beta1",
 			"kind: Kustomization",
-			"namespace: ${1:<namespace name>",
+			"namespace: ${1:<namespace name>}",
 			"resources:",
 			"  - ${1:dummy}"
 		],
