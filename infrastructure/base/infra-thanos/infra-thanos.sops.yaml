@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+    name: thanos-secrets
+stringData:
+    object-store.yaml: ENC[AES256_GCM,data:kF/6l7VFVrcir+kdDjYjZSY5oo9/HgllgpnzRTK/fVys620SEODCBKfskLzF+mPgJbyXJCamjw+wkiZuMu5MOjalfUmzNHhg1dxA2Ganlx9dkTyeW1uO/joBw6OQKG8ICR+g+zbrgKyePYapTKa0HDw0UVDiyA==,iv:Wkz+b0FlUjo9B1mOcporIDFmjXLGDPesv4ngR++CsDE=,tag:tPkOnYrGR2kRfcu30FuYTQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2021-03-25T01:19:58Z"
+    mac: ENC[AES256_GCM,data:vHA3kJPCosUudpvRVFQT9RoBSio116UNn7qN9S9llzTvvtjRdMlqMAs/Y8ENfpr3K8dxWiBrb6qBBQy8cPniuIKOI1NbErGIcW5pLwloEBxpQkzCAvPvSV2f7f7DxcmJZfv2K3zcmxyMMqm2B0jslHiR0AXsX5HW//gWyp1xNME=,iv:v4Mez4klb9kARCFrklmTAyeKlSO2nURfuRTIo4nQDm8=,tag:sKWFVfATdJxqGqjkzbBC+Q==,type:str]
+    pgp:
+        - created_at: "2021-03-25T01:19:58Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQGMA94SucntcLeJAQv+PtDzW2+SsRf2KRxygF1MEN300YyKQcyjI32AGAYwCP4W
+            Dai6zKvpPkINuH2MIToYKaLa3PX/yEfruAhoeMokYkbZ/0lx/PVkqb93fL32BEC4
+            ZrEGG4n9wlEjXjLK0IrZIPOETouI095TkxdJW0YJU0ErWfzXmclxoOffo6AZw9M9
+            LwUDeyOAGIu6O1MvYOqDI79ppLRpL2IKytlwZ1l4JJcWxWqaGDT1FJyJ3SXkuyfM
+            70L2+Fu5cilUXc9Bi+eeI746PIYJcwSEBzl6WTDRUKrtYvF+o3aosm0C/MYYCtSr
+            uA5xazucJ2RSfAQ39NXQeXDwEyFVfzOKKVVEh33Agzl34SxdRsublkCspUegfcM5
+            2DeyYHLE3k4bvDQG0IwwI0lLAlSRWyNtnGDuu37k2kaemV3rtDoAXvVXE4C///9k
+            2QARn0uahJCN/4mftijFr4gUM5aip5zWDWseiR61QtfK2jKy558WxaWVfWleH5lK
+            Y96yV/RxdwxqQoYI3xJw0lwB1ziqeg2j8VUmY9Cyp3zWwHI/fbZF99K1fEv3wtsg
+            ieydMKfEB6em8/fqx/z1lABWHxsuYlJy/ESW6f0lHP+ohAJpXn+aOv6iacSMRJYq
+            wWb2+Xitr+A+IutTUQ==
+            =p5Tu
+            -----END PGP MESSAGE-----
+          fp: 30DA87702717C0310E1BE81E612328766D06D7DD
+    encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData$))
+    version: 3.7.0
