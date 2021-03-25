@@ -1,0 +1,56 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: infra-thanos
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: thanos
+      version: 0.4.2
+      sourceRef:
+        kind: HelmRepository
+        name: banzaicloud-charts
+        namespace: flux-system
+      interval: 5m
+  test:
+    enable: true
+  # install:
+  #   remediation:
+  #     retries: 3
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
+  # Values link: https://github.com/banzaicloud/banzai-charts/blob/master/thanos/values.yaml
+  values:
+    query:
+      replicaCount: 2
+      replicaLabels:
+        - replica
+    objstore:
+      type: S3
+      config:
+        bucket: "thanos"
+        endpoint: "192.168.2.253:9000"
+        region: ""
+        insecure: true
+        signature_version2: false
+        put_user_metadata: {}
+        http_config:
+          idle_conn_timeout: 0s
+          response_header_timeout: 0s
+          insecure_skip_verify: false
+        trace:
+          enable: false
+        part_size: 0
+    compact:
+      retentionResolution1h: 5y
+  valuesFrom:
+    - kind: Secret
+      name: "thanos-secrets"
