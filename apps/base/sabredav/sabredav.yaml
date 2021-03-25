@@ -1,0 +1,61 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sabredav
+  labels:
+    app: sabredav
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sabredav
+  template:
+    metadata:
+      labels:
+        app: sabredav
+      # annotations:
+      #   container.apparmor.security.beta.kubernetes.io/traefik-forward-auth: runtime/default
+    spec:
+      containers:
+        - name: sabredav
+          image: xama/nginx-webdav
+          imagePullPolicy: Always
+          securityContext:
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65534
+            runAsGroup: 65534
+            capabilities:
+              drop:
+                - ALL
+          # livenessProbe:
+          #   failureThreshold: 3
+          #   tcpSocket:
+          #     port: 4181
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 10
+          resources:
+            limits:
+              memory: "10Mi"
+              cpu: "100m"
+          ports:
+            - name: http
+              containerPort: 80
+          env:
+            # - name: PROVIDERS_OIDC_CLIENT_SECRET
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: traefik-forward-auth
+            #       key: PROVIDERS_OIDC_CLIENT_SECRET
+            - name: "WEBDAV_USERNAME"
+              value: "test"
+            - name: "WEBDAV_PASSWORD"
+              value: "test"
+          # volumeMounts:
+          #   - mountPath: /var/webdav/public
+          #     name: photos
+          # volumes:
+          #   - name: media-pv
+          #     persistentVolumeClaim:
+          #       claimName: nfs-hdd-raid-pvc
