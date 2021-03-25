@@ -20,3 +20,4 @@ resources:
   - weaveworks-kured-charts.yaml
   - banzaicloud-charts.yaml
   - prometheus-community-charts.yaml
+  - phntom-charts.yaml
