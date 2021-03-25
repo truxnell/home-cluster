@@ -12,3 +12,4 @@ resources:
   - descheduler
   - velero
   - infra-kured
+  - infra-thanos
