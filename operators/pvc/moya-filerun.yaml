@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nfs-nas-media
+  name: filerun-nfs-nas-media
   namespace: kube-system
 spec:
   accessModes:
