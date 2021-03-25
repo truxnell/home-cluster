@@ -18,3 +18,4 @@ resources:
   - kubernetes-sigs-descheduler-charts.yaml
   - vmware-charts.yaml
   - weaveworks-kured-charts.yaml
+  - banzaicloud-charts.yaml
