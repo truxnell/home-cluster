@@ -13,3 +13,4 @@ resources:
   - velero
   - infra-kured
   - infra-thanos
+  - infra-prometheus-stack
