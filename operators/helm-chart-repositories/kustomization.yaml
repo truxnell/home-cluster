@@ -19,3 +19,4 @@ resources:
   - vmware-charts.yaml
   - weaveworks-kured-charts.yaml
   - banzaicloud-charts.yaml
+  - prometheus-community-charts.yaml
