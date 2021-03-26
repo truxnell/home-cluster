@@ -52,10 +52,10 @@ spec:
               value: "test"
             - name: "WEBDAV_PASSWORD"
               value: "test"
-          # volumeMounts:
-          #   - mountPath: /var/webdav/public
-          #     name: photos
-          # volumes:
-          #   - name: media-pv
-          #     persistentVolumeClaim:
-          #       claimName: nfs-hdd-raid-pvc
+          volumeMounts:
+            - mountPath: /var/webdav/public
+              name: filerun
+      volumes:
+        - name: filerun
+          persistentVolumeClaim:
+            claimName: filerun-nfs-nas-media
