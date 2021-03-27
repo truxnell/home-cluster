@@ -4,6 +4,7 @@ kind: IngressRoute
 metadata:
   name: longhorn-tls
 spec:
+  dependsOn: infra-traefik
   entryPoints:
     - websecure
   routes:
