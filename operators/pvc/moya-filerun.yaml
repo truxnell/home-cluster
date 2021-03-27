@@ -4,6 +4,7 @@ kind: PersistentVolume
 metadata:
   name: filerun-moya-pv
 spec:
+  storageClassName: filerun-moya-nfs
   capacity:
     storage: 1Mi
   accessModes:
