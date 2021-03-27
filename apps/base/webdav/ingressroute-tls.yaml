@@ -1,0 +1,20 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: webdav-tls
+spec:
+  dependsOn: infra-traefik
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`webdav.l.voltaicforge.com`)
+      services:
+        - name: webdav
+          port: 80
+      middlewares: # TODO move basic auth to traeifk, out of container
+        - name: traefik-secure-headers
+          namespace: kube-system
+  tls:
+    certResolver: cloudflare

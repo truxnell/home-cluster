@@ -4,14 +4,10 @@ kind: Service
 metadata:
   name: webdav
 spec:
+  selector:
+    app: webdav
   ports:
     - protocol: TCP
-      name: web
+      name: http
       port: 80
-      targetPort: 8080
-  # selector:
-  # app: traefik
-  # externalTrafficPolicy: Local
-  type: LoadBalancer
-  # loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_INGRESS}"
-  loadBalancerIP: "192.168.2.130"
+      targetPort: 80

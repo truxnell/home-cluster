@@ -4,4 +4,4 @@ namespace: webdav
 resources:
   - namespace.yaml
   - pvc.yaml
-  # - mindav.yaml
+  - webdav.yaml

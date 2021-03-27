@@ -1,0 +1,65 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webdav
+  labels:
+    app: webdav
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webdav
+  template:
+    metadata:
+      labels:
+        app: webdav
+      # annotations:
+      #   container.apparmor.security.beta.kubernetes.io/traefik-forward-auth: runtime/default
+    spec:
+      # securityContext:
+      #   # readOnlyRootFilesystem: false
+      #   # runAsNonRoot: false
+      #   runAsUser: 1000
+      #   runAsGroup: 1001
+      #   fsGroup: 1001
+      containers:
+        - name: webdav
+          image: bytemark/webdav
+          imagePullPolicy: Always
+          #   capabilities:
+          #     drop:
+          #       - ALL
+          # livenessProbe:
+          #   failureThreshold: 3
+          #   tcpSocket:
+          #     port: 4181
+          #   initialDelaySeconds: 10
+          #   periodSeconds: 10
+          resources:
+            limits:
+              memory: "10Mi"
+              cpu: "100m"
+          ports:
+            - name: http
+              containerPort: 80
+          env:
+            # - name: PROVIDERS_OIDC_CLIENT_SECRET
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: traefik-forward-auth
+            #       key: PROVIDERS_OIDC_CLIENT_SECRET
+            - name: "AUTH_TYPE"
+              value: "Digest"
+            - name: "USERNAME"
+              value: "test"
+            - name: "PASSWORD"
+              value: "test"
+          volumeMounts:
+            - mountPath: /var/lib/dav/data/
+              name: filerun
+      volumes:
+        - name: filerun
+          nfs:
+            server: "192.168.2.253"
+            path: "/volume1/filerun/Apps"
