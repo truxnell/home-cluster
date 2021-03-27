@@ -14,3 +14,4 @@ resources:
   - infra-kured
   - infra-thanos
   - infra-prometheus-stack
+  - longhorn-system
