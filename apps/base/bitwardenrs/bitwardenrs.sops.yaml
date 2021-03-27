@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+    name: bitwarden-secrets
+stringData:
+    adminToken: ENC[AES256_GCM,data:/UDcTnV4Yt8=,iv:4QU4HQWTdXTDnMF2DwCX/GnuMwK1YLDZGLumMhjjlSQ=,tag:cIyv/PqcQWFGgTdGvLMtZw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2021-03-27T13:47:48Z"
+    mac: ENC[AES256_GCM,data:YRykXz1l+HCXNUgzh0SLwiwa3OTuu+YtUC1UOlnIlWd1+E65V5F7v7ySid6HhE/A4/lVus8BwPwBgfgEaKuM8QoB8rPlVuHzCkNp0bLnejs4nUrn3Cg4Ns+TFdLVAiulaqfNneM7solwJFKytA5Fh5HRykQ+4Nr+LMfPOvvgOjA=,iv:BfwU3BTBuYgB/dmaXKpcATuJD9WB+viDBgFH2/nJ/7E=,tag:Z1oFSPNS6ckye49s1176dw==,type:str]
+    pgp:
+        - created_at: "2021-03-27T13:47:48Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQGMA94SucntcLeJAQv+LJc99DnY3/3yDHZBLI8uOI+VXChLRAk9AHeenQ1YCI/u
+            ntySvjTQSUV7dFAs9nif5BYXqTlA0GWWIK4Wd4v8KX4/IvuwH5HJemhjRakrRnC+
+            ziWRVUemBzMmTLhhSFpQq3JGSYtJxBZ4LnNGKkq7zHruR0OsqzhJl6Ty5qmZJUDT
+            Zq25TL12D3wvAsw6ATJaw5WvKg4WGbVknSlhFoMwqAK21IBxMePGSB5LSn9IXmJw
+            eygmeupwnnUCBhTxYX533odw/6ElcRdNYWbVl051RzBRGZRLiHTTyxHDw9mHhYem
+            LTWrqBrZarsZXSVhSkALuiNXKMTNXf1eTrhqSmlsNdq62ww3JzC5FqeJcpLX0xqv
+            cSN13wa2duXJ/lx/+C3aECWTPMsrGDP7W4qJf7cpifXQFNi5VH11Q+qqv3LbaDeA
+            maAqladG2FRutuIv7djSdkItgP/CcUDSySqaYz0x8tHYH+yIr4BkcNvlYFbUJO78
+            Pm7XlCbv35nI6McK1mSV0lwBaCbvXtb4Ga2zfTxgBaqc3t2f2Up8r/vQUiwTfLB5
+            ucdk0LIn+FOjPYCVKPkGIDkRf20Pb4M5ixN/mZBmrPuwt2za1vFs0eqdq9bX673D
+            tC8mwrceQUtVfi8qWQ==
+            =c0qs
+            -----END PGP MESSAGE-----
+          fp: 30DA87702717C0310E1BE81E612328766D06D7DD
+    encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData$))
+    version: 3.7.0
