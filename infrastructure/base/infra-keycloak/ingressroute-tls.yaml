@@ -4,6 +4,7 @@ kind: IngressRoute
 metadata:
   name: keycloak-tls
 spec:
+  dependsOn: infra-traefik
   entryPoints:
     - websecure
   routes:
