@@ -4,3 +4,4 @@ namespace: kube-system
 resources:
   - ingressroute-minio.yaml
   - ingressroute-prusa.yaml
+  - ingressroute-moya.yaml

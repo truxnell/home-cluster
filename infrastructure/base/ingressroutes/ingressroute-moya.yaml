@@ -1,0 +1,32 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: moya-tls
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`moya.${CLUSTER_DOMAIN}`)
+      services:
+        - name: external-moya
+          port: 5001
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+        # - name: traefik-forward-auth
+        #   namespace: kube-system
+  tls:
+    certResolver: cloudflare
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-moya
+spec:
+  ports:
+    - name: http
+      port: 5001
+  type: ExternalName
+  externalName: 192.168.2.253
