@@ -1,0 +1,30 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: minio-tls
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`minio.${CLUSTER_DOMAIN}`)
+      services:
+        - name: external-minio
+          port: 9000
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+  tls:
+    certResolver: cloudflare
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-minio
+spec:
+  ports:
+    - name: http
+      port: 9000
+  type: ExternalName
+  externalName: 192.168.2.253

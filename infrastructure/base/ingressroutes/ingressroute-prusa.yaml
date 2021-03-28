@@ -1,0 +1,32 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: prusa-tls
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`prusa.${CLUSTER_DOMAIN}`)
+      services:
+        - name: external-prusa
+          port: 9000
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+        # - name: traefik-forward-auth
+        #   namespace: kube-system
+  tls:
+    certResolver: cloudflare
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-prusa
+spec:
+  ports:
+    - name: http
+      port: 9000
+  type: ExternalName
+  externalName: 192.168.2.22
