@@ -6,6 +6,9 @@ metadata:
 spec:
   entryPoints:
     - websecure
+  dependsOn:
+    - traefik
+    - traefik-forward-auth
   routes:
     - kind: Rule
       match: Host(`minio.${CLUSTER_DOMAIN}`)
