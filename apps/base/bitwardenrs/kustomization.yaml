@@ -4,5 +4,5 @@ namespace: bitwardenrs
 resources:
   - namespace.yaml
   - bitwardenrs.sops.yaml
-  # - bitwardenrs.yaml
+  - bitwardenrs.yaml
   - ingressroute-tls.yaml

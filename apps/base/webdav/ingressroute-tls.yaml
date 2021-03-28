@@ -8,7 +8,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`webdav.l.voltaicforge.com`)
+      match: Host(`webdav.${CLUSTER_DOMAIN}`)
       services:
         - name: webdav
           port: 80

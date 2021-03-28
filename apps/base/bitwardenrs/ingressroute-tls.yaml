@@ -8,7 +8,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`bitwarden.l.voltaicforge.com`)
+      match: Host(`bitwarden.${CLUSTER_DOMAIN}`)
       services:
         - name: bitwardenrs
           port: 80
