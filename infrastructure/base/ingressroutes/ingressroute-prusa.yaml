@@ -14,12 +14,23 @@ spec:
       match: Host(`prusa.${CLUSTER_DOMAIN}`)
       services:
         - name: external-prusa
-          port: 9000
+          port: 80
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+        - name: traefik-forward-auth
+          namespace: kube-system
+    - kind: Rule
+      match: Host(`prusa.${CLUSTER_DOMAIN}`) && Path('/api')
+      services:
+        - name: external-prusa
+          port: 80
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
         # - name: traefik-forward-auth
         #   namespace: kube-system
+
   tls:
     certResolver: cloudflare
 ---
