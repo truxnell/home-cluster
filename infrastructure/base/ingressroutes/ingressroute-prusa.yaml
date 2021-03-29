@@ -30,6 +30,6 @@ metadata:
 spec:
   ports:
     - name: http
-      port: 9000
+      port: 80
   type: ExternalName
   externalName: 192.168.2.22
