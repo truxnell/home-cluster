@@ -1,0 +1,24 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nzbget-tls
+spec:
+  entryPoints:
+    - websecure
+  routes: # TODO Set api with no auth
+    - kind: Rule
+      match: Host(`nzbget.l.voltaicforge.com`) # TODO Replace with variable
+      services:
+        - name: nzbget
+          port: 6789
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+    - kind: Rule
+      match: Host(`nzbget.l.voltaicforge.com/api`) # TODO Replace with variable
+      services:
+        - name: nzbget
+          port: 6789
+  tls:
+    certResolver: cloudflare
