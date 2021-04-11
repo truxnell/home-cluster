@@ -8,7 +8,7 @@ spec:
     - websecure
   routes: # TODO Set api with no auth
     - kind: Rule
-      match: Host(`nzbget.l.voltaicforge.com`) # TODO Replace with variable
+      match: Host(`nzbget.${CLUSTER_DOMAIN}`)
       services:
         - name: nzbget
           port: 6789
@@ -16,7 +16,7 @@ spec:
         - name: traefik-secure-headers
           namespace: kube-system
     - kind: Rule
-      match: Host(`nzbget.l.voltaicforge.com/api`) # TODO Replace with variable
+      match: Host(`nzbget.${CLUSTER_DOMAIN}/api`)
       services:
         - name: nzbget
           port: 6789
