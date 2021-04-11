@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: home
 resources:
   - namespace.yaml
-  # - homeassistant
+  - homeassistant
