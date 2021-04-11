@@ -12,7 +12,7 @@ resources:
   - descheduler
   - velero
   - infra-kured
-  - infra-thanosa
+  - infra-thanos
   - infra-prometheus-stack
   - longhorn-system
   - ingressroutes
