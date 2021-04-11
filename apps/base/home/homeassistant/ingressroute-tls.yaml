@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: homeassistant-tls
+spec:
+  entryPoints:
+    - websecure
+  routes: # TODO Set api with no auth
+    - kind: Rule
+      match: Host(`homeassistant.${CLUSTER_DOMAIN}`)
+      services:
+        - name: home-assistant
+          port: 8123
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+  tls:
+    certResolver: cloudflare
