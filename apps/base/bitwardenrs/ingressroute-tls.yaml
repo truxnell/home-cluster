@@ -15,7 +15,6 @@ spec:
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
-<<<<<<< HEAD
         # - name: traefik-forward-auth
         #   namespace: kube-system
     # - kind: Rule
@@ -26,17 +25,5 @@ spec:
     #   middlewares:
     #     - name: traefik-secure-headers
     #       namespace: kube-system
-=======
-#        - name: traefik-forward-auth
-#          namespace: kube-system
-#    - kind: Rule
-#      match: Host(`bitwarden.${CLUSTER_DOMAIN}`) && PathPrefix(`/api`)
-#      services:
-#        - name: bitwardenrs
-#          port: 80
-#      middlewares:
-#        - name: traefik-secure-headers
-#          namespace: kube-system
->>>>>>> refs/remotes/origin/main
   tls:
     certResolver: cloudflare
