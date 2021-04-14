@@ -166,6 +166,7 @@
       "automerge": true,
       "requiredStatusChecks": null,
       "updateTypes": [
+        "minor",
         "patch"
       ],
     }
