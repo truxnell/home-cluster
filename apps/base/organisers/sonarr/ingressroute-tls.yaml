@@ -11,14 +11,14 @@ spec:
       match: Host(`sonarr.l.voltaicforge.com`) # TODO Replace with variable
       services:
         - name: sonarr
-          port: 6789
+          port: 8989
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
-    - kind: Rule
-      match: Host(`sonarr.l.voltaicforge.com/api`) # TODO Replace with variable
-      services:
-        - name: sonarr
-          port: 6789
+    # - kind: Rule
+    #   match: Host(`sonarr.l.voltaicforge.com/api`) # TODO Replace with variable
+    #   services:
+    #     - name: sonarr
+    #       port: 8989
   tls:
     certResolver: cloudflare
