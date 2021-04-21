@@ -1,0 +1,19 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pteropanel
+spec:
+  entryPoints:
+    - websecure
+  routes: # TODO Set api with no auth
+    - kind: Rule
+      match: Host(`pterodactyl.l.voltaicforge.com`)
+      services:
+        - name: pteropanel
+          port: 80
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+  tls:
+    certResolver: cloudflare
