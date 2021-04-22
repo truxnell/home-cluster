@@ -7,3 +7,4 @@ resources:
   - cert-manager
   - longhorn-system
   - nfs-external-provisioner
+  - system-upgrade
