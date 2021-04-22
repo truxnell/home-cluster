@@ -16,3 +16,4 @@ resources:
   - infra-prometheus-stack
   - longhorn-system
   - ingressroutes
+  - system-upgrade
