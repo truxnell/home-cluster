@@ -1,0 +1,24 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: radarr-tls
+spec:
+  entryPoints:
+    - websecure
+  routes: # TODO Set api with no auth
+    - kind: Rule
+      match: Host(`radarr.l.voltaicforge.com`) # TODO Replace with variable
+      services:
+        - name: radarr
+          port: 7878
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+    # - kind: Rule
+    #   match: Host(`radarr.l.voltaicforge.com/api`) # TODO Replace with variable
+    #   services:
+    #     - name: radarr
+    #       port: 7878
+  tls:
+    certResolver: cloudflare
