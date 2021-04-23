@@ -11,7 +11,7 @@ spec:
       # values: https://github.com/longhorn/longhorn/blob/master/chart/values.yaml
       # renovate: registryUrl=https://charts.longhorn.io
       chart: longhorn
-      version: 1.1.0
+      version: 1.1.1
       sourceRef:
         kind: HelmRepository
         name: longhorn-charts
