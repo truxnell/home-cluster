@@ -2,26 +2,32 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: downloads-nfs-nas-media
+  name: leela-pv
 spec:
-  storageClassName: downloads-nas-media
+  storageClassName: ""
   capacity:
     storage: 1Mi
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    server: 192.168.2.253 # TODO Replace with variable
-    path: /volume1/downloads
+    server: 192.168.2.253
+    path: "/volume1/"
+  mountOptions:
+    - tcp
+    - intr
+    - hard
+    - noatime
+    - nodiratime
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nfs-nas-media
+  name: leela-pvc
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: downloads-nas-media
+  storageClassName: ""
   resources:
     requests:
       storage: 1Mi
