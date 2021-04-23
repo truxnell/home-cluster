@@ -4,3 +4,5 @@ namespace: organisers
 resources:
   - namespace.yaml
   - sonarr
+  - radarr
+  - nzbhydra2

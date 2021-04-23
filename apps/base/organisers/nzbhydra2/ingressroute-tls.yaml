@@ -1,0 +1,24 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nzbhydra2-tls
+spec:
+  entryPoints:
+    - websecure
+  routes: # TODO Set api with no auth
+    - kind: Rule
+      match: Host(`nzbhydra.l.voltaicforge.com`) # TODO Replace with variable
+      services:
+        - name: nzbhydra2
+          port: 5076
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+    # - kind: Rule
+    #   match: Host(`nzbhydra.l.voltaicforge.com/api`) # TODO Replace with variable
+    #   services:
+    #     - name: nzbhydra2
+    #       port: 5076
+  tls:
+    certResolver: cloudflare
