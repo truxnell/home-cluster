@@ -37,6 +37,9 @@ spec:
         enabled: true
         storageClass: "longhorn"
         size: 1Gi
+      media:
+        enabled: true
+        existingClaim: leela-pvc
     resources:
       requests:
         memory: 300Mi

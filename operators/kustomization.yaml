@@ -8,3 +8,4 @@ resources:
   - longhorn-system
   - nfs-external-provisioner
   - system-upgrade
+  - storageclass
