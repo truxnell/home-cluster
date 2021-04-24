@@ -23,6 +23,21 @@ spec:
       defaultClass: true
       defaultClassReplicaCount: 2
       reclaimPolicy: Retain
+      recurringJobs:
+        enable: true
+        jobList: '[
+          { "name": "snap",
+            "task": "snapshot",
+            "cron": "0 */4 * * *",
+            "retain": 10 
+          },
+          {
+            "name":"backup", 
+            "task":"backup", 
+            "cron":"0 4 * * *", 
+            "retain": 5
+          }
+        ]'
     defaultSettings:
       backupTarget: nfs://${SYNOLOGY_IP}:/volume1/backup/longhorn/
       createDefaultDiskLabeledNodes: false
