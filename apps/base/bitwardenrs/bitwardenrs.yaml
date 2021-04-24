@@ -64,7 +64,7 @@ spec:
       enabled: true
       size: 1Gi
       accessMode: ReadWriteOnce
-      storageClass: "longhorn"
+      storageClass: "longhornd"
     resources:
       limits:
         cpu: 100m
