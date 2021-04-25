@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: organisers
 resources:
   - namespace.yaml
+  - leela-nfs-organisers.yaml
   - sonarr
   - radarr
   - nzbhydra2
