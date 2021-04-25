@@ -34,7 +34,7 @@ spec:
       TZ: "Australia/Melbourne"
     persistence:
       config:
-        enabled: false
+        enabled: true
         storageClass: "longhorn"
         size: 1Gi
       media:
