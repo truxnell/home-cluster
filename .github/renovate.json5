@@ -165,6 +165,7 @@
       ],
       "automerge": true,
       "requiredStatusChecks": null,
+      "schedule": "after 2am and before 5am",
       "updateTypes": [
         "minor",
         "patch"
