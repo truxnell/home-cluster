@@ -4,5 +4,6 @@ resources:
   - podinfo
   - webdav
   - bitwardenrs
-  - downloaders
+  - organisers
+  - downloads
   - home
