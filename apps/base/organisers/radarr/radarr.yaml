@@ -39,7 +39,6 @@ spec:
       media:
         enabled: true
         existingClaim: leela-pvc
-        mountPath: "/media"
     resources:
       requests:
         memory: 300Mi
