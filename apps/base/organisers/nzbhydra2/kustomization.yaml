@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: organisers
 resources:
   - nzbhydra2.yaml
-  - ingressroute-tls.ymal
+  - ingressroute-tls.yaml
