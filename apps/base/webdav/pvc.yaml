@@ -2,11 +2,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: filerun-moya-pv
+  name: leela-filerun-pvc
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: filerun-moya-nfs
+  storageClassName: ""
+  volumeName: leela-filerun-pv
   resources:
     requests:
       storage: 1Mi

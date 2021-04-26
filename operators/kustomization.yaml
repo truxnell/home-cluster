@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - helm-chart-repositories
   - infra-traefik
-  - pvc
   - cert-manager
   - longhorn-system
   - nfs-external-provisioner
