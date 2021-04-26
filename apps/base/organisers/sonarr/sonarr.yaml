@@ -39,7 +39,7 @@ spec:
         size: 1Gi
       media:
         enabled: true
-        existingClaim: leela-pvc
+        existingClaim: leela-organisers-pvc
     resources:
       requests:
         memory: 300Mi
