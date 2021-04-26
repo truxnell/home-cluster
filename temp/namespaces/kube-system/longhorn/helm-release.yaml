@@ -23,7 +23,7 @@ spec:
         kubernetes.io/tls-acme: "true"
         cert-manager.io/cluster-issuer: letsencrypt-production
       #   kubernetes.io/ingress.class: "external"
-      host: longhorn.l.voltaicforge.com
+      host: longhorn.${CLUSTER_DOMAIN}
       path: /
       tls: true
       secretName: voltaicforge-com-tls

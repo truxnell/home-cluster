@@ -12,7 +12,7 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "*.l.voltaicforge.com"
+  commonName: "*.${CLUSTER_DOMAIN}"
   dnsNames:
-    - "*.l.voltaicforge.com"
-    - "l.voltaicforge.com"
+    - "*.${CLUSTER_DOMAIN}"
+    - "${CLUSTER_DOMAIN}"

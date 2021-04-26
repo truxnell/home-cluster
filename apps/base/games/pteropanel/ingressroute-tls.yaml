@@ -8,7 +8,7 @@ spec:
     - websecure
   routes: # TODO Set api with no auth
     - kind: Rule
-      match: Host(`pterodactyl.l.voltaicforge.com`)
+      match: Host(`pterodactyl.${CLUSTER_DOMAIN}`)
       services:
         - name: pteropanel
           port: 80

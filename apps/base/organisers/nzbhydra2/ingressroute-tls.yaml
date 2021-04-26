@@ -8,7 +8,7 @@ spec:
     - websecure
   routes: # TODO Set api with no auth
     - kind: Rule
-      match: Host(`nzbhydra.l.voltaicforge.com`) # TODO Replace with variable
+      match: Host(`nzbhydra.${CLUSTER_DOMAIN}`) # TODO Replace with variable
       services:
         - name: nzbhydra2
           port: 5076
@@ -16,7 +16,7 @@ spec:
         - name: traefik-secure-headers
           namespace: kube-system
     # - kind: Rule
-    #   match: Host(`nzbhydra.l.voltaicforge.com/api`) # TODO Replace with variable
+    #   match: Host(`nzbhydra.${CLUSTER_DOMAIN}/api`) # TODO Replace with variable
     #   services:
     #     - name: nzbhydra2
     #       port: 5076
