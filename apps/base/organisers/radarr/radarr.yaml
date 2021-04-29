@@ -39,7 +39,7 @@ spec:
       config:
         enabled: true
         storageClass: "longhorn"
-        size: 1Gi
+        size: 2Gi
       media:
         enabled: true
         existingClaim: leela-organisers-pvc
