@@ -8,17 +8,17 @@ spec:
     - websecure
   routes: # TODO Set api with no auth
     - kind: Rule
-      match: Host(`nzbhydra.${CLUSTER_DOMAIN}`) # TODO Replace with variable
+      match: Host(`nzbhydra.${CLUSTER_DOMAIN}`)
       services:
         - name: nzbhydra2
           port: 5076
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
-    # - kind: Rule
-    #   match: Host(`nzbhydra.${CLUSTER_DOMAIN}/api`) # TODO Replace with variable
-    #   services:
-    #     - name: nzbhydra2
-    #       port: 5076
+    - kind: Rule
+      match: Host(`nzbhydra.${CLUSTER_DOMAIN}`)  && PathPrefix(`/api`)
+      services:
+        - name: nzbhydra2
+          port: 5076
   tls:
     certResolver: cloudflare

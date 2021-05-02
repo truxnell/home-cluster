@@ -19,7 +19,7 @@ spec:
           namespace: kube-system
 
     - kind: Rule
-      match: Host(`nzbget.${CLUSTER_DOMAIN}/api`)
+      match: Host(`nzbget.${CLUSTER_DOMAIN}`)  && PathPrefix(`/api`)
       services:
         - name: nzbget
           port: 6789

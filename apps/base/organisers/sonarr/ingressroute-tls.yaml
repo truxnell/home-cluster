@@ -15,10 +15,10 @@ spec:
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
-    # - kind: Rule
-    #   match: Host(`sonarr.${CLUSTER_DOMAIN}/api`) # TODO Replace with variable
-    #   services:
-    #     - name: sonarr
-    #       port: 8989
+    - kind: Rule
+      match: Host(`sonarr.${CLUSTER_DOMAIN}`) && PathPrefix(`/api`)
+      services:
+        - name: sonarr
+          port: 8989
   tls:
     certResolver: cloudflare
