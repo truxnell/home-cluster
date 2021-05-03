@@ -9,7 +9,7 @@ spec:
     - websecure
   routes:
     # TODO put back in variables
-    - match: Host(`traefik.${CLUSTER_DOMAIN}`)  && ((PathPrefix(`/api`) || PathPrefix(`/dashboard`))
+    - match: Host(`traefik.${CLUSTER_DOMAIN}`)  && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
       kind: Rule
       services:
         - name: api@internal
