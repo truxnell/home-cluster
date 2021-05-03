@@ -20,5 +20,8 @@ spec:
       services:
         - name: nzbhydra2
           port: 5076
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
   tls:
     certResolver: cloudflare

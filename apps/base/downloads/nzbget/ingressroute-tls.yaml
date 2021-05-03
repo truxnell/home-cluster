@@ -23,5 +23,8 @@ spec:
       services:
         - name: nzbget
           port: 6789
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
   tls:
     certResolver: cloudflare

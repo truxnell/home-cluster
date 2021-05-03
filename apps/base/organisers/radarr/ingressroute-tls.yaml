@@ -20,5 +20,8 @@ spec:
       services:
         - name: radarr
           port: 7878
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
   tls:
     certResolver: cloudflare

@@ -20,5 +20,8 @@ spec:
       services:
         - name: sonarr
           port: 8989
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
   tls:
     certResolver: cloudflare
