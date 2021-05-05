@@ -5,3 +5,5 @@ resources:
   - namespace.yaml
   - pvc.yaml
   - webdav.yaml
+  - ingressroute-tls.yaml
+  - service.yaml
