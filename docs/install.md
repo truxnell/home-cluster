@@ -12,5 +12,3 @@ Then
 * Run ansible plabook k3s install to install the cluster
 * The k3s install playbook will place a kubeconfig file in the root of the repository - `mv kubeconfig ~/.kube/config` (or your prefered location)
 * Run the tasfile ansible:flux:install to install flux and connect to this repository
-
-

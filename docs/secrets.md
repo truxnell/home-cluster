@@ -17,7 +17,7 @@ https://toolkit.fluxcd.io/guides/mozilla-sops/
 
 <!-- Save gpg key to k3s.
 ```
-gpg --export-secret-keys \                                                                                                                                                        
+gpg --export-secret-keys \
 --armor <insert PGP key> |
 kubectl create secret generic sops-gpg \
 --namespace=flux-system \

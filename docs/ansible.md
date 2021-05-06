@@ -37,4 +37,3 @@ ansible-playbook -i inventory/home/hosts.yml playbooks/ubuntu/prepare.yml
 # Install k3s on Inventory
 ansible-playbook -i inventory/home/hosts.yml playbooks/k3s/install.yml
 ```
-
