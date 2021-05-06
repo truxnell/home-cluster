@@ -77,10 +77,10 @@ while IFS= read -r file; do
   fi
 
   encrypted_file=$(sops --input-type yaml --output-type yaml --encrypt $file)
-  
+
   # Output the file to the desired path
   echo "$encrypted_file" > "${template_path}/$template_target_name"
-  
+
 done <<< "$FILES_TO_PROCESS"
 
 message "Completed!"
