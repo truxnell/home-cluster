@@ -29,12 +29,12 @@ spec:
           { "name": "snap",
             "task": "snapshot",
             "cron": "0 */4 * * *",
-            "retain": 10 
+            "retain": 10
           },
           {
-            "name":"backup", 
-            "task":"backup", 
-            "cron":"0 4 * * *", 
+            "name":"backup",
+            "task":"backup",
+            "cron":"0 4 * * *",
             "retain": 5
           }
         ]'
