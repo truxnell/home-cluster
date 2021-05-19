@@ -7,3 +7,4 @@ resources:
   - sonarr
   - radarr
   - nzbhydra2
+  - homer
