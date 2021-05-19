@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: media
 resources:
   - namespace.yaml
-  - plex
+  - leela-nfs-downloaders.yaml
