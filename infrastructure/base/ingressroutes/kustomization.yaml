@@ -5,3 +5,5 @@ resources:
   - ingressroute-minio.yaml
   - ingressroute-prusa.yaml
   - ingressroute-moya.yaml
+  - ingressroute-brewpiless.yaml
+  - ingressroute-proxmox.yaml
