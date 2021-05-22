@@ -17,7 +17,6 @@ spec:
           namespace: kube-system
         - name: traefik-forward-auth
           namespace: kube-system
-
     - kind: Rule
       match: Host(`nzbget.${CLUSTER_DOMAIN}`) && (PathPrefix(`/xmlrpc`) || PathPrefix(`/jsonrpc`) || PathPrefix(`/jsonprpc`))
       services:

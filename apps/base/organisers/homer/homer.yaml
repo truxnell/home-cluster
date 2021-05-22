@@ -152,9 +152,14 @@ spec:
                 tag: "hass"
               - name: "Traefik"
                 logo: "assets/tools/minio.png"
-                subtitle: "Cloud-native application networking stack"
+                subtitle: "Cloud-native Application Networking Stack"
                 url: "https://traefik.${CLUSTER_DOMAIN}/dashboard/"
                 tag: "traefik"
+              - name: "Pterodactyl"
+                logo: "assets/tools/pterodactyl.png"
+                subtitle: "Kubernetes-Native Game Server Hosting"
+                url: "https://pterodactyl.${CLUSTER_DOMAIN}/dashboard/"
+                tag: "games"
 
 
           - name: "Storage"

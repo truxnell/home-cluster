@@ -17,6 +17,5 @@ spec:
           namespace: kube-system
         - name: traefik-forward-auth
           namespace: kube-system
-
   tls:
     certResolver: cloudflare
