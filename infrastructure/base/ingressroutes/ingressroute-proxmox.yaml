@@ -2,7 +2,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: prusa-tls
+  name: proxmox-tls
 spec:
   entryPoints:
     - websecure
@@ -11,25 +11,25 @@ spec:
     - traefik-forward-auth
   routes:
     - kind: Rule
-      match: Host(`prusa.${CLUSTER_DOMAIN}`)
+      match: Host(`proxmox.${CLUSTER_DOMAIN}`)
       services:
-        - name: external-prusa
-          port: 80
+        - name: external-proxmox
+          port: 80006
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
         - name: traefik-forward-auth
           namespace: kube-system
-    - kind: Rule
-      match: Host(`prusa.${CLUSTER_DOMAIN}`) && PathPrefix(`/api`)
-      services:
-        - name: external-prusa
-          port: 80
-      middlewares:
-        - name: traefik-secure-headers
-          namespace: kube-system
-        # - name: traefik-forward-auth
-        #   namespace: kube-system
+    # - kind: Rule
+    #   match: Host(`proxmox.${CLUSTER_DOMAIN}`) && PathPrefix(`/api`)
+    #   services:
+    #     - name: external-proxmox
+    #       port: 80006
+    #   middlewares:
+    #     - name: traefik-secure-headers
+    #       namespace: kube-system
+    #     # - name: traefik-forward-auth
+    #     #   namespace: kube-system
 
   tls:
     certResolver: cloudflare
@@ -37,7 +37,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: external-prusa
+  name: external-proxmox
 spec:
   ports:
     - name: http
