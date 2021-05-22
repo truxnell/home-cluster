@@ -6,7 +6,7 @@ metadata:
 spec:
   entryPoints:
     - websecure
-  routes: # TODO Set api with no auth
+  routes:
     - kind: Rule
       match: Host(`homer.${CLUSTER_DOMAIN}`)
       services:
@@ -15,5 +15,8 @@ spec:
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
+        - name: traefik-forward-auth
+          namespace: kube-system
+
   tls:
     certResolver: cloudflare
