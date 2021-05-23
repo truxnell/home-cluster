@@ -38,6 +38,22 @@ spec:
       limits:
         memory: 1500Mi
         cpu: 2000m
+    persistence:
+      config:
+        enabled: true
+        existingClaim: homer-config-v1
+    addons:
+      codeserver:
+        enabled: true
+        workingDir: "/www/assets"
+        args:
+          - --user-data-dir
+          - "/www/assets/.vscode"
+          - --auth
+          - "none"
+        volumeMounts:
+          - name: config
+            mountPath: /www/assets
     configmap:
       # -- Store homer configuration as a ConfigMap
       enabled: true
