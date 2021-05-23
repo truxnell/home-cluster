@@ -42,6 +42,7 @@ spec:
     persistence:
       config:
         enabled: true
+        storageClass: "longhorn"
     addons:
       codeserver:
         enabled: true
