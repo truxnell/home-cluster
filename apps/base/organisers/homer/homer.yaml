@@ -47,6 +47,9 @@ spec:
       codeserver:
         enabled: true
         workingDir: "/www/assets"
+        image:
+          repository: codercom/code-server
+          tag: 3.9.2
         args:
           - --user-data-dir
           - "/www/assets/.vscode"
