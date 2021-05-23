@@ -34,8 +34,8 @@ spec:
         - name: homer-codeserver
           port: 12321
       middlewares:
-        - name: traefik-secure-headers
-          namespace: kube-system
+        # - name: traefik-secure-headers
+        #   namespace: kube-system
         # - name: traefik-forward-auth
         #   namespace: kube-system
   tls:
