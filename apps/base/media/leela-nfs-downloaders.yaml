@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: leela-downloads-pvc
+  name: leela-media-pvc
 spec:
   accessModes:
     - ReadWriteMany

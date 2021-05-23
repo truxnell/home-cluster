@@ -43,4 +43,10 @@ spec:
         size: 2Gi
       media:
         enabled: true
-        existingClaim: leela-organisers-pvc
+        existingClaim: leela-media-pvc
+    service:
+      type: LoadBalancer
+      loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_PLEX}"
+      externalTrafficPolicy: Local
+      annotations:
+        metallb.universe.tf/allow-shared-ip: plex
