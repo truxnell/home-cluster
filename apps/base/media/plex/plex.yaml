@@ -46,7 +46,8 @@ spec:
         existingClaim: leela-media-pvc
     service:
       type: LoadBalancer
-      loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_PLEX}"
+      # loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_PLEX}" #TODO replace
+      loadBalancerIP: "192.168.2.133"
       externalTrafficPolicy: Local
       annotations:
         metallb.universe.tf/allow-shared-ip: plex
