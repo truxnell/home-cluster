@@ -61,7 +61,7 @@ spec:
             mountPath: /www/assets
     configmap:
       # -- Store homer configuration as a ConfigMap
-      enabled: true
+      enabled: false
       # -- Homer configuration
       # https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md
       config: |
