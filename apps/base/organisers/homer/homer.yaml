@@ -9,7 +9,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: homer
-      version: 4.3.1
+      version: 4.4.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -43,6 +43,7 @@ spec:
       config:
         enabled: true
         storageClass: "longhorn"
+        size: 1Gi
     addons:
       codeserver:
         enabled: true
@@ -107,11 +108,11 @@ spec:
               #   subtitle: "eBook PVR for Usenet + BitTorrent"
               #   url: "https://readarr.${CLUSTER_DOMAIN}/"
               #   tag: "eBook"
-              # - name: "SABnzbd"
-              #   logo: "assets/tools/sabnzbd.png"
-              #   subtitle: "Easy Binary Newsreader"
-              #   url: "https://sabnzbd.${CLUSTER_DOMAIN}/"
-              #   tag: "usenet"
+              - name: "NZBGet"
+                logo: "assets/tools/nzbget.png"
+                subtitle: "Easy Binary Newsreader"
+                url: "https://nzbget.${CLUSTER_DOMAIN}/"
+                tag: "usenet"
               # - name: "Qbittorrent"
               #   logo: "assets/tools/qbittorrent.png"
               #   subtitle: "Cross-Platform BitTorrent client"

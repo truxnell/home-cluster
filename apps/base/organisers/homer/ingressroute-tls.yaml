@@ -19,3 +19,24 @@ spec:
           namespace: kube-system
   tls:
     certResolver: cloudflare
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: homer-codeserver-tls
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`homer-codeserver.${CLUSTER_DOMAIN}`)
+      services:
+        - name: homer-codeserver
+          port: 12321
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+        - name: traefik-forward-auth
+          namespace: kube-system
+  tls:
+    certResolver: cloudflare
