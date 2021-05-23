@@ -3,10 +3,9 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: homer-config-v1
-  namespace: home
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
