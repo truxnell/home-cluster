@@ -35,12 +35,9 @@ spec:
       ADVERTISE_IP: "https://plex.${CLUSTER_DOMAIN}:443/,http://${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_PLEX}:32400/"
     hostNetwork: true
     podSecurityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
-      supplementalGroups:
-        - 44
-        - 109
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
     persistence:
       config:
         enabled: true
@@ -49,14 +46,10 @@ spec:
       media:
         enabled: true
         existingClaim: leela-media-pvc
-      transcode:
-        enabled: true
-        emptyDir:
-          enabled: true
-          medium: "Memory"
     service:
       type: LoadBalancer
-      loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_PLEX}"
+      loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_PLEX}" #TODO replace
+      # loadBalancerIP: "192.168.2.133"
       externalTrafficPolicy: Local
       annotations:
         metallb.universe.tf/allow-shared-ip: plex
