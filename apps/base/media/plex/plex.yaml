@@ -47,6 +47,11 @@ spec:
       media:
         enabled: true
         existingClaim: leela-media-pvc
+      transcode:
+        enabled: true
+        emptyDir:
+          enabled: true
+          medium: "Memory"
     service:
       type: LoadBalancer
       # loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_PLEX}" #TODO replace
