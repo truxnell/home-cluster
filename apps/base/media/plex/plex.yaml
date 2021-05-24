@@ -54,8 +54,7 @@ spec:
           medium: "Memory"
     service:
       type: LoadBalancer
-      # loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_PLEX}" #TODO replace
-      loadBalancerIP: "192.168.2.133"
+      loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_PLEX}"
       externalTrafficPolicy: Local
       annotations:
         metallb.universe.tf/allow-shared-ip: plex
