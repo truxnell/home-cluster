@@ -36,7 +36,7 @@ spec:
     prometheusSpec:
       # retention: 4h
       thanos:
-        image: quay.io/thanos/thanos:v0.18.0
+        image: quay.io/thanos/thanos:v0.20.2
         version: v0.18.0
         # Thanos chart will generate the secret: thanos
         objectStorageConfig:
