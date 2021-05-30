@@ -8,3 +8,4 @@ resources:
   - nfs-external-provisioner
   - system-upgrade
   - storageclass
+  - rook-ceph
