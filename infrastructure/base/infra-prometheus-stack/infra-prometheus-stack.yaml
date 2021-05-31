@@ -9,7 +9,7 @@ spec:
     spec:
       # renovate: registryUrl=https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
-      version: 16.0.1
+      version: 16.1.2
       sourceRef:
         kind: HelmRepository
         name: prometheus-community-charts
@@ -36,7 +36,7 @@ spec:
     prometheusSpec:
       # retention: 4h
       thanos:
-        image: quay.io/thanos/thanos:v0.18.0
+        image: quay.io/thanos/thanos:v0.20.2
         version: v0.18.0
         # Thanos chart will generate the secret: thanos
         objectStorageConfig:
