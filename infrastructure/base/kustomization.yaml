@@ -18,3 +18,4 @@ resources:
   - longhorn-system
   - ingressroutes
   - system-upgrade
+  - rook-ceph
