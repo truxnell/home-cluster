@@ -9,3 +9,4 @@ resources:
   - system-upgrade
   - storageclass
   - rook-ceph
+  - external-snapshotter

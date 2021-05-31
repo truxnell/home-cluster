@@ -2,13 +2,14 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: bitwarden-tls
+  name: rook-ceph-tls
 spec:
   entryPoints:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`bitwarden.${CLUSTER_DOMAIN}`)
+      # match: Host(`rook-ceph.${CLUSTER_DOMAIN}`)
+      match: Host(`rook-ceph.l.voltaicforge.com`)
       services:
         - name: rook-ceph-mgr-dashboard
           port: http-dashboard

@@ -39,8 +39,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: "longhorn"
-        size: 2Gi
+        existingClaim: sonarr-config-v1
       media:
         enabled: true
         existingClaim: leela-organisers-pvc

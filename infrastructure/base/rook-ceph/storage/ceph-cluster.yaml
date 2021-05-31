@@ -14,7 +14,7 @@ spec:
   removeOSDsIfOutAndSafeToRemove: false
   mon:
     count: 3
-    allowMultiplePerNode: false
+    allowMultiplePerNode: true
   monitoring:
     enabled: true
     rulesNamespace: rook-ceph
@@ -29,8 +29,8 @@ spec:
       iteration: 1
   mgr:
     modules:
-    - name: pg_autoscaler
-      enabled: true
+      - name: pg_autoscaler
+        enabled: true
   dashboard:
     enabled: true
     port: 7000
@@ -60,18 +60,9 @@ spec:
       metadataDevice:
       osdsPerDevice: "1"
     nodes:
-    - name: "k8s-worker-a"
-      devices:
-      - name: "nvme0n1"
-    - name: "k8s-worker-b"
-      devices:
-      - name: "nvme0n1"
-    - name: "k8s-worker-c"
-      devices:
-      - name: "nvme0n1"
-    - name: "k8s-worker-d"
-      devices:
-      - name: "nvme0n1"
-    - name: "k8s-worker-e"
-      devices:
-      - name: "nvme0n1"
+      - name: "k8s-control-node"
+        devices:
+          - name: "sdb"
+      - name: "k8s-generic-node-a"
+        devices:
+          - name: "sdb"
