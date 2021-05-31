@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: rook-ceph
 resources:
   - crds.yaml
+  - namespace.yaml
