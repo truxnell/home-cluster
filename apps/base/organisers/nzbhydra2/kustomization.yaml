@@ -3,5 +3,5 @@ kind: Kustomization
 namespace: organisers
 resources:
   - nzbhydra2.yaml
-  - config-pvc.taml
+  - config-pvc.yaml
   - ingressroute-tls.yaml
