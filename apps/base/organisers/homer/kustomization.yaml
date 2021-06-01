@@ -3,4 +3,5 @@ kind: Kustomization
 namespace: organisers
 resources:
   - ingressroute-tls.yaml
+  - config-pvc.yaml
   - homer.yaml
