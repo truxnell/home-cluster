@@ -30,17 +30,18 @@ spec:
     cleanupOnFail: true
   # Values link:
   values:
+    image:
+      repository: ghcr.io/k8s-at-home/nzbget
+      tag: "v21.0"
     env:
       TZ: "Australia/Melbourne"
     podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
+      supplementalGroups:
+      - 65539
     persistence:
       config:
         enabled: true
-        storageClass: "longhorn"
-        size: 1Gi
+        existingClaim: nzbget-config-v1
       media:
         enabled: true
         existingClaim: leela-downloads-pvc
