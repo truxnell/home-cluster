@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: bitwardenrs
 resources:
   - namespace.yaml
+  - config-pvc.yaml
   - bitwardenrs.sops.yaml
   - bitwardenrs.yaml
   - ingressroute-tls.yaml
