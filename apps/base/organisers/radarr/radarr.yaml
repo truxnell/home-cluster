@@ -17,9 +17,9 @@ spec:
       interval: 5m
   test:
     enable: true
-  # install:
-  #   remediation:
-  #     retries: 3
+  install:
+    remediation:
+      retries: 3
   upgrade:
     remediation:
       remediateLastFailure: true
@@ -30,23 +30,24 @@ spec:
     cleanupOnFail: true
   # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/radarr/values.yaml
   values:
+    image:
+      repository: ghcr.io/k8s-at-home/radarr
+      tag: v3.2.1.5070
     env:
       TZ: "Australia/Melbourne"
     podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
+      supplementalGroups:
+      - 100
     persistence:
       config:
         enabled: true
-        storageClass: "longhorn"
-        size: 2Gi
+        existingClaim: radarr-config-v1
       media:
         enabled: true
         existingClaim: leela-organisers-pvc
-    # resources:
-    #   requests:
-    #     memory: 300Mi
-    #     cpu: 25m
-    #   limits:
-    #     memory: 400Mi
+    resources:
+      requests:
+        memory: 250Mi
+        cpu: 500m
+      limits:
+        memory: 1500Mi
