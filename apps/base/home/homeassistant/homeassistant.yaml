@@ -30,16 +30,11 @@ spec:
     cleanupOnFail: true
   # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/home-assistant/values.yaml
   values:
-    securityContext:
-      #   # readOnlyRootFilesystem: false
-      #   # runAsNonRoot: false
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
-    podSecurityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
+    image:
+      repository: homeassistant/home-assistant
+      tag: 2021.5.5
+    extraEnv:
+      TZ: "Australia/Melbourne"
     probes:
       #Circumvention - avoid restart
       startup:
@@ -51,8 +46,7 @@ spec:
     persistence:
       config:
         enabled: true
-        size: 1Gi
-        storageClass: longhorn
+        existingClaim: homeassistant-config-v1
     extraEnv:
       TZ: "Australia/Melbourne"
     additionalVolumes:
