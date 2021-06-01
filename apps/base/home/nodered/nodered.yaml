@@ -30,26 +30,18 @@ spec:
     cleanupOnFail: true
   # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/node-red/values.yaml
   values:
+    image:
+      repository: nodered/node-red
+      tag: 1.3.5-12-minimal
     env:
       TZ: "Australia/Melbourne"
       NODE_RED_ENABLE_PROJECTS: "true"
       NODE_RED_ENABLE_SAFE_MODE: "false"
-    securityContext:
-      #   # readOnlyRootFilesystem: false
-      #   # runAsNonRoot: false
-      runAsUser: 1000
-      runAsGroup: 1000
-    podSecurityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
     persistence:
       data:
         enabled: true
         mountPath: /data
-        storageClass: "longhorn"
-        accessMode: ReadWriteOnce
-        size: "1Gi"
+        existingClaim: nodered-config-v1
     resources:
       requests:
         memory: 350Mi
