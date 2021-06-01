@@ -30,6 +30,9 @@ spec:
     cleanupOnFail: true
   # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/homer/values.yaml
   values:
+    image:
+      repository: b4bz/homer
+      tag: 21.03.2
     env:
       TZ: "Australia/Melbourne"
     resources:
@@ -42,8 +45,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: "longhorn"
-        size: 1Gi
+        existingClaim: homer-config-v1
     addons:
       codeserver:
         enabled: true
