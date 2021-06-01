@@ -33,9 +33,8 @@ spec:
     env:
       TZ: "Australia/Melbourne"
     podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
+      supplementalGroups:
+      - 100
     persistence:
       config:
         enabled: true
