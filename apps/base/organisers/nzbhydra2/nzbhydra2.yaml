@@ -30,14 +30,15 @@ spec:
     cleanupOnFail: true
   # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/nzbhydra2/values.yaml
   values:
+    image:
+      repository: ghcr.io/k8s-at-home/nzbhydra2
+      tag: v3.14.2
     env:
       TZ: "Australia/Melbourne"
     podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
+      supplementalGroups:
+      - 100
     persistence:
       config:
         enabled: true
-        storageClass: "longhorn"
-        size: 1Gi
+        existingClaim: nzbhydra2-config-v1
