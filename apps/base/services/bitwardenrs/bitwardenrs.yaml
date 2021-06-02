@@ -30,6 +30,9 @@ spec:
     cleanupOnFail: true
   # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/bitwardenrs/values.yaml
   values:
+    image:
+      repository: bitwardenrs/server
+      tag: 1.21.0-alpine
     bitwardenrs:
       signupsAllowed: true
       domain: "https://bitwarden.${CLUSTER_DOMAIN}" # TODO rename with cluster variable
@@ -60,11 +63,8 @@ spec:
           # Special characters in the password value must be escaped with percent encoding.
           passwordKey: "passwordKey"
     persistence:
-      type: statefulset
       enabled: true
-      size: 1Gi
-      accessMode: ReadWriteOnce
-      storageClass: "longhornd"
+      existingClaim: bitwardenrs-config-v1
     resources:
       limits:
         cpu: 100m
