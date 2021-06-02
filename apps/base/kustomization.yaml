@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - podinfo
   - webdav
-  - bitwardenrs
   - organisers
   - downloads
   - home
