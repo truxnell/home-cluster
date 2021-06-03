@@ -6,7 +6,5 @@ metadata:
 data:
   #VALUES DIFFERENT PROD - STAGING
   CLUSTER_ENV: "prod"
-  CLUSTER_DOMAIN: l.voltaicforge.com
-  CLUSTER_DOMAIN_CERT: prod-wildcard-voltaicforge-com-tls
   CLUSTER_EXTERNAL_SUBNET_PREFIX: "192.168.2"
   CLUSTER_LB_RANGE: "192.168.2.128-192.168.2.192"

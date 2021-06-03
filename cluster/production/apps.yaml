@@ -29,3 +29,5 @@ spec:
         name: global-settings
       - kind: ConfigMap
         name: cluster-settings
+      - kind: Secret
+        name: cluster-secrets
