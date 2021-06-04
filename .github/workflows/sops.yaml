@@ -12,6 +12,7 @@ on:
       - "infrastructure/**/*.sops.yaml"
       - "apps/**/*.sops"
       - "apps/**/*.sops.yaml"
+      - "cluster/**/*.sops"
 
 env:
   DEBIAN_FRONTEND: "noninteractive"
