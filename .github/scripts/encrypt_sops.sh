@@ -11,7 +11,7 @@ REPO_ROOT=$(git rev-parse --show-toplevel)
 OPERATOR_ROOT="${REPO_ROOT}/operators"
 INFRASTRUCTURE_ROOT="${REPO_ROOT}/infrastructure"
 APPS_ROOT="${REPO_ROOT}/apps"
-
+CLUSTER_ROOT="${REPO_ROOT}/cluster"
 
 while getopts i:r option
 do
@@ -39,6 +39,9 @@ FILES_TO_PROCESS="${FILES_TO_PROCESS}
 $(find "${INFRASTRUCTURE_ROOT}" -type f -name "*.sops")"
 FILES_TO_PROCESS="${FILES_TO_PROCESS}
 $(find "${APPS_ROOT}" -type f -name "*.sops")"
+FILES_TO_PROCESS="${FILES_TO_PROCESS}
+$(find "${CLUSTER_ROOT}" -type f -name "*.sops")"
+
 
 message "Files to process: ${FILES_TO_PROCESS}"
 
