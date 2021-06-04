@@ -4,32 +4,32 @@ type: Opaque
 metadata:
     name: thanos-secrets
 stringData:
-    values.yaml: ENC[AES256_GCM,data:SaXrb1EwCfGTxKoPlJwoLuFEBlBQ1u+mrqSMfhGWzcMUdBjc4acQQ9cxA6zVbd+hMedvzt50X2wapg9IKFRs62aE2YbLsDa9uOnpm8qPzR1UtLR7Wcd913/voEcaT4rnu0QCX5zWMTqwKnVfBZkVFaEcYjEMCfiXC9FzN8w4JN2sRmg4sbpP/FHEHpH7LCoufcOKcSlC,iv:AEoyxgP/o5MOh/GAyES0Pf/711xSi25UOI7Kw7WVAY4=,tag:3ldm3B4JZWeZHdKlpqdD1w==,type:str]
+    values.yaml: ENC[AES256_GCM,data:L97Yka1HZBGiOnq23Z22EtQrnB4XJV8RGRmNP60VgGPeZ6ljd0LO+aSGAsH4VsZ+/B2GtEFWVR+orJYcruMkBRw8Ic3uuI6pAgS+ZLPnl7J1zzpPdRPozmplOiFEXHd4Xt1DJJWJYCEDt/lmC9JLI4Zl/NLeD+DJDX4xC52izk201FKnBGJTBT3YruMBpvWlTxR+kq33,iv:ITNPCh8i5q1O0jwu+D8jJvg+2MZvPBeG4b0nju0XJuY=,tag:RvwVx4D2aZ9EwmdRrEHFhw==,type:str]
 sops:
     kms: []
     gcp_kms: []
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2021-06-03T11:22:31Z"
-    mac: ENC[AES256_GCM,data:lavDRKV5aNtGlnV0Yyl9srzE9T5lbjQxI3qYiotcB5QBr1W4KtqPKd7guzGMI7n5fhfjMLytNijNlDkhmI35va6mNIjcI5uemgmhgMtZNyo4gLXVT/kdGGaJYICGqW8I1V0O0pP9M7NqrCl9gUFxxSLRxpBiqDQ5CLMIQAArgis=,iv:nhaCt7WkjPD8zw16n0Jj3Ktx/LqDM/+bSXdyWUDFGeA=,tag:y1NL7F7UzDKB3qwvhEhCmw==,type:str]
+    lastmodified: "2021-06-03T11:43:29Z"
+    mac: ENC[AES256_GCM,data:QljjMgp6Y0tzrHnYk5z6FfsCii2FP+Qxm1OmFRCyxFtWYctzZHtfQjucyKrJwME43vcSh14EOUUso0tAkfBxON4bm5k61SHtEpaCOMQ8ReS16I57meEOJzT05tqOXVyXTtUnAF9EmXKrjb+BKjMQsXhvo1DmERxzZ0kRnTTcUYE=,iv:xq4rSQgWCFBrYxd9JpP4C0TIm4B9D8KigE88y2g0vX8=,tag:R1gQhUub7Q3I8LQXd7PIAg==,type:str]
     pgp:
-        - created_at: "2021-06-03T11:22:30Z"
+        - created_at: "2021-06-03T11:43:28Z"
           enc: |
             -----BEGIN PGP MESSAGE-----
 
-            hQGMA94SucntcLeJAQv+MOq3ETH+kl8C6HHCh+aVsmNuSflPTmLRHukv9D/0xu8U
-            5TmPlfXuSdn2hkNazBBOUE2MC7ubBfa1okzkGRNC49VcF9liN0SCKKPPPKRNsn3A
-            Ffo4rD6yo2Sojr+vXEjZpswMLoR1kRS6XgZheCemeMZDJIPv27qx42cEzuwQU4WK
-            JVWbtr9mhXiUvUkdQ3CvQVChGb9WzvNLdMy8lHZlMAGo5YQQyLnCz8UD9y9xSj2J
-            XveI3p5IexN38TyHlyaV5dQ0GU9/Y3NYWfu7Z+XcJyhkZ/WBPRWnAYm7agwD87W/
-            SOzq5fqe0tnbnFR8e3gk8BmD109v1mNZilnMyIttEkfs94hp0qN7URWB0RXofpPg
-            88JDKGM9WTjf3DPFPMNLkuNdv9TjNWm/sfa1n6M9sIdayBA5x9bb3CP2fpM7znT1
-            7LH0qBq+TK8JTxuOs911wmY3H4kciv+xaGhq7WtfBs16CfEkS83KpJH2XORvdLjO
-            Zn+maYGQ3mYw5/4jGG/80l4Bb4z5+vMVxyZq0SaiyV+w0Y+B3E8PiLOaVpTwNn/O
-            XsK7LWLHc44kgPPCgVWEOHvroLxswKkqXqo/Sgorvs0QNpzGPthvt08z5+oZcYLw
-            JSoWYL+FJ1RDMItVQEdP
-            =D/lE
+            hQGMA94SucntcLeJAQv/aYWZK5j+If7IHOL/Knp8M/6Mpf9plLJYu5prsAiApKDS
+            D8dC0cgPMEWTxUo2znXTYBpePktSbjPeT8jRcTyfrpmGjImJTdZMMYet02NoBqq4
+            /Adt/hQQOjfmhwQiCl+i4ny37JkfJpP4YTOzT2lnnENcf9D3YAN6Ve6SzMNEYAnU
+            30WQufrTPQqh8Y9KH8PgP/BM8RcQLZMXcWAoE4kK6ckfbeahC5kJiLQhpvWztXnM
+            sHGy19hdb3IdAYU6Qw+ogKkBOoHmP/vPValTSScRIRHe+qLDLmlJAFOjpVRXYt+L
+            NZfd4zExSeRm2GT5ZiJlfuNK3eZiVrU1RQJCtpGuYvxnaosnn5a4bYbydS0qjObc
+            3qArsw++K8aTqHmxyQuqJk6e5tR3S7IPwKkYPF5OzIoPrSxVtMzMB1afT+xgHCcC
+            b/7dTW8l6v2/D+Cwo0ow/25kHdrRJkVZfyLGSbYrvJJfUTjZIkDYS64w6b/pTsoJ
+            U90cxiKBl/QiMAzMCIzm0l4BUhM3X0nKdNlTXP40y8pSToRAvrtFgooRj4R93yE8
+            gS2jStOb+jl/1rvxKbM9o+0znySgg4fGXTbmQqmaRKBTCTSx/EZbYf+nZvS78KMg
+            4eoKHswgIUdUd44mIt22
+            =ExOv
             -----END PGP MESSAGE-----
           fp: 30DA87702717C0310E1BE81E612328766D06D7DD
     encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData$))
