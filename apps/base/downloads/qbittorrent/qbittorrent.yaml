@@ -34,6 +34,7 @@ spec:
       tag: v4.3.5
     env:
       TZ: "Australia/Melbourne"
+      WAIT_FOR_VPN: "true"
     service:
       additionalServices:
       - enabled: true
@@ -54,6 +55,11 @@ spec:
       media:
         enabled: true
         existingClaim: leela-downloads-pvc
+      shared:
+        enabled: true
+        emptyDir: 
+          enabled: true
+        mountPath: /shared
     podSecurityContext:
       supplementalGroups:
       - 100
