@@ -40,7 +40,7 @@ spec:
         nameSuffix: bittorrent
         type: LoadBalancer
         externalIPs:
-        - "${CLUSTER_LB_QBITTORRENT}"
+        - "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_QBITTORRENT}"
         port:
           port: 51314
           name: bittorrent
