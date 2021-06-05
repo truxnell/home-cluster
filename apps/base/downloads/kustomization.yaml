@@ -5,3 +5,4 @@ resources:
   - namespace.yaml
   - leela-nfs-downloaders.yaml
   - nzbget
+  - qbittorrent

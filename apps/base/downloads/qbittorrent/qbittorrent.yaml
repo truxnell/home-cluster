@@ -1,0 +1,59 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: qbittorrent
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: qbittorrent
+      version: 10.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  test:
+    enable: true
+  # install:
+  #   remediation:
+  #     retries: 3
+  upgrade:
+    remediation:
+      remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
+  # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/qbittorrent/values.yaml
+  values:
+    image:
+      repository: ghcr.io/k8s-at-home/qbittorrent
+      tag: v4.3.5
+    env:
+      TZ: "Australia/Melbourne"
+    service:
+      additionalServices:
+      - enabled: true
+        nameSuffix: bittorrent
+        type: LoadBalancer
+        externalIPs:
+        - "${CLUSTER_LB_QBITTORRENT}"
+        port:
+          port: 51314
+          name: bittorrent
+          protocol: TCP
+          targetPort: 51314
+        externalTrafficPolicy: Local
+    persistence:
+      config:
+        enabled: true
+        existingClaim: qbittorrent-config-v1
+      media:
+        enabled: true
+        existingClaim: leela-downloads-pvc
+    podSecurityContext:
+      supplementalGroups:
+      - 100
