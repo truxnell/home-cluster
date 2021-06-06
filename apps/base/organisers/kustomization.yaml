@@ -11,3 +11,4 @@ resources:
   - prowlarr
   - overseerr
   - readarr
+  - lidarr
