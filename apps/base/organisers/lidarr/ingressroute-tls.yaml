@@ -17,14 +17,14 @@ spec:
           namespace: kube-system
         - name: traefik-forward-auth
           namespace: kube-system
-    # - kind: Rule
-    #   match: Host(`lidarr.${CLUSTER_DOMAIN}`)  && PathPrefix(`/api`)
-    #   services:
-    #     - name: lidarr
-    #       port: 8686
-    #   middlewares:
-    #     - name: traefik-secure-headers
-    #       namespace: kube-system
+    - kind: Rule
+      match: Host(`lidarr.${CLUSTER_DOMAIN}`)  && PathPrefix(`/api`)
+      services:
+        - name: lidarr
+          port: 8686
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
   tls:
     certResolver: cloudflare
 
