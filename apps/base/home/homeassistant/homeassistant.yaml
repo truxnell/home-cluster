@@ -47,8 +47,6 @@ spec:
       config:
         enabled: true
         existingClaim: homeassistant-config-v1
-    extraEnv:
-      TZ: "Australia/Melbourne"
     additionalVolumes:
       # - name: restore
       #   nfs:
