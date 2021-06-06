@@ -11,7 +11,7 @@ spec:
       match: Host(`prowlarr.${CLUSTER_DOMAIN}`)
       services:
         - name: prowlarr
-          port: 9686
+          port: 9696
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
@@ -21,7 +21,7 @@ spec:
     #   match: Host(`prowlarr.${CLUSTER_DOMAIN}`)  && PathPrefix(`/api`)
     #   services:
     #     - name: prowlarr
-    #       port: 9686
+    #       port: 9696
     #   middlewares:
     #     - name: traefik-secure-headers
     #       namespace: kube-system
