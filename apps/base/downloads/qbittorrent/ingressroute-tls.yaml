@@ -21,7 +21,7 @@ spec:
       match: Host(`qbittorrent.${CLUSTER_DOMAIN}`)  && PathPrefix(`/api`)
       services:
         - name: qbittorrent
-          port: 5076
+          port: 8080
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
