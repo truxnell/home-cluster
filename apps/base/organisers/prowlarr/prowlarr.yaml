@@ -7,6 +7,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: prowlarr
       version: 2.4.0
       sourceRef:
@@ -31,7 +32,7 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/prowlarr
-      tag: v0.1.0.181
+      tag: v0.1.0.361
     env:
       TZ: "Australia/Melbourne"
     persistence:
