@@ -7,6 +7,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: lidarr
       version: 9.1.0
       sourceRef:
@@ -31,7 +32,7 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/lidarr
-      tag: v0.8.1.2134
+      tag: v1.0.0.2226
     env:
       TZ: "Australia/Melbourne"
     persistence:
