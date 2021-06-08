@@ -38,7 +38,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: lidarr-config-v2
+        existingClaim: lidarr-config-v1
       media:
         enabled: true
         existingClaim: leela-organisers-pvc
