@@ -4,4 +4,4 @@ namespace: media
 resources:
   - plex
   - namespace.yaml
-  - leela-nfs-downloaders.yaml
+  - leela-nfs-media.yaml
