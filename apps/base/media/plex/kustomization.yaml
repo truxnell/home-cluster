@@ -4,4 +4,4 @@ namespace: media
 resources:
   - config-pvc.yaml
   - ingressroute-tls.yaml
-  - plex.yaml1
+  - plex.yaml
