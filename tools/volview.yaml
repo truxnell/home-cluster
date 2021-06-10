@@ -13,23 +13,8 @@ spec:
     volumeMounts:
     - name: pool-media
       mountPath: /mnt/old-media
-    - name: media-pool
-      mountPath: /mnt/new-media
-    - name: pool-nvr
-      mountPath: /mnt/old-nvr
-    - name: nvr-pool
-      mountPath: /mnt/new-nvr
   restartPolicy: Always
   volumes:
   - name: pool-media
     persistentVolumeClaim:
-      claimName: pool-media
-  - name: media-pool
-    persistentVolumeClaim:
-      claimName: media-pool
-  - name: pool-nvr
-    persistentVolumeClaim:
-      claimName: pool-nvr
-  - name: nvr-pool
-    persistentVolumeClaim:
-      claimName: nvr-pool
+      claimName: plex-config-v2 #change this

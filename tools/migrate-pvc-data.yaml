@@ -21,7 +21,7 @@ spec:
         image: ubuntu:xenial
         tty: true
         command: [ "/bin/sh" ]
-        args: [ "-c", "cp -r -v /mnt/old/ /mnt/new" ]
+        args: [ "-c", "cp -r -v /mnt/old/. /mnt/new/" ]
         volumeMounts:
         - name: old-vol
           mountPath: /mnt/old
@@ -30,7 +30,7 @@ spec:
       volumes:
       - name: old-vol
         persistentVolumeClaim:
-          claimName: media-pool # change to data source PVC
+          claimName: plex-config-v1 # change to data source PVC
       - name: new-vol
         persistentVolumeClaim:
-          claimName: pool-media # change to data target PVC
+          claimName: plex-config-v2 # change to data target PVC
