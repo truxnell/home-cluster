@@ -6,5 +6,5 @@ resources:
   - organisers
   - downloads
   - home
-  # - media
-  - services
+  - media
+  # - services
