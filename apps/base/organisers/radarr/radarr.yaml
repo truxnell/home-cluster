@@ -9,25 +9,12 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: radarr
-      version: 11.1.0
+      version: 12.0.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
-  test:
-    enable: true
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    remediation:
-      remediateLastFailure: true
-    cleanupOnFail: true
-  rollback:
-    timeout: 10m
-    recreate: true
-    cleanupOnFail: true
   # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/radarr/values.yaml
   values:
     image:
