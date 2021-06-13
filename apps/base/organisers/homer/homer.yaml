@@ -46,18 +46,3 @@ spec:
       config:
         enabled: true
         existingClaim: homer-config-v1
-    addons:
-      codeserver:
-        enabled: true
-        workingDir: "/www/assets"
-        image:
-          repository: codercom/code-server
-          tag: 3.10.2
-        args:
-          - --user-data-dir
-          - "/www/assets/.vscode"
-          - --auth
-          - "none"
-        volumeMounts:
-          - name: config
-            mountPath: /www/assets
