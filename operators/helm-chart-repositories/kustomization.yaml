@@ -22,3 +22,4 @@ resources:
   - prometheus-community-charts.yaml
   - phntom-charts.yaml
   - rook-ceph-charts.yaml
+  - drpsychick.yaml
