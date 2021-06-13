@@ -9,7 +9,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: plex
-      version: 4.4.0
+      version: 5.0.1
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -43,12 +43,12 @@ spec:
         existingClaim: leela-media-pvc
       transcode:
         enabled: true
-        emptyDir:
-          enabled: true
-          medium: "Memory"
+        type: emptyDir
+        medium: Memory
     service:
-      type: LoadBalancer
-      loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_PLEX}"
-      externalTrafficPolicy: Local
-      annotations:
-        metallb.universe.tf/allow-shared-ip: plex
+      main:
+        type: LoadBalancer
+        loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_PLEX}"
+        externalTrafficPolicy: Local
+        annotations:
+          metallb.universe.tf/allow-shared-ip: plex
