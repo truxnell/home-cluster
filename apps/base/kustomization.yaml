@@ -7,4 +7,5 @@ resources:
   - downloads
   - home
   - media
+  - http
   # - services
