@@ -14,14 +14,17 @@ spec:
         name: drpsychick-charts
         namespace: flux-system
       interval: 5m
-  # Values link: 
+  # Values link: https://github.com/DrPsychick/charts/blob/master/drpsychick/nginx-phpfpm/values.yaml
   values:
     nginx:
       image:
         tag: "1.21.0"
     phpfpm:
       image:
-        tag: "8-fpm-alpine"
+        # Custom container, php with mysql installed
+        registry: ghcr.io/truxnell/container-images
+        repository: php-mysql
+        tag: "v7.2-fpm-mysql"
     persistence:
       enabled: true
       existingClaim: nginx-php-config-v1
