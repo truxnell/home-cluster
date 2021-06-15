@@ -36,7 +36,7 @@ spec:
     env:
       TZ: "Australia/Melbourne"
       FOUNDRY_USERNAME: ${FOUNDRY_USERNAME}
-      FOUNDRY_PASSWORD: ${FOUNDRY_USERNAME}
+      FOUNDRY_PASSWORD: ${FOUNDRY_PASSWORD}
     persistence:
       config:
         enabled: true
