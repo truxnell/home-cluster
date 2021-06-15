@@ -35,8 +35,8 @@ spec:
       tag: 0.8.3
     env:
       TZ: "Australia/Melbourne"
-      FOUNDRY_USERNAME: Truxnell
-      FOUNDRY_PASSWORD: 4f9MUHDYY4fhnW
+      FOUNDRY_USERNAME: ${FOUNDRY_USERNAME}
+      FOUNDRY_PASSWORD: ${FOUNDRY_USERNAME}
     persistence:
       config:
         enabled: true
