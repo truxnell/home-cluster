@@ -32,7 +32,7 @@ spec:
     image:
       repository: felddy/foundryvtt
       pullPolicy: IfNotPresent
-      tag: 0.8.3
+      tag: 0.8.7
     env:
       TZ: "Australia/Melbourne"
       FOUNDRY_USERNAME: ${FOUNDRY_USERNAME}
