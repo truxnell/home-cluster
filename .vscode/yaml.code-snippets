@@ -18,19 +18,6 @@
             "        name: $5",
             "        namespace: flux-system",
             "      interval: 5m",
-            "  test:",
-            "    enable: true",
-            "  # install:",
-            "  #   remediation:",
-            "  #     retries: 3",
-            "  upgrade:",
-            "    remediation:",
-            "      remediateLastFailure: true",
-            "    cleanupOnFail: true",
-            "  rollback:",
-            "    timeout: 10m",
-            "    recreate: true",
-            "    cleanupOnFail: true",
             "  # Values link: $6",
             "  values:",
             "",
@@ -46,7 +33,7 @@
             "kind: Kustomization",
             "namespace: ${1:<namespace name>}",
             "resources:",
-            "  - ${1:dummy}"
+            "  - ${2:dummy}"
         ],
         "description": "helmrelease frontmatter"
     },
