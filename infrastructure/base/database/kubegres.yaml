@@ -1,0 +1,19 @@
+---
+apiVersion: kubegres.reactive-tech.io/v1
+kind: Kubegres
+metadata:
+  name: kubegres-database
+  namespace: database
+spec:
+  replicas: 1
+  image: postgres:13.2
+  database:
+    size: 500Mi
+    storageClassName: rook-ceph-block
+  env:
+    - name: POSTGRES_PASSWORD
+      value: "${POSTGRES_PASSWORD}"
+    - name: POSTGRES_REPLICATION_PASSWORD
+      value: "${POSTGRES_PASSWORD}"
+    - name: PGDATA
+      value: "/var/lib/postgresql/data/pgdata"
