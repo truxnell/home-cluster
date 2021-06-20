@@ -10,13 +10,22 @@ spec:
     - kind: Rule
       match: Host(`joplin-server.${CLUSTER_DOMAIN}`)
       services:
-        - name: joplin
+        - name: joplin-server
           port: 22300
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
-        # - name: traefik-forward-auth
-        #   namespace: kube-system
+        - name: traefik-forward-auth
+          namespace: kube-system
+    - kind: Rule
+      match: Host(`joplin-server.${CLUSTER_DOMAIN}`)  && PathPrefix(`/api`)
+      services:
+        - name: joplin-server
+          port: 22300
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+
   tls:
     certResolver: cloudflare
 
