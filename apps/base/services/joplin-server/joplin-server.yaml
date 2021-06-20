@@ -27,4 +27,4 @@ spec:
       POSTGRES_DATABASE: joplin
       POSTGRES_USER: ${JOPLIN_USER}
       POSTGRES_PORT: 5432
-      POSTGRES_HOST: postgress-database.database.svc.cluster.local
+      POSTGRES_HOST: postgres-database.database.svc.cluster.local
