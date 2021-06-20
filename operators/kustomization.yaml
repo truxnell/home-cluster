@@ -10,3 +10,4 @@ resources:
   - storageclass
   - rook-ceph
   - external-snapshotter
+  - kubegress
