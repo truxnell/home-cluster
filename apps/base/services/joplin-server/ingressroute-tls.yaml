@@ -8,7 +8,7 @@ spec:
     - websecure
   routes: # TODO Set api with no auth
     - kind: Rule
-      match: Host(`joplin.${CLUSTER_DOMAIN}`)
+      match: Host(`joplin-server.${CLUSTER_DOMAIN}`)
       services:
         - name: joplin
           port: 22300
