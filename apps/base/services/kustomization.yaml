@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: services
 resources:
   - namespace.yaml
-  - bitwardenrs
   - joplin-server

@@ -9,4 +9,4 @@ resources:
   - media
   - http
   - games
-  # - services
+  - services
