@@ -7,15 +7,13 @@ metadata:
   name: kubegress-database-lb
 spec:
   ports:
-      - name: database
-        protocol: TCP
+      - protocol: TCP
         port: 5432
         targetPort: 5432
   selector:
-    app.kubernetes.io/instance: kubegress-database
-    app.kubernetes.io/name: kubegress-database
+    app: kubegres-database
+    replicationRole: primary
   type: LoadBalancer
   loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_POSTGRES}"
-
 
     
