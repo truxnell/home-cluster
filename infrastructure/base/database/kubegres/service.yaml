@@ -7,10 +7,10 @@ metadata:
   name: kubegress-database-lb
 spec:
   ports:
-      - name: http
+      - name: database
         protocol: TCP
-        port: 80
-        targetPort: http
+        port: 5432
+        targetPort: 5432
   selector:
     app.kubernetes.io/instance: kubegress-database
     app.kubernetes.io/name: kubegress-database
