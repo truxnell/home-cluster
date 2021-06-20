@@ -4,7 +4,7 @@ kind: Service
 metadata:
   labels:
     app: kubegress-database
-  name: kubegress-database
+  name: kubegress-database-lb
 spec:
   ports:
       - name: http
@@ -12,8 +12,8 @@ spec:
         port: 80
         targetPort: http
   selector:
-    app.kubernetes.io/instance: nginx-phpfm
-    app.kubernetes.io/name: nginx-phpfpm
+    app.kubernetes.io/instance: kubegress-database
+    app.kubernetes.io/name: kubegress-database
   type: LoadBalancer
   loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_POSTGRES}"
 

@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: database
 resources:
   - kubegres.yaml
+  - service.yaml
