@@ -19,3 +19,4 @@ resources:
   - ingressroutes
   - system-upgrade
   - rook-ceph
+  - database
