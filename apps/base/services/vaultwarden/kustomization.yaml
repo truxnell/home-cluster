@@ -3,6 +3,5 @@ kind: Kustomization
 namespace: services
 resources:
   - config-pvc.yaml
-  - vaultwarden.sops.yaml
-  - vaultwarden.yaml
   - ingressroute-tls.yaml
+  - vaultwarden.yaml

@@ -4,3 +4,4 @@ namespace: services
 resources:
   - namespace.yaml
   - joplin-server
+  - vaultwarden
