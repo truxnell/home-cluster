@@ -6,3 +6,4 @@ resources:
   - leela-nfs-downloaders.yaml
   - nzbget
   - qbittorrent
+  - pyload
