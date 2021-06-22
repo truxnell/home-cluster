@@ -5,4 +5,7 @@
     "yaml.schemas": {
         "Kubernetes": "deployments/*.yaml"
     },
+    "favorites.resources": [
+        "cluster/production/cluster-secrets.sops.yaml"
+    ],
 }
