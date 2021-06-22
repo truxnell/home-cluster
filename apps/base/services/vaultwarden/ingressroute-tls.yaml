@@ -8,7 +8,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`vaultwarden.l.voltaicforge.com`)
+      match: Host(`vaultwarden.${CLUSTER_DOMAIN}`)
       services:
         - name: vaultwarden
           port: 80
