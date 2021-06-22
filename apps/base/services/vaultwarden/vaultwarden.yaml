@@ -19,11 +19,12 @@ spec:
     image:
       repository: vaultwarden/server
       tag: 1.21.0
-    persistence:
-    config:
-      enabled: true
     # https://github.com/dani-garcia/vaultwarden/blob/main/.env.template
     env:
       TZ: "Australia/Melbourne"
       DATABASE_URL: ${JOPLIN_DATABASE_URL}
       DOMAIN: https://vaultwarden.${CLUSTER_DOMAIN}
+    persistence:
+      config:
+        enabled: true
+        existingClaim: vaultwarden-config-v1
