@@ -13,7 +13,6 @@ resources:
   - descheduler
   # - velero
   - infra-kured
-  - infra-thanos
   - monitoring
   - longhorn-system
   - ingressroutes
