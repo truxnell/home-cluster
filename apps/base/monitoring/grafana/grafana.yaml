@@ -22,6 +22,7 @@ spec:
     env:
       GF_EXPLORE_ENABLED: true
       GF_PANELS_DISABLE_SANITIZE_HTML: true
+    adminUser: "${GRAFANA_USER}"
     adminPassword: "${GRAFANA_PASSWORD}"
     grafana.ini:
       server:
