@@ -67,3 +67,4 @@ packages:
   - tmux
   - ubuntu-advantage-tools
   - ufw
+  - qemu-guest-agent
