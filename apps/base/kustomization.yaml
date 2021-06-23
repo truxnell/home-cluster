@@ -10,3 +10,4 @@ resources:
   - http
   - games
   - services
+  - monitoring
