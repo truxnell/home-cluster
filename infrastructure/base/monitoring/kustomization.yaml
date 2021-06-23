@@ -1,6 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: infra-prometheus-stack
+namespace: monitoring
 resources:
   - namespace.yaml
-  # - infra-prometheus-stack.yaml
+  - prometheus-stack
