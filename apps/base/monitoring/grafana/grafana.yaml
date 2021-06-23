@@ -7,6 +7,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://grafana.github.io/helm-charts
       chart: grafana
       version: 6.13.2
       sourceRef:
