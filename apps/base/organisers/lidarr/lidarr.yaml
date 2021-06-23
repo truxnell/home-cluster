@@ -29,4 +29,10 @@ spec:
       media:
         enabled: true
         existingClaim: leela-organisers-pvc
+    prometheus:
+      podMonitor:
+        enabled: true
+        interval: 10m
+        scrapeTimeout: 2m
+
 

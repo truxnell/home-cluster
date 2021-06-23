@@ -38,3 +38,9 @@ spec:
     #     cpu: 25m
     #   limits:
     #     memory: 400Mi
+    prometheus:
+      podMonitor:
+        enabled: true
+        interval: 10m
+        scrapeTimeout: 2m
+
