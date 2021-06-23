@@ -36,3 +36,10 @@ spec:
           protocol: layer2
           addresses:
             - "${CLUSTER_LB_RANGE}"
+    prometheus:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+      prometheusRule:
+        enabled: true
+

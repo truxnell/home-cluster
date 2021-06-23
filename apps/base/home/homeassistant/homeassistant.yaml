@@ -44,3 +44,7 @@ spec:
       requests:
         cpu: 35m
         memory: 150Mi
+    prometheus:
+      serviceMonitor:
+        enabled: true
+

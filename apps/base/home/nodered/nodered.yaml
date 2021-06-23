@@ -48,3 +48,7 @@ spec:
         cpu: 25m
       limits:
         memory: 500Mi
+    prometheus:
+      serviceMonitor:
+        enabled: true
+
