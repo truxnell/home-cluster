@@ -23,3 +23,4 @@ resources:
   - phntom-charts.yaml
   - rook-ceph-charts.yaml
   - drpsychick.yaml
+  - grafana-charts.yaml
