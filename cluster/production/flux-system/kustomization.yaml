@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - gotk-components.yaml
   - gotk-sync.yaml
+  - gotk-monitoring.yaml
