@@ -75,6 +75,14 @@ spec:
         probeSelector: {}
         probeNamespaceSelector: {}
         walCompression: true
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: "rook-ceph-block"
+              resources:
+                requests:
+                  storage: 50Gi
       admissionWebhooks:
         enabled: false
+
 
