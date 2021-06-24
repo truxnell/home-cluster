@@ -128,13 +128,14 @@ spec:
           target_match:
             severity: 'warning'
           equal: ['alertname', 'namespace']
-        storageSpec:
+      alertmanagerSpec:
+        storage:
           volumeClaimTemplate:
             spec:
               storageClassName: "rook-ceph-block"
               resources:
                 requests:
-                  storage: 50Gi
+                  storage: 1Gi
 
 
 
