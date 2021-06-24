@@ -21,67 +21,46 @@ spec:
     crds: CreateReplace
   # Values: https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
-    prometheusOperator:
-      createCustomResource: true
-    prometheusSpec:
-      replicas: 2
-      ruleSelector: {}
-      ruleNamespaceSelector: {}
-      ruleSelectorNilUsesHelmValues: false
-      serviceMonitorSelector: {}
-      serviceMonitorNamespaceSelector: {}
-      serviceMonitorSelectorNilUsesHelmValues: false
-      podMonitorSelector: {}
-      podMonitorNamespaceSelector: {}
-      podMonitorSelectorNilUsesHelmValues: false
-      retention: 14d
-      enableAdminAPI: true
-      walCompression: true
-      storageSpec:
-        volumeClaimTemplate:
-          spec:
-            storageClassName: "rook-ceph-block"
-            resources:
-              requests:
-                storage: 50Gi
+    fullnameOverride: prometheus-stack
+    grafana:
+      enabled: false
+    kubeStateMetrics:
+      enabled: false
+    nodeExporter:
+      enabled: false
+
+    alertmanager:
+      alertmanagerSpec:
+        storage:
+          volumeClaimTemplate:
+            spec:
+              accessModes:
+              - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 2Gi
+    kubelet:
+      enabled: true
     kubeApiServer:
       enabled: true
     kubeControllerManager:
-      enabled: false
+      enabled: true
     kubeScheduler:
       enabled: false
     kubeProxy:
       enabled: false
     kubeEtcd:
       enabled: false
-    grafana:
-      enabled: false
-    kube-state-metrics:
-      fullnameOverride: kube-state-metrics
-      image:
-        repository: docker.io/eddiezane/kube-state-metrics
-        tag: v1.9.7
-    kubelet:
-      serviceMonitor:
-        metricRelabelings:
-          - action: replace
-            sourceLabels:
-              - node
-            targetLabel: instance
-    nodeExporter:
-      serviceMonitor:
-        relabelings:
-        - action: replace
-          regex: (.*)
-          replacement: $1
-          sourceLabels:
-          - __meta_kubernetes_pod_node_name
-          targetLabel: kubernetes_node
-
-    server:
-      resources:
-        requests:
-          memory: 1500Mi
-          cpu: 25m
-        limits:
-          memory: 2000Mi
+    prometheus:
+      prometheusSpec:
+        shards: null
+        serviceMonitorSelectorNilUsesHelmValues: false
+        serviceMonitorSelector: {}
+        serviceMonitorNamespaceSelector: {}
+        podMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelector: {}
+        podMonitorNamespaceSelector: {}
+        probeSelectorNilUsesHelmValues: false
+        probeSelector: {}
+        probeNamespaceSelector: {}
+        walCompression: true
