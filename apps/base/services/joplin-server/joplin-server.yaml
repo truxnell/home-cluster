@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: joplin/server
-      tag: 2.1.1
+      tag: 2.1.2
     env:
       TZ: "Australia/Melbourne"
       APP_BASE_URL: https://joplin-server.${CLUSTER_DOMAIN}/
