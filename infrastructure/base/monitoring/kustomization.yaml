@@ -4,4 +4,4 @@ namespace: monitoring
 resources:
   - namespace.yaml
   - ingressroute-tls.yaml
-  # - prometheus-stack
+  - prometheus-stack
