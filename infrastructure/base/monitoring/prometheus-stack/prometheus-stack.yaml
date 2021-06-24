@@ -25,18 +25,18 @@ spec:
       createCustomResource: true
     prometheusSpec:
       replicas: 2
-      ruleSelector: {}
-      ruleNamespaceSelector: {}
-      ruleSelectorNilUsesHelmValues: false
-      serviceMonitorSelector: {}
-      serviceMonitorNamespaceSelector: {}
-      serviceMonitorSelectorNilUsesHelmValues: false
-      podMonitorSelector: {}
-      podMonitorNamespaceSelector: {}
-      podMonitorSelectorNilUsesHelmValues: false
-      retention: 14d
-      enableAdminAPI: true
-      walCompression: true
+      # ruleSelector: {}
+      # ruleNamespaceSelector: {}
+      # ruleSelectorNilUsesHelmValues: false
+      # serviceMonitorSelector: {}
+      # serviceMonitorNamespaceSelector: {}
+      # serviceMonitorSelectorNilUsesHelmValues: false
+      # podMonitorSelector: {}
+      # podMonitorNamespaceSelector: {}
+      # podMonitorSelectorNilUsesHelmValues: false
+      # retention: 14d
+      # enableAdminAPI: true
+      # walCompression: true
       storageSpec:
         volumeClaimTemplate:
           spec:
@@ -54,11 +54,6 @@ spec:
       enabled: false
     grafana:
       enabled: false
-    kube-state-metrics:
-      fullnameOverride: kube-state-metrics
-      image:
-        repository: docker.io/eddiezane/kube-state-metrics
-        tag: v1.9.7
     kubelet:
       serviceMonitor:
         metricRelabelings:
