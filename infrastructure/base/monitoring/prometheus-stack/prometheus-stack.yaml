@@ -9,7 +9,7 @@ spec:
     spec:
       # renovate: registryUrl=https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
-      version: 16.8.0
+      version: 16.10.0
       sourceRef:
         kind: HelmRepository
         name: prometheus-community-charts
@@ -19,6 +19,7 @@ spec:
     crds: Create
   upgrade:
     crds: CreateReplace
+  # Values: https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     prometheusOperator:
       createCustomResource: true
@@ -53,6 +54,11 @@ spec:
       enabled: false
     grafana:
       enabled: false
+    kube-state-metrics:
+      fullnameOverride: kube-state-metrics
+      image:
+        repository: docker.io/eddiezane/kube-state-metrics
+        tag: v1.9.7
     kubelet:
       serviceMonitor:
         metricRelabelings:
