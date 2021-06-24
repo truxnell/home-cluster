@@ -64,3 +64,5 @@ spec:
         probeSelector: {}
         probeNamespaceSelector: {}
         walCompression: true
+      admissionWebhooks:
+        enabled: false
