@@ -5,3 +5,4 @@ resources:
   - alertmanager-pvc.yaml
   - prometheus-pvc.yaml
   - prometheus-stack.yaml
+  - ingressroute-tls.yaml

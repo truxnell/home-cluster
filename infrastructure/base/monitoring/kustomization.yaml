@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - namespace.yaml
-  - ingressroute-tls.yaml
   - prometheus-stack

@@ -18,5 +18,15 @@ spec:
           namespace: kube-system
         - name: traefik-forward-auth
           namespace: kube-system
+    - kind: Rule
+      match: Host(`alertmanager.${CLUSTER_DOMAIN}`)
+      services:
+        - name: alertmanager-operated
+          port: 9093
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+        - name: traefik-forward-auth
+          namespace: kube-system
   tls:
     certResolver: cloudflare
