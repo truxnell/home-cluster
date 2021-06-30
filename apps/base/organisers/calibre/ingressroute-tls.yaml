@@ -11,7 +11,7 @@ spec:
       match: Host(`calibre.${CLUSTER_DOMAIN}`) # TODO Replace with variable
       services:
         - name: calibre
-          port: 89080
+          port: 8080
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
@@ -21,7 +21,7 @@ spec:
     #   match: Host(`calibre.${CLUSTER_DOMAIN}`) && PathPrefix(`/api`)
     #   services:
     #     - name: calibre
-    #       port: 8989
+    #       port: 8080
     #   middlewares:
     #     - name: traefik-secure-headers
     #       namespace: kube-system
