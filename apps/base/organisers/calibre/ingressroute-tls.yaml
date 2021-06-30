@@ -15,15 +15,15 @@ spec:
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
-    #     - name: traefik-forward-auth
-    #       namespace: kube-system
-    # - kind: Rule
-    #   match: Host(`calibre.${CLUSTER_DOMAIN}`) && PathPrefix(`/api`)
-    #   services:
-    #     - name: calibre
-    #       port: 8080
-    #   middlewares:
-    #     - name: traefik-secure-headers
-    #       namespace: kube-system
+        - name: traefik-forward-auth
+          namespace: kube-system
+    - kind: Rule
+      match: Host(`calibre-web.${CLUSTER_DOMAIN}`)
+      services:
+        - name: calibre-webserver
+          port: 8081
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
   tls:
     certResolver: cloudflare
