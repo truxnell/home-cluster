@@ -21,6 +21,9 @@ spec:
       tag: version-v5.21.0
     env:
       TZ: "Australia/Melbourne"
+    service:
+      webserver:
+        enabled: true
     persistence:
       config:
         enabled: true
