@@ -16,8 +16,8 @@ spec:
         - name: external-brewpiless
           port: 80
       middlewares:
-        - name: traefik-secure-headers
-          namespace: kube-system
+        # - name: traefik-secure-headers
+        #   namespace: kube-system
         - name: traefik-forward-auth
           namespace: kube-system
     # - kind: Rule
