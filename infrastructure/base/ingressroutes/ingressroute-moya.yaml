@@ -14,7 +14,7 @@ spec:
       match: Host(`moya.${CLUSTER_DOMAIN}`)
       services:
         - name: external-moya
-          port: 5001
+          port: 5000
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
