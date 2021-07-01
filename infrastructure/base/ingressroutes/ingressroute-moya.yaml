@@ -18,8 +18,8 @@ spec:
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
-        # - name: traefik-forward-auth
-        #   namespace: kube-system
+        - name: traefik-forward-auth
+          namespace: kube-system
   tls:
     certResolver: cloudflare
 ---
