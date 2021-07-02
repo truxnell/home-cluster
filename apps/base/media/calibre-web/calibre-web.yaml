@@ -26,6 +26,6 @@ spec:
         enabled: true
         existingClaim: calibre-web-config-v1
       books:
-        enabled: true
+        enabled: false
         existingClaim: leela-media-pvc
    
