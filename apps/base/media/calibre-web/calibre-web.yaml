@@ -24,7 +24,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: calibre-web-config-v2
+        existingClaim: calibre-web-config-v1
       books:
         enabled: true
         existingClaim: leela-media-pvc
