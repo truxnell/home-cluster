@@ -17,11 +17,11 @@ spec:
           namespace: kube-system
         - name: traefik-forward-auth
           namespace: kube-system
-    - kind: Rule
-      match: Host(`calibre-web.${CLUSTER_DOMAIN}`)
-      services:
-        - name: calibre-webserver
-          port: 8081
+    # - kind: Rule
+    #   match: Host(`calibre-web.${CLUSTER_DOMAIN}`)
+    #   services:
+    #     - name: calibre-webserver
+    #       port: 8081
       # middlewares:
       #   - name: traefik-secure-headers
       #     namespace: kube-system

@@ -30,12 +30,12 @@ spec:
       media:
         enabled: true
         existingClaim: leela-organisers-pvc
-    service:
-      webserver:
-        enabled: true
-        type: LoadBalancer
-        loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_CALIBRE}"
-        externalTrafficPolicy: Local
+    # service:
+    #   webserver:
+    #     enabled: true
+    #     type: LoadBalancer
+    #     loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_CALIBRE}"
+    #     externalTrafficPolicy: Local
 
 
       
