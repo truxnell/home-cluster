@@ -1,0 +1,21 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: calibre-web-tls
+spec:
+  entryPoints:
+    - websecure
+  routes: # TODO Set api with no auth
+    - kind: Rule
+      match: Host(`calibre-web.${CLUSTER_DOMAIN}`)
+      services:
+        - name: calibre-web
+          port: 8083
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+        # - name: traefik-forward-auth
+        #   namespace: kube-system
+  tls:
+    certResolver: cloudflare
