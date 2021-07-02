@@ -23,9 +23,6 @@ spec:
       TZ: "Australia/Melbourne"
       PUID: "568"
       PGID: "568"
-    service:
-      webserver:
-        enabled: true
     persistence:
       config:
         enabled: true
@@ -33,5 +30,13 @@ spec:
       media:
         enabled: true
         existingClaim: leela-organisers-pvc
+    service:
+      webserver:
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_CALIBRE}"
+        externalTrafficPolicy: Local
+
+
       
 
