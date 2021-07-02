@@ -4,5 +4,6 @@ namespace: media
 resources:
   - plex
   - dizquetv
+  - calibre-web
   - namespace.yaml
   - leela-nfs-media.yaml
