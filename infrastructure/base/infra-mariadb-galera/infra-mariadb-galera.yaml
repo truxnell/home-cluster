@@ -29,7 +29,7 @@ spec:
     persistence:
       enabled: true
       size: 10Gi
-      storageClassName: longhorn
+      storageClass: longhorn
     service:
       type: LoadBalancer
       loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_MARIADB}"
