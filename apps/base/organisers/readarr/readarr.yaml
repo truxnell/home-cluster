@@ -15,9 +15,6 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
-      dependsOn:
-        - name: calibre
-        - name: nzbget
   # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/readarr/values.yaml
   values:
     image:
@@ -32,4 +29,3 @@ spec:
       media:
         enabled: true
         existingClaim: leela-organisers-pvc
-
