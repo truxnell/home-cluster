@@ -55,46 +55,46 @@ spec:
     addons:
       vpn:
         enabled: true
-        # This Should be set to `openvpn`. This will set the add-on to use the default settings for OpenVPN based connections.
-        type: openvpn
-
-        openvpn:
-          # This gets read by the Helm chart. The default OpenVPN image reads this and uses it to connect to the VPN provider.
-          auth: |
-            ${OPENVPN_USERNAME}
-            ${OPENVPN_PASSWORD}
-
-        # If the podSecurityContext is set to run as a different user, make sure to run the OpenVPN container as root. 
-        # This is required for it to be able to read certain configuration files. 
+        type: wireguard
+        wireguard:
+          image:
+            repository: ghcr.io/k8s-at-home/wireguard
+            tag: v1.0.20210424
+            pullPolicy: IfNotPresent
         securityContext:
-          runAsGroup: 0
-          runAsUser: 0
-
+          runAsGroup: 568
+          runAsUser: 568
         env:
-          # Set this environment variable to 'on' to make sure all traffic gets routed through the VPN container.
-          # Make sure to check the other environment variables for the OpenVPN image to see how you can exclude certain
-          # traffic from these firewall rules.
-          FIREWALL: 'on'
+          TZ: "Australia/Melbourne"
+          IPTABLES_BACKEND: nft
+          KILLSWITCH: "false"
 
-        # The .ovpn file provided by your VPN provider goes here.
-        #
-        # Any CA / certificate must either be placed inline, or provided through an additionalVolumeMount so that OpenVPN can find it.
-        #
-        # Pay close attention to the last 3 lines in this file. They must be added if you wish to run a script when the connection
-        # is opened / closed.
         configFileSecret: qbittorrent-vpnconfig
 
+        resources:
+          requests:
+            cpu: "0.001"
+            memory: 128Mi
+          limits:
+            memory: 512Mi
 
-        # The scripts that get run when the VPN connection opens/closes are defined here.
-        # The default scripts will write a string to represent the current connection state to a file.
-        # Our qBittorrent image has a feature that can wait for this file to contain the word 'connected' before actually starting the application.
-        scripts:
-          up: |-
-            #!/bin/bash
-            /etc/openvpn/up.sh
-            echo "connected" > /shared/vpnstatus
+        networkPolicy:
+          enabled: true
+          
+          egress:
+          - to:
+            - ipBlock:
+                cidr: 0.0.0.0/0
+            ports:
+            # VPN traffic port - change if your provider uses a different port
+            - port: ${VPN_PORT}
+              protocol: UDP
+          - to:
+              # Allow traffic within K8S - change if your K8S cluster uses a different CIDR
+            - ipBlock:
+                cidr: ${NETWORK_K8S_CLUSTER_CIDR}
+            - ipBlock:
+                cidr: ${NETWORK_K8S_SERVICE_CIDR}
 
-          down: |-
-            #!/bin/bash
-            /etc/openvpn/down.sh
-            echo "disconnected" > /shared/vpnstatus
+
+
