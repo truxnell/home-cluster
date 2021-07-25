@@ -59,7 +59,6 @@ spec:
         openvpn:
           image:
             repository: dperson/openvpn-client
-            pullPolicy: Allways
             tag: latest
         env:
           TZ: "Australia/Melbourne"
