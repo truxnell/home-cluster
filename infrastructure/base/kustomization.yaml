@@ -14,7 +14,7 @@ resources:
   # - velero
   - infra-kured
   - monitoring
-  - longhorn-system
+  # - longhorn-system
   - ingressroutes
   - system-upgrade
   - rook-ceph
