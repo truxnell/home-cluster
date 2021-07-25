@@ -55,19 +55,14 @@ spec:
     addons:
       vpn:
         enabled: true
-        type: wireguard
-        wireguard:
+        type: openvpn
+        openvpn:
           image:
-            repository: ghcr.io/k8s-at-home/wireguard
-            tag: v1.0.20210424
-            pullPolicy: IfNotPresent
-        securityContext:
-          runAsGroup: 568
-          runAsUser: 568
+            repository: dperson/openvpn-client
+            pullPolicy: Allways
+            tag: latest
         env:
           TZ: "Australia/Melbourne"
-          IPTABLES_BACKEND: nft
-          KILLSWITCH: "false"
 
         configFileSecret: qbittorrent-vpnconfig
 
