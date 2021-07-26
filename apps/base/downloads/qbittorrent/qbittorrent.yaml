@@ -22,7 +22,6 @@ spec:
       tag: v4.3.5
     env:
       TZ: "Australia/Melbourne"
-      # WAIT_FOR_VPN: "true"
     service:
       main:
         additionalServices:
@@ -30,8 +29,7 @@ spec:
           nameSuffix: bittorrent
           type: LoadBalancer
           externalIPs:
-            # - "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_QBITTORRENT}"
-            - "192.168.2.140"
+            - "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_QBITTORRENT}"
           port:
             port: 51314
             name: bittorrent
