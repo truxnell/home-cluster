@@ -22,7 +22,7 @@ spec:
       tag: v4.3.5
     env:
       TZ: "Australia/Melbourne"
-      WAIT_FOR_VPN: "true"
+      # WAIT_FOR_VPN: "true"
     service:
       main:
         additionalServices:
@@ -30,7 +30,8 @@ spec:
           nameSuffix: bittorrent
           type: LoadBalancer
           externalIPs:
-            - "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_QBITTORRENT}"
+            # - "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_QBITTORRENT}"
+            - "192.168.2.140"
           port:
             port: 51314
             name: bittorrent
@@ -65,8 +66,20 @@ spec:
             tag: latest
         env:
           TZ: "Australia/Melbourne"
+          DNS: 1.1.1.1  
 
         configFileSecret: qbittorrent-vpnconfig
+
+        livenessProbe:
+          exec:
+            command:
+              - sh
+              - -c
+              - if [ $(wget -q -O- https://ipinfo.io/country) == '${VPN_COUNTRY}' ]; then exit 0; else exit $?; fi
+          initialDelaySeconds: 30
+          periodSeconds: 60
+          failureThreshold: 3
+
 
         resources:
           requests:
@@ -88,11 +101,9 @@ spec:
             - ipBlock:
                 cidr: 0.0.0.0/0
             ports:
-            # VPN traffic port - change if your provider uses a different port
             - port: 443
               protocol: UDP
           - to:
-              # Allow traffic within K8S - change if your K8S cluster uses a different CIDR
             - ipBlock:
                 cidr: ${NETWORK_K8S_CLUSTER_CIDR}
             - ipBlock:
