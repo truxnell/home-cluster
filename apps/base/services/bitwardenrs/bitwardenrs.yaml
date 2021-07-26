@@ -32,7 +32,7 @@ spec:
   values:
     image:
       repository: bitwardenrs/server
-      tag: 1.21.0-alpine
+      tag: 1.22.2-alpine
     bitwardenrs:
       signupsAllowed: true
       domain: "https://bitwarden.${CLUSTER_DOMAIN}" # TODO rename with cluster variable
