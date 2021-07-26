@@ -24,18 +24,15 @@ spec:
       TZ: "Australia/Melbourne"
     service:
       main:
-        additionalServices:
-        - enabled: true
-          nameSuffix: bittorrent
-          type: LoadBalancer
-          externalIPs:
-            - "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_QBITTORRENT}"
-          port:
+      bittorrent:
+        enabled: true
+        type: ClusterIP
+        ports:
+          bittorrent:
+            enabled: true
             port: 51314
-            name: bittorrent
             protocol: TCP
             targetPort: 51314
-          externalTrafficPolicy: Local
     persistence:
       config:
         enabled: true
