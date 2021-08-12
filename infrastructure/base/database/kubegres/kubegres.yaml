@@ -6,7 +6,7 @@ metadata:
   namespace: database
 spec:
   replicas: 1
-  image: postgres:13.3
+  image: postgres:13.4
   database:
     size: 500Mi
     storageClassName: rook-ceph-block
