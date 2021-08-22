@@ -3,7 +3,7 @@
   "timezone": "Australia/Melbourne",
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
-  "dependencyDashboardTitle": "Renovate Dashboard",
+  "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "commitBody": "Signed-off-by: Nat Allan <Truxnell@users.noreply.github.com>",
   // do not notify on closed unmerged PRs
   "suppressNotifications": [
@@ -157,7 +157,10 @@
         "homeassistant/home-assistant",
         "sctx/overseerr",
         "b4bz/homer",
-        "vexorian/dizquetv"
+        "vexorian/dizquetv",
+        "joplin/server",
+        "grafana/grafana",
+        
      ],
     },
     {
