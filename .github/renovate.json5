@@ -80,7 +80,7 @@
         "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: (?<currentValue>.*)\n",
       ],
       "datasourceTemplate": "helm"
-    },
+    }
   ],
   "packageRules": [
     // setup datasources
@@ -157,7 +157,7 @@
         "homeassistant/home-assistant",
         "sctx/overseerr",
         "b4bz/homer",
-        "vexorian/dizquetv",
+        "vexorian/dizquetv"
      ],
     },
     {
