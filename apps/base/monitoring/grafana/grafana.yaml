@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: grafana/grafana
-      tag: 8.1.2
+      tag: 8.1.3
     env:
       GF_EXPLORE_ENABLED: true
       GF_PANELS_DISABLE_SANITIZE_HTML: true
