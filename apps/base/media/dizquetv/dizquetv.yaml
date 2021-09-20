@@ -21,7 +21,7 @@ spec:
       TZ: "Australia/Melbourne"
     image:  
       repository: vexorian/dizquetv
-      tag: 1.4.4
+      tag: 1.4.5
     persistence:
       config:
         enabled: true
