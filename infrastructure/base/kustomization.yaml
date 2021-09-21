@@ -12,7 +12,7 @@ resources:
   - traefik-forward-auth
   - descheduler
   # - velero
-  - infra-kured
+  # - infra-kured
   - monitoring
   # - longhorn-system
   - ingressroutes
