@@ -24,4 +24,4 @@ resources:
   - rook-ceph-charts.yaml
   - drpsychick.yaml
   - grafana-charts.yaml
-  - kastern-charts.yaml
+  - kasten-charts.yaml
