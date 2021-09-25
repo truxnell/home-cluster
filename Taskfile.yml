@@ -8,3 +8,4 @@ vars:
 includes:
   ansible: .taskfiles/Taskfile_ansible.yml
   secrets: .taskfiles/Taskfile_secrets.yml
+  flux: .taskfiles/flux.yml
