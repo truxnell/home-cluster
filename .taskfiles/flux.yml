@@ -16,6 +16,17 @@ tasks:
       - flux reconcile kustomization apps && task flux:k
     silent: false
 
+  sall:
+    desc: Sync apps kustomization with the Git Repository, and display kustomization list
+    cmds:
+      - task flux:sync
+      - flux reconcile kustomization flux-system
+      - flux reconcile kustomization operators
+      - flux reconcile kustomization infrastructure
+      - flux reconcile kustomization apps
+      - task flux:k
+    silent: false
+
   hr:
     desc: List all Helm Releases
     cmds:
