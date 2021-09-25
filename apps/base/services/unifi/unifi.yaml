@@ -21,4 +21,9 @@ spec:
       tag: 6.1.71
     env:
       TZ: Australia/Melbourne
+    persistence:
+      data:
+        enabled: true
+        existingClaim: unifi-config-v1
+
       
