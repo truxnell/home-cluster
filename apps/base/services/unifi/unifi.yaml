@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: jacobalberty/unifi
-      tag: 6.1.71
+      tag: v6.4.54
     env:
       TZ: Australia/Melbourne
     persistence:
