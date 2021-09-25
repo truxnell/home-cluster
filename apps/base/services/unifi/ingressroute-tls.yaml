@@ -11,7 +11,7 @@ spec:
       match: Host(`unifi.${CLUSTER_DOMAIN}`)
       services:
         - name: unifi
-          port: 8443
+          port: 8080
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
