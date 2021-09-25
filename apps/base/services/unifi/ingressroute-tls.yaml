@@ -1,0 +1,31 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: unifi-tls
+spec:
+  entryPoints:
+    - websecure
+  routes: # TODO Set api with no auth
+    - kind: Rule
+      match: Host(`unifi.${CLUSTER_DOMAIN}`)
+      services:
+        - name: unifi
+          port: 8443
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+        - name: traefik-forward-auth
+          namespace: kube-system
+    # - kind: Rule
+    #   match: Host(`unifi.${CLUSTER_DOMAIN}`)  && PathPrefix(`/api`)
+    #   services:
+    #     - name: unifi
+    #       port: 22300
+    #   middlewares:
+    #     - name: traefik-secure-headers
+    #       namespace: kube-system
+
+  tls:
+    certResolver: cloudflare
+
