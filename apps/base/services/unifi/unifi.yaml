@@ -29,7 +29,14 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: ${CLUSTER_LB_UNIFI}
+        annotations:
+          metallb.universe.tf/allow-shared-ip: unifi
+        loadBalancerIP: ${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_UNIFI}
         externalTrafficPolicy: Local
 
-      
+    resources:
+      requests:
+        cpu: "0.02"
+        memory: "1024M"
+      limits:
+        memory: "1536M"
