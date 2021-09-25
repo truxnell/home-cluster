@@ -26,5 +26,35 @@ spec:
       data:
         enabled: true
         existingClaim: unifi-config-v1
+    guiService:
+      type: LoadBalancer
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: unifi
+        coredns.io/hostname: unifi
+        traefik.ingress.kubernetes.io/service.serversscheme: https
+        metallb.universe.tf/allow-shared-ip: unifi
+      loadBalancerIP: ${CLUSTER_LB_UNIFI}
+      externalTrafficPolicy: Local
+
+    controllerService:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/allow-shared-ip: unifi
+      loadBalancerIP: ${CLUSTER_LB_UNIFI}
+      externalTrafficPolicy: Local
+
+    stunService:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/allow-shared-ip: unifi
+      loadBalancerIP: ${CLUSTER_LB_UNIFI}
+      externalTrafficPolicy: Local
+
+    discoveryService:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/allow-shared-ip: unifi
+      loadBalancerIP: ${CLUSTER_LB_UNIFI}
+      externalTrafficPolicy: Local
 
       
