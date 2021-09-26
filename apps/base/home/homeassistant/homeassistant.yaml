@@ -22,14 +22,6 @@ spec:
       tag: 2021.9.7
     extraEnv:
       TZ: "Australia/Melbourne"
-    http:
-      server_host: 0.0.0.0
-      ip_ban_enabled: true
-      login_attempts_threshold: 5
-      use_x_forwarded_for: true
-      trusted_proxies:
-        - 10.69.0.0/16
-        - 192.168.2.0/24
     probes:
       #Circumvention - avoid restart
       startup:
@@ -46,6 +38,15 @@ spec:
       main:
         type: LoadBalancer
         loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_HA}"
+        ports:
+          http:
+            server_host: 0.0.0.0
+            ip_ban_enabled: true
+            login_attempts_threshold: 5
+            use_x_forwarded_for: true
+            trusted_proxies:
+              - 10.69.0.0/16
+              - 192.168.2.0/24
     resources:
       limits:
         memory: 500Mi
