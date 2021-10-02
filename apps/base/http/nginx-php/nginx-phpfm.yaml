@@ -28,7 +28,7 @@ spec:
         tag: "v7.2-fpm-mysql"
     persistence:
       enabled: true
-      existingClaim: nginx-php-config-
+      existingClaim: nginx-php-config-v1
     podAnnotations:
       backup.velero.io/backup-volumes: root
       pre.hook.backup.velero.io/container: fsfreeze
