@@ -5,4 +5,4 @@ resources:
   - kasten.yaml
   - namespace.yaml
   - profiles
-  - leela-backups-kasten-pv.yaml
+  - leela-backups-kasten.yaml
