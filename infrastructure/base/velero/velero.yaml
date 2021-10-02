@@ -14,20 +14,7 @@ spec:
         kind: HelmRepository
         name: vmware-charts
         namespace: flux-system
-      interval: 6m
-  test:
-    enable: true
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    remediation:
-      remediateLastFailure: true
-    cleanupOnFail: true
-  rollback:
-    timeout: 10m
-    recreate: true
-    cleanupOnFail: true
+      interval: 5m
   values:
     # https://github.com/vmware-tanzu/helm-charts/blob/main/charts/velero/values.yaml
     configuration:
@@ -53,21 +40,41 @@ spec:
         volumeMounts:
           - mountPath: /target
             name: plugins
-    # metrics:
-    #   enabled: true
-    #   serviceMonitor:
-    #     enabled: true
-    # # snapshotsEnabled: true
+    schedules:
+      daily-backup:
+        schedule: "0 6,18 * * *"
+        template:
+          ttl: "168h"
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    backupsEnabled: true
     snapshotsEnabled: false
+    upgradeCRDs: false
+    cleanUpCRDs: false
+    kubectl:
+      image:
+        repository: ghcr.io/k8s-at-home/kubectl
+        tag: v1.22.2
     deployRestic: true
-    defaultVolumesToRestic: true
     restic:
       podVolumePath: /var/lib/kubelet/pods
       privileged: false
-    schedules:
-      bi-daily-backup:
-        schedule: "0 6,18 * * *"
-        template:
-          ttl: "120h"
+      tolerations:
+        - key: "node-role.kubernetes.io/master"
+          operator: "Exists"
+      resources:
+        requests:
+          memory: 200Mi
+          cpu: 15m
+        limits:
+          memory: 3000Mi
+    resources:
+      requests:
+        memory: 300Mi
+        cpu: 25m
+      limits:
+        memory: 1500Mi
     credentials:
       existingSecret: velero-secrets
