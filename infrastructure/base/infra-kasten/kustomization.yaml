@@ -3,3 +3,6 @@ kind: Kustomization
 namespace: infra-kastern
 resources:
   - kasten.yaml
+  - namespace.yaml
+  - profiles
+  - leela-backups-kasten-pv.yaml
