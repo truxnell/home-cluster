@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: leela-backups-pv
+  name: leela-backups-kasten-pv
 spec:
   storageClassName: "nfs"
   capacity:
@@ -12,7 +12,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: ${SYNOLOGY_IP}
-    path: "/volume1/"
+    path: "/volume1/backups/kurbenetes/kasten/"
   mountOptions:
     - tcp
     - intr
