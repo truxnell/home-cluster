@@ -5,3 +5,4 @@ resources:
   - leela-organisers-pv.yaml
   - leela-filerun-pv.yaml
   - leela-media-pv.yaml
+  - leela-backups-kasten-pv.yaml
