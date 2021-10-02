@@ -19,7 +19,7 @@ spec:
   values:
     eula:
       accept: true
-      company: BJW-S
+      company: ${KASTEN_COMPANY}
       # Email used to register account (even free)
       email: ${KASTEN_EMAIL}
 

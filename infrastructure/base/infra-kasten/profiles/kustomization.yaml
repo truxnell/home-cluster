@@ -1,5 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: system-kastern
+namespace: infra-kasten
 resources:
-  - kasten.yaml
+  - nfs.yaml
