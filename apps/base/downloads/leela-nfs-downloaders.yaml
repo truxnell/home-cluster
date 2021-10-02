@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: leela-downloads-pvc
-   labels:
+  labels:
     velero.io/exclude-from-backup: "true"
 spec:
   accessModes:
