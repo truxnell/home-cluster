@@ -15,6 +15,10 @@ spec:
         name: vmware-charts
         namespace: flux-system
       interval: 5m
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
   values:
     # https://github.com/vmware-tanzu/helm-charts/blob/main/charts/velero/values.yaml
     configuration:
@@ -50,7 +54,7 @@ spec:
       serviceMonitor:
         enabled: true
     backupsEnabled: true
-    snapshotsEnabled: false
+    snapshotsEnabled: true
     upgradeCRDs: false
     cleanUpCRDs: false
     kubectl:
