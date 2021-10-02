@@ -4,9 +4,9 @@ kind: PersistentVolume
 metadata:
   name: leela-downloads-pv
   labels:
-    velero.io/exclude-from-backup: "true
-spec:
-  storageClassName: "nfs"
+    velero.io/exclude-from-backup: "true"
+  spec:
+    storageClassName: "nfs"
   capacity:
     storage: 1Mi
   accessModes:
