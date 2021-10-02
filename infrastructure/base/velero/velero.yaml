@@ -44,7 +44,7 @@ spec:
             name: plugins
     schedules:
       daily-backup:
-        schedule: "0 6,18 * * *"
+        schedule: "0 6 * * *"
         template:
           ttl: "168h"
     metrics:
