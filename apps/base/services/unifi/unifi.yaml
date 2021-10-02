@@ -40,3 +40,21 @@ spec:
         memory: "1024M"
       limits:
         memory: "1536M"
+    podAnnotations:
+      backup.velero.io/backup-volumes: data
+      pre.hook.backup.velero.io/container: fsfreeze
+      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/unifi"]'
+      post.hook.backup.velero.io/container: fsfreeze
+      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/unifi"]'
+      secret.reloader.stakater.com/reload: "home-assistant"
+    additionalContainers:
+      fsfreeze:
+        name: fsfreeze
+        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
+        volumeMounts:
+          - name: data
+            mountPath: /unifi
+        securityContext:
+          privileged: true
+
+

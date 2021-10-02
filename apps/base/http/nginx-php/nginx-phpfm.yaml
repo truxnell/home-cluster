@@ -28,6 +28,24 @@ spec:
         tag: "v7.2-fpm-mysql"
     persistence:
       enabled: true
-      existingClaim: nginx-php-config-v1
+      existingClaim: nginx-php-config-
+    podAnnotations:
+      backup.velero.io/backup-volumes: root
+      pre.hook.backup.velero.io/container: fsfreeze
+      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/var/www/html"]'
+      post.hook.backup.velero.io/container: fsfreeze
+      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/var/www/html"]'
+      secret.reloader.stakater.com/reload: "home-assistant"
+    additionalContainers:
+      fsfreeze:
+        name: fsfreeze
+        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
+        volumeMounts:
+          - name: root
+            mountPath: /var/www/html
+        securityContext:
+          privileged: true
+
+
 
 
