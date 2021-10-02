@@ -28,15 +28,13 @@ spec:
       backupStorageLocation:
         name: default
         bucket: "velero"
+        default: true
         config:
           region: "us-east-1"
           s3ForcePathStyle: true
           s3Url: "http://${SYNOLOGY_IP}:9000"
           publicUrl: "http://${SYNOLOGY_IP}:9000"
-        volumeSnapshotLocation:
-          name: trux-velero
-          provider: aws
-          config: {}
+      resticTimeout: 4h
     initContainers:
       - name: velero-plugin-for-aws
         image: velero/velero-plugin-for-aws:v1.3.0
@@ -54,7 +52,7 @@ spec:
       serviceMonitor:
         enabled: true
     backupsEnabled: true
-    snapshotsEnabled: true
+    snapshotsEnabled: false
     upgradeCRDs: true
     cleanUpCRDs: false
     kubectl:
