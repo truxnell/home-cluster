@@ -19,3 +19,4 @@ resources:
   - system-upgrade
   - rook-ceph
   - database
+  - infra-kasten
