@@ -11,7 +11,7 @@ resources:
   - infra-traefik
   - traefik-forward-auth
   - descheduler
-  # - velero
+  - velero
   # - infra-kured
   - monitoring
   # - longhorn-system
@@ -19,4 +19,4 @@ resources:
   - system-upgrade
   - rook-ceph
   - database
-  - infra-kasten
+  # - infra-kasten
