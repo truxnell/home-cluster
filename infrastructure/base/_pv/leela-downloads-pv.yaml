@@ -5,8 +5,8 @@ metadata:
   name: leela-downloads-pv
   labels:
     velero.io/exclude-from-backup: "true"
-  spec:
-    storageClassName: "nfs"
+spec:
+  storageClassName: "nfs"
   capacity:
     storage: 1Mi
   accessModes:
