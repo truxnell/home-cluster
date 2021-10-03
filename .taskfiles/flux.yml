@@ -30,7 +30,7 @@ tasks:
   hr:
     desc: List all Helm Releases
     cmds:
-      - flux get hr -A
+      - flux get hr -A  | grep --colour -e "^" -e False   
     silent: true
 
   hs:
@@ -50,3 +50,4 @@ tasks:
     cmds:
       - flux get kustomizations -A
     silent: true
+
