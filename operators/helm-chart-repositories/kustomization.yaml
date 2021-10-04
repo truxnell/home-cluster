@@ -25,3 +25,4 @@ resources:
   - drpsychick.yaml
   - grafana-charts.yaml
   - kasten-charts.yaml
+  - k8s-at-home-truxnell.yaml
