@@ -7,10 +7,10 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: factorio
+      chart: ./chart/factorio/
       version: 1.0.0
       sourceRef:
-        kind: HelmRepository
+        kind: GitRepository
         name: k8s-at-home-truxnell
         namespace: flux-system
       interval: 5m
@@ -26,4 +26,4 @@ spec:
     env:
   # -- Set the container timezone
       TZ: "Australia/Melbourne"
-      
+
