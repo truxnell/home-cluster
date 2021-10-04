@@ -7,7 +7,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: ./chart/factorio/
+      chart: ./charts/stable/factorio/
       version: 1.0.0
       sourceRef:
         kind: GitRepository
