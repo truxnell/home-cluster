@@ -29,7 +29,7 @@ spec:
 
   service:
     factorio-game:
-      loadBalancerIP: 192.168.2.189
+      loadBalancerIP: ${CLUSTER_LB_FACTORIO}
     factorio-rcon:
-      loadBalancerIP: 192.168.2.189
+      loadBalancerIP: ${CLUSTER_LB_FACTORIO}
 
