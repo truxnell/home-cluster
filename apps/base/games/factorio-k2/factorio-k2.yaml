@@ -27,3 +27,9 @@ spec:
   # -- Set the container timezone
       TZ: "Australia/Melbourne"
 
+  service:
+    factorio-game:
+      loadBalancerIP: 192.168.2.189
+    factorio-rcon:
+      loadBalancerIP: 192.168.2.189
+
