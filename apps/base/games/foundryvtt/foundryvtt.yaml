@@ -32,7 +32,6 @@ spec:
   values:
     image:
       repository: felddy/foundryvtt
-      pullPolicy: IfNotPresent
       tag: 0.8.9
     env:
       TZ: "Australia/Melbourne"
