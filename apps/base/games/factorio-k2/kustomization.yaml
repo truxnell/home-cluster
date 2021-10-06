@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: games
 resources:
   - factorio-k2.yaml
+  - config-pvc.yaml
