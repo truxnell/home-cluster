@@ -29,24 +29,23 @@ spec:
 
     service:
       main:
-        enabled: false
-      factorio-game:
         enabled: true
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
         externalTrafficPolicy: Cluster
-        loadBalancerIP: ${CLUSTER_LB_FACTORIO}  # Set a IP here to ensure the game server is given a static internal IP
+        loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_FACTORIO}"  # Set a IP here to ensure the game server is given a static internal IP
         ports:
-          factorio-game:
-            enabled: true
+          http:
             port: 34197
             protocol: UDP
+            targetPort: 34197
       factorio-rcon:
         enabled: true
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
         externalTrafficPolicy: Cluster
-        loadBalancerIP: ${CLUSTER_LB_FACTORIO}  # Set a IP here to ensure the game server is given a static internal IP
+        loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_FACTORIO}"  # Set a IP here to ensure the game server is given a static internal IP
         ports:
           factorio-rcon:
             enabled: true
             port: 27015
             protocol: TCP
+            targetPort: 27015
