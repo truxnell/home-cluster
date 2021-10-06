@@ -53,8 +53,14 @@ spec:
             port: 27015
             protocol: TCP
             targetPort: 27015
+
+    persistence:
+      factorio:
+        enabled: true
+        existingClaim: factorio-k2-config-v1
+
     podAnnotations:
-      backup.velero.io/backup-volumes: factrorio
+      backup.velero.io/backup-volumes: factorio
       pre.hook.backup.velero.io/container: fsfreeze
       pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/factorio"]'
       post.hook.backup.velero.io/container: fsfreeze
