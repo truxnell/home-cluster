@@ -8,4 +8,5 @@
     "favorites.resources": [
         "cluster/production/cluster-secrets.sops.yaml"
     ],
+    "cSpell.enabled": false,
 }
