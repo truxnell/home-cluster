@@ -156,7 +156,22 @@
 			],
       schedule: [
         "after 2am every day",
-        "before 6am every day"
+        "before 8am every day"
+      ]
+		},
+    // Game servers
+    {
+			matchDatasources: ["docker"],
+			automerge: true,
+			automergeType: "branch",
+			requiredStatusChecks: null,
+			matchUpdateTypes: ["major","minor", "patch", "digest"],
+			matchPackageNames: [
+				"factoriotools/factorio"
+			],
+      schedule: [
+        "after 2am every day",
+        "before 8am every day"
       ]
 		},
     
