@@ -154,7 +154,12 @@
 				"joplin/server",
 				"grafana/grafana",
 			],
+      schedule: [
+        "after 2am every day",
+        "before 6am every day"
+      ]
 		},
+    
 		// group packages
 		{
 			matchDatasources: ["helm", "docker"],
