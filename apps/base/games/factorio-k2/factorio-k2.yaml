@@ -27,7 +27,7 @@ spec:
     env:
   # -- Set the container timezone
       TZ: "Australia/Melbourne"
-      LOAD_LATEST_SAVE: false # Defaults to True
+      LOAD_LATEST_SAVE: true # Defaults to True
       SAVE_NAME: K2 # Defaults to _autosave1
       GENERATE_NEW_SAVE: false # Defaults to false
       PORT: 34197 # Defaults to 34197
