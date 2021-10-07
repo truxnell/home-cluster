@@ -27,6 +27,14 @@ spec:
     env:
   # -- Set the container timezone
       TZ: "Australia/Melbourne"
+      LOAD_LATEST_SAVE: true # Defaults to True
+      SAVE_NAME: K2 # Defaults to _autosave1
+      GENERATE_NEW_SAVE: false # Defaults to false
+      PORT: 34197 # Defaults to 34197
+      RCON_PORT: 27015 # Defaults to 27015
+      UPDATE_MODS_ON_START: true # No default
+      USERNAME: ${FACTORIO_USERNAME} # No default - this is your factorio.com username
+      TOKEN: ${FACTORIO_TOKEN} # No default - this is your factorio.com token
 
     service:
       factorio-game:
