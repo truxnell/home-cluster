@@ -38,11 +38,11 @@ spec:
           metallb.universe.tf/allow-shared-ip: factorio
         ports:
           factorio-game:
-            port: 34197
+            port: 34201
             protocol: UDP
-            targetPort: 34197
+            targetPort: 34201
       factorio-rcon:
-        enabled: true
+        enabled: false
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
         externalTrafficPolicy: Cluster
         loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_FACTORIO}"  # Set a IP here to ensure the game server is given a static internal IP
