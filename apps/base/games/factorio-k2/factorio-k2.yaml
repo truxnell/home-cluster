@@ -40,7 +40,7 @@ spec:
           factorio-game:
             port: 34201
             protocol: UDP
-            targetPort: 34201
+            targetPort: 34197
       factorio-rcon:
         enabled: false
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
