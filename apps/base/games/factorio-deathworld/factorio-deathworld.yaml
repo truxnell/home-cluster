@@ -1,0 +1,81 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: factorio-deathworld
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: factorio-server-charts
+      version: 1.0.8
+      sourceRef:
+        kind: HelmRepository
+        name: jamessql-factorio-server-charts
+        namespace: flux-system
+      interval: 5m
+  # Values link: https://github.com/SQLJames/factorio-server-charts/blob/main/charts/factorio-server-charts/values.yaml
+  values:
+    image:
+      repository: "factoriotools/factorio"
+      tag: "1.1.42"
+
+    service:
+        type: LoadBalancer # Setting Ip external to cluster for easy port forward
+        port: 34200
+        targetPort: 34197
+        externalTrafficPolicy: Cluster
+        loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_FACTORIO}"  # Set a IP here to ensure the game server is given a static internal IP
+        annotations:
+          metallb.universe.tf/allow-shared-ip: factorio
+
+    resources:
+      requests:
+        memory: 1024Mi
+        cpu: 500m
+    persistence:
+      enabled: true
+      dataDir:
+        Size: "1Gi"
+        ## If you have an existing claim, set your name here
+        existingClaim: "factorio-deathworld-config-v1"
+
+    factorioServer:
+      # specify a save name
+      save_name: "deathworld"
+      # Generate a New Save
+      generate_new_save: false
+      # Update mods on start
+      update_mods_on_start: true
+      # lets the game know if you want to load the latest save
+      load_latest_save: false
+      # Location of the configuration files that are generated
+      config_path: /srv
+
+    server_settings:
+      name: Factorio Marathon DEATHWORLD
+      description: "Factorio Marathon Deathworld"
+      tags:
+      - deathworld
+      - marathon
+      visibility:
+        public: false
+        lan: true
+      username: '${FACTORIO_USERNAME}'
+      token: '${FACTORIO_TOKEN}'
+      game_password: '${FACTORIO_SERVER_PASSWORD'
+      max_upload_in_kilobytes_per_second: 0
+      max_upload_slots: 0 
+      minimum_latency_in_ticks: 0
+      allow_commands: admins-only
+      autosave_interval: 10
+      autosave_slots: 5
+      afk_autokick_interval: 0
+      auto_pause: true
+      only_admins_can_pause_the_game: true
+      autosave_only_on_server: true
+      non_blocking_saving: false
+      minimum_segment_size: 25
+      minimum_segment_size_peer_count: 20
+      maximum_segment_size: 100
+      maximum_segment_size_peer_count: 10"
