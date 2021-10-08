@@ -63,7 +63,7 @@ spec:
         lan: true
       username: '${FACTORIO_USERNAME}'
       token: '${FACTORIO_TOKEN}'
-      game_password: '${FACTORIO_SERVER_PASSWORD'
+      game_password: '${FACTORIO_SERVER_PASSWORD}'
       max_upload_in_kilobytes_per_second: 0
       max_upload_slots: 0 
       minimum_latency_in_ticks: 0
