@@ -18,3 +18,6 @@ ansible/roles/xanmanning.k3s*
 ansible/roles/andrewrothstein.calicoctl*
 node_modules
 mitogen*
+
+# Test python utils
+tests/__pycache__
