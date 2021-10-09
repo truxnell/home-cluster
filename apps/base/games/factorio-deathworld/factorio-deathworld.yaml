@@ -23,7 +23,6 @@ spec:
     service:
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
         port: 34200
-        targetPort: 34197
         externalTrafficPolicy: Cluster
         loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_FACTORIO}"  # Set a IP here to ensure the game server is given a static internal IP
         annotations:
