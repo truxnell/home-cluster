@@ -68,6 +68,18 @@ spec:
         enabled: true
         existingClaim: factorio-k2-config-v1
 
+    # Prefer higher single core speed node
+    affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - k8s-generic-node-a
+
     podAnnotations:
       backup.velero.io/backup-volumes: factorio
       pre.hook.backup.velero.io/container: fsfreeze
