@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: "factoriotools/factorio"
-      tag: "1.1.41"
+      tag: "1.1.42"
 
     service:
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
