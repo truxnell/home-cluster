@@ -1,32 +1,36 @@
----
-name: Schedule - Rennovate Helm Releases
+name: renovate
+
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */4 * * *'
+    - cron: "0 */4 * * *"
+
 jobs:
-  renovate-helmrelease:
-    runs-on: ubuntu-20.04
+  helm-releases:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Renovate Helm Releases
-        uses: k8s-at-home/renovate-helm-releases@v1
-        with:
-          cluster-path: './'
-          debug: 'yes'
-      - name: Create pull request
+      - uses: actions/checkout@v2
+      # with:
+      #   token: ${{ secrets.CR_PAT }}
+      #   fetch-depth: 1
+
+      - name: Install yq
+        run: |
+          sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/3.3.0/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+      - name: Create HelmRelease annotations
+        run: ./.github/scripts/create-helmrelease-annotations.sh
+
+      - name: Create pull request for HelmRelease annotations
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: renovate-helm-release-annotations
-          delete-branch: false
-          title: "Update renovatebot helm-release annotations"
+          branch: helm-release-annotations
+          title: "[renovate] create helmrelease annotations [ci-skip]"
           signoff: true
-          committer: "Nat Allan <truxnell@users.noreply.github.com>"
-          author: "Nat Allan <truxnell@users.noreply.github.com>"
-          assignees: Truxnell
-          commit-message: "Update HelmRelease via renovatebot annotations"
+          committer: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
+          author: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
+          commit-message: Create renovatebot helmrelease annotations
           body: |
-            Add Renovate annotations to HelmReleases to pick up new versions of Helm charts
+            Signed-off-by: Truxnell <Truxnell@users.noreply.github.com>
           labels: renovate/helm-release-annotations
