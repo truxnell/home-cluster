@@ -21,6 +21,9 @@ spec:
     crds: CreateReplace
   values:
     # https://github.com/vmware-tanzu/helm-charts/blob/main/charts/velero/values.yaml
+    image:
+      repository: velero/velero
+      tag: v1.7.0
     configuration:
       extraEnvVars:
         TZ: "Australia/Melbourne"
