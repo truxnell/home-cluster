@@ -4,3 +4,4 @@ namespace: games
 resources:
   - factorio-deathworld.yaml
   - config-pvc.yaml
+  - service.yaml

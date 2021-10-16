@@ -22,14 +22,16 @@ spec:
       tag: "1.1.42"
 
     service:
-      type: LoadBalancer # Setting Ip external to cluster for easy port forward
-      port: 34200
-      externalTrafficPolicy: Cluster
-      loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.151" # Set a IP here to ensure the game server is given a static internal IP
-      externalIPs:
-        - 192.168.2.151
-      annotations:
-        metallb.universe.tf/allow-shared-ip: factorio
+      enabled:false
+      # type: LoadBalancer # Setting Ip external to cluster for easy port forward
+      # port: 34200
+      # targetPort: 34197
+      # externalTrafficPolicy: Cluster
+      # loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.REPLACEMEN" # Set a IP here to ensure the game server is given a static internal IP
+      # externalIPs:
+      #   - 192.168.2.151
+      # annotations:
+      #   metallb.universe.tf/allow-shared-ip: factorio
 
     resources:
       requests:
@@ -81,3 +83,20 @@ spec:
       minimum_segment_size_peer_count: 20
       maximum_segment_size: 100
       maximum_segment_size_peer_count: 10
+
+    podAnnotations:
+      backup.velero.io/backup-volumes: factorio
+      pre.hook.backup.velero.io/container: fsfreeze
+      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/factorio"]'
+      post.hook.backup.velero.io/container: fsfreeze
+      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/factorio"]'
+      secret.reloader.stakater.com/reload: "home-assistant"
+    additionalContainers:
+      fsfreeze:
+        name: fsfreeze
+        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
+        volumeMounts:
+          - name: factorio
+            mountPath: /factorio
+        securityContext:
+          privileged: true
