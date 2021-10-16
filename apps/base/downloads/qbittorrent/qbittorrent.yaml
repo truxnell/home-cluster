@@ -23,7 +23,6 @@ spec:
     env:
       TZ: "Australia/Melbourne"
     service:
-      main:
       bittorrent:
         enabled: true
         type: ClusterIP
@@ -42,12 +41,12 @@ spec:
         existingClaim: leela-downloads-pvc
       shared:
         enabled: true
-        emptyDir: 
+        emptyDir:
           enabled: true
         mountPath: /shared
     podSecurityContext:
       supplementalGroups:
-      - 100
+        - 100
     podAnnotations:
       backup.velero.io/backup-volumes: config
       pre.hook.backup.velero.io/container: fsfreeze
@@ -77,7 +76,7 @@ spec:
             tag: latest
         env:
           TZ: "Australia/Melbourne"
-          DNS: 1.1.1.1  
+          DNS: 1.1.1.1
 
         configFileSecret: qbittorrent-vpnconfig
 
@@ -91,7 +90,6 @@ spec:
           periodSeconds: 60
           failureThreshold: 3
 
-
         resources:
           requests:
             cpu: "0.001"
@@ -103,21 +101,18 @@ spec:
           runAsGroup: 0
           runAsUser: 0
 
-
         networkPolicy:
           enabled: true
-          
+
           egress:
-          - to:
-            - ipBlock:
-                cidr: 0.0.0.0/0
-            ports:
-            - port: 443
-              protocol: UDP
-          - to:
-            - ipBlock:
-                cidr: ${NETWORK_K8S_CLUSTER_CIDR}
-            - ipBlock:
-                cidr: ${NETWORK_K8S_SERVICE_CIDR}
-
-
+            - to:
+                - ipBlock:
+                    cidr: 0.0.0.0/0
+              ports:
+                - port: 443
+                  protocol: UDP
+            - to:
+                - ipBlock:
+                    cidr: ${NETWORK_K8S_CLUSTER_CIDR}
+                - ipBlock:
+                    cidr: ${NETWORK_K8S_SERVICE_CIDR}
