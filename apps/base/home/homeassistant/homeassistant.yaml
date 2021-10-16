@@ -33,7 +33,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: homeassistant-config-v1
+        existingClaim: homeassistant-config-v2
     service:
       main:
         type: LoadBalancer
@@ -63,4 +63,3 @@ spec:
             mountPath: /config
         securityContext:
           privileged: true
-
