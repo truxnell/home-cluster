@@ -17,7 +17,6 @@ spec:
       interval: 5m
   # Values link: https://github.com/Truxnell/charts/blob/master/charts/stable/factorio/values.yaml
   values:
-
     image:
       # -- image repository
       repository: factoriotools/factorio
@@ -25,7 +24,7 @@ spec:
       tag: 1.1.42
 
     env:
-  # -- Set the container timezone
+      # -- Set the container timezone
       TZ: "Australia/Melbourne"
       LOAD_LATEST_SAVE: true # Defaults to True
       SAVE_NAME: K2 # Defaults to _autosave1
@@ -41,7 +40,7 @@ spec:
         enabled: true
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
         externalTrafficPolicy: Cluster
-        loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_FACTORIO}"  # Set a IP here to ensure the game server is given a static internal IP
+        loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_FACTORIO}" # Set a IP here to ensure the game server is given a static internal IP
         annotations:
           metallb.universe.tf/allow-shared-ip: factorio
         ports:
@@ -53,7 +52,7 @@ spec:
         enabled: false
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
         externalTrafficPolicy: Cluster
-        loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_FACTORIO}"  # Set a IP here to ensure the game server is given a static internal IP
+        loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_FACTORIO}" # Set a IP here to ensure the game server is given a static internal IP
         annotations:
           metallb.universe.tf/allow-shared-ip: factorio
         ports:
@@ -70,15 +69,15 @@ spec:
 
     # Prefer higher single core speed node
     affinity:
-        nodeAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
           - weight: 1
             preference:
               matchExpressions:
-              - key: kubernetes.io/hostname
-                operator: In
-                values:
-                - k8s-generic-node-a
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - k8s-generic-node-a
 
     podAnnotations:
       backup.velero.io/backup-volumes: factorio
@@ -86,7 +85,6 @@ spec:
       pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/factorio"]'
       post.hook.backup.velero.io/container: fsfreeze
       post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/factorio"]'
-      secret.reloader.stakater.com/reload: "home-assistant"
     additionalContainers:
       fsfreeze:
         name: fsfreeze
@@ -96,4 +94,3 @@ spec:
             mountPath: /factorio
         securityContext:
           privileged: true
-
