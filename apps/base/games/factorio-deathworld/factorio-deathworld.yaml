@@ -26,6 +26,8 @@ spec:
       port: 34200
       externalTrafficPolicy: Cluster
       loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.151" # Set a IP here to ensure the game server is given a static internal IP
+      externalIPs:
+        - 192.168.2.151
       annotations:
         metallb.universe.tf/allow-shared-ip: factorio
 
