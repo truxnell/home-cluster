@@ -1,0 +1,114 @@
+---
+
+- set_fact:
+    default_debian_distribution: "{{ ansible_distribution_release }}"
+  when: default_debian_distribution is not defined
+
+- name: debian | installing pre-reqs
+  apt:
+    name:
+      - lsb-release
+    state: present
+
+- name: debian | install additional packages
+  apt:
+    pkg: "{{ backports_internal_additional_packages }}"
+    state: present
+  when: backports_internal_additional_packages | length > 0
+
+- name: debian | add backports repository
+  block:
+    - name: set debian release
+      apt_repository:
+        repo: deb {{ backports_internal_uri }} {{ ansible_distribution_release }}-backports {{ backports_internal_components }}
+        state: present
+        update_cache: yes
+    - name: set backports
+      set_fact: 
+        debian_release: '{{ default_debian_distribution + "-backports" }}'
+  when: debian_use_backports
+
+- name: debian | install zfs
+  apt: 
+    name:
+      - linux-headers-{{ ansible_kernel }}
+      - zfsutils-linux
+      - zfs-dkms
+    state: present
+    default_release: "{{ debian_release }}"
+
+- name: debian | enabling zfs module
+  modprobe:
+    name: zfs
+    state: present
+
+- name: debian | installing open-iscsi (if enabled)
+  apt:
+    name:
+      - open-iscsi 
+    state: present
+  when: >
+        zfs_enable_iscsi is defined and
+        zfs_enable_iscsi
+
+- name: debian | un-installing open-iscsi (if not enabled)
+  apt:
+    name:
+      - open-iscsi
+    state: absent
+  when: >
+        zfs_enable_iscsi is defined and
+        not zfs_enable_iscsi
+
+- name: debian | configuring iscsitarget service
+  template:
+    src: etc/default/iscsitarget.j2
+    dest: /etc/default/iscsitarget
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart iscsitarget
+  when: >
+        zfs_enable_iscsi is defined and
+        zfs_enable_iscsi
+
+- name: debian | installing NFS (if enabled)
+  apt:
+    name: nfs-kernel-server
+    state: present
+  when: >
+        zfs_enable_nfs is defined and
+        zfs_enable_nfs
+
+- name: debian | un-installing NFS (if not enabled)
+  apt:
+    name: nfs-kernel-server
+    state: absent
+  when: >
+        zfs_enable_nfs is defined and
+        not zfs_enable_nfs
+
+- name: debian | configuring NFS Kernel Server
+  template:
+    src: etc/exports.j2
+    dest: /etc/exports
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart nfs-kernel-server
+    - start zfs-share
+  when: >
+        zfs_enable_nfs is defined and
+        zfs_enable_nfs
+
+- name: debian | configuring ZFS
+  template:
+    src: etc/default/zfs.j2
+    dest: /etc/default/zfs
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - start zfs-share

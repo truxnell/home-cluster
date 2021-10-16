@@ -4,17 +4,17 @@ metadata:
   name: volview
 spec:
   containers:
-  - name: volview
-    image: gcr.io/kubernetes-e2e-test-images/dnsutils:1.3
-    command:
-    - sleep
-    - "3600"
-    imagePullPolicy: IfNotPresent
-    volumeMounts:
-    - name: pool-media
-      mountPath: /mnt/old-media
+    - name: volview
+      image: alpine
+      command:
+        - sleep
+        - "3600"
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - name: pvc
+          mountPath: /mount_pvc
   restartPolicy: Always
   volumes:
-  - name: pool-media
-    persistentVolumeClaim:
-      claimName: plex-config-v2 #change this
+    - name: pvc
+      persistentVolumeClaim:
+        claimName: "factorio-deathworld-config-v1" #change this
