@@ -65,7 +65,7 @@ spec:
     persistence:
       factorio:
         enabled: true
-        existingClaim: factorio-k2-config-v1
+        existingClaim: factorio-deathworld-config-v1
 
     # Prefer higher single core speed node
     affinity:
