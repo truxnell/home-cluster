@@ -19,15 +19,15 @@ spec:
   values:
     image:
       repository: "factoriotools/factorio"
-      tag: "1.1.42"
+      tag: "1.1.41"
 
     service:
-        type: LoadBalancer # Setting Ip external to cluster for easy port forward
-        port: 34200
-        externalTrafficPolicy: Cluster
-        loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_FACTORIO}"  # Set a IP here to ensure the game server is given a static internal IP
-        annotations:
-          metallb.universe.tf/allow-shared-ip: factorio
+      type: LoadBalancer # Setting Ip external to cluster for easy port forward
+      port: 34200
+      externalTrafficPolicy: Cluster
+      loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_FACTORIO}" # Set a IP here to ensure the game server is given a static internal IP
+      annotations:
+        metallb.universe.tf/allow-shared-ip: factorio
 
     resources:
       requests:
@@ -56,16 +56,16 @@ spec:
       name: Factorio Marathon DEATHWORLD
       description: "Factorio Marathon Deathworld"
       tags:
-      - deathworld
-      - marathon
+        - deathworld
+        - marathon
       visibility:
         public: false
         lan: true
-      username: '${FACTORIO_USERNAME}'
-      token: '${FACTORIO_TOKEN}'
-      game_password: '${FACTORIO_SERVER_PASSWORD}'
+      username: "${FACTORIO_USERNAME}"
+      token: "${FACTORIO_TOKEN}"
+      game_password: "${FACTORIO_SERVER_PASSWORD}"
       max_upload_in_kilobytes_per_second: 0
-      max_upload_slots: 0 
+      max_upload_slots: 0
       minimum_latency_in_ticks: 0
       allow_commands: admins-only
       autosave_interval: 10
