@@ -57,7 +57,7 @@ spec:
     useAllNodes: false
     useAllDevices: false
     config:
-      metadataDevice:
+      # metadataDevice:
       osdsPerDevice: "1"
     nodes:
       - name: "k8s-control-node"
