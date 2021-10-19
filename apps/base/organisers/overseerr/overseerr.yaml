@@ -32,7 +32,7 @@ spec:
   values:
     image:
       repository: sctx/overseerr
-      tag: 1.26.1
+      tag: 1.27.0
     env:
       TZ: "Australia/Melbourne"
     persistence:
