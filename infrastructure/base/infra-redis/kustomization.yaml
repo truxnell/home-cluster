@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: infra-redis
 resources:
   - infra-redis.yaml
-  - namespace
+  - namespace.yaml
