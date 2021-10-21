@@ -14,7 +14,7 @@ spec:
         name: bitnami-charts
         namespace: flux-system
   values:
-    image:
+    image:  
       registry: docker.io
       repository: bitnami/redis
       tag: 6.2.5
