@@ -47,6 +47,7 @@ spec:
     prometheus:
       serviceMonitor:
         enabled: true
+    hostNetwork: true
     addons:
       codeserver:
         image:
