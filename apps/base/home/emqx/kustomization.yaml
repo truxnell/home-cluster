@@ -4,3 +4,4 @@ namespace: home
 resources:
   - emqx.yaml
   - config-pvc.yaml
+  - ingressroute-tls.yaml
