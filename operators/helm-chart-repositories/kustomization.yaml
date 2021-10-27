@@ -27,3 +27,4 @@ resources:
   - kasten-charts.yaml
   - k8s-at-home-truxnell.yaml
   - jamessql-factorio-server-charts.yaml
+  - emqx-charts.yaml
