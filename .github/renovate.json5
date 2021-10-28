@@ -5,8 +5,11 @@
 	semanticCommits: "enabled",
 	dependencyDashboard: true,
 	dependencyDashboardTitle: "Renovate Dashboard 🤖",
-	commitBody: "Signed-off-by: Nat Allan <Truxnell@users.noreply.github.com>",
+	commitBody: "Signed-off-by: {{{gitAuthor}}}",
 	assignees: ["truxnell"],
+	prConcurrentLimit: 0,
+	prHourlyLimit: 0,
+	configWarningReuseIssue: true,
 	// do not notify on closed unmerged PRs
 	suppressNotifications: ["prIgnoreNotification"],
 	// only rebase PRs when there's a conflict
