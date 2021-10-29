@@ -26,7 +26,7 @@ spec:
       containers:
         - name: webdav
           image: bytemark/webdav
-          imagePullPolicy: Always
+          version: 2.4
           #   capabilities:
           #     drop:
           #       - ALL

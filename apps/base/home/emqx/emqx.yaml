@@ -19,6 +19,7 @@ spec:
   values:
     image:
       repository: public.ecr.aws/emqx/emqx
+      version: 4.3.8
     replicaCount: 2
     recreatePods: true
     service:
