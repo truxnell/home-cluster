@@ -21,7 +21,7 @@ spec:
     deschedulerPolicy:
       strategies:
         RemoveDuplicates:
-          enabled: true
+          enabled: false
         RemovePodsViolatingNodeAffinity:
           enabled: true
           params:
@@ -41,4 +41,3 @@ spec:
                 cpu: 60
                 memory: 60
                 pods: 35
-
