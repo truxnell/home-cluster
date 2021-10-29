@@ -20,7 +20,7 @@ spec:
     image:
       repository: public.ecr.aws/emqx/emqx
       version: 4.3.8
-    replicaCount: 2
+    replicaCount: 3
     recreatePods: true
     service:
       type: LoadBalancer
