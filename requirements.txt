@@ -10,7 +10,7 @@ GitPython==3.1.24
 identify==2.3.0
 iniconfig==1.1.1
 nodeenv==1.6.0
-packaging==21.0
+packaging==21.2
 pathspec==0.9.0
 platformdirs==2.4.0
 pluggy==1.0.0
