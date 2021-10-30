@@ -185,7 +185,8 @@
 		// group packages
 		{
 			matchDatasources: ["helm", "docker"],
-			matchPackagePatterns: ["factorio", "factoriotools"],
+			// matchPackagePatterns: ["factorio", "factoriotools"],
+			followTag: "stable"
 			groupName: "factorio-gameservers",
 			additionalBranchPrefix: "",
 			separateMinorPatch: true,
