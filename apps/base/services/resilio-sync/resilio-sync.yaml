@@ -11,7 +11,7 @@ spec:
       version: 5.0.1
       sourceRef:
         kind: HelmRepository
-        name: resilio-sync
+        name: k8s-at-home
         namespace: flux-system
       interval: 5m
   # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/resilio-sync/values.yaml
