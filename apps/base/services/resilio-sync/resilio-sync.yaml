@@ -30,3 +30,6 @@ spec:
       config:
         enabled: true
         existingClaim: resilio-sync-config-v1
+      media:
+        enabled: true
+        existingClaim: leela-services-pv

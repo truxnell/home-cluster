@@ -8,3 +8,4 @@ resources:
   - unifi
   - webdav
   - resilio-sync
+  - leela-nfs-services.yaml

@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: leela-services-pv
+  labels:
+    velero.io/exclude-from-backup: "true"
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "nfs"
+  volumeName: leela-organisers-pv
+  resources:
+    requests:
+      storage: 1Mi
