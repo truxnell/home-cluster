@@ -24,6 +24,8 @@ spec:
     service:
       bt-tcp:
         enabled: false
+      bt-udp:
+        enabled: true
     persistence:
       config:
         enabled: true
