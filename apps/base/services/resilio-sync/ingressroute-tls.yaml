@@ -13,8 +13,8 @@ spec:
         - name: resilio-sync
           port: 8888
       middlewares:
-        - name: traefik-secure-headers
-          namespace: kube-system
+        # - name: traefik-secure-headers
+        #   namespace: kube-system
         - name: traefik-forward-auth
           namespace: kube-system
   tls:
