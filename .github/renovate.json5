@@ -176,7 +176,8 @@
 			matchDatasources: ["docker"],
 			automerge: false,
 			requiredStatusChecks: null,
-			matchUpdateTypes: ["major", "minor", "patch", "digest"],
+			// matchUpdateTypes: ["major", "minor", "patch", "digest"],
+			followTag: "stable"
 			matchPackageNames: ["factoriotools/factorio"],
 			schedule: ["before 2am every day", "after 8am every day"],
 		},
