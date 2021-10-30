@@ -166,6 +166,7 @@
 			matchDatasources: ["docker"],
 			automerge: true,
 			automergeType: "branch",
+			followTag: "stable",
 			requiredStatusChecks: null,
 			matchUpdateTypes: ["major", "minor", "patch", "digest"],
 			matchPackageNames: ["factoriotools/factorio"],
@@ -175,6 +176,7 @@
 		{
 			matchDatasources: ["docker"],
 			automerge: false,
+			followTag: "stable",
 			requiredStatusChecks: null,
 			matchUpdateTypes: ["major", "minor", "patch", "digest"],
 			matchPackageNames: ["factoriotools/factorio"],
