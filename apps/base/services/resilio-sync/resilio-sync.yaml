@@ -33,3 +33,4 @@ spec:
       media:
         enabled: true
         existingClaim: leela-services-pvc
+        mountPath: /sync/syno/
