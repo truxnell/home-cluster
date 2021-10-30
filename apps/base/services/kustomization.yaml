@@ -6,3 +6,5 @@ resources:
   - joplin-server
   - vaultwarden
   - unifi
+  - webdav
+  - resilio-sync
