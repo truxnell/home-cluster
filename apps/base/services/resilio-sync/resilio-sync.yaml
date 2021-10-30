@@ -1,0 +1,27 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: resilio-sync
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: resilio-sync
+      version: 5.0.1
+      sourceRef:
+        kind: HelmRepository
+        name: resilio-sync
+        namespace: flux-system
+      interval: 5m
+  # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/resilio-sync/values.yaml
+  values:
+    image:
+      repository: ghcr.io/linuxserver/resilio-sync
+      tag: version-2.7.2.1375
+    env:
+      TZ: "Australia/Melbounre"
+    persistence:
+      config:
+        enabled: true
+        existingClaim: resilio-sync-config-v1

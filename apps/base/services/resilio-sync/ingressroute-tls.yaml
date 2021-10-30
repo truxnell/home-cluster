@@ -1,0 +1,21 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: joplin-tls
+spec:
+  entryPoints:
+    - websecure
+  routes: # TODO Set api with no auth
+    - kind: Rule
+      match: Host(`resilio.${CLUSTER_DOMAIN}`)
+      services:
+        - name: joplin-server
+          port: 22300
+      middlewares:
+        - name: traefik-secure-headers
+          namespace: kube-system
+        - name: traefik-forward-auth
+          namespace: kube-system
+  tls:
+    certResolver: cloudflare
