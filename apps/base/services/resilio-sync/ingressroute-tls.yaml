@@ -8,10 +8,10 @@ spec:
     - websecure
   routes: # TODO Set api with no auth
     - kind: Rule
-      match: Host(`resilio.${CLUSTER_DOMAIN}`)
+      match: Host(`resilio-sync.${CLUSTER_DOMAIN}`)
       services:
-        - name: joplin-server
-          port: 22300
+        - name: resilio-sync
+          port: 8888
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
