@@ -21,6 +21,9 @@ spec:
       tag: version-2.7.2.1375
     env:
       TZ: "Australia/Melbounre"
+    service:
+      bt-tcp:
+        enabled: false
     persistence:
       config:
         enabled: true
