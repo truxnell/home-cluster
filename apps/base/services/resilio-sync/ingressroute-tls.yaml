@@ -2,7 +2,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: joplin-tls
+  name: resilio-sync-tls
 spec:
   entryPoints:
     - websecure
