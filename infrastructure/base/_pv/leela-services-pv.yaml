@@ -1,0 +1,23 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: leela-services-pv
+  labels:
+    velero.io/exclude-from-backup: "true"
+spec:
+  storageClassName: "nfs"
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: ${SYNOLOGY_IP}
+    path: "/volume1/"
+  mountOptions:
+    - tcp
+    - intr
+    - hard
+    - noatime
+    - nodiratime
