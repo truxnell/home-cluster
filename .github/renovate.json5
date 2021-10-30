@@ -177,7 +177,7 @@
 			automerge: false,
 			requiredStatusChecks: null,
 			// matchUpdateTypes: ["major", "minor", "patch", "digest"],
-			followTag: "stable"
+			followTag: "stable",
 			matchPackageNames: ["factoriotools/factorio"],
 			schedule: ["before 2am every day", "after 8am every day"],
 		},
@@ -186,7 +186,7 @@
 		{
 			matchDatasources: ["helm", "docker"],
 			// matchPackagePatterns: ["factorio", "factoriotools"],
-			followTag: "stable"
+			followTag: "stable",
 			groupName: "factorio-gameservers",
 			additionalBranchPrefix: "",
 			separateMinorPatch: true,
