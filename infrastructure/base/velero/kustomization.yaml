@@ -5,3 +5,4 @@ resources:
   - namespace.yaml
   - infra-velero.sops.yaml
   - velero.yaml
+  - prometheus-rule.yaml
