@@ -15,7 +15,7 @@ spec:
         name: emqx-charts
         namespace: flux-system
       interval: 5m
-  # Values link:
+  # Values link: https://github.com/emqx/emqx-chart/blob/master/charts/emqx/values.yaml
   values:
     image:
       repository: public.ecr.aws/emqx/emqx
@@ -44,3 +44,9 @@ spec:
     persistence:
       enabled: true
       existingClaim: homeassistant-config-v2
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
+      pre.hook.backup.velero.io/container: fsfreeze
+      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
+      post.hook.backup.velero.io/container: fsfreeze
+      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
