@@ -10,6 +10,10 @@ spec:
   database:
     size: 10Gb
     storageClassName: rook-ceph-block
+  backup:
+    schedule: "0 */1 * * *"
+    pvcName: leela-database-pvc
+    volumeMount: backup/kurbenetes/postgres
   env:
     - name: POSTGRES_PASSWORD
       value: "${POSTGRES_PASSWORD}"
