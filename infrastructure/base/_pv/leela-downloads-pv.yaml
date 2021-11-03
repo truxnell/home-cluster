@@ -14,7 +14,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: ${SYNOLOGY_IP}
-    path: "/volume1/backup/kubernetes/postgres/"
+    path: "/volume1/"
   mountOptions:
     - tcp
     - intr
