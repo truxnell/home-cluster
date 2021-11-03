@@ -4,3 +4,4 @@ namespace: database
 resources:
   - kubegres
   - namespace.yaml
+  - leela-nfs-database.yaml

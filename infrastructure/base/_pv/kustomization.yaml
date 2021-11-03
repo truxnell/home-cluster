@@ -7,3 +7,4 @@ resources:
   - leela-media-pv.yaml
   - leela-backups-kasten-pv.yaml
   - leela-services-pv.yaml
+  - leela-database-pv.yaml
