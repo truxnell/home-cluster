@@ -2,7 +2,7 @@
 apiVersion: kubegres.reactive-tech.io/v1
 kind: Kubegres
 metadata:
-  name: kubegres-database
+  name: database
 spec:
   replicas: 1
   image: postgres:14.0
