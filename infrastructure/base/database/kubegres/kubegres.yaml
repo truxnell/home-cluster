@@ -3,10 +3,9 @@ apiVersion: kubegres.reactive-tech.io/v1
 kind: Kubegres
 metadata:
   name: kubegres-database
-  namespace: database
 spec:
   replicas: 1
-  image: postgres:13.4
+  image: postgres:14.0
   database:
     size: 10Gi
     storageClassName: rook-ceph-block
