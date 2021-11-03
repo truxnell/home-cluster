@@ -15,13 +15,15 @@ spec:
     volumeMount: /backup/
   env:
     - name: POSTGRES_PASSWORD
-      value: "${POSTGRES_PASSWORD}"
+      valueFrom:
+        secretKeyRef:
+          name: mypostgres-secret
+          key: superUserPassword
     - name: POSTGRES_REPLICATION_PASSWORD
-      value: "${POSTGRES_REPLICATION_PASSWORD}"
-    - name: PGDATA
-      value: "/var/lib/postgresql/data/pgdata"
-    - name: POSTGRES_PASSWORD
-      value: "${POSTGRES_PASSWORD}"
+      valueFrom:
+        secretKeyRef:
+          name: mypostgres-secret
+          key: replicationUserPassword
   resources:
     limits:
       memory: "4Gi"

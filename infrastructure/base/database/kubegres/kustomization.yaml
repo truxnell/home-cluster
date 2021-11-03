@@ -4,3 +4,4 @@ namespace: database
 resources:
   - kubegres.yaml
   - service.yaml
+  - secrets.sops.yaml
