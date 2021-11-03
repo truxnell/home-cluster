@@ -13,7 +13,7 @@ spec:
   backup:
     schedule: "0 */1 * * *"
     pvcName: leela-database-pvc
-    volumeMount: /var/lib/backup
+    volumeMount: /backup/kurbenetes/postgres/
   env:
     - name: POSTGRES_PASSWORD
       value: "${POSTGRES_PASSWORD}"
