@@ -14,7 +14,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: ${SYNOLOGY_IP}
-    path: "/volume1/"
+    path: "/volume1/backup/kurbenetes/"
   mountOptions:
     - tcp
     - intr
