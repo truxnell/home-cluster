@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - git-repository.yaml
+  - namespace.yaml
