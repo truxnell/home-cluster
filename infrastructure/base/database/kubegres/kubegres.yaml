@@ -21,3 +21,10 @@ spec:
       value: "${POSTGRES_REPLICATION_PASSWORD}"
     - name: PGDATA
       value: "/var/lib/postgresql/data/pgdata"
+  resources:
+    limits:
+      memory: "4Gi"
+      cpu: "1"
+    requests:
+      memory: "500Mi"
+      cpu: "1"
