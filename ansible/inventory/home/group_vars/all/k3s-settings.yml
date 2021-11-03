@@ -20,6 +20,19 @@ k3s_use_experimental: false
 # Enable debugging
 k3s_debug: false
 
+# # Enabled embedded etcd
+# k3s_etcd_datastore: false
+
+# # (string) Control Plane registration address
+# k3s_registration_address: "192.168.2.220"
+
+# (list) A list of URLs to deploy on the primary control plane. Read notes below.
+
+# Im not using tigera as it doesnt support arm :(
+k3s_server_manifests_urls:
+  - url: https://docs.projectcalico.org/manifests/calico.yaml
+    filename: calico.yaml
+
 KUBECTL_BIN: /usr/bin/kubectl
 DOCKER_USER: !vault |
   $ANSIBLE_VAULT;1.1;AES256
