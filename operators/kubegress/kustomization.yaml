@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: kubegres-system
 resources:
   - git-repository.yaml
-  - namespace.yaml
+  - kustomize.yaml
