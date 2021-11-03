@@ -20,6 +20,8 @@ spec:
       value: "${POSTGRES_REPLICATION_PASSWORD}"
     - name: PGDATA
       value: "/var/lib/postgresql/data/pgdata"
+    - name: POSTGRES_PASSWORD
+      value: "${POSTGRES_PASSWORD}"
   resources:
     limits:
       memory: "4Gi"
