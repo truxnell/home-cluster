@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
 metadata:
-  name: kubegres
+  name: kubegres-crd-source
   namespace: flux-system
 spec:
   interval: 9m0s
