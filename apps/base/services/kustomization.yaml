@@ -5,7 +5,7 @@ resources:
   - namespace.yaml
   - joplin-server
   - vaultwarden
-  - unifi
+  # - unifi # Using Unifi Dream Machine Pro now
   - webdav
   - resilio-sync
   - leela-nfs-services.yaml
