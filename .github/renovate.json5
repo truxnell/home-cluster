@@ -222,7 +222,7 @@
     {
       "description": "Package requirements: updated weekly",
       "matchFiles": ["requirements.txt"],
-      "extends": [""schedule":weekends"],
+      "extends": ["schedule:weekends"],
       "stabilityDays": 1,
       "matchUpdateTypes": ["major"],
     },
