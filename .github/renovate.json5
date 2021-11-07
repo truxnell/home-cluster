@@ -165,14 +165,11 @@
 			automerge: true,
 			automergeType: "branch",
 			requiredStatusChecks: null,
+			followtag: "stable"
 			matchUpdateTypes: ["major","minor", "patch", "digest"],
 			matchPackageNames: [
 				"factoriotools/factorio"
-			],
-      schedule: [
-        "after 2am every day",
-        "before 8am every day"
-      ]
+			]
 		},
     
 		// group packages
