@@ -1,139 +1,134 @@
 {
-	"extends": ["config:base"],
-	"enabled": true,
-	"timezone": "Australia/Melbourne",
-	"semanticCommits": "enabled",
-	"dependencyDashboard": true,
-	"dependencyDashboardTitle": "Renovate Dashboard 🤖",
-	"commitBody": "Signed-off-by: {{{gitAuthor}}}",
-	"assignees": ["truxnell"],
-	"prConcurrentLimit": 0,
-	"prHourlyLimit": 0,
-	"configWarningReuseIssue": true,
+	enabled: true,
+	timezone: "Australia/Melbourne",
+	semanticCommits: "enabled",
+	dependencyDashboard: true,
+	dependencyDashboardTitle: "Renovate Dashboard 🤖",
+	commitBody: "Signed-off-by: Nat Allan <Truxnell@users.noreply.github.com>",
 	// do not notify on closed unmerged PRs
-	"suppressNotifications": ["prIgnoreNotification"],
+	suppressNotifications: ["prIgnoreNotification"],
 	// only rebase PRs when there's a conflict
-	"rebaseWhen": "conflicted",
-	"kubernetes": {
-		"fileMatch": ["infrastructure/.+\\.yaml$", "operators/.+\\.yaml$", "apps/.+\\.yaml$"],
-		"ignorePaths": [
+	rebaseWhen: "conflicted",
+	kubernetes: {
+		fileMatch: ["infrastructure/.+\\.yaml$", "operators/.+\\.yaml$", "apps/.+\\.yaml$"],
+		ignorePaths: [
 			// "cluster/flux-system/",
 			// "cluster/actions-runner-system/"
 		],
 	},
 	"helm-values": {
-		"fileMatch": ["infrastructure/.+\\.yaml$", "operators/.+\\.yaml$", "apps/.+\\.yaml$"],
+		fileMatch: ["infrastructure/.+\\.yaml$", "operators/.+\\.yaml$", "apps/.+\\.yaml$"],
 	},
-	"regexManagers": [
+	regexManagers: [
 		{
-			"fileMatch": ["infrastructure/.+\\.yaml$", "operators/.+\\.yaml$", "apps/.+\\.yaml$"],
-			"matchStrings": [
+			fileMatch: ["infrastructure/.+\\.yaml$", "operators/.+\\.yaml$", "apps/.+\\.yaml$"],
+			matchStrings: [
 				"registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n",
 			],
-			"datasourceTemplate": "helm",
+			datasourceTemplate: "helm",
 		},
 		// regexManager to read and process cert-manager CRD's
 		{
-			"fileMatch": ["operators/cert-manager/.+\\.yaml$"],
-			"matchStrings": [
+			fileMatch: ["operators/cert-manager/.+\\.yaml$"],
+			matchStrings: [
 				"registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/",
 			],
-			"datasourceTemplate": "helm",
+			datasourceTemplate: "helm",
 		},
 		// regexManager to read and process kube-prometheus-stack CRD's
 		{
-			"fileMatch": ["infrastructure/base/infra-prometheus-stack/.+\\.yaml$"],
-			"matchStrings": [
+			fileMatch: ["infrastructure/base/infra-prometheus-stack/.+\\.yaml$"],
+			matchStrings: [
 				"registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n",
 			],
-			"datasourceTemplate": "helm",
+			datasourceTemplate: "helm",
 		},
 		// regexManager to read and process Traefik CRD's
 		{
-			"fileMatch": ["operators/infra-traefik/.+\\.yaml$"],
-			"matchStrings": [
+			fileMatch: ["operators/infra-traefik/.+\\.yaml$"],
+			matchStrings: [
 				"registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: v(?<currentValue>.*)\n",
 			],
-			"datasourceTemplate": "helm",
+			datasourceTemplate: "helm",
 		},
 		// regexManager to read and process Rook-Ceph CRD's
 		{
-			"fileMatch": ["operators/rook-ceph/.+\\.yaml$"],
-			"matchStrings": [
+			fileMatch: ["operators/rook-ceph/.+\\.yaml$"],
+			matchStrings: [
 				"registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: (?<currentValue>.*)\n",
 			],
-			"datasourceTemplate": "helm",
+			datasourceTemplate: "helm",
 		},
 	],
-	"packageRules": [
+	packageRules: [
 		// setup datasources
 		{
-			"matchDatasources": ["helm"],
-			"semanticCommitScope": "charts",
-			"separateMinorPatch": true,
-			"ignoreDeprecated": true,
+			matchDatasources: ["helm"],
+			semanticCommitScope: "charts",
+			separateMinorPatch: true,
+			ignoreDeprecated: true,
 		},
 		{
-			"matchDatasources": ["docker"],
-			"enabled": true,
-			"matchUpdateTypes": ["major", "minor", "patch"],
+			matchDatasources: ["docker"],
+			enabled: true,
+			matchUpdateTypes: ["major", "minor", "patch"],
 		},
 		{
-			"matchDatasources": ["docker"],
-			"semanticCommitScope": "images",
-			"separateMinorPatch": true,
+			matchDatasources: ["docker"],
+			semanticCommitScope: "images",
+			separateMinorPatch: true,
 		},
-		// add "labels" according to package and update types
+		// add labels according to package and update types
 		{
-			"matchDatasources": ["docker"],
-			"matchUpdateTypes": ["major"],
-			"commitMessagePrefix": "feat(images)!: ",
-			"labels": ["renovate/image", "dep/major"],
-		},
-		{
-			"matchDatasources": ["docker"],
-			"matchUpdateTypes": ["minor"],
-			"semanticCommitType": "feat",
-			"labels": ["renovate/image", "dep/minor"],
+			matchDatasources: ["docker"],
+			matchUpdateTypes: ["major"],
+			commitMessagePrefix: "feat(images)!: ",
+			labels: ["renovate/image", "dep/major"],
 		},
 		{
-			"matchDatasources": ["docker"],
-			"matchUpdateTypes": ["patch"],
-			"semanticCommitType": "fix",
-			"labels": ["renovate/image", "dep/patch"],
+			matchDatasources: ["docker"],
+			matchUpdateTypes: ["minor"],
+			semanticCommitType: "feat",
+			labels: ["renovate/image", "dep/minor"],
 		},
 		{
-			"matchDatasources": ["helm"],
-			"matchUpdateTypes": ["major"],
-			"commitMessagePrefix": "feat(charts)!: ",
-			"labels": ["renovate/helm", "dep/major"],
+			matchDatasources: ["docker"],
+			matchUpdateTypes: ["patch"],
+			semanticCommitType: "fix",
+			labels: ["renovate/image", "dep/patch"],
 		},
 		{
-			"matchDatasources": ["helm"],
-			"matchUpdateTypes": ["minor"],
-			"semanticCommitType": "feat",
-			"labels": ["renovate/helm", "dep/minor"],
+			matchDatasources: ["helm"],
+			matchUpdateTypes: ["major"],
+			commitMessagePrefix: "feat(charts)!: ",
+			labels: ["renovate/helm", "dep/major"],
 		},
 		{
-			"matchDatasources": ["helm"],
-			"matchUpdateTypes": ["patch"],
-			"semanticCommitType": "fix",
-			"labels": ["renovate/helm", "dep/patch"],
+			matchDatasources: ["helm"],
+			matchUpdateTypes: ["minor"],
+			semanticCommitType: "feat",
+			labels: ["renovate/helm", "dep/minor"],
+		},
+		{
+			matchDatasources: ["helm"],
+			matchUpdateTypes: ["patch"],
+			semanticCommitType: "fix",
+			labels: ["renovate/helm", "dep/patch"],
 		},
 		// version strategies
 		{
-			"matchDatasources": ["docker"],
-			"versioning": "loose",
-			"matchPackageNames": ["ghcr.io/k8s-at-home/plex", "ghcr.io/k8s-at-home/qbittorrent"],
+			matchDatasources: ["docker"],
+			versioning: "loose",
+			matchPackageNames: ["ghcr.io/k8s-at-home/plex", "ghcr.io/k8s-at-home/qbittorrent"],
 		},
 		// enable auto-merge
 		{
-			"matchDatasources": ["docker"],
-			"automerge": true,
-			"automergeType": "branch",
-			"requiredStatusChecks": null,
-			"matchUpdateTypes": ["minor", "patch", "digest"],
-			"matchPackageNames": [
+			matchDatasources: ["docker"],
+			automerge: true,
+			automergeType: "branch",
+			requiredStatusChecks: null,
+			matchUpdateTypes: ["minor", "patch", "digest"],
+			matchPackageNames: [
 				"flaresolverr/flaresolverr",
 				"ghcr.io/k8s-at-home/jackett",
 				"ghcr.io/k8s-at-home/plex",
@@ -145,87 +140,62 @@
 				"ghcr.io/k8s-at-home/nzbhydra2",
 				"ghcr.io/k8s-at-home/prowlarr",
 				"ghcr.io/k8s-at-home/readarr",
-				"ghcr.io/k8s-at-home/qbittorrent",
-				"ghcr.io/k8s-at-home/prowlarr",
-				"joplin/server",
-				"jacobalberty/unifi",
-				"linuxserver/calibre-web",
-				"linuxserver/pyload",
-				"vexorian/dizquetv",
-				"b4bz/homer",
+        "ghcr.io/k8s-at-home/qbittorrent",
+        "ghcr.io/k8s-at-home/prowlarr",
+        "joplin/server",
+        "jacobalberty/unifi",
+        "linuxserver/calibre-web",
+        "linuxserver/pyload",
+        "vexorian/dizquetv",
+        "b4bz/homer",
 				"sctx/overseerr",
 				"b4bz/homer",
 				"vexorian/dizquetv",
 				"joplin/server",
 				"grafana/grafana",
 			],
-			"schedule": ["after 2am every day", "before 8am every day"],
+      schedule: [
+        "after 2am every day",
+        "before 8am every day"
+      ]
 		},
-		// Game servers (Automerge at night)
-		{
-			"matchDatasources": ["docker"],
-			"automerge": true,
-			"automergeType": "branch",
-			"requiredStatusChecks": null,
-			"matchUpdateTypes": ["major", "minor", "patch", "digest"],
-			"matchPackageNames": ["factoriotools/factorio"],
-			"schedule": ["after 2am every day", "before 8am every day"],
+    // Game servers
+    {
+			matchDatasources: ["docker"],
+			automerge: true,
+			automergeType: "branch",
+			requiredStatusChecks: null,
+			matchUpdateTypes: ["major","minor", "patch", "digest"],
+			matchPackageNames: [
+				"factoriotools/factorio"
+			],
+      schedule: [
+        "after 2am every day",
+        "before 8am every day"
+      ]
 		},
-		// Game servers (PR during day)
-		{
-			"matchDatasources": ["docker"],
-			"automerge": false,
-			"requiredStatusChecks": null,
-			// "matchUpdateTypes": ["major", "minor", "patch", "digest"],
-			"followTag": "stable",
-			"matchPackageNames": ["factoriotools/factorio"],
-			"schedule": ["before 2am every day", "after 8am every day"],
-		},
-
+    
 		// group packages
 		{
-			"matchDatasources": ["helm", "docker"],
-			// matchPackagePatterns: ["factorio", "factoriotools"],
-			"followTag": "stable",
-			"groupName": "factorio-gameservers",
-			"additionalBranchPrefix": "",
-			"separateMinorPatch": true,
+			matchDatasources: ["helm", "docker"],
+			matchPackagePatterns: ["^rook.ceph"],
+			groupName: "rook-ceph-suite",
+			additionalBranchPrefix: "",
+			separateMinorPatch: true,
 		},
 		{
-			"matchDatasources": ["helm", "docker"],
-			"matchPackagePatterns": ["^rook.ceph"],
-			"groupName": "rook-ceph-suite",
-			"additionalBranchPrefix": "",
-			"separateMinorPatch": true,
+			matchDatasources: ["github-releases", "docker"],
+			matchPackagePatterns: ["external-snapshotter", "snapshot-controller"],
+			groupName: "external-snapshotter-suite",
+			additionalBranchPrefix: "",
+			separateMinorPatch: true,
 		},
 		{
-			"matchDatasources": ["github-releases", "docker"],
-			"matchPackagePatterns": ["external-snapshotter", "snapshot-controller"],
-			"groupName": "external-snapshotter-suite",
-			"additionalBranchPrefix": "",
-			"separateMinorPatch": true,
+			matchDatasources: ["github-tags", "docker"],
+			matchPackagePatterns: ["rancher/system-upgrade-controller"],
+			groupName: "system-upgrade-controller-suite",
+			additionalBranchPrefix: "",
+			separateMinorPatch: true,
 		},
-		{
-			"matchDatasources": ["github-tags", "docker"],
-			"matchPackagePatterns": ["rancher/system-upgrade-controller"],
-			"groupName": "system-upgrade-controller-suite",
-			"additionalBranchPrefix": "",
-			"separateMinorPatch": true,
-		},
-		{
-      "description": "Package requirements: minor updates are silent",
-      "matchFiles": ["requirements.txt"],
-      "automerge": true,
-      "automergeType": "branch",
-      "matchUpdateTypes": ["minor", "patch"],
-    },
-    {
-      "description": "Package requirements: updated weekly",
-      "matchFiles": ["requirements.txt"],
-      "extends": ["schedule:weekends"],
-      "stabilityDays": 1,
-      "matchUpdateTypes": ["major"],
-    },
-
 	],
 }
