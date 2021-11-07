@@ -166,7 +166,7 @@
 			automergeType: "branch",
 			requiredStatusChecks: null,
 			followTag: "stable",
-			matchUpdateTypes: ["major","minor", "patch", "digest"],
+			//: ["major","minor", "patch", "digest"],
 			matchPackageNames: [
 				"factoriotools/factorio"
 			]
