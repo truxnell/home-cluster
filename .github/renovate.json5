@@ -165,7 +165,7 @@
 			automerge: true,
 			automergeType: "branch",
 			requiredStatusChecks: null,
-			respectLatest: false
+			respectLatest: false,
 			followTag: "stable",
 			//matchUpdateTypes: ["major","minor", "patch", "digest"],
 			matchPackageNames: [
