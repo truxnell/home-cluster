@@ -23,7 +23,7 @@ six==1.16.0
 smmap==5.0.0
 toml==0.10.2
 typing-extensions==3.10.0.2
-virtualenv==20.8.1
+virtualenv==20.10.0
 xmltodict==0.12.0
 yamllint==1.26.3
 yq==2.12.2
