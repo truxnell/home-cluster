@@ -7,7 +7,7 @@ distlib==0.3.3
 filelock==3.3.2
 gitdb==4.0.7
 GitPython==3.1.24
-identify==2.3.0
+identify==2.3.5
 iniconfig==1.1.1
 nodeenv==1.6.0
 packaging==21.0
