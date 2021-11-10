@@ -19,9 +19,9 @@ spec:
   values:
     image:
       # -- image repository
-      repository: factoriotools/factorio
+      repository: factoriotools/factorio:stable
       # -- image tag
-      tag: 1.1.46
+      tag: 1.1.42
 
     env:
       # -- Set the container timezone
