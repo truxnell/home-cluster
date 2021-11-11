@@ -19,7 +19,7 @@ spec:
   values:
     image:
       # -- image repository
-      repository: factoriotools/factorio:stable
+      repository: factoriotools/factorio
       # -- image tag
       tag: 1.1.42
 
