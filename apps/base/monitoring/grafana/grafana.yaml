@@ -15,14 +15,15 @@ spec:
         name: grafana-charts
         namespace: flux-system
       interval: 5m
-    install:
-      remediation: # perform remediation when helm install fails
-        retries: 3
-    upgrade:
-      remediation: # perform remediation when helm upgrade fails
-        retries: 3
-        remediateLastFailure: true # remediate the last failure, when no retries remain
-      cleanupOnFail: true
+  install:
+    remediation: # perform remediation when helm install fails
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
+
   # Values link: https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
   values:
     image:
@@ -53,23 +54,23 @@ spec:
       dashboardproviders.yaml:
         apiVersion: 1
         providers:
-        - name: 'default'
-          orgId: 1
-          folder: ''
-          type: file
-          disableDeletion: false
-          editable: true
-          options:
-            path: /var/lib/grafana/dashboards/default
+          - name: "default"
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/default
     datasources:
       datasources.yaml:
         apiVersion: 1
         datasources:
-        - name: Prometheus
-          type: prometheus
-          url: http://prometheus-operated.monitoring.svc.cluster.local:9090
-          access: proxy
-          isDefault: true
+          - name: Prometheus
+            type: prometheus
+            url: http://prometheus-operated.monitoring.svc.cluster.local:9090
+            access: proxy
+            isDefault: true
     dashboards:
       default:
         # Ref: https://grafana.com/grafana/dashboards/12175
@@ -155,12 +156,12 @@ spec:
         enabled: true
         searchNamespace: ALL
     plugins:
-    - natel-discrete-panel
-    - pr0ps-trackmap-panel
-    - grafana-piechart-panel
-    - vonage-status-panel
-    - grafana-worldmap-panel
-    - grafana-clock-panel
+      - natel-discrete-panel
+      - pr0ps-trackmap-panel
+      - grafana-piechart-panel
+      - vonage-status-panel
+      - grafana-worldmap-panel
+      - grafana-clock-panel
     serviceMonitor:
       enabled: true
     persistence:
@@ -186,5 +187,3 @@ spec:
             mountPath: /etc/grafana
         securityContext:
           privileged: true
-
-

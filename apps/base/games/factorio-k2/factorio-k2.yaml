@@ -15,14 +15,15 @@ spec:
         name: k8s-at-home-truxnell
         namespace: flux-system
       interval: 5m
-    install:
-      remediation: # perform remediation when helm install fails
-        retries: 3
-    upgrade:
-      remediation: # perform remediation when helm upgrade fails
-        retries: 3
-        remediateLastFailure: true # remediate the last failure, when no retries remain
-      cleanupOnFail: true
+  install:
+    remediation: # perform remediation when helm install fails
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
+
   # Values link: https://github.com/Truxnell/charts/blob/master/charts/stable/factorio/values.yaml
   values:
     image:
