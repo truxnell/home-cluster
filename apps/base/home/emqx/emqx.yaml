@@ -17,6 +17,14 @@ spec:
       interval: 5m
   # Values link: https://github.com/emqx/emqx-chart/blob/master/charts/emqx/values.yaml
   values:
+  install:
+    remediation: # perform remediation when helm install fails
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
     image:
       repository: emqx/emqx
       version: 4.3.8
