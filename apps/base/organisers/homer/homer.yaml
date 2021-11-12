@@ -23,16 +23,6 @@ spec:
       retries: 3
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
-
-  test:
-    enable: true
-  # install:
-  #   remediation:
-  #     retries: 3
-  upgrade:
-    remediation:
-      remediateLastFailure: true
-    cleanupOnFail: true
   rollback:
     timeout: 10m
     recreate: true
@@ -71,4 +61,3 @@ spec:
             mountPath: /config
         securityContext:
           privileged: true
-
