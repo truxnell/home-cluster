@@ -15,8 +15,6 @@ spec:
         name: emqx-charts
         namespace: flux-system
       interval: 5m
-  # Values link: https://github.com/emqx/emqx-chart/blob/master/charts/emqx/values.yaml
-  values:
   install:
     remediation: # perform remediation when helm install fails
       retries: 3
@@ -25,6 +23,8 @@ spec:
       retries: 3
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
+  # Values link: https://github.com/emqx/emqx-chart/blob/master/charts/emqx/values.yaml
+  values:
     image:
       repository: emqx/emqx
       version: 4.3.8
