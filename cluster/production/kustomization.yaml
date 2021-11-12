@@ -8,3 +8,4 @@ resources:
   - flux-system
   - operators.yaml
   - infrastructure.yaml
+  - apps.yaml
