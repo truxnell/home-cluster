@@ -1,0 +1,6 @@
+﻿platform: Linux 5.10.70-1-MANJARO #1 SMP PREEMPT Thu Sep 30 15:29:01 UTC 2021 x86_64
+version: 2.7.2.1375
+[20211031 12:42:50.969] ZIP: Can't locate [version] in zip, error -100.
+[20211031 12:42:50.980] saved history: 0 events
+[20211031 12:42:50.981] Torrent session shutdown: done waiting
+[20211031 12:42:50.981] Shutdown. Saving config sync.dat
