@@ -5,7 +5,7 @@ metadata:
   name: kubegres-database
 spec:
   replicas: 1
-  image: postgres:14.0
+  image: postgres:14.1
   database:
     size: 10Gi
     storageClassName: rook-ceph-block
