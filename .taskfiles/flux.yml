@@ -8,7 +8,7 @@ tasks:
       - git push
       - flux reconcile source git flux-system
     silent: false
- 
+
   sapps:
     desc: Sync apps kustomization with the Git Repository, and display kustomization list
     cmds:
@@ -30,7 +30,7 @@ tasks:
   hr:
     desc: List all Helm Releases
     cmds:
-      - flux get hr -A  | grep --colour -e "^" -e False   
+      - flux get hr -A  | grep --colour -e "^" -e False
     silent: true
 
   hs:
@@ -51,3 +51,8 @@ tasks:
       - flux get kustomizations -A
     silent: true
 
+  hr-restart:
+    desc: Restar tall failed Helm Releases
+    cmds:
+      - kubectl get hr --all-namespaces | grep False | awk '{print $2, $1}' | xargs -l bash -c 'flux suspend hr $0 -n $1'
+      - kubectl get hr --all-namespaces | grep False | awk '{print $2, $1}' | xargs -l bash -c 'flux resume hr $0 -n $1'
