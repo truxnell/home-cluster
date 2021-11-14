@@ -33,12 +33,13 @@ spec:
     service:
       type: LoadBalancer
       loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_EMQX}"
-    emqxConfig:
-      EMQX_ALLOW_ANONYMOUS: "false"
-      EMQX_ADMIN_PASSWORD: "${EMQX_ADMIN_PASSWORD}"
-      EMQX_AUTH__MNESIA__PASSWORD_HASH: plain
-      EMQX_AUTH__USER__1__USERNAME: "${EMQX_USERNAME}"
-      EMQX_AUTH__USER__1__PASSWORD: "${EMQX_PASSWORD}"
+
+    emqxAclConfig: >
+      {allow, {user, "dashboard"}, subscribe, ["$SYS/#"]}.
+      {allow, {ipaddr, "127.0.0.1"}, pubsub, ["$SYS/#", "#"]}.
+      {allow, all, subscribe, ["$SYS/#", {eq, "#"}]}.
+      {allow, all}.
+
     emqxLoadedPlugins: >
       {emqx_management, true}.
       {emqx_recon, true}.
@@ -48,7 +49,22 @@ spec:
       {emqx_rule_engine, true}.
       {emqx_bridge_mqtt, false}.
       {emqx_auth_mnesia, true}.
-    persistence:
+      {emqx_prometheus, true}.
+
+    emqxLoadedModules: >
+      {emqx_mod_presence, true}.
+      {emqx_mod_delayed, false}.
+      {emqx_mod_rewrite, false}.
+      {emqx_mod_subscription, false}.
+      {emqx_mod_topic_metrics, true}.
+
+    resources:
+      limits:
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 150Mi
+      persistence:
       enabled: true
       size: 100Mi
       storageClass: "rook-ceph-block"
