@@ -34,6 +34,13 @@ spec:
       type: LoadBalancer
       loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_EMQX}"
 
+    emqxConfig:
+      EMQX_ALLOW_ANONYMOUS: "false"
+      EMQX_ADMIN_PASSWORD: "${EMQX_ADMIN_PASSWORD}"
+      EMQX_AUTH__MNESIA__PASSWORD_HASH: plain
+      EMQX_AUTH__USER__1__USERNAME: "${EMQX_USERNAME}"
+      EMQX_AUTH__USER__1__PASSWORD: "${EMQX_PASSWORD}"
+
     emqxAclConfig: >
       {allow, {user, "dashboard"}, subscribe, ["$SYS/#"]}.
       {allow, {ipaddr, "127.0.0.1"}, pubsub, ["$SYS/#", "#"]}.
