@@ -64,7 +64,7 @@ spec:
       requests:
         cpu: 100m
         memory: 150Mi
-      persistence:
+    persistence:
       enabled: true
       size: 100Mi
       storageClass: "rook-ceph-block"
