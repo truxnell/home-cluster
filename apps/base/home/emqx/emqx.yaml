@@ -50,7 +50,9 @@ spec:
       {emqx_auth_mnesia, true}.
     persistence:
       enabled: true
-      existingClaim: emqx-config-v1
+      size: 100Mi
+      storageClass: "ceph-block"
+      accessMode: ReadWriteOnce
     podAnnotations:
       backup.velero.io/backup-volumes: config
       pre.hook.backup.velero.io/container: fsfreeze
