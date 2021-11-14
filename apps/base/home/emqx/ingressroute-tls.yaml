@@ -10,8 +10,8 @@ spec:
     - kind: Rule
       match: Host(`emxq.${CLUSTER_DOMAIN}`)
       services:
-        - name: home-assistant
-          port: 8123
+        - name: emqx
+          port: 18083
       middlewares:
         - name: traefik-secure-headers
           namespace: kube-system
