@@ -2,13 +2,13 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: emxq-tls
+  name: emqx-tls
 spec:
   entryPoints:
     - websecure
   routes: # TODO Set api with no auth
     - kind: Rule
-      match: Host(`emxq.${CLUSTER_DOMAIN}`)
+      match: Host(`emqx.${CLUSTER_DOMAIN}`)
       services:
         - name: emqx
           port: 18083
