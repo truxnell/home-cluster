@@ -42,10 +42,10 @@ spec:
       config:
         enabled: true
         existingClaim: homeassistant-config-v2
-    service:
-      main:
-        type: LoadBalancer
-        loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_HA}"
+    # service:
+    #   main:
+    #     type: LoadBalancer
+    #     loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_HA}"
     resources:
       limits:
         memory: 500Mi
