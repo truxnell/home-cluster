@@ -5,7 +5,7 @@ name: update-flux
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 18 * * FRI" # 5AM Aust/Melb
 
 jobs:
   components:
