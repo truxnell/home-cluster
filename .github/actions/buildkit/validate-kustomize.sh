@@ -38,7 +38,7 @@ curl -sL https://github.com/fluxcd/flux2/releases/latest/download/crd-schemas.ta
 kustomize_flags="--load-restrictor=LoadRestrictionsNone --reorder=legacy"
 kustomize_config="kustomization.yaml"
 
-find . -path ./.secrets -prune -o -type f -name '*.yaml' -print  0 | while IFS= read -r -d $'\0' file;
+find . -path ./.secrets -prune -o -type f -name '*.yaml' -print0 | while IFS= read -r -d $'\0' file;
   do
     echo "INFO - Validating $file"
     yq e 'true' "$file" > /dev/null
