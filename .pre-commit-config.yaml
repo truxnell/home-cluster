@@ -40,3 +40,9 @@ repos:
     hooks:
       - id: fix-smartquotes
       - id: fix-ligatures
+  # - repo: https://github.com/Agilicus/pre-commit-hook-k8svalidate.git
+  #   rev: v0.0.8
+  #   hooks:
+  #     - id: k8svalidate
+  #       args: [--exclude, "**/*.patch.yaml"]
+  #       files: .yaml$
