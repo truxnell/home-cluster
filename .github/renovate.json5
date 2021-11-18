@@ -226,7 +226,8 @@
               "grafana/grafana"
           ],
           "schedule":[
-              "between 2am and 8pm every day"
+              "after 2am every day",
+                            "before 8pm every day"
           ]
       },
       {
@@ -266,8 +267,10 @@
               "factoriotools/factorio"
           ],
           "schedule":[
-              "between 2am and 7pm every day"
-          ]
+                        "after 2am every day",
+                        "before 8pm every day"
+                ]
+
       },
       {
           "matchDatasources":[
