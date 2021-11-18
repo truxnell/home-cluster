@@ -245,7 +245,7 @@
               "factoriotools/factorio"
           ],
           "schedule":[
-                        "[before 2am, after 8am"
+                        "before 2am, after 8am"
           ]
       },
       {
