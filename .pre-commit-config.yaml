@@ -15,18 +15,17 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.0.1
     hooks:
-      - id: end-of-file-fixer
       - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-added-large-files
       - id: check-merge-conflict
+      - id: detect-private-key
+      - id: end-of-file-fixer
   - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.1.10
     hooks:
       - id: remove-crlf
       - id: remove-tabs
-  - repo: https://github.com/psf/black
-    rev: 19.3b0
-    hooks:
-      - id: black
   - repo: https://github.com/k8s-at-home/sops-pre-commit
     rev: v2.0.3
     hooks:
@@ -40,9 +39,3 @@ repos:
     hooks:
       - id: fix-smartquotes
       - id: fix-ligatures
-  # - repo: https://github.com/Agilicus/pre-commit-hook-k8svalidate.git
-  #   rev: v0.0.8
-  #   hooks:
-  #     - id: k8svalidate
-  #       args: [--exclude, "**/*.patch.yaml"]
-  #       files: .yaml$
