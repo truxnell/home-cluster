@@ -27,4 +27,3 @@ spec:
     #       namespace: kube-system
   tls:
     certResolver: cloudflare
-

@@ -8,7 +8,7 @@ zfs_create_filesystems: false
 zfs_create_pools: false
 
 # Overwrite debian release
-# debian_release: 
+# debian_release:
 debian_use_backports: True
 
 # Defines Debian Backports Repo
@@ -17,7 +17,7 @@ backports_internal_components: "main contrib non-free"
 backports_internal_additional_packages:
   - apt-transport-https
 
-# Install/Update zfs packates 
+# Install/Update zfs packates
 # Set to false to avoid updates on runtime
 zfs_install_update: true
 

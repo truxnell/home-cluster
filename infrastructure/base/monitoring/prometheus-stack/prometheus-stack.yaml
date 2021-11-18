@@ -152,5 +152,3 @@ spec:
             mountPath: /data
         securityContext:
           privileged: true
-
-

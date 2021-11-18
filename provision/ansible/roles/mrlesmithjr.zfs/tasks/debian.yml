@@ -24,12 +24,12 @@
         state: present
         update_cache: yes
     - name: set backports
-      set_fact: 
+      set_fact:
         debian_release: '{{ default_debian_distribution + "-backports" }}'
   when: debian_use_backports
 
 - name: debian | install zfs
-  apt: 
+  apt:
     name:
       - linux-headers-{{ ansible_kernel }}
       - zfsutils-linux
@@ -45,7 +45,7 @@
 - name: debian | installing open-iscsi (if enabled)
   apt:
     name:
-      - open-iscsi 
+      - open-iscsi
     state: present
   when: >
         zfs_enable_iscsi is defined and

@@ -13,7 +13,7 @@ data:
 
   # lb_static_range: &anchor_ip_lb_static_range
   # 192.168.1.128-192.168.1.192
-  
+
   #CIDR set in ansible file ansible/inventory/home/group_vars/control_nodes/k3s-settings.yaml
   NETWORK_K8S_CLUSTER_CIDR: 10.69.0.0/16
   NETWORK_K8S_SERVICE_CIDR: 10.96.0.0/16
@@ -38,6 +38,6 @@ data:
   # CLUSTER_LB_OPENVPN: "134"
   # CLUSTER_LB_LORAFWD: "135"
   # CLUSTER_LB_MOSQUITTO: "136"
-  
+
 
   VPN_PORT: "443"

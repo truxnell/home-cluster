@@ -15,5 +15,3 @@ spec:
     replicationRole: primary
   type: LoadBalancer
   loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_POSTGRES}"
-
-    
