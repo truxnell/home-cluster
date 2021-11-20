@@ -64,3 +64,5 @@ find . -path ./.secrets -prune -o -type f -name $kustomize_config -print0 |  whi
       exit 1
     fi
 done
+
+echo "INFO - Finished"
