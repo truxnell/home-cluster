@@ -9,3 +9,6 @@ includes:
   ansible: .taskfiles/Taskfile_ansible.yml
   secrets: .taskfiles/Taskfile_secrets.yml
   flux: .taskfiles/flux.yml
+  cluster: .taskfiles/cluster.yml
+  format: .taskfiles/format.yml
+  lint: .taskfiles/lint.yml

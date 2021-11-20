@@ -1,3 +1,4 @@
+---
 # Sourced from: https://github.com/allenporter/k8s-gitops/blob/main/.github/workflows/diff-hr-on-pr.yaml
 name: Diff HelmReleases
 on:

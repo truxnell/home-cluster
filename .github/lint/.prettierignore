@@ -1,0 +1,10 @@
+.private
+.vscode
+*.sops.*
+*.enc.*
+ansible/roles/xanmanning.k3s/
+gotk-components.yaml
+*.terraform
+*-secrets*
+*-ssh*
+*-pat*

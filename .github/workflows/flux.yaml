@@ -1,3 +1,4 @@
+---
 name: update-flux
 
 # from https://github.com/billimek/k8s-gitops/blob/master/.github/workflows/flux.yaml

@@ -1,3 +1,4 @@
+---
 name: 'buildkit'
 description: 'A GitHub Action with Kubernetes tools'
 author: 'Michael Fornaro'

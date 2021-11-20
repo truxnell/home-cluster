@@ -21,3 +21,7 @@ mitogen*
 
 # Test python utils
 tests/__pycache__
+
+# Sops
+.decrypted~*.yaml
+/ansible/roles/mrlesmithjr.zfs

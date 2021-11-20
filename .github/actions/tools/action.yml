@@ -1,3 +1,4 @@
+---
 name: 'kustomize'
 description: 'A GitHub Action with Kubernetes tools'
 author: 'Stefan Prodan'

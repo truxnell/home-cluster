@@ -1,3 +1,4 @@
+---
 - name: Create flux NS
   shell: |
     {{ KUBECTL_BIN }} create ns {{ FLUX_NAMESPACE }}

@@ -1,3 +1,4 @@
+---
 - name: Create Docker secret
   shell: |
     {{ KUBECTL_BIN }} create secret docker-registry docker-regcred \

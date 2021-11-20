@@ -1,3 +1,4 @@
+---
 # this is for migrating data from one pvc to another
 # replace the namespace, and volumes
 apiVersion: batch/v1
