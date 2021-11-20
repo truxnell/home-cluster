@@ -38,14 +38,14 @@ curl -sL https://github.com/fluxcd/flux2/releases/latest/download/crd-schemas.ta
 kustomize_flags="--load-restrictor=LoadRestrictionsNone --reorder=legacy"
 kustomize_config="kustomization.yaml"
 
-find . -path ./.secrets -prune -o -type f -name '*.yaml' -print0 | while IFS= read -r -d $'\0' file;
-  do
-    echo "INFO - Validating $file"
-    yq e 'true' "$file" > /dev/null
-done
+# find . -path ./.secrets -prune -o -type f -name '*.yaml' -print0 | grep -vz .sops.yaml |  while IFS= read -r -d $'\0' file;
+#   do
+#     echo "INFO - Validating $file"
+#     yq e 'true' "$file" > /dev/null
+# done
 
 echo "INFO - Validating clusters"
-find ./cluster/ -maxdepth 2 -type f -name '*.yaml' -print0 | while IFS= read -r -d $'\0' file;
+find ./cluster/ -maxdepth 2 -type f -name '*.yaml' -print0 | grep -vz .sops.yaml | while IFS= read -r -d $'\0' file;
   do
     kubeval "${file}" --strict --ignore-missing-schemas --additional-schema-locations=file:///tmp/flux-crd-schemas
     if [[ ${PIPESTATUS[0]} != 0 ]]; then
@@ -54,7 +54,7 @@ find ./cluster/ -maxdepth 2 -type f -name '*.yaml' -print0 | while IFS= read -r 
 done
 
 echo "INFO - Validating kustomize overlays"
-find . -type f -name $kustomize_config -print0 | while IFS= read -r -d $'\0' file;
+find . -path ./.secrets -prune -o -type f -name $kustomize_config -print0 |  while IFS= read -r -d $'\0' file;
   do
     echo "INFO - Validating kustomization ${file/%$kustomize_config}"
     # Secrets are ignored with --skip-kinds due to using SOPS with FluxCD
