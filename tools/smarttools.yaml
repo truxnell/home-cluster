@@ -16,21 +16,21 @@ spec:
       volumeMounts:
         - mountPath: /hostdev
           name: dev
-      #- mountPath: /host/nvme0
-      #  name: disk1
-      #- mountPath: /host/nvme1
-      #  name: disk2
+      # - mountPath: /host/nvme0
+      #   name: disk1
+      # - mountPath: /host/nvme1
+      #   name: disk2
   restartPolicy: Always
   volumes:
     - name: dev
       hostPath:
         path: /dev
         type: Directory
-  #- name: disk1
-  #  hostPath:
-  #    path: /dev/nvme0
-  #    type: BlockDevice
-  #- name: disk2
-  #  hostPath:
-  #    path: /dev/nvme1
-  #    type: BlockDevice
+  # - name: disk1
+  #   hostPath:
+  #     path: /dev/nvme0
+  #     type: BlockDevice
+  # - name: disk2
+  #   hostPath:
+  #     path: /dev/nvme1
+  #     type: BlockDevice

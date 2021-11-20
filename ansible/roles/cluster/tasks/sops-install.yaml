@@ -2,7 +2,7 @@
 - name: Create flux NS
   shell: |
     {{ KUBECTL_BIN }} create ns {{ FLUX_NAMESPACE }}
-  run_once: True
+  run_once: true
   register: result
   failed_when:
     - "'already exists' not in result.stderr"
@@ -22,7 +22,7 @@
     --from-literal=sops.asc="{{ SOPS_GPG }}"
     -o yaml
     | {{ KUBECTL_BIN }} apply -f -
-  run_once: True
+  run_once: true
   register: result
   changed_when:
     - "'unchanged'  not in result.stdout| join('')"

@@ -5,7 +5,7 @@
 - name: Create flux NS
   shell: |
     {{ KUBECTL_BIN }} create ns {{ FLUX_NAMESPACE }}
-  run_once: True
+  run_once: true
   register: result
   failed_when:
     - "'already exists' not in result.stderr"
@@ -50,7 +50,7 @@
     --path={{ FLUX_GIT_PATH }}
     --namespace={{ FLUX_NAMESPACE }}
     --network-policy=false
-  #when: flux_in_git.stat.exists
+  # When: flux_in_git.stat.exists
   register: result
   changed_when:
     - "'unchanged'  not in result.stdout| join('')"

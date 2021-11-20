@@ -18,4 +18,4 @@ spec:
   volumes:
     - name: pvc
       persistentVolumeClaim:
-        claimName: "factorio-deathworld-config-v1" #change this
+        claimName: "factorio-deathworld-config-v1" # Change this

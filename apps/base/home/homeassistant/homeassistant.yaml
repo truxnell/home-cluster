@@ -31,7 +31,7 @@ spec:
     extraEnv:
       TZ: "Australia/Melbourne"
     probes:
-      #Circumvention - avoid restart
+      # Circumvention - avoid restart
       startup:
         enabled: false
       liveness:
