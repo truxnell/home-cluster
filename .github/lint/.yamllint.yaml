@@ -5,6 +5,9 @@ ignore: |
   *.sops.*
   *.terraform*
   gotk-components.yaml
+  .secrets/
+  provision/ansible/roles/mrlesmithjr.zfs/
+  privision/ansible/roles/xanmanning.k3s/
 extends: default
 rules:
   truthy:
@@ -19,3 +22,4 @@ rules:
     min-spaces-inside: 0
     max-spaces-inside: 0
   indentation: enable
+  comments-indentation: disable # Commenting out lines causes issues with this
