@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/nzbget
-      tag: "v21.1"
+      tag: "v21.2-testing"
     env:
       TZ: "Australia/Melbourne"
     podSecurityContext:
