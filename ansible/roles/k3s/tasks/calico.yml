@@ -1,5 +1,4 @@
 ---
-
 - name: cluster | calico | deploy tigera operator to k3s manifest directory
   become: true
   # run_once: true
@@ -24,8 +23,8 @@
     dest: "{{ k3s_server_manifests_dir }}/calico-bgppeer.yaml"
     mode: 0644
   when:
-  - calico.bgp.enabled is defined
-  - calico.bgp.enabled
+    - calico.bgp.enabled is defined
+    - calico.bgp.enabled
 
 - name: cluster | calico | deploy BGP-configuration to k3s manifest directory
   become: true
@@ -35,5 +34,5 @@
     dest: "{{ k3s_server_manifests_dir }}/calico-bgpconfiguration.yaml"
     mode: 0644
   when:
-  - calico.bgp.enabled is defined
-  - calico.bgp.enabled
+    - calico.bgp.enabled is defined
+    - calico.bgp.enabled

@@ -8,7 +8,7 @@ spec:
   storageType: Durable
   storage:
     accessModes:
-    - ReadWriteOnce
+      - ReadWriteOnce
     resources:
       requests:
         storage: 1Gi

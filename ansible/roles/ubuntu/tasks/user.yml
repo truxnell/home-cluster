@@ -1,5 +1,4 @@
 ---
-
 - name: user | get home directory
   ansible.builtin.shell: "echo $HOME"
   changed_when: false
@@ -19,9 +18,9 @@
     key: "{{ item }}"
   loop: "{{ ssh_authorized_keys }}"
   when:
-  - ssh_authorized_keys is defined
-  - ssh_authorized_keys is iterable
-  - ssh_authorized_keys | length > 0
+    - ssh_authorized_keys is defined
+    - ssh_authorized_keys is iterable
+    - ssh_authorized_keys | length > 0
 
 - name: user | check if hushlogin exists
   ansible.builtin.stat:

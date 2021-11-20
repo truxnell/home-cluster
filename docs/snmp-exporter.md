@@ -23,14 +23,14 @@ modules:
     walk:
       - sysUpTime
       - interfaces
-      - 1.3.6.1.4.1.318.1.1.1.2       # upsBattery
-      - 1.3.6.1.4.1.318.1.1.1.3       # upsInput
-      - 1.3.6.1.4.1.318.1.1.1.4       # upsOutput
-      - 1.3.6.1.4.1.318.1.1.1.7.2     # upsAdvTest
-      - 1.3.6.1.4.1.318.1.1.1.8.1     # upsCommStatus
-      - 1.3.6.1.4.1.318.1.1.1.12      # upsOutletGroups
-      - 1.3.6.1.4.1.318.1.1.10.2.3.2  # iemStatusProbesTable
-      - 1.3.6.1.4.1.318.1.1.26.8.3    # rPDU2BankStatusTable
+      - 1.3.6.1.4.1.318.1.1.1.2 # upsBattery
+      - 1.3.6.1.4.1.318.1.1.1.3 # upsInput
+      - 1.3.6.1.4.1.318.1.1.1.4 # upsOutput
+      - 1.3.6.1.4.1.318.1.1.1.7.2 # upsAdvTest
+      - 1.3.6.1.4.1.318.1.1.1.8.1 # upsCommStatus
+      - 1.3.6.1.4.1.318.1.1.1.12 # upsOutletGroups
+      - 1.3.6.1.4.1.318.1.1.10.2.3.2 # iemStatusProbesTable
+      - 1.3.6.1.4.1.318.1.1.26.8.3 # rPDU2BankStatusTable
     lookups:
       - source_indexes: [upsOutletGroupStatusIndex]
         lookup: upsOutletGroupStatusName
@@ -54,20 +54,20 @@ modules:
     walk:
       - ePDUIdentName
       - ePDUIdentHardwareRev
-      - ePDUStatusInputVoltage      ## input voltage (0.1 volts)
-      - ePDUStatusInputFrequency    ## input frequency (0.1 Hertz)
-      - ePDULoadStatusLoad          ## load (tenths of Amps)
-      - ePDULoadStatusVoltage       ## voltage (0.1 volts)
-      - ePDULoadStatusActivePower   ## active power (watts)
+      - ePDUStatusInputVoltage ## input voltage (0.1 volts)
+      - ePDUStatusInputFrequency ## input frequency (0.1 Hertz)
+      - ePDULoadStatusLoad ## load (tenths of Amps)
+      - ePDULoadStatusVoltage ## voltage (0.1 volts)
+      - ePDULoadStatusActivePower ## active power (watts)
       - ePDULoadStatusApparentPower ## apparent power (VA)
-      - ePDULoadStatusPowerFactor   ## power factor of the output (hundredths)
-      - ePDULoadStatusEnergy        ## apparent power measured (0.1 kw/h).
+      - ePDULoadStatusPowerFactor ## power factor of the output (hundredths)
+      - ePDULoadStatusEnergy ## apparent power measured (0.1 kw/h).
       - ePDUOutletControlOutletName ## The name of the outlet.
-      - ePDUOutletStatusLoad        ## Outlet load  (tenths of Amps)
+      - ePDUOutletStatusLoad ## Outlet load  (tenths of Amps)
       - ePDUOutletStatusActivePower ## Outlet load  (watts)
-      - envirTemperature            ## temp expressed  (1/10 ºF)
-      - envirTemperatureCelsius     ## temp expressed  (1/10 ºF)
-      - envirHumidity               ## relative humidity (%)
+      - envirTemperature ## temp expressed  (1/10 ºF)
+      - envirTemperatureCelsius ## temp expressed  (1/10 ºF)
+      - envirHumidity ## relative humidity (%)
 ```
 
 ## Get the Cyberpower MIB

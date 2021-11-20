@@ -1,5 +1,4 @@
 ---
-
 # Enable rsyslog
 # ...requires a rsyslog server already set up
 rsyslog:

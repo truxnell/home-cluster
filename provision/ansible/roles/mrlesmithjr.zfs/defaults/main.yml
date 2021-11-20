@@ -42,7 +42,8 @@ zfs_enable_performance_tuning: false
 zfs_enable_samba: false
 
 # Defines filesystems to manage
-zfs_filesystems: []
+zfs_filesystems:
+  []
   # - name: nfs
   #   pool: tank
   #   atime: off
@@ -118,7 +119,8 @@ zfs_performance_tuning:
     value: "{{ (ansible_memtotal_mb | int * 1024 * 1024 * 0.0625) | round | int }}"
 
 # Defines zpool(s) to manage
-zfs_pools: []
+zfs_pools:
+  []
   # - name: SSD-TANK
   #   action: create
   #   # atime: on
@@ -165,7 +167,8 @@ zfs_pools_scrub_cron:
 zfs_ubuntu_ppa: ppa:zfs-native/stable
 
 # Defines block-device volumes to manage
-zfs_volumes: []
+zfs_volumes:
+  []
   # - name: backups
   #   pool: tank
   #   # Defines if iscsitarget should serve volume... | on | off | or not defined

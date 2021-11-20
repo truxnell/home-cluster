@@ -1,5 +1,4 @@
 ---
-
 - name: time | set timezone
   become: true
   community.general.timezone:

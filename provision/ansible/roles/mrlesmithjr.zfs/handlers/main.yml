@@ -5,8 +5,8 @@
     name: "iscsitarget"
     state: restarted
   when: >
-        zfs_enable_iscsi is defined and
-        zfs_enable_iscsi
+    zfs_enable_iscsi is defined and
+    zfs_enable_iscsi
 
 - name: restart nfs-kernel-server
   service:

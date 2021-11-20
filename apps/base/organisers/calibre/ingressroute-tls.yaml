@@ -22,8 +22,8 @@ spec:
     #   services:
     #     - name: calibre-webserver
     #       port: 8081
-      # middlewares:
-      #   - name: traefik-secure-headers
-      #     namespace: kube-system
+    # middlewares:
+    #   - name: traefik-secure-headers
+    #     namespace: kube-system
   tls:
     certResolver: cloudflare

@@ -1,19 +1,18 @@
 ---
-
 - name: kernel | enable modules
   become: true
   community.general.modprobe:
     name: "{{ item }}"
     state: present
   loop:
-  - br_netfilter
-  - nf_conntrack
-  - overlay
-  - rbd
-  - ip_vs
-  - iscsi_tcp
+    - br_netfilter
+    - nf_conntrack
+    - overlay
+    - rbd
+    - ip_vs
+    - iscsi_tcp
   when:
-  - molecule_is_test is defined and not molecule_is_test
+    - molecule_is_test is defined and not molecule_is_test
 
 - name: kernel | enable modules on boot
   become: true
@@ -22,14 +21,13 @@
     content: "{{ item }}"
     dest: "/etc/modules-load.d/{{ item }}.conf"
   loop:
-  - br_netfilter
-  - overlay
-  - rbd
-  - ip_vs
-  - iscsi_tcp
+    - br_netfilter
+    - overlay
+    - rbd
+    - ip_vs
+    - iscsi_tcp
   when:
-  - molecule_is_test is defined and not molecule_is_test
-
+    - molecule_is_test is defined and not molecule_is_test
 # # Blacklist for PiAware: https://hub.docker.com/r/mikenye/piaware
 # - name: kernel | blacklist modules
 #   become: true

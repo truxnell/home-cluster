@@ -1,6 +1,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
 - [ansible-zfs](#ansible-zfs)
   - [Requirements](#requirements)
@@ -8,7 +9,7 @@
   - [Role Variables](#role-variables)
   - [Dependencies](#dependencies)
   - [Example Playbook](#example-playbook)
-      - [GitHub](#github)
+    - [GitHub](#github)
   - [Advanced Example ZPool Creation](#advanced-example-zpool-creation)
   - [License](#license)
   - [Author Information](#author-information)
@@ -302,91 +303,91 @@ None
 ## Advanced Example ZPool Creation
 
 ```yaml
-zfs_pools:  #defines zpool(s) to manage
-  - name: 'SSD-TANK'
-    action: 'create'
-#    atime: 'on'
-    compression: 'lz4'  # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
-    devices:  #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
-      - 'ata-INTEL_SSDSC2BW240A4_CVDA352100YL2403GN'
-      - 'ata-INTEL_SSDSC2BW240A4_BTDA329505KM2403GN'
-      - 'ata-INTEL_SSDSC2BW240A4_CVDA352100GP2403GN'
-      - 'ata-INTEL_SSDSC2BW240A4_CVDA401000Q02403GN'
-      - 'ata-INTEL_SSDSC2BW240A4_CVDA4010045B2403GN'
-      - 'ata-INTEL_SSDSC2BW240A4_BTDA329501102403GN'
-      - 'ata-INTEL_SSDSC2BW240A4_BTDA329503XM2403GN'
-      - 'ata-INTEL_SSDSC2BW240A4_CVDA4010011R2403GN'
-    type: 'raidz2'  #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
-    state: 'present'
-  - name: 'SSD-TANK'
-    action: 'add'
-    compression: 'lz4'  # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
+zfs_pools: #defines zpool(s) to manage
+  - name: "SSD-TANK"
+    action: "create"
+    #    atime: 'on'
+    compression: "lz4" # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
+    devices: #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
+      - "ata-INTEL_SSDSC2BW240A4_CVDA352100YL2403GN"
+      - "ata-INTEL_SSDSC2BW240A4_BTDA329505KM2403GN"
+      - "ata-INTEL_SSDSC2BW240A4_CVDA352100GP2403GN"
+      - "ata-INTEL_SSDSC2BW240A4_CVDA401000Q02403GN"
+      - "ata-INTEL_SSDSC2BW240A4_CVDA4010045B2403GN"
+      - "ata-INTEL_SSDSC2BW240A4_BTDA329501102403GN"
+      - "ata-INTEL_SSDSC2BW240A4_BTDA329503XM2403GN"
+      - "ata-INTEL_SSDSC2BW240A4_CVDA4010011R2403GN"
+    type: "raidz2" #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
+    state: "present"
+  - name: "SSD-TANK"
+    action: "add"
+    compression: "lz4" # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
     devices:
-      - 'ata-INTEL_SSDSC2BW240A4_BTDA3300022F2403GN'
-    type: 'spare'
-    state: 'present'
-  - name: 'TANK'
-    action: 'create'
-#    atime: 'on'
-    compression: 'lz4'  # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
-    devices:  #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
-      - 'ata-ST2000VN000-1HJ164_W522KVAS'
-      - 'ata-ST2000VN000-1HJ164_W522KW2J'
-    type: 'mirror'  #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
-    state: 'present'
-  - name: 'TANK'
-    action: 'add'
-    compression: 'lz4'  # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
-    devices:  #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
-      - 'ata-ST2000DM001-1CH164_Z1E957EP'
-      - 'ata-ST2000DM001-1ER164_W4Z08B5M'
-    type: 'mirror'  #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
-    state: 'present'
-  - name: 'TANK'
-    action: 'add'
-    compression: 'lz4'  # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
-    devices:  #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
-      - 'ata-ST2000DM001-1ER164_W4Z08FPX'
-      - 'ata-ST2000DM001-1ER164_W5009JQ4'
-    type: 'mirror'  #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
-    state: 'present'
-  - name: 'TANK'
-    action: 'add'
-    compression: 'lz4'  # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
-    devices:  #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
-      - 'ata-ST2000DM001-1CH164_W1E3XCBV'
-      - 'ata-ST2000DM001-1CH164_W1E3V7VA'
-    type: 'mirror'  #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
-    state: 'present'
-  - name: 'TANK'
-    action: 'add'
-    compression: 'lz4'  # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
-    devices:  #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
-      - 'ata-ST31000340NS_9QJ814GW'
-      - 'ata-ST31000340NS_9QJ80NQK'
-    type: 'mirror'  #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
-    state: 'present'
-  - name: 'TANK'
-    action: 'add'
-    compression: 'lz4'  # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
-    devices:  #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
-      - 'ata-INTEL_SSDSC2CW120A3_CVCV248102U3120BGN'
-    type: 'cache'  #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
-    state: 'present'
-  - name: 'TANK'
-    action: 'add'
-    compression: 'lz4'  # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
-    devices:  #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
-      - 'ata-INTEL_SSDSC2CW120A3_CVCV2515011Y120BGN'
-    type: 'cache'  #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
-    state: 'present'
-  - name: 'TANK'
-    action: 'add'
-    compression: 'lz4'  # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
-    devices:  #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
-      - 'ata-ST2000DL003-9VT166_5YD48V54'
-    type: 'spare'  #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
-    state: 'present'
+      - "ata-INTEL_SSDSC2BW240A4_BTDA3300022F2403GN"
+    type: "spare"
+    state: "present"
+  - name: "TANK"
+    action: "create"
+    #    atime: 'on'
+    compression: "lz4" # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
+    devices: #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
+      - "ata-ST2000VN000-1HJ164_W522KVAS"
+      - "ata-ST2000VN000-1HJ164_W522KW2J"
+    type: "mirror" #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
+    state: "present"
+  - name: "TANK"
+    action: "add"
+    compression: "lz4" # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
+    devices: #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
+      - "ata-ST2000DM001-1CH164_Z1E957EP"
+      - "ata-ST2000DM001-1ER164_W4Z08B5M"
+    type: "mirror" #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
+    state: "present"
+  - name: "TANK"
+    action: "add"
+    compression: "lz4" # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
+    devices: #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
+      - "ata-ST2000DM001-1ER164_W4Z08FPX"
+      - "ata-ST2000DM001-1ER164_W5009JQ4"
+    type: "mirror" #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
+    state: "present"
+  - name: "TANK"
+    action: "add"
+    compression: "lz4" # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
+    devices: #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
+      - "ata-ST2000DM001-1CH164_W1E3XCBV"
+      - "ata-ST2000DM001-1CH164_W1E3V7VA"
+    type: "mirror" #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
+    state: "present"
+  - name: "TANK"
+    action: "add"
+    compression: "lz4" # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
+    devices: #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
+      - "ata-ST31000340NS_9QJ814GW"
+      - "ata-ST31000340NS_9QJ80NQK"
+    type: "mirror" #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
+    state: "present"
+  - name: "TANK"
+    action: "add"
+    compression: "lz4" # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
+    devices: #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
+      - "ata-INTEL_SSDSC2CW120A3_CVCV248102U3120BGN"
+    type: "cache" #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
+    state: "present"
+  - name: "TANK"
+    action: "add"
+    compression: "lz4" # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
+    devices: #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
+      - "ata-INTEL_SSDSC2CW120A3_CVCV2515011Y120BGN"
+    type: "cache" #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
+    state: "present"
+  - name: "TANK"
+    action: "add"
+    compression: "lz4" # on | off (default) | lzjb | gzip | gzip-1 | gzip-2 | gzip-3 | gzip-4 | gzip-5 | gzip-6 | gzip-7 | gzip-8 | gzip-9 | lz4 | zle
+    devices: #define devices to create pool with...can define multiple by | sdb sdc sdd sde sdf | all on one line w/spaces
+      - "ata-ST2000DL003-9VT166_5YD48V54"
+    type: "spare" #define pool type... | basic (no-raid) | mirror | raidz | raidz2 | raidz3
+    state: "present"
 ```
 
 ## License
@@ -397,6 +398,6 @@ BSD
 
 Larry Smith Jr.
 
--   @mrlesmithjr
--   <http://everythingshouldbevirtual.com>
--   mrlesmithjr [at] gmail.com
+- @mrlesmithjr
+- <http://everythingshouldbevirtual.com>
+- mrlesmithjr [at] gmail.com

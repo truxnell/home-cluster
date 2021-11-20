@@ -4,7 +4,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  namespace: media  # namespace where the PVC's exist
+  namespace: media # namespace where the PVC's exist
   name: volume-migration
 spec:
   completions: 1
@@ -18,20 +18,20 @@ spec:
     spec:
       restartPolicy: Never
       containers:
-      - name: volume-migration
-        image: ubuntu:xenial
-        tty: true
-        command: [ "/bin/sh" ]
-        args: [ "-c", "cp -av /mnt/old/. /mnt/new/" ]
-        volumeMounts:
-        - name: old-vol
-          mountPath: /mnt/old
-        - name: new-vol
-          mountPath: /mnt/new
+        - name: volume-migration
+          image: ubuntu:xenial
+          tty: true
+          command: ["/bin/sh"]
+          args: ["-c", "cp -av /mnt/old/. /mnt/new/"]
+          volumeMounts:
+            - name: old-vol
+              mountPath: /mnt/old
+            - name: new-vol
+              mountPath: /mnt/new
       volumes:
-      - name: old-vol
-        persistentVolumeClaim:
-          claimName: plex-config-v1 # change to data source PVC
-      - name: new-vol
-        persistentVolumeClaim:
-          claimName: plex-config-v2 # change to data target PVC
+        - name: old-vol
+          persistentVolumeClaim:
+            claimName: plex-config-v1 # change to data source PVC
+        - name: new-vol
+          persistentVolumeClaim:
+            claimName: plex-config-v2 # change to data target PVC

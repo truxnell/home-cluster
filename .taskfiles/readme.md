@@ -2,7 +2,7 @@
 
 These taskfiles are written for use with [https://taskfile.dev](https://taskfile.dev).
 
-These have largely been 'liberated' from  [https://github.com/onedr0p/home-cluster/](https://github.com/onedr0p/home-cluster/) as a base for me to springboard off.
+These have largely been 'liberated' from [https://github.com/onedr0p/home-cluster/](https://github.com/onedr0p/home-cluster/) as a base for me to springboard off.
 
 # Usage
 
@@ -18,8 +18,8 @@ task: Available tasks for this project:
 * secrets:generate:             Generate Helm value secrets
 ```
 
-
 # Installing Ansible dependancies
+
 ```bash
 task ansible:deps
 ```

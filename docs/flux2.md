@@ -10,5 +10,7 @@ flux bootstrap github \
   --personal \
   --network-policy=false
 ```
+
 # Directory structure
+
 https://github.com/fluxcd/flux2-kustomize-helm-example

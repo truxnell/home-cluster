@@ -1,6 +1,7 @@
 <img src="https://camo.githubusercontent.com/5b298bf6b0596795602bd771c5bddbb963e83e0f/68747470733a2f2f692e696d6775722e636f6d2f7031527a586a512e706e67" align="left" width="144px" height="144px"/>
 
 ### My home Kubernetes cluster :sailboat:
+
 _... managed by Flux and serviced with RenovateBot_ :robot:
 
 <br/>
@@ -42,7 +43,7 @@ See my [ansible](../ansible/) folder for my playbooks and roles.
 ## :gear:&nbsp; Hardware
 
 | Device                  | Count | OS Disk Size | Data Disk Size       | Ram  | Purpose                       |
-|-------------------------|-------|--------------|----------------------|------|-------------------------------|
+| ----------------------- | ----- | ------------ | -------------------- | ---- | ----------------------------- |
 | Intel NUC8i3BEK         | 1     | 256GB NVMe   | N/A                  | 16GB | Kubernetes k3s Master         |
 | Intel NUC8i5BEH         | 3     | 120GB SSD    | 1TB NVMe (rook-ceph) | 32GB | Kubernetes k3s Workers        |
 | Intel NUC8i7BEH         | 2     | 750GB SSD    | 1TB NVMe (rook-ceph) | 64GB | Kubernetes k3s Workers        |
@@ -59,12 +60,12 @@ In my cluster I run [coredns](https://github.com/coredns/coredns), [etcd](https:
 
 ## :wrench:&nbsp; Tools
 
-| Tool                                                   | Purpose                                                                                                   |
-|--------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| [direnv](https://github.com/direnv/direnv)             | Set `KUBECONFIG` environment variable based on present working directory                                  |
-| [git-crypt](https://github.com/AGWA/git-crypt)         | Encrypt certain files in my repository that can only be decrypted with a key on my computers              |
-| [go-task](https://github.com/go-task/task)             | Replacement for make and makefiles, who honestly likes that?                                              |
-| [pre-commit](https://github.com/pre-commit/pre-commit) | Ensure the YAML and shell script in my repo are consistent                                                |
+| Tool                                                   | Purpose                                                                                                                                                                                          |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [direnv](https://github.com/direnv/direnv)             | Set `KUBECONFIG` environment variable based on present working directory                                                                                                                         |
+| [git-crypt](https://github.com/AGWA/git-crypt)         | Encrypt certain files in my repository that can only be decrypted with a key on my computers                                                                                                     |
+| [go-task](https://github.com/go-task/task)             | Replacement for make and makefiles, who honestly likes that?                                                                                                                                     |
+| [pre-commit](https://github.com/pre-commit/pre-commit) | Ensure the YAML and shell script in my repo are consistent                                                                                                                                       |
 | [kubetail](https://github.com/johanhaleby/kubetail)    | Tail logs in Kubernetes, also check out [stern](https://github.com/wercker/stern) ([which fork? good luck](https://techgaun.github.io/active-forks/index.html#https://github.com/wercker/stern)) |
 
 ---

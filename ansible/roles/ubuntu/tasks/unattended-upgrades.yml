@@ -1,5 +1,4 @@
 ---
-
 - name: unattended-upgrades | delete 20auto-upgrades config
   become: true
   ansible.builtin.file:

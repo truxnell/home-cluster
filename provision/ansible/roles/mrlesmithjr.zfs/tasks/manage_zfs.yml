@@ -18,50 +18,50 @@
   register: zpool_created
   with_items: "{{ zfs_pools }}"
   when: >
-        zfs_pools is defined and
-        zfs_create_pools and
-        (item.type == "basic" and
-        item.name not in zpools.stdout and
-        item.state == "present") and
-        item.devices[0] not in zpool_devices.stdout and
-        item.action|lower == "create"
+    zfs_pools is defined and
+    zfs_create_pools and
+    (item.type == "basic" and
+    item.name not in zpools.stdout and
+    item.state == "present") and
+    item.devices[0] not in zpool_devices.stdout and
+    item.action|lower == "create"
 
 - name: manage_zfs | adding basic zpool(s)
   command: "zpool add {{ item.options | join (' ') if item.options is defined else '' }} {{ item.name }} {{ item.devices|join (' ') }}"
   with_items: "{{ zfs_pools }}"
   when: >
-        zfs_pools is defined and
-        zfs_create_pools and
-        (item.type == "basic" and
-        item.state == "present") and
-        (item.devices[0]|basename) not in zpool_devices.stdout and
-        item.action|lower == "add" and
-        (zpool_created.changed or item.name in zpools.stdout)
+    zfs_pools is defined and
+    zfs_create_pools and
+    (item.type == "basic" and
+    item.state == "present") and
+    (item.devices[0]|basename) not in zpool_devices.stdout and
+    item.action|lower == "add" and
+    (zpool_created.changed or item.name in zpools.stdout)
 
 - name: manage_zfs | creating mirror/zraid zpool(s)
   command: "zpool create {{ item.options | join (' ') if item.options is defined else '' }} {{ item.name }} {{ item.type }} {{ item.devices|join (' ') }}"
   with_items: "{{ zfs_pools }}"
   register: zpool_created
   when: >
-        zfs_pools is defined and
-        zfs_create_pools and
-        (item.type != "basic" and
-        item.name not in zpools.stdout and
-        item.state == "present") and
-        item.devices[0] not in zpool_devices.stdout and
-        item.action|lower == "create"
+    zfs_pools is defined and
+    zfs_create_pools and
+    (item.type != "basic" and
+    item.name not in zpools.stdout and
+    item.state == "present") and
+    item.devices[0] not in zpool_devices.stdout and
+    item.action|lower == "create"
 
 - name: manage_zfs | adding mirror/zraid zpool(s)
   command: "zpool add {{ item.options | join (' ') if item.options is defined else '' }} {{ item.name }} {{ item.type }} {{ item.devices|join (' ') }}"
   with_items: "{{ zfs_pools }}"
   when: >
-        zfs_pools is defined and
-        zfs_create_pools and
-        (item.type != "basic" and
-        item.state == "present") and
-        (item.devices[0]|basename) not in zpool_devices.stdout and
-        item.action|lower == "add" and
-        (zpool_created.changed or item.name in zpools.stdout)
+    zfs_pools is defined and
+    zfs_create_pools and
+    (item.type != "basic" and
+    item.state == "present") and
+    (item.devices[0]|basename) not in zpool_devices.stdout and
+    item.action|lower == "add" and
+    (zpool_created.changed or item.name in zpools.stdout)
 
 - name: manage_zfs | managing pools
   zfs:
@@ -112,7 +112,7 @@
       quota: "{{ item.quota|default(omit) }}"
       primarycache: "{{ item.primarycache|default(omit) }}"
       recordsize: "{{ item.recordsize|default(omit) }}"
-  #    shareiscsi: "{{ item.shareiscsi|default(omit) }}"
+      #    shareiscsi: "{{ item.shareiscsi|default(omit) }}"
       sync: "{{ item.sync|default(omit) }}"
       logbias: "{{ item.logbias|default(omit) }}"
       volsize: "{{ item.volsize|default(omit) }}"
@@ -141,8 +141,8 @@
   notify:
     - restart iscsitarget
   when: >
-        zfs_enable_iscsi is defined and
-        zfs_enable_iscsi
+    zfs_enable_iscsi is defined and
+    zfs_enable_iscsi
 
 - name: manage_zfs | configuring iscsi device access
   template:
@@ -154,8 +154,8 @@
   notify:
     - restart iscsitarget
   when: >
-        zfs_enable_iscsi is defined and
-        zfs_enable_iscsi
+    zfs_enable_iscsi is defined and
+    zfs_enable_iscsi
 
 - name: manage_zfs | configuring iscsi targets access
   template:
@@ -167,5 +167,5 @@
   notify:
     - restart iscsitarget
   when: >
-        zfs_enable_iscsi is defined and
-        zfs_enable_iscsi
+    zfs_enable_iscsi is defined and
+    zfs_enable_iscsi

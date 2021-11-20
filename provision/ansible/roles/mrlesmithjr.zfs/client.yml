@@ -5,26 +5,26 @@
     - iscsi_mount_on_boot: true
     - iscsi_portal: 192.168.202.201
     - iscsi_targets:
-        - target: 'iqn.2001-04.local.vagrant:storage.backups'
-          dev: '/dev/sdb'
-          fstype: 'ext4'
-          mountpoint: '/mnt/backups'
-        - target: 'iqn.2001-04.local.vagrant:storage.data'
-          dev: '/dev/sdc'
-          fstype: 'ext4'
-          mountpoint: '/mnt/data'
+        - target: "iqn.2001-04.local.vagrant:storage.backups"
+          dev: "/dev/sdb"
+          fstype: "ext4"
+          mountpoint: "/mnt/backups"
+        - target: "iqn.2001-04.local.vagrant:storage.data"
+          dev: "/dev/sdc"
+          fstype: "ext4"
+          mountpoint: "/mnt/data"
     - nfs_mounts:
-      - server: '192.168.202.201'
-        export: '/tank/nfs'
-        mount_options: hard,intr,nfsvers=3,tcp,bg,_netdev,auto,nolock
-        mountpoint: '/mnt/nfs'
+        - server: "192.168.202.201"
+          export: "/tank/nfs"
+          mount_options: hard,intr,nfsvers=3,tcp,bg,_netdev,auto,nolock
+          mountpoint: "/mnt/nfs"
   roles:
   tasks:
     - name: installing client pre-reqs
       apt:
         name:
-          - 'nfs-common'
-          - 'open-iscsi'
+          - "nfs-common"
+          - "open-iscsi"
         state: present
 
     - name: mounting iscsi from server

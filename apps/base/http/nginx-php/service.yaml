@@ -7,10 +7,10 @@ metadata:
   name: nginx-phpfm-lb
 spec:
   ports:
-      - name: http
-        protocol: TCP
-        port: 80
-        targetPort: http
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: http
   selector:
     app.kubernetes.io/instance: nginx-phpfm
     app.kubernetes.io/name: nginx-phpfpm

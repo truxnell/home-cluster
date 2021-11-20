@@ -13,7 +13,6 @@ kubectl replace --raw "/api/v1/namespaces/$NAMESPACE/finalize" -f ./$NAMESPACE.j
 
 ```
 
-
 ## mysql-client in Kubernetes to test your connection to mysql server
 
 kubectl run mysql-client --image=mysql:5.7 -it --rm --restart=Never -- /bin/bash

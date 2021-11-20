@@ -2,37 +2,37 @@ apiVersion: v1
 kind: Secret
 type: Opaque
 metadata:
-    name: traefik-forward-auth
-    namespace: kube-system
+  name: traefik-forward-auth
+  namespace: kube-system
 stringData:
-    PROVIDERS_OIDC_CLIENT_SECRET: ENC[AES256_GCM,data:pjLpcup6YAPWoV9QMz/xNrafBhKHAWf5PIOgr/ssvNWynPugAGwbEZSjpVwO2x6o,iv:nYgxVpPLLSmVaSfLJOJwv6G8Ph4MdQO3LWA+OOWhN1U=,tag:qMGBskPEHd6ughQqdIZmHQ==,type:str]
-    SECRET: ENC[AES256_GCM,data:OciToOQUR5kylvEIdi63XFw1+oJFW8Y+WwNhZr60SICjwvqSgjP+zCYZwHw=,iv:0GDR0+DRpOGC4q/+XBupuob42JmKSru8hdBtIkuwdgI=,tag:DRoZd+i+T8QbpXQte5KoXw==,type:str]
+  PROVIDERS_OIDC_CLIENT_SECRET: ENC[AES256_GCM,data:pjLpcup6YAPWoV9QMz/xNrafBhKHAWf5PIOgr/ssvNWynPugAGwbEZSjpVwO2x6o,iv:nYgxVpPLLSmVaSfLJOJwv6G8Ph4MdQO3LWA+OOWhN1U=,tag:qMGBskPEHd6ughQqdIZmHQ==,type:str]
+  SECRET: ENC[AES256_GCM,data:OciToOQUR5kylvEIdi63XFw1+oJFW8Y+WwNhZr60SICjwvqSgjP+zCYZwHw=,iv:0GDR0+DRpOGC4q/+XBupuob42JmKSru8hdBtIkuwdgI=,tag:DRoZd+i+T8QbpXQte5KoXw==,type:str]
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age: []
-    lastmodified: "2021-11-20T08:26:55Z"
-    mac: ENC[AES256_GCM,data:L4yLThfZ5MUtjqnZ1Kms7Xa9pnKnaj4RnbIdCFnDyBByNlIwQ686wsYszzH6jJ+xMPSK8pVeFLUBz7OvKN3LUU7kOWbEAyMCL4TRvbMmPguvt6ap4XtgVE02SmrFsFBRoFr1r2Eb98jRcwiw0IhCRjXZPQTs1cSsa231KK9uAnw=,iv:gZcLOtEBS8vvG1Ob81Gyppg4Wxu02dcFXkhyabB7qQ8=,tag:EcsZfZYb1iAlamvJdnybHg==,type:str]
-    pgp:
-        - created_at: "2021-06-04T13:49:34Z"
-          enc: |
-            -----BEGIN PGP MESSAGE-----
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age: []
+  lastmodified: "2021-11-20T08:26:55Z"
+  mac: ENC[AES256_GCM,data:L4yLThfZ5MUtjqnZ1Kms7Xa9pnKnaj4RnbIdCFnDyBByNlIwQ686wsYszzH6jJ+xMPSK8pVeFLUBz7OvKN3LUU7kOWbEAyMCL4TRvbMmPguvt6ap4XtgVE02SmrFsFBRoFr1r2Eb98jRcwiw0IhCRjXZPQTs1cSsa231KK9uAnw=,iv:gZcLOtEBS8vvG1Ob81Gyppg4Wxu02dcFXkhyabB7qQ8=,tag:EcsZfZYb1iAlamvJdnybHg==,type:str]
+  pgp:
+    - created_at: "2021-06-04T13:49:34Z"
+      enc: |
+        -----BEGIN PGP MESSAGE-----
 
-            hQGMA94SucntcLeJAQv/ZoAmC2KZIcRWyDkQrKDk7gkruqjXMVWIfOyZ/Nsqo1NN
-            pIkcyuvJ4v2giDrQ4pXfOuIy+q1uvISMw/v08xwrkYjpjaKKekVppx/13chBAcup
-            O2r7y8AA1EodKPt0Wbu/s8n7dUeglpwrALnw6gzVUalCI1Sk/Mx7YZcQ8UZxo/Wm
-            7DUCZXCPick4H7WUobJ4oyXn2zEmMLMgIEjlo8wx1m7iWZwuKVnW+sNJYe/4qy5o
-            nVmQKAyxVZEZoKXU8XAW/3+3g0+9wdjbVOJVgvfX/2RCLbgzJynnBnQIv8UyCmhN
-            xVvL+/3fKf0vclg9wKvF2lwQ8Uyk0PBGuhsIKx8B/oVz1yl81Xh7ZwijK1KOXD5C
-            6HxkVbPqFwQIk3Pd6jqcsW9ArOzsPpK4Fy2vDdHcbufwSdKSksE/HWkTGBlhwgvE
-            FmzxLLy95ztSh3s2ajZUa98pKmFjARyD1egw0Fni7vcmhWcyTZ6Tpkuap9S2bZBM
-            R0ZSl3lcNqzJM+yPfQnG0l4BBZM9i495/trrAqJz9oMzXanmp1D1PyXqIKKeNxfT
-            wBT6gV49K/PNw4rJGGh5rAoOLH6oIFmLL0XZ3GCr0nrDnR3kp++hFYpmFsM0305e
-            dJ+h+boTeplp34PzMORs
-            =qjhL
-            -----END PGP MESSAGE-----
-          fp: 30DA87702717C0310E1BE81E612328766D06D7DD
-    encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData$))
-    version: 3.7.1
+        hQGMA94SucntcLeJAQv/ZoAmC2KZIcRWyDkQrKDk7gkruqjXMVWIfOyZ/Nsqo1NN
+        pIkcyuvJ4v2giDrQ4pXfOuIy+q1uvISMw/v08xwrkYjpjaKKekVppx/13chBAcup
+        O2r7y8AA1EodKPt0Wbu/s8n7dUeglpwrALnw6gzVUalCI1Sk/Mx7YZcQ8UZxo/Wm
+        7DUCZXCPick4H7WUobJ4oyXn2zEmMLMgIEjlo8wx1m7iWZwuKVnW+sNJYe/4qy5o
+        nVmQKAyxVZEZoKXU8XAW/3+3g0+9wdjbVOJVgvfX/2RCLbgzJynnBnQIv8UyCmhN
+        xVvL+/3fKf0vclg9wKvF2lwQ8Uyk0PBGuhsIKx8B/oVz1yl81Xh7ZwijK1KOXD5C
+        6HxkVbPqFwQIk3Pd6jqcsW9ArOzsPpK4Fy2vDdHcbufwSdKSksE/HWkTGBlhwgvE
+        FmzxLLy95ztSh3s2ajZUa98pKmFjARyD1egw0Fni7vcmhWcyTZ6Tpkuap9S2bZBM
+        R0ZSl3lcNqzJM+yPfQnG0l4BBZM9i495/trrAqJz9oMzXanmp1D1PyXqIKKeNxfT
+        wBT6gV49K/PNw4rJGGh5rAoOLH6oIFmLL0XZ3GCr0nrDnR3kp++hFYpmFsM0305e
+        dJ+h+boTeplp34PzMORs
+        =qjhL
+        -----END PGP MESSAGE-----
+      fp: 30DA87702717C0310E1BE81E612328766D06D7DD
+  encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData$))
+  version: 3.7.1

@@ -5,27 +5,27 @@ metadata:
   name: smart
 spec:
   containers:
-  - name: smart
-    image: analogj/scrutiny:latest
-    command:
-    - sleep
-    - "3600"
-    imagePullPolicy: IfNotPresent
-    securityContext:
-      privileged: true
-    volumeMounts:
-    - mountPath: /hostdev
-      name: dev
-    #- mountPath: /host/nvme0
-    #  name: disk1
-    #- mountPath: /host/nvme1
-    #  name: disk2
+    - name: smart
+      image: analogj/scrutiny:latest
+      command:
+        - sleep
+        - "3600"
+      imagePullPolicy: IfNotPresent
+      securityContext:
+        privileged: true
+      volumeMounts:
+        - mountPath: /hostdev
+          name: dev
+      #- mountPath: /host/nvme0
+      #  name: disk1
+      #- mountPath: /host/nvme1
+      #  name: disk2
   restartPolicy: Always
   volumes:
-  - name: dev
-    hostPath:
-      path: /dev
-      type: Directory
+    - name: dev
+      hostPath:
+        path: /dev
+        type: Directory
   #- name: disk1
   #  hostPath:
   #    path: /dev/nvme0

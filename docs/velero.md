@@ -1,6 +1,6 @@
 # velero
 
-[Velero](https://velero.io/) is a cluster backup & restore solution.  I can also leverage restic to backup persistent volumes to S3 storage buckets.
+[Velero](https://velero.io/) is a cluster backup & restore solution. I can also leverage restic to backup persistent volumes to S3 storage buckets.
 
 In order to backup and restore a given workload, the follow steps should work.
 
@@ -34,5 +34,5 @@ kubectl delete pvc/jackett-test-config
 velero restore create --from-backup velero-daily-backup-20201120020022 --include-namespaces testing --selector "app.kubernetes.io/instance=jackett-test" --wait
 ```
 
-* This should not interfere with the HelmRelease or require scaling helm-operator
-* You don't need to worry about adding labels to the HelmRelease or backing-up the helm secret object
+- This should not interfere with the HelmRelease or require scaling helm-operator
+- You don't need to worry about adding labels to the HelmRelease or backing-up the helm secret object

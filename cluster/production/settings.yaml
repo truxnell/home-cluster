@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
   name: cluster-settings
 data:
-  #VALUES DIFFERENT PROD - STAGING
+  # VALUES DIFFERENT PROD - STAGING
   CLUSTER_ENV: "prod"
   CLUSTER_EXTERNAL_SUBNET_PREFIX: "192.168.2"
   CLUSTER_LB_RANGE: "192.168.2.128-192.168.2.192"

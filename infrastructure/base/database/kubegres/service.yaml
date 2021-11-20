@@ -7,9 +7,9 @@ metadata:
   name: kubegres-database-lb
 spec:
   ports:
-      - protocol: TCP
-        port: 5432
-        targetPort: 5432
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
   selector:
     app: kubegres-database
     replicationRole: primary

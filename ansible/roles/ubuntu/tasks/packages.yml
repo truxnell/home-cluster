@@ -1,5 +1,4 @@
 ---
-
 - name: packages | disable recommends
   become: true
   ansible.builtin.copy:
@@ -11,36 +10,36 @@
   ansible.builtin.package_facts:
     manager: auto
   when:
-  - packages.apt_remove is defined
-  - packages.apt_remove is iterable
-  - packages.apt_remove | length > 0
-  - "'snapd' in packages.apt_remove"
+    - packages.apt_remove is defined
+    - packages.apt_remove is iterable
+    - packages.apt_remove | length > 0
+    - "'snapd' in packages.apt_remove"
 
 - name: packages | check if snap is installed
   ansible.builtin.debug:
     msg: "snapd is installed"
   register: snapd_check
   when:
-  - "'snapd' in ansible_facts.packages"
-  - packages.apt_remove is defined
-  - packages.apt_remove is iterable
-  - packages.apt_remove | length > 0
-  - "'snapd' in packages.apt_remove"
+    - "'snapd' in ansible_facts.packages"
+    - packages.apt_remove is defined
+    - packages.apt_remove is iterable
+    - packages.apt_remove | length > 0
+    - "'snapd' in packages.apt_remove"
 
 - name: packages | remove snap packages
   become: true
   ansible.builtin.command: snap remove {{ item }}
   loop:
-  - lxd
-  - core18
-  - snapd
+    - lxd
+    - core18
+    - snapd
   when:
-  - ansible_distribution == 'Ubuntu'
-  - snapd_check.failed is defined
-  - packages.apt_remove is defined
-  - packages.apt_remove is iterable
-  - packages.apt_remove | length > 0
-  - "'snapd' in packages.apt_remove"
+    - ansible_distribution == 'Ubuntu'
+    - snapd_check.failed is defined
+    - packages.apt_remove is defined
+    - packages.apt_remove is iterable
+    - packages.apt_remove | length > 0
+    - "'snapd' in packages.apt_remove"
 
 - name: packages | remove packages
   become: true
@@ -49,9 +48,9 @@
     state: absent
     autoremove: true
   when:
-  - packages.apt_remove is defined
-  - packages.apt_remove is iterable
-  - packages.apt_remove | length > 0
+    - packages.apt_remove is defined
+    - packages.apt_remove is iterable
+    - packages.apt_remove | length > 0
 
 - name: packages | remove file and directory cruft
   become: true
@@ -59,20 +58,20 @@
     state: absent
     path: "{{ item }}"
   loop:
-  - "/home/{{ ansible_user }}/.snap"
-  - "/snap"
-  - "/var/snap"
-  - "/var/lib/snapd"
-  - "/var/cache/snapd"
-  - "/usr/lib/snapd"
-  - "/etc/cloud"
-  - "/var/lib/cloud"
+    - "/home/{{ ansible_user }}/.snap"
+    - "/snap"
+    - "/var/snap"
+    - "/var/lib/snapd"
+    - "/var/cache/snapd"
+    - "/usr/lib/snapd"
+    - "/etc/cloud"
+    - "/var/lib/cloud"
   when:
-  - packages.apt_remove is defined
-  - packages.apt_remove is iterable
-  - packages.apt_remove | length > 0
-  - "'snapd' in packages.apt_remove"
-  - "'cloud-init' in packages.apt_remove"
+    - packages.apt_remove is defined
+    - packages.apt_remove is iterable
+    - packages.apt_remove | length > 0
+    - "'snapd' in packages.apt_remove"
+    - "'cloud-init' in packages.apt_remove"
 
 - name: packages | upgrade all packages
   ansible.builtin.apt:
@@ -98,10 +97,9 @@
   retries: 5
   until: apt_install_common is success
   when:
-  - packages.apt_install is defined
-  - packages.apt_install is iterable
-  - packages.apt_install | length > 0
-
+    - packages.apt_install is defined
+    - packages.apt_install is iterable
+    - packages.apt_install | length > 0
 # Until focal has https://launchpad.net/ubuntu/+source/htop
 # - name: packages | install latest htop
 #   become: true

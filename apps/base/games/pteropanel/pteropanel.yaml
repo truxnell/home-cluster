@@ -51,15 +51,15 @@ spec:
             - name: DB_PASSWORD
               value: "N2oKob6UDPzz24"
           volumeMounts:
-          - name: test
-            mountPath: /app/var
+            - name: test
+              mountPath: /app/var
       volumes:
-      - name: test
-        emptyDir: {}
+        - name: test
+          emptyDir:
+            {}
 
-
-          # args:
-          # - --api.dashboard=true
+            # args:
+            # - --api.dashboard=true
 ---
 apiVersion: v1
 kind: Service

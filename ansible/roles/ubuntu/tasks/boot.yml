@@ -1,5 +1,4 @@
 ---
-
 - name: boot | set cmdline options
   ansible.builtin.lineinfile:
     path: /boot/firmware/cmdline.txt
@@ -24,8 +23,8 @@
     option: apparmor
     value: 0
   when:
-  - ansible_architecture == 'x86_64'
-  - grub_result.stat.exists
+    - ansible_architecture == 'x86_64'
+    - grub_result.stat.exists
 
 - name: boot | set mitigations=off
   become: true
@@ -37,8 +36,8 @@
     option: mitigations
     value: "off"
   when:
-  - ansible_architecture == 'x86_64'
-  - grub_result.stat.exists
+    - ansible_architecture == 'x86_64'
+    - grub_result.stat.exists
 
 - name: boot | set max_loop=32
   become: true
@@ -50,11 +49,11 @@
     option: max_loop
     value: 32
   when:
-  - ansible_architecture == 'x86_64'
-  - grub_result.stat.exists
+    - ansible_architecture == 'x86_64'
+    - grub_result.stat.exists
 
 - name: boot | run grub-mkconfig
   ansible.builtin.command: grub-mkconfig -o /boot/grub/grub.cfg
   when:
-  - ansible_architecture == 'x86_64'
-  - grub_result.stat.exists
+    - ansible_architecture == 'x86_64'
+    - grub_result.stat.exists

@@ -1,5 +1,4 @@
 ---
-
 - name: cluster-registry | create /etc/rancher/k3s
   become: true
   ansible.builtin.file:

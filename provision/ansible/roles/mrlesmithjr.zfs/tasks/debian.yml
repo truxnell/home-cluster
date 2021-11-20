@@ -1,5 +1,4 @@
 ---
-
 - set_fact:
     default_debian_distribution: "{{ ansible_distribution_release }}"
   when: default_debian_distribution is not defined
@@ -48,8 +47,8 @@
       - open-iscsi
     state: present
   when: >
-        zfs_enable_iscsi is defined and
-        zfs_enable_iscsi
+    zfs_enable_iscsi is defined and
+    zfs_enable_iscsi
 
 - name: debian | un-installing open-iscsi (if not enabled)
   apt:
@@ -57,8 +56,8 @@
       - open-iscsi
     state: absent
   when: >
-        zfs_enable_iscsi is defined and
-        not zfs_enable_iscsi
+    zfs_enable_iscsi is defined and
+    not zfs_enable_iscsi
 
 - name: debian | configuring iscsitarget service
   template:
@@ -70,24 +69,24 @@
   notify:
     - restart iscsitarget
   when: >
-        zfs_enable_iscsi is defined and
-        zfs_enable_iscsi
+    zfs_enable_iscsi is defined and
+    zfs_enable_iscsi
 
 - name: debian | installing NFS (if enabled)
   apt:
     name: nfs-kernel-server
     state: present
   when: >
-        zfs_enable_nfs is defined and
-        zfs_enable_nfs
+    zfs_enable_nfs is defined and
+    zfs_enable_nfs
 
 - name: debian | un-installing NFS (if not enabled)
   apt:
     name: nfs-kernel-server
     state: absent
   when: >
-        zfs_enable_nfs is defined and
-        not zfs_enable_nfs
+    zfs_enable_nfs is defined and
+    not zfs_enable_nfs
 
 - name: debian | configuring NFS Kernel Server
   template:
@@ -100,8 +99,8 @@
     - restart nfs-kernel-server
     - start zfs-share
   when: >
-        zfs_enable_nfs is defined and
-        zfs_enable_nfs
+    zfs_enable_nfs is defined and
+    zfs_enable_nfs
 
 - name: debian | configuring ZFS
   template:

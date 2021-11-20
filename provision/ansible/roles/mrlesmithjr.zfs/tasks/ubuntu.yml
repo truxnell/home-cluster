@@ -4,28 +4,28 @@
     repo: "{{ zfs_ubuntu_ppa }}"
     state: present
   when: >
-        ansible_distribution_version <= '14.04'
+    ansible_distribution_version <= '14.04'
 
 - name: ubuntu | installing zfs ({{ ansible_distribution_version }} <= 14.04)
   apt:
     name: ubuntu-zfs
     state: present
   when: >
-        ansible_distribution_version <= '14.04'
+    ansible_distribution_version <= '14.04'
 
 - name: ubuntu | ensuring Ubuntu universe repo is enabled ({{ ansible_distribution_version }} >= 16.04)
   apt_repository:
     repo: "deb http://us.archive.ubuntu.com/ubuntu {{ ansible_distribution_release|lower }} universe"
     state: present
   when: >
-        ansible_distribution_version >= '16.04'
+    ansible_distribution_version >= '16.04'
 
 - name: ubuntu | installing zfs ({{ ansible_distribution_version }} >= 16.04)
   apt:
     name: zfsutils-linux
     state: present
   when: >
-        ansible_distribution_version >= '16.04'
+    ansible_distribution_version >= '16.04'
 
 - name: ubuntu | enabling zfs module
   modprobe:
@@ -39,8 +39,8 @@
       - iscsitarget-dkms
     state: present
   when: >
-        zfs_enable_iscsi is defined and
-        zfs_enable_iscsi
+    zfs_enable_iscsi is defined and
+    zfs_enable_iscsi
 
 - name: ubuntu | un-installing iscsitarget (if not enabled)
   apt:
@@ -49,8 +49,8 @@
       - iscsitarget-dkms
     state: absent
   when: >
-        zfs_enable_iscsi is defined and
-        not zfs_enable_iscsi
+    zfs_enable_iscsi is defined and
+    not zfs_enable_iscsi
 
 - name: ubuntu | configuring iscsitarget service
   template:
@@ -62,24 +62,24 @@
   notify:
     - restart iscsitarget
   when: >
-        zfs_enable_iscsi is defined and
-        zfs_enable_iscsi
+    zfs_enable_iscsi is defined and
+    zfs_enable_iscsi
 
 - name: ubuntu | installing NFS (if enabled)
   apt:
     name: nfs-kernel-server
     state: present
   when: >
-        zfs_enable_nfs is defined and
-        zfs_enable_nfs
+    zfs_enable_nfs is defined and
+    zfs_enable_nfs
 
 - name: ubuntu | un-installing NFS (if not enabled)
   apt:
     name: nfs-kernel-server
     state: absent
   when: >
-        zfs_enable_nfs is defined and
-        not zfs_enable_nfs
+    zfs_enable_nfs is defined and
+    not zfs_enable_nfs
 
 - name: ubuntu | configuring NFS Kernel Server
   template:
@@ -92,8 +92,8 @@
     - restart nfs-kernel-server
     - start zfs-share
   when: >
-        zfs_enable_nfs is defined and
-        zfs_enable_nfs
+    zfs_enable_nfs is defined and
+    zfs_enable_nfs
 
 - name: ubuntu | configuring ZFS
   template:
