@@ -22,9 +22,9 @@ jobs:
       - name: Update Flux components
         id: update
         run: |
-          UGLY_VERSION="$(bin/flux -v)"
+          UGLY_VERSION="$(flux -v)"
           VERSION="v${UGLY_VERSION#*flux version }"
-          bin/flux install --version="${VERSION}" \
+          flux install --version="${VERSION}" \
             --export > ./cluster/${{ matrix.cluster }}/flux-system/gotk-components.yaml
           echo "::set-output name=flux_version::$VERSION"
       - name: Create pull request for Flux update
