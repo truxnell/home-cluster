@@ -38,7 +38,7 @@ spec:
             periodSeconds: 10
           resources:
             limits:
-              memory: "10Mi"
+              memory: "100Mi"
               cpu: "100m"
           ports:
             - name: http
