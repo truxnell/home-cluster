@@ -22,7 +22,7 @@ docker run --rm --workdir /github/workspace \
 ```
 
 docker run --rm --workdir /github/workspace \
-  -v $(pwd):/github/workspace \
-  -v $HOME/.kube/:/github/workspace/.kube/ \
-  docker.io/xunholy/builder:latest \
-  ./.github/actions/buildkit/validate-kustomize.sh
+ -v $(pwd):/github/workspace \
+ -v $HOME/.kube/:/github/workspace/.kube/ \
+ docker.io/xunholy/builder:latest \
+ ./.github/actions/buildkit/validate-kustomize.sh

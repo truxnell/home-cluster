@@ -1,10 +1,10 @@
 ---
-name: 'buildkit'
-description: 'A GitHub Action with Kubernetes tools'
-author: 'Michael Fornaro'
+name: "buildkit"
+description: "A GitHub Action with Kubernetes tools"
+author: "Michael Fornaro"
 branding:
-  icon: 'command'
-  color: 'blue'
+  icon: "command"
+  color: "blue"
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
