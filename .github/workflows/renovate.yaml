@@ -1,5 +1,5 @@
 ---
-name: renovate
+name: Tag HelmRelease Annotations
 
 on:
   workflow_dispatch:
