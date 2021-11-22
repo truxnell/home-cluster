@@ -30,9 +30,9 @@ jobs:
           branch: update/pre-commit-auto-update
           title: Auto-update pre-commit hooks
           signoff: true
-          committer: "Michael Fornaro <20387402+xUnholy@users.noreply.github.com>"
-          author: "Michael Fornaro <20387402+xUnholy@users.noreply.github.com>"
+          committer: "Nat Allan <19149206+Truxnell@users.noreply.github.com>"
+          author: "Nat Allan <19149206+Truxnell@users.noreply.github.com>"
           commit-message: Auto-update pre-commit hooks
           body: |
-            Signed-off-by: Michael Fornaro <20387402+xUnholy@users.noreply.github.com>
+            Signed-off-by: Nat Allan <19149206+Truxnell@users.noreply.github.com>
           labels: dependencies, merge
