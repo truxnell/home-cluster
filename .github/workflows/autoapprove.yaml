@@ -1,0 +1,19 @@
+---
+name: Auto Merge Labeled PR's
+
+on: pull_request_target
+
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]' || github.actor == 'renovate-self-hosted[bot]'
+    steps:
+      - name: Auto Merge
+        uses: "pascalgn/automerge-action@v0.14.3"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_LABELS: merge
+          MERGE_METHOD: squash
+          MERGE_COMMIT_MESSAGE: pull-request-title
+          MERGE_FORKS: false
+          MERGE_DELETE_BRANCH: false
