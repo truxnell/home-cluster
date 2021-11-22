@@ -4,7 +4,7 @@
     "semanticCommits":"enabled",
     "dependencyDashboard":true,
     "dependencyDashboardTitle":"Renovate Dashboard 🤖",
-    "commitBody":"Signed-off-by: Nat Allan <Truxnell@users.noreply.github.com>",
+    "commitBody":"Signed-off-by: Nat Allan <19149206+Truxnell@users.noreply.github.com>",
     "suppressNotifications":[
         "prIgnoreNotification"
     ],
