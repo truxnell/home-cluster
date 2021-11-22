@@ -35,7 +35,7 @@ repos:
               .secrets/gitcrypt/.*
           )$
   - repo: https://github.com/sirosen/texthooks
-    rev: 0.1.0
+    rev: 0.2.2
     hooks:
       - id: fix-smartquotes
       - id: fix-ligatures
