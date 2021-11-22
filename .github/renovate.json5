@@ -242,8 +242,10 @@
                 "patch",
                 "digest"
             ],
-            "groupname":"Factorio Servers",
-            "labels":"automerge-servers",
+            "groupName":"Factorio Servers",
+            "labels":[
+                "automerge-servers"
+            ]
             "matchPackageNames":[
                 "factoriotools/factorio"
             ]
