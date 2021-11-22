@@ -7,8 +7,6 @@ spec:
   interval: 1h
   chart:
     spec:
-      # registryUrl=https://charts.bitnami.com/bitnami
-      # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: redis
       version: 15.5.5
       sourceRef:
