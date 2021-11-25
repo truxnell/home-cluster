@@ -86,7 +86,7 @@ spec:
                 - key: kubernetes.io/hostname
                   operator: In
                   values:
-                    - k8s-generic-node-a
+                    - k8s-control-node
 
     podAnnotations:
       backup.velero.io/backup-volumes: factorio
