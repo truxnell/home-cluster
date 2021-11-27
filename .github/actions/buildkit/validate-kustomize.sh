@@ -30,9 +30,11 @@
 
 set -o errexit
 
-echo "INFO - Downloading Flux OpenAPI schemas"
-mkdir -p /tmp/flux-crd-schemas/master-standalone-strict
-curl -sL https://github.com/fluxcd/flux2/releases/latest/download/crd-schemas.tar.gz | tar zxf - -C /tmp/flux-crd-schemas/master-standalone-strict
+if [ ! -d /tmp/flux-crd-schemas/master-standalone-strict/ ]; then
+  echo "INFO - Downloading Flux OpenAPI schemas"
+  mkdir -p /tmp/flux-crd-schemas/master-standalone-strict
+  curl -sL https://github.com/fluxcd/flux2/releases/latest/download/crd-schemas.tar.gz | tar zxf - -C /tmp/flux-crd-schemas/master-standalone-strict
+fi
 
 # mirror kustomize-controller build options
 kustomize_flags="--load-restrictor=LoadRestrictionsNone --reorder=legacy"
@@ -45,9 +47,9 @@ kustomize_config="kustomization.yaml"
 # done
 
 echo "INFO - Validating clusters"
-find ./cluster/ -maxdepth 2 -type f -name '*.yaml' -print0 | grep -vz .sops.yaml | while IFS= read -r -d $'\0' file;
+find ./k8s/ -maxdepth 5 -type f -name '*.yaml' -print0 | grep -vz .sops.yaml | while IFS= read -r -d $'\0' file;
   do
-    kubeval "${file}" --strict --ignore-missing-schemas --additional-schema-locations=file:///tmp/flux-crd-schemas
+    kubeval "${file}" --ignore-missing-schemas --additional-schema-locations=file:///tmp/flux-crd-schemas
     if [[ ${PIPESTATUS[0]} != 0 ]]; then
       exit 1
     fi
