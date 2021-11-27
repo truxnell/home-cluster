@@ -35,8 +35,8 @@ spec:
         config:
           region: "us-east-1"
           s3ForcePathStyle: true
-          s3Url: "http://${SYNOLOGY_IP}:9000"
-          publicUrl: "http://${SYNOLOGY_IP}:9000"
+          s3Url: "http://${NAS_ADDRESS}:9000"
+          publicUrl: "http://${NAS_ADDRESS}:9000"
       resticTimeout: 4h
     initContainers:
       - name: velero-plugin-for-aws

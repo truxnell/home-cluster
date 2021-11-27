@@ -13,7 +13,7 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    server: ${SYNOLOGY_IP}
+    server: ${NAS_ADDRESS}
     path: "/volume1/backup/kubernetes/postgres/"
   mountOptions:
     - tcp
