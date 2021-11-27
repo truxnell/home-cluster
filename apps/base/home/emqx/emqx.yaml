@@ -32,7 +32,7 @@ spec:
     recreatePods: true
     service:
       type: LoadBalancer
-      loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_EMQX}"
+      loadBalancerIP: "${LB_EMQX}"
 
     emqxConfig:
       EMQX_ALLOW_ANONYMOUS: "false"

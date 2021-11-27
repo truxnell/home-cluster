@@ -32,7 +32,7 @@ spec:
       # storageClass: rook-ceph-block
     service:
       type: LoadBalancer
-      loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_MARIADB}"
+      loadBalancerIP: "${LB_MARIADB}"
     existingSecret: infra-mariadb-galera-secret
     podAnnotations:
       backup.velero.io/backup-volumes: data

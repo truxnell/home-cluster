@@ -2,14 +2,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kubegres
+  name: cluster-deployment
   namespace: flux-system
 spec:
-  interval: 30m0s
-  path: ./config/default
-  targetNamespace: database
+  interval: 10m0s
+  path: ./k8s/clusters/prod-a/flux/deploy
   prune: true
   wait: true
   sourceRef:
     kind: GitRepository
-    name: kubegres
+    name: home-ops

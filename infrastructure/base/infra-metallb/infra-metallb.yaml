@@ -36,7 +36,7 @@ spec:
         - name: default
           protocol: layer2
           addresses:
-            - "${CLUSTER_LB_RANGE}"
+            - "${LB_RANGE}"
     prometheus:
       enabled: true
       serviceMonitor:

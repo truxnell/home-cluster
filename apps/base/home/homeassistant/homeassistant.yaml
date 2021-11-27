@@ -45,7 +45,7 @@ spec:
     # service:
     #   main:
     #     type: LoadBalancer
-    #     loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_HA}"
+    #     loadBalancerIP: "${LB_HA}"
     resources:
       limits:
         memory: 500Mi

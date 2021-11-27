@@ -31,7 +31,7 @@ spec:
       tag: v1.24.5.5173-8dcc73a59
     env:
       TZ: "Australia/Melbourne"
-      ADVERTISE_IP: "https://plex.${CLUSTER_DOMAIN}:443/,http://${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_PLEX}:32400/"
+      ADVERTISE_IP: "https://plex.${CLUSTER_DOMAIN}:443/,http://${LB_PLEX}:32400/"
       PLEX_CLAIM: "${PLEX_TOKEN}"
     podSecurityContext:
       supplementalGroups:
@@ -53,7 +53,7 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_PLEX}"
+        loadBalancerIP: "${LB_PLEX}"
         externalTrafficPolicy: Local
         annotations:
           metallb.universe.tf/allow-shared-ip: plex

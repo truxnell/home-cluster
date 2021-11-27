@@ -15,4 +15,4 @@ spec:
     app.kubernetes.io/instance: nginx-phpfm
     app.kubernetes.io/name: nginx-phpfpm
   type: LoadBalancer
-  loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_NGINX}"
+  loadBalancerIP: "${LB_NGINX}"

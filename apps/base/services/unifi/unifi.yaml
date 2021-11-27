@@ -40,7 +40,7 @@ spec:
         type: LoadBalancer
         annotations:
           metallb.universe.tf/allow-shared-ip: unifi
-        loadBalancerIP: ${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_UNIFI}
+        loadBalancerIP: ${LB_UNIFI}
         externalTrafficPolicy: Local
 
     resources:

@@ -30,4 +30,4 @@ spec:
   # used instead then the client source IP address is lost, and may hop between nodes.
   externalTrafficPolicy: Local
   type: LoadBalancer
-  loadBalancerIP: "${CLUSTER_EXTERNAL_SUBNET_PREFIX}.${CLUSTER_LB_INGRESS}"
+  loadBalancerIP: "${LB_INGRESS}"
