@@ -46,17 +46,8 @@ kustomize_config="kustomization.yaml"
 #     yq e 'true' "$file" > /dev/null
 # done
 
-echo "INFO - Validating clusters"
-find ./k8s/ -maxdepth 5 -type f -name '*.yaml' -print0 | grep -vz .sops.yaml | while IFS= read -r -d $'\0' file;
-  do
-    kubeval "${file}" --ignore-missing-schemas --additional-schema-locations=file:///tmp/flux-crd-schemas
-    if [[ ${PIPESTATUS[0]} != 0 ]]; then
-      exit 1
-    fi
-done
-
 echo "INFO - Validating kustomize overlays"
-find . -path ./.secrets -prune -o -type f -name $kustomize_config -print0 |  while IFS= read -r -d $'\0' file;
+find ./k8s/ -path ./.secrets -prune -o -type f -name $kustomize_config -print0 |  while IFS= read -r -d $'\0' file;
   do
     echo "INFO - Validating kustomization ${file/%$kustomize_config}"
     # Secrets are ignored with --skip-kinds due to using SOPS with FluxCD
