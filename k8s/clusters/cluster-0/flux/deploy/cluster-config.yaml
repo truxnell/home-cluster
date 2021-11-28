@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: manage-flux
   interval: 10m0s
-  path: ./k8s/clusters/prod-a/flux/vars
+  path: ./k8s/clusters/cluster-0/flux/vars
   prune: true
   wait: true
   sourceRef:
