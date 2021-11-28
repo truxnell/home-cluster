@@ -8,6 +8,15 @@ spec:
   interval: 10m0s
   ref:
     branch: development
-  secretRef:
-    name: flux-system
   url: https://github.com/Truxnell/home-cluster
+  ignore: |
+    # exclude all
+    /*
+    # include charts dirs
+    !/k8s/charts
+    # include gitops dirs
+    !/k8s/global
+    !/k8s/clusters/cluster-0
+    # exclude files from gitops dirs
+    /k8s/**/*.md
+    /k8s/**/*.tmpl
