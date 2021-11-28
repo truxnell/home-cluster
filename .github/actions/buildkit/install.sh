@@ -2,7 +2,7 @@
 
 set -eou pipefail
 
-DEFAULT_CLUSTER="prod-a"
+DEFAULT_CLUSTER="cluster-0"
 DEFUALT_GITHUB_REPO="k8s-gitops"
 DEFAULT_GITHUB_USER="xunholy"
 DEFAULT_GITHUB_BRANCH="main"
