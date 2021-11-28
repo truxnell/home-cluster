@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: flux-system
+  name: global-settings
+data:
+  # CIDR set in ansible file ansible/inventory/home/group_vars/control_nodes/k3s-settings.yaml
+  NETWORK_K8S_CLUSTER_CIDR: 10.69.0.0/16
+  NETWORK_K8S_SERVICE_CIDR: 10.96.0.0/16
+
+  # Ip Range: 10.8.11.x/24
+  LB_RANGE: "10.8.11.10-10.8.11.250"
+  LB_TRAEFIK: "10.8.11.10"
+  LB_MARIADB: "10.8.11.11"
+  LB_HA: "10.8.11.12"
+  LB_PLEX: "10.8.11.13"
+  LB_QBITTORRENT: "10.8.11.14"
+  LB_NGINX: "10.8.11.15"
+  LB_POSTGRES: "10.8.11.13"
+  LB_CALIBRE: "10.8.11.17"
+  LB_UNIFI: "10.8.11.18"
+  LB_EMQX: "10.8.11.19"
+  LB_RESILIO: "10.8.11.20"
+  LB_FACTORIO: "10.8.11.30"
+
+  # Device IP's
+  NAS_ADDRESS: "192.168.2.253"
+  VPN_PORT: "443"

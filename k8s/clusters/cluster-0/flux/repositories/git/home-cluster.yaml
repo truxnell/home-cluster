@@ -1,0 +1,13 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: flux-system
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  ref:
+    branch: development
+  secretRef:
+    name: flux-system
+  url: https://github.com/Truxnell/home-cluster
