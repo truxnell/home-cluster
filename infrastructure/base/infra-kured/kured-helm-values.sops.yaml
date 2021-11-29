@@ -2,36 +2,27 @@ apiVersion: v1
 kind: Secret
 type: Opaque
 metadata:
-  name: kured-helm-values
-  namespace: infra-kured
+    name: kured-helm-values
+    namespace: infra-kured
 stringData:
-  slack-hook-url: ENC[AES256_GCM,data:f+OsT19mqSbxyOci1/9/z/nRt4HU/K3KGfZs7wZyvbVwqhrDcsVD+OHPL9PiGNB56edlOVQ4lEHktO6Be0GhXzA8tA/QKZcAgXPtb8hsbwtTRZ24x7cunl0rblSlp1PzRLK5YBTOIAkGWuZGkVV0FoBTx8hh2uS2oOsYIFfXhHMJ,iv:L2ZV4DrCdnvoLNp1hYrMP2tAplIMZRJa+FfexIGO+h4=,tag:SoxONDuqbPI3hG5cP3L0bQ==,type:str]
+    slack-hook-url: ENC[AES256_GCM,data:NoOFKG/o2PgEoCi2wJwJsb8Wdn1dNNff0HJwD66Rdsj+l/e8sok5lvI/HSImU6mRhBKrjTA8CnKgOClEuiOmkFWHVFZw+VgmbvPdvw+K0xy2DpOpibzcY/hF8K7DSb/wie6kJstN3r4V4mPNpsWC0F2IBrgWgme7IXnlsrfrWc6g,iv:z2NgxNQRWjDZPQw9q1zmZh2qGDD/vsNYVY5HcBzvfnY=,tag:TW3A6P7Pnrm/0w/DVEQLdw==,type:str]
 sops:
-  kms: []
-  gcp_kms: []
-  azure_kv: []
-  hc_vault: []
-  age: []
-  lastmodified: "2021-11-20T08:22:14Z"
-  mac: ENC[AES256_GCM,data:g3GiaCdsTegq+nYNcbJN26Soi6yesJVZ6Bg4wDIgqFyd6PP7Tq1EKeg0qyExMQmTvnpb1Zms+hkzktinUNVfSNgimvzp2anLZKLEkr/wYQ1UONL2zfXoJRRAhlfMnz9nqVmJrY/7Zq2wbJFOM1y+9eXtKTkEQWEleNy5SzUfSUE=,iv:MZZhV5BFAaakJSWO6c3WJBo/vBdIDjdU3shL9I70Ir8=,tag:BRlEhUO/nE5zfdysQByxzg==,type:str]
-  pgp:
-    - created_at: "2021-06-04T13:49:36Z"
-      enc: |
-        -----BEGIN PGP MESSAGE-----
-
-        hQGMA94SucntcLeJAQv+IdspD1PIDse6T91xLGs0j9W3zPHKTfcOZ3qQ9Fe0rrmK
-        vA2Iz0AUwsxWJ2Wzr290sHhrXsiGQpYIugW5wbTPf74DVWKlABuE3iCo0Iw3NbqH
-        dgF6d43Y9RHewulqBSmnFsIoXpV49hJtXPOcm9Ekp33guatH7Pnj6RRfA1QNXA42
-        /AUw8fC174uBomefK2SSpRfuU/0tXZMeSU9j8qksJrbp5++jpo5y0Lq1/VhAFLk5
-        pdFstNHFdR0K+3WKwfenVG/rIn3Ofz/bM18UNmfGCdTpk+Ep/V/UXihQOLdodPS4
-        7KcFH9B7HYYzsDuFLx+HU3yFMWMkwfJSAdqZi5JCkyjFhFXTwoiWoRW7qbQ70tIh
-        zWNS/HvokU8lb/o+8c1XEBpLJitfF4CmlGE0U2A9mr20rStVG9nlTyFw/DakHOWq
-        QxCFzGjGE88o2rhXXiIeAnrjaS12H4coTbNIVc2Q1lxe87acMIvXzMY7SZnRJ+Cr
-        InHikLFyAzJAAmevC1jI0l4B6pY0ORIEdugbCLKai+8lX7xriccWdPcXFDivdOON
-        Esaemj+cBdOkD2lW2u5e2y5ET8u4p/2zBLv2LsjZXtUunyplIfRW9B6XAEdzbpaP
-        vDH0MgI1lhohhXM6N/2N
-        =IHVw
-        -----END PGP MESSAGE-----
-      fp: 30DA87702717C0310E1BE81E612328766D06D7DD
-  encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData$))
-  version: 3.7.1
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age12kzuwvvedndehkke84apwamungqrcavf2khwjvd46f6lkq0wqq5q3s3vth
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBiUFcrcVN2VDF5a3BsM3pI
+            azFXc0paOFZIVzRxZVR0VGpKSmtxemVqbDNvCm5pY2xnYk5ldzM0K09xUHFyYUpp
+            SVprcWJ5anI0eFMzUW92YzFzRkxEMFUKLS0tIGx6NDVjNGpiaGNpUFdtR08wOHJp
+            Wk02elV4dDM2RjdneTc4ZksxQjBiREUK6FrbncRZyPkcYgP3ZteelDJj0Qmos4Mq
+            bTsgrjUR5v1XmQM+mOw4/+tLR8KMJslL1H3c1EEz0JqSdJfcY3e8eg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2021-11-29T11:59:44Z"
+    mac: ENC[AES256_GCM,data:DLkq4WWoh+wM1CQzBu17vuBgzLgpKXNbfb9BANJLFdYUBYj9uFmowGbKsyil3lkE1fkSAxzd2xZATrV2ReP+EhlWYayFOC45AtmBfbP/QTeBt0Ob9FeKZdHSxdoAGn3oc7/TyvW32Fd0KgG9EM23oC9gPC7sAKT8o5wOWg2DPsM=,iv:7u9uliyLbvDeIYJY+olCCZ9ZdDG5BAi1L//aaAk/Tys=,tag:QyTVickUO3xdWco7AL3TrQ==,type:str]
+    pgp: []
+    encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData))
+    version: 3.7.1

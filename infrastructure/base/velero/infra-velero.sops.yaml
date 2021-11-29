@@ -2,35 +2,26 @@ apiVersion: v1
 kind: Secret
 type: Opaque
 metadata:
-  name: velero-secrets
+    name: velero-secrets
 stringData:
-  cloud: ENC[AES256_GCM,data:LKHp/DDfdJRU5kLMzZLmlN5NbVFYfc++aSIR5F/YIMVX6oRkRAeWLdRD92m1C3rTrzFQYwTHc3WtcOvSdGHFR1mTrq3rSkBYBq41/vw+VFYao+X5PFd1BUpvjb56GBb7YUH/qC3lfCp/YuOldasu+Pbpwlo/nic6LLLZllQNCfKqPO6+/jWWDdYVCfZHsWwr1lO1gw==,iv:Kab+EPHdDysSK1iS2RU6TaMpUiUGm6K7HVSp8DscPjM=,tag:y1c401p8n/bM/TYiAta/nw==,type:str]
+    cloud: ENC[AES256_GCM,data:uDbUGp1WPcs4kN0VLbMZpGJoVs7sltw4TT3UxYawniZz8Pkx9XCDcFgYnM+OwRCB5gUVU7mI4xopvVC49xSxBg7Vqv3jxcky3R/XtXoYnCK2GsCbKUsL4Hp+IiYukYW31nKG673wlIO/7SkHE6uTxOlYfNK6kN+DnhR9+gwqLJtZOsyw49n+NIgxsEjnBI/Vq6DMMA==,iv:5Y+gj7Hm9pH8rMJiIyQRqVey8IrPtk4h9OL8oeOYg8M=,tag:zPZztMAC2UygFId14/MExA==,type:str]
 sops:
-  kms: []
-  gcp_kms: []
-  azure_kv: []
-  hc_vault: []
-  age: []
-  lastmodified: "2021-11-20T08:27:13Z"
-  mac: ENC[AES256_GCM,data:AqZ27Tgw6Jd34wtMooN2Eg30hXSFPjCia7yVcf048luGgXwaLYDmjGx76X1zI76nSQHNYbRWbKeFrigwSIy+P/SHxA3A4rXRgwlqzValrMAru7poL+aQXmFyfuJQbyPFqkFT4E8AWvVTpulLelwMhRrX1LnKoH2jt1BlFZRtwR8=,iv:BsG76p2O9JDyNNHk4RnJvolhpzd8nk047uNPU59me/4=,tag:1nwjUhIZ53zbWLB2ziS+sw==,type:str]
-  pgp:
-    - created_at: "2021-06-04T13:49:38Z"
-      enc: |
-        -----BEGIN PGP MESSAGE-----
-
-        hQGMA94SucntcLeJAQwAoankgFUsagJhDpu3dfTfjQTOCBwdkuQ045TrDlVi1o/A
-        c0FBEH+eHakae5+zrR3QZciQWwqdcIXQHcgjjY9Ppvvt8TwNlSR6d6qZBaeQf2Z3
-        QDsE/Tf4I+yFDZd4kpU2wy3vcQoRtc3qALV7vKfSkQYA3KkmQfQ4HRxCgXcxdYWr
-        +Vlu72FHdoC9GDfqknP7wDj3C0gH/vv7f0qNd5unWut7dWwwXfSdWtivlXHAJh2i
-        XUwvI9EA0FLbs4U6i4WdsiHxkEqSxRNNSDn6T+PVH5eXbzOy/XVKJEqBbtwFU+pV
-        Tkrm3SxEGLNY/mixi65EWuZABCg6k3WpA9FdInNM+hm0ddbA9KVD4WN+ndE0VZyi
-        J9+A5AwcrdlBYX2XjjUyY3AHIGWYhKuKpNQxegm/v8+oHmWizTA9YR8eujJLZU9P
-        zxkAjlMyEyAPtaVBGm8mvPzarUH+HbIMYiJF5mIJ0fFNEX2i9dKc1xIQD5gsbPRK
-        r76QuP9mrt86uu90sHZQ0l4Bs7+/K6V1apAeinlP6xfwJKQ2R1tmp1vXicVHa6a7
-        X9GprEpcUCm41YStUKCAZvntU3ddu3ok4UvR8GnVJ3zjK1Eq7NIUPl64YsdtxWSb
-        Dkk3uVXUhzyYM+2WWDhN
-        =4x+m
-        -----END PGP MESSAGE-----
-      fp: 30DA87702717C0310E1BE81E612328766D06D7DD
-  encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData$))
-  version: 3.7.1
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age12kzuwvvedndehkke84apwamungqrcavf2khwjvd46f6lkq0wqq5q3s3vth
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAwT011V2xMczIycnhUWG1j
+            WjBxcHJKWnpSa2tFMjNOM0Y2ZDdhMVVZOEQ0CjJ2NWJLMU1Yc0U4YzgyejluSkx6
+            OXRJM3FxS3BOVDgwRHZMZEc4ZUJ3djAKLS0tIGhld3J4bk9rcEo1NlpvV0dEbTZt
+            dFZkNmRoaWdlY1hFTmR3UG53amtMMG8KEeBIrBKlp/lb8d83fB1QmQsacrTQ6tqg
+            catqk+X7s4Tl/6UzFjzB5sPztdhFYlgt5L8q18WfVJFRVhbE3Tw+pQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2021-11-29T11:59:44Z"
+    mac: ENC[AES256_GCM,data:bttYS6BoawNVNvj/kLfXj+D9xQKeL+eHItVUk9HQkPcFgv+/86v4vIu+0DMGaCZFtunUdB3tu1+NDnKfrLX2xdKwPTOa1W1xsy1/dN8+giYTS7RBCPgqp26m31rMwERKxgZlYiLGYndCLMxA3lFcEyBznvxwKUJrdMV1g1xgWsM=,iv:K/ODGcfAQcuFwtrzKvxod6c9KIYZNGMxjZAYvd3jBiQ=,tag:aCEUZFDlVpfd+SATzqfArA==,type:str]
+    pgp: []
+    encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData))
+    version: 3.7.1
