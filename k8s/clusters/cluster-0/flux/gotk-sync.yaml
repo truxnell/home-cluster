@@ -15,7 +15,7 @@ spec:
   decryption:
     provider: sops
     secretRef:
-      name: sops-gpg
+      name: sops-age
   patches:
     - target:
         kind: Deployment
