@@ -15,12 +15,12 @@ spec:
         rotate-server-certificates: true
         feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
 
-    - op: add
-      path: /machine/time
-      value:
-        disabled: false
-        servers:
-          - 10.1.1.1
+    # - op: add
+    #   path: /machine/time
+    #   value:
+    #     disabled: false
+    #     servers:
+    #       - 192.168.2.1
 
     - op: add
       path: /machine/network/interfaces
@@ -37,10 +37,10 @@ spec:
       value:
         feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
 
-    - op: add
-      path: /machine/certSANs
-      value:
-        - cluster-0.${CLUSTER_DOMAIN}
+    # - op: add
+    #   path: /machine/certSANs
+    #   value:
+    #     - cluster-0.${CLUSTER_DOMAIN}
 
     # - op: replace
     #   path: /cluster/network/cni
