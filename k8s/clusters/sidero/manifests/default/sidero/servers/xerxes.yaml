@@ -1,0 +1,26 @@
+---
+apiVersion: metal.sidero.dev/v1alpha1
+kind: Server
+metadata:
+  name: 5923cf63-8129-8eac-68ce-1c697a611cfd
+spec:
+  accepted: true
+  configPatches:
+    - op: replace
+      path: /machine/install/disk
+      value: /dev/sda
+    - op: add
+      path: /machine/network/hostname
+      value: xerxes.${CLUSTER_DOMAIN}
+  cpu:
+    manufacturer: Intel(R) Corporation
+    version: Intel(R) Core(TM) i5-8259U CPU @ 2.30GHz
+  hostname: xerxes
+  pxeBootAlways: true
+  system:
+    family: BE
+    manufacturer: Intel(R) Client Systems
+    productName: NUC8i5BEH
+    serialNumber: G6BE010003S4
+    skuNumber: BOXNUC8i5BEH
+    version: J72747-306
