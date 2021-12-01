@@ -42,17 +42,17 @@ spec:
     #   value:
     #     - cluster-0.${CLUSTER_DOMAIN}
 
-    # - op: replace
-    #   path: /cluster/network/cni
-    #   value:
-    #     name: "custom"
-    #     urls:
-    #       - "https://raw.githubusercontent.com/Truxnell/home-cluster/main/k8s/clusters/cluster-0/integrations/cilium-quick-install/quick-install.yaml"
+    - op: replace
+      path: /cluster/network/cni
+      value:
+        name: "custom"
+        urls:
+          - "https://raw.githubusercontent.com/bjw-s/home-ops/main/k8s/clusters/cluster-0/integrations/cilium-quick-install/quick-install.yaml"
 
-    # - op: replace
-    #   path: /cluster/extraManifests
-    #   value:
-    #     - "https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/v0.2.2/deploy/ha-install.yaml"
+    - op: replace
+      path: /cluster/extraManifests
+      value:
+        - "https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/v0.2.2/deploy/ha-install.yaml"
 
   selector:
     matchLabels:
