@@ -37,22 +37,23 @@ spec:
       value:
         feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
 
-    # - op: add
-    #   path: /machine/certSANs
+    - op: add
+      path: /machine/certSANs
+      value:
+        - cluster-0.${CLUSTER_DOMAIN}
+        - 192.168.2.143
+
+    # - op: replace
+    #   path: /cluster/network/cni
     #   value:
-    #     - cluster-0.${CLUSTER_DOMAIN}
+    #     name: "custom"
+    #     urls:
+    #       - "https://raw.githubusercontent.com/Truxnell/home-cluster/main/k8s/clusters/cluster-0/integrations/cilium-quick-install/quick-install.yaml"
 
-    - op: replace
-      path: /cluster/network/cni
-      value:
-        name: "custom"
-        urls:
-          - "https://raw.githubusercontent.com/bjw-s/home-ops/main/k8s/clusters/cluster-0/integrations/cilium-quick-install/quick-install.yaml"
-
-    - op: replace
-      path: /cluster/extraManifests
-      value:
-        - "https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/v0.2.2/deploy/ha-install.yaml"
+    # - op: replace
+    #   path: /cluster/extraManifests
+    #   value:
+    #     - "https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/v0.2.2/deploy/ha-install.yaml"
 
   selector:
     matchLabels:
