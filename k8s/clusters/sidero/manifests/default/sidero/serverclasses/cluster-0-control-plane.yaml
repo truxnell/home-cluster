@@ -28,9 +28,9 @@ spec:
         - interface: eth0
           dhcp: true
 
-    # - op: replace
-    #   path: /cluster/proxy/disabled
-    #   value: true
+    - op: replace
+      path: /cluster/proxy/disabled
+      value: true
 
     - op: add
       path: /cluster/apiServer/extraArgs
@@ -43,12 +43,12 @@ spec:
         - cluster-0.${CLUSTER_DOMAIN}
         - 192.168.2.143
 
-    # - op: replace
-    #   path: /cluster/network/cni
-    #   value:
-    #     name: "custom"
-    #     urls:
-    #       - "https://docs.projectcalico.org/archive/v3.21/manifests/calico.yaml"
+    - op: replace
+      path: /cluster/network/cni
+      value:
+        name: "custom"
+        urls:
+          - "https://raw.githubusercontent.com/bjw-s/home-ops/main/k8s/clusters/cluster-0/integrations/cilium-quick-install/quick-install.yaml"
 
     - op: replace
       path: /cluster/extraManifests
