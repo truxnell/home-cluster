@@ -28,9 +28,9 @@ spec:
         - interface: eth0
           dhcp: true
 
-    - op: replace
-      path: /cluster/proxy/disabled
-      value: true
+    # - op: replace
+    #   path: /cluster/proxy/disabled
+    #   value: true
 
     - op: add
       path: /cluster/apiServer/extraArgs
