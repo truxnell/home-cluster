@@ -17,11 +17,11 @@ repos:
     rev: v4.0.1
     hooks:
       - id: trailing-whitespace
-      - id: end-of-file-fixer
-      - id: check-added-large-files
       - id: check-merge-conflict
       - id: detect-private-key
       - id: end-of-file-fixer
+      - id: check-added-large-files
+        args: ["--maxkb=2000"]
 
   - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.1.10

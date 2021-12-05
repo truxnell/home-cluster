@@ -1,0 +1,9 @@
+---
+version: "3"
+
+tasks:
+  update-cilium:
+    desc: Update Cilium quick-install
+    cmds:
+      - helm template -f ./k8s/clusters/integrations/cilium-quick-install/values.yaml cilium/cilium > ./k8s/clusters/integrations/cilium-quick-install/quick-install.yaml
+    silent: false
