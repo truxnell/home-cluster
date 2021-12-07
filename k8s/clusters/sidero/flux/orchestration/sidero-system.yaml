@@ -1,0 +1,28 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: sidero-system-namespace
+  namespace: sidero-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/sidero-system"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: sidero-system
+  namespace: sidero-system-controller-manager-patch
+spec:
+  interval: 5m
+  path: "./k8s/manifests/sidero-system/sidero-controller-manager"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
