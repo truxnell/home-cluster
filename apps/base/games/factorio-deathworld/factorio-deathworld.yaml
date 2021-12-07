@@ -30,7 +30,7 @@ spec:
       # -- image repository
       repository: factoriotools/factorio
       # -- image tag
-      tag: stable@sha256:8c44a2c73b16e5d61a522d1b2532729fd700e3be1ddd60a0bc2493f21164651c
+      tag: stable@sha256:55ded70e4dca489abf7c88cfa6b87276e3aded336062181ce926b5b9d2302038
     env:
       # -- Set the container timezone
       TZ: "Australia/Melbourne"
