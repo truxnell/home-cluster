@@ -16,8 +16,8 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: sidero-system
-  namespace: sidero-system-controller-manager-patch
+  name: sidero-system-controller-manager-patch
+  namespace: sidero-system
 spec:
   interval: 5m
   path: "./k8s/manifests/sidero-system/sidero-controller-manager"
