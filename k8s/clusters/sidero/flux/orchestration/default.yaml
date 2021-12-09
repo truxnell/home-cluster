@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./manifests/default/sidero"
+  path: ./k8s/manifests/default/sidero
   prune: true
   wait: false
   sourceRef:

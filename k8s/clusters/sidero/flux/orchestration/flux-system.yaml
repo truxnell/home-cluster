@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./manifests/flux-system/add-ons"
+  path: "./k8s/manifests/flux-system/add-ons"
   prune: true
   wait: true
   sourceRef:

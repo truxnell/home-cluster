@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: cluster-repositories
   interval: 10m0s
-  path: ./manifests/install
+  path: ./k8s/manifests/install
   prune: true
   wait: true
   sourceRef:

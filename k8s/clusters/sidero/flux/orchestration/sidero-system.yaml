@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./manifests/sidero-system"
+  path: "./k8s/manifests/sidero-system"
   prune: true
   wait: true
   sourceRef:
@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./manifests/sidero-system/sidero-controller-manager"
+  path: "./k8s/manifests/sidero-system/sidero-controller-manager"
   prune: true
   wait: true
   sourceRef:
