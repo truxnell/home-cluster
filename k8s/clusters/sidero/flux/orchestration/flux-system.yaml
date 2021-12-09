@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: flux-system-addons
+  name: flux-system-addon-notification
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/flux-system/add-ons"
+  path: "./k8s/manifests/flux-system/add-ons/notifications"
   prune: true
   wait: true
   sourceRef:
