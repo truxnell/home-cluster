@@ -6,9 +6,9 @@ metadata:
   namespace: default
 spec:
   initrd:
-    url: "https://github.com/talos-systems/talos/releases/download/v0.13.1/initramfs-arm64.xz"
+    url: "https://github.com/talos-systems/talos/releases/download/v0.14.0-alpha.2/initramfs-arm64.xz"
   kernel:
-    url: "https://github.com/talos-systems/talos/releases/download/v0.13.1/vmlinuz-arm64"
+    url: "https://github.com/talos-systems/talos/releases/download/v0.14.0-alpha.2/vmlinuz-arm64"
     args:
       - console=tty0
       - console=ttyS1,115200n8
