@@ -23,7 +23,7 @@ spec:
     # https://github.com/vmware-tanzu/helm-charts/blob/main/charts/velero/values.yaml
     image:
       repository: velero/velero
-      tag: v1.7.0
+      tag: v1.7.1
     configuration:
       extraEnvVars:
         TZ: "Australia/Melbourne"
