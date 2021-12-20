@@ -33,7 +33,7 @@ spec:
         fsGroup: 65534
       containers:
         - name: traefik
-          image: traefik:v2.4
+          image: traefik:v2.6
           args:
             - --api.dashboard=true
             # - --api.insecure=true
