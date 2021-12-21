@@ -20,7 +20,7 @@ spec:
     nameOverride: keycloak
     image:
       repository: jboss/keycloak
-      tag: 15.1.1
+      tag: 16.1.0
     postgresql:
       enabled: false
     extraEnv: |
