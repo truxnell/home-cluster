@@ -30,7 +30,7 @@ spec:
       # -- image repository
       repository: factoriotools/factorio
       # -- image tag
-      tag: stable@sha256:e7dc3e6aa1051e8f45bf16e3b1b5c1e6af0242e13a4a7d18777883098dff7c10
+      tag: stable@sha256:fcd8bb054c0ef39eefab1b26d1828bc180694ec97bc26763f36c970ea04842c1
 
     env:
       # -- Set the container timezone
