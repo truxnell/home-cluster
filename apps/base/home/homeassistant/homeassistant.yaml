@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: homeassistant/home-assistant
-      tag: 2021.12.2
+      tag: 2021.12.4
     extraEnv:
       TZ: "Australia/Melbourne"
     probes:
