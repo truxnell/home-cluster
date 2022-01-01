@@ -2,15 +2,15 @@
 apiVersion: metal.sidero.dev/v1alpha1
 kind: Environment
 metadata:
-  name: default-amd64
+  name: default
 spec:
   kernel:
     url: https://github.com/talos-systems/talos/releases/download/v0.14.0/vmlinuz-amd64
     args:
       - console=tty0
-      - console=ttyS0
+      - console=ttyS1,115200n8
       - consoleblank=0
-      - earlyprintk=ttyS0
+      - earlyprintk=ttyS1,115200n8
       - ima_appraise=fix
       - ima_hash=sha512
       - ima_template=ima-ng
