@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: sctx/overseerr
-      tag: 1.27.0
+      tag: 1.28.0
     env:
       TZ: "Australia/Melbourne"
     persistence:
