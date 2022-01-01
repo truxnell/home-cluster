@@ -5,10 +5,8 @@ metadata:
   name: default-arm64
   namespace: default
 spec:
-  initrd:
-    url: "https://github.com/talos-systems/talos/releases/download/v0.14.0-alpha.2/initramfs-arm64.xz"
   kernel:
-    url: "https://github.com/talos-systems/talos/releases/download/v0.14.0-alpha.2/vmlinuz-arm64"
+    url: "https://github.com/talos-systems/talos/releases/download/v0.14.0/vmlinuz-arm64"
     args:
       - console=tty0
       - console=ttyS1,115200n8
@@ -26,3 +24,5 @@ spec:
       - slab_nomerge=
       - talos.config=http://192.168.2.61:8081/configdata?uuid=
       - talos.platform=metal
+  initrd:
+    url: "https://github.com/talos-systems/talos/releases/download/v0.14.0/initramfs-arm64.xz"
