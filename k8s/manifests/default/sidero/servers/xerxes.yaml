@@ -4,7 +4,6 @@ kind: Server
 metadata:
   name: 5923cf63-8129-8eac-68ce-1c697a611cfd
   labels:
-    control-plane: "true"
     environment: prod
 spec:
   accepted: true
