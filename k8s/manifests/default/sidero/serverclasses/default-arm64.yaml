@@ -1,0 +1,18 @@
+apiVersion: metal.sidero.dev/v1alpha1
+kind: ServerClass
+metadata:
+  name: rpi4-cp
+spec:
+  environmentRef:
+    name: rpi4
+  configPatches:
+    - op: replace
+      path: /machine/install
+      value:
+        disk: /dev/sda
+        extraKernelArgs:
+          - console=ttyAMA0,115200
+  qualifiers:
+    cpu:
+      - manufacturer: Broadcom
+        version: BCM2711 (ARM Cortex-A72)

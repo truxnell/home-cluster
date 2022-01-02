@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ./cluster-0-control-plane.yaml
   - ./cluster-0-worker.yaml
+  - ./default-arm64.yaml
