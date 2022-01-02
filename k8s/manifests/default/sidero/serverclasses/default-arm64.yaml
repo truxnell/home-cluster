@@ -4,7 +4,7 @@ metadata:
   name: rpi4-cp
 spec:
   environmentRef:
-    name: rpi4
+    name: default-arm64
   configPatches:
     - op: replace
       path: /machine/install
