@@ -1,10 +1,10 @@
+---
 apiVersion: metal.sidero.dev/v1alpha1
 kind: ServerClass
 metadata:
-  name: rpi4-cp
+  name: pi-masters
+  namespace: default
 spec:
-  environmentRef:
-    name: default-arm64
   configPatches:
     - op: replace
       path: /machine/install
@@ -12,7 +12,11 @@ spec:
         disk: /dev/sda
         extraKernelArgs:
           - console=ttyAMA0,115200
-  qualifiers:
-    cpu:
-      - manufacturer: Broadcom
-        version: BCM2711 (ARM Cortex-A72)
+    - op: add
+      path: /machine/network/interfaces
+      value:
+        - interface: eth0
+          dhcp: true
+  selector:
+    matchLabels:
+      pi-master: "true"

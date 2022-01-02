@@ -57,4 +57,4 @@ spec:
 
   selector:
     matchLabels:
-      control-plane: "true"
+      master: "true"

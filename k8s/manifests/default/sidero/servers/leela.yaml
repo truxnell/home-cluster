@@ -1,0 +1,29 @@
+---
+apiVersion: metal.sidero.dev/v1alpha1
+kind: Server
+metadata:
+  labels:
+    pi-master: "true"
+  name: 00d03114-0000-0000-0000-dca632f9cd1f
+  namespace: default
+spec:
+  accepted: true
+  hostname: leela.${CLUSTER_DOMAIN}
+  configPatches:
+    - op: add
+      path: /machine/network/hostname
+      value: leela.${CLUSTER_DOMAIN}
+    - op: replace
+      path: /machine/install/disk
+      value: /dev/sda
+  pxeBootAlways: true
+  cpu:
+    manufacturer: Broadcom
+    version: BCM2711 (ARM Cortex-A72)
+  system:
+    family: Raspberry Pi
+    manufacturer: Raspberry Pi Foundation
+    productName: Raspberry Pi 4 Model B
+    serialNumber: 0000DCA632F9CD1F
+    skuNumber: 0000000000D03114
+    version: D03114

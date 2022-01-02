@@ -38,7 +38,7 @@ spec:
 
   selector:
     matchExpressions:
-      - key: control-plane
+      - key: master
         operator: NotIn
         values:
           - "true"
