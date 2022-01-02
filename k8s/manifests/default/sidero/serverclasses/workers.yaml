@@ -42,3 +42,7 @@ spec:
         operator: NotIn
         values:
           - "true"
+      - key: pi-master
+        operator: NotIn
+        values:
+          - "true"
