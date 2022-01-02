@@ -2,7 +2,7 @@
 apiVersion: metal.sidero.dev/v1alpha1
 kind: ServerClass
 metadata:
-  name: cluster-0-worker
+  name: workers
 spec:
   configPatches:
     - op: replace
