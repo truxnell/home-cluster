@@ -22,7 +22,7 @@ spec:
       - pti=on
       - random.trust_cpu=on
       - slab_nomerge=
-      - talos.config=http://192.168.2.43:8081/configdata?uuid=
+      - talos.config=http://192.168.2.34:8081/configdata?uuid=
       - talos.platform=metal
   initrd:
     url: "https://github.com/talos-systems/talos/releases/download/v0.14.0/initramfs-arm64.xz"
