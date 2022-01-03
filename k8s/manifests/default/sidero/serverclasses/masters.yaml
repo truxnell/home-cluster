@@ -41,7 +41,7 @@ spec:
       path: /machine/certSANs
       value:
         - cluster-0.${CLUSTER_DOMAIN}
-        - 192.168.2.143
+        - 192.168.2.48
 
     - op: replace
       path: /cluster/network/cni
