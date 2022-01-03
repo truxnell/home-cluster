@@ -7,6 +7,9 @@ metadata:
   name: 00d03114-0000-0000-0000-dca632f9cd1f
   namespace: default
 spec:
+  environmentRef:
+    namespace: default
+    name: default-arm64
   accepted: true
   hostname: leela.${CLUSTER_DOMAIN}
   configPatches:
