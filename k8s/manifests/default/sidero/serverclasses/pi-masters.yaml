@@ -17,6 +17,25 @@ spec:
       value:
         - interface: eth0
           dhcp: true
+    - op: replace
+      path: /cluster/proxy/disabled
+      value: true
+    - op: replace
+      path: /cluster/network/cni
+      value:
+        name: "custom"
+        urls:
+          - "https://raw.githubusercontent.com/Truxnell/home-cluster/development/k8s/clusters/integrations/cilium-quick-install/quick-install.yaml"
+    - op: replace
+      path: /cluster/extraManifests
+      value:
+        - "https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/v0.2.2/deploy/ha-install.yaml"
+    - op: add
+      path: /machine/kubelet/extraArgs
+      value:
+        rotate-server-certificates: true
+        feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
+
   selector:
     matchLabels:
       pi-master: "true"
