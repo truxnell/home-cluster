@@ -4,21 +4,21 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: "cilium"
-  namespace: default
+  namespace: kube-system
 ---
 # Source: cilium/templates/cilium-operator-serviceaccount.yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: "cilium-operator"
-  namespace: default
+  namespace: kube-system
 ---
 # Source: cilium/templates/cilium-configmap.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: cilium-config
-  namespace: default
+  namespace: kube-system
 data:
   # Identity allocation mode selects how identities are shared between cilium
   # nodes by setting how they are stored. The options are "crd" or "kvstore".
@@ -355,7 +355,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: "cilium"
-    namespace: default
+    namespace: kube-system
 ---
 # Source: cilium/templates/cilium-operator-clusterrolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -369,7 +369,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: "cilium-operator"
-    namespace: default
+    namespace: kube-system
 ---
 # Source: cilium/templates/cilium-agent-daemonset.yaml
 apiVersion: apps/v1
@@ -378,7 +378,7 @@ metadata:
   labels:
     k8s-app: cilium
   name: cilium
-  namespace: default
+  namespace: kube-system
 spec:
   selector:
     matchLabels:
@@ -668,7 +668,7 @@ metadata:
     io.cilium/app: operator
     name: cilium-operator
   name: cilium-operator
-  namespace: default
+  namespace: kube-system
 spec:
   # See docs on ServerCapabilities.LeasesResourceLock in file pkg/k8s/version/version.go
   # for more details.
