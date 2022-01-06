@@ -44,8 +44,8 @@ metadata:
 spec:
   secretName: "${CLUSTER_DOMAIN_CERT}"
   issuerRef:
-    # name: letsencrypt-test
-    name: letsencrypt-prod
+    name: letsencrypt-staging
+    # name: letsencrypt-production
     kind: ClusterIssuer
   dnsNames:
     - "${CLUSTER_DOMAIN}"
