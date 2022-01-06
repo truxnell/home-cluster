@@ -17,6 +17,7 @@ spec:
     # include gitops dirs
     !/k8s/global
     !/k8s/clusters/cluster-0
+    !/k8s/manifests
     # exclude files from gitops dirs
     /k8s/**/*.md
     /k8s/**/*.tmpl
