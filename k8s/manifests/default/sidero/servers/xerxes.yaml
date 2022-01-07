@@ -13,7 +13,7 @@ spec:
       value: /dev/sda
     - op: add
       path: /machine/network/hostname
-      value: xerxes
+      value: xerxes.${HARDWARE_DOMAIN}
   cpu:
     manufacturer: Intel(R) Corporation
     version: Intel(R) Core(TM) i5-8259U CPU @ 2.30GHz

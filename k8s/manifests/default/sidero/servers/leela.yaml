@@ -11,7 +11,7 @@ spec:
     namespace: default
     name: default-arm64
   accepted: true
-  hostname: leela
+  hostname: leela.${HARDWARE_DOMAIN}
   configPatches:
     - op: add
       path: /machine/network/hostname
