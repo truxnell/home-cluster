@@ -11,7 +11,8 @@ spec:
       name: letsencrypt-staging
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     solvers:
-      - dns01:
+      - selector: {}
+        dns01:
           cloudflare:
             apiKeySecretRef:
               key: api-token
@@ -30,7 +31,8 @@ spec:
       name: letsencrypt-production
     server: https://acme-v02.api.letsencrypt.org/directory
     solvers:
-      - dns01:
+      - selector: {}
+        dns01:
           cloudflare:
             apiKeySecretRef:
               key: api-token
