@@ -13,7 +13,7 @@ resources:
   # - ./network.yaml
   # - ./scripts.yaml
   # - ./selfhosted.yaml
-  # - ./system-monitoring.yaml
+  - ./system-monitoring.yaml
   # - ./system-security.yaml
   # - ./system.yaml
   # - ./velero.yaml
