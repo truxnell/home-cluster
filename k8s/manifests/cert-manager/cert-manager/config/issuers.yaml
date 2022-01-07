@@ -14,7 +14,7 @@ spec:
       - dns01:
           cloudflare:
             apiKeySecretRef:
-              key: api_key
+              key: api_token
               name: cloudflare-api-token-secret
             email: acme@${CLUSTER_DOMAIN}
 ---
@@ -33,7 +33,7 @@ spec:
       - dns01:
           cloudflare:
             apiKeySecretRef:
-              key: api_key
+              key: api_token
               name: cloudflare-api-token-secret
             email: acme@${CLUSTER_DOMAIN}
 ---
