@@ -25,6 +25,10 @@
     {
       "filePath": "k8s/clusters/cluster-0/flux/vars/cluster-secrets.sops.yaml",
       "group": "Default"
+    },
+    {
+      "filePath": "k8s/clusters/cluster-0/flux/orchestration",
+      "group": "Default"
     }
   ],
   "cSpell.enabled": false

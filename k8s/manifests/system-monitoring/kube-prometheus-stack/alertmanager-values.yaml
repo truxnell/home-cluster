@@ -49,7 +49,7 @@ alertmanager:
     annotations:
       kubernetes.io/ingress.class: traefik
       cert-manager.io/cluster-issuer: letsencrypt-production
-      external-dns.alpha.kubernetes.io/target: ingress.${INGRESS_DOMAIN}
+      # external-dns.alpha.kubernetes.io/target: ingress.${INGRESS_DOMAIN}
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
       traefik.ingress.kubernetes.io/router.middlewares: network-rfc1918-ips@kubernetescrd
     hosts:
@@ -59,14 +59,14 @@ alertmanager:
         hosts:
           - alertmanager.${CLUSTER_NAME}.${INGRESS_DOMAIN}
 
-  alertmanagerSpec:
-    storage:
-      volumeClaimTemplate:
-        spec:
-          storageClassName: ceph-block
-          resources:
-            requests:
-              storage: 10Gi
+    # alertmanagerSpec:
+    #   storage:
+    #     volumeClaimTemplate:
+    #       spec:
+    #         storageClassName: ceph-block
+    #         resources:
+    #           requests:
+    #             storage: 10Gi
 
     resources:
       requests:
