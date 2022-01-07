@@ -45,3 +45,21 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cert-manager-certmanager-certificate
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: cert-manager-namespace
+    - name: cert-manager-certmanager
+    - name: cert-manager-certmanager-config
+  interval: 5m
+  path: "./k8s/manifests/cert-manager/cert-manager/certificate"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
