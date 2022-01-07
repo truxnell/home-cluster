@@ -8,12 +8,16 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://kubernetes-sigs.github.io/metrics-server
+      # renovate: registryUrl=https://kubernetes-sigs.github.io/metrics-server/
       chart: metrics-server
       version: 3.7.0
       sourceRef:
         kind: HelmRepository
-        name: metrics-server-charts
+        name: kubernetes-sigs-metrics-server-charts
         namespace: flux-system
       interval: 5m
+
   values:
+    image:
+      repository: k8s.gcr.io/metrics-server/metrics-server
+      tag: v0.5.2
