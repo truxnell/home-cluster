@@ -3,6 +3,11 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
   name: "cilium"
   namespace: kube-system
 ---
@@ -10,6 +15,11 @@ metadata:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
   name: "cilium-operator"
   namespace: kube-system
 ---
@@ -19,6 +29,11 @@ kind: ConfigMap
 metadata:
   name: cilium-config
   namespace: kube-system
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
 data:
   # Identity allocation mode selects how identities are shared between cilium
   # nodes by setting how they are stored. The options are "crd" or "kvstore".
@@ -148,6 +163,11 @@ data:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
   name: cilium
 rules:
   - apiGroups:
@@ -247,6 +267,11 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
   name: cilium-operator
 rules:
   - apiGroups:
@@ -347,6 +372,11 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
   name: cilium
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -361,6 +391,11 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
+  labels:
+    app.kubernetes.io/managed-by: Helm
   name: cilium-operator
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -375,7 +410,11 @@ subjects:
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
   labels:
+    app.kubernetes.io/managed-by: Helm
     k8s-app: cilium
   name: cilium
   namespace: kube-system
@@ -664,7 +703,11 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    meta.helm.sh/release-name: cilium
+    meta.helm.sh/release-namespace: kube-system
   labels:
+    app.kubernetes.io/managed-by: Helm
     io.cilium/app: operator
     name: cilium-operator
   name: cilium-operator
@@ -684,7 +727,6 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      annotations:
       labels:
         io.cilium/app: operator
         name: cilium-operator
