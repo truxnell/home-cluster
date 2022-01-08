@@ -122,6 +122,6 @@ spec:
                   protocol: UDP
             - to:
                 - ipBlock:
-                    cidr: ${NETWORK_K8S_CLUSTER_CIDR}
+                    cidr: ${NETWORK_K8S_POD_CIDR}
                 - ipBlock:
                     cidr: ${NETWORK_K8S_SERVICE_CIDR}
