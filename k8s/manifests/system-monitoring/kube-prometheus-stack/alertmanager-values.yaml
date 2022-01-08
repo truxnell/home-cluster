@@ -49,15 +49,15 @@ alertmanager:
     annotations:
       kubernetes.io/ingress.class: traefik
       cert-manager.io/cluster-issuer: letsencrypt-production
-      # external-dns.alpha.kubernetes.io/target: ingress.${INGRESS_DOMAIN}
+      # external-dns.alpha.kubernetes.io/target: ingress.${CLUSTER_DOMAIN}
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
       traefik.ingress.kubernetes.io/router.middlewares: network-rfc1918-ips@kubernetescrd
     hosts:
-      - alertmanager.${CLUSTER_NAME}.${INGRESS_DOMAIN}
+      - alertmanager.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
     tls:
       - secretName: alertmanager-${CLUSTER_NAME}-tls
         hosts:
-          - alertmanager.${CLUSTER_NAME}.${INGRESS_DOMAIN}
+          - alertmanager.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
 
     # alertmanagerSpec:
     #   storage:
