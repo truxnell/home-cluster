@@ -6,6 +6,7 @@ metadata:
   name: cluster-config
 data:
   CLUSTER_NAME: cluster-0
+  CLUSTER_ID: "0"
 
   NETWORK_K8S_CLUSTER_CIDR: 10.244.0.0/16
   NETWORK_K8S_SERVICE_CIDR: 10.96.0.0/16
