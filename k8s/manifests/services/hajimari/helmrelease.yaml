@@ -24,6 +24,11 @@ spec:
       TZ: "Australia/Melbourne"
     hajimari:
       defaultEnable: false
+      namespaceSelector:
+        matchNames:
+          - services
+          - system-monitoring
+          - network-system
       name: "nat"
       customApps:
         - name: Valetudo
