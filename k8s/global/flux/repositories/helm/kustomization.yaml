@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - ./bitnami-charts.yaml
   - ./cilium-charts.yaml
-  - ./hajimari.yaml
   - ./jetstack-charts.yaml
   - ./k8s-at-home-charts.yaml
   - ./kubernetes-sigs-metrics-server-charts.yaml

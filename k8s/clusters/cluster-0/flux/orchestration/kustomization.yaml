@@ -11,6 +11,7 @@ resources:
   - ./kube-system.yaml
   # - ./media.yaml
   - ./network-system.yaml
+  - ./services.yaml
   # - ./scripts.yaml
   # - ./selfhosted.yaml
   - ./system-monitoring.yaml

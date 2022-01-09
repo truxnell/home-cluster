@@ -19,6 +19,8 @@ metadata:
   name: network-system-metallb
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: network-system-namespace
   interval: 5m
   path: "./k8s/manifests/network-system/metallb"
   prune: true
@@ -36,6 +38,7 @@ spec:
   dependsOn:
     - name: network-system-namespace
     - name: cert-manager-certmanager-config
+    - name: network-system-metallb
   interval: 5m
   path: "./k8s/manifests/network-system/traefik/base"
   prune: true
