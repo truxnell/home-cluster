@@ -9,7 +9,7 @@ prometheus:
       # external-dns.alpha.kubernetes.io/target: ingress.${CLUSTER_DOMAIN}
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
       traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
-      hajimari.io/enabled: True
+      hajimari.io/enabled: "true"
       hajimari.io/icon: database-clock
       hajimari.io/appName: Prometheus
 
