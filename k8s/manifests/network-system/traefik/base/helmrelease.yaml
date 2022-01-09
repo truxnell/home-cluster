@@ -104,6 +104,11 @@ spec:
                     - traefik
             topologyKey: kubernetes.io/hostname
 
+    metrics:
+      prometheus:
+        enabled: true
+        entryPoint: metrics
+
     resources:
       requests:
         cpu: "100m"
