@@ -130,37 +130,37 @@ spec:
 #   sourceRef:
 #     kind: GitRepository
 #     name: home-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: system-monitoring-node-problem-detector
-  namespace: flux-system
-spec:
-  dependsOn:
-    - name: system-monitoring-namespace
-    - name: system-monitoring-kube-prom-stack
-  interval: 5m
-  path: "./k8s/manifests/system-monitoring/node-problem-detector"
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: home-cluster
 # ---
 # apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 # kind: Kustomization
 # metadata:
-#   name: system-monitoring-node-feature-discovery
+#   name: system-monitoring-node-problem-detector
 #   namespace: flux-system
 # spec:
 #   dependsOn:
 #     - name: system-monitoring-namespace
-#     - name: kube-system-reloader
+#     - name: system-monitoring-kube-prom-stack
 #   interval: 5m
-#   path: "./k8s/manifests/system-monitoring/node-feature-discovery"
+#   path: "./k8s/manifests/system-monitoring/node-problem-detector"
 #   prune: true
 #   wait: true
 #   sourceRef:
 #     kind: GitRepository
 #     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: system-monitoring-node-feature-discovery
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: system-monitoring-namespace
+    - name: kube-system-reloader
+  interval: 5m
+  path: "./k8s/manifests/system-monitoring/node-feature-discovery"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
