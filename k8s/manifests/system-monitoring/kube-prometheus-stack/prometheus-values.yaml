@@ -29,13 +29,13 @@ prometheus:
     retention: 6h
     enableAdminAPI: true
     walCompression: true
-    storageSpec:
-      volumeClaimTemplate:
-        spec:
-          storageClassName: ceph-block
-          resources:
-            requests:
-              storage: 10Gi
+    # storageSpec:
+    #   volumeClaimTemplate:
+    #     spec:
+    #       storageClassName: ceph-block
+    #       resources:
+    #         requests:
+    #           storage: 10Gi
     resources:
       requests:
         memory: 3072Mi
