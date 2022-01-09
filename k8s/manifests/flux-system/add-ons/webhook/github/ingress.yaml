@@ -6,14 +6,14 @@ metadata:
   namespace: flux-system
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
-    external-dns/is-public: "true"
-    external-dns.alpha.kubernetes.io/target: ingress.${INGRESS_DOMAIN}
-    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+    # external-dns/is-public: "true"
+    # external-dns.alpha.kubernetes.io/target: ingress.${CLUSTER_DOMAIN}
+    # external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   ingressClassName: "traefik"
   rules:
-    - host: "flux-receiver.${CLUSTER_NAME}.${INGRESS_DOMAIN}"
+    - host: "flux-receiver.${CLUSTER_NAME}.${CLUSTER_DOMAIN}"
       http:
         paths:
           - path: /hook/
@@ -25,5 +25,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - "flux-receiver.${CLUSTER_NAME}.${INGRESS_DOMAIN}"
+        - "flux-receiver.${CLUSTER_NAME}.${CLUSTER_DOMAIN}"
       secretName: flux-receiver-${CLUSTER_NAME}-tls
