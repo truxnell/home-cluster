@@ -40,6 +40,14 @@ prometheus:
     #       resources:
     #         requests:
     #           storage: 10Gi
+    additionalScrapeConfigs:
+      - job_name: node-exporter
+        honor_timestamps: true
+        metrics_path: /metrics
+        static_configs:
+          - targets:
+              - ${NAS_ADDRESS}:9100
+
     resources:
       requests:
         memory: 3072Mi
