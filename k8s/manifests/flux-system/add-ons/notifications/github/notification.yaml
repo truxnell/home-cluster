@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   type: github
-  address: https://github.com/Truxnell/home-cluster
+  address: https://github.com/Truxnell/home-cluster/tree/development # FIXME
   secretRef:
     name: github-token
 ---
