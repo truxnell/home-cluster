@@ -10,10 +10,13 @@ spec:
   endpoints:
     - path: /metrics
       targetPort: metrics
+
   jobLabel: traefik
+
   namespaceSelector:
     matchNames:
       - network-system
+
   selector:
     matchLabels:
       app.kubernetes.io/name: traefik
