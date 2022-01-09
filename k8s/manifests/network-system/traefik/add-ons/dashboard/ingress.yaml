@@ -17,6 +17,7 @@ spec:
     - secretName: "tls.traefik-dashboard"
       hosts:
         - "traefik.${CLUSTER_DOMAIN}"
+
   rules:
     - host: traefik.${CLUSTER_DOMAIN}
       http:

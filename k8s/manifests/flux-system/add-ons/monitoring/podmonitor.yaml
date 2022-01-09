@@ -11,9 +11,11 @@ spec:
   namespaceSelector:
     matchNames:
       - flux-system
+
   selector:
     matchLabels:
       app: kustomize-controller
+
   podMetricsEndpoints:
     - port: http-prom
 ---
@@ -29,9 +31,11 @@ spec:
   namespaceSelector:
     matchNames:
       - flux-system
+
   selector:
     matchLabels:
       app: source-controller
+
   podMetricsEndpoints:
     - port: http-prom
 ---
@@ -47,9 +51,11 @@ spec:
   namespaceSelector:
     matchNames:
       - flux-system
+
   selector:
     matchLabels:
       app: helm-controller
+
   podMetricsEndpoints:
     - port: http-prom
 ---
@@ -65,8 +71,10 @@ spec:
   namespaceSelector:
     matchNames:
       - flux-system
+
   selector:
     matchLabels:
       app: notification-controller
+
   podMetricsEndpoints:
     - port: http-prom

@@ -18,7 +18,9 @@ spec:
       interval: 5m
   values:
     nameOverride: reloader
+
     fullnameOverride: reloader
+
     reloader:
       deployment:
         image:
