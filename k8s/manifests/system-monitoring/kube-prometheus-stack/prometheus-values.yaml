@@ -17,7 +17,7 @@ prometheus:
           - prometheus.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
 
   thanosService:
-    enabled: true
+    enabled: false
 
   prometheusSpec:
     replicas: 1
