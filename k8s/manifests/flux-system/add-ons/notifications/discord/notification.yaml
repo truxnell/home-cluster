@@ -6,11 +6,8 @@ metadata:
   namespace: flux-system
 spec:
   type: discord
-
   username: flux
-
   channel: flux
-
   secretRef:
     name: discord-webhook-url
 ---
@@ -21,11 +18,10 @@ metadata:
   namespace: flux-system
 spec:
   summary: "${CLUSTER_NAME}"
-
   providerRef:
     name: discord
-  eventSeverity: error
 
+  eventSeverity: error
   eventSources:
     - kind: HelmRelease
       name: "*"
@@ -36,4 +32,5 @@ spec:
 
   exclusionList:
     - "waiting.*socket"
+
   suspend: false
