@@ -7,6 +7,14 @@
   },
   "favorites.resources": [
     {
+      "filePath": "k8s/clusters/cluster-0/flux/vars/cluster-config.yaml",
+      "group": "Default"
+    },
+    {
+      "filePath": "k8s/clusters/cluster-0/flux/vars/cluster-secrets.sops.yaml",
+      "group": "Default"
+    },
+    {
       "filePath": "cluster/production/cluster-secrets.sops.yaml",
       "group": "Default"
     },
@@ -19,17 +27,10 @@
       "group": "Default"
     },
     {
-      "filePath": "k8s/clusters/cluster-0/flux/vars/cluster-config.yaml",
-      "group": "Default"
-    },
-    {
-      "filePath": "k8s/clusters/cluster-0/flux/vars/cluster-secrets.sops.yaml",
-      "group": "Default"
-    },
-    {
       "filePath": "k8s/clusters/cluster-0/flux/orchestration",
       "group": "Default"
     }
   ],
-  "cSpell.enabled": false
+  "cSpell.enabled": false,
+  "favorites.sortOrder": "MANUAL"
 }
