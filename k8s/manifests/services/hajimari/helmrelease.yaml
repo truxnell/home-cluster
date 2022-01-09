@@ -29,17 +29,12 @@ spec:
           - services
           - system-monitoring
           - network-system
+          - kube-system
       name: "nat"
       customApps:
-        - name: Valetudo
-          url: "http://192.168.1.28"
-          icon: "robot-vacuum"
         - name: PiAware
           url: "http://192.168.150.25:8080"
           icon: "airplane"
-        - name: HDHomeRun
-          url: "http://192.168.150.30"
-          icon: "antenna"
       groups:
         - name: Communicate
           links:
