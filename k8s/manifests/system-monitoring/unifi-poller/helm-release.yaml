@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: unifi-poller
-  namespace: monitoring
+  namespace: system-monitoring
 spec:
   interval: 5m
   chart:
@@ -21,17 +21,21 @@ spec:
       repository: golift/unifi-poller
       tag: 2.1.3
     env:
-      TZ: "America/New_York"
+      TZ: "Australia/Melborne"
       UP_UNIFI_DEFAULT_ROLE: "homelab-controller"
-      UP_UNIFI_DEFAULT_URL: "https://192.168.1.2"
+      UP_UNIFI_DEFAULT_URL: "https://${ROUTER_ADDRESS}"
       UP_UNIFI_DEFAULT_VERIFY_SSL: false
-      UP_UNIFI_DEFAULT_USER: "unifipoller"
-      UP_UNIFI_DEFAULT_PASS: "unifipoller"
+      UP_UNIFI_DEFAULT_USER: "${UP_USER}"
+      UP_UNIFI_DEFAULT_PASS: "${UP_PASSWORD}"
       UP_UNIFI_DEFAULT_SAVE_SITES: true
       UP_UNIFI_DEFAULT_SAVE_DPI: false
       UP_INFLUXDB_DISABLE: true
       UP_PROMETHEUS_DISABLE: false
       UP_PROMETHEUS_NAMESPACE: "unifipoller"
-    prometheus:
+    metrics:
+      enabled: true
       serviceMonitor:
+        interval: 1m
+        scrapeTimeout: 30s
+      prometheusRule:
         enabled: true

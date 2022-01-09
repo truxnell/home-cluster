@@ -29,5 +29,6 @@ data:
   LB_FACTORIO: "10.8.20.30"
 
   # Device IP's
-  NAS_ADDRESS: "192.168.2.253"
+  NAS_ADDRESS: "TheVault.lan"
+  ROUTER_ADDRESS: "unifi.lan"
   VPN_PORT: "443"
