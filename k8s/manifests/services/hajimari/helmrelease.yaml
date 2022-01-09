@@ -44,8 +44,8 @@ spec:
           links:
             - name: Cloudflare
               url: "https://dash.cloudflare.com"
-            - name: Dropbox
-              url: "https://dropbox.com"
+            - name: NextDNS
+              url: "https://my.nextdns.io"
             - name: Drive
               url: "https://drive.google.com"
         - name: Media
