@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: network-namespace
+  name: network-system-namespace
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/network"
+  path: "./k8s/manifests/network-system"
   prune: true
   wait: true
   sourceRef:
@@ -16,14 +16,28 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: network-traefik
+  name: network-system-metallb
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/network-system/metallb"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: network-system-traefik
   namespace: flux-system
 spec:
   dependsOn:
-    - name: network-namespace
+    - name: network-system-namespace
     - name: cert-manager-certmanager-config
   interval: 5m
-  path: "./k8s/manifests/network/traefik/base"
+  path: "./k8s/manifests/network-system/traefik/base"
   prune: true
   wait: true
   sourceRef:
@@ -33,14 +47,14 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: network-traefik-addons
+  name: network-system-traefik-addons
   namespace: flux-system
 spec:
   dependsOn:
-    - name: network-namespace
-    - name: network-traefik
+    - name: network-system-namespace
+    - name: network-system-traefik
   interval: 5m
-  path: "./k8s/manifests/network/traefik/add-ons"
+  path: "./k8s/manifests/network-system/traefik/add-ons"
   prune: true
   wait: true
   sourceRef:

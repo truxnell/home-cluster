@@ -5,7 +5,7 @@ metadata:
   labels:
     app: traefik
   name: traefik.rules
-  namespace: network
+  namespace: network-system
 spec:
   groups:
     - name: traefik.rules
