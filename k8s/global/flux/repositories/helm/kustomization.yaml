@@ -13,3 +13,4 @@ resources:
   - ./stakater-charts.yaml
   - ./traefik-charts.yaml
   - ./vmware-tanzu-charts.yaml
+  - ./infracloudio-charts.yaml
