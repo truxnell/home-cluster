@@ -82,6 +82,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
+          - secretName: hajimari-${CLUSTER_NAME}-tls
           - hosts:
               - "hajimari.${CLUSTER_DOMAIN}"
     # persistence:
