@@ -25,10 +25,14 @@ spec:
       image:
         repository: metallb/controller
         tag: v0.11.0
+      podAnnotations:
+        configmap.reloader.stakater.com/reload: "metallb-config"
     speaker:
       image:
         repository: metallb/speaker
         tag: v0.11.0
+      podAnnotations:
+        configmap.reloader.stakater.com/reload: "metallb-config"
     prometheus:
       serviceMonitor:
         enabled: true
@@ -40,5 +44,3 @@ spec:
           protocol: layer2
           addresses:
             - "${LB_RANGE}"
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: "metallb-config"
