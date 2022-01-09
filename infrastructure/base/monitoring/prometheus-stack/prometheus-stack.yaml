@@ -113,11 +113,11 @@ spec:
             - receiver: "null"
               match:
                 alertname: Watchdog
-            - receiver: "discord"
-              match_re:
+        #    - receiver: "discord"
+        #      match_re:
                 # severity: critical|warning
-                severity: critical
-              continue: true
+        #        severity: critical
+        #      continue: true
           # - receiver: 'webhook'
           #   match:
           #     alertname: UPS15MinutesRemaining
