@@ -52,7 +52,7 @@ alertmanager:
       # external-dns.alpha.kubernetes.io/target: ingress.${CLUSTER_DOMAIN}
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
       traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
-      hajimari.io/enabled: "true"
+      hajimari.io/enable: "true"
       hajimari.io/icon: bell-alert
       hajimari.io/appName: Alertmanager
 
