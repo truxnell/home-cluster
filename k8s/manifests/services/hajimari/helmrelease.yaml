@@ -52,6 +52,8 @@ spec:
           links:
             - name: Spotify
               url: "http://browse.spotify.com"
+            - name: Photos
+              url: "https://photos.google.com"
         - name: Reading
           links:
             - name: Reddit
