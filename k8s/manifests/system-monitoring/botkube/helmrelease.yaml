@@ -22,7 +22,7 @@ spec:
       pullPolicy: IfNotPresent
 
     extraAnnotations:
-      secret.reloader.stakater.com/reload: botkube-configmap
+      secret.reloader.stakater.com/reload: botkube
 
     serviceMonitor:
       enabled: true
