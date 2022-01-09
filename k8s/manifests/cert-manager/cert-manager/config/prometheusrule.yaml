@@ -10,7 +10,7 @@ spec:
       rules:
         - alert: CertManagerAbsent
           expr: |
-            up{absent(job="cert-manager"})
+            absent(up{job="cert-manager"})
           for: 10m
           labels:
             severity: critical
