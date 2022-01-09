@@ -40,3 +40,5 @@ spec:
           protocol: layer2
           addresses:
             - "${LB_RANGE}"
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: "metallb-config"
