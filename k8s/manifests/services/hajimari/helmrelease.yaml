@@ -25,11 +25,7 @@ spec:
     hajimari:
       defaultEnable: false
       namespaceSelector:
-        matchNames:
-          - services
-          - system-monitoring
-          - network-system
-          - kube-system
+        any: true
       name: "nat"
       customApps:
         - name: PiAware
