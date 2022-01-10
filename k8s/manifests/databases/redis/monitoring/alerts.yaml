@@ -1,0 +1,153 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: redis-exporter
+  namespace: databases
+spec:
+  groups:
+    - name: redis-exporter
+      rules:
+        - alert: RedisExporterAbsent
+          annotations:
+            description: Redis Exporter has disappeared from Prometheus target discovery.
+            summary: Redis Exporter is down.
+          expr: |
+            absent(up{job=~".*redis.*"} == 1)
+          for: 5m
+          labels:
+            severity: critical
+        - alert: RedisDown
+          annotations:
+            description: Redis service is down.
+            summary: Redis is down.
+          expr: |
+            redis_up == 0
+          for: 0m
+          labels:
+            severity: critical
+        - alert: RedisMissingMaster
+          annotations:
+            description: Redis cluster has no node marked as master.
+            summary: Redis missing master.
+          expr: |
+            (count(redis_instance_info{role="master"}) or vector(0))
+              < 1
+          for: 1m
+          labels:
+            severity: critical
+        - alert: RedisTooManyMasters
+          annotations:
+            description: Redis cluster has too many nodes marked as master.
+            summary: Redis too many masters.
+          expr: |
+            count(redis_instance_info{role="master"})
+              > 1
+          for: 1m
+          labels:
+            severity: critical
+        - alert: RedisDisconnectedSlaves
+          annotations:
+            description: Redis not replicating for all slaves. Consider reviewing the redis replication status.
+            summary: Redis disconnected slaves.
+          expr: |
+            count without (instance, job) (redis_connected_slaves)
+              -
+            sum without (instance, job) (redis_connected_slaves) - 1
+              > 1
+          for: 1m
+          labels:
+            severity: critical
+        - alert: RedisReplicationBroken
+          annotations:
+            description: Redis instance lost a slave.
+            summary: Redis replication broken.
+          expr: |
+            delta(redis_connected_slaves[1m])
+              < 0
+          for: 1m
+          labels:
+            severity: critical
+        - alert: RedisClusterFlapping
+          annotations:
+            description:
+              Changes have been detected in Redis replica connection. This can occur when
+              replica nodes lose connection to the master and reconnect (a.k.a flapping).
+            summary: Redis cluster flapping.
+          expr: |
+            changes(redis_connected_slaves[1m])
+              > 1
+          for: 2m
+          labels:
+            severity: critical
+        # - alert: RedisMissingBackup
+        #   annotations:
+        #     description: Redis has not been backuped for 24 hours.
+        #     summary: Redis missing backup.
+        #   expr: |
+        #     time() - redis_rdb_last_save_timestamp_seconds > 60 * 60 * 24
+        #   for: 0m
+        #   labels:
+        #     severity: critical
+        - alert: RedisOutOfSystemMemory
+          annotations:
+            description: Redis is running out of system memory (> 90%).
+            summary: Redis out of system memory.
+          expr: |
+            redis_memory_used_bytes
+              /
+            redis_total_system_memory_bytes * 100
+              > 90
+          for: 2m
+          labels:
+            severity: warning
+        - alert: RedisOutOfConfiguredMaxmemory
+          annotations:
+            description: Redis is running out of configured maxmemory (> 90%).
+            summary: Redis out of configured maxmemory.
+          expr: |
+            redis_memory_used_bytes
+              /
+            redis_memory_max_bytes * 100
+              > 90 != +inf
+          for: 2m
+          labels:
+            severity: warning
+        - alert: RedisTooManyConnections
+          annotations:
+            description: Redis instance has too many connections.
+            summary: Redis too many connections.
+          expr: |
+            redis_connected_clients
+              > 100
+          for: 2m
+          labels:
+            severity: warning
+        - alert: RedisNotEnoughConnections
+          annotations:
+            description: Redis instance should have more connections (> 5).
+            summary: Redis not enough connections.
+          expr: |
+            redis_connected_clients
+              < 5
+          for: 2m
+          labels:
+            severity: warning
+        - alert: RedisRejectedConnections
+          annotations:
+            description: Some connections to Redis has been rejected.
+            summary: Redis rejected connections.
+          expr: |
+            increase(redis_rejected_connections_total[1m]) > 0
+          for: 1m
+          labels:
+            severity: critical
+        - alert: RedisKeyEviction
+          annotations:
+            description: Redis instance {{ $labels.instance }} has evicted {{ $value }} keys in the last 5 minutes.
+            summary: Redis instance {{ $labels.instance }} has evicted keys.
+          expr: |
+            increase(redis_evicted_keys_total{service=~".*redis.*"}[5m]) > 0
+          for: 1s
+          labels:
+            severity: warning

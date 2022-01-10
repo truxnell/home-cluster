@@ -1,0 +1,35 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: redis
+  namespace: databases
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.bitnami.com/bitnami
+      chart: redis
+      version: 15.7.1
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    architecture: standalone
+    auth:
+      enabled: true
+      sentinal: true
+      password: "${REDIS_PASSWORD}"
+    master:
+      persistence:
+        size: 5Gi
+        existingClaim: redis-config-v1
+    sentinal:
+      enabled: true
+      masterSet: redis-master
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
