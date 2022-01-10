@@ -17,6 +17,7 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    # Values: https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-blackbox-exporter/values.yaml
     fullnameOverride: blackbox-exporter
     image:
       repository: quay.io/prometheus/blackbox-exporter
@@ -32,7 +33,7 @@ spec:
         hajimari.io/enable: "false"
 
       hosts:
-        - blackbox-exporter.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+        - host: blackbox-exporter.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
       tls:
         - secretName: blackbox-exporter-${CLUSTER_NAME}-tls
           hosts:
