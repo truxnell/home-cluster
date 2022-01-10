@@ -1,0 +1,72 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: blackbox-exporter
+  namespace: system-monitoring
+spec:
+  groups:
+    - name: blackbox-exporter
+      rules:
+        - alert: BlackboxExporterDown
+          annotations:
+            description: Blackbox Exporter has disappeared from Prometheus target discovery.
+            summary: Blackbox Exporter is down.
+          expr: |
+            absent(up{job="blackbox-exporter"} == 1)
+          for: 5m
+          labels:
+            severity: critical
+        - alert: BlackboxProbeFailed
+          annotations:
+            description: Blackbox probe failed on {{ $labels.target }}
+            summary: Blackbox probe failed.
+          expr: |
+            probe_success == 0
+          for: 0m
+          labels:
+            severity: critical
+        - alert: BlackboxSlowProbe
+          annotations:
+            description: Blackbox probe took more than 1s to complete on
+              {{ $labels.target }}
+            summary: Blackbox slow probe.
+          expr: |
+            avg_over_time(probe_duration_seconds[1m])
+              > 1
+          for: 1m
+          labels:
+            severity: warning
+        - alert: BlackboxProbeHttpFailure
+          annotations:
+            description: HTTP status code is not 200-399 on {{ $labels.target }}
+            summary: Blackbox probe HTTP failure.
+          expr: |
+            probe_http_status_code <= 199
+              OR
+            probe_http_status_code >= 400
+          for: 0m
+          labels:
+            severity: critical
+        - alert: BlackboxProbeSlowHttp
+          annotations:
+            description: HTTP request took more than 1s to complete on
+              {{ $labels.target }}
+            summary: Blackbox probe slow HTTP response
+          expr: |
+            avg_over_time(probe_http_duration_seconds[1m])
+              > 1
+          for: 1m
+          labels:
+            severity: warning
+        - alert: BlackboxProbeSlowPing
+          annotations:
+            description: Blackbox ping took more than 1s to complete on
+              {{ $labels.target }}
+            summary: Blackbox probe slow ping.
+          expr: |
+            avg_over_time(probe_icmp_duration_seconds[1m])
+              > 1
+          for: 1m
+          labels:
+            severity: warning
