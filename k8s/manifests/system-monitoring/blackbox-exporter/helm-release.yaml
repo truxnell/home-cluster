@@ -59,10 +59,28 @@ spec:
         interval: 30s
         scrapeTimeout: 30s
 
+      # Curtains
+      # Nodes
+
       targets:
         - module: icmp
           name: synology
           url: ${NAS_ADDRESS}
+        - module: icmp
+          name: prusa
+          url: octopi.lan
+        - module: icmp
+          name: BrewPiLess
+          url: ESP_7DE997.lan
+        - module: icmp
+          name: WeatherStation
+          url: ESP-B9C83C.iot
+        - module: icmp
+          name: UDM-Pro
+          url: ${ROUTER_ADDRESS}
+        - module: icmp
+          name: USW-24-POE
+          url: USW-24-POE.lan
 
     prometheusRule:
       enabled: true
