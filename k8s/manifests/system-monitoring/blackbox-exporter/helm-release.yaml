@@ -34,6 +34,10 @@ spec:
 
       hosts:
         - host: blackbox-exporter.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
+
       tls:
         - secretName: blackbox-exporter-${CLUSTER_NAME}-tls
           hosts:
