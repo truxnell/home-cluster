@@ -20,17 +20,17 @@ spec:
     fullnameOverride: blackbox-exporter
     image:
       repository: quay.io/prometheus/blackbox-exporter
-    ingress:
-      enabled: true
-      className: nginx
-      hosts:
-        - host: "blackbox.${SECRET_PUBLIC_DOMAIN}"
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - hosts:
-            - "blackbox.${SECRET_PUBLIC_DOMAIN}"
+      tag:
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: traefik
+      cert-manager.io/cluster-issuer: letsencrypt-production
+      # external-dns.alpha.kubernetes.io/target: ingress.${CLUSTER_DOMAIN}
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+      hajimari.io/enable: "false"
+
     allowIcmp: true
     config:
       modules:
@@ -39,6 +39,7 @@ spec:
           timeout: 30s
           icmp:
             preferred_ip_protocol: "ip4"
+
     serviceMonitor:
       enabled: true
       defaults:
@@ -46,51 +47,18 @@ spec:
           release: prometheus
         interval: 30s
         scrapeTimeout: 30s
+
       targets:
         - module: icmp
-          name: opnsense
-          url: opnsense
-        - module: icmp
-          name: open-garage
-          url: open-garage
-        - module: icmp
-          name: valetudo
-          url: valetudo
-        - module: icmp
-          name: zigbee-controller
-          url: zigbee-controller
-        - module: icmp
-          name: expanse
-          url: expanse
-        - module: icmp
-          name: hdhomerun
-          url: hdhomerun
-        - module: icmp
-          name: hue-bridge
-          url: hue-bridge
-        - module: icmp
-          name: cyberpower-pdu-0
-          url: cyberpower-pdu-0
-        - module: icmp
-          name: cyberpower-pdu-1
-          url: cyberpower-pdu-1
-        - module: icmp
-          name: apc-ups-0
-          url: apc-ups-0
-        - module: icmp
-          name: unifi
-          url: unifi
-        - module: icmp
-          name: pikvm
-          url: pikvm
-        - module: icmp
-          name: dell-idrac-0
-          url: dell-idrac-0
+          name: synology
+          url: ${NAS_ADDRESS}
+
     prometheusRule:
       enabled: true
       additionalLabels:
         app: prometheus-operator
         release: prometheus
+
       rules:
         - alert: HostDown
           expr: probe_success == 0
