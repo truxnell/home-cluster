@@ -1,0 +1,43 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: external-dns
+  namespace: networking
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://kubernetes-sigs.github.io/external-dns/
+      chart: external-dns
+      version: 1.7.1
+      sourceRef:
+        kind: HelmRepository
+        name: external-dns-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    nameOverride: external-dns
+    interval: "5m"
+    logLevel: debug
+    env:
+      - name: CF_API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            key: token
+            name: cloudflare-token
+    sources:
+      - ingress
+    provider: cloudflare
+    policy: sync
+    registry: txt
+    txtOwnerId: "k8s"
+    txtPrefix: "k8s."
+    domainFilters:
+      - "${SECRET_DOMAIN}"
+      - "${SECRET_DOMAIN_1}"
+    extraArgs:
+      - "--cloudflare-proxied"
+      - "--annotation-filter=external-dns/is-public=true"
+    serviceMonitor:
+      enabled: true
