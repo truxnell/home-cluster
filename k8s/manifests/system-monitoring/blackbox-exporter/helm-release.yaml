@@ -78,9 +78,6 @@ spec:
         - module: icmp
           name: udm-pro
           url: ${ROUTER_ADDRESS}
-        - module: icmp
-          name: usw-24-pow
-          url: USW-24-POE.lan
 
     prometheusRule:
       enabled: true
