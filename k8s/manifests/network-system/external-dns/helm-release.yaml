@@ -17,6 +17,9 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    crd:
+      create: true
+
     nameOverride: external-dns
     interval: "5m"
     logLevel: debug
@@ -26,17 +29,21 @@ spec:
           secretKeyRef:
             key: token
             name: cloudflare-token
+
     sources:
       - ingress
+
     provider: cloudflare
     policy: sync
     registry: txt
     txtOwnerId: "k8s"
     txtPrefix: "k8s."
+
     # domainFilters:
     #   - "${CLUSTER_DOMAIN}"
     extraArgs:
       - "--cloudflare-proxied"
       - "--annotation-filter=external-dns/is-public=true"
+
     serviceMonitor:
       enabled: true
