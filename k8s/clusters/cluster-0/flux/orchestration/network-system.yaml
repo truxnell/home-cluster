@@ -104,7 +104,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: network-system-external-dns
+    - name: network-system-namespace
   interval: 5m
   path: "./k8s/manifests/network-system/external-dns"
   prune: true
