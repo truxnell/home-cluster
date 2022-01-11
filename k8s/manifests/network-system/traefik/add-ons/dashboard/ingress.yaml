@@ -15,7 +15,7 @@ metadata:
 
 spec:
   tls:
-    - secretName: "tls.traefik-dashboard"
+    - secretName: traefik-${CLUSTER_NAME}-tls
       hosts:
         - "traefik.${CLUSTER_DOMAIN}"
 
