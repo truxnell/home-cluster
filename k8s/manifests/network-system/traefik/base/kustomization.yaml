@@ -5,3 +5,4 @@ resources:
   - helmrelease.yaml
   - prometheusrule.yaml
   - servicemonitor.yaml
+  - dnsendpoint.yaml
