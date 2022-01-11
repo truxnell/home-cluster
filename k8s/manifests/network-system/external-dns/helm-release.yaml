@@ -17,35 +17,42 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    crd:
-      create: false
-      apiversion: externaldns.k8s.io/v1alpha1
-      kind: DNSEndpoint
-
     nameOverride: external-dns
     interval: "5m"
     logLevel: debug
-    env:
-      - name: CF_API_TOKEN
-        valueFrom:
-          secretKeyRef:
-            key: token
-            name: cloudflare-token
 
-    sources:
-      - ingress
-
-    provider: cloudflare
     policy: sync
     registry: txt
     txtOwnerId: "k8s"
     txtPrefix: "k8s."
 
+    provider: cloudflare
+    cloudflare:
+      secretName: cloudflare-api-key
+      # email: "${SECRET_CLOUDFLARE_EMAIL}"
+      proxied: true
+
+    crd:
+      create: false
+      apiversion: externaldns.k8s.io/v1alpha1
+      kind: DNSEndpoint
+
+    sources:
+      - ingress
+      - crd
+
+    annotationFilter: "external-dns/is-public in (true)"
     # domainFilters:
     #   - "${CLUSTER_DOMAIN}"
     extraArgs:
       - "--cloudflare-proxied"
-      - "--annotation-filter=external-dns/is-public=true"
 
     serviceMonitor:
       enabled: true
+
+    resources:
+      requests:
+        memory: 100Mi
+        cpu: 25m
+      limits:
+        memory: 250Mi
