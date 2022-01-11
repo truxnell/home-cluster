@@ -3,7 +3,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: Probe
 metadata:
   name: hajimari-http
-  namespace: home
+  namespace: services
 spec:
   jobName: hajimari-http
   interval: 1m
