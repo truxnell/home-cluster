@@ -2,9 +2,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: emqx-charts
+  name: external-dns-charts
   namespace: flux-system
 spec:
   interval: 30m
-  url: https://repos.emqx.io/charts
+  url: https://kubernetes-sigs.github.io/external-dns
   timeout: 3m
