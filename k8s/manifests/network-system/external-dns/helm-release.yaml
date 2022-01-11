@@ -33,8 +33,8 @@ spec:
     registry: txt
     txtOwnerId: "k8s"
     txtPrefix: "k8s."
-    domainFilters:
-      - "${CLUSTER_DOMAIN}"
+    # domainFilters:
+    #   - "${CLUSTER_DOMAIN}"
     extraArgs:
       - "--cloudflare-proxied"
       - "--annotation-filter=external-dns/is-public=true"
