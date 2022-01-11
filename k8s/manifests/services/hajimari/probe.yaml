@@ -14,5 +14,5 @@ spec:
   targets:
     staticConfig:
       static:
-        - "http://hajimari.home:3000"
-        - "https://hajimari.${SECRET_PUBLIC_DOMAIN}"
+        # - "http://hajimari.home:3000"
+        - "https://hajimari.${CLUSTER_DOMAIN}"
