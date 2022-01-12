@@ -22,10 +22,11 @@ spec:
     logLevel: debug
     sources:
       - ingress
+      - crd
     provider: cloudflare
     cloudflare:
       secretName: cloudflare-api-key
-      email: "admin@voltaicforge.com"
+      email: "${EMAIL_1}"
       proxied: true
     policy: sync
     txtPrefix: "k8s."
