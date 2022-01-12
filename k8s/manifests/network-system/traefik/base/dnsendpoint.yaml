@@ -3,7 +3,7 @@ apiVersion: externaldns.k8s.io/v1alpha1
 kind: DNSEndpoint
 metadata:
   name: traefik-ingress
-  namespace: network-services
+  namespace: network-system
 spec:
   endpoints:
     - dnsName: "ipv4.${CLUSTER_DOMAIN}"
