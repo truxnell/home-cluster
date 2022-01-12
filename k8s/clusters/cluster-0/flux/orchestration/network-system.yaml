@@ -38,7 +38,7 @@ spec:
   dependsOn:
     - name: network-system-namespace
     - name: cert-manager-certmanager-config
-    - name: network-external-dns
+    - name: network-system-external-dns
     - name: network-system-metallb
   interval: 5m
   path: "./k8s/manifests/network-system/traefik/base"
@@ -101,7 +101,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: external-dns-crds
+  name: network-system-external-dns-crds
   namespace: flux-system
 spec:
   interval: 15m
@@ -119,7 +119,7 @@ metadata:
 spec:
   dependsOn:
     - name: network-system-namespace
-    - name: external-dns-crds
+    - name: network-system-external-dns-crds
   interval: 5m
   path: "./k8s/manifests/network-system/external-dns"
   prune: true
