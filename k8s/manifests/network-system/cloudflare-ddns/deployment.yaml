@@ -16,6 +16,7 @@ spec:
       labels:
         app: cloudflare-ddns
     spec:
+      # values-ish: https://hotio.dev/containers/cloudflareddns/
       containers:
         - name: cloudflare-ddns
           image: hotio/cloudflareddns:latest
