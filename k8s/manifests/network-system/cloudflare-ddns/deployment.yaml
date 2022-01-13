@@ -42,7 +42,7 @@ spec:
                   key: record-types
             # https://github.com/docker-hotio/docker-cloudflare-ddns#log-levels
             - name: LOG_LEVEL
-              value: "3"
+              value: "2"
             - name: INTERVAL
               value: "300"
           resources:
