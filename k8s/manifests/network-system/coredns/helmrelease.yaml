@@ -65,7 +65,7 @@ spec:
           # Forward everything else to Cloudflare DNS
           # Note: plugin/forward: this plugin can only be used once per Server Block
           - name: forward
-            parameters: . ${ROUTER_IP}
+            parameters: . 1.1.1.1
             configBlock: |-
               except ${CLUSTER_DOMAIN} *.${CLUSTER_DOMAIN}
           - name: file
