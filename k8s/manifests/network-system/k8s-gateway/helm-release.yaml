@@ -1,0 +1,27 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: k8s-gateway
+  namespace: network-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://ori-edge.github.io/k8s_gateway/
+      chart: k8s-gateway
+      version: 1.0.12
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-gateway-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    nameOverride: k8s-gateway
+    domain: "${CLUSTER_DOMAIN}"
+    ttl: 1
+    service:
+      type: LoadBalancer
+      port: 53
+      externalTrafficPolicy: Local
+      loadBalancerIP: ${LB_K8S_GATEWAY}
