@@ -5,6 +5,7 @@ namespace: flux-system
 resources:
   - ../../../../../global/flux/repositories/helm
   - codecentric-charts.yaml
+  - coredns-charts.yaml
   - drpsychick.yaml
   - emqx-charts.yaml
   - external-dns-charts.yaml
