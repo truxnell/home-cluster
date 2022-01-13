@@ -144,3 +144,20 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: network-system-k8s-gateway
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: network-system-namespace
+    - name: network-system-metallb
+  interval: 5m
+  path: "./k8s/manifests/network-system/k8s-gateway"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
