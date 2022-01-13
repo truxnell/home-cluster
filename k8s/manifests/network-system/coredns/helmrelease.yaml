@@ -79,6 +79,7 @@ spec:
           - name: reload
           # The loadbalance will act as a round-robin DNS load balancer by randomizing the order of A, AAAA, and MX records in the answer.
           - name: loadbalance
+          - name: k8s_gateway
         prometheus:
           # Set this to true to create Service for Prometheus metrics
           service:
