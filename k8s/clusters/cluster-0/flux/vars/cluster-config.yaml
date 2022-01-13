@@ -31,5 +31,5 @@ data:
 
   # Device IP's
   NAS_ADDRESS: "TheVault.lan"
-  ROUTER_ADDRESS: "unifi.lan"
+  ROUTER_IP: "192.168.2.1" # Must be IP, used in coredns for forwarding back to router
   VPN_PORT: "443"

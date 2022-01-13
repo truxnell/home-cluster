@@ -65,11 +65,11 @@ spec:
           # Forward everything else to Cloudflare DNS
           # Note: plugin/forward: this plugin can only be used once per Server Block
           - name: forward
-            parameters: . 1.1.1.1
+            parameters: . ${ROUTER_IP}
             configBlock: |-
               except ${CLUSTER_DOMAIN} *.${CLUSTER_DOMAIN}
           - name: file
-            parameters: /etc/coredns/raspbernetes.db ${CLUSTER_DOMAIN}
+            parameters: /etc/coredns/${CLUSTER_DOMAIN}.db ${CLUSTER_DOMAIN}
           # Set up cache
           - name: cache
             parameters: 30
@@ -88,10 +88,10 @@ spec:
             enabled: false
     # configure custom zone files as per https://coredns.io/2017/05/08/custom-dns-entries-for-kubernetes/
     zoneFiles:
-      - filename: raspbernetes.db
+      - filename: ${CLUSTER_DOMAIN}.db
         domain: ${CLUSTER_DOMAIN}
         contents: |
-          ${CLUSTER_DOMAIN}.     IN SOA    ns.dns.${CLUSTER_DOMAIN}. hostmaster.${CLUSTER_DOMAIN}. 1610541154 7200 1800 86400 30
-          ${CLUSTER_DOMAIN}.     IN NS     ns.dns.${CLUSTER_DOMAIN}.
+          ${CLUSTER_DOMAIN}.     IN SOA    ada.ns.cloudflare.com. dns.cloudflare.com.  2267552224 10000 2400 604800 3600
+          ${CLUSTER_DOMAIN}.     IN NS     ada.ns.cloudflare.com
           ${CLUSTER_DOMAIN}.     IN A      ${LB_TRAEFIK}
           *.${CLUSTER_DOMAIN}.  IN CNAME  ${CLUSTER_DOMAIN}.
