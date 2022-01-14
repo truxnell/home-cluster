@@ -77,7 +77,7 @@ spec:
           url: ESP-B9C83C.iot
         - module: icmp
           name: udm-pro
-          url: ${ROUTER_ADDRESS}
+          url: ${ROUTER_IP}
 
     prometheusRule:
       enabled: true

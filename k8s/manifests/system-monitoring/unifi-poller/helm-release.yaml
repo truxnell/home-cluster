@@ -23,7 +23,7 @@ spec:
     env:
       TZ: "Australia/Melborne"
       UP_UNIFI_DEFAULT_ROLE: "homelab-controller"
-      UP_UNIFI_DEFAULT_URL: "https://${ROUTER_ADDRESS}"
+      UP_UNIFI_DEFAULT_URL: "https://${ROUTER_IP}"
       UP_UNIFI_DEFAULT_VERIFY_SSL: false
       UP_UNIFI_DEFAULT_USER: "${UP_USER}"
       UP_UNIFI_DEFAULT_PASS: "${UP_PASSWORD}"
