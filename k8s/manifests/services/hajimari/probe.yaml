@@ -10,7 +10,7 @@ spec:
   scrapeTimeout: 5s
   module: http_2xx
   prober:
-    url: blackbox-exporter.monitoring:9115
+    url: blackbox-exporter.system-monitoring:9115
   targets:
     staticConfig:
       static:
