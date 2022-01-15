@@ -88,7 +88,7 @@ spec:
       rules:
         - alert: HostDown
           expr: probe_success == 0
-          for: 1m
+          for: 2m
           labels:
             severity: critical
           annotations:
