@@ -71,10 +71,10 @@
     "body": [
       "    annotations:",
       "      kubernetes.io/ingress.class: traefik",
-      "      cert-manager.io/cluster-issuer: ${CLUSTER_CERT}",
+      "      cert-manager.io/cluster-issuer: \\${CLUSTER_CERT}",
       "      external-dns/is-public: \"true\"",
       "      external-dns/hostname: ${1}",
-      "      external-dns.alpha.kubernetes.io/target: ipv4.${CLUSTER_DOMAIN}",
+      "      external-dns.alpha.kubernetes.io/target: ipv4.\\${CLUSTER_DOMAIN}",
       "      traefik.ingress.kubernetes.io/router.entrypoints: websecure",
       "      monitor.stakater.com/enabled: \"${2:|true,false|}\"",
       "      hajimari.io/enable: \"${3:|true,false|}\"",
@@ -87,7 +87,7 @@
       "body": [
         "    annotations:",
         "      kubernetes.io/ingress.class: traefik",
-        "      cert-manager.io/cluster-issuer: ${CLUSTER_CERT}",
+        "      cert-manager.io/cluster-issuer: \\${CLUSTER_CERT}",
         "      external-dns/is-public: \"false\"",
         "      traefik.ingress.kubernetes.io/router.entrypoints: websecure",
         "      traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd",
