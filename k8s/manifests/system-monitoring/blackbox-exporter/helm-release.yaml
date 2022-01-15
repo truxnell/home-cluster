@@ -41,6 +41,8 @@ spec:
         - secretName: blackbox-exporter-${CLUSTER_NAME}-tls
           hosts:
             - blackbox-exporter.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: "blackbox-exporter"
 
     allowIcmp: true
     config:
