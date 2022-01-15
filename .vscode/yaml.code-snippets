@@ -82,22 +82,22 @@
       "      hajimari.io/appName: ${5}",
       ""
     ],
-    "Internal Ingress": {
-      "prefix": "ingress-int",
-      "body": [
-        "    annotations:",
-        "      kubernetes.io/ingress.class: traefik",
-        "      cert-manager.io/cluster-issuer: \\${CLUSTER_CERT}",
-        "      external-dns/is-public: \"false\"",
-        "      traefik.ingress.kubernetes.io/router.entrypoints: websecure",
-        "      traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd",
-        "      monitor.stakater.com/enabled: \"false\"",
-        "      hajimari.io/enable: \"${3:|true,false|}\"",
-        "      hajimari.io/icon: ${4|}",
-        "      hajimari.io/appName: ${5}",
-        ""
-      ],
 
     "description": "External Ingress"
-  }
+  },
+  "Internal Ingress": {
+    "prefix": "ingress-int",
+    "body": [
+      "    annotations:",
+      "      kubernetes.io/ingress.class: traefik",
+      "      cert-manager.io/cluster-issuer: \\${CLUSTER_CERT}",
+      "      external-dns/is-public: \"false\"",
+      "      traefik.ingress.kubernetes.io/router.entrypoints: websecure",
+      "      traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd",
+      "      monitor.stakater.com/enabled: \"false\"",
+      "      hajimari.io/enable: \"${3:|true,false|}\"",
+      "      hajimari.io/icon: ${4|}",
+      "      hajimari.io/appName: ${5}",
+      ""
+    ],
 }
