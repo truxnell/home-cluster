@@ -7,7 +7,7 @@ metadata:
 data:
   CLUSTER_NAME: cluster-0
   CLUSTER_ID: "0"
-  CLUSTER_CERT: "letsencrypt-staging"
+  CLUSTER_CERT: "letsencrypt-production"
 
   NETWORK_K8S_POD_CIDR: 10.244.0.0/16
   NETWORK_K8S_SERVICE_CIDR: 10.96.0.0/16
