@@ -83,7 +83,7 @@
       ""
     ],
     "Internal Ingress": {
-      "prefix": "ingress-ext",
+      "prefix": "ingress-int",
       "body": [
         "    annotations:",
         "      kubernetes.io/ingress.class: traefik",
