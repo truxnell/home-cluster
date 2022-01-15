@@ -25,7 +25,7 @@ spec:
       replicas: 1 # FIXME
     nameOverride: error-pages
     env:
-      TEMPLATE_NAME: hacker-terminal
+      TEMPLATE_NAME: l7-dark
     service:
       main:
         ports:
