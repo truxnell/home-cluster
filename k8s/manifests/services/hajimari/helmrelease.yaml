@@ -62,7 +62,7 @@ spec:
           links:
             - name: Hacker News
               url: "https://news.ycombinator.com/"
-    ingress:
+    ingress: #
       main:
         enabled: true
         annotations:
