@@ -30,8 +30,7 @@ spec:
     ingress:
       dashboard:
         annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          external-dns.alpha.kubernetes.io/target: ipv4.${CLUSTER_DOMAIN}
+          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
         host:

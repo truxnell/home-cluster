@@ -5,12 +5,9 @@ metadata:
   name: traefik-dashboard
   namespace: network-system
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-production
+    cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    # traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
-    external-dns.alpha.kubernetes.io/target: ipv4.${CLUSTER_DOMAIN}
-    external-dns/is-public: "true"
-    monitor.stakater.com/enabled: "true"
+    traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
     hajimari.io/enable: "true"
     hajimari.io/icon: "web"
     hajimari.io/appName: "traefik"
