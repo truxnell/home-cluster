@@ -19,10 +19,11 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: rook-direct-mount
-          image: rook/ceph:v1.7.8
-          command: ["/tini"]
-          args: ["-g", "--", "/usr/local/bin/toolbox.sh"]
+          image: rook/ceph:v1.8.2
+          command: ["/bin/bash"]
+          args: ["-m", "-c", "/usr/local/bin/toolbox.sh"]
           imagePullPolicy: IfNotPresent
+          tty: true
           env:
             - name: ROOK_CEPH_USERNAME
               valueFrom:
@@ -36,6 +37,7 @@ spec:
                   key: ceph-secret
           securityContext:
             privileged: true
+            runAsUser: 0
           volumeMounts:
             - mountPath: /dev
               name: dev
@@ -49,6 +51,7 @@ spec:
               mountPath: /scripts
             - name: nas-backup
               mountPath: /mnt/nas-backup
+          resources: {}
       # if hostNetwork: false, the "rbd map" command hangs, see https://github.com/rook/rook/issues/2021
       hostNetwork: true
       volumes:
@@ -70,7 +73,7 @@ spec:
         - name: nas-backup
           nfs:
             server: "${NAS_ADDRESS}"
-            path: /volume1/backup/kubernetes
+            path: /volume1/Backup/Kubernetes
         - name: direct-mount-scripts
           projected:
             defaultMode: 0775

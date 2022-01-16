@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.rook.io/release
       chart: rook-ceph-cluster
-      version: v1.7.8
+      version: v1.8.2
       sourceRef:
         kind: HelmRepository
         name: rook-ceph-charts
@@ -20,9 +20,12 @@ spec:
       enabled: false
 
     monitoring:
-      enabled: false
+      enabled: true
 
     cephClusterSpec:
+      mgr:
+        count: 1
+
       dashboard:
         enabled: true
         urlPrefix: /
@@ -30,16 +33,21 @@ spec:
     ingress:
       dashboard:
         annotations:
+          kubernetes.io/ingress.class: traefik
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+          hajimari.io/enable: "true"
+          hajimari.io/icon: content-save
+          hajimari.io/appName: "rook-ceph"
+
         host:
-          name: "rook.${CLUSTER_DOMAIN}"
+          name: "rook.${CLUSTER_NAME}.${INGRESS_DOMAIN}"
           path: "/"
         tls:
           - secretName: tls.rook-ceph
             hosts:
-              - "rook.${CLUSTER_DOMAIN}"
+              - "rook.${CLUSTER_NAME}.${INGRESS_DOMAIN}"
 
     storage:
       useAllNodes: false
@@ -47,22 +55,15 @@ spec:
       config:
         osdsPerDevice: "1"
       nodes:
-        - name: "delta"
+        - name: "${WORKER01_ADDRESS}"
           devices:
-            - name: "sdb"
-        - name: "enigma"
-          devices:
-            - name: "sdb"
-        - name: "felix"
-          devices:
-            - name: "nvme0n1"
-
+            - name: "${WORKER01_DRIVE}"
     cephBlockPools:
       - name: ceph-blockpool
         spec:
           failureDomain: host
           replicated:
-            size: 3
+            size: 1
         storageClass:
           enabled: true
           name: ceph-block
@@ -80,6 +81,33 @@ spec:
             csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
             csi.storage.k8s.io/fstype: ext4
 
-    cephFileSystems: []
+    cephFileSystems:
+      - name: ceph-filesystem
+        spec:
+          metadataPool:
+            replicated:
+              size: 1
+          dataPools:
+            - failureDomain: host
+              replicated:
+                size: 1
+          metadataServer:
+            activeCount: 1
+            activeStandby: true
+        storageClass:
+          enabled: true
+          isDefault: false
+          name: ceph-filesystem
+          reclaimPolicy: Delete
+          allowVolumeExpansion: true
+          mountOptions: []
+          parameters:
+            csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
+            csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+            csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
+            csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+            csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
+            csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+            csi.storage.k8s.io/fstype: ext4
 
     cephObjectStores: []
