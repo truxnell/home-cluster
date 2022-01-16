@@ -42,12 +42,12 @@ spec:
           hajimari.io/appName: "rook-ceph"
 
         host:
-          name: "rook.${CLUSTER_NAME}.${INGRESS_DOMAIN}"
+          name: "rook.${CLUSTER_NAME}.${CLUSTER_DOMAIN}"
           path: "/"
         tls:
           - secretName: tls.rook-ceph
             hosts:
-              - "rook.${CLUSTER_NAME}.${INGRESS_DOMAIN}"
+              - "rook.${CLUSTER_NAME}.${CLUSTER_DOMAIN}"
 
     storage:
       useAllNodes: false
