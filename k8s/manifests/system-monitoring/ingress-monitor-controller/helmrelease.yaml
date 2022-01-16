@@ -26,7 +26,7 @@ spec:
         repository: gcr.io/kubebuilder/kube-rbac-proxy
         tag: v0.8.0
 
-    watchNamespaces: ""
+    fullNameOverride: "ingress-monitor"
 
     serviceMonitor:
       enabled: true
