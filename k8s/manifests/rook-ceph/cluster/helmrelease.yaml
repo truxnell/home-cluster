@@ -45,7 +45,7 @@ spec:
           name: "rook.${CLUSTER_NAME}.${CLUSTER_DOMAIN}"
           path: "/"
         tls:
-          - secretName: tls.rook-ceph
+          - secretName: rook-ceph-${CLUSTER_NAME}-tls
             hosts:
               - "rook.${CLUSTER_NAME}.${CLUSTER_DOMAIN}"
 
