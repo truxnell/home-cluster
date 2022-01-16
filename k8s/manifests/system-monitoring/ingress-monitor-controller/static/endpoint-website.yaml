@@ -1,0 +1,7 @@
+apiVersion: endpointmonitor.stakater.com/v1alpha1
+kind: EndpointMonitor
+metadata:
+  name: www.${CLUSTER_DOMAIN}-endpointmon
+spec:
+  forceHttps: true
+  url: https://${CLUSTER_DOMAIN}
