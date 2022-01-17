@@ -31,7 +31,7 @@ spec:
     policy: sync
     txtPrefix: "k8s."
     domainFilters:
-      - "voltaicforge.com"
+      - "${CLUSTER_DOMAIN}"
     crd:
       create: false
       apiversion: externaldns.k8s.io/v1alpha1
