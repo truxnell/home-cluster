@@ -4,4 +4,4 @@ metadata:
   name: ${CLUSTER_DOMAIN}
 spec:
   forceHttps: true
-  url: https://${CLUSTER_DOMAIN}
+  url: https://${WEBSITE_DOMAIN}
