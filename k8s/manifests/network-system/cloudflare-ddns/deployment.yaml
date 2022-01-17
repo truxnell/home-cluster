@@ -26,16 +26,12 @@ spec:
                 secretKeyRef:
                   name: cloudflare-ddns
                   key: api-token
+              CF_HOSTS: ipv4.${CLUSTER_DOMAIN}
             - name: CF_ZONES
               valueFrom:
                 secretKeyRef:
                   name: cloudflare-ddns
                   key: zones
-            - name: CF_HOSTS
-              valueFrom:
-                secretKeyRef:
-                  name: cloudflare-ddns
-                  key: hosts
             - name: CF_RECORDTYPES
               valueFrom:
                 secretKeyRef:
