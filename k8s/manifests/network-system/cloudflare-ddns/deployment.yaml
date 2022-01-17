@@ -15,6 +15,8 @@ spec:
     metadata:
       labels:
         app: cloudflare-ddns
+      annotations:
+        secret.reloader.stakater.com/reload: cloudflare-ddns
     spec:
       # values-ish: https://hotio.dev/containers/cloudflareddns/
       containers:
