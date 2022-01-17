@@ -23,18 +23,15 @@ spec:
         - name: cloudflare-ddns
           image: hotio/cloudflareddns:latest
           env:
+            - name: CF_HOSTS
+              value: ipv4.${CLUSTER_DOMAIN}
+            - name: CF_ZONES
+              value: ${CLUSTER_DOMAIN}
             - name: CF_APITOKEN
               valueFrom:
                 secretKeyRef:
                   name: cloudflare-ddns
                   key: api-token
-            - name: CF_HOSTS
-              value: ipv4.${CLUSTER_DOMAIN}
-            - name: CF_ZONES
-              valueFrom:
-                secretKeyRef:
-                  name: cloudflare-ddns
-                  key: zones
             - name: CF_RECORDTYPES
               valueFrom:
                 secretKeyRef:
