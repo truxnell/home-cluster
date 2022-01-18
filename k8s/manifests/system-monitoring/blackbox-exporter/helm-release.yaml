@@ -65,9 +65,6 @@ spec:
 
       targets:
         - module: icmp
-          name: synology
-          url: ${NAS_ADDRESS}
-        - module: icmp
           name: prusa
           url: octopi.lan
         - module: icmp
@@ -76,9 +73,6 @@ spec:
         - module: icmp
           name: weatherstation
           url: ESP-B9C83C.iot
-        - module: icmp
-          name: udm-pro
-          url: ${ROUTER_IP}
 
     prometheusRule:
       enabled: true
