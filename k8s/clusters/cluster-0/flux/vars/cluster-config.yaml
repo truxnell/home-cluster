@@ -34,6 +34,5 @@ data:
   LB_FACTORIO: "10.8.20.30"
 
   # Device IP's
-  NAS_ADDRESS: "TheVault.lan"
-  ROUTER_IP: "192.168.2.1" # Must be IP, used in coredns for forwarding back to router
+  ROUTER_IP: "unifi"
   VPN_PORT: "443"
