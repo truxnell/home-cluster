@@ -25,6 +25,8 @@ spec:
     cephClusterSpec:
       mgr:
         count: 1
+      mons:
+        count: 1
 
       dashboard:
         enabled: true
