@@ -53,6 +53,7 @@ spec:
           timeout: 30s
           icmp:
             preferred_ip_protocol: "ip4"
+            payload_size: 64
 
     serviceMonitor:
       enabled: true
