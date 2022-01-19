@@ -28,7 +28,9 @@ spec:
         cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
-        hajimari.io/enable: "false"
+        hajimari.io/enable: "true"
+        hajimari.io/appName: "Blackbox Exporter"
+        hajimari.io/icon: package-variant-closed
 
       hosts:
         - host: blackbox-exporter.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
