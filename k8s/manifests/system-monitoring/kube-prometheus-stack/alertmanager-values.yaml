@@ -63,14 +63,14 @@ alertmanager:
         hosts:
           - alertmanager.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
 
-    # alertmanagerSpec:
-    #   storage:
-    #     volumeClaimTemplate:
-    #       spec:
-    #         storageClassName: ceph-block
-    #         resources:
-    #           requests:
-    #             storage: 10Gi
+    alertmanagerSpec:
+      storage:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: ceph-block
+            resources:
+              requests:
+                storage: 10Gi
 
     resources:
       requests:
