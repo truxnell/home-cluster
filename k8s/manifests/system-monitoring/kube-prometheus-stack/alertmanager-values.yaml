@@ -70,7 +70,7 @@ alertmanager:
             storageClassName: ceph-block
             resources:
               requests:
-                storage: 10Gi
+                storage: 1Gi
 
     resources:
       requests:
