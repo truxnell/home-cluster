@@ -1,0 +1,104 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: blackbox-exporter
+  namespace: system-monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://prometheus-community.github.io/helm-charts
+      chart: prometheus-blackbox-exporter
+      version: 5.3.1
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    # Values: https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-blackbox-exporter/values.yaml
+    fullnameOverride: blackbox-exporter
+    image:
+      repository: quay.io/prometheus/blackbox-exporter
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+        hajimari.io/enable: "true"
+        hajimari.io/appName: "Blackbox Exporter"
+        hajimari.io/icon: package-variant-closed
+
+      hosts:
+        - host: blackbox-exporter.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
+
+      tls:
+        - secretName: blackbox-exporter-${CLUSTER_NAME}-tls
+          hosts:
+            - blackbox-exporter.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: "blackbox-exporter"
+
+    allowIcmp: true
+    config:
+      modules:
+        icmp:
+          prober: icmp
+          timeout: 30s
+          icmp:
+            preferred_ip_protocol: "ip4"
+            payload_size: 64
+
+    serviceMonitor:
+      enabled: true
+      defaults:
+        labels:
+          release: prometheus
+        interval: 30s
+        scrapeTimeout: 30s
+
+      # Curtains
+      # Nodes
+
+      targets:
+        - module: icmp
+          name: prusa
+          url: octopi.lan
+        - module: icmp
+          name: brewpiless
+          url: ESP_7DE997.lan
+        - module: icmp
+          name: weatherstation
+          url: ESP-B9C83C.iot
+
+    prometheusRule:
+      enabled: true
+      additionalLabels:
+        app: prometheus-operator
+        release: prometheus
+
+      rules:
+        - alert: HostDown
+          expr: probe_success == 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            message: The host {{"{{ $labels.target }}"}} is currently unreachable
+        - alert: SlowResponseTime
+          annotations:
+            message: The response time for {{"{{ $labels.target }}"}} has been greater than 30 seconds for 5 minutes.
+          expr: probe_duration_seconds > 30
+          for: 5m
+          labels:
+            severity: warning
+
+
+
+
