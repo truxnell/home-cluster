@@ -32,4 +32,4 @@ spec:
     - name: http
       port: 5001
   type: ExternalName
-  externalName: 192.168.2.253
+  externalName: ${SYNOLOGY_IP}

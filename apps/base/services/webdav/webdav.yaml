@@ -61,5 +61,5 @@ spec:
       volumes:
         - name: filerun
           nfs:
-            server: "192.168.2.253"
+            server: "${SYNOLOGY_IP}"
             path: "/volume1/filerun/Apps"
