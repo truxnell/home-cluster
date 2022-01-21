@@ -82,7 +82,7 @@ spec:
           url: wled-officedesk.iot
         - module: icmp
           name: espresence-study
-          url: espresence-study.iot
+          url: espresense-study.iot
 
     prometheusRule:
       enabled: true
