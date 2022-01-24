@@ -22,7 +22,7 @@ spec:
 
     configuration:
       extraEnvVars:
-        TZ: "Europe/Amsterdam"
+        TZ: "Australia/Melbourne"
 
       provider: aws
 
@@ -33,8 +33,8 @@ spec:
         config:
           region: us-east-1
           s3ForcePathStyle: true
-          s3Url: http://minio.selfhosted:9000
-          publicUrl: https://s3.${INGRESS_DOMAIN}
+          s3Url: http://minio.${NAS_ADDRESS}:9000
+          publicUrl: https://minio.${CLUSTER_DOMAIN}
       resticTimeout: 4h
 
     initContainers:
