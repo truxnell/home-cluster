@@ -6,6 +6,7 @@ resources:
   - ./rook-ceph.yaml
   # # - ./dev.yaml
   # - ./downloads.yaml
+  - ./database.yaml
   - ./flux-system.yaml
   # - ./home-automation.yaml
   - ./kube-system.yaml
