@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - postgresql
   routes:
-    - match: HostSNI(`postgresql.${CLUSTER_DOMAIN}
+    - match: HostSNI(`postgresql.${CLUSTER_DOMAIN}`)
       services:
         - name: postgresql
           namespace: databases
