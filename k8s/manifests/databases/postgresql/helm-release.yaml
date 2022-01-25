@@ -28,5 +28,5 @@ spec:
       serviceMonitor:
         enabled: true
     persistence:
-      size: 5Gi
+      size: 10Gi
       existingClaim: postgresql-config-v1
