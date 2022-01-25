@@ -16,21 +16,33 @@ spec:
         name: hajimari-charts
         namespace: flux-system
       interval: 5m
+  install:
+    remediation: # perform remediation when helm install fails
+      retries: 5
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
   values:
     image:
       repository: ghcr.io/toboshii/hajimari
       tag: v0.2.0
+
     env:
       TZ: "Australia/Melbourne"
+
     hajimari:
       defaultEnable: false
       namespaceSelector:
         any: true
+
       name: "nat"
       customApps:
         - name: PiAware
           url: "http://192.168.150.25:8080"
           icon: "airplane"
+
       groups:
         - name: Communicate
           links:
@@ -40,6 +52,7 @@ spec:
               url: "https://gmail.com"
             - name: Slack
               url: "https://slack.com/signin"
+
         - name: Cloud
           links:
             - name: Cloudflare
@@ -50,20 +63,24 @@ spec:
               url: "https://drive.google.com"
             - name: UptimeRobot
               url: "https://uptimerobot.com"
+
         - name: Media
           links:
             - name: Spotify
               url: "http://browse.spotify.com"
             - name: Photos
               url: "https://photos.google.com"
+
         - name: Reading
           links:
             - name: Reddit
               url: "http://reddit.com"
+
         - name: Tech
           links:
             - name: Hacker News
               url: "https://news.ycombinator.com/"
+
     ingress:
       main:
         enabled: true
@@ -73,21 +90,26 @@ spec:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
           hajimari.io/enable: "false"
+
         hosts:
           - host: "hajimari.${CLUSTER_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
+
         tls:
           - secretName: hajimari-${CLUSTER_NAME}-tls
             hosts:
               - "hajimari.${CLUSTER_DOMAIN}"
+
     persistence:
       data:
         enabled: true
         existingClaim: hajimari-config-v1
+
     podAnnotations:
       configmap.reloader.stakater.com/reload: "hajimari-settings"
+
     resources:
       requests:
         cpu: 100m
