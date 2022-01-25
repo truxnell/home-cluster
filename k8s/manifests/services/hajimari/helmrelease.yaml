@@ -80,10 +80,10 @@ spec:
           - secretName: hajimari-${CLUSTER_NAME}-tls
             hosts:
               - "hajimari.${CLUSTER_DOMAIN}"
-    # persistence:
-    #   data:
-    #     enabled: true
-    #     existingClaim: hajimari-config-v1
+    persistence:
+      data:
+        enabled: true
+        existingClaim: hajimari-config-v1
     podAnnotations:
       configmap.reloader.stakater.com/reload: "hajimari-settings"
     resources:
