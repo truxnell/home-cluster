@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: database-namespace
+  name: databases-namespace
   namespace: flux-system
 spec:
   interval: 5m
@@ -16,11 +16,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: database-postgresql
+  name: databases-postgresql
   namespace: flux-system
 spec:
   dependsOn:
-    - name: database-namespace
+    - name: databases-namespace
     - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/databases/postgresql"
