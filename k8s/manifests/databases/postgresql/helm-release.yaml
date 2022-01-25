@@ -21,12 +21,35 @@ spec:
       registry: quay.io
       repository: bitnami/postgresql
       tag: 14.1.0
+
     postgresqlPassword: "${POSTGRES_PASSWORD}"
-    postgresqlDatabase: authentik
+
     metrics:
       enabled: true
       serviceMonitor:
         enabled: true
+
     persistence:
       size: 10Gi
       existingClaim: postgresql-config-v1
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+          hajimari.io/enable: "false"
+
+        hosts:
+          - host: "postgresql.${CLUSTER_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+
+        tls:
+          - secretName: hajimari-${CLUSTER_NAME}-tls
+            hosts:
+              - "hajimari.${CLUSTER_DOMAIN}"
