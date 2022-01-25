@@ -69,12 +69,21 @@ spec:
     ports:
       traefik:
         expose: true
+
       web:
         redirectTo: websecure
+
       websecure:
         tls:
           enabled: true
           options: "default"
+
+      postgresql:
+        port: 5432
+        expose: true
+        exposedPort: 5432
+        protocol: TCP
+
       metrics:
         port: 8082
         expose: true

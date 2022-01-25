@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: postgresql-tcp-route
+  namespace: databases
+spec:
+  entryPoints:
+    - postgresql
+  routes:
+    - match: HostSNI(`postgresql.${CLUSTER_DOMAIN`)
+      services:
+        - name: postgresql
+          namespace: databases
+          port: 5432
