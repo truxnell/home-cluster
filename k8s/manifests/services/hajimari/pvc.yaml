@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: hajimari-v1
+  name: hajimari-congig-v1
   namespace: services
 spec:
   accessModes:
