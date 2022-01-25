@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/database"
+  path: "./k8s/manifests/databases"
   prune: true
   wait: true
   sourceRef:
@@ -22,7 +22,7 @@ spec:
     - name: database-namespace
     - name: system-monitoring-kube-prom-stack
   interval: 5m
-  path: "./k8s/manifests/postgresql"
+  path: "./k8s/manifests/databases/postgresql"
   prune: true
   wait: true
   sourceRef:
