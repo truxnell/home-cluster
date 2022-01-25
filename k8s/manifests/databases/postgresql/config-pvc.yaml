@@ -10,4 +10,4 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: openebs-zfspv-ssd
+  storageClassName: rook-ceph
