@@ -31,7 +31,7 @@ spec:
 
     env:
       DATA_FOLDER: "config"
-      DOMAIN: https://vault.${CLUSTER_DOMAIN}
+      DOMAIN: https://vaultwarden.${CLUSTER_DOMAIN}
       DATABASE_URL: ${VAULTWARDEN_DATABASE_URL}
       ADMIN_TOKEN: ${AULTWARDEN_ADMIN_TOKEN}
       SIGNUPS_ALLOWED: "false"
@@ -60,7 +60,7 @@ spec:
           hajimari.io/icon: "shield-key"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
-          - host: vault.${CLUSTER_DOMAIN}
+          - host: vaultwarden.${CLUSTER_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
@@ -71,7 +71,7 @@ spec:
                 servicePort: 3012
         tls:
           - hosts:
-              - vault.${CLUSTER_DOMAIN}
+              - vaultwarden.${CLUSTER_DOMAIN}
             secretName: tls.vaultwarden
       admin:
         enabled: true
@@ -80,13 +80,13 @@ spec:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           traefik.ingress.kubernetes.io/router.middlewares: "networking-rfc1918@kubernetescrd"
         hosts:
-          - host: "vault.${CLUSTER_DOMAIN}"
+          - host: "vaultwarden.${CLUSTER_DOMAIN}"
             paths:
               - path: /admin
                 pathType: Prefix
         tls:
           - hosts:
-              - "vault.${CLUSTER_DOMAIN}"
+              - "vaultwarden.${CLUSTER_DOMAIN}"
             secretName: flux-receiver-${CLUSTER_NAME}-tls
     persistence:
       config:

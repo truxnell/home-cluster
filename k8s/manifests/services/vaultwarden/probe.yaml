@@ -14,4 +14,4 @@ spec:
   targets:
     staticConfig:
       static:
-        - "https://vault.${CLUSTER_DOMAIN}"
+        - "https://vaultwarden.${CLUSTER_DOMAIN}"
