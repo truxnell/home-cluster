@@ -25,10 +25,13 @@ spec:
       tag: 14.1.0
 
     postgresqlPassword: "${POSTGRES_PASSWORD}"
+    postgresqlDatabase: "vaultwarden"
 
     metrics:
-      enabled: false
+      enabled: true
       serviceMonitor:
+        enabled: true
+      prometheusRule:
         enabled: true
 
     persistence:
@@ -38,6 +41,3 @@ spec:
     service:
       type: LoadBalancer
       loadBalancerIP: ${LB_POSTGRES}
-
-    prometheusRule:
-      enabled: true
