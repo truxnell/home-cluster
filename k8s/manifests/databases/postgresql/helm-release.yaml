@@ -25,7 +25,7 @@ spec:
       tag: 14.1.0
 
     postgresqlPassword: "${POSTGRES_PASSWORD}"
-    postgresqlDatabase: "vaultwarden"
+    postgresqlDatabase: "postgres"
 
     metrics:
       enabled: true
