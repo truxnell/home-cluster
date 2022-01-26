@@ -18,6 +18,6 @@ spec:
       http:
         paths:
           - backend:
-              servicename: minio
+              serviceName: minio
               servicePort: 9000
             path: /
