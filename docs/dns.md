@@ -11,6 +11,16 @@
 - bostchicken scripts
 - udm is a docker!
 
+### dnsmasq
+
+### dns
+
+Split domains, and using subdomains to point to loadbalancers.
+
+### pxe boot
+
+And pxe boot shenanigans for sidero
+
 ### NextDNS
 
 set forwarder in nextdns config, route back to UDM's dnsmasq
