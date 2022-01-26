@@ -17,6 +17,7 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    # values yaml: https://github.com/bitnami/charts/blob/master/bitnami/postgresql/values.yaml
     image:
       registry: quay.io
       repository: bitnami/postgresql
@@ -35,4 +36,4 @@ spec:
 
     service:
       type: LoadBalancer
-      loadBalancerIP: { LB_POSTGRES }
+      loadBalancerIP: ${LB_POSTGRES}
