@@ -61,7 +61,7 @@ spec:
   dependsOn:
     - name: services-namespace
     - name: network-system-traefik
-    - name: databases-postgres
+    - name: databases-postgresql
   interval: 5m
   path: "./k8s/manifests/services/joplin"
   prune: true
