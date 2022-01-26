@@ -7,7 +7,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
     cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.entrypoints: web
     traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
     external-dns/is-public: "false"
     hajimari.io/enable: "true"
