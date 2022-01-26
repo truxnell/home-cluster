@@ -1,0 +1,10 @@
+apiVersion: endpointmonitor.stakater.com/v1alpha1
+kind: EndpointMonitor
+metadata:
+  name: jopin-server-monitor
+  namespace: services
+spec:
+  forceHttps: true
+  urlFrom:
+    ingressRef:
+      name: jopin-server
