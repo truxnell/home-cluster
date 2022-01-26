@@ -1,0 +1,9 @@
+apiVersion: endpointmonitor.stakater.com/v1alpha1
+kind: EndpointMonitor
+metadata:
+  name: vaultwarden-monitor
+spec:
+  forceHttps: true
+  urlFrom:
+    ingressRef:
+      name: vaultwarden
