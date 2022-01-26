@@ -5,4 +5,9 @@ metadata:
   namespace: network-system
 spec:
   type: ExternalName
+
+  ports:
+    - name: http
+      port: 9000
+
   externalName: hyperion.lab
