@@ -31,8 +31,9 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
-      # prometheusRule:
-      #   enabled: true
+      prometheusRule:
+        enabled: true
+        namespace: databases
 
     persistence:
       size: 10Gi
