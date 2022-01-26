@@ -5,9 +5,11 @@ metadata:
   name: minio
   namespace: rook-ceph
   annotations:
+    kubernetes.io/ingress.class: traefik
     cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+    external-dns/is-public: "false"
     hajimari.io/enable: "true"
     hajimari.io/icon: "file-sync-outline"
     hajimari.io/appName: "minio"
@@ -17,7 +19,10 @@ spec:
     - host: minio.${CLUSTER_DOMAIN}
       http:
         paths:
-          - backend:
-              serviceName: minio
-              servicePort: 9000
-            path: /
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hyperion
+                port:
+                  number: 9000
