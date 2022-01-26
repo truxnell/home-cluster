@@ -21,6 +21,7 @@ metadata:
 spec:
   dependsOn:
     - name: system-monitoring-namespace
+    - name: rook-ceph-cluster
   interval: 5m
   path: "./k8s/manifests/system-monitoring/kube-prometheus-stack"
   prune: true
