@@ -25,7 +25,7 @@ spec:
     postgresqlPassword: "${POSTGRES_PASSWORD}"
 
     metrics:
-      enabled: true
+      enabled: false
       serviceMonitor:
         enabled: true
 
@@ -33,23 +33,6 @@ spec:
       size: 10Gi
       existingClaim: postgresql-config-v1
 
-    ingress:
-      main:
-        enabled: true
-        annotations:
-          kubernetes.io/ingress.class: traefik
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
-          hajimari.io/enable: "false"
-
-        hosts:
-          - host: "postgresql.${CLUSTER_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-
-        tls:
-          - secretName: hajimari-${CLUSTER_NAME}-tls
-            hosts:
-              - "hajimari.${CLUSTER_DOMAIN}"
+    service:
+      type: LoadBalancer
+      loadBalancerIP: { LB_POSTGRES }
