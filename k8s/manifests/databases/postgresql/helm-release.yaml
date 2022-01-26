@@ -27,7 +27,7 @@ spec:
     postgresqlPassword: "${POSTGRES_PASSWORD}"
 
     metrics:
-      enabled: true
+      enabled: false
       serviceMonitor:
         enabled: true
 
