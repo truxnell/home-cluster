@@ -71,7 +71,7 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           hajimari.io/enable: "true"
-          hajimari.io/icon: true
+          hajimari.io/icon: "true"
           hajimari.io/appName: joplin
 
         hosts:
