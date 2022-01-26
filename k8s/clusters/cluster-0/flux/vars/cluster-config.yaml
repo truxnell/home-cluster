@@ -38,4 +38,4 @@ data:
   ROUTER_IP: "unifi"
   NAS_ADDRESS: "hyperion.lab"
   VPN_PORT: "443"
-  POSTGRES_ADDRESS: postgres.databases.svc.cluster.local
+  POSTGRES_ADDRESS: postgresql.databases.svc.cluster.local
