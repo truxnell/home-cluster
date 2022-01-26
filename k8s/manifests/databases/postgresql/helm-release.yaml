@@ -31,8 +31,8 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
-      prometheusRule:
-        enabled: true
+      # prometheusRule:
+      #   enabled: true
 
     persistence:
       size: 10Gi
