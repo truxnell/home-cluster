@@ -38,3 +38,7 @@ spec:
     service:
       type: LoadBalancer
       loadBalancerIP: ${LB_POSTGRES}
+
+    prometheusRule:
+      enabled: true
+      
