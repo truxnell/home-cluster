@@ -94,7 +94,7 @@ spec:
         tls:
           - hosts:
               - "vault.${CLUSTER_DOMAIN}"
-            secretName: flux-receiver-${CLUSTER_NAME}-tls
+            secretName: vault-${CLUSTER_NAME}-tls
     persistence:
       config:
         enabled: true
