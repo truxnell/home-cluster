@@ -10,6 +10,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
     hajimari.io/enable: "true"
     hajimari.io/icon: "web"
+    hajimari.io/group: "rook-ceph"
     hajimari.io/appName: "traefik"
 
 spec:
