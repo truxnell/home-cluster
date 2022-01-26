@@ -18,6 +18,7 @@ spec:
       interval: 5m
   values:
     # values yaml: https://github.com/bitnami/charts/blob/master/bitnami/postgresql/values.yaml
+
     image:
       registry: quay.io
       repository: bitnami/postgresql
