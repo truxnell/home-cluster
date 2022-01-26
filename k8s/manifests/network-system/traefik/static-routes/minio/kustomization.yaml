@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - ./ingress.yaml
   - ./probe.yaml
-  - ./service.ymal
+  - ./service.yaml
