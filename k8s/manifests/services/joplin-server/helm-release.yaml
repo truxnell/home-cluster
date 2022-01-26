@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: joplin-server
-      version: 4.3.1
+      version: 4.5.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -29,7 +29,7 @@ spec:
   values:
     image:
       repository: joplin/server
-      tag: 2.5.1
+      tag: latest:sha256:17100fc5349199b8398ede4f7079f0ecbfbc5cca5a9e5fbcb17660f9b8496330
     env:
       # env-sample: https://github.com/laurent22/joplin/blob/dev/.env-sample
       # Basic setup
