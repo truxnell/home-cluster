@@ -68,21 +68,22 @@ spec:
 
       targets:
         # below are no good until I setup shed wifi link and get rid of POE
+        # FIXME
         # - module: icmp
         #   name: prusa
         #   url: octopi.lan
         # - module: icmp
         #   name: brewpiless
         #   url: ESP_7DE997.lan
-        - module: icmp
-          name: weatherstation
-          url: ESP-B9C83C.iot
-        - module: icmp
-          name: wled-officedesk
-          url: wled-officedesk.iot
-        - module: icmp
-          name: espresence-study
-          url: espresense-study.iot
+        # - module: icmp
+        #   name: weatherstation
+        #   url: ESP-B9C83C.iot
+        # - module: icmp
+        #   name: wled-officedesk
+        #   url: wled-officedesk.iot
+        # - module: icmp
+        #   name: espresence-study
+        #   url: espresense-study.iot
 
     prometheusRule:
       enabled: true
