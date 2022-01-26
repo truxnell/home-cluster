@@ -43,7 +43,7 @@ spec:
     - name: kube-system-reloader
     - name: network-system-traefik
     - name: rook-ceph-cluster
-    - name: databases-postgres
+    - name: databases-postgresql
   interval: 5m
   path: "./k8s/manifests/services/vaultwarden"
   prune: true
