@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - endpoint-monitor.yaml
-  - probe.yaml
