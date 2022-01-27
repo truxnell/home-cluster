@@ -45,7 +45,6 @@ spec:
     podAnnotations:
       configmap.reloader.stakater.com/reload: "blackbox-exporter"
 
-    allowIcmp: true
     config:
       modules:
         icmp:
@@ -54,6 +53,16 @@ spec:
           icmp:
             preferred_ip_protocol: "ip4"
             payload_size: 64
+        http_2xx:
+          prober: http
+          timeout: 30s
+          http:
+            valid_http_versions: ["HTTP/1.0", "HTTP/1.1", "HTTP/2.0"]
+            no_follow_redirects: false
+            preferred_ip_protocol: "ip4"
+        tcp_connect:
+          prober: tcp
+          timeout: 30s
 
     serviceMonitor:
       enabled: true
@@ -94,7 +103,7 @@ spec:
       rules:
         - alert: HostDown
           expr: probe_success == 0
-          for: 5m
+          for: 10m
           labels:
             severity: critical
           annotations:
@@ -103,6 +112,6 @@ spec:
           annotations:
             message: The response time for {{"{{ $labels.target }}"}} has been greater than 30 seconds for 5 minutes.
           expr: probe_duration_seconds > 30
-          for: 5m
+          for: 15m
           labels:
             severity: warning
