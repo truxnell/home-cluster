@@ -16,3 +16,4 @@ resources:
   - vmware-charts.yaml
   - weaveworks-kured-charts.yaml
   - rook-ceph-charts.yaml
+  - authentik-charts.yaml
