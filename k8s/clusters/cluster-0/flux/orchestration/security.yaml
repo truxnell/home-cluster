@@ -16,6 +16,26 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
+  name: security-vaultwarden
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: security-namespace
+    - name: kube-system-reloader
+    - name: network-system-traefik
+    - name: rook-ceph-cluster
+    - name: databases-postgresql
+  interval: 5m
+  path: "./k8s/manifests/security/vaultwarden"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
   name: security-authentik
   namespace: flux-system
 spec:
