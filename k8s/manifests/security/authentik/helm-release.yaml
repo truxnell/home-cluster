@@ -70,9 +70,9 @@ spec:
         name: authentik
         user: authentik
         password: ${AUTHENTIK_DB_PASSWORD}
-      # redis:
-      #   host: "{{ .Release.Name }}-redis-master"
-      #   password: ${SECRET_AUTHENTIK_REDIS_PASSWORD}
+      redis:
+        host: "{{ .Release.Name }}-redis-master"
+        password: ${SECRET_AUTHENTIK_REDIS_PASSWORD}
     prometheus:
       serviceMonitor:
         create: false
