@@ -33,7 +33,7 @@ spec:
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         hajimari.io/enable: "true"
-        hajimari.io/icon: true
+        hajimari.io/icon: shield-account
         hajimari.io/appName: authentik
 
       hosts:
@@ -73,23 +73,6 @@ spec:
       # redis:
       #   host: "{{ .Release.Name }}-redis-master"
       #   password: ${SECRET_AUTHENTIK_REDIS_PASSWORD}
-
-    postgresql:
-      enabled: true
-      persistence:
-        enabled: true
-        existingClaim: authentik-postgresql-pvc
-
-      postgresqlUsername: authentik
-      postgresqlDatabase: authentik
-      postgresqlPassword: ${SECRET_AUTHENTIK_POSTGRES_PASSWORD}
-
-    redis:
-      enabled: true
-      auth:
-        enabled: true
-        password: ${SECRET_AUTHENTIK_REDIS_PASSWORD}
-
     prometheus:
       serviceMonitor:
         create: false
