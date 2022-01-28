@@ -10,7 +10,7 @@ resources:
   - ./flux-system.yaml
   # - ./home-automation.yaml
   - ./kube-system.yaml
-  # - ./media.yaml
+  - ./media.yaml
   - ./network-system.yaml
   - ./security.yaml
   - ./services.yaml
