@@ -29,6 +29,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: hyperion-minio
+                name: hyperion
                 port:
                   name: minio
