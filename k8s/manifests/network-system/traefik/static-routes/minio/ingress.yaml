@@ -29,6 +29,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: hyperion
+                name: hyperion-minio
                 port:
                   number: 9000
