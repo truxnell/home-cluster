@@ -31,4 +31,4 @@ spec:
               service:
                 name: hyperion-minio
                 port:
-                  number: 9000
+                  name: minio

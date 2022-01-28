@@ -7,7 +7,8 @@ spec:
   type: ExternalName
 
   ports:
-    - name: http
+    - name: minio
       port: 9000
-
+    - name: http
+      port: 5000
   externalName: hyperion.lab

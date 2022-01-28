@@ -29,6 +29,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: hyperion-web
+                name: hyperion
                 port:
-                  number: 9000
+                  name: http
