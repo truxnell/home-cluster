@@ -10,4 +10,4 @@ spec:
     - name: http
       port: 80
 
-  externalName: esp_7de997.lan.
+  externalName: 192.168.2.97
