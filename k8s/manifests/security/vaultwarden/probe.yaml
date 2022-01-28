@@ -3,7 +3,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: Probe
 metadata:
   name: vaultwarden-http
-  namespace: services
+  namespace: security
 spec:
   jobName: vaultwarden-http
   interval: 1m

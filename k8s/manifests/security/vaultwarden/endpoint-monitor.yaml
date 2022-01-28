@@ -2,7 +2,7 @@ apiVersion: endpointmonitor.stakater.com/v1alpha1
 kind: EndpointMonitor
 metadata:
   name: vaultwarden-monitor
-  namespace: services
+  namespace: security
 spec:
   forceHttps: true
   urlFrom:
