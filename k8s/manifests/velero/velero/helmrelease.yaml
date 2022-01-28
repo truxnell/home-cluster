@@ -22,7 +22,7 @@ spec:
 
     configuration:
       extraEnvVars:
-        TZ: "Australia/Melbourne"
+        TZ: "${TZ}"
 
       provider: aws
 

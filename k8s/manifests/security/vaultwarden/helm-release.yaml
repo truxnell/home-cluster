@@ -42,7 +42,7 @@ spec:
       SMTP_SSL: "true"
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
-      TZ: "Australia/Melbourne"
+      TZ: "${TZ}"
       WEBSOCKET_ADDRESS: 0.0.0.0
       WEBSOCKET_ENABLED: true
       WEBSOCKET_PORT: 3012

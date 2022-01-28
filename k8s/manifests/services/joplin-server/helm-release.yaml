@@ -33,7 +33,7 @@ spec:
     env:
       # env-sample: https://github.com/laurent22/joplin/blob/dev/.env-sample
       # Basic setup
-      TZ: "Australia/Melbourne"
+      TZ: "${TZ}"
       APP_BASE_URL: https://joplin.${CLUSTER_DOMAIN}/
       DB_CLIENT: pg
 

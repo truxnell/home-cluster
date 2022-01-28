@@ -23,7 +23,7 @@ spec:
       repository: ghcr.io/k8s-at-home/plex
       tag: v1.25.2.5319-c43dc0277
     env:
-      TZ: "Australia/Melbourne"
+      TZ: "${TZ}"
       ADVERTISE_IP: "https://plex.${CLUSTER_DOMAIN}:443/,http://${LB_PLEX}:32400/"
       PLEX_CLAIM: "${PLEX_TOKEN}"
 
