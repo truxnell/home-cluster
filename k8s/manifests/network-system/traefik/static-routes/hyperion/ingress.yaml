@@ -17,7 +17,7 @@ metadata:
 
 spec:
   tls:
-    - secretName: minio-${CLUSTER_NAME}-tls
+    - secretName: hyperion-${CLUSTER_NAME}-tls
       hosts:
         - "hyperion.${CLUSTER_DOMAIN}"
 
