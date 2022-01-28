@@ -41,7 +41,7 @@ spec:
             - path: /
 
       tls:
-        - secretName: tls.authentik
+        - secretName: authentik-${CLUSTER_NAME}-tls
           hosts:
             - id.${CLUSTER_DOMAIN}
 
