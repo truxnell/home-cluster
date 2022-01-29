@@ -45,7 +45,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: tls.sonarr
+            secretName: &tls prowlarr-${CLUSTER_NAME}-tlssonarr
 
       api:
         enabled: true
@@ -62,7 +62,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: tls.sonarr
+            secretName: *tls
 
     persistence:
       config:

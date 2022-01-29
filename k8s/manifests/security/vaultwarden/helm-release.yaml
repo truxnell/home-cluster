@@ -73,7 +73,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: tls.vaultwarden
+            secretName: &tls vaultwarden-${CLUSTER_NAME}-tls
       admin:
         enabled: true
         ingressClassName: "traefik"
@@ -92,7 +92,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: tls.vaultwarden
+            secretName: *tls
     persistence:
       config:
         enabled: true

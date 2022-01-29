@@ -14,7 +14,7 @@ metadata:
 spec:
   ingressClassName: "traefik"
   rules:
-    - host: "flux-receiver.${CLUSTER_NAME}.${CLUSTER_DOMAIN}"
+    - host: &host "flux-receiver.${CLUSTER_NAME}.${CLUSTER_DOMAIN}"
       http:
         paths:
           - path: /hook/
@@ -26,5 +26,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - "flux-receiver.${CLUSTER_NAME}.${CLUSTER_DOMAIN}"
+        - *host
       secretName: flux-receiver-${CLUSTER_NAME}-tls
