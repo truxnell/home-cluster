@@ -10,7 +10,7 @@ metadata:
 spec:
   namespaceSelector:
     matchNames:
-      - &namespace flux-system
+      - flux-system
 
   selector:
     matchLabels:
@@ -30,7 +30,7 @@ metadata:
 spec:
   namespaceSelector:
     matchNames:
-      - *namespace
+      - flux-system
 
   selector:
     matchLabels:
@@ -50,7 +50,7 @@ metadata:
 spec:
   namespaceSelector:
     matchNames:
-      - *namespace
+      - flux-system
 
   selector:
     matchLabels:
@@ -70,7 +70,7 @@ metadata:
 spec:
   namespaceSelector:
     matchNames:
-      - *namespace
+      - flux-system
 
   selector:
     matchLabels:
