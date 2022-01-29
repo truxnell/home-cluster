@@ -23,7 +23,7 @@ spec:
       tag: v3.0.6.1342
 
     env:
-      TZ: "Australia/Melbourne"
+      TZ: "${TZ}"
 
     ingress:
       main:
@@ -77,6 +77,16 @@ spec:
             path: /volume1/
         mountPath: /data
         readOnly: false
+      nfs-nas-backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDRESS}
+            path: /volume1/backups/kubernetes/apps/sonarr
+        mountPath: /config/backups
+        readOnly: false
+
     podSecurityContext:
       runAsUser: 1000
       runAsGroup: 1000
