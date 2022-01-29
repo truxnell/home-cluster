@@ -5,6 +5,5 @@ metadata:
   namespace: media
 spec:
   forceHttps: true
-  urlFrom:
-    ingressRef:
-      name: plex
+  # Needs to be web/index.html as the base domain returns 401 unauthorized.
+  url: https://plex.${CLUSTER-DOMAIN}/web/index.html
