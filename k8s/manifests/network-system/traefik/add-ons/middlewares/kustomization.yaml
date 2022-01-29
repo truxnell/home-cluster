@@ -7,5 +7,5 @@ resources:
   - internal-auth.yaml
   - rfc1918.yaml
   - redirect-path.yaml
-  - secret.enc.yaml
+  # - secret.enc.yaml
 # - basic-auth.yaml
