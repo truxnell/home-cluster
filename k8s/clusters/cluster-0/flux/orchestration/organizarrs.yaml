@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: organizaars-namespace
+  name: organizarrs-namespace
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/organizaars"
+  path: "./k8s/manifests/organizarrs"
   prune: true
   wait: true
   sourceRef:
@@ -16,16 +16,16 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: organizaars-sonarr
+  name: organizarrs-sonarr
   namespace: flux-system
 spec:
   dependsOn:
-    - name: organizaars-namespace
+    - name: organizarrs-namespace
     - name: rook-ceph-cluster
     - name: apps-media-prowlarr
     - name: apps-media-nzbget
   interval: 5m
-  path: "./k8s/manifests/organizaars/sonarr"
+  path: "./k8s/manifests/organizarrs/sonarr"
   prune: true
   wait: true
   sourceRef:
@@ -35,14 +35,14 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: organizaars-prowlarr
+  name: organizarrs-prowlarr
   namespace: flux-system
 spec:
   dependsOn:
-    - name: organizaars-namespace
+    - name: organizarrs-namespace
     - name: rook-ceph-cluster
   interval: 5m
-  path: "./k8s/manifests/organizaars/prowlarr"
+  path: "./k8s/manifests/organizarrs/prowlarr"
   prune: true
   wait: true
   sourceRef:
