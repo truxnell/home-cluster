@@ -7,4 +7,4 @@ spec:
   forceHttps: true
   urlFrom:
     ingressRef:
-      name: jopin-server
+      name: joplin-server
