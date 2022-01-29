@@ -52,7 +52,7 @@ spec:
       MAILER_AUTH_USER: ${SMTP_USERNAME}
       MAILER_AUTH_PASSWORD: ${SMTP_PASSWORD}
       MAILER_NOREPLY_NAME: Joplin
-      MAILER_NOREPLY_EMAIL: noreply@${SECRET_DOMAIN}
+      MAILER_NOREPLY_EMAIL: noreply@${CLUSTER_DOMAIN}
 
     ingress:
       main:

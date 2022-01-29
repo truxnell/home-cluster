@@ -39,7 +39,7 @@ spec:
           hajimari.io/appName: prowlarr
 
         hosts:
-          - host: &host "prowlarr.${SECRET_DOMAIN}"
+          - host: &host "prowlarr.${CLUSTER_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix

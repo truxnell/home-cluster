@@ -38,7 +38,7 @@ spec:
           hajimari.io/icon: "television-box"
           hajimari.io/appName: sonarr
         hosts:
-          - host: &host "sonarr.${SECRET_DOMAIN}"
+          - host: &host "sonarr.${CLUSTER_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
