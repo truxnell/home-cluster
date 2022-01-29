@@ -1,0 +1,50 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: organizaars-namespace
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/organizaars"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: organizaars-sonarr
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: organizaars-namespace
+    - name: rook-ceph-cluster
+    - name: apps-media-prowlarr
+    - name: apps-media-nzbget
+  interval: 5m
+  path: "./k8s/manifests/organizaars/sonarr"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: organizaars-prowlarr
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: organizaars-namespace
+    - name: rook-ceph-cluster
+  interval: 5m
+  path: "./k8s/manifests/organizaars/prowlarr"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
