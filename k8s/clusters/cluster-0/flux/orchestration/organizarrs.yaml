@@ -22,9 +22,7 @@ spec:
   dependsOn:
     - name: organizarrs-namespace
     - name: rook-ceph-cluster
-    - name: organizaars-prowlarr
-    - name: organizaars-prowlarr
-    - name: -nzbget
+    - name: organizarrs-prowlarr
   interval: 5m
   path: "./k8s/manifests/organizarrs/sonarr"
   prune: true
