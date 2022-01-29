@@ -22,8 +22,9 @@ spec:
   dependsOn:
     - name: organizarrs-namespace
     - name: rook-ceph-cluster
-    - name: apps-media-prowlarr
-    - name: apps-media-nzbget
+    - name: organizaars-prowlarr
+    - name: organizaars-prowlarr
+    - name: -nzbget
   interval: 5m
   path: "./k8s/manifests/organizarrs/sonarr"
   prune: true
