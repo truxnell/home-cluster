@@ -22,7 +22,7 @@ spec:
       tag: v3.4.2
 
     env:
-      TZ: "Australia/Melbourne"
+      TZ: "${TZ}"
       HOST_WHITELIST_ENTRIES: "sabnzbd.${CLUSTER_DOMAIN}, sabnzbd"
 
     ingress:
