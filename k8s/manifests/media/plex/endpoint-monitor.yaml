@@ -2,7 +2,7 @@ apiVersion: endpointmonitor.stakater.com/v1alpha1
 kind: EndpointMonitor
 metadata:
   name: plex-monitor
-  namespace: security
+  namespace: media
 spec:
   forceHttps: true
   urlFrom:
