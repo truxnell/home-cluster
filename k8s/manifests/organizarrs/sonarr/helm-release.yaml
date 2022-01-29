@@ -83,7 +83,7 @@ spec:
         volumeSpec:
           nfs:
             server: ${NAS_ADDRESS}
-            path: /volume1/backups/kubernetes/apps/sonarr
+            path: /volume1/backup/kubernetes/apps/sonarr
         mountPath: /config/backups
         readOnly: false
 
