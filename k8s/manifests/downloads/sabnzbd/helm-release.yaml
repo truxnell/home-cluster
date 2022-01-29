@@ -42,6 +42,7 @@ spec:
         tls:
           - hosts:
               - *host
+            secretName: tls.prowlarr
 
       api:
         enabled: true
