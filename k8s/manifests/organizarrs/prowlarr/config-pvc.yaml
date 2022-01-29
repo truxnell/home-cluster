@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: prowlarr-config-v1
-  namespace: organizaars
+  namespace: organizarrs
 spec:
   accessModes:
     - ReadWriteOnce
