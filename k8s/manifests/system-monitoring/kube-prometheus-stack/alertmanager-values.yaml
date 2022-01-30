@@ -71,6 +71,9 @@ alertmanager:
             resources:
               requests:
                 storage: 1Gi
+      podMetadata:
+        annotations:
+          backup.velero.io/backup-volumes: alertmanager-kube-prometheus-stack-alertmanager-db
 
     resources:
       requests:

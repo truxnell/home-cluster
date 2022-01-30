@@ -33,13 +33,17 @@ prometheus:
     retention: 6h
     enableAdminAPI: true
     walCompression: true
-    # storageSpec:
-    #   volumeClaimTemplate:
-    #     spec:
-    #       storageClassName: ceph-block
-    #       resources:
-    #         requests:
-    #           storage: 10Gi
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: ceph-block
+          resources:
+            requests:
+              storage: 10Gi
+        podMetadata:
+          annotations:
+            backup.velero.io/backup-volumes: prometheus-kube-prometheus-stack-prometheus-db
+
     additionalScrapeConfigs:
       - job_name: hyperion
         honor_timestamps: true
