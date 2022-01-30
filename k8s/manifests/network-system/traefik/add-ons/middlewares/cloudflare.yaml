@@ -38,7 +38,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: cloudflare
-  namespace: networking
+  namespace: network-system
 spec:
   chain:
     middlewares:
