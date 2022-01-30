@@ -72,7 +72,7 @@ spec:
       default:
         minVersion: VersionTLS12
         maxVersion: VersionTLS13
-#        sniStrict: true
+        #        sniStrict: true
         cipherSuites:
           - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
           - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
@@ -103,12 +103,6 @@ spec:
         port: 8082
         expose: true
         exposedPort: 8082
-
-    tlsOptions:
-      default:
-        minVersion: VersionTLS12
-        maxVersion: VersionTLS13
-        sniStrict: true
 
     pilot:
       enabled: false
