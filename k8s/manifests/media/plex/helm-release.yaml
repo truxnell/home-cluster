@@ -40,6 +40,8 @@ spec:
         externalTrafficPolicy: Local
         port:
           port: 32400
+        annotations:
+          metallb.universe.tf/allow-shared-ip: plex
 
     hostNetwork: true
 
@@ -83,6 +85,16 @@ spec:
             server: ${NAS_ADDRESS}
             path: /volume1/
         mountPath: /data
+        readOnly: false
+
+      backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDRESS}
+            path: /volume1/backup/kubernetes/apps/plex
+        mountPath: "/config/Library/Application Support/Plex Media Server/Plug-in Support/Databases"
         readOnly: false
 
     podAnnotations:
