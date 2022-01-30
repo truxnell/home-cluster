@@ -1,7 +1,7 @@
 ---
 roles:
   - src: xanmanning.k3s
-    version: v2.11.1
+    version: v3.1.0
 collections:
   - name: community.general
   - name: community.sops
