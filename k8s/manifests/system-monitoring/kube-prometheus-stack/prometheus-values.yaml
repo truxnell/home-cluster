@@ -40,9 +40,9 @@ prometheus:
           resources:
             requests:
               storage: 10Gi
-        podMetadata:
-          annotations:
-            backup.velero.io/backup-volumes: prometheus-kube-prometheus-stack-prometheus-db
+    podMetadata:
+      annotations:
+        backup.velero.io/backup-volumes: prometheus-kube-prometheus-stack-prometheus-db
 
     additionalScrapeConfigs:
       - job_name: hyperion
