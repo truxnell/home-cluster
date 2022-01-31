@@ -36,7 +36,7 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: book-open
         hosts:
-          - host: &host ebooks.${CLUSTER_DOMAIN}
+          - host: &host readarr.${CLUSTER_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
