@@ -77,6 +77,15 @@ spec:
             path: /volume1/
         mountPath: /media
         readOnly: false
+      nfs-nas-media-2:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDRESS}
+            path: /volume1/
+        mountPath: /data
+        readOnly: false
       nfs-nas-backup:
         enabled: true
         type: custom
