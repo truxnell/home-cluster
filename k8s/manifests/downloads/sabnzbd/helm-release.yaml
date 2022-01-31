@@ -75,7 +75,7 @@ spec:
           nfs:
             server: ${NAS_ADDRESS}
             path: /volume1/
-        mountPath: /data
+        mountPath: /media
         readOnly: false
 
     podSecurityContext:
