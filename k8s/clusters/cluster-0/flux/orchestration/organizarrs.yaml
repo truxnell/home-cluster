@@ -64,7 +64,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
-
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -77,6 +76,23 @@ spec:
     - name: rook-ceph-cluster
   interval: 5m
   path: "./k8s/manifests/organizarrs/lidarr"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: organizarrs-readarr
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: organizarrs-namespace
+    - name: rook-ceph-cluster
+  interval: 5m
+  path: "./k8s/manifests/organizarrs/readarr"
   prune: true
   wait: true
   sourceRef:
