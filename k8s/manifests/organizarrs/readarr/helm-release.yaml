@@ -27,7 +27,6 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
         annotations:
           kubernetes.io/ingress.class: traefik
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
@@ -48,9 +47,12 @@ spec:
 
       api:
         enabled: true
-        ingressClassName: "traefik"
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          kubernetes.io/ingress.class: traefik
+          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+          external-dns/is-public: "false"
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
         hosts:
           - host: *host
             paths:

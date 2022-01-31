@@ -25,7 +25,6 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
         annotations:
           kubernetes.io/ingress.class: traefik
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
@@ -46,7 +45,6 @@ spec:
 
       api:
         enabled: true
-        ingressClassName: "traefik"
         annotations:
           kubernetes.io/ingress.class: traefik
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
