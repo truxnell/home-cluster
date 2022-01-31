@@ -57,6 +57,7 @@ spec:
   dependsOn:
     - name: organizarrs-namespace
     - name: rook-ceph-cluster
+    - name: organizarrs-prowlarr
   interval: 5m
   path: "./k8s/manifests/organizarrs/radarr"
   prune: true
@@ -74,6 +75,7 @@ spec:
   dependsOn:
     - name: organizarrs-namespace
     - name: rook-ceph-cluster
+    - name: organizarrs-prowlarr
   interval: 5m
   path: "./k8s/manifests/organizarrs/lidarr"
   prune: true
@@ -91,6 +93,7 @@ spec:
   dependsOn:
     - name: organizarrs-namespace
     - name: rook-ceph-cluster
+    - name: organizarrs-prowlarr
   interval: 5m
   path: "./k8s/manifests/organizarrs/readarr"
   prune: true
