@@ -51,8 +51,6 @@ spec:
           external-dns/is-public: "false"
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "filmstrip"
         hosts:
           - host: *host
             paths:
