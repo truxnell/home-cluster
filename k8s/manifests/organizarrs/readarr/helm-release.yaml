@@ -44,6 +44,7 @@ spec:
         tls:
           - hosts:
               - *host
+            secretName: &tls readarr-${CLUSTER_NAME}-tlssonarr
 
       api:
         enabled: true
@@ -58,6 +59,7 @@ spec:
         tls:
           - hosts:
               - *host
+            secretName: *tls
 
     podSecurityContext:
       supplementalGroups:
