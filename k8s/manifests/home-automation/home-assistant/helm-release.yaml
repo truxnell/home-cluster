@@ -52,7 +52,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: hass-${CLUSTER_NAME}-tls
+            secretName: hass-${CLUSTER_NAME}-tls-v2
 
     probes:
       liveness:
