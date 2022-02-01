@@ -84,6 +84,10 @@ spec:
         mountPath: /config/Backups
         readOnly: false
     podSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+      fsGroupChangePolicy: OnRootMismatch
       supplementalGroups:
         - 5600
     resources:
