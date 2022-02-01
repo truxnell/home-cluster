@@ -1,0 +1,78 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: games-namespace
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/games"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: games-factorio-k2
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: home-automation-namespace
+  interval: 5m
+  path: "./k8s/manifests/games/factorio-k2"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: games-factorio-formic
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: home-automation-namespace
+  interval: 5m
+  path: "./k8s/manifests/games/factorio-formic"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: games-factorio-ribbonworld
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: home-automation-namespace
+  interval: 5m
+  path: "./k8s/manifests/games/factorio-ribbonworld"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: games-factorio-foundryvtt
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: home-automation-namespace
+  interval: 5m
+  path: "./k8s/manifests/games/foundryvtt"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster

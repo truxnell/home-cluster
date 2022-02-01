@@ -8,6 +8,7 @@ resources:
   - ./downloads.yaml
   - ./databases.yaml
   - ./flux-system.yaml
+  - ./games.yaml
   - ./home-automation.yaml
   - ./kube-system.yaml
   - ./media.yaml

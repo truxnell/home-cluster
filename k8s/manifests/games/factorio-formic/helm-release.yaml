@@ -1,0 +1,106 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: factorio-formic
+  namespace: games
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://github.com/Truxnell/charts
+      chart: ./charts/stable/factorio/
+      version: 0.0.1
+      sourceRef:
+        kind: GitRepository
+        name: k8s-at-home-truxnell
+        namespace: flux-system
+      interval: 5m
+  install:
+    remediation: # perform remediation when helm install fails
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
+
+  # Values link: https://github.com/Truxnell/charts/blob/master/charts/stable/factorio/values.yaml
+  values:
+    image:
+      # -- image repository
+      repository: factoriotools/factorio
+      # -- image tag
+      tag: stable@sha256:63d2c2241c4570b2a28a1a9a30c96e372f12f06f47aba515ac7a7e6e5b60cbc0
+
+    env:
+      # -- Set the container timezone
+      TZ: "${ TZ}"
+      LOAD_LATEST_SAVE: true # Defaults to True
+      SAVE_NAME: formic # Defaults to _autosave1
+      GENERATE_NEW_SAVE: false # Defaults to false
+      PORT: 34197 # Defaults to 34197
+      RCON_PORT: 27015 # Defaults to 27015
+      UPDATE_MODS_ON_START: true # No default
+      USERNAME: ${FACTORIO_USERNAME} # No default - this is your factorio.com username
+      TOKEN: ${FACTORIO_TOKEN} # No default - this is your factorio.com token
+
+    service:
+      factorio-game:
+        enabled: true
+        type: LoadBalancer # Setting Ip external to cluster for easy port forward
+        externalTrafficPolicy: Cluster
+        loadBalancerIP: "${LB_FACTORIO}" # Set a IP here to ensure the game server is given a static internal IP
+        annotations:
+          metallb.universe.tf/allow-shared-ip: factorio
+        ports:
+          factorio-game:
+            port: 34197
+            protocol: UDP
+            targetPort: 34197
+      factorio-rcon:
+        enabled: false
+        type: LoadBalancer # Setting Ip external to cluster for easy port forward
+        externalTrafficPolicy: Cluster
+        loadBalancerIP: "${LB_FACTORIO}" # Set a IP here to ensure the game server is given a static internal IP
+        annotations:
+          metallb.universe.tf/allow-shared-ip: factorio
+        ports:
+          factorio-rcon:
+            enabled: false
+            port: 27016
+            protocol: TCP
+            targetPort: 27016
+
+    persistence:
+      factorio:
+        enabled: true
+        existingClaim: factorio-formic-config-v1
+
+    # Prefer higher single core speed node
+    affinity:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - k8s-generic-node-a
+
+    podAnnotations:
+      backup.velero.io/backup-volumes: factorio
+      pre.hook.backup.velero.io/container: fsfreeze
+      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/factorio"]'
+      post.hook.backup.velero.io/container: fsfreeze
+      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/factorio"]'
+    additionalContainers:
+      fsfreeze:
+        name: fsfreeze
+        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
+        volumeMounts:
+          - name: factorio
+            mountPath: /factorio
+        securityContext:
+          privileged: true
