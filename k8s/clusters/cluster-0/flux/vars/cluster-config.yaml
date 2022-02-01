@@ -36,7 +36,8 @@ data:
   LB_CALIBRE: "10.8.20.17"
   LB_EMQX: "10.8.20.19"
   LB_RESILIO: "10.8.20.20"
-  LB_FACTORIO: "10.8.20.30"
+  # LB_FACTORIO: "10.8.20.30"
+  LB_FACTORIO: "192.168.2.176"
 
   # Device IP's
   ROUTER_IP: "unifi"
