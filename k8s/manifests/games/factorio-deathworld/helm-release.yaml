@@ -34,7 +34,7 @@ spec:
       tag: stable@sha256:481b392645eb84b2a4c86d233dc180c882191a7589dbf84766940cfa5a0ee636
     env:
       # -- Set the container timezone
-      TZ: "${ TZ}"
+      TZ: "${TZ}"
       LOAD_LATEST_SAVE: true # Defaults to True
       SAVE_NAME: Deathworld # Defaults to _autosave1
       GENERATE_NEW_SAVE: false # Defaults to false

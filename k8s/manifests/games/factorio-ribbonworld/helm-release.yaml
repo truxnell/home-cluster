@@ -35,7 +35,7 @@ spec:
 
     env:
       # -- Set the container timezone
-      TZ: "${ TZ}"
+      TZ: "${TZ}"
       LOAD_LATEST_SAVE: true # Defaults to True
       SAVE_NAME: ribbonworld # Defaults to _autosave1
       GENERATE_NEW_SAVE: false # Defaults to false
