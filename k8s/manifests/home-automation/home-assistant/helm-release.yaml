@@ -21,9 +21,9 @@ spec:
       tag: 2021.12.10
     env:
       TZ: "${TIMEZONE}"
-    envFrom:
-      - secretRef:
-          name: home-assistant
+    # envFrom:
+    #   - secretRef:
+    #       name: home-assistant
     hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
     service:
@@ -87,8 +87,8 @@ spec:
           tag: v4.0.2
         env:
           TZ: "${TIMEZONE}"
-        git:
-          deployKeySecret: code-server
+        # git:
+        #   deployKeySecret: code-server
         workingDir: "/config"
         args:
           - --auth
