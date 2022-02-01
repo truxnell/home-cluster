@@ -109,13 +109,13 @@ spec:
             traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
             hajimari.io/enable: "false"
           hosts:
-            - host: &host "hass-config.${CLUSTER_DOMAIN}"
+            - host: &host-code "hass-config.${CLUSTER_DOMAIN}"
               paths:
                 - path: /
                   pathType: Prefix
           tls:
             - hosts:
-                - *host
+                - *host-code
               secretName: *tls
 
         volumeMounts:
