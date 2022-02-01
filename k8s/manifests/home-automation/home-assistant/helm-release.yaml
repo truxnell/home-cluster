@@ -52,6 +52,8 @@ spec:
         tls:
           - hosts:
               - *host
+            secretName: &tls hass-${CLUSTER_NAME}-tls
+
     probes:
       liveness:
         enabled: false
@@ -114,6 +116,8 @@ spec:
           tls:
             - hosts:
                 - *host
+              secretName: *tls
+
         volumeMounts:
           - name: config
             mountPath: /config
