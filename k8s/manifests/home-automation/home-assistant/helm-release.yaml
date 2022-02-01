@@ -108,7 +108,8 @@ spec:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
             hajimari.io/enable: "true"
-            hajimari.io/icon: "code-greater-than-or-eaqual"
+            hajimari.io/icon: "code-greater-than-or-equal"
+            hajimari.io/name: home-assistant-code
           hosts:
             - host: &host-code "hass-config.${CLUSTER_DOMAIN}"
               paths:
