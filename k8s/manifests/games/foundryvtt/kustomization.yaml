@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: games
 resources:
   - config-pvc.yaml
-  - foundryvtt.yaml
+  - helm-release.yaml
