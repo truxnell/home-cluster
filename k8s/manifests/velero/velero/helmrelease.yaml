@@ -28,7 +28,7 @@ spec:
 
       backupStorageLocation:
         name: default
-        bucket: velero-${CLUSTER_NAME}
+        bucket: velero
         default: true
         config:
           region: us-east-1
