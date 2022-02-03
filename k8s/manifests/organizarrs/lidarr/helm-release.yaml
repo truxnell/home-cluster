@@ -80,7 +80,7 @@ spec:
         volumeSpec:
           nfs:
             server: ${NAS_ADDRESS}
-            path: /volume1/backup/kubernetes/apps/lidarr
+            path: /volume1/backup/kubernetes/apps/plex
         mountPath: /config/Backups
         readOnly: false
     podSecurityContext:
