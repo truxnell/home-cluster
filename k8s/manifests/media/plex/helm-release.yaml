@@ -67,6 +67,7 @@ spec:
           - secretName: plex-${CLUSTER_NAME}-tls
             hosts:
               - "plex.${CLUSTER_DOMAIN}"
+
     persistence:
       config:
         enabled: true
