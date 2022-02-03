@@ -41,7 +41,7 @@ spec:
         annotations:
           metallb.universe.tf/allow-shared-ip: plex
 
-    hostNetwork: true
+    # hostNetwork: true
 
     ingress:
       main:
