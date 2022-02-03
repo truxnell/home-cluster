@@ -87,6 +87,16 @@ spec:
         mountPath: /data
         readOnly: false
 
+      backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDRESS}
+            path: /tycho/Data/Backups/app/plex
+        mountPath: /config/Library/Application Support/Plex Media Server/Plug-in Support/Databases
+        readOnly: false
+
     podAnnotations:
       backup.velero.io/backup-volumes: config
       pre.hook.backup.velero.io/container: fsfreeze
