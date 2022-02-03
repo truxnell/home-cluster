@@ -94,7 +94,7 @@ spec:
           nfs:
             server: ${NAS_ADDRESS}
             path: /volume1/backup/kubernetes/apps/plex
-        mountPath: /config/Library/Application Support/Plex Media Server/Plug-in Support/Databases
+        mountPath: /config/Library/Application Support/Plex Media Server/Plug-in Support/Databases2
         readOnly: false
 
     podAnnotations:
