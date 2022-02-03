@@ -93,7 +93,7 @@ spec:
         volumeSpec:
           nfs:
             server: ${NAS_ADDRESS}
-            path: path: /volume1/backup/kubernetes/apps/plex
+            path: /volume1/backup/kubernetes/apps/plex
         mountPath: /config/Library/Application Support/Plex Media Server/Plug-in Support/Databases
         readOnly: false
 
