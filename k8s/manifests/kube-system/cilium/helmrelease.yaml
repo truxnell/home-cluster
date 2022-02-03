@@ -89,6 +89,6 @@ spec:
                 - "hubble.${CLUSTER_NAME}.${CLUSTER_DOMAIN}"
 
     bgp:
-      enabled: false
+      enabled: true
       announce:
         loadbalancerIP: true
