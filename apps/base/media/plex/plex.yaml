@@ -50,13 +50,20 @@ spec:
         enabled: true
         type: emptyDir
         medium: Memory
+    # service:
+    #   main:
+    #     type: LoadBalancer
+    #     loadBalancerIP: "${LB_PLEX}"
+    #     externalTrafficPolicy: Local
+    #     annotations:
+    #       metallb.universe.tf/allow-shared-ip: plex
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: "${LB_PLEX}"
+        externalIPs:
+          - "${LB_PLEX}"
         externalTrafficPolicy: Local
-        annotations:
-          metallb.universe.tf/allow-shared-ip: plex
+
     podAnnotations:
       backup.velero.io/backup-volumes: config
       pre.hook.backup.velero.io/container: fsfreeze
