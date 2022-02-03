@@ -92,3 +92,6 @@ spec:
       enabled: false
       announce:
         loadbalancerIP: true
+
+    externalIPs:
+      enabled: false
