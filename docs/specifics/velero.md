@@ -63,8 +63,13 @@ Now serving the repository at /tmp/velero/
 When finished, quit with Ctrl-c or umount the mountpoint.
 ```
 
+You will have to find which snapshot you want, as velero creates a generic folder per PVC with just a timestamp.  Also, `velero cp` can't copy a folder with a `:`.  So we have to find the folder we want, copy the files to a different folder, THEN copy the files.
+
 In another terminal:
 ```
+cp -i /tmp/velero/snapshots/2022-02-05T06:03:09+11:00/ ~/velero-restore/ -r
+
+kubectl cp ~/factorio games/factorio-k2-6d4bf78756-xjd2j:/
 
 
 ```
