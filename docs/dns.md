@@ -32,6 +32,11 @@ nextdns restart
 
 ## cloudflare
 
+Cloudflare block all country except a few whitelisted
+
+Grabbed ideas from onedrops tf repo:
+https://github.com/onedr0p/home-ops/blob/main/terraform/cloudflare/firewall_rules.tf    
+
 ## uptime monitor
 
 ## Discord notifications
@@ -41,3 +46,5 @@ nextdns restart
 ### cloudflare-ddns
 
 ## external-dns
+
+External DNS is only set for ones with annotations `externaldns: true`
