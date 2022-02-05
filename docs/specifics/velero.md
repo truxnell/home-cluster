@@ -43,5 +43,28 @@ Run `velero restore describe games` or `velero restore logs games` for more deta
 ## Cross-cluster restore
 
 Essentially, both clusters need to go to the same bucket, and both clusters can see each others backups.
-This is a little dicky with naming if they arent unique.
+This is a little dicky with backup naming if they arent unique.
 
+## Manual restore from restic
+
+When i did my cross cluster restore I had issues where it wouldnt restore, possibly due to renaming by storageblockclass in the new cluster (so velero PVC's wouldnt run, and the initi container in the new deployment hung)
+
+To restore manually from s3:
+
+Ensure the new deployments and pvc's are running OK.  No need to delete anything this time, and no need to spin them down.
+
+```
+❯ mkdir /tmp/velero
+
+# Mount namespace to a local directory - in this case it was my games dir
+❯ restic -r s3:http://hyperion.lab:9000/velero/restic/games/ mount /tmp/velero/
+repository afddcb20 opened successfully, password is correct
+Now serving the repository at /tmp/velero/
+When finished, quit with Ctrl-c or umount the mountpoint.
+```
+
+In another terminal:
+```
+
+
+```
