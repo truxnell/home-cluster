@@ -51,16 +51,16 @@ spec:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           hajimari.io/enable: "true"
           hajimari.io/icon: television-classic
-          hajimari.io/appName: disquetv
+          hajimari.io/appName: dizquetv
         hosts:
-          - host: "disquetv.${CLUSTER_DOMAIN}"
+          - host: &host "dizquetv.${CLUSTER_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: disquetv-${CLUSTER_NAME}-tls
+          - secretName: dizquetv-${CLUSTER_NAME}-tls
             hosts:
-              - "disquetv.${CLUSTER_DOMAIN}"
+              - *host
 
     podAnnotations:
       backup.velero.io/backup-volumes: config
