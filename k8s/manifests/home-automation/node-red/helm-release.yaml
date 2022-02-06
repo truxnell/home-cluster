@@ -29,8 +29,8 @@ spec:
       tag: v2.2.0
     env:
       TZ: "${TZ}"
-      NODE_RED_ENABLE_PROJECTS: "true"
       NODE_RED_ENABLE_SAFE_MODE: "false"
+      NODE_RED_ENABLE_PROJECTS: "true"
     ingress:
       main:
         enabled: true
