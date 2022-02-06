@@ -29,6 +29,10 @@
     {
       "filePath": "k8s/clusters/cluster-0/flux/orchestration",
       "group": "Default"
+    },
+    {
+      "filePath": "k8s/manifests/services/hajimari/helmrelease.yaml",
+      "group": "Default"
     }
   ],
   "cSpell.enabled": false,
