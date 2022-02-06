@@ -45,6 +45,14 @@ Run `velero restore describe games` or `velero restore logs games` for more deta
 Essentially, both clusters need to go to the same bucket, and both clusters can see each others backups.
 This is a little dicky with backup naming if they arent unique.
 
+## Change storageclass
+
+Use the configmap in velero/tools to aid mapping storageclasses.
+## change namespace
+
+append `--namespace-mappings home:home-automation` to restore command to map home -> home-automation for example.
+
+
 ## Manual restore from restic
 
 When i did my cross cluster restore I had issues where it wouldnt restore, possibly due to renaming by storageblockclass in the new cluster (so velero PVC's wouldnt run, and the initi container in the new deployment hung)
