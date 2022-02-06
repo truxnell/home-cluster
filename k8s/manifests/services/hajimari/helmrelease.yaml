@@ -63,6 +63,8 @@ spec:
               url: "https://drive.google.com"
             - name: UptimeRobot
               url: "https://uptimerobot.com"
+            - name: OnShape
+              url: "https://cad.onshape.com
 
         - name: Media
           links:
