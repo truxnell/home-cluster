@@ -1,5 +1,9 @@
 # Plex
 
+# Config
+
+TRaSH guide link
+
 # Firewall
 
 I have plex in a group in my udm-pro - ensure this IP is changed if the loadbalancer IP ever changes.
@@ -22,3 +26,20 @@ While working over VLANS, need to set ip in network settings of server.  Lets us
 ```
 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
 ```
+
+# NUC hardware decoding
+
+Needs
+
+suplemental groups
+```
+        - 44
+        - 109
+        - 100
+```
+
+request: gpu
+
+intel-gpu-plugin
+
+node-feature-detector to get custom-intel-gpu label

@@ -31,6 +31,7 @@ spec:
       supplementalGroups:
         - 44
         - 109
+        - 100
         - 65539
     service:
       main:
@@ -108,9 +109,10 @@ spec:
       requests:
         cpu: 1000m
         memory: 1000Mi
+        gpu.intel.com/i915: 1
       limits:
         memory: 16000Mi
-        amd.com/gpu: 0
+        gpu.intel.com/i915: 1
 
     additionalContainers:
       fsfreeze:
