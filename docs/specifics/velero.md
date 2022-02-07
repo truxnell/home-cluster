@@ -4,8 +4,17 @@
 
 ## Restore
 
-* Delete deployments for affected pods
+
+### Configmap to change storeclass
+
+There is a configmap in `/tools/` that allows mapping to change storageclasses
+
+### Actual restore
+
+* Delete deployment
 (velero recreates the deployment with a initpod to do a restic restore for the pv's)
+
+Remove associated pv/pvc
 
 View backups
 ```
@@ -38,6 +47,12 @@ Create restore - single namespace
 ❯ velero create restore games --from-backup velero-daily-backup-20220203060005 --include-namespaces games
 Restore request "games" submitted successfully.
 Run `velero restore describe games` or `velero restore logs games` for more details.
+```
+
+```
+❯ velero create restore dizquetv-migrate --from-backup velero-daily-backup-20220203060005 -l app.kubernetes.io/name=dizquetv
+Restore request "dizquetv-migrate" submitted successfully.
+Run `velero restore describe dizquetv-migrate` or `velero restore logs dizquetv-migrate` for more details.
 ```
 
 ## Cross-cluster restore
