@@ -35,7 +35,7 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "chart-bar"
         hosts:
-          - host: &host "tautulli.${SECRET_PUBLIC_DOMAIN}"
+          - host: &host "tautulli.${CLUSTER_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
