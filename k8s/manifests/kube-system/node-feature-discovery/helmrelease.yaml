@@ -38,6 +38,10 @@ spec:
         configmap.reloader.stakater.com/reload: "nfd-worker-conf"
 
       tolerations:
+        - key: arm
+          operator: Exists
+        - key: "node-role.kubernetes.io/master"
+          operator: "Exists"
         - effect: "NoExecute"
           operator: "Exists"
         - effect: "NoSchedule"
