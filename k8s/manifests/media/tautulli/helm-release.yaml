@@ -42,6 +42,7 @@ spec:
         tls:
           - hosts:
               - *host
+            secretName: tautulli-${CLUSTER_NAME}-tls
     persistence:
       config:
         enabled: true
