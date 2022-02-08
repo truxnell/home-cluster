@@ -49,10 +49,11 @@ Restore request "games" submitted successfully.
 Run `velero restore describe games` or `velero restore logs games` for more details.
 ```
 
+Migration - targeting specific app, only deployments & pv/pvc, and changing namespcae
 ```
-❯ velero create restore dizquetv-migrate --from-backup velero-daily-backup-20220203060005 -l app.kubernetes.io/name=dizquetv
-Restore request "dizquetv-migrate" submitted successfully.
-Run `velero restore describe dizquetv-migrate` or `velero restore logs dizquetv-migrate` for more details.
+❯ velero create restore nginx-migrate-4 --from-backup velero-daily-backup-20220209060011 -l app.kubernetes.io/name=nginx-phpfpm  --namespace-mappings http:services
+Restore request "nginx-migrate-4" submitted successfully.
+Run `velero restore describe nginx-migrate-4` or `velero restore logs nginx-migrate-4` for more details.    
 ```
 
 ## Cross-cluster restore
