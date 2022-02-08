@@ -38,30 +38,29 @@ spec:
         tag: "v7.2-fpm-mysql"
 
     ingress:
-      main:
-        enabled: true
-        annotations:
-          kubernetes.io/ingress.class: traefik
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-          external-dns/is-public: "false"
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
-          hajimari.io/enable: "false"
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+        external-dns/is-public: "false"
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+        hajimari.io/enable: "false"
 
-        hosts:
-          - host: &host nginx.${CLUSTER_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
-              - path: /notifications/hub/negotiate
-                pathType: Prefix
-              - path: /notifications/hub
-                pathType: Prefix
-                servicePort: 3012
-        tls:
-          - hosts:
-              - *host
-            secretName: &tls vaultwarden-${CLUSTER_NAME}-tls
+      hosts:
+        - host: &host nginx.${CLUSTER_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
+            - path: /notifications/hub/negotiate
+              pathType: Prefix
+            - path: /notifications/hub
+              pathType: Prefix
+              servicePort: 3012
+      tls:
+        - hosts:
+            - *host
+          secretName: &tls vaultwarden-${CLUSTER_NAME}-tls
 
     persistence:
       enabled: true
