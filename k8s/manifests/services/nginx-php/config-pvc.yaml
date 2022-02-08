@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: nginx-php-config-v1
-  namespace: service
+  namespace: services
 spec:
   accessModes:
     - ReadWriteOnce
