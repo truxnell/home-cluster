@@ -74,6 +74,6 @@ spec:
         image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
         volumeMounts:
           - name: config
-            mountPath: /config
+            mountPath: /home/node/app/.dizquetv
         securityContext:
           privileged: true
