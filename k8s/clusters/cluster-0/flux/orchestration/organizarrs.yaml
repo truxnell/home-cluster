@@ -111,7 +111,7 @@ spec:
   dependsOn:
     - name: organizarrs-namespace
     - name: rook-ceph-cluster
-    - name: media-ple
+    - name: media-plex
   interval: 5m
   path: "./k8s/manifests/organizarrs/gaps"
   prune: true
