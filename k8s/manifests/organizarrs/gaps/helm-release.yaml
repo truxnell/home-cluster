@@ -46,6 +46,22 @@ spec:
             secretName: &tls gaps-${CLUSTER_NAME}-tlssonarr
 
     persistence:
-      config:
+      data:
         enabled: true
         existingClaim: gaps-config-v1
+
+    podAnnotations:
+      backup.velero.io/backup-volumes: data
+      pre.hook.backup.velero.io/container: fsfreeze
+      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/usr/data/"]'
+      post.hook.backup.velero.io/container: fsfreeze
+      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/usr/data/"]'
+    additionalContainers:
+      fsfreeze:
+        name: fsfreeze
+        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
+        volumeMounts:
+          - name: data
+            mountPath: /usr/data/
+        securityContext:
+          privileged: true
