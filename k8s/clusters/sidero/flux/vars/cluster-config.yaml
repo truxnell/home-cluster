@@ -6,3 +6,17 @@ metadata:
   namespace: flux-system
 data:
   CLUSTER_NAME: sidero
+
+  # Sidero IP
+  CL_0_SIDERO_IP: 10.8.20.10
+
+  # Controlplan IP
+  CL_0_CP_IP: 10.8.20.20
+
+  # Master IP's
+  CL_0_MASTER_0_IP: 10.8.20.20
+
+  # Worker IP's
+  CL_0_WORKER_0_IP: 10.8.20.30
+  CL_0_WORKER_1_IP: 10.8.20.31
+  CL_0_WORKER_2_IP: 10.8.20.32
