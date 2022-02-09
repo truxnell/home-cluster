@@ -1,2 +1,0 @@
-jmespath==0.10.0
-ansible==4.8.0

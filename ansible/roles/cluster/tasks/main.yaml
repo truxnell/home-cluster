@@ -1,9 +1,0 @@
----
-- include: docker-regcred-install.yaml
-  tags: docker-install
-
-- include: sops-install.yaml
-  tags: sops-install
-
-- include: flux-install.yaml
-  tags: flux-install
