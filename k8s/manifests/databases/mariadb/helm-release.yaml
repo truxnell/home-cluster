@@ -12,12 +12,11 @@ spec:
       version: 10.3.2
       sourceRef:
         kind: HelmRepository
-        name: bitnami
+        name: bitnami-charts
         namespace: flux-system
       interval: 5m
   # Values link: https://github.com/bitnami/charts/blob/master/bitnami/mariadb/values.yaml
   values:
-
     auth:
       rootPassword: ${MARIADB_ROOT_PASSWORD}
     primary:
