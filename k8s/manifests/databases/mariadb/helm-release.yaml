@@ -28,5 +28,6 @@ spec:
       serviceMonitor:
         enabled: true
     service:
+      enabled: true
       type: LoadBalancer
       loadBalancerIP: ${LB_MARIADB}
