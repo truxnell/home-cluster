@@ -18,18 +18,18 @@ spec:
   # Values link: https://github.com/bitnami/charts/blob/master/bitnami/mariadb/values.yaml
   values:
 
-  auth:
-    rootPassword: ${MARIADB_ROOT_PASSWORD}
-  primary:
-    persistence:
+    auth:
+      rootPassword: ${MARIADB_ROOT_PASSWORD}
+    primary:
+      persistence:
+        enabled: true
+        existingClaim: mariadb-config-v1
+    metrics:
       enabled: true
-      existingClaim: mariadb-config-v1
-  metrics:
-    enabled: true
-    serviceMonitor:
+      serviceMonitor:
+        enabled: true
+    services:
       enabled: true
-  services:
-    enabled: true
-    type: LoadBalancer
-    loadBalancerIP: ${LB_MARIADB}
-    externalTrafficPolicy: Local
+      type: LoadBalancer
+      loadBalancerIP: ${LB_MARIADB}
+      externalTrafficPolicy: Local
