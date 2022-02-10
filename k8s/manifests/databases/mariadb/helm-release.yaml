@@ -23,11 +23,11 @@ spec:
       persistence:
         enabled: true
         existingClaim: mariadb-config-v1
+      service:
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIP: ${LB_MARIADB}
     metrics:
       enabled: true
       serviceMonitor:
         enabled: true
-    service:
-      enabled: true
-      type: LoadBalancer
-      loadBalancerIP: ${LB_MARIADB}
