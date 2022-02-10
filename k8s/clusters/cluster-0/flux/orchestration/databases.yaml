@@ -51,7 +51,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: databases-redis
+  name: databases-mariadb
   namespace: flux-system
 spec:
   dependsOn:
@@ -59,7 +59,7 @@ spec:
     - name: system-monitoring-kube-prom-stack
     - name: rook-ceph-cluster
   interval: 5m
-  path: "./k8s/manifests/databases/redis"
+  path: "./k8s/manifests/databases/mariadb"
   prune: true
   wait: true
   sourceRef:
