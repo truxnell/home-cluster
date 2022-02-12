@@ -27,7 +27,7 @@ metadata:
   namespace: default
 spec:
   controlPlaneEndpoint:
-    host: ${CL_0_CP_IP}
+    host: hegira.${CLUSTER_DOMAIN}
     port: 6443
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
