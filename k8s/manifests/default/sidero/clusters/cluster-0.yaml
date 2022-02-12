@@ -1,7 +1,7 @@
 apiVersion: cluster.x-k8s.io/v1alpha4
 kind: Cluster
 metadata:
-  name: cluster-0
+  name: hegira
   namespace: default
 spec:
   clusterNetwork:
@@ -14,16 +14,16 @@ spec:
   controlPlaneRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1alpha3
     kind: TalosControlPlane
-    name: cluster-0-cp
+    name: hegira-cp
   infrastructureRef:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
     kind: MetalCluster
-    name: cluster-0
+    name: hegira
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
 kind: MetalCluster
 metadata:
-  name: cluster-0
+  name: hegira
   namespace: default
 spec:
   controlPlaneEndpoint:
@@ -33,7 +33,7 @@ spec:
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
 kind: MetalMachineTemplate
 metadata:
-  name: cluster-0-cp
+  name: hegira-cp
   namespace: default
 spec:
   template:
@@ -46,7 +46,7 @@ spec:
 apiVersion: controlplane.cluster.x-k8s.io/v1alpha3
 kind: TalosControlPlane
 metadata:
-  name: cluster-0-cp
+  name: hegira-cp
   namespace: default
 spec:
   controlPlaneConfig:
@@ -59,14 +59,14 @@ spec:
   infrastructureTemplate:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
     kind: MetalMachineTemplate
-    name: cluster-0-cp
+    name: hegira-cp
   replicas: 1
   version: v1.21.5
 ---
 apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
 kind: TalosConfigTemplate
 metadata:
-  name: cluster-0-workers
+  name: hegira-workers
   namespace: default
 spec:
   template:
@@ -77,10 +77,10 @@ spec:
 apiVersion: cluster.x-k8s.io/v1alpha3
 kind: MachineDeployment
 metadata:
-  name: cluster-0-workers
+  name: hegira-workers
   namespace: default
 spec:
-  clusterName: cluster-0
+  clusterName: hegira
   replicas: 1
   selector:
     matchLabels: null
@@ -90,18 +90,18 @@ spec:
         configRef:
           apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
           kind: TalosConfigTemplate
-          name: cluster-0-workers
-      clusterName: cluster-0
+          name: hegira-workers
+      clusterName: hegira
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
         kind: MetalMachineTemplate
-        name: cluster-0-workers
+        name: hegira-workers
       version: v1.21.5
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
 kind: MetalMachineTemplate
 metadata:
-  name: cluster-0-workers
+  name: hegira-workers
   namespace: default
 spec:
   template:
