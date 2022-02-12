@@ -90,7 +90,7 @@ spec:
         volumeSpec:
           nfs:
             server: ${NAS_ADDRESS}
-            path: /volume1/backup/kubernetes/apps/lidarr
+            path: /volume1/backup/kubernetes/apps/readarr
         mountPath: /config/Backups
         readOnly: false
 
