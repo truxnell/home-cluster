@@ -19,6 +19,14 @@ spec:
     - op: replace
       path: /machine/install/disk
       value: /dev/sda
+    - op: add
+      path: /machine/network
+      value:
+        interfaces:
+          - interface: eth0
+            dhcp: true
+            vip:
+              ip: ${CL_0_CP_IP}
   pxeBootAlways: true
   cpu:
     manufacturer: Broadcom
