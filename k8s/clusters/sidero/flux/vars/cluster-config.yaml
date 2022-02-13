@@ -8,13 +8,13 @@ data:
   CLUSTER_NAME: sidero
 
   # Sidero IP
-  CL_0_SIDERO_IP: 10.8.20.10
+  CL_0_SIDERO_IP: technocore.${CLUSTER_DOMAIN}
 
-  # Controlplan IP
-  CL_0_CP_IP: 10.8.20.20
+  # Controlplane IP
+  CL_0_CP_IP: hegira.${CLUSTER_DOMAIN}
 
   # Master IP's
-  CL_0_MASTER_0_IP: 10.8.20.20
+  CL_0_MASTER_0_IP: leela.${CLUSTER_DOMAIN}
 
   # Worker IP's
   CL_0_WORKER_0_IP: 10.8.20.30
