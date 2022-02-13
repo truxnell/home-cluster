@@ -21,6 +21,7 @@ metadata:
 spec:
   dependsOn:
     - name: home-automation-namespace
+    - name: rook-ceph-cluster
   interval: 5m
   path: "./k8s/manifests/home-automation/mosquitto"
   prune: true
@@ -53,7 +54,8 @@ metadata:
 spec:
   dependsOn:
     - name: home-automation-namespace
-    # - name: home-automation-mosquitto
+    - name: home-automation-mosquitto
+    - name: rook-ceph-cluster
   interval: 5m
   path: "./k8s/manifests/home-automation/home-assistant"
   prune: true
@@ -71,6 +73,7 @@ spec:
   dependsOn:
     - name: home-automation-namespace
     - name: home-automation-home-assistant
+    - name: rook-ceph-cluster
   interval: 5m
   path: "./k8s/manifests/home-automation/node-red"
   prune: true
