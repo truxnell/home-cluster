@@ -87,15 +87,15 @@ spec:
         mountPath: /data
         readOnly: false
 
-      # backup:
-      #   enabled: true
-      #   type: custom
-      #   volumeSpec:
-      #     nfs:
-      #       server: ${NAS_ADDRESS}
-      #       path: /volume1/backup/kubernetes/apps/plex
-      #   mountPath: /config/Library/Application Support/Plex Media Server/Plug-in Support/Databases
-      #   readOnly: false
+      backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDRESS}
+            path: /volume1/backup/kubernetes/apps/plex
+        mountPath: /config/backup
+        readOnly: false
 
     podAnnotations:
       backup.velero.io/backup-volumes: config
