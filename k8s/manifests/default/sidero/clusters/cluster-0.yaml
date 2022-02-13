@@ -82,8 +82,6 @@ metadata:
 spec:
   clusterName: hegira
   replicas: 1
-  selector:
-    matchLabels: null
   template:
     spec:
       bootstrap:
