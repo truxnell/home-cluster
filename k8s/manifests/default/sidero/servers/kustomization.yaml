@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ./xerxes.yaml
   - ./leela.yaml
+  - ./SHODAN.yaml
