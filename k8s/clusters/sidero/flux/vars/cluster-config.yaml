@@ -11,12 +11,14 @@ data:
   CL_0_SIDERO_IP: technocore.${CLUSTER_DOMAIN}
 
   # Controlplane IP
-  CL_0_CP_IP: hegira.${CLUSTER_DOMAIN}
+  # hegira master ip range is 10.8.20.3x
+  # hegira workers ip range is 10.8.20.4x
+  CL_0_CP_IP: 10.8.20.39
 
   # Master IP's
   CL_0_MASTER_0_IP: leela.${CLUSTER_DOMAIN}
 
   # Worker IP's
-  CL_0_WORKER_0_IP: 10.8.20.30
-  CL_0_WORKER_1_IP: 10.8.20.31
-  CL_0_WORKER_2_IP: 10.8.20.32
+  CL_0_WORKER_0_IP: 10.8.20.41
+  CL_0_WORKER_1_IP: 10.8.20.42
+  CL_0_WORKER_2_IP: 10.8.20.43
