@@ -82,6 +82,11 @@ metadata:
 spec:
   clusterName: hegira
   replicas: 3
+  selector:
+    matchLabels: null
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
   template:
     spec:
       bootstrap:
