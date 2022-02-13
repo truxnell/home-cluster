@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./k8s/clusters/cluster-0/
+  path: ./k8s/clusters/hegira/
   prune: true
   sourceRef:
     kind: GitRepository

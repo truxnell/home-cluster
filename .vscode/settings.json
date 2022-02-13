@@ -7,11 +7,11 @@
   },
   "favorites.resources": [
     {
-      "filePath": "k8s/clusters/cluster-0/flux/vars/cluster-config.yaml",
+      "filePath": "k8s/clusters/hegira/flux/vars/cluster-config.yaml",
       "group": "Default"
     },
     {
-      "filePath": "k8s/clusters/cluster-0/flux/vars/cluster-secrets.sops.yaml",
+      "filePath": "k8s/clusters/hegira/flux/vars/cluster-secrets.sops.yaml",
       "group": "Default"
     },
     {
@@ -27,7 +27,7 @@
       "group": "Default"
     },
     {
-      "filePath": "k8s/clusters/cluster-0/flux/orchestration",
+      "filePath": "k8s/clusters/hegira/flux/orchestration",
       "group": "Default"
     },
     {
