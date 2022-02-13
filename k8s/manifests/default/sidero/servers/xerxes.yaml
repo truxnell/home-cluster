@@ -13,7 +13,13 @@ spec:
       value: /dev/sda
     - op: add
       path: /machine/network/hostname
-      value: xerxes.${HARDWARE_DOMAIN}
+      value: xerxes.${CLUSTER_DOMAIN}
+    - op: add
+      path: /machine/sysctls
+      value:
+        fs.inotify.max_user_watches: "1048576"
+        fs.inotify.max_user_instances: "8192"
+        vm.max_map_count: "524288"
   cpu:
     manufacturer: Intel(R) Corporation
     version: Intel(R) Core(TM) i5-8259U CPU @ 2.30GHz
