@@ -81,7 +81,7 @@ metadata:
   namespace: default
 spec:
   clusterName: hegira
-  replicas: 1
+  replicas: 3
   template:
     spec:
       bootstrap:
