@@ -5,7 +5,7 @@ metadata:
   name: cluster-config
   namespace: flux-system
 data:
-  CLUSTER_NAME: sidero
+  CLUSTER_NAME: technocore
 
   # Sidero IP
   CL_0_SIDERO_IP: technocore.${CLUSTER_DOMAIN}

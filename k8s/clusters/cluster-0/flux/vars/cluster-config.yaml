@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
   name: cluster-config
 data:
-  CLUSTER_NAME: cluster-0
+  CLUSTER_NAME: hegira
   CLUSTER_ID: "0"
   CLUSTER_CERT: "letsencrypt-production"
 
