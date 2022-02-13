@@ -21,7 +21,7 @@ spec:
       - pti=on
       - random.trust_cpu=on
       - slab_nomerge=
-      - talos.config=http://${CL_0_SIDERO_IP}:8081/configdata?uuid=
+      - talos.config=http://technocore.${CLUSTER_DOMAIN}:8081/configdata?uuid=
       - talos.platform=metal
   initrd:
     url: https://github.com/talos-systems/talos/releases/download/v0.14.0/initramfs-amd64.xz
