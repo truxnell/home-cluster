@@ -45,10 +45,6 @@ spec:
     podAnnotations:
       configmap.reloader.stakater.com/reload: "blackbox-exporter"
 
-<<<<<<< HEAD
-    allowIcmp: true
-=======
->>>>>>> development
     config:
       modules:
         icmp:
@@ -57,8 +53,6 @@ spec:
           icmp:
             preferred_ip_protocol: "ip4"
             payload_size: 64
-<<<<<<< HEAD
-=======
         http_2xx:
           prober: http
           timeout: 30s
@@ -69,7 +63,6 @@ spec:
         tcp_connect:
           prober: tcp
           timeout: 30s
->>>>>>> development
 
     serviceMonitor:
       enabled: true
@@ -83,17 +76,6 @@ spec:
       # Nodes
 
       targets:
-<<<<<<< HEAD
-        - module: icmp
-          name: prusa
-          url: octopi.lan
-        - module: icmp
-          name: brewpiless
-          url: ESP_7DE997.lan
-        - module: icmp
-          name: weatherstation
-          url: ESP-B9C83C.iot
-=======
         # below are no good until I setup shed wifi link and get rid of POE
         # FIXME
         # - module: icmp
@@ -111,7 +93,6 @@ spec:
         # - module: icmp
         #   name: espresence-study
         #   url: espresense-study.iot
->>>>>>> development
 
     prometheusRule:
       enabled: true
@@ -122,11 +103,7 @@ spec:
       rules:
         - alert: HostDown
           expr: probe_success == 0
-<<<<<<< HEAD
-          for: 5m
-=======
           for: 10m
->>>>>>> development
           labels:
             severity: critical
           annotations:
@@ -135,16 +112,6 @@ spec:
           annotations:
             message: The response time for {{"{{ $labels.target }}"}} has been greater than 30 seconds for 5 minutes.
           expr: probe_duration_seconds > 30
-<<<<<<< HEAD
-          for: 5m
-          labels:
-            severity: warning
-
-
-
-
-=======
           for: 15m
           labels:
             severity: warning
->>>>>>> development

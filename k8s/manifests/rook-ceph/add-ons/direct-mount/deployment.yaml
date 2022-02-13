@@ -19,15 +19,9 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: rook-direct-mount
-<<<<<<< HEAD:infrastructure/base/rook-ceph/rook-direct-mount/deployment.yaml
-          image: rook/ceph:v1.8.1
-          command: ["/tini"]
-          args: ["-g", "--", "/usr/local/bin/toolbox.sh"]
-=======
           image: rook/ceph:v1.8.2
           command: ["/bin/bash"]
           args: ["-m", "-c", "/usr/local/bin/toolbox.sh"]
->>>>>>> development:k8s/manifests/rook-ceph/add-ons/direct-mount/deployment.yaml
           imagePullPolicy: IfNotPresent
           tty: true
           env:

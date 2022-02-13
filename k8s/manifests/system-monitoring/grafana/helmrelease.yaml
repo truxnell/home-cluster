@@ -10,11 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://grafana.github.io/helm-charts
       chart: grafana
-<<<<<<< HEAD:apps/base/monitoring/grafana/grafana.yaml
-      version: 6.20.3
-=======
       version: 6.17.8
->>>>>>> development:k8s/manifests/system-monitoring/grafana/helmrelease.yaml
       sourceRef:
         kind: HelmRepository
         name: grafana-charts
@@ -27,13 +23,8 @@ spec:
       type: Recreate
 
     image:
-<<<<<<< HEAD:apps/base/monitoring/grafana/grafana.yaml
-      repository: grafana/grafana
-      tag: 8.3.6
-=======
       repository: ghcr.io/k8s-at-home/grafana
 
->>>>>>> development:k8s/manifests/system-monitoring/grafana/helmrelease.yaml
     env:
       GF_EXPLORE_ENABLED: true
       GF_PANELS_DISABLE_SANITIZE_HTML: true
