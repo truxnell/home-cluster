@@ -23,7 +23,7 @@ spec:
   cpu:
     manufacturer: Intel(R) Corporation
     version: Intel(R) Core(TM) i5-8259U CPU @ 2.30GHz
-  hostname: xerxes
+  hostname: xerxes.${CLUSTER_DOMAIN}
   pxeBootAlways: true
   system:
     family: BE

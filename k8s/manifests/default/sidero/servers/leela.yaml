@@ -15,7 +15,7 @@ spec:
   configPatches:
     - op: add
       path: /machine/network/hostname
-      value: leela
+      value: leela.${CLUSTER_DOMAIN}
     - op: replace
       path: /machine/install/disk
       value: /dev/sda
