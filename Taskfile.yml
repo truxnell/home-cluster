@@ -12,3 +12,4 @@ includes:
   cluster: .taskfiles/cluster.yml
   format: .taskfiles/format.yml
   lint: .taskfiles/lint.yml
+  bootstrap: .taskfiles/bootstrap.yml

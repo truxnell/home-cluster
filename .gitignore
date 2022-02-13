@@ -3,7 +3,6 @@
 .DS_Store
 Thumbs.db
 bin/
-flux
 *.iso
 
 # Temp
@@ -16,6 +15,7 @@ tmp/
 # Ansible
 ansible/roles/xanmanning.k3s*
 ansible/roles/andrewrothstein.calicoctl*
+/ansible/roles/mrlesmithjr.zfs
 node_modules
 mitogen*
 
@@ -24,4 +24,3 @@ tests/__pycache__
 
 # Sops
 .decrypted~*.yaml
-/ansible/roles/mrlesmithjr.zfs

@@ -1,0 +1,19 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: flux-system
+resources:
+  - ../../../../../global/flux/repositories/helm
+  - codecentric-charts.yaml
+  - drpsychick.yaml
+  - emqx-charts.yaml
+  - external-dns-charts.yaml
+  - grafana-charts.yaml
+  - hajimari-charts.yaml
+  - k8s-at-home-truxnell.yaml
+  - nfs-subdir-external-provisioner-charts.yaml
+  - kubernetes-sigs-descheduler-charts.yaml
+  - vmware-charts.yaml
+  - weaveworks-kured-charts.yaml
+  - rook-ceph-charts.yaml
+  - authentik-charts.yaml

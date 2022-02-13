@@ -1,0 +1,9 @@
+apiVersion: endpointmonitor.stakater.com/v1alpha1
+kind: EndpointMonitor
+metadata:
+  name: plex-monitor
+  namespace: media
+spec:
+  forceHttps: true
+  # Needs to be web/index.html as the base domain returns 401 unauthorized.
+  url: https://plex.${CLUSTER_DOMAIN}/web/index.html

@@ -1,0 +1,67 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gaps
+  namespace: organizarrs
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: gaps
+      version: 5.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/gaps/values.yaml
+  values:
+    image:
+      # -- image repository
+      repository: housewrecker/gaps
+      tag: x64-v0.10.1
+    env:
+      TZ: ${TZ}
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+          external-dns/is-public: "false"
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "tag-search"
+        hosts:
+          - host: &host "gaps.${CLUSTER_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+            secretName: &tls gaps-${CLUSTER_NAME}-tlssonarr
+
+    persistence:
+      data:
+        enabled: true
+        existingClaim: gaps-config-v1
+
+    podAnnotations:
+      backup.velero.io/backup-volumes: data
+      pre.hook.backup.velero.io/container: fsfreeze
+      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/usr/data/"]'
+      post.hook.backup.velero.io/container: fsfreeze
+      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/usr/data/"]'
+    additionalContainers:
+      fsfreeze:
+        name: fsfreeze
+        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
+        volumeMounts:
+          - name: data
+            mountPath: /usr/data/
+        securityContext:
+          privileged: true

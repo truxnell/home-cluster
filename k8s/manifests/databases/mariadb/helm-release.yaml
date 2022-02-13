@@ -1,0 +1,33 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mariadb
+  namespace: databases
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: mariadb
+      version: 10.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami-charts
+        namespace: flux-system
+      interval: 5m
+  # Values link: https://github.com/bitnami/charts/blob/master/bitnami/mariadb/values.yaml
+  values:
+    auth:
+      rootPassword: ${MARIADB_ROOT_PASSWORD}
+    primary:
+      persistence:
+        enabled: true
+        existingClaim: mariadb-config-v1
+      service:
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIP: ${LB_MARIADB}
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true

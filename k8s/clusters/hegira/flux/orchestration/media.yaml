@@ -1,0 +1,113 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: media-namespace
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/media"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: media-series-cleanup
+#   namespace: flux-system
+# spec:
+#   dependsOn:
+#     - name: media-namespace
+#   interval: 5m
+#   path: "./k8s/manifests/media/series-cleanup"
+#   prune: true
+#   wait: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: media-plex
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: media-namespace
+    - name: network-system-metallb
+    - name: network-system-traefik
+  interval: 5m
+  path: "./k8s/manifests/media/plex"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: media-dizquetv
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: media-namespace
+  interval: 5m
+  path: "./k8s/manifests/media/dizquetv"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: media-calibre
+#   namespace: flux-system
+# spec:
+#   dependsOn:
+#     - name: media-namespace
+#   interval: 5m
+#   path: "./k8s/manifests/media/calibre"
+#   prune: true
+#   wait: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: home-cluster
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: media-calibre-web
+#   namespace: flux-system
+# spec:
+#   dependsOn:
+#     - name: media-namespace
+#   interval: 5m
+#   path: "./k8s/manifests/media/calibre-web"
+#   prune: true
+#   wait: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: media-tautulli
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: media-namespace
+    - name: media-plex
+  interval: 5m
+  path: "./k8s/manifests/media/tautulli"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster

@@ -1,0 +1,154 @@
+---
+prometheus:
+  ingress:
+    enabled: true
+    pathType: Prefix
+    annotations:
+      kubernetes.io/ingress.class: traefik
+      cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+      external-dns.alpha.kubernetes.io/target: ipv4.${CLUSTER_DOMAIN}
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+      hajimari.io/enable: "true"
+      hajimari.io/icon: database-clock
+      hajimari.io/appName: Prometheus
+
+    hosts:
+      - prometheus.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+    tls:
+      - secretName: prometheus-${CLUSTER_NAME}-tls
+        hosts:
+          - prometheus.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+
+  thanosService:
+    enabled: false
+
+  prometheusSpec:
+    replicas: 1
+    replicaExternalLabelName: "replica"
+    ruleSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false
+    retention: 6h
+    enableAdminAPI: true
+    walCompression: true
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: ceph-block
+          resources:
+            requests:
+              storage: 10Gi
+    podMetadata:
+      annotations:
+        backup.velero.io/backup-volumes: prometheus-kube-prometheus-stack-prometheus-db
+
+    additionalScrapeConfigs:
+      - job_name: hyperion
+        honor_timestamps: true
+        metrics_path: /metrics
+        static_configs:
+          - targets:
+              - ${NAS_ADDRESS}:9100
+            labels:
+              app: "opnsense"
+      - job_name: "kubernetes-ingresses"
+        metrics_path: /probe
+        scrape_interval: 60s
+        params:
+          module: [http_2xx]
+        kubernetes_sd_configs:
+          - role: ingress
+        relabel_configs:
+          - source_labels:
+              [__meta_kubernetes_ingress_annotation_prometheus_io_probe]
+            action: keep
+            regex: true
+          - source_labels:
+              [
+                __meta_kubernetes_ingress_scheme,
+                __address__,
+                __meta_kubernetes_ingress_path,
+              ]
+            regex: (.+);(.+);(.+)
+            replacement: ${1}://${2}${3}
+            target_label: __param_target
+          - target_label: __address__
+            replacement: blackbox-exporter.system-monitoring.svc.cluster.local:9115
+          - source_labels: [__param_target]
+            target_label: instance
+          - action: labelmap
+            regex: __meta_kubernetes_ingress_label_(.+)
+          - source_labels: [__meta_kubernetes_namespace]
+            target_label: kubernetes_namespace
+          - source_labels: [__meta_kubernetes_ingress_name]
+            target_label: kubernetes_name
+      - job_name: "kubernetes-services-http"
+        metrics_path: /probe
+        scrape_interval: 60s
+        params:
+          module: [http_2xx]
+        kubernetes_sd_configs:
+          - role: service
+        relabel_configs:
+          - source_labels:
+              [__meta_kubernetes_service_annotation_prometheus_io_probe]
+            action: keep
+            regex: true
+          - source_labels:
+              [__meta_kubernetes_service_annotation_prometheus_io_protocol]
+            action: keep
+            regex: http
+          - source_labels: [__address__]
+            target_label: __param_target
+          - target_label: __address__
+            replacement: blackbox-exporter.system-monitoring.svc.cluster.local:9115
+          - source_labels: [__param_target]
+            target_label: instance
+          - action: labelmap
+            regex: __meta_kubernetes_service_label_(.+)
+          - source_labels: [__meta_kubernetes_namespace]
+            target_label: kubernetes_namespace
+          - source_labels: [__meta_kubernetes_service_name]
+            target_label: kubernetes_name
+      - job_name: "kubernetes-services-tcp"
+        metrics_path: /probe
+        scrape_interval: 60s
+        params:
+          module: [tcp_connect]
+        kubernetes_sd_configs:
+          - role: service
+        relabel_configs:
+          - source_labels:
+              [__meta_kubernetes_service_annotation_prometheus_io_probe]
+            action: keep
+            regex: true
+          - source_labels:
+              [__meta_kubernetes_service_annotation_prometheus_io_protocol]
+            action: keep
+            regex: tcp
+          - source_labels: [__address__]
+            target_label: __param_target
+          - target_label: __address__
+            replacement: blackbox-exporter.system-monitoring.svc.cluster.local:9115
+          - source_labels: [__param_target]
+            target_label: instance
+          - action: labelmap
+            regex: __meta_kubernetes_service_label_(.+)
+          - source_labels: [__meta_kubernetes_namespace]
+            target_label: kubernetes_namespace
+          - source_labels: [__meta_kubernetes_service_name]
+            target_label: kubernetes_name
+    resources:
+      requests:
+        memory: 3072Mi
+      limits:
+        memory: 4096Mi
+
+    # thanos:
+    #   image: quay.io/thanos/thanos:v0.23.1
+    #   version: v0.22.0
+    #   objectStorageConfig:
+    #     name: thanos-objstore-secret
+    #     key: objstore.yml

@@ -1,0 +1,121 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: organizarrs-namespace
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/organizarrs"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: organizarrs-prowlarr
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: organizarrs-namespace
+    - name: rook-ceph-cluster
+  interval: 5m
+  path: "./k8s/manifests/organizarrs/prowlarr"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: organizarrs-sonarr
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: organizarrs-namespace
+    - name: rook-ceph-cluster
+    - name: organizarrs-prowlarr
+  interval: 5m
+  path: "./k8s/manifests/organizarrs/sonarr"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: organizarrs-radarr
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: organizarrs-namespace
+    - name: rook-ceph-cluster
+    - name: organizarrs-prowlarr
+  interval: 5m
+  path: "./k8s/manifests/organizarrs/radarr"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: organizarrs-lidarr
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: organizarrs-namespace
+    - name: rook-ceph-cluster
+    - name: organizarrs-prowlarr
+  interval: 5m
+  path: "./k8s/manifests/organizarrs/lidarr"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: organizarrs-readarr
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: organizarrs-namespace
+    - name: rook-ceph-cluster
+    - name: organizarrs-prowlarr
+  interval: 5m
+  path: "./k8s/manifests/organizarrs/readarr"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: organizarrs-gaps
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: organizarrs-namespace
+    - name: rook-ceph-cluster
+    - name: media-plex
+  interval: 5m
+  path: "./k8s/manifests/organizarrs/gaps"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster

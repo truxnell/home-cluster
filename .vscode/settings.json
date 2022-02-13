@@ -1,12 +1,40 @@
 {
-    "files.associations": {
-        "**/ansible/*.yaml": "ansible"
+  "files.associations": {
+    "**/ansible/*.yaml": "ansible"
+  },
+  "yaml.schemas": {
+    "Kubernetes": "deployments/*.yaml"
+  },
+  "favorites.resources": [
+    {
+      "filePath": "k8s/clusters/hegira/flux/vars/cluster-config.yaml",
+      "group": "Default"
     },
-    "yaml.schemas": {
-        "Kubernetes": "deployments/*.yaml"
+    {
+      "filePath": "k8s/clusters/hegira/flux/vars/cluster-secrets.sops.yaml",
+      "group": "Default"
     },
-    "favorites.resources": [
-        "cluster/production/cluster-secrets.sops.yaml"
-    ],
-    "cSpell.enabled": false,
+    {
+      "filePath": "cluster/production/cluster-secrets.sops.yaml",
+      "group": "Default"
+    },
+    {
+      "filePath": "k8s/global/flux/vars/global-config.yaml",
+      "group": "Default"
+    },
+    {
+      "filePath": "k8s/global/flux/vars/global-secrets.sops.yaml",
+      "group": "Default"
+    },
+    {
+      "filePath": "k8s/clusters/hegira/flux/orchestration",
+      "group": "Default"
+    },
+    {
+      "filePath": "k8s/manifests/services/hajimari/helmrelease.yaml",
+      "group": "Default"
+    }
+  ],
+  "cSpell.enabled": false,
+  "favorites.sortOrder": "MANUAL"
 }

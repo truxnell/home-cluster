@@ -1,0 +1,34 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minio
+  namespace: network-system
+  annotations:
+    traefik.frontend.passHostHeader: "false"
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+    external-dns/is-public: "false"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "file-sync-outline"
+    hajimari.io/appName: "minio"
+
+spec:
+  tls:
+    - secretName: minio-${CLUSTER_NAME}-tls
+      hosts:
+        - "minio.${CLUSTER_DOMAIN}"
+
+  rules:
+    - host: minio.${CLUSTER_DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hyperion
+                port:
+                  name: minio

@@ -1,0 +1,7 @@
+apiVersion: endpointmonitor.stakater.com/v1alpha1
+kind: EndpointMonitor
+metadata:
+  name: ${WEBSITE_DOMAIN}
+spec:
+  forceHttps: true
+  url: https://${WEBSITE_DOMAIN}

@@ -1,19 +1,7 @@
 ---
 version: "3"
 
-vars:
-  K3S_PRIMARY_MASTER_NODE_USERNAME: "durandal"
-  K3S_PRIMARY_MASTER_NODE_ADDR: "192.168.2.220"
-  K3S_LB_ADDR: "192.168.2.220"
-
 tasks:
-  kubeconfig:
-    desc: Remotely fetch kubeconfig from k3s
-    cmds:
-      - rsync --verbose --progress --partial --rsync-path="sudo rsync" {{.K3S_PRIMARY_MASTER_NODE_USERNAME}}@{{.K3S_PRIMARY_MASTER_NODE_ADDR}}:/etc/rancher/k3s/k3s.yaml ./kubeconfig
-      - sed -i ./kubeconfig -e 's/127.0.0.1/{{.K3S_LB_ADDR}}/g'
-      - chmod go-r kubeconfig
-    silent: true
 
   rook-ceph-toolbox:
     desc: Exec into the Rook Ceph toolbox

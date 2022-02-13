@@ -1,66 +1,102 @@
 {
-    "helmrelease frontmatter": {
-        "prefix": "helmrelease",
-        "body": [
-            "---",
-            "apiVersion: helm.toolkit.fluxcd.io/v2beta1",
-            "kind: HelmRelease",
-            "metadata:",
-            "  name: $1",
-            "spec:",
-            "  interval: 5m",
-            "  chart:",
-            "    spec:",
-            "      chart: $3",
-            "      version: $4",
-            "      sourceRef:",
-            "        kind: HelmRepository",
-            "        name: $5",
-            "        namespace: flux-system",
-            "      interval: 5m",
-            "  # Values link: $6",
-            "  values:",
-            "",
-            "",
-            ""
-        ],
-        "description": "helmrelease frontmatter"
-    },
-    "kustomization frontmatter": {
-        "prefix": "kustomization",
-        "body": [
-            "apiVersion: kustomize.config.k8s.io/v1beta1",
-            "kind: Kustomization",
-            "namespace: ${1:<namespace name>}",
-            "resources:",
-            "  - ${2:dummy}"
-        ],
-        "description": "helmrelease frontmatter"
-    },
-    "namespace frontmatter": {
-        "prefix": "namespace",
-        "body": [
-            "apiVersion: v1",
-            "kind: Namespace",
-            "metadata:",
-            "  name: ${1:<namespace_name>}",
-            ""
-        ],
-        "description": "namespace frontmatter"
-    },
-    "secret frontmatter": {
-        "prefix": "secret",
-        "body": [
-            "apiVersion: v1",
-            "kind: Secret",
-            "type: Opaque",
-            "metadata:",
-            "    name: ${1:<Secret Name>}",
-            "    namespace: ${2:<Secret namespace>}",
-            "stringData:",
-            "    ${3:variable 1}: \"${4:variable 2}\"",
-            ""
-        ],
-        "description": "secret frontmatter"
-    }
+  "helmrelease frontmatter": {
+    "prefix": "helmrelease",
+    "body": [
+      "---",
+      "apiVersion: helm.toolkit.fluxcd.io/v2beta1",
+      "kind: HelmRelease",
+      "metadata:",
+      "  name: $1",
+      "spec:",
+      "  interval: 5m",
+      "  chart:",
+      "    spec:",
+      "      chart: $3",
+      "      version: $4",
+      "      sourceRef:",
+      "        kind: HelmRepository",
+      "        name: $5",
+      "        namespace: flux-system",
+      "      interval: 5m",
+      "  # Values link: $6",
+      "  values:",
+      "",
+      "",
+      ""
+    ],
+    "description": "helmrelease frontmatter"
+  },
+  "kustomization frontmatter": {
+    "prefix": "kustomization",
+    "body": [
+      "---",
+      "apiVersion: kustomize.config.k8s.io/v1beta1",
+      "kind: Kustomization",
+      "resources:",
+      "  - ${2:dummy}"
+    ],
+    "description": "helmrelease frontmatter"
+  },
+  "namespace frontmatter": {
+    "prefix": "namespace",
+    "body": [
+      "---",
+      "apiVersion: v1",
+      "kind: Namespace",
+      "metadata:",
+      "  name: ${1:<namespace_name>}",
+      ""
+    ],
+    "description": "namespace frontmatter"
+  },
+  "secret frontmatter": {
+    "prefix": "secret",
+    "body": [
+      "---",
+      "apiVersion: v1",
+      "kind: Secret",
+      "type: Opaque",
+      "metadata:",
+      "    name: ${1:<Secret Name>}",
+      "    namespace: ${2:<Secret namespace>}",
+      "stringData:",
+      "    ${3:variable 1}: \"${4:variable 2}\"",
+      ""
+    ],
+    "description": "secret frontmatter"
+  },
+  "External Ingress": {
+    "prefix": "ingress-ext",
+    "body": [
+      "    annotations:",
+      "      kubernetes.io/ingress.class: traefik",
+      "      cert-manager.io/cluster-issuer: \\${CLUSTER_CERT}",
+      "      external-dns/is-public: \"true\"",
+      "      external-dns/hostname: ${1}",
+      "      external-dns.alpha.kubernetes.io/target: ipv4.\\${CLUSTER_DOMAIN}",
+      "      external-dns.alpha.kubernetes.io/cloudflare-proxied: \"${2|true,false|\"",
+      "      traefik.ingress.kubernetes.io/router.entrypoints: websecure",
+      "      hajimari.io/enable: \"${4|true,false|}\"",
+      "      hajimari.io/icon: ${4}",
+      "      hajimari.io/appName: ${5}",
+      ""
+    ],
+
+    "description": "External Ingress"
+  },
+  "Internal Ingress": {
+    "prefix": "ingress-int",
+    "body": [
+      "    annotations:",
+      "      kubernetes.io/ingress.class: traefik",
+      "      cert-manager.io/cluster-issuer: \\${CLUSTER_CERT}",
+      "      external-dns/is-public: \"false\"",
+      "      traefik.ingress.kubernetes.io/router.entrypoints: websecure",
+      "      traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd",
+      "      hajimari.io/enable: \"${3:true,false|}\"",
+      "      hajimari.io/icon: ${4|}",
+      "      hajimari.io/appName: ${5}",
+      ""
+    ],
 }
+:

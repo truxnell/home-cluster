@@ -1,0 +1,48 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: flux-system
+  name: cluster-config
+data:
+  CLUSTER_NAME: hegira
+  CLUSTER_ID: "0"
+  CLUSTER_CERT: "letsencrypt-production"
+
+  NETWORK_K8S_POD_CIDR: 10.244.0.0/16
+  NETWORK_K8S_SERVICE_CIDR: 10.96.0.0/16
+
+  WORKER01_ADDRESS: 192.168.2.143
+  WORKER01_DRIVE: nvme0n1
+
+  TZ: Australia/Melbourne
+
+  # Ip Range: 10.8.20.x/24TZ
+  # LB_RANGE: "10.8.20.10-10.8.20.250"
+  LB_RANGE: "192.168.2.170-192.168.2.190"
+  # LB_TRAEFIK: "10.8.20.10"
+  LB_TRAEFIK: "192.168.2.170"
+  LB_COREDNS: "192.168.2.171"
+  LB_K8S_GATEWAY: "192.168.2.172"
+  #LB_MARIADB: "10.8.20.11"
+  LB_MARIADB: "192.168.2.179"
+  # LB_HOMEASSISTANT: "10.8.20.12"
+  LB_HOMEASSISTANT: "192.168.2.175"
+  # LB_PLEX: "10.8.20.13"
+  LB_PLEX: "192.168.2.177"
+  LB_QBITTORRENT: "10.8.20.14"
+  LB_NGINX: "10.8.20.15"
+  # LB_POSTGRES: "10.8.20.16"
+  LB_POSTGRES: "192.168.2.173"
+  LB_CALIBRE: "10.8.20.17"
+  # LB_MOSQUITTO: "10.8.20.19"
+  LB_MOSQUITTO: "192.168.2.178"
+  # LB_FACTORIO: "10.8.20.30"
+  LB_FACTORIO: "192.168.2.176"
+
+  # Device IP's
+  ROUTER_IP: "unifi"
+  NAS_ADDRESS: "hyperion.lab"
+  VPN_PORT: "443"
+  POSTGRES_ADDRESS: postgresql.databases.svc.cluster.local
+  REDIS_ADDRESS: redis-master-0.databases.svc.cluster.local

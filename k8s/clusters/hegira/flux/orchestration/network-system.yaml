@@ -1,0 +1,145 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: network-system-namespace
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/network-system"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: network-system-metallb
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: network-system-namespace
+  interval: 5m
+  path: "./k8s/manifests/network-system/metallb"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: network-system-traefik
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: network-system-namespace
+    - name: cert-manager-certmanager-config
+    - name: network-system-external-dns
+  interval: 5m
+  path: "./k8s/manifests/network-system/traefik/base"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: network-system-traefik-addons
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: network-system-namespace
+    - name: network-system-traefik
+  interval: 5m
+  path: "./k8s/manifests/network-system/traefik/add-ons"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: network-system-error-pages
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: network-system-namespace
+    - name: network-system-traefik
+  interval: 5m
+  path: "./k8s/manifests/network-system/error-pages"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: network-system-cloudflare-ddns
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: network-system-namespace
+  interval: 5m
+  path: "./k8s/manifests/network-system/cloudflare-ddns"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: network-system-external-dns-crds
+  namespace: flux-system
+spec:
+  interval: 15m
+  prune: false
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: external-dns-source
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: network-system-external-dns
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: network-system-namespace
+    - name: network-system-external-dns-crds
+  interval: 5m
+  path: "./k8s/manifests/network-system/external-dns"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: network-system-static-routes
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: network-system-namespace
+    - name: network-system-traefik-addons
+  interval: 5m
+  path: "./k8s/manifests/network-system/traefik/static-routes"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster

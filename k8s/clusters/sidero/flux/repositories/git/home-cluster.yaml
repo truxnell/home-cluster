@@ -1,0 +1,23 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: home-cluster
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  url: https://github.com/Truxnell/home-cluster
+  ignore: |
+    # exclude all
+    /*
+    # include charts dirs
+    !/k8s/charts
+    # include gitops dirs
+    !/k8s/global
+    !/k8s/clusters/sidero
+    !/k8s/manifests
+    # exclude files from gitops dirs
+    /k8s/**/*.md
+    /k8s/**/*.tmpl

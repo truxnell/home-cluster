@@ -1,0 +1,56 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  namespace: network-system
+  name: cloudflare-ddns
+  labels:
+    app: cloudflare-ddns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudflare-ddns
+  template:
+    metadata:
+      labels:
+        app: cloudflare-ddns
+      annotations:
+        secret.reloader.stakater.com/reload: cloudflare-ddns
+    spec:
+      # values-ish: https://hotio.dev/containers/cloudflareddns/
+      containers:
+        - name: cloudflare-ddns
+          image: hotio/cloudflareddns:latest
+          env:
+            - name: CF_HOSTS
+              value: ipv4.${CLUSTER_DOMAIN}
+            - name: CF_ZONES
+              value: ${CLUSTER_DOMAIN}
+            - name: CF_APITOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflare-ddns
+                  key: api-token
+            - name: CF_RECORDTYPES
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflare-ddns
+                  key: record-types
+            - name: APPRISE
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflare-ddns
+                  key: apprise-discord-webhook
+            # https://github.com/docker-hotio/docker-cloudflare-ddns#log-levels
+            - name: LOG_LEVEL
+              value: "2"
+            - name: INTERVAL
+              value: "300"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
