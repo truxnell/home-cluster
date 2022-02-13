@@ -48,7 +48,7 @@ spec:
       value:
         name: "custom"
         urls:
-          - "https://raw.githubusercontent.com/Truxnell/home-cluster/development/k8s/clusters/integrations/cilium-quick-install/quick-install.yaml"
+          - "https://raw.githubusercontent.com/Truxnell/home-cluster/main/k8s/clusters/integrations/cilium-quick-install/quick-install.yaml"
 
     - op: replace
       path: /cluster/extraManifests

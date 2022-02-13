@@ -7,7 +7,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: development
+    branch: main
   url: https://github.com/Truxnell/home-cluster
   ignore: |
     # exclude all
