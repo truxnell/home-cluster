@@ -10,7 +10,7 @@ spec:
   configPatches:
     - op: replace
       path: /machine/install/disk
-      value: /dev/nvme01
+      value: /dev/nvme0
     - op: add
       path: /machine/network/hostname
       value: shodan.${CLUSTER_DOMAIN}
