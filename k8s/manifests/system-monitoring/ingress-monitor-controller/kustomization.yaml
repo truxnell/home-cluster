@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - helmrelease.yaml
   - secret.sops.yaml
-  - static
+  # - static # FIXME reconcile loop
