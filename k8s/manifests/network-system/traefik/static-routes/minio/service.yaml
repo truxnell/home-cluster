@@ -11,4 +11,4 @@ spec:
       port: 9000
     - name: http
       port: 5000
-  externalName: hyperion.lab
+  externalName: 10.8.20.10 # fixme syno ip moving
