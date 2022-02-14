@@ -44,12 +44,12 @@ spec:
           hajimari.io/appName: "rook-ceph"
 
         host:
-          name: "rook.${CLUSTER_NAME}.${CLUSTER_DOMAIN}"
+          name: &host "rook.${CLUSTER_NAME}.${CLUSTER_DOMAIN}"
           path: "/"
         tls:
           - secretName: rook-ceph-${CLUSTER_NAME}-tls
             hosts:
-              - "rook.${CLUSTER_NAME}.${CLUSTER_DOMAIN}"
+              - *host
 
     storage:
       useAllNodes: false
@@ -57,7 +57,7 @@ spec:
       config:
         osdsPerDevice: "1"
       nodes:
-        - name: "${WORKER01_ADDRESS}"
+        - name: "${WORKER01_HOSTNAME}"
           devices:
             - name: "${WORKER01_DRIVE}"
     cephBlockPools:
