@@ -118,6 +118,7 @@ spec:
     - name: rook-ceph-cluster
     - name: media-plex
     - name: network-system-traefik
+    - name: organizarrs-prowlarr
   interval: 5m
   path: "./k8s/manifests/organizarrs/gaps"
   prune: true
