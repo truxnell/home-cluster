@@ -27,7 +27,7 @@ data:
   TZ: Australia/Melbourne
 
   # Ip Range: 10.8.20.x/24TZ
-  LB_RANGE: "10.8.21.200-10.8.20.250"
+  LB_RANGE: "10.8.20.200-10.8.20.250"
   LB_TRAEFIK: "10.8.20.210"
   LB_MARIADB: "10.8.20.211"
   LB_HOMEASSISTANT: "10.8.20.212"
