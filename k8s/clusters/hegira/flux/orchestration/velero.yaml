@@ -22,6 +22,7 @@ spec:
   dependsOn:
     - name: velero-namespace
     - name: system-monitoring-kube-prom-stack
+    - name: network-system-traefik
   interval: 5m
   path: "./k8s/manifests/velero/velero"
   prune: true
