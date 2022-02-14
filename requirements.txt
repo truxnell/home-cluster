@@ -16,7 +16,7 @@ platformdirs==2.4.0
 pluggy==1.0.0
 pre-commit==2.15.0
 py==1.11.0
-pyparsing==3.0.6
+pyparsing==3.0.7
 pytest==6.2.5
 PyYAML==6.0
 six==1.16.0
