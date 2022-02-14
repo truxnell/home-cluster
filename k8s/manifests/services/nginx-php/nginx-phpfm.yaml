@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://drpsychick.github.io/charts
       chart: nginx-phpfpm
-      version: 0.0.2
+      version: 0.0.3
       sourceRef:
         kind: HelmRepository
         name: drpsychick-charts
