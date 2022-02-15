@@ -26,13 +26,6 @@ spec:
         enabled: true
         urlPrefix: /
 
-    cephClusterSpec:
-      mon:
-        count: 2
-        allowMultiplePerNode: false
-      mgr:
-        count: 2
-
     ingress:
       dashboard:
         annotations:
