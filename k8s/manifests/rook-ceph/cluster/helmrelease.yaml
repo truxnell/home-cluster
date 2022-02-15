@@ -61,12 +61,18 @@ spec:
         - name: "${WORKER01_HOSTNAME}"
           devices:
             - name: "${WORKER01_DRIVE}"
+        - name: "${WORKER02_HOSTNAME}"
+          devices:
+            - name: "${WORKER02_DRIVE}"
+        - name: "${WORKER03_HOSTNAME}"
+          devices:
+            - name: "${WORKER03_DRIVE}"
     cephBlockPools:
       - name: ceph-blockpool
         spec:
           failureDomain: host
           replicated:
-            size: 2
+            size: 3
         storageClass:
           enabled: true
           name: ceph-block
@@ -89,11 +95,11 @@ spec:
         spec:
           metadataPool:
             replicated:
-              size: 2
+              size: 3
           dataPools:
             - failureDomain: host
               replicated:
-                size: 2
+                size: 3
           metadataServer:
             activeCount: 1
             activeStandby: true
