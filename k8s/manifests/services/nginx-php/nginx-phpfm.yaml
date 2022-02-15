@@ -52,11 +52,6 @@ spec:
           paths:
             - path: /
               pathType: Prefix
-            - path: /notifications/hub/negotiate
-              pathType: Prefix
-            - path: /notifications/hub
-              pathType: Prefix
-              servicePort: 3012
       tls:
         - hosts:
             - *host
