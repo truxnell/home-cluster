@@ -5,3 +5,4 @@ resources:
   - ./xerxes.yaml
   - ./leela.yaml
   - ./SHODAN.yaml
+  - ./tycho.yaml
