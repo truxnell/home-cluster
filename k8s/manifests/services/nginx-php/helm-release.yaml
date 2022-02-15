@@ -66,7 +66,6 @@ spec:
     #   pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/var/www/html"]'
     #   post.hook.backup.velero.io/container: fsfreeze
     #   post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/var/www/html"]'
-    #   secret.reloader.stakater.com/reload: "home-assistant"
     # additionalContainers:
     #   fsfreeze:
     #     name: fsfreeze
