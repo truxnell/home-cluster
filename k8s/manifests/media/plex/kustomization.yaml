@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - ./pvc.yaml
   - ./helm-release.yaml
-  - ./probe.yaml
+  # - ./probe.yaml
   - ./endpoint-monitor.yaml
