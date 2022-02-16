@@ -68,15 +68,15 @@ spec:
       config:
         enabled: true
         existingClaim: sabnzbd-config-v1
-      # nfs-nas-media:
-      #   enabled: true
-      #   type: custom
-      #   volumeSpec: # FIXME How am i backing up this?
-      #     nfs:
-      #       server: ${NAS_ADDRESS}
-      #       path: /volume1/
-      #   mountPath: /media
-      #   readOnly: false
+      nfs-nas-media:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDRESS}
+            path: /volume1/
+        mountPath: /media
+        readOnly: false
 
     podSecurityContext:
       runAsUser: 1000
