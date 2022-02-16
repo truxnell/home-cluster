@@ -21,7 +21,7 @@ spec:
     # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/plex/values.yaml
     image:
       repository: ghcr.io/k8s-at-home/plex
-      tag: v1.25.2.5319-c43dc0277
+      tag: v1.25.5.5492-12f6b8c83
     env:
       TZ: "${TZ}"
       ADVERTISE_IP: "https://plex.${CLUSTER_DOMAIN}:443/,http://${LB_PLEX}:32400/"
