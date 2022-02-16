@@ -9,24 +9,18 @@
   rebaseWhen: "conflicted",
   kubernetes: {
     fileMatch: [
-      "infrastructure/.+\\.yaml$",
-      "operators/.+\\.yaml$",
-      "apps/.+\\.yaml$",
+      "k8s/manifests/.+\\.yaml$"
     ],
   },
   "helm-values": {
     fileMatch: [
-      "infrastructure/.+\\.yaml$",
-      "operators/.+\\.yaml$",
-      "apps/.+\\.yaml$",
+      "k8s/manifests/.+\\.yaml$"
     ],
   },
   regexManagers: [
     {
       fileMatch: [
-        "infrastructure/.+\\.yaml$",
-        "operators/.+\\.yaml$",
-        "apps/.+\\.yaml$",
+        "k8s/manifests/.+\\.yaml$"
       ],
       matchStrings: [
         "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n",
@@ -34,28 +28,21 @@
       datasourceTemplate: "helm",
     },
     {
-      fileMatch: ["operators/cert-manager/.+\\.yaml$"],
+      fileMatch: ["k8s/manifests/cert-manager/.+\\.yaml$"],
       matchStrings: [
         "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/",
       ],
       datasourceTemplate: "helm",
     },
     {
-      fileMatch: ["infrastructure/base/infra-prometheus-stack/.+\\.yaml$"],
+      fileMatch: ["k8s/manifests/system-monitoring/kube-prometheus-stack/.+\\.yaml$"],
       matchStrings: [
         "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n",
       ],
       datasourceTemplate: "helm",
     },
     {
-      fileMatch: ["operators/infra-traefik/.+\\.yaml$"],
-      matchStrings: [
-        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: v(?<currentValue>.*)\n",
-      ],
-      datasourceTemplate: "helm",
-    },
-    {
-      fileMatch: ["operators/rook-ceph/.+\\.yaml$"],
+      fileMatch: ["k8s/manifests/rook-ceph/.+\\.yaml$"],
       matchStrings: [
         "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: (?<currentValue>.*)\n",
       ],
@@ -172,20 +159,6 @@
       groupName: "rook-ceph-suite",
       additionalBranchPrefix: "",
       separateMinorPatch: true,
-    },
-    {
-      matchDatasources: ["github-releases", "docker"],
-      matchPackagePatterns: ["external-snapshotter", "snapshot-controller"],
-      groupName: "external-snapshotter-suite",
-      additionalBranchPrefix: "",
-      separateMinorPatch: true,
-    },
-    {
-      matchDatasources: ["github-tags", "docker"],
-      matchPackagePatterns: ["rancher/system-upgrade-controller"],
-      groupName: "system-upgrade-controller-suite",
-      additionalBranchPrefix: "",
-      separateMinorPatch: true,
-    },
-  ],
+    }
+  ]
 }
