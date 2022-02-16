@@ -31,7 +31,7 @@ spec:
     speaker:
       image:
         repository: metallb/speaker
-        tag: v0.12.0
+        tag: v0.12.1
       podAnnotations:
         configmap.reloader.stakater.com/reload: "metallb-config"
 
