@@ -43,3 +43,11 @@ request: gpu
 intel-gpu-plugin
 
 node-feature-detector to get custom-intel-gpu label
+
+# Backups
+
+screenshot of plex scheduled tasks - backup path
+
+# Restore scheduled backup
+
+https://support.plex.tv/articles/202485658-restore-a-database-backed-up-via-scheduled-tasks/
