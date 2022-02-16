@@ -24,14 +24,14 @@ spec:
     controller:
       image:
         repository: metallb/controller
-        tag: v0.11.0
+        tag: v0.12.0
       podAnnotations:
         configmap.reloader.stakater.com/reload: "metallb-config"
 
     speaker:
       image:
         repository: metallb/speaker
-        tag: v0.11.0
+        tag: v0.12.0
       podAnnotations:
         configmap.reloader.stakater.com/reload: "metallb-config"
 
