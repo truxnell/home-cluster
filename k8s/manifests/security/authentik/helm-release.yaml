@@ -20,7 +20,7 @@ spec:
     # Values yaml: https://github.com/goauthentik/helm/blob/main/charts/authentik/values.yaml
     image:
       repository: ghcr.io/goauthentik/server
-      tag: 2021.10.4
+      tag: 2022.2.1
 
     ingress:
       enabled: true
