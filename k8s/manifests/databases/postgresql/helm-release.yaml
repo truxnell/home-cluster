@@ -46,4 +46,4 @@ spec:
 
     primary:
       annotations:
-        kanister.kasten.io/blueprint: bitnami-postgresql
+        kanister.kasten.io/blueprint: postgres-bp
