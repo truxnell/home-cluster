@@ -36,7 +36,7 @@ spec:
     auth:
       tokenAuth:
         enabled: true
-    clusterName: k8s
+    clusterName: hegira
     ingress:
       create: true
       host: k10.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
