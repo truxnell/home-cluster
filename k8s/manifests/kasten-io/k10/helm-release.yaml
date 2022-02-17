@@ -48,6 +48,7 @@ spec:
         traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
         hajimari.io/enable: "true"
         hajimari.io/icon: backup-restore
+        hajimari.io/name: "K10"
       urlPath: k10
       hosts:
         - k10.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
