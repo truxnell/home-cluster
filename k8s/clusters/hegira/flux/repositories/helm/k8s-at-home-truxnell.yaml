@@ -5,7 +5,7 @@ metadata:
   name: k8s-at-home-truxnell
   namespace: flux-system
 spec:
-  interval: 12h
+  interval: 30m
   url: https://github.com/Truxnell/charts
   ref:
     branch: master
