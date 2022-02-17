@@ -39,13 +39,18 @@ spec:
     clusterName: k8s
     ingress:
       create: true
-      class: nginx
-      host: &host "k10.${CLUSTER_DOMAIn}"
+      host: k10.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+        external-dns/is-public: "false"
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+        hajimari.io/enable: "true"
+        hajimari.io/icon: backup-restore
       urlPath: k10
       hosts:
-        - *host
+        - k10.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
       tls:
         enabled: true
-        secretName: "${CLUSTER_DOMAIn/./-}-tls"
-    grafana:
-      enabled: false
+        secretName: k10-${CLUSTER_NAME}-tls
