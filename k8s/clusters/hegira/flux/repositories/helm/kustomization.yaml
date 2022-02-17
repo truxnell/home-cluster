@@ -10,11 +10,11 @@ resources:
   - external-dns-charts.yaml
   - grafana-charts.yaml
   - hajimari-charts.yaml
-  - jamessql-charts.yaml
   - k8s-at-home-truxnell.yaml
   - nfs-subdir-external-provisioner-charts.yaml
   - kasten-charts.yaml
   - kubernetes-sigs-descheduler-charts.yaml
+  - sqljames-charts.yaml
   - vmware-charts.yaml
   - weaveworks-kured-charts.yaml
   - rook-ceph-charts.yaml
