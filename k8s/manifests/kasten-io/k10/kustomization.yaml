@@ -5,4 +5,4 @@ resources:
   - helm-release.yaml
   - monitoring
   # - blueprints
-  # - profiles
+  - profiles
