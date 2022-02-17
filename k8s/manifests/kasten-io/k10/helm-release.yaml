@@ -40,12 +40,12 @@ spec:
     ingress:
       create: true
       class: nginx
-      host: &host "k10.${SECRET_PUBLIC_DOMAIN}"
+      host: &host "k10.${CLUSTER_DOMAIn}"
       urlPath: k10
       hosts:
         - *host
       tls:
         enabled: true
-        secretName: "${SECRET_PUBLIC_DOMAIN/./-}-tls"
+        secretName: "${CLUSTER_DOMAIn/./-}-tls"
     grafana:
       enabled: false
