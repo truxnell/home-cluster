@@ -6,6 +6,7 @@ metadata:
   namespace: games
 spec:
   interval: 5m
+  timeout: 10m
   chart:
     spec:
       # renovate: registryUrl=https://github.com/Truxnell/charts
