@@ -6,3 +6,4 @@ resources:
   - monitoring
   # - blueprints
   - profiles
+  - policies
