@@ -1,3 +1,4 @@
+---
 apiVersion: config.kio.kasten.io/v1alpha1
 kind: Profile
 metadata:
