@@ -1,9 +1,11 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: kasten-io
 resources:
-  - secret.sops.yaml
-  - pod-spec-override.yaml
-  - home.yaml
-  - media.yaml
-  - k10-disaster-recovery.yaml
+  - https://raw.githubusercontent.com/kanisterio/kanister/0.73.0/examples/stable/postgresql/blueprint-v2/postgres-blueprint.yaml
+#   - secret.sops.yaml
+#   - pod-spec-override.yaml
+#   - home.yaml
+#   - media.yaml
+#   - k10-disaster-recovery.yaml

@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - monitoring
-  # - blueprints
+  - blueprints
   - profiles
   - policies
