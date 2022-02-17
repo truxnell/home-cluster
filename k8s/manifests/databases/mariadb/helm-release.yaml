@@ -20,6 +20,8 @@ spec:
     auth:
       rootPassword: ${MARIADB_ROOT_PASSWORD}
     primary:
+      annotations:
+        kanister.kasten.io/blueprint: bitnami-maraidb
       persistence:
         enabled: true
         existingClaim: mariadb-config-v1
