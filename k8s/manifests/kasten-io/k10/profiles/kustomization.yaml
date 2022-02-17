@@ -5,7 +5,7 @@ resources:
   - k10-backups-pvc.yaml
   # - home.yaml
   # - media.yaml
-  # - k10-disaster-recovery.yaml
+  - k10-disaster-recovery.yaml
   - backblaze-b2.yaml
   - backblaze-b2-secret.sops.yaml
   - synology.yaml
