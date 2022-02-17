@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kastten-namespace
+  name: kasten-namespace
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/kastten"
+  path: "./k8s/manifests/kasten-io"
   prune: true
   wait: true
   sourceRef:
@@ -16,15 +16,15 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: databases-postgresql
+  name: kasten-k10
   namespace: flux-system
 spec:
   dependsOn:
-    - name: databases-namespace
+    - name: kasten-namespace
     - name: system-monitoring-kube-prom-stack
     - name: rook-ceph-cluster
   interval: 5m
-  path: "./k8s/manifests/databases/postgresql"
+  path: "./k8s/manifests/kasten/k10"
   prune: true
   wait: true
   sourceRef:
