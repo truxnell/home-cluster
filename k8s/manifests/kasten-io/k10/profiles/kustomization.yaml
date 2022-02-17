@@ -8,3 +8,4 @@ resources:
   # - k10-disaster-recovery.yaml
   - backblaze-b2.yaml
   - backblaze-b2-secret.sops.yaml
+  - synology.yaml
