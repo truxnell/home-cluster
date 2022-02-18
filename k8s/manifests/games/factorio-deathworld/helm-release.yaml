@@ -86,21 +86,4 @@ spec:
                 - key: kubernetes.io/hostname
                   operator: In
                   values:
-                    - k8s-generic-node-a
-
-    podAnnotations:
-      backup.velero.io/backup-volumes: factorio
-      pre.hook.backup.velero.io/container: fsfreeze
-      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/factorio"]'
-      post.hook.backup.velero.io/container: fsfreeze
-      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/factorio"]'
-      secret.reloader.stakater.com/reload: "home-assistant"
-    additionalContainers:
-      fsfreeze:
-        name: fsfreeze
-        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
-        volumeMounts:
-          - name: factorio
-            mountPath: /factorio
-        securityContext:
-          privileged: true
+                    - tycho
