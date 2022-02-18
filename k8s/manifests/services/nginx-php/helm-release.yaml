@@ -28,9 +28,11 @@ spec:
   # Values link: https://github.com/DrPsychick/charts/blob/master/drpsychick/nginx-phpfpm/values.yaml
   values:
     nginx:
+      replicaCount: 1
       image:
         tag: "1.21.0"
     phpfpm:
+      replicaCount: 1
       image:
         # Custom container, php with mysql installed
         registry: ghcr.io/truxnell/container-images
@@ -60,4 +62,3 @@ spec:
     persistence:
       enabled: true
       existingClaim: nginx-php-config-v1
-      
