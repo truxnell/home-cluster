@@ -11,11 +11,11 @@ spec:
     namespace: default
     name: default-arm64
   accepted: true
-  hostname: leela.${CLUSTER_DOMAIN}
+  hostname: leela
   configPatches:
     - op: add
       path: /machine/network/hostname
-      value: leela.${CLUSTER_DOMAIN}
+      value: leela
     - op: replace
       path: /machine/install/disk
       value: /dev/sda
