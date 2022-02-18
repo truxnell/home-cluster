@@ -22,13 +22,6 @@ spec:
       repository: ghcr.io/k8s-at-home/vaultwarden
       tag: v1.24.0
 
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
-      pre.hook.backup.velero.io/container: fsfreeze
-      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/data"]'
-      post.hook.backup.velero.io/container: fsfreeze
-      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/data"]'
-
     env:
       DATA_FOLDER: "config"
       DOMAIN: https://vault.${CLUSTER_DOMAIN}
@@ -103,13 +96,3 @@ spec:
         cpu: 100m
       limits:
         memory: 2000Mi
-
-    additionalContainers:
-      fsfreeze:
-        name: fsfreeze
-        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
-        volumeMounts:
-          - name: config
-            mountPath: /data
-        securityContext:
-          privileged: true
