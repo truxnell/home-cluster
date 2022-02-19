@@ -27,6 +27,7 @@ spec:
     ingress:
       main:
         enabled: true
+
         annotations:
           kubernetes.io/ingress.class: traefik
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
@@ -35,19 +36,24 @@ spec:
           traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
           hajimari.io/enable: "true"
           hajimari.io/icon: eye-circle
+
         hosts:
           - host: &host "requests.${CLUSTER_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
+
         tls:
           - hosts:
               - *host
+            secretName: overseerr-${CLUSTER_NAME}-tls
+
     persistence:
       config:
         enabled: true
         existingClaim: overseerr-config-v1
         mountPath: /app/config
+
     resources:
       requests:
         memory: 250Mi
