@@ -21,8 +21,10 @@ spec:
     image:
       repository: ghcr.io/k8s-at-home/tautulli
       tag: v2.9.4
+
     env:
       TZ: "${TZ}"
+
     ingress:
       main:
         enabled: true
@@ -34,6 +36,7 @@ spec:
           traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
           hajimari.io/enable: "true"
           hajimari.io/icon: "chart-bar"
+
         hosts:
           - host: &host "tautulli.${CLUSTER_DOMAIN}"
             paths:
@@ -43,10 +46,12 @@ spec:
           - hosts:
               - *host
             secretName: tautulli-${CLUSTER_NAME}-tls
+
     persistence:
       config:
         enabled: true
         existingClaim: tautulli-config-v1
+
       nfs-nas-backup:
         enabled: true
         type: custom
@@ -56,6 +61,7 @@ spec:
             path: /volume1/backup/kubernetes/apps/tautulli
         mountPath: /config/backups
         readOnly: false
+
     resources:
       requests:
         memory: 250Mi
