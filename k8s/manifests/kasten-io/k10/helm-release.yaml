@@ -49,8 +49,8 @@ spec:
         hajimari.io/enable: "true"
         hajimari.io/icon: backup-restore
         hajimari.io/appName: "K10"
-        hajimari.io/url: "k10.${CLUSTER_NAME}.${CLUSTER_DOMAIN}/k10/"
-      urlPath: "k10.${CLUSTER_NAME}.${CLUSTER_DOMAIN}/k10/"
+        hajimari.io/url: "https://k10.${CLUSTER_NAME}.${CLUSTER_DOMAIN}/k10/"
+      urlPath: "k10"
       hosts:
         - k10.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
       tls:
