@@ -1,0 +1,7 @@
+apiVersion: endpointmonitor.stakater.com/v1alpha1
+kind: EndpointMonitor
+metadata:
+  name: mkdocs-${WEBSITE_DOMAIN}
+spec:
+  forceHttps: true
+  url: https://k8s.${WEBSITE_DOMAIN}
