@@ -1,0 +1,135 @@
+# Project information
+site_name: Truxnell | K8S Home-Cluster
+site_description: This repo is my homelab, declared in yaml and applied to my Kurbenetes cluster in a declarative gitOps fashion via flux.
+site_author: Nat Allan
+site_url: https://truxnell.github.io/home-cluster
+
+# https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#repository-name
+repo_name: Truxnell/home-cluster
+repo_url: https://github.com/Truxnell/home-cluster
+
+# https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#edit-button
+edit_uri: "edit/main/docs/src/"
+
+theme:
+  name: material
+  # https://squidfunk.github.io/mkdocs-material/setup/changing-the-logo-and-icons/#logo
+  # logo: https://raspbernetes.github.io/img/logo.svg
+  # https://squidfunk.github.io/mkdocs-material/setup/changing-the-logo-and-icons/#favicon
+  # favicon: https://raspbernetes.github.io/img/logo.svg
+  # https://squidfunk.github.io/mkdocs-material/setup/changing-the-language/#site-language
+  language: en
+  # https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#color-palette
+  palette:
+    - scheme: default
+      primary: blue
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#repository-icon
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-header/#automatic-hiding
+    - header.autohide
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#anchor-tracking
+    - navigation.tracking
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#search-highlighting
+    - search.highlight
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#search-sharing
+    - search.share
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#search-suggestions
+    - search.suggest
+    - navigation.instant
+    - navigation.sections
+
+docs_dir: ../../docs/src/
+
+extra:
+  # https://squidfunk.github.io/mkdocs-material/setup/setting-up-versioning/#versioning
+  version:
+    provider: mike
+  # https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-footer/#social-links
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Truxnell
+    - icon: fontawesome/brands/linkedin
+      link: https://au.linkedin.com/in/nathannial-allan-60a418104
+    - icon: fontawesome/solid/sitemap
+      link: https://voltaicforge.com
+  # https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-footer/#remove-generator
+  generator: false
+
+# https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-footer/#copyright-notice
+copyright: Copyright &copy; 2022 Nat Allan
+
+extra_css:
+  - _static/custom.css
+
+plugins:
+  # https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#built-in-search
+  - search
+  # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#revision-date-localized
+  - git-revision-date-localized
+  - autolinks
+  - diagrams
+
+# https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-analytics/#google-analytics
+# google_analytics:
+#   - UA-XXXXXXXX-X
+#   - auto
+
+# https://www.mkdocs.org/user-guide/configuration/#markdown_extensions
+markdown_extensions:
+  - admonition
+  - abbr
+  - meta
+  - md_in_html
+  - attr_list
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
+  - pymdownx.tabbed
+  - pymdownx.tilde
+  - pymdownx.progressbar
+  - pymdownx.tasklist
+  - pymdownx.superfences
+  - pymdownx.snippets
+  # - pymdownx.emoji:
+  #     emoji_index: !!python/name:materialx.emoji.twemoji
+  #     emoji_generator: !!python/name:materialx.emoji.to_svg
+
+nav:
+  - Introduction: index.md
+  - General:
+      - Hardware: general/hardware.md
+
+  - Sidero & Talos:
+      - Introduction: sidero/sidero-intro.md
+      - Installation: sidero/sidero-install.md
+  - Diagrams:
+      - Network Map: diagrams/network-map.md
+      - Cluster Map: diagrams/cluster-map.md
+  # - Get Started: get-started/index.md
+  # - Guides:
+  #     - Installation: guides/installation.md
+  #     - Sealed Secrets: guides/sealed-secrets.md
+  #     - Mozilla SOPS: guides/mozilla-sops.md
+  #     - Repository Structure: guides/repo-structure.md
+  # - Designs:
+  #     - Secret Management: designs/secret-management.md
+  # - Hardware:
+  #     - RockPis: hardware/pre-rockpi4c.md
+  # - Network:
+  #     - IP Allocation: network/ip-allocation.md
+  #     - Certificates: network/certificates.md
+  # - Contributing: contributing/index.md
+  # - Sponsor: sponsor/index.md
+  # - FAQ: faq/index.md
