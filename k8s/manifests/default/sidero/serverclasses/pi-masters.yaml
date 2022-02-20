@@ -25,7 +25,7 @@ spec:
       path: /cluster/apiServer/certSANs
       value:
         - ${CL_0_CP_IP}
-        - hegira.trux.dev
+        - hegira.${CLUSTER_DOMAIN}
     - op: replace
       path: /cluster/proxy/disabled
       value: true
