@@ -49,3 +49,4 @@ Grab the binaries specified:
     
     > Ref: [https://www.sidero.dev/docs/v0.5/getting-started/prereq-dhcp/](https://www.sidero.dev/docs/v0.5/getting-started/prereq-dhcp/)
 
+This step will be specific to your network
