@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: grafana
-      version: 6.21.2
+      version: 6.21.6
       sourceRef:
         kind: HelmRepository
         name: grafana-charts
@@ -63,20 +63,19 @@ spec:
     datasources:
       datasources.yaml:
         apiVersion: 1
-        # list of datasources that should be deleted from the database
         deleteDatasources:
           - name: Loki
             orgId: 1
         datasources:
           - name: Prometheus
             type: prometheus
+            url: http://thanos-query.system-monitoring:9090/
             access: proxy
-            url: http://thanos-query:9090/
-          #     isDefault: true
-          #   - name: Loki
-          #     type: loki
-          #     access: proxy
-          #     url: http://loki:3100
+            isDefault: true
+          # - name: Loki
+          #   type: loki
+          #   access: proxy
+          #   url: http://loki.system-monitoring:3100
 
     dashboards:
       default:
@@ -115,9 +114,6 @@ spec:
       dashboards:
         enabled: true
         searchNamespace: ALL
-        folderAnnotation: grafana_folder
-        provider:
-          foldersFromFilesStructure: true
       datasources:
         enabled: true
         searchNamespace: ALL
@@ -129,6 +125,7 @@ spec:
       - vonage-status-panel
       - grafana-worldmap-panel
       - grafana-clock-panel
+
     serviceMonitor:
       enabled: true
 
@@ -155,3 +152,6 @@ spec:
 
     persistence:
       enabled: false
+
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: "grafana"
