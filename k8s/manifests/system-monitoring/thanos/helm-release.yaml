@@ -29,7 +29,7 @@ spec:
 
       ingress:
         enabled: true
-        hostname: "thanos-cluster.${CLUSTER_NAME}.${INGRESS_DOMAIN}"
+        hostname: "thanos-cluster.${CLUSTER_NAME}.${CLUSTER_DOMAIN}"
         ingressClassName: "traefik"
         annotations:
           kubernetes.io/ingress.class: traefik
