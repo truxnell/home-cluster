@@ -42,9 +42,6 @@ prometheus:
           resources:
             requests:
               storage: 10Gi
-    podMetadata:
-      annotations:
-        backup.velero.io/backup-volumes: prometheus-kube-prometheus-stack-prometheus-db
     thanos:
       image: quay.io/thanos/thanos:v0.24.0
       version: v0.22.0
