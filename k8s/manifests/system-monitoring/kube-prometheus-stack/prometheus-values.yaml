@@ -20,10 +20,10 @@ prometheus:
         hosts:
           - prometheus.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
 
-    thanosService:
-      enabled: true
-    thanosServiceMonitor:
-      enabled: true
+  thanosService:
+    enabled: true
+  thanosServiceMonitor:
+    enabled: true
 
   prometheusSpec:
     replicas: 1
