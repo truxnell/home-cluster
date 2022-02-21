@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - ./secret.sops.yaml
   - ./helmrelease.yaml
-  # - ./prometheus-rules FIXME
 namespace: system-monitoring
 configurations:
   - kustomize-config.yaml
