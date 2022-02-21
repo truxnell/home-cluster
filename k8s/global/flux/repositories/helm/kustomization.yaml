@@ -5,7 +5,6 @@ resources:
   - ./bitnami-charts.yaml
   - ./cilium-charts.yaml
   - ./deliveryhero-charts.yaml
-  - ./grafana-charts.yaml
   - ./jetstack-charts.yaml
   - ./k8s-at-home-charts.yaml
   - ./kubernetes-sigs-metrics-server-charts.yaml
