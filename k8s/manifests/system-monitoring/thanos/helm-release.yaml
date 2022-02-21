@@ -18,37 +18,51 @@ spec:
   install:
     createNamespace: true
   values:
-    image:
-      registry: public.ecr.aws
-      repository: bitnami/thanos
     query:
       enabled: true
       replicaLabels:
         - replica
+
       dnsDiscovery:
         sidecarsService: prometheus-thanos-discovery
-        sidecarsNamespace: monitoring
+        sidecarsNamespace: system-monitoring
+
       ingress:
         enabled: true
-        hostname: "thanos.${CLUSTER_DOMAIN}"
-        ingressClassName: "nginx"
+        hostname: "thanos-cluster.${CLUSTER_NAME}.${INGRESS_DOMAIN}"
+        ingressClassName: "traefik"
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+          external-dns/is-public: "false"
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+          hajimari.io/enable: "true"
+          hajimari.io/icon: ""
         tls: true
-    existingObjstoreSecret: thanos-objstore
+
+    existingObjstoreSecret: thanos-objstore-secret
+
     queryFrontend:
       enabled: false
+
     bucketweb:
       enabled: true
+
     compactor:
       enabled: true
       persistence:
         enabled: false
+
     storegateway:
       enabled: true
       persistence:
         enabled: true
         size: 5Gi
+
     ruler:
       enabled: false
+
     metrics:
       enabled: true
       serviceMonitor:
