@@ -60,13 +60,13 @@ spec:
         enabled: false
       startup:
         enabled: false
-    
+
     persistence:
       config:
         enabled: true
         existingClaim: home-assistant-config-v1
     podAnnotations:
-    
+
     addons:
       codeserver:
         enabled: true
@@ -107,6 +107,7 @@ spec:
         volumeMounts:
           - name: config
             mountPath: /config
+
     resources:
       requests:
         cpu: 100m

@@ -46,6 +46,7 @@ spec:
         url: https://grafana.net
       auth.basic:
         disable_login_form: false
+
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
@@ -58,6 +59,7 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/default
+
     datasources:
       datasources.yaml:
         apiVersion: 1
@@ -75,6 +77,7 @@ spec:
           #     type: loki
           #     access: proxy
           #     url: http://loki:3100
+
     dashboards:
       default:
         # Ref: https://grafana.com/grafana/dashboards/7845
@@ -107,6 +110,7 @@ spec:
           gnetId: 11312
           revision: 8
           datasource: Prometheus
+
     sidecar:
       dashboards:
         enabled: true
@@ -117,6 +121,7 @@ spec:
       datasources:
         enabled: true
         searchNamespace: ALL
+
     plugins:
       - natel-discrete-panel
       - pr0ps-trackmap-panel
@@ -126,6 +131,7 @@ spec:
       - grafana-clock-panel
     serviceMonitor:
       enabled: true
+
     ingress:
       enabled: true
       annotations:
@@ -136,9 +142,20 @@ spec:
         traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
         hajimari.io/enable: "true,false|"
         hajimari.io/icon: ${4|}
-        hajimari.io/appName: 
+        hajimari.io/appName:
+        hosts:
+          - host: &host-code "hass-config.${CLUSTER_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host-code
+            secretName: hass-config-${CLUSTER_NAME}-tls
+
     serviceAccount:
       create: true
       autoMount: true
+
     persistence:
       enabled: false
