@@ -51,6 +51,11 @@ with Diagram("Network Map", show=False):
     internet - netgear - net_bridge - udmpro >> usw >> ap
     usw >> nanobeam
     usw >> technocore
+    usw >> hegira
+    ap >> light
+    ap >> sensor
+    ap >> android
+    ap >> windows
     ap >> alexa
     ap >> linux
     
