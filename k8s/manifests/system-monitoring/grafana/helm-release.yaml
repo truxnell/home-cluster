@@ -143,10 +143,7 @@ spec:
         hajimari.io/enable: "true"
         hajimari.io/icon: "graph-line"
       hosts:
-        - host: &host "grafana.${CLUSTER_DOMAIN}"
-          paths:
-            - path: /
-              pathType: Prefix
+        - &host "grafana.${CLUSTER_DOMAIN}"
       tls:
         - hosts:
             - *host
