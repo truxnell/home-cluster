@@ -140,17 +140,16 @@ spec:
         external-dns/is-public: "false"
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
-        hajimari.io/enable: "true,false|"
-        hajimari.io/icon: ${4|}
-        hajimari.io/appName:
+        hajimari.io/enable: "true"
+        hajimari.io/icon: chart-line
         hosts:
-          - host: &host-code "hass-config.${CLUSTER_DOMAIN}"
+          - host: &host "hass-config.${CLUSTER_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - *host-code
+              - *host
             secretName: hass-config-${CLUSTER_NAME}-tls
 
     serviceAccount:
