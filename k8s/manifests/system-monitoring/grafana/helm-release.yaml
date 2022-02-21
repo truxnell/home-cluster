@@ -141,16 +141,16 @@ spec:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
         traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
         hajimari.io/enable: "true"
-        hajimari.io/icon: chart-line
+        hajimari.io/icon: "graph-line"
       hosts:
-        - host: &host "hass-config.${CLUSTER_DOMAIN}"
+        - host: &host "grafana.${CLUSTER_DOMAIN}"
           paths:
             - path: /
               pathType: Prefix
       tls:
         - hosts:
             - *host
-          secretName: hass-config-${CLUSTER_NAME}-tls
+          secretName: &tls grafana-${CLUSTER_NAME}-tlssonarr
 
     serviceAccount:
       create: true
