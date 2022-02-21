@@ -142,15 +142,15 @@ spec:
         traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
         hajimari.io/enable: "true"
         hajimari.io/icon: chart-line
-        hosts:
-          - host: &host "hass-config.${CLUSTER_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-            secretName: hass-config-${CLUSTER_NAME}-tls
+      hosts:
+        - host: &host "hass-config.${CLUSTER_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - *host
+          secretName: hass-config-${CLUSTER_NAME}-tls
 
     serviceAccount:
       create: true
