@@ -6,7 +6,7 @@ metadata:
     prometheus: k8s
     role: alert-rules
   name: upsc-rules
-  namespace: monitoring
+  namespace: system-monitoring
 spec:
   groups:
     - name: upsc.rules
