@@ -47,6 +47,23 @@ spec:
       auth.basic:
         disable_login_form: false
 
+    datasources:
+      datasourceschart:
+        apiVersion: 1
+        deleteDatasources:
+          - name: Loki
+            orgId: 1
+        datasources:
+          - name: Prometheus
+            type: prometheus
+            url: http://thanos-query.system-monitoring:9090/
+            access: proxy
+            isDefault: true
+          # - name: Loki
+          #   type: loki
+          #   access: proxy
+          #   url: http://loki.system-monitoring:3100
+
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
@@ -113,23 +130,6 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/organizarrs
-
-    datasources:
-      datasourceschart:
-        apiVersion: 1
-        deleteDatasources:
-          - name: Loki
-            orgId: 1
-        datasources:
-          - name: Prometheus
-            type: prometheus
-            url: http://thanos-query.system-monitoring:9090/
-            access: proxy
-            isDefault: true
-          # - name: Loki
-          #   type: loki
-          #   access: proxy
-          #   url: http://loki.system-monitoring:3100
 
     dashboards:
       default:
