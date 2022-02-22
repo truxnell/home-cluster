@@ -142,6 +142,9 @@ spec:
           gnetId: 13646
           revision: 2
           datasource: Prometheus
+        cert-manager.io/cluster-issuer:
+          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
+          datasource: Prometheus
 
       cilium:
         cilium-agent:
