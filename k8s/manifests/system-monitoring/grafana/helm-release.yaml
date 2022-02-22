@@ -53,7 +53,7 @@ spec:
         providers:
           - name: "default"
             orgId: 1
-            folder: ""
+            folder: "default"
             type: file
             disableDeletion: false
             editable: true
@@ -62,7 +62,7 @@ spec:
 
           - name: "cilium"
             orgId: 1
-            folder: ""
+            folder: "cilium"
             type: file
             disableDeletion: false
             editable: true
@@ -71,7 +71,7 @@ spec:
 
           - name: "power"
             orgId: 1
-            folder: ""
+            folder: "power"
             type: file
             disableDeletion: false
             editable: true
@@ -80,7 +80,7 @@ spec:
 
           - name: "unifi"
             orgId: 1
-            folder: ""
+            folder: "unifi"
             type: file
             disableDeletion: false
             editable: true
@@ -89,7 +89,7 @@ spec:
 
           - name: "ceph"
             orgId: 1
-            folder: ""
+            folder: "ceph"
             type: file
             disableDeletion: false
             editable: true
@@ -98,7 +98,7 @@ spec:
 
           - name: "flux"
             orgId: 1
-            folder: ""
+            folder: "flux"
             type: file
             disableDeletion: false
             editable: true
@@ -107,7 +107,7 @@ spec:
 
           - name: "organizarrs"
             orgId: 1
-            folder: ""
+            folder: "organizarrs"
             type: file
             disableDeletion: false
             editable: true
