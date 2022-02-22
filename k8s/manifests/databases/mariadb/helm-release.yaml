@@ -18,7 +18,7 @@ spec:
   # Values link: https://github.com/bitnami/charts/blob/master/bitnami/mariadb/values.yaml
   values:
     auth:
-      rootPassword: ${MARIADB_ROOT_PASSWORD}
+      rootPassword: ${SECRET_MARIADB_ROOT_PASSWORD}
     primary:
       # annotations:
       #   kanister.kasten.io/blueprint: bitnami-maraidb # FIXME

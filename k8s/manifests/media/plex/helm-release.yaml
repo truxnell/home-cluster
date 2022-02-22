@@ -25,7 +25,7 @@ spec:
     env:
       TZ: "${TZ}"
       ADVERTISE_IP: "https://plex.${CLUSTER_DOMAIN}:443/,http://${LB_PLEX}:32400/"
-      PLEX_CLAIM: "${PLEX_TOKEN}"
+      PLEX_CLAIM: "${SECRET_PLEX_TOKEN}"
 
     podSecurityContext:
       supplementalGroups:

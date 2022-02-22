@@ -42,8 +42,8 @@ spec:
       PORT: 34197 # Defaults to 34197
       RCON_PORT: 27015 # Defaults to 27015
       UPDATE_MODS_ON_START: true # No default
-      USERNAME: ${FACTORIO_USERNAME} # No default - this is your factorio.com username
-      TOKEN: ${FACTORIO_TOKEN} # No default - this is your factorio.com token
+      USERNAME: ${SECRET_FACTORIO_USERNAME} # No default - this is your factorio.com username
+      TOKEN: ${SECRET_FACTORIO_TOKEN} # No default - this is your factorio.com token
 
     service:
       factorio-game:

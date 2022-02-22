@@ -31,9 +31,9 @@ spec:
 
     env:
       TZ: ${TZ}
-      FOUNDRY_USERNAME: ${FOUNDRY_USERNAME}
+      SECRET_FOUNDRY_USERNAME: ${SECRET_FOUNDRY_USERNAME}
       FOUNDRY_PASSWORD: ${FOUNDRY_PASSWORD}
-      
+
     persistence:
       config:
         enabled: true

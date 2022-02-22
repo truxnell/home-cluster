@@ -29,7 +29,7 @@ spec:
       GF_DATE_FORMATS_INTERVAL_DAY: "DD/MM"
       GF_DATE_FORMATS_INTERVAL_MONTH: "MM-YYYY"
       GF_DATE_FORMATS_INTERVAL_YEAR: "YYYY"
-    adminPassword: "${GRAFANA_PASSWORD}"
+    adminPassword: "${SECRET_GRAFANA_PASSWORD}"
     grafana.ini:
       server:
         root_url: "https://grafana.${CLUSTER_DOMAIN}"

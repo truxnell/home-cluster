@@ -55,16 +55,16 @@ spec:
         mountPath: /shared
     podSecurityContext:
       supplementalGroups:
-        - 
-        
+        -
+
     addons:
       vpn:
         enabled: true
         type: openvpn
         openvpn:
           auth: |
-            ${OPENVPN_USERNAME}
-            ${OPENVPN_PASSWORD}
+            ${SECRET_OPENVPN_USERNAME}
+            ${SECRET_OPENVPN_PASSWORD}
           image:
             repository: dperson/openvpn-client
             tag: latest
@@ -79,7 +79,7 @@ spec:
             command:
               - sh
               - -c
-              - if [ $(wget -q -O- https://ipinfo.io/country) == '${VPN_COUNTRY}' ]; then exit 0; else exit $?; fi
+              - if [ $(wget -q -O- https://ipinfo.io/country) == '${SECRET_VPN_COUNTRY}' ]; then exit 0; else exit $?; fi
           initialDelaySeconds: 30
           periodSeconds: 60
           failureThreshold: 3

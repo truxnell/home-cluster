@@ -49,13 +49,13 @@ spec:
       enabled: false
     authentik:
       email:
-        host: ${SMTP_HOST}
-        port: ${SMTP_PORT}
-        password: ${SMTP_PASSWORD}
-        username: ${SMTP_USERNAME}
+        host: ${SECRET_SMTP_HOST}
+        port: ${SECRET_SMTP_PORT}
+        password: ${SECRET_SMTP_PASSWORD}
+        username: ${SECRET_SMTP_USERNAME}
         use_ssl: true
         from: id@${CLUSTER_DOMAIN}
-      secret_key: ${AUTHENTIK_SECRET_KEY}
+      secret_key: ${SECRET_KEYAUTHENTIK_DB_PASSWORD}
       log_level: debug
 
       error_reporting:
@@ -68,16 +68,16 @@ spec:
         host: "${POSTGRES_ADDRESS}"
         name: authentik
         user: authentik
-        password: ${AUTHENTIK_DB_PASSWORD}
+        password: ${SECRET_AUTHENTIK_DB_PASSWORD}
       redis:
         host: "{{ .Release.Name }}-redis-master"
-        password: ${REDIS_PASSWORD}
+        password: ${SECRET_AUTHENTIK_REDIS_PASSWORD}
 
     redis:
       enabled: true
       auth:
         enabled: true
-        password: ${REDIS_PASSWORD}
+        password: ${SECRET_AUTHENTIK_REDIS_PASSWORD}
 
     prometheus:
       serviceMonitor:
