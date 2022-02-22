@@ -59,10 +59,10 @@ spec:
             url: http://thanos-query.system-monitoring:9090/
             access: proxy
             isDefault: true
-          # - name: Loki
-          #   type: loki
-          #   access: proxy
-          #   url: http://loki.system-monitoring:3100
+          - name: Loki
+            type: loki
+            access: proxy
+            url: http://loki.system-monitoring:3100
 
     dashboardProviders:
       dashboardproviders.yaml:
