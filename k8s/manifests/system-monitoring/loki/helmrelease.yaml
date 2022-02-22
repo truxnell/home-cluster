@@ -34,6 +34,7 @@ spec:
           cache_location: /data/loki/index_cache
           resync_interval: 5s
           shared_store: s3
+
     ingress:
       enabled: true
       annotations:
@@ -47,12 +48,11 @@ spec:
       hosts:
         - host: &host "loki.${CLUSTER_DOMAIN}"
           paths:
-            - path: /
-              pathType: Prefix
+            - /
       tls:
         - hosts:
             - *host
-          secretName: &tls loki-${CLUSTER_NAME}-tlssonarr
+          secretName: loki-${CLUSTER_NAME}-tlssonarr
 
     persistence:
       enabled: false
