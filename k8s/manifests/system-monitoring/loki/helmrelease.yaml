@@ -34,6 +34,25 @@ spec:
           cache_location: /data/loki/index_cache
           resync_interval: 5s
           shared_store: s3
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+        external-dns/is-public: "false"
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+        hajimari.io/enable: "true"
+        hajimari.io/icon: "clipboard-text-clock"
+      hosts:
+        - host: &host "loki.${CLUSTER_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - *host
+          secretName: &tls loki-${CLUSTER_NAME}-tlssonarr
 
     persistence:
       enabled: false
