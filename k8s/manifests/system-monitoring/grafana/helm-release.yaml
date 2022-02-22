@@ -106,7 +106,7 @@ spec:
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/13646
         k8s-pvc-overview:
-          gnedId: 13646
+          gnetId: 13646
           revision: 2
           datasource: Prometheus
 
