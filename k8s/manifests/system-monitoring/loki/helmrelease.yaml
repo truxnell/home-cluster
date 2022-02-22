@@ -23,8 +23,10 @@ spec:
     config:
       storage_config:
         aws:
-          bucketnames: loki
-          endpoint: "minio.selfhosted:9000"
+          bucketnames: hegira-loki
+          endpoint: "minio.${CLUSTER_DOMAIN}:9000"
+          access_key_id: "${SECRET_MINIO_ACCESS_KEY}"
+          secret_access_key: "${SECRET_MINIO_SECRET_KEY}"
           s3forcepathstyle: true
           insecure: true
         boltdb_shipper:
@@ -38,15 +40,3 @@ spec:
 
     serviceMonitor:
       enabled: true
-
-  valuesFrom:
-    - kind: Secret
-      name: loki-s3
-      valuesKey: minio_access_key
-      targetPath: config.storage_config.aws.access_key_id
-      optional: false
-    - kind: Secret
-      name: loki-s3
-      valuesKey: minio_secret_key
-      targetPath: config.storage_config.aws.secret_access_key
-      optional: false
