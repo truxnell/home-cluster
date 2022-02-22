@@ -48,7 +48,7 @@ spec:
         disable_login_form: false
 
     datasources:
-      datasourceschart:
+      datasources.yaml:
         apiVersion: 1
         deleteDatasources:
           - name: Loki
@@ -77,6 +77,60 @@ spec:
             options:
               path: /var/lib/grafana/dashboards/default
 
+          - name: "cilium"
+            orgId: 1
+            folder: "cilium"
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/cilium
+
+          - name: "power"
+            orgId: 1
+            folder: "power"
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/power
+
+          - name: "unifi"
+            orgId: 1
+            folder: "unifi"
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/unifi
+
+          - name: "ceph"
+            orgId: 1
+            folder: "ceph"
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/ceph
+
+          - name: "flux"
+            orgId: 1
+            folder: "flux"
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/flux
+
+          - name: "organizarrs"
+            orgId: 1
+            folder: "organizarrs"
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/organizarrs
+
     dashboards:
       default:
         # Ref: https://grafana.com/grafana/dashboards/13502
@@ -89,6 +143,76 @@ spec:
           revision: 2
           datasource: Prometheus
 
+      cilium:
+        cilium-agent:
+          gnetId: 15513
+          revision: 1
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/15514
+        cilium-operator:
+          gnetId: 15514
+          revision: 1
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/15515
+        cilium-hubble:
+          gnetId: 15515
+          revision: 1
+          datasource: Prometheus
+
+      power:
+        # Ref: https://grafana.com/grafana/dashboards/14371
+        nut:
+          gnetId: 14371
+          revision: 1
+          datasource: Prometheus
+
+      unifi:
+        # Ref: https://grafana.com/grafana/dashboards/11315
+        unifi-client-insights:
+          gnetId: 11315
+          revision: 8
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/11311
+        unifi-network-sites:
+          gnetId: 11311
+          revision: 4
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/11314
+        unifi-uap-insights:
+          gnetId: 11314
+          revision: 9
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/11312
+        unifi-usw-insights:
+          gnetId: 11312
+          revision: 8
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/13646
+      ceph:
+        # Ref: https://grafana.com/grafana/dashboards/5336
+        ceph-cluster:
+          gnetId: 2842
+          revision: 14
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/5342
+        ceph-osd:
+          gnetId: 5336
+          revision: 5
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/7845
+        ceph-pools:
+          gnetId: 5342
+          revision: 5
+          datasource: Prometheus
+      flux:
+        flux-cluster:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/cluster.json
+          datasource: Prometheus
+        flux-control-plane:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
+          datasource: Prometheus
+
+      organizarrs:
         lidarr:
           url: https://raw.githubusercontent.com/k8s-at-home/grafana-dashboards/main/lidarr.json
           datasource: Prometheus
@@ -106,9 +230,6 @@ spec:
       dashboards:
         enabled: true
         searchNamespace: ALL
-        folderAnnotation: grafana_folder
-        provider:
-          foldersFromFilesStructure: true
       datasources:
         enabled: true
         searchNamespace: ALL
