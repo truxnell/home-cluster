@@ -24,7 +24,7 @@ spec:
       storage_config:
         aws:
           bucketnames: hegira-loki
-          endpoint: "minio.${CLUSTER_DOMAIN}:9000"
+          endpoint: "minio.${CLUSTER_DOMAIN}"
           access_key_id: "${SECRET_MINIO_ACCESS_KEY}"
           secret_access_key: "${SECRET_MINIO_SECRET_KEY}"
           s3forcepathstyle: true
