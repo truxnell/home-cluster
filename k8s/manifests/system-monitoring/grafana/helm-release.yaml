@@ -60,8 +60,63 @@ spec:
             options:
               path: /var/lib/grafana/dashboards/default
 
+          - name: "cilium"
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/cilium
+
+          - name: "power"
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/power
+
+          - name: "unifi"
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/unifi
+
+          - name: "ceph"
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/ceph
+
+          - name: "flux"
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/flux
+
+          - name: "organizarrs"
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/organizarrs
+
+
     datasources:
-      datasources.yaml:
+      datasourceschart: grafana.yaml:
         apiVersion: 1
         deleteDatasources:
           - name: Loki
