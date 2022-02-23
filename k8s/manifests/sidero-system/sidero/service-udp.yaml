@@ -8,7 +8,7 @@ metadata:
     app: sidero
   annotations:
     metallb.universe.tf/loadBalancerIPs: ${LB_SIDERO}
-    metallb.universe.tf/allow-shared-ip: metallb
+    metallb.universe.tf/allow-shared-ip: "metallb"
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
