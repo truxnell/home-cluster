@@ -6,6 +6,9 @@ metadata:
   namespace: flux-system
 data:
   CLUSTER_NAME: technocore
+  # Metallb ip's
+  LB_RANGE: "10.8.20.25-10.8.20.29"
+  LB_SIDERO: "10.8.20.29"
 
   # Sidero IP
   CL_0_SIDERO_IP: technocore.${CLUSTER_DOMAIN}
