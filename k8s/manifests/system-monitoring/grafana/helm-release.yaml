@@ -149,6 +149,10 @@ spec:
           gnetId: 13407
           revision: 1
           datasource: Prometheus
+        traefik:
+          gnetID: 12250
+          revision: 1
+          datasource: Prometheus
 
       cilium:
         cilium-agent:
