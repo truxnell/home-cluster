@@ -20,31 +20,28 @@ spec:
       repository: ghcr.io/k8s-at-home/pod-gateway
       tag: v1.4.0
 
+    DNS: 172.16.1.1
+
     routed_namespaces:
       - downloads
 
     publicPorts:
-      - hostname: qb #hostname assigned to the pod
+      - hostname: qbittorrent # hostname assigned to the pod
         IP: 10 # must be an integer between 2 and VXLAN_GATEWAY_FIRST_DYNAMIC_IP (20 by default)
         ports:
           - type: udp
-            port: ${SECRET_VPN_FORWARDED_PORT_1}
+            port: ${VPN_FORWARDED_PORT_1}
           - type: tcp
-            port: ${SECRET_VPN_FORWARDED_PORT_1}
+            port: ${VPN_FORWARDED_PORT_1}
 
     settings:
-      NOT_ROUTED_TO_GATEWAY_CIDRS: "172.16.0.0/12 ${NETWORK_K8S_POD_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVERS_CIDR}"
-      # tun0 for openvpn, wg0 for wireguard
       VPN_INTERFACE: wg0
-      # Prevent non VPN traffic to leave the gateway
-      VPN_BLOCK_OTHER_TRAFFIC: true
-      # If VPN_BLOCK_OTHER_TRAFFIC is true, allow VPN traffic over this port
-      VPN_TRAFFIC_PORT: ${VPN_PORT}
-      # Traffic to these IPs will be send through the K8S gateway
-      # change if your K8S cluster or home network uses a different CIDR
-      VPN_LOCAL_CIDRS: "172.16.0.0/12 ${NETWORK_K8S_POD_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVERS_CIDR}"
       VXLAN_ID: 43
       VXLAN_IP_NETWORK: 172.16.1
+      VPN_BLOCK_OTHER_TRAFFIC: true
+      VPN_TRAFFIC_PORT: "${VPN_PORT}"
+      NOT_ROUTED_TO_GATEWAY_CIDRS: "172.16.0.0/12 ${NETWORK_K8S_POD_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVERS_CIDR}"
+      VPN_LOCAL_CIDRS: "172.16.0.0/12 ${NETWORK_K8S_POD_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVERS_CIDR}"
 
     webhook:
       image:
@@ -55,19 +52,10 @@ spec:
       gatewayLabel: setGateway
       gatewayAnnotation: setGateway
 
-    # livenessProbe:
-    #   exec:
-    #     command:
-    #     - sh
-    #     - -c
-    #     - if [ $(wget -q -O- https://ipinfo.io/country) == '${VPN_COUNTRY}' ]; then exit 0; else exit $?; fi
-    #   initialDelaySeconds: 30
-    #   periodSeconds: 60
-    #   failureThreshold: 1
-
     addons:
       netshoot:
         enabled: true
+
       vpn:
         enabled: true
         type: wireguard
@@ -78,26 +66,36 @@ spec:
             tag: v1.0.20210914
             pullPolicy: IfNotPresent
 
-        # up: |-
-        #   #!/bin/bash
-        #   ${SECRET_VPN_CURL}
-        # securityContext:
-        #   runAsUser: 568
-        #   runAsGroup: 568
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          capabilities:
+            drop:
+              - "SYS_MODULE"
 
         env:
           TZ: "${TZ}"
           IPTABLES_BACKEND: nft
           KILLSWITCH: "false"
 
-        configFileSecret: vpn-gateway-vpnconfig
+        configFileSecret: downloads-gateway-vpnconfig
 
         resources:
           requests:
             cpu: "0.001"
-            memory: 128Mi
+            memory: 64Mi
           limits:
-            memory: 512Mi
+            memory: 128Mi
+
+        # livenessProbe:
+        #   exec:
+        #     command:
+        #       - sh
+        #       - -c
+        #       - if [ $(curl -s https://am.i.mullvad.net/country) = '${VPN_COUNTRY}' ]; then exit 0; else exit $?; fi
+        #   initialDelaySeconds: 30
+        #   periodSeconds: 60
+        #   failureThreshold: 1
 
         networkPolicy:
           enabled: true
@@ -107,12 +105,7 @@ spec:
                 - ipBlock:
                     cidr: 0.0.0.0/0
               ports:
-                # VPN traffic port - change if your provider uses a different port
                 - port: ${VPN_PORT}
                   protocol: UDP
             - to:
-                # Allow traffic within K8S - change if your K8S cluster uses a different CIDR
-                - ipBlock:
-                    cidr: ${NETWORK_K8S_SERVICE_CIDR}
-                - ipBlock:
-                    cidr: ${NETWORK_K8S_POD_CIDR}
+                - namespaceSelector: {}
