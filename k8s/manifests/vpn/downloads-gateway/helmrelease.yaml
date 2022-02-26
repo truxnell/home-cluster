@@ -30,9 +30,9 @@ spec:
         IP: 10 # must be an integer between 2 and VXLAN_GATEWAY_FIRST_DYNAMIC_IP (20 by default)
         ports:
           - type: udp
-            port: ${VPN_FORWARDED_PORT_1}
+            port: ${SECRET_VPN_FORWARDED_PORT_1}
           - type: tcp
-            port: ${VPN_FORWARDED_PORT_1}
+            port: ${SECRET_VPN_FORWARDED_PORT_1}
 
     settings:
       VPN_INTERFACE: wg0
