@@ -66,6 +66,8 @@ spec:
     #   failureThreshold: 1
 
     addons:
+      netshoot:
+        enabled: true
       vpn:
         enabled: true
         type: wireguard
