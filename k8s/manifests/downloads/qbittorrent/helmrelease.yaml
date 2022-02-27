@@ -72,6 +72,23 @@ spec:
               - *host
             secretName: &tls qbittorrent-${CLUSTER_NAME}-tls
 
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+      bittorrent:
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIP: ${LB_QBITTORRENT}
+        ports:
+          bittorrent:
+            enabled: true
+            port: ${VPN_FORWARDED_PORT_1}
+            protocol: TCP
+            targetPort: ${VPN_FORWARDED_PORT_1}
+        externalTrafficPolicy: Local
+
     resources:
       requests:
         cpu: "0.3"
@@ -81,4 +98,16 @@ spec:
 
     addons:
       netshoot:
+        enabled: false
+
+    metrics:
+      enabled: true
+      exporter:
+        image:
+          repository: docker.io/esanchezm/prometheus-qbittorrent-exporter
+          tag: v1.2.0
+      serviceMonitor:
+        interval: 1m
+        scrapeTimeout: 10s
+      prometheusRule:
         enabled: true
