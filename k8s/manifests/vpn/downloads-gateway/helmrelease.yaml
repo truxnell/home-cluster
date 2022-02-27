@@ -92,7 +92,7 @@ spec:
             command:
               - sh
               - -c
-              - if grep -q "You are connected to Mullvad." <<< "$(curl -s https://am.i.mullvad.net/connected)"; then exit 0; else exit $?; fi
+              - if [[ "$(curl -s https://am.i.mullvad.net/connected)" == *'You are connected to Mullvad.'* ]]; then echo 0; else echo $?; fi
           initialDelaySeconds: 30
           periodSeconds: 60
           failureThreshold: 1
