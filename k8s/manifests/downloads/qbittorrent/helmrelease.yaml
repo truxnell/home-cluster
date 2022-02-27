@@ -26,10 +26,6 @@ spec:
     podAnnotations:
       setGateway: "true"
 
-    podSecurityContext:
-      supplementalGroups:
-        - 65539
-
     settings:
       automaticPortSetup: false
 
