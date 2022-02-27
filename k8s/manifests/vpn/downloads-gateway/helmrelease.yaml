@@ -105,7 +105,7 @@ spec:
                 - ipBlock:
                     cidr: 0.0.0.0/0
               ports:
-                - port: ${VPN_PORT}
+                - port: ${SECRET_WIREGUARD_PORT}
                   protocol: UDP
             - to:
                 - namespaceSelector: {}
