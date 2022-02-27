@@ -63,14 +63,14 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: "cloud-download"
         hosts:
-          - host: &host "sabnzbd.${CLUSTER_DOMAIN}"
+          - host: &host "qbittorrent.${CLUSTER_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
               - *host
-            secretName: &tls sabnzbd-${CLUSTER_NAME}-tls
+            secretName: &tls qbittorrent-${CLUSTER_NAME}-tls
 
     resources:
       requests:
