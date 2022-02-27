@@ -6,6 +6,7 @@
 * Android tasker integration (vpn away from home)
 * pod-gateway for namespace routing
 
+
 # Generate token
 
 > Ref: https://mullvad.net/en/help/tag/wireguard/
