@@ -78,5 +78,7 @@ spec:
       advanced:
         log_output:
           - console
+        network_key: GENERATE
+        pan_id: GENERATE
       frontend:
         port: 8080
