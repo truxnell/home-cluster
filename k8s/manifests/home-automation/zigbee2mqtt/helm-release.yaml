@@ -67,7 +67,7 @@ spec:
       mqtt:
         base_topic: zigbee2mqtt
         server: "mqtt://mosquitto"
-        user: "admin"
+        user: "${SECRET_MOSQUITTO_USER}"
         password: "${SECRET_MOSQUITTO_PASS}"
       serial:
         port: "tcp://10.8.20.216.:6638"
