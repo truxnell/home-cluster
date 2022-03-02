@@ -20,7 +20,7 @@ spec:
       repository: ghcr.io/home-assistant/home-assistant
       tag: 2022.2.8
     env:
-      TZ: "${Tz}"
+      TZ: "${TZ}"
     # envFrom:
     #   - secretRef:
     #       name: home-assistant
