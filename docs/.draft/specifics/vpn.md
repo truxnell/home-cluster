@@ -24,3 +24,9 @@ Format:
 ```
 
 ```
+
+
+# Reverse-vpn
+
+Using unifi vpn, added l2tp to arch networkmanager
+had to disable all options but mschap/v2
