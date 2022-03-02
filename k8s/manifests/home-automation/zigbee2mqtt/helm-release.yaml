@@ -78,6 +78,7 @@ spec:
       advanced:
         log_output:
           - console
+        log_level: debug
         network_key: GENERATE
         pan_id: GENERATE
       frontend:
