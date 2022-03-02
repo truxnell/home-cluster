@@ -38,7 +38,7 @@ spec:
           external-dns/is-public: "false"
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
           traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
-          hajimari.io/enable: "false"
+          hajimari.io/enable: "true"
           hajimari.io/icon: "router-wireless-settings"
         hosts:
           - host: &host "zigbee2mqtt.${CLUSTER_DOMAIN}"
@@ -63,7 +63,8 @@ spec:
       limits:
         memory: 500Mi
 
-    config:
+    config: #This like doesnt go to the right spot - i manually edited the config.yaml in the pvc:(
+      # So i guess i dont get how this is supposed to be setup.
       homeassistant: true
       device_options:
         retain: true
