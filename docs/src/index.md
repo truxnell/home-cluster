@@ -9,7 +9,7 @@ This allows me to:
 * Allow for easy reinstall/disaster recovery of a cluster, as everything *except* persistent data is defined here.
 * Version control and declare hardware provisioning (Now using [Sidero & Talos](sidero-intro.md)), ensuring repeatable and robust hardware configuration.
     * This can be achieved with tools such as [Terraform](https://www.terraform.io) and [Ansible](https://www.ansible.com) for those wanting to use a more standard OS & deployment.
-* With [Sidero](sidero.dev) and [Talos](talos.dev), I can define and provision a cluster by plugging nodes into the network, and having them network PXE boot, install the OS Talos, and have a configuration file applied to them.  This automates and watches my cluster, with no manual intervention required.
+* With [Sidero](https://sidero.dev) and [Talos](https://talos.dev), I can define and provision a cluster by plugging nodes into the network, and having them network PXE boot, install the OS Talos, and have a configuration file applied to them.  This automates and watches my cluster, with no manual intervention required.
 
 # Tech Stack
 [<img src="images/mkdocs.png" alt="flux" style=";object-fit:cover;width:200px;height:100px"/>](https://www.mkdocs.org)
