@@ -110,7 +110,8 @@ nav:
   - Introduction: index.md
   - General:
       - Hardware: general/hardware.md
-
+  - Repository:
+      - Semantic Commits: repository/semantic-git-messages.md
   - Sidero & Talos:
       - Introduction: sidero/sidero-intro.md
       - Installation: sidero/sidero-install.md
