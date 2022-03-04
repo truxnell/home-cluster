@@ -112,6 +112,7 @@ nav:
       - Hardware: general/hardware.md
   - Repository:
       - Semantic Commits: repository/semantic-git-messages.md
+      - Folder Structure: repository/folder-structure.md
   - Sidero & Talos:
       - Introduction: sidero/sidero-intro.md
       - Installation: sidero/sidero-install.md
