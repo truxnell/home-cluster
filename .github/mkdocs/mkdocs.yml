@@ -1,6 +1,8 @@
 # Project information
 site_name: Truxnell | K8S Home-Cluster
-site_description: This repo is my homelab, declared in yaml and applied to my Kurbenetes cluster in a declarative gitOps fashion via flux.
+site_description: >-
+  This repo is my homelab, declared in yaml and applied to my 
+  Kurbenetes cluster in a declarative gitOps fashion via flux.
 site_author: Nat Allan
 site_url: https://truxnell.github.io/home-cluster
 
@@ -11,30 +13,39 @@ repo_url: https://github.com/Truxnell/home-cluster
 # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#edit-button
 edit_uri: "edit/main/docs/src/"
 
+# Configuration
 theme:
   name: material
-  # https://squidfunk.github.io/mkdocs-material/setup/changing-the-logo-and-icons/#logo
+
+  # Static files
+  static_templates:
+    - 404.html
+
   # logo: https://raspbernetes.github.io/img/logo.svg
-  # https://squidfunk.github.io/mkdocs-material/setup/changing-the-logo-and-icons/#favicon
   # favicon: https://raspbernetes.github.io/img/logo.svg
-  # https://squidfunk.github.io/mkdocs-material/setup/changing-the-language/#site-language
   language: en
-  # https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#color-palette
+
   palette:
     - scheme: default
       primary: blue
       accent: indigo
       toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
     - scheme: slate
       primary: blue
       accent: indigo
       toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#repository-icon
+        icon: material/toggle-switch
+        name: Switch to dark mode
+
   icon:
     repo: fontawesome/brands/github
+
+  font:
+    text: Roboto
+    code: Roboto Mono
+
   features:
     # https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-header/#automatic-hiding
     - header.autohide
@@ -48,6 +59,7 @@ theme:
     - search.suggest
     - navigation.instant
     - navigation.sections
+    - content.code.annotate
 
 docs_dir: ../../docs/src/
 
@@ -100,11 +112,18 @@ markdown_extensions:
   - pymdownx.tilde
   - pymdownx.progressbar
   - pymdownx.tasklist
-  - pymdownx.superfences
   - pymdownx.snippets
+  - pymdownx.inlinehilite
+  - pymdownx.highlight:
+      anchor_linenums: true
   # - pymdownx.emoji:
   #     emoji_index: !!python/name:materialx.emoji.twemoji
   #     emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 nav:
   - Introduction: index.md
@@ -119,6 +138,8 @@ nav:
   - Diagrams:
       - Network Map: diagrams/network-map.md
       - Cluster Map: diagrams/cluster-map.md
+  - Cluster:
+      - Bootstrap Worklow: cluster/bootstrap-workflow.md
   # - Get Started: get-started/index.md
   # - Guides:
   #     - Installation: guides/installation.md
