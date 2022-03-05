@@ -1,3 +1,7 @@
+---
+hide:
+  - toc
+---
 # Hardware
 
 The below lists the hardware and some specs of my homelab & network infrastructure
