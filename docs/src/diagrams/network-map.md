@@ -1,3 +1,7 @@
+---
+hide:
+  - toc
+---
 # Network Map
 
 A diagram map of my network, using [diagram.py](https://diagrams.mingrammer.com) plugin for mkdocs
