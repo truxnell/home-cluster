@@ -112,8 +112,13 @@ markdown_extensions:
   - pymdownx.tilde
   - pymdownx.progressbar
   - pymdownx.tasklist
-  - pymdownx.snippets
-  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path:
+        - ../../docs/src/
+        - ../../docs/_includes/
+      auto_append:
+        - abbreviations.md
+      check_paths: true
   - pymdownx.highlight:
       anchor_linenums: true
   # - pymdownx.emoji:
