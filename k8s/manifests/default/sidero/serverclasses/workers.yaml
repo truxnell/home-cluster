@@ -14,12 +14,12 @@ spec:
       value:
         rotate-server-certificates: true
 
-    # - op: add
-    #   path: /machine/time
-    #   value:
-    #     disabled: false
-    #     servers:
-    #       - 10.1.1.1
+    - op: add
+      path: /machine/time
+      value:
+        disabled: true
+        servers:
+          - time.cloudflare.com
 
     - op: add
       path: /machine/sysctls

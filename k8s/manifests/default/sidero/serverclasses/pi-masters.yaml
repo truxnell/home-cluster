@@ -14,6 +14,28 @@ spec:
           - console=ttyAMA0,115200
 
     - op: add
+      path: /machine/kubelet/extraArgs
+      value:
+        rotate-server-certificates: true
+        feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
+
+    - op: add
+      path: /machine/time
+      value:
+        disabled: true
+        servers:
+          - time.cloudflare.com
+
+    - op: replace
+      path: /cluster/proxy/disabled
+      value: true
+
+    - op: add
+      path: /cluster/apiServer/extraArgs
+      value:
+        feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
+
+    - op: add
       path: /machine/network/interfaces
       value:
         - interface: eth0
