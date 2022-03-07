@@ -1,3 +1,0 @@
-.gitattributes !filter !diff
-kubeconfig filter=git-crypt diff=git-crypt
-**/*.sops filter=git-crypt diff=git-crypt

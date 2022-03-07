@@ -28,23 +28,39 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: system-monitoring-thanos
-#   namespace: flux-system
-# spec:
-#   dependsOn:
-#     - name: system-monitoring-namespace
-#     - name: selfhosted-minio
-#   interval: 5m
-#   path: "./k8s/manifests/system-monitoring/thanos"
-#   prune: true
-#   wait: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: system-monitoring-kube-prom-stack-promrules
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: system-monitoring-namespace
+    - name: system-monitoring-kube-prom-stack
+  interval: 5m
+  path: "./k8s/manifests/system-monitoring/kube-prometheus-stack/prometheus-rules"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: system-monitoring-thanos
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: system-monitoring-namespace
+  interval: 5m
+  path: "./k8s/manifests/system-monitoring/thanos"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -62,23 +78,23 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: system-monitoring-grafana
-#   namespace: flux-system
-# spec:
-#   dependsOn:
-#     - name: system-monitoring-namespace
-#     - name: system-monitoring-kube-prom-stack
-#   interval: 5m
-#   path: "./k8s/manifests/system-monitoring/grafana"
-#   prune: true
-#   wait: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: system-monitoring-grafana
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: system-monitoring-namespace
+    - name: system-monitoring-kube-prom-stack
+  interval: 5m
+  path: "./k8s/manifests/system-monitoring/grafana"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -96,91 +112,57 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: system-monitoring-promtail
-#   namespace: flux-system
-# spec:
-#   dependsOn:
-#     - name: system-monitoring-namespace
-#     - name: system-monitoring-kube-prom-stack
-#   interval: 5m
-#   path: "./k8s/manifests/system-monitoring/promtail"
-#   prune: true
-#   wait: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: home-cluster
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: system-monitoring-loki
-#   namespace: flux-system
-# spec:
-#   dependsOn:
-#     - name: system-monitoring-namespace
-#     - name: system-monitoring-kube-prom-stack
-#   interval: 5m
-#   path: "./k8s/manifests/system-monitoring/loki"
-#   prune: true
-#   wait: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: home-cluster
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: system-monitoring-speedtest-exporter
-#   namespace: flux-system
-# spec:
-#   dependsOn:
-#     - name: system-monitoring-namespace
-#     - name: system-monitoring-kube-prom-stack
-#   interval: 5m
-#   path: "./k8s/manifests/system-monitoring/speedtest-exporter"
-#   prune: true
-#   wait: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: home-cluster
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: system-monitoring-node-problem-detector
-#   namespace: flux-system
-# spec:
-#   dependsOn:
-#     - name: system-monitoring-namespace
-#     - name: system-monitoring-kube-prom-stack
-#   interval: 5m
-#   path: "./k8s/manifests/system-monitoring/node-problem-detector"
-#   prune: true
-#   wait: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: home-cluster
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: system-monitoring-blackbox-exporter
+  name: system-monitoring-promtail
   namespace: flux-system
 spec:
   dependsOn:
     - name: system-monitoring-namespace
     - name: system-monitoring-kube-prom-stack
   interval: 5m
-  path: "./k8s/manifests/system-monitoring/blackbox-exporter"
+  path: "./k8s/manifests/system-monitoring/promtail"
   prune: true
   wait: true
   sourceRef:
     kind: GitRepository
     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: system-monitoring-loki
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: system-monitoring-namespace
+    - name: system-monitoring-kube-prom-stack
+  interval: 5m
+  path: "./k8s/manifests/system-monitoring/loki"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: system-monitoring-blackbox-exporter
+#   namespace: flux-system
+# spec:
+#   dependsOn:
+#     - name: system-monitoring-namespace
+#     - name: system-monitoring-kube-prom-stack
+#   interval: 5m
+#   path: "./k8s/manifests/system-monitoring/blackbox-exporter"
+#   prune: true
+#   wait: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: home-cluster
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -193,6 +175,40 @@ spec:
     - name: kube-system-reloader
   interval: 5m
   path: "./k8s/manifests/system-monitoring/ingress-monitor-controller"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: system-monitoring-ingress-monitor-controller-static
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: system-monitoring-namespace
+    - name: kube-system-reloader
+    - name: system-monitoring-ingress-monitor-controller
+  interval: 5m
+  path: "./k8s/manifests/system-monitoring/ingress-monitor-controller/static"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: system-monitoring-prometheus-smartctl
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: system-monitoring-namespace
+  interval: 5m
+  path: "./k8s/manifests/system-monitoring/prometheus-smartctl"
   prune: true
   wait: true
   sourceRef:

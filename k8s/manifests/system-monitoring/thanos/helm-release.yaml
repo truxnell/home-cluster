@@ -1,0 +1,69 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: thanos
+  namespace: system-monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: thanos
+      version: 9.0.2
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+  values:
+    query:
+      enabled: true
+      replicaLabels:
+        - replica
+
+      dnsDiscovery:
+        sidecarsService: prometheus-thanos-discovery
+        sidecarsNamespace: system-monitoring
+
+      ingress:
+        enabled: true
+        hostname: "thanos-cluster.${CLUSTER_NAME}.${CLUSTER_DOMAIN}"
+        ingressClassName: "traefik"
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+          external-dns/is-public: "false"
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "archive-clock"
+        tls: true
+
+    existingObjstoreSecret: thanos-objstore-secret
+
+    queryFrontend:
+      enabled: false
+
+    bucketweb:
+      enabled: true
+
+    compactor:
+      enabled: true
+      persistence:
+        enabled: false
+
+    storegateway:
+      enabled: true
+      persistence:
+        enabled: true
+        size: 5Gi
+
+    ruler:
+      enabled: false
+
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true

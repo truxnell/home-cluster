@@ -5,4 +5,4 @@ resources:
   - ./pvc.yaml
   - ./helm-release.yaml
   - ./endpoint-monitor.yaml
-  - ./probe.yaml
+  # - ./probe.yaml

@@ -20,9 +20,11 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/tautulli
-      tag: v2.8.1
+      tag: v2.9.4
+
     env:
       TZ: "${TZ}"
+
     ingress:
       main:
         enabled: true
@@ -34,6 +36,7 @@ spec:
           traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
           hajimari.io/enable: "true"
           hajimari.io/icon: "chart-bar"
+
         hosts:
           - host: &host "tautulli.${CLUSTER_DOMAIN}"
             paths:
@@ -43,10 +46,12 @@ spec:
           - hosts:
               - *host
             secretName: tautulli-${CLUSTER_NAME}-tls
+
     persistence:
       config:
         enabled: true
         existingClaim: tautulli-config-v1
+
       nfs-nas-backup:
         enabled: true
         type: custom
@@ -54,26 +59,12 @@ spec:
           nfs:
             server: ${NAS_ADDRESS}
             path: /volume1/backup/kubernetes/apps/tautulli
-        mountPath: /config/Backups
+        mountPath: /config/backups
         readOnly: false
+
     resources:
       requests:
         memory: 250Mi
         cpu: 500m
       limits:
         memory: 750Mi
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
-      pre.hook.backup.velero.io/container: fsfreeze
-      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
-      post.hook.backup.velero.io/container: fsfreeze
-      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
-    additionalContainers:
-      fsfreeze:
-        name: fsfreeze
-        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
-        volumeMounts:
-          - name: config
-            mountPath: /config
-        securityContext:
-          privileged: true

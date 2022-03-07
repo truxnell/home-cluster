@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: unifi-poller
-      version: 10.1.0
+      version: 10.2.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -25,8 +25,8 @@ spec:
       UP_UNIFI_DEFAULT_ROLE: "homelab-controller"
       UP_UNIFI_DEFAULT_URL: "https://${ROUTER_IP}"
       UP_UNIFI_DEFAULT_VERIFY_SSL: false
-      UP_UNIFI_DEFAULT_USER: "${UP_USER}"
-      UP_UNIFI_DEFAULT_PASS: "${UP_PASSWORD}"
+      UP_UNIFI_DEFAULT_USER: "${SECRET_UP_USER}"
+      UP_UNIFI_DEFAULT_PASS: "${SECRET_UP_PASSWORD}"
       UP_UNIFI_DEFAULT_SAVE_SITES: true
       UP_UNIFI_DEFAULT_SAVE_DPI: false
       UP_INFLUXDB_DISABLE: true

@@ -29,8 +29,10 @@ spec:
     image:
       repository: linuxserver/pyload
       tag: version-9564597e
+
     env:
       TZ: "Australia/Melbourne"
+
     persistence:
       config:
         enabled: true
@@ -38,19 +40,4 @@ spec:
       media:
         enabled: true
         existingClaim: leela-downloads-pvc
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
-      pre.hook.backup.velero.io/container: fsfreeze
-      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
-      post.hook.backup.velero.io/container: fsfreeze
-      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
-      secret.reloader.stakater.com/reload: "home-assistant"
-    additionalContainers:
-      fsfreeze:
-        name: fsfreeze
-        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
-        volumeMounts:
-          - name: config
-            mountPath: /config
-        securityContext:
-          privileged: true
+        

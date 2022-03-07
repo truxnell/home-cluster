@@ -6,4 +6,5 @@ resources:
   - hyperion
   - unifi
   # - brewpiless #FIXME
-  # - prusa
+  - prusa
+  - pikvm

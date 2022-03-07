@@ -18,9 +18,9 @@ spec:
   values:
     image:
       repository: ghcr.io/home-assistant/home-assistant
-      tag: 2021.12.10
+      tag: 2022.3.2
     env:
-      TZ: "${Tz}"
+      TZ: "${TZ}"
     # envFrom:
     #   - secretRef:
     #       name: home-assistant
@@ -60,32 +60,19 @@ spec:
         enabled: false
       startup:
         enabled: false
+
     persistence:
       config:
         enabled: true
         existingClaim: home-assistant-config-v1
     podAnnotations:
-      backup.velero.io/backup-volumes: config
-      pre.hook.backup.velero.io/container: fsfreeze
-      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
-      post.hook.backup.velero.io/container: fsfreeze
-      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
-      secret.reloader.stakater.com/reload: "home-assistant"
-    additionalContainers:
-      fsfreeze:
-        name: fsfreeze
-        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
-        volumeMounts:
-          - name: config
-            mountPath: /config
-        securityContext:
-          privileged: true
+
     addons:
       codeserver:
         enabled: true
         image:
           repository: ghcr.io/k8s-at-home/code-server
-          tag: v4.0.2
+          tag: v4.1.0
         env:
           TZ: "${Tz}"
         # git:
@@ -120,6 +107,7 @@ spec:
         volumeMounts:
           - name: config
             mountPath: /config
+
     resources:
       requests:
         cpu: 100m

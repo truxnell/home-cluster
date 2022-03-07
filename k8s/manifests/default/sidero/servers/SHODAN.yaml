@@ -13,7 +13,7 @@ spec:
       value: /dev/nvme0n1
     - op: add
       path: /machine/network/hostname
-      value: shodan.${CLUSTER_DOMAIN}
+      value: shodan
     - op: add
       path: /machine/sysctls
       value:
@@ -23,7 +23,7 @@ spec:
   cpu:
     manufacturer: Intel(R) Corporation
     version: Intel(R) Core(TM) i7-6770HQ CPU @ 2.60GHz
-  hostname: shodan.${CLUSTER_DOMAIN}
+  hostname: shodan
   pxeBootAlways: true
   system:
     family: KY

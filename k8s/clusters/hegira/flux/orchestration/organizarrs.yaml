@@ -126,3 +126,24 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: organizarrs-overseerr
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: organizarrs-namespace
+    - name: rook-ceph-cluster
+    - name: media-plex
+    - name: network-system-traefik
+    - name: organizarrs-sonarr
+    - name: organizarrs-radarr
+  interval: 5m
+  path: "./k8s/manifests/organizarrs/overseerr"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster

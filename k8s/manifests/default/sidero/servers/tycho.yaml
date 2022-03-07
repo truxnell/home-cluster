@@ -13,7 +13,7 @@ spec:
       value: /dev/sda
     - op: add
       path: /machine/network/hostname
-      value: tycho.${CLUSTER_DOMAIN}
+      value: tycho
     - op: add
       path: /machine/sysctls
       value:
@@ -23,7 +23,7 @@ spec:
   cpu:
     manufacturer: Intel(R) Corporation
     version: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz
-  hostname: tycho.${CLUSTER_DOMAIN}
+  hostname: tycho
   pxeBootAlways: true
   system:
     family: PA

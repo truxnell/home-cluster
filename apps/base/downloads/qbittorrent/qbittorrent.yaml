@@ -55,31 +55,16 @@ spec:
         mountPath: /shared
     podSecurityContext:
       supplementalGroups:
-        - 100
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
-      pre.hook.backup.velero.io/container: fsfreeze
-      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
-      post.hook.backup.velero.io/container: fsfreeze
-      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
-      secret.reloader.stakater.com/reload: "home-assistant"
-    additionalContainers:
-      fsfreeze:
-        name: fsfreeze
-        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
-        volumeMounts:
-          - name: config
-            mountPath: /config
-        securityContext:
-          privileged: true
+        -
+
     addons:
       vpn:
         enabled: true
         type: openvpn
         openvpn:
           auth: |
-            ${OPENVPN_USERNAME}
-            ${OPENVPN_PASSWORD}
+            ${SECRET_OPENVPN_USERNAME}
+            ${SECRET_OPENVPN_PASSWORD}
           image:
             repository: dperson/openvpn-client
             tag: latest
@@ -94,7 +79,7 @@ spec:
             command:
               - sh
               - -c
-              - if [ $(wget -q -O- https://ipinfo.io/country) == '${VPN_COUNTRY}' ]; then exit 0; else exit $?; fi
+              - if [ $(wget -q -O- https://ipinfo.io/country) == '${SECRET_VPN_COUNTRY}' ]; then exit 0; else exit $?; fi
           initialDelaySeconds: 30
           periodSeconds: 60
           failureThreshold: 3

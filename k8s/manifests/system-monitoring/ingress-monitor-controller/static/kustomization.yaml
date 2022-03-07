@@ -4,3 +4,4 @@ kind: Kustomization
 namespace: system-monitoring
 resources:
   - endpoint-monitor-website.yaml
+  - endpoint-monitor-mkdocs.yaml

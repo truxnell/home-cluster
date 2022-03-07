@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: plex
-      version: 6.1.0
+      version: 6.2.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -21,11 +21,11 @@ spec:
     # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/plex/values.yaml
     image:
       repository: ghcr.io/k8s-at-home/plex
-      tag: v1.25.2.5319-c43dc0277
+      tag: v1.25.6.5577-c8bd13540
     env:
       TZ: "${TZ}"
       ADVERTISE_IP: "https://plex.${CLUSTER_DOMAIN}:443/,http://${LB_PLEX}:32400/"
-      PLEX_CLAIM: "${PLEX_TOKEN}"
+      PLEX_CLAIM: "${SECRET_PLEX_TOKEN}"
 
     podSecurityContext:
       supplementalGroups:
@@ -97,48 +97,30 @@ spec:
         mountPath: /config/backup
         readOnly: false
 
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
-      pre.hook.backup.velero.io/container: fsfreeze
-      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
-      post.hook.backup.velero.io/container: fsfreeze
-      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
-      configmap.reloader.stakater.com/reload: "plex-promtail"
-
     resources:
       requests:
         cpu: 1000m
-        memory: 1000Mi
+        memory: 2000Mi
         gpu.intel.com/i915: 1
       limits:
         memory: 16000Mi
         gpu.intel.com/i915: 1
 
-    additionalContainers:
-      fsfreeze:
-        name: fsfreeze
-        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
+    addons:
+      promtail:
+        enabled: true
+        image:
+          repository: grafana/promtail
+          tag: 2.4.2
+        loki: http://loki.system-monitoring.svc.cluster.local:3100/loki/api/v1/push
+        logs:
+          - name: promtail/plex
+            path: "/config/Library/Application Support/Plex Media Server/Logs/*.log"
+          - name: promtail/plex/plugins
+            path: "/config/Library/Application Support/Plex Media Server/Logs/PMS Plugin Logs/*.log"
         volumeMounts:
           - name: config
             mountPath: /config
+            readOnly: true
         securityContext:
-          privileged: true
-
-    # addons:
-    #   promtail:
-    #     enabled: true
-    #     image:
-    #       repository: grafana/promtail
-    #       tag: 2.4.1
-    #     loki: http://loki.logs.svc.cluster.local:3100/loki/api/v1/push
-    #     logs:
-    #     - name: promtail/plex
-    #       path: "/config/Library/Application Support/Plex Media Server/Logs/*.log"
-    #     - name: promtail/plex/plugins
-    #       path: "/config/Library/Application Support/Plex Media Server/Logs/PMS Plugin Logs/*.log"
-    #     volumeMounts:
-    #     - name: config
-    #       mountPath: /config
-    #       readOnly: true
-    #     securityContext:
-    #       runAsUser: 0
+          runAsUser: 0

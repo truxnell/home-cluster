@@ -29,7 +29,7 @@ spec:
   values:
     image:
       repository: joplin/server
-      tag: latest@sha256:17100fc5349199b8398ede4f7079f0ecbfbc5cca5a9e5fbcb17660f9b8496330
+      tag: latest@sha256:aae29e18450f87f770ed2268077ec55eb938565ea58e75d8f229221322e6390c
     env:
       # env-sample: https://github.com/laurent22/joplin/blob/dev/.env-sample
       # Basic setup
@@ -38,19 +38,19 @@ spec:
       DB_CLIENT: pg
 
       # Posgres setup
-      POSTGRES_PASSWORD: ${JOPLIN_PASSWORD}
+      POSTGRES_PASSWORD: ${SECRET_JOPLIN_PASSWORD}
       POSTGRES_DATABASE: joplin
-      POSTGRES_USER: ${JOPLIN_USER}
+      POSTGRES_USER: ${SECRET_JOPLIN_USER}
       POSTGRES_PORT: 5432
       POSTGRES_HOST: ${POSTGRES_ADDRESS}
 
       # Mail setup
       MAILER_ENABLED: 1
-      MAILER_HOST: ${SMTP_HOST}
-      MAILER_PORT: ${SMTP_PORT}
+      MAILER_HOST: ${SECRET_SMTP_HOST}
+      MAILER_PORT: ${SECRET_SMTP_PORT}
       MAILER_SECURE: 1
-      MAILER_AUTH_USER: ${SMTP_USERNAME}
-      MAILER_AUTH_PASSWORD: ${SMTP_PASSWORD}
+      MAILER_AUTH_USER: ${SECRET_SMTP_USERNAME}
+      MAILER_AUTH_PASSWORD: ${SECRET_SMTP_PASSWORD}
       MAILER_NOREPLY_NAME: Joplin
       MAILER_NOREPLY_EMAIL: noreply@${CLUSTER_DOMAIN}
 
@@ -67,7 +67,7 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/icon: notebook-multiple
           hajimari.io/appName: joplin
-          prometheus.io/probe: "true"
+          # prometheus.io/probe: "true"
 
         hosts:
           - host: "joplin.${CLUSTER_DOMAIN}"

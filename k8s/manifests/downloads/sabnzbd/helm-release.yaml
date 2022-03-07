@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/sabnzbd
-      tag: v3.4.2
+      tag: v3.5.1
 
     env:
       TZ: "${TZ}"
@@ -68,15 +68,15 @@ spec:
       config:
         enabled: true
         existingClaim: sabnzbd-config-v1
-      # nfs-nas-media:
-      #   enabled: true
-      #   type: custom
-      #   volumeSpec: # FIXME How am i backing up this?
-      #     nfs:
-      #       server: ${NAS_ADDRESS}
-      #       path: /volume1/
-      #   mountPath: /media
-      #   readOnly: false
+      nfs-nas-media:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDRESS}
+            path: /volume1/
+        mountPath: /media
+        readOnly: false
 
     podSecurityContext:
       runAsUser: 1000
@@ -90,20 +90,3 @@ spec:
       requests:
         cpu: 1500m
         memory: 2000Mi
-
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
-      pre.hook.backup.velero.io/container: fsfreeze
-      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
-      post.hook.backup.velero.io/container: fsfreeze
-      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
-
-    additionalContainers:
-      fsfreeze:
-        name: fsfreeze
-        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
-        volumeMounts:
-          - name: config
-            mountPath: /config
-        securityContext:
-          privileged: true
