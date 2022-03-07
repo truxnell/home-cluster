@@ -26,7 +26,7 @@ spec:
     #         mountPath: /data
     image:
       repository: ghcr.io/k8s-at-home/node-red
-      tag: v2.2.0
+      tag: v2.2.2
     env:
       TZ: "${TZ}"
       NODE_RED_ENABLE_SAFE_MODE: "false"
@@ -57,23 +57,6 @@ spec:
         enabled: true
         existingClaim: node-red-config-v1
         mountPath: "/data"
-
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
-      pre.hook.backup.velero.io/container: fsfreeze
-      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/data"]'
-      post.hook.backup.velero.io/container: fsfreeze
-      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/data"]'
-
-    additionalContainers:
-      fsfreeze:
-        name: fsfreeze
-        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
-        volumeMounts:
-          - name: config
-            mountPath: /data
-        securityContext:
-          privileged: true
 
     resources:
       requests:

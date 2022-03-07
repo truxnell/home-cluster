@@ -24,7 +24,7 @@ spec:
       repository: bitnami/postgresql
       tag: 14.1.0
 
-    postgresqlPassword: "${POSTGRES_PASSWORD}"
+    postgresqlPassword: "${SECRET_POSTGRES_PASSWORD}"
     postgresqlDatabase: "postgres"
 
     metrics:
@@ -43,3 +43,7 @@ spec:
     commonAnnotations:
       prometheus.io/probe: "true"
       prometheus.io/protocol: "tcp"
+
+    # primary:
+    #   annotations:
+    #     kanister.kasten.io/blueprint: postgres-blueprint # FIXME

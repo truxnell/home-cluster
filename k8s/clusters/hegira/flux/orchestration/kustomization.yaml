@@ -10,6 +10,7 @@ resources:
   - ./flux-system.yaml
   - ./games.yaml
   - ./home-automation.yaml
+  - ./kasten-io.yaml
   - ./kube-system.yaml
   - ./media.yaml
   - ./network-system.yaml
@@ -21,5 +22,5 @@ resources:
   - ./system-monitoring.yaml
   # - ./system-security.yaml
   # - ./system.yaml
-  - ./velero.yaml
-  # - ./vpn.yaml
+  # - ./velero.yaml
+  - ./vpn.yaml

@@ -13,6 +13,8 @@ This repository is my homelab cluster, using tools such as [Flux2](https://githu
 
 Feel free to open a [Github issue](https://github.com/Truxnell/home-cluster/issues/new) if you have any questions!
 
+**Fledgling documentation avaliable at [https://k8s.voltaicforge.com](https://k8s.voltaicforge.com)**
+
 ## Tools
 
 | Tool         | Description                                                                                        |

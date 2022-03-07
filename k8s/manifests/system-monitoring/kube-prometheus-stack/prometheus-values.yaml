@@ -21,7 +21,9 @@ prometheus:
           - prometheus.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
 
   thanosService:
-    enabled: false
+    enabled: true
+  thanosServiceMonitor:
+    enabled: true
 
   prometheusSpec:
     replicas: 1
@@ -40,9 +42,12 @@ prometheus:
           resources:
             requests:
               storage: 10Gi
-    podMetadata:
-      annotations:
-        backup.velero.io/backup-volumes: prometheus-kube-prometheus-stack-prometheus-db
+    thanos:
+      image: quay.io/thanos/thanos:v0.25.0
+      version: v0.22.0
+      objectStorageConfig:
+        name: thanos-objstore-secret
+        key: objstore.yml
 
     additionalScrapeConfigs:
       - job_name: hyperion
@@ -52,7 +57,15 @@ prometheus:
           - targets:
               - ${NAS_ADDRESS}:9100
             labels:
-              app: "opnsense"
+              app: "synology"
+
+      - job_name: minio
+        honor_timestamps: true
+        metrics_path: /minio/v2/metrics/cluster
+        static_configs:
+          - targets:
+              - "${NAS_ADDRESS}:9000"
+
       - job_name: "kubernetes-ingresses"
         metrics_path: /probe
         scrape_interval: 60s
@@ -84,6 +97,7 @@ prometheus:
             target_label: kubernetes_namespace
           - source_labels: [__meta_kubernetes_ingress_name]
             target_label: kubernetes_name
+
       - job_name: "kubernetes-services-http"
         metrics_path: /probe
         scrape_interval: 60s

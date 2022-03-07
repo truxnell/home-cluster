@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: foundryvtt
-      version: 3.1.0
+      version: 3.2.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -28,26 +28,13 @@ spec:
     image:
       repository: felddy/foundryvtt
       tag: 9.238.0
+
     env:
       TZ: ${TZ}
-      FOUNDRY_USERNAME: ${FOUNDRY_USERNAME}
+      SECRET_FOUNDRY_USERNAME: ${SECRET_FOUNDRY_USERNAME}
       FOUNDRY_PASSWORD: ${FOUNDRY_PASSWORD}
+
     persistence:
       config:
         enabled: true
         existingClaim: foundryvtt-config-v1
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
-      pre.hook.backup.velero.io/container: fsfreeze
-      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
-      post.hook.backup.velero.io/container: fsfreeze
-      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
-    additionalContainers:
-      fsfreeze:
-        name: fsfreeze
-        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
-        volumeMounts:
-          - name: config
-            mountPath: /config
-        securityContext:
-          privileged: true

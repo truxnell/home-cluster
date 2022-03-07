@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: stakater/ingressmonitorcontroller
-      tag: v2.1.14
+      tag: v2.1.15
 
     kube-rbac-proxy:
       image:

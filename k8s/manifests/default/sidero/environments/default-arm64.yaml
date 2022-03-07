@@ -6,7 +6,7 @@ metadata:
   namespace: default
 spec:
   kernel:
-    url: "https://github.com/talos-systems/talos/releases/download/v0.14.0/vmlinuz-arm64"
+    url: "https://github.com/talos-systems/talos/releases/download/v1.0.0.beta.0/vmlinuz-arm64"
     args:
       - console=tty0
       - console=ttyS1,115200n8
@@ -25,4 +25,4 @@ spec:
       - talos.config=http://technocore.${CLUSTER_DOMAIN}:8081/configdata?uuid=
       - talos.platform=metal
   initrd:
-    url: "https://github.com/talos-systems/talos/releases/download/v0.14.0/initramfs-arm64.xz"
+    url: "https://github.com/talos-systems/talos/releases/download/v1.0.0.beta.0/initramfs-arm64.xz"

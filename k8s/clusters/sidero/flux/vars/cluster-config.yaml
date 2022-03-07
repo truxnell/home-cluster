@@ -6,6 +6,9 @@ metadata:
   namespace: flux-system
 data:
   CLUSTER_NAME: technocore
+  # Metallb ip's
+  LB_RANGE: "10.8.20.25-10.8.20.29"
+  LB_SIDERO: "10.8.20.29"
 
   # Sidero IP
   CL_0_SIDERO_IP: technocore.${CLUSTER_DOMAIN}
@@ -14,9 +17,6 @@ data:
   # hegira master ip range is 10.8.20.3x
   # hegira workers ip range is 10.8.20.4x
   CL_0_CP_IP: 10.8.20.39
-
-  # Master IP's
-  CL_0_MASTER_0_IP: leela.${CLUSTER_DOMAIN}
 
   # Worker IP's
   CL_0_WORKER_0_IP: 10.8.20.41

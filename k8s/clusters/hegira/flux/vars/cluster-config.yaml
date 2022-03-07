@@ -11,6 +11,7 @@ data:
 
   NETWORK_K8S_POD_CIDR: 10.244.0.0/16
   NETWORK_K8S_SERVICE_CIDR: 10.96.0.0/16
+  NETWORK_SERVERS_CIDR: 10.8.20.0/24
 
   # xerxes
   WORKER01_HOSTNAME: 10.8.20.40
@@ -42,6 +43,5 @@ data:
   # Device IP's
   ROUTER_IP: "unifi"
   NAS_ADDRESS: "hyperion.lab"
-  VPN_PORT: "443"
   POSTGRES_ADDRESS: postgresql.databases.svc.cluster.local
   REDIS_ADDRESS: redis-master-0.databases.svc.cluster.local

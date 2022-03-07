@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: metallb
-      version: 2.5.16
+      version: 2.6.2
       sourceRef:
         kind: HelmRepository
         name: bitnami-charts
@@ -24,14 +24,14 @@ spec:
     controller:
       image:
         repository: metallb/controller
-        tag: v0.11.0
+        tag: v0.12.1
       podAnnotations:
         configmap.reloader.stakater.com/reload: "metallb-config"
 
     speaker:
       image:
         repository: metallb/speaker
-        tag: v0.11.0
+        tag: v0.12.1
       podAnnotations:
         configmap.reloader.stakater.com/reload: "metallb-config"
 

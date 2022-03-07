@@ -13,7 +13,7 @@ spec:
       value: /dev/sda
     - op: add
       path: /machine/network/hostname
-      value: xerxes.${CLUSTER_DOMAIN}
+      value: xerxes
     - op: add
       path: /machine/sysctls
       value:
@@ -23,7 +23,7 @@ spec:
   cpu:
     manufacturer: Intel(R) Corporation
     version: Intel(R) Core(TM) i5-8259U CPU @ 2.30GHz
-  hostname: xerxes.${CLUSTER_DOMAIN}
+  hostname: xerxes
   pxeBootAlways: true
   system:
     family: BE

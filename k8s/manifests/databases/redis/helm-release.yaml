@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: redis
-      version: 16.2.0
+      version: 16.2.1
       sourceRef:
         kind: HelmRepository
         name: bitnami-charts
@@ -20,21 +20,21 @@ spec:
     architecture: standalone
 
     auth:
-      password: ${REDIS_PASSWORD}
+      password: ${SECRET_AUTHENTIK_REDIS_PASSWORD}
 
-    master:
-      service:
-        annotations:
-          prometheus.io/probe: "true"
-          prometheus.io/protocol: tcp
+    # master:
+    #   service:
+    #     annotations:
+    #       prometheus.io/probe: "true"
+    #       prometheus.io/protocol: tcp
 
     replica:
       persistence:
         enabled: false
-      service:
-        annotations:
-          prometheus.io/probe: "true"
-          prometheus.io/protocol: tcp
+      # service:
+      #   annotations:
+      #     prometheus.io/probe: "true"
+      #     prometheus.io/protocol: tcp
 
     sentinal:
       enabled: true

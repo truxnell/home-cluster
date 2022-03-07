@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: vaultwarden
-      version: 3.3.1
+      version: 4.0.1
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -20,28 +20,21 @@ spec:
     # Values YAML: https://github.com/k8s-at-home/charts/blob/master/charts/stable/vaultwarden/values.yaml
     image:
       repository: ghcr.io/k8s-at-home/vaultwarden
-      tag: v1.23.0
-
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
-      pre.hook.backup.velero.io/container: fsfreeze
-      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/data"]'
-      post.hook.backup.velero.io/container: fsfreeze
-      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/data"]'
+      tag: v1.24.0
 
     env:
       DATA_FOLDER: "config"
       DOMAIN: https://vault.${CLUSTER_DOMAIN}
-      DATABASE_URL: ${VAULTWARDEN_DATABASE_URL}
-      ADMIN_TOKEN: ${VAULTWARDEN_ADMIN_TOKEN}
+      DATABASE_URL: ${SECRET_VAULTWARDEN_DATABASE_URL}
+      ADMIN_TOKEN: ${SECRET_VAULTWARDEN_ADMIN_TOKEN}
       SIGNUPS_ALLOWED: "false"
       SMTP_FROM_NAME: Vault
       SMTP_FROM: vault@${CLUSTER_DOMAIN}
-      SMTP_HOST: ${SMTP_HOST}
-      SMTP_PORT: ${SMTP_PORT}
+      SMTP_HOST: ${SECRET_SMTP_HOST}
+      SMTP_PORT: ${SECRET_SMTP_PORT}
       SMTP_SSL: "true"
-      SMTP_USERNAME: ${SMTP_USERNAME}
-      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_USERNAME: ${SECRET_SMTP_USERNAME}
+      SMTP_PASSWORD: ${SECRET_SMTP_PASSWORD}
       TZ: "${TZ}"
       WEBSOCKET_ADDRESS: 0.0.0.0
       WEBSOCKET_ENABLED: true
@@ -103,13 +96,3 @@ spec:
         cpu: 100m
       limits:
         memory: 2000Mi
-
-    additionalContainers:
-      fsfreeze:
-        name: fsfreeze
-        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
-        volumeMounts:
-          - name: config
-            mountPath: /data
-        securityContext:
-          privileged: true
