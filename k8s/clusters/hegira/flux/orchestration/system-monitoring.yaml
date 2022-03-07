@@ -198,3 +198,19 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: system-monitoring-prometheus-smartctl
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: system-monitoring-namespace
+  interval: 5m
+  path: "./k8s/manifests/system-monitoring/prometheus-smartctl"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
