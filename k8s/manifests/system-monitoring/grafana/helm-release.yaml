@@ -150,13 +150,13 @@ spec:
           revision: 1
           datasource: Prometheus
         traefik:
-          gnetID: 12250
+          gnetId: 12250
           revision: 1
           datasource: Prometheus
         node-problem-detector:
-          gnetID: 15549
+          gnetId: 15549
           revision: 1
-          datasource: Prometheus
+          datasource: Prometeus
 
       cilium:
         cilium-agent:
