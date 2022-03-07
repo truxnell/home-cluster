@@ -157,6 +157,10 @@ spec:
           gnetId: 15549
           revision: 1
           datasource: Prometeus
+        node-exporter-full:
+          url: https://grafana.com/api/dashboards/1860/revisions/22/download
+          datasource: Prometheus
+
 
       cilium:
         cilium-agent:
