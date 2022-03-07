@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pikvm
+  namespace: network-system
+spec:
+  type: ExternalName
+
+  ports:
+    - name: https
+      port: 443
+  externalName: 10.8.20.60
