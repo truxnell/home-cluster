@@ -75,7 +75,7 @@ spec:
         user: "${SECRET_MOSQUITTO_USER}"
         password: "${SECRET_MOSQUITTO_PASS}"
       serial:
-        port: "tcp://10.8.20.216:6638"
+        port: "tcp://${ZIGBEE_POE_COORDINATOR}:6638"
       advanced:
         log_output:
           - console
