@@ -47,7 +47,7 @@ repos:
           )$
 
   - repo: https://github.com/sirosen/texthooks
-    rev: 0.2.2
+    rev: 0.3.1
     hooks:
       - id: fix-smartquotes
       - id: fix-ligatures
