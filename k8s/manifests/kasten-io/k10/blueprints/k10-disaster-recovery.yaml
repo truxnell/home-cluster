@@ -18,7 +18,7 @@ actions:
                 imagePullPolicy: IfNotPresent
                 env:
                   - name: TZ
-                    value: America/New_York
+                    value: ${TZ}
                 volumeMounts:
                   - name: rclone-conf
                     mountPath: /config
@@ -45,4 +45,4 @@ actions:
             - "--checkers"
             - "24"
             - "/mnt/k10-backups/k10-disaster-recovery"
-            - "b2:k10-disaster-recovery-eKv4wYXE/"
+            - "b2:trux-k10-dr/"
