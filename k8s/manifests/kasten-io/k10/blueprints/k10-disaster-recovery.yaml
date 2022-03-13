@@ -20,14 +20,14 @@ actions:
                   - name: TZ
                     value: ${TZ}
                 volumeMounts:
-                  - name: rclone-conf
+                  - name: rclone-config
                     mountPath: /config
                   - name: k10-backups
                     mountPath: /mnt/k10-backups
             volumes:
-              - name: rclone-conf
+              - name: rclone-config
                 secret:
-                  secretName: rclone-conf
+                  secretName: rclone-config
               - name: k10-backups
                 persistentVolumeClaim:
                   claimName: k10-backups
