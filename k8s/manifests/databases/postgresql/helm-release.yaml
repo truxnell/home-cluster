@@ -27,6 +27,9 @@ spec:
     postgresqlPassword: "${SECRET_POSTGRES_PASSWORD}"
     postgresqlDatabase: "postgres"
 
+    auth:
+      database: postgres
+
     metrics:
       enabled: true
       serviceMonitor:
