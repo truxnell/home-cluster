@@ -23,17 +23,18 @@ spec:
       registry: quay.io
       repository: bitnami/postgresql
       tag: 14.2.0
-
-    postgresqlPassword: "${SECRET_POSTGRES_PASSWORD}"
-    postgresqlDatabase: "postgres"
+    postgresql:
+      auth:
+        postgresPassword: "${SECRET_POSTGRES_PASSWORD}"
+        database: "postgres"
 
     # auth:
     #   database: postgres
 
     metrics:
-      enabled: false
+      enabled: true
       serviceMonitor:
-        enabled: false
+        enabled: true
 
     persistence:
       size: 10Gi
