@@ -1,165 +1,179 @@
 {
-  enabled: true,
-  timezone: "Australia/Melbourne",
-  semanticCommits: "enabled",
-  dependencyDashboard: true,
-  dependencyDashboardTitle: "Renovate Dashboard 🤖",
-  commitBody: "Signed-off-by: Nat Allan <19149206+Truxnell@users.noreply.github.com>",
-  suppressNotifications: ["prIgnoreNotification"],
-  rebaseWhen: "conflicted",
-  kubernetes: {
-    fileMatch: [
-      "k8s/manifests/.+\\.yaml$"
-    ],
+  // General RenovateBot configuration
+  "extends": [
+    ":enableRenovate",
+    "config:base",
+    ":disableRateLimiting",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":separatePatchReleases",
+    "docker:enableMajor",
+    ":enablePreCommit",
+    "github>Truxnell/home-cluster//.github/renovate/commitMessage",
+    "github>bjw-s/home-cluster//.github/renovate/labels",
+    "github>bjw-s/home-cluster//.github/renovate/semanticCommits",
+    // "github>bjw-s/home-cluster//.github/renovate/allowedVersions",
+    "github>bjw-s/home-cluster//.github/renovate/autoMerge"
+    // "github>bjw-s/home-cluster//.github/renovate/updateSchedule",
+  ],
+  "platform": "github",
+  "username": "bjw-s-bot[bot]",
+  "repositories": ["bjw-s/home-ops"],
+  "onboarding": false,
+  "requireConfig": false,
+  "gitAuthor": "Trux-Bot <19149206+Truxnell@users.noreply.github.com>",
+  "timezone": "Australia/Melbourne",
+  "dependencyDashboardTitle": "Renovate Dashboard 🤖",
+  "suppressNotifications": ["prIgnoreNotification"],
+  "rebaseWhen": "conflicted",
+  // Set up Renovate Managers
+  "helmv3": {
+    "fileMatch": ["k8s/charts/.+/Chart\\.yaml$"]
   },
   "helm-values": {
-    fileMatch: [
-      "k8s/manifests/.+\\.yaml$"
+    "fileMatch": [
+      "k8s/manifests/.+/helm-release\\.yaml$",
+      "k8s/global/.+/helm-release\\.yaml$"
+    ]
+  },
+  "kubernetes": {
+    "fileMatch": [
+      "k8s/manifests/.+\\.yaml$",
+      "k8s/global/.+\\.yaml$"
     ],
   },
-  regexManagers: [
+  "flux": {
+   "fileMatch": [
+     "k8s/mainfests/.+\\.yaml$",
+     "k8s/global/.+\\.yaml$"
+   ]
+  },
+  "regexManagers": [
+    // regexManager to read and process GitHub release artifacts
     {
-      fileMatch: [
-        "k8s/manifests/.+\\.yaml$"
+      "fileMatch": [
+        "k8s/manifests/.+\\.yaml$",
+        "k8s/global/.+\\.yaml$"
       ],
-      matchStrings: [
-        "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n",
+      "matchStrings": [
+        "https:\/\/github.com\/(?<org>.*=?)\/(?<repo>.*=?)\/releases\/download\/(?<currentValue>.*=?)\/.*"
       ],
-      datasourceTemplate: "helm",
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "{{org}}/{{repo}}"
     },
+    // Generic Regex Manager
     {
-      fileMatch: ["k8s/manifests/cert-manager/.+\\.yaml$"],
-      matchStrings: [
-        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/",
+      "fileMatch": [
+        "k8s/manifests/.+\\.yaml$",
+        "k8s/global/.+\\.yaml$"
       ],
-      datasourceTemplate: "helm",
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<currentValue>.*=?)"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+      "registryUrlTemplate": "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}"
     },
+    // Generic Docker image Regex manager
     {
-      fileMatch: ["k8s/manifests/system-monitoring/kube-prometheus-stack/.+\\.yaml$"],
-      matchStrings: [
-        "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n",
+      "fileMatch": [
+        "k8s/manifests/.+\\.yaml$",
+        "k8s/global/.+\\.yaml$"
       ],
-      datasourceTemplate: "helm",
-    },
-    {
-      fileMatch: ["k8s/manifests/rook-ceph/.+\\.yaml$"],
-      matchStrings: [
-        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: (?<currentValue>.*)\n",
+      "matchStrings": [
+        "# renovate: docker-image( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<depName>.*?):(?<currentValue>.*=?)"
       ],
-      datasourceTemplate: "helm",
-    },
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}docker{{/if}}",
+      "registryUrlTemplate": "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}"
+    }
   ],
-  packageRules: [
+  "packageRules": [
+    // Setup datasources
     {
-      matchDatasources: ["helm"],
-      semanticCommitScope: "charts",
-      separateMinorPatch: true,
-      ignoreDeprecated: true,
+      "matchDatasources": ["helm"],
+      "ignoreDeprecated": true
     },
     {
-      matchDatasources: ["docker"],
-      enabled: true,
-      matchUpdateTypes: ["major", "minor", "patch"],
+      "matchDatasources": ["docker"],
+      "commitMessageExtra": "to {{newVersion}}",
+    },
+    // Custom version schemes
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["blakeblackshear/frigate"],
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$"
     },
     {
-      matchDatasources: ["docker"],
-      semanticCommitScope: "images",
-      separateMinorPatch: true,
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["xirixiz/dsmr-reader-docker"],
+      "versioning": "regex:^(?<compatibility>.*)-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
     },
     {
-      matchDatasources: ["docker"],
-      matchUpdateTypes: ["major"],
-      commitMessagePrefix: "feat(images)!: ",
-      labels: ["renovate/image", "dep/major"],
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["quay.io/minio/minio"],
+      "versioning": "regex:^RELEASE\\.(?<major>\\d{4})-(?<minor>\\d{2})-(?<patch>\\d{2})"
     },
     {
-      matchDatasources: ["docker"],
-      matchUpdateTypes: ["minor"],
-      semanticCommitType: "feat",
-      labels: ["renovate/image", "dep/minor"],
-    },
-    {
-      matchDatasources: ["docker"],
-      matchUpdateTypes: ["patch"],
-      semanticCommitType: "fix",
-      labels: ["renovate/image", "dep/patch"],
-    },
-    {
-      matchDatasources: ["helm"],
-      matchUpdateTypes: ["major"],
-      commitMessagePrefix: "feat(charts)!: ",
-      labels: ["renovate/helm", "dep/major"],
-    },
-    {
-      matchDatasources: ["helm"],
-      matchUpdateTypes: ["minor"],
-      semanticCommitType: "feat",
-      labels: ["renovate/helm", "dep/minor"],
-    },
-    {
-      matchDatasources: ["helm"],
-      matchUpdateTypes: ["patch"],
-      semanticCommitType: "fix",
-      labels: ["renovate/helm", "dep/patch"],
-    },
-    {
-      matchDatasources: ["docker"],
-      versioning: "loose",
-      matchPackageNames: [
-        "ghcr.io/k8s-at-home/plex",
-        "ghcr.io/k8s-at-home/qbittorrent",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": [
+        "ghcr.io/linuxserver/calibre",
+        "ghcr.io/linuxserver/calibre-web"
       ],
+      "versioning": "regex:^version-v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
     },
     {
-      matchDatasources: ["docker"],
-      automerge: true,
-      automergeType: "branch",
-      requiredStatusChecks: null,
-      matchUpdateTypes: ["minor", "patch", "digest"],
-      matchPackageNames: [
-        "flaresolverr/flaresolverr",
-        "ghcr.io/k8s-at-home/jackett",
-        "ghcr.io/k8s-at-home/plex",
-        "ghcr.io/k8s-at-home/radarr",
-        "ghcr.io/k8s-at-home/sonarr",
-        "ghcr.io/k8s-at-home/lidarr",
-        "ghcr.io/k8s-at-home/qbittorrent",
-        "ghcr.io/k8s-at-home/nzbget",
-        "ghcr.io/k8s-at-home/nzbhydra2",
-        "ghcr.io/k8s-at-home/prowlarr",
-        "ghcr.io/k8s-at-home/readarr-nightly",
-        "ghcr.io/k8s-at-home/qbittorrent",
-        "ghcr.io/k8s-at-home/prowlarr",
-        "ghcr.io/k8s-at-home/sabnzbd",
-        "joplin/server",
-        "jacobalberty/unifi",
-        "linuxserver/calibre-web",
-        "linuxserver/pyload",
-        "vexorian/dizquetv",
-        "b4bz/homer",
-        "sctx/overseerr",
-        "b4bz/homer",
-        "vexorian/dizquetv",
-        "joplin/server",
-        "grafana/grafana",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": [
+        "ghcr.io/airsonic-advanced/airsonic-advanced"
       ],
-      schedule: ["after 2am, before 8am"],
+      "versioning": "regex:^edge-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-SNAPSHOT\\.(?<build>\\d+)$"
+    },
+    // Version strategies
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": [
+        "ghcr.io/k8s-at-home/plex",
+        "ghcr.io/k8s-at-home/qbittorrent"
+      ],
+      "versioning": "loose"
     },
     {
-      matchDatasources: ["helm", "docker"],
-      automerge: false,
-      requiredStatusChecks: null,
-      matchUpdateTypes: ["major", "minor", "patch", "digest"],
-      groupName: "Factorio Servers",
-      labels: ["automerge-servers"],
-      matchPackageNames: ["factoriotools/factorio"],
+      "matchDatasources": ["docker"],
+      "matchPackageNames": [
+        "tomsquest/docker-radicale"
+      ],
+      "versioning": "pep440"
+    },
+    // Group packages
+    {
+      "matchDatasources": ["helm", "docker"],
+      "matchPackagePatterns": ["^rook.ceph"],
+      "groupName": "rook-ceph-suite",
+      "additionalBranchPrefix": "",
+      "separateMinorPatch": true,
     },
     {
-      matchDatasources: ["helm", "docker"],
-      matchPackagePatterns: ["^rook.ceph"],
-      groupName: "rook-ceph-suite",
-      additionalBranchPrefix: "",
-      separateMinorPatch: true,
+      "matchDatasources": ["docker"],
+      "matchPackageNames": [
+        "k8s.gcr.io/kube-apiserver",
+        "k8s.gcr.io/kube-controller-manager",
+        "k8s.gcr.io/kube-scheduler",
+        "ghcr.io/talos-systems/kubelet"
+      ],
+      "groupName": "kubernetes",
+      "additionalBranchPrefix": "",
+      "separateMinorPatch": true,
+    },
+    {
+      "matchDatasources": ["helm", "docker"],
+      "matchPackageNames": [
+        "quay.io/cilium/cilium",
+        "quay.io/cilium/operator-generic",
+        "cilium",
+      ],
+      "groupName": "cilium",
+      "additionalBranchPrefix": "",
+      "separateMinorPatch": true,
     }
   ]
 }

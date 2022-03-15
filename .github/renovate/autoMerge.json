@@ -1,0 +1,64 @@
+{
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "automerge": true,
+      "automergeType": "branch",
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackageNames": [
+        "flaresolverr/flaresolverr",
+        "ghcr.io/k8s-at-home/jackett",
+        "ghcr.io/k8s-at-home/plex",
+        "ghcr.io/k8s-at-home/radarr",
+        "ghcr.io/k8s-at-home/sonarr",
+        "ghcr.io/k8s-at-home/lidarr",
+        "ghcr.io/k8s-at-home/qbittorrent",
+        "ghcr.io/k8s-at-home/nzbget",
+        "ghcr.io/k8s-at-home/nzbhydra2",
+        "ghcr.io/k8s-at-home/prowlarr",
+        "ghcr.io/k8s-at-home/readarr-nightly",
+        "ghcr.io/k8s-at-home/qbittorrent",
+        "ghcr.io/k8s-at-home/prowlarr",
+        "ghcr.io/k8s-at-home/sabnzbd",
+        "joplin/server",
+        "linuxserver/calibre-web",
+        "linuxserver/pyload",
+        "vexorian/dizquetv",
+        "b4bz/homer",
+        "sctx/overseerr",
+        "b4bz/homer",
+        "vexorian/dizquetv",
+        "joplin/server",
+        "grafana/grafana"
+      ],
+      "schedule": ["after 2am, before 8am"]
+
+    },
+    {
+      "matchDatasources": ["helm"],
+      "automerge": true,
+      "automergeType": "branch",
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackageNames": ["kube-prometheus-stack"]
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "automerge": true,
+      "automergeType": "branch",
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": ["minor", "patch"],
+      "excludePackageNames": ["lycheeverse/lychee-action"]
+    },
+    {
+      "matchDatasources": ["helm", "docker"],
+      "automerge": false,
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": ["major", "minor", "patch", "digest"],
+      "groupName": "Factorio Servers",
+      "labels": ["automerge-servers"],
+      "matchPackageNames": ["factoriotools/factorio"],
+    },
+  ]
+}
