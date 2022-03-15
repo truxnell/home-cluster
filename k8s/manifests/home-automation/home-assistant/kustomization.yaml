@@ -5,4 +5,4 @@ resources:
   - config-pvc.yaml
   # - code-server-ssh-key.sops.yaml
   # - home-assistant.sops.yaml
-  - helm-release.yaml
+  - helmrelease.yaml
