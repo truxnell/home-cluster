@@ -23,10 +23,11 @@ spec:
       registry: quay.io
       repository: bitnami/postgresql
       tag: 14.2.0
-    postgresql:
-      auth:
-        postgresPassword: "${SECRET_POSTGRES_PASSWORD}"
-        database: "postgres"
+    global:
+      postgresql:
+        auth:
+          postgresPassword: "${SECRET_POSTGRES_PASSWORD}"
+          database: "postgres"
 
     # auth:
     #   database: postgres
