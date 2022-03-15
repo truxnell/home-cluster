@@ -58,7 +58,7 @@
       "matchUpdateTypes": ["major", "minor", "patch", "digest"],
       "groupName": "Factorio Servers",
       "labels": ["automerge-servers"],
-      "matchPackageNames": ["factoriotools/factorio"],
-    },
+      "matchPackageNames": ["factoriotools/factorio"]
+    }
   ]
 }
