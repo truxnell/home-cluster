@@ -130,11 +130,11 @@ This enables multiple clusters to re-use the exact same manifests - often using 
     └── downloads/                      # (1)
         ├── qbittorrent/                # (2)
         │   ├── config-pvc.yaml         # (3)
-        │   ├── helm-release.yaml       # (4)
+        │   ├── helmrelease.yaml       # (4)
         │   └── kustomization.yaml      # (5)
         ├── sabnzbd/                    # (8)
         │   ├── config-pvc.yaml         # (9)
-        │   ├── helm-release.yaml       # (10)
+        │   ├── helmrelease.yaml       # (10)
         │   └── kustomization.yaml      # (11)
         ├── namespace.yaml              # (6)
         └── kustomization.yaml          # (7)
@@ -144,13 +144,13 @@ This enables multiple clusters to re-use the exact same manifests - often using 
     2.  App folder
     3.  App persistent volume claim - usually named `app_name-config-v1`.  The version control `v1` allows easy upgrade to pvc's if we want to change sizing.
     4.  Helm release for app
-    5.  Kustomization, calling the config-pvc.yaml and helm-release.yaml
+    5.  Kustomization, calling the config-pvc.yaml and helmrelease.yaml
     6.  Namespace resource file
     7.  Kustomize for namespace only.  Note this file, unlike other repos, does not call upon the apps - it only refers to and creates the namespace.
     8.  App folder
     9.  App persistent volume claim - usually named `app_name-config-v1`.  The version control `v1` allows easy upgrade to pvc's if we want to change sizing.
     10.  Helm release for app
-    11.  Kustomization, calling the config-pvc.yaml and helm-release.yaml
+    11.  Kustomization, calling the config-pvc.yaml and helmrelease.yaml
 
 !!! Question "Why declare PVC's independantly"
     We dont rely on the helm chart to generate a PVC for us - we prefer to declare them seperately and definitively.

@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - dashboard
   - secret.sops.yaml
-  - helm-release.yaml
+  - helmrelease.yaml
