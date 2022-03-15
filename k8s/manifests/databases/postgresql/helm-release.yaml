@@ -31,7 +31,7 @@ spec:
     #   database: postgres
 
     metrics:
-      enabled: true
+      enabled: false
       serviceMonitor:
         enabled: false
 
