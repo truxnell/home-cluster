@@ -30,13 +30,17 @@ spec:
       accept: true
       company: Truxnell
       email: Truxnell@users.noreply.github.com
+
     global:
       persistence:
         storageClass: ceph-block
+
     auth:
       tokenAuth:
         enabled: true
+
     clusterName: hegira
+
     ingress:
       create: true
       host: k10.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
@@ -56,3 +60,6 @@ spec:
       tls:
         enabled: true
         secretName: k10-${CLUSTER_NAME}-tls
+
+    grafana:
+      enabled: false
