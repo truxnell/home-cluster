@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: postgresql
-      version: 11.1.5
+      version: 10.16.2
       sourceRef:
         kind: HelmRepository
         name: bitnami-charts
@@ -23,14 +23,9 @@ spec:
       registry: quay.io
       repository: bitnami/postgresql
       tag: 14.2.0
-    global:
-      postgresql:
-        auth:
-          postgresPassword: "${SECRET_POSTGRES_PASSWORD}"
-          database: "postgres"
 
-    # auth:
-    #   database: postgres
+    postgresqlPassword: "${SECRET_POSTGRES_PASSWORD}"
+    postgresqlDatabase: "postgres"
 
     metrics:
       enabled: true
