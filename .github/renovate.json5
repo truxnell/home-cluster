@@ -10,11 +10,11 @@
     "docker:enableMajor",
     ":enablePreCommit",
     "github>Truxnell/home-cluster//.github/renovate/commitMessage",
-    "github>bjw-s/home-cluster//.github/renovate/labels",
-    "github>bjw-s/home-cluster//.github/renovate/semanticCommits",
-    // "github>bjw-s/home-cluster//.github/renovate/allowedVersions",
-    "github>bjw-s/home-cluster//.github/renovate/autoMerge"
-    // "github>bjw-s/home-cluster//.github/renovate/updateSchedule",
+    "github>Truxnell/home-cluster//.github/renovate/labels",
+    "github>Truxnell/home-cluster//.github/renovate/semanticCommits",
+    // "github>Truxnell/home-cluster//.github/renovate/allowedVersions",
+    "github>Truxnell/home-cluster//.github/renovate/autoMerge"
+    // "github>Truxnell/home-cluster//.github/renovate/updateSchedule",
   ],
   "platform": "github",
   "username": "trux-bot[bot]",
