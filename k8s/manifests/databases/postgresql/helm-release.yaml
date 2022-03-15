@@ -27,13 +27,13 @@ spec:
     postgresqlPassword: "${SECRET_POSTGRES_PASSWORD}"
     postgresqlDatabase: "postgres"
 
-    auth:
-      database: postgres
+    # auth:
+    #   database: postgres
 
     metrics:
       enabled: true
       serviceMonitor:
-        enabled: true
+        enabled: false
 
     persistence:
       size: 10Gi
