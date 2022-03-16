@@ -27,6 +27,8 @@ spec:
     postgresqlPassword: "${SECRET_POSTGRES_PASSWORD}"
     postgresqlDatabase: "postgres"
 
+    postgresqlConfiguration: { "sharedBuffers": "200MB" }
+
     metrics:
       enabled: true
       serviceMonitor:
