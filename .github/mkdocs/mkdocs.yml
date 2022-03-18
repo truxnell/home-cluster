@@ -140,6 +140,7 @@ nav:
   - Sidero & Talos:
       - Introduction: sidero/sidero-intro.md
       - Installation: sidero/sidero-install.md
+      - Retrieve talosconfig: sidero/retrieve_talosconfig.md  
   - Diagrams:
       - Network Map: diagrams/network-map.md
       - Cluster Map: diagrams/cluster-map.md
