@@ -4,6 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: zigbee2mqtt-config-v1
   namespace: home-automation
+  labels:
+    kasten.io/backup-volume: "enabled"
 spec:
   accessModes:
     - ReadWriteOnce
