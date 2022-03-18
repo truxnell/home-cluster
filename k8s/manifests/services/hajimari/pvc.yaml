@@ -4,6 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: hajimari-config-v1
   namespace: services
+  labels:
+    kasten.io/backup-volume: "enabled"
 spec:
   accessModes:
     - ReadWriteOnce

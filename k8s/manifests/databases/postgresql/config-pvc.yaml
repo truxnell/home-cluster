@@ -3,10 +3,14 @@ apiVersion: v1
 metadata:
   name: postgresql-config-v1
   namespace: databases
+  labels:
+    kasten.io/backup-volume: "enabled"
 spec:
   accessModes:
     - ReadWriteOnce
+
   resources:
     requests:
       storage: 5Gi
+
   storageClassName: ceph-block

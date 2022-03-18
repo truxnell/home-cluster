@@ -4,10 +4,14 @@ kind: PersistentVolumeClaim
 metadata:
   name: factorio-ribbonworld-config-v1
   namespace: games
+  labels:
+    kasten.io/backup-volume: "enabled"
 spec:
   accessModes:
     - ReadWriteOnce
+
   resources:
     requests:
       storage: 5Gi
+
   storageClassName: ceph-block
