@@ -52,15 +52,18 @@ spec:
   controlPlaneConfig:
     controlplane:
       generateType: controlplane
+      # renovate: datasource=github-releases depName=talos-systems/talos
       talosVersion: v0.13.1
     init:
       generateType: init
+      # renovate: datasource=github-releases depName=talos-systems/talos
       talosVersion: v0.13.1
   infrastructureTemplate:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
     kind: MetalMachineTemplate
     name: hegira-cp
   replicas: 1
+  # renovate: datasource=docker depName=ghcr.io/talos-systems/kubelet
   version: v1.21.5
 ---
 apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
@@ -72,6 +75,7 @@ spec:
   template:
     spec:
       generateType: join
+      # renovate: datasource=github-releases depName=talos-systems/talos
       talosVersion: v0.13.1
 ---
 apiVersion: cluster.x-k8s.io/v1alpha3
@@ -99,6 +103,7 @@ spec:
         apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
         kind: MetalMachineTemplate
         name: hegira-workers
+      # renovate: datasource=docker depName=ghcr.io/talos-systems/kubelet
       version: v1.21.5
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
