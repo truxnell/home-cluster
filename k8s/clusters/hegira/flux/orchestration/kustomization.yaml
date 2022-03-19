@@ -17,10 +17,6 @@ resources:
   - ./organizarrs.yaml
   - ./security.yaml
   - ./services.yaml
-  # - ./scripts.yaml
-  # - ./selfhosted.yaml
   - ./system-monitoring.yaml
-  # - ./system-security.yaml
-  # - ./system.yaml
-  # - ./velero.yaml
+  - ./testing.yaml
   - ./vpn.yaml
