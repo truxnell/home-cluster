@@ -22,10 +22,10 @@ spec:
       enabled: true
       type: deployment
       strategy: RollingUpdate
-      replicas: 1 # FIXME
+      replicas: 1
     nameOverride: error-pages
     env:
-      TEMPLATE_NAME: l7-dark
+      TEMPLATE_NAME: cats
     service:
       main:
         ports:
