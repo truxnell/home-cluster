@@ -8,10 +8,24 @@ kubeApiServer:
   enabled: true
 
 kubeControllerManager:
-  enabled: false
+  enabled: true
+  endpoints:
+    - 10.8.20.30
+
+kubeScheduler:
+  enabled: true
+  endpoints:
+    - 10.8.20.30
+
+kubeProxy:
+  enabled: true
+  endpoints:
+    - 10.8.20.30
 
 kubeEtcd:
-  enabled: false
+  enabled: true
+  endpoints:
+    - 10.8.20.30
 
 kubelet:
   enabled: true
@@ -22,19 +36,18 @@ kubelet:
           - node
         targetLabel: instance
 
-kubeProxy:
-  enabled: false
-
-kubeScheduler:
-  enabled: false
-
 kubeStateMetrics:
   enabled: true
 
 prometheusOperator:
-  # Setting this option to 0 to disable cpu limits
-  # see https://github.com/prometheus-operator/prometheus-operator/blob/master/cmd/operator/main.go#L175
-  configReloaderCpu: 0
+  prometheusConfigReloader:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 50Mi
+      limits:
+        cpu: 200m
+        memory: 100Mi
 
 grafana:
   enabled: false
