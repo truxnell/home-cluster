@@ -42,9 +42,9 @@ spec:
       type: LoadBalancer
       loadBalancerIP: ${LB_POSTGRES}
 
-    commonAnnotations:
-      prometheus.io/probe: "true"
-      prometheus.io/protocol: "tcp"
+    # commonAnnotations: # FIXME
+    #   prometheus.io/probe: "true"
+    #   prometheus.io/protocol: "tcp"
 
     # primary:
     #   annotations:
