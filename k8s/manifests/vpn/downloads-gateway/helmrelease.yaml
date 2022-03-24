@@ -52,6 +52,9 @@ spec:
       gatewayLabel: setGateway
       gatewayAnnotation: setGateway
 
+    podAnnotations:
+      secret.reloader.stakater.com/reload: &secret downloads-gateway-vpnconfig
+
     addons:
       netshoot:
         enabled: true
@@ -78,7 +81,7 @@ spec:
           IPTABLES_BACKEND: nft
           KILLSWITCH: "false"
 
-        configFileSecret: downloads-gateway-vpnconfig
+        configFileSecret: *secret
 
         resources:
           requests:
