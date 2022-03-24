@@ -1,6 +1,5 @@
 ---
 fullnameOverride: prometheus
-
 coreDns:
   enabled: true
 
@@ -8,28 +7,10 @@ kubeApiServer:
   enabled: true
 
 kubeControllerManager:
-  enabled: true
-  endpoints:
-    - 10.8.20.30
-
-kubeScheduler:
-  enabled: true
-  endpoints:
-    - 10.8.20.30
-
-kubeProxy:
-  enabled: true
-  endpoints:
-    - 10.8.20.30
+  enabled: false
 
 kubeEtcd:
-  enabled: true
-  endpoints:
-    - 10.8.20.30
-  service:
-    enabled: true
-    port: 2381
-    targetPort: 2381
+  enabled: false
 
 kubelet:
   enabled: true
@@ -39,6 +20,12 @@ kubelet:
         sourceLabels:
           - node
         targetLabel: instance
+
+kubeProxy:
+  enabled: false
+
+kubeScheduler:
+  enabled: false
 
 kubeStateMetrics:
   enabled: true
