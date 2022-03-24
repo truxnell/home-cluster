@@ -9,7 +9,7 @@ jobs:
     if: github.actor == 'dependabot[bot]' || github.actor == 'renovate-self-hosted[bot]'
     steps:
       - name: Auto Merge
-        uses: "pascalgn/automerge-action@v0.14.3"
+        uses: pascalgn/automerge-action@v0.14.4
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_LABELS: merge
