@@ -10,7 +10,7 @@ kubeControllerManager:
   enabled: true
 
 kubeEtcd:
-  enabled: false
+  enabled: true
 
 kubelet:
   enabled: true
