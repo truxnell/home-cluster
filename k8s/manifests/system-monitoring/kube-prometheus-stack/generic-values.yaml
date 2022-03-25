@@ -22,10 +22,10 @@ kubelet:
         targetLabel: instance
 
 kubeProxy:
-  enabled: tr
+  enabled: true
 
 kubeScheduler:
-  enabled: false
+  enabled: true
 
 kubeStateMetrics:
   enabled: true
