@@ -7,7 +7,7 @@ kubeApiServer:
   enabled: true
 
 kubeControllerManager:
-  enabled: false
+  enabled: true
 
 kubeEtcd:
   enabled: false
@@ -22,7 +22,7 @@ kubelet:
         targetLabel: instance
 
 kubeProxy:
-  enabled: false
+  enabled: tr
 
 kubeScheduler:
   enabled: false
