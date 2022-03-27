@@ -30,7 +30,9 @@
         "b4bz/homer",
         "vexorian/dizquetv",
         "joplin/server",
-        "grafana/grafana"
+        "grafana/grafana",
+        "ghcr.io/tarampampam/error-pages",
+        "k8s-at-home/tautulli"
       ],
       "schedule": ["after 2am, before 8am"]
 
