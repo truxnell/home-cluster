@@ -51,6 +51,8 @@ spec:
       gatewayDefault: false
       gatewayLabel: setGateway
       gatewayAnnotation: setGateway
+      namespaceSelector:
+        label: "vpn-routed-gateway"
 
     podAnnotations:
       secret.reloader.stakater.com/reload: downloads-gateway-vpnconfig
