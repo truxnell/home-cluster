@@ -99,6 +99,7 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 60
           failureThreshold: 1
+          timeoutSeconds: 30
 
         networkPolicy:
           enabled: true
