@@ -20,7 +20,7 @@ spec:
       repository: ghcr.io/k8s-at-home/pod-gateway
       tag: v1.4.0
 
-    DNS: 172.16.1.1
+    DNS: 172.16.0.1
 
     routed_namespaces:
       - downloads
@@ -37,8 +37,8 @@ spec:
     settings:
       VPN_INTERFACE: wg0
       VXLAN_ID: 43
-      VXLAN_IP_NETWORK: 172.16.1
-      VPN_BLOCK_OTHER_TRAFFIC: true
+      # VXLAN_IP_NETWORK: 172.16.1
+      VPN_BLOCK_OTHER_TRAFFIC: false
       VPN_TRAFFIC_PORT: "${SECRET_WIREGUARD_PORT}"
       NOT_ROUTED_TO_GATEWAY_CIDRS: "172.16.0.0/12 ${NETWORK_K8S_POD_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVERS_CIDR}"
       VPN_LOCAL_CIDRS: "172.16.0.0/12 ${NETWORK_K8S_POD_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVERS_CIDR}"
@@ -74,9 +74,9 @@ spec:
         securityContext:
           runAsUser: 568
           runAsGroup: 568
-          capabilities:
-            drop:
-              - "SYS_MODULE"
+          # capabilities:
+          #   drop:
+          #     - "SYS_MODULE"
 
         env:
           TZ: "${TZ}"
@@ -113,5 +113,12 @@ spec:
               ports:
                 - port: "${SECRET_WIREGUARD_PORT}"
                   protocol: UDP
+                - port: 53
+                  protocol: UDP
             - to:
+                # Allow traffic within K8S - change if your K8S cluster uses a different CIDR
+                - ipBlock:
+                    cidr: ${NETWORK_K8S_POD_CIDR}
+                - ipBlock:
+                    cidr: ${NETWORK_K8S_SERVICE_CIDR}
                 - namespaceSelector: {}
