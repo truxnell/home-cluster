@@ -20,8 +20,10 @@ spec:
     image:
       repository: ghcr.io/k8s-at-home/lidarr
       tag: v1.0.0.2497
+
     env:
       TZ: ${TZ}
+
     ingress:
       main:
         enabled: true
@@ -41,7 +43,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: &tls lidarr-${CLUSTER_NAME}-tlssonarr
+            secretName: &tls lidarr-${CLUSTER_NAME}-tls
 
       api:
         enabled: true
@@ -74,6 +76,7 @@ spec:
             path: /volume1/
         mountPath: /media
         readOnly: false
+
       nfs-nas-backup:
         enabled: true
         type: custom
@@ -83,6 +86,7 @@ spec:
             path: /volume1/backup/kubernetes/apps/lidarr
         mountPath: /config/Backups
         readOnly: false
+
     podSecurityContext:
       runAsUser: 1000
       runAsGroup: 1000
@@ -90,17 +94,20 @@ spec:
       fsGroupChangePolicy: OnRootMismatch
       supplementalGroups:
         - 100
+
     resources:
       requests:
         memory: 650Mi
         cpu: 1000m
       limits:
         memory: 1500Mi
+
     prometheus:
       podMonitor:
         enabled: true
         interval: 3m
         scrapeTimeout: 1m30s
+
     metrics:
       enabled: true
       serviceMonitor:
