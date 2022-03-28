@@ -104,7 +104,7 @@ spec:
           timeoutSeconds: 30
 
         networkPolicy:
-          enabled: true
+          enabled: false
 
           egress:
             - to:
