@@ -74,9 +74,9 @@ spec:
         securityContext:
           runAsUser: 568
           runAsGroup: 568
-          # capabilities:
-          #   drop:
-          #     - "SYS_MODULE"
+          capabilities:
+            drop:
+              - "SYS_MODULE"
 
         env:
           TZ: "${TZ}"
