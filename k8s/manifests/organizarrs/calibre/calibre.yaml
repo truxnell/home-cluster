@@ -1,0 +1,76 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: calibre
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: calibre
+      version: 5.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    remediation: # perform remediation when helm install fails
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
+
+  # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/calibre/values.yaml
+  values:
+    image:
+      repository: linuxserver/calibre
+      tag: version-v5.21.0
+
+    env:
+      TZ: "Australia/Melbourne"
+      PUID: "568"
+      PGID: "568"
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: calibre-config-v1
+
+      nfs-nas-media:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDRESS}
+            path: /volume1/
+        mountPath: /media
+        readOnly: false
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+          external-dns/is-public: "false"
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "book-open-page-variant"
+        hosts:
+          - host: &host "calibre.${CLUSTER_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+            secretName: &tls calibre-${CLUSTER_NAME}-tls
+
+    service:
+      webserver:
+        enabled: true
