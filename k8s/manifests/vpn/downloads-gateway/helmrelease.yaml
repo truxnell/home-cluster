@@ -104,14 +104,14 @@ spec:
           timeoutSeconds: 30
 
         networkPolicy:
-          enabled: false
+          enabled: true
 
           egress:
             - to:
                 - ipBlock:
                     cidr: 0.0.0.0/0
               ports:
-                - port: ${SECRET_WIREGUARD_PORT}
+                - port: "${SECRET_WIREGUARD_PORT}"
                   protocol: UDP
             - to:
                 - namespaceSelector: {}
