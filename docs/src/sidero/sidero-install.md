@@ -37,7 +37,7 @@ Grab the binaries specified:
     `talosctl` can be used to stand up a local docker cluster.  This can be amazing for doing testing on sidero, or just local cluster testing in general.  More info [here](talos-dev-cluster.md)
 
 !!! Warning
-    Be careful on the verison of `clusterctl` you use.  The latest version may not be the one you need, and *may* not work with the api versions.  Refer to the [Sidero Github](https://github.com/talos-systems/sidero) as they have a compatibility table in the readme.
+    Be careful on the verison of `clusterctl` you use.  The latest version may not be the one you need, and *may* not work with the api versions.  Refer to the [Sidero Github](https://github.com/siderolabs/sidero) as they have a compatibility table in the readme.
 
 
 * Now to setup dhcp for dual booting.  If you do amd64 its not so bad as its one config, but with pi you need to config it to be able to send either arm64 or amd64 binaries.  https://www.sidero.dev/docs/v0.4/getting-started/prereq-dhcp/ is the document.  I had problems here, and i had to mod my udm-pro's dnsmasq with extra configs that get applied at boot to make it work. Codeblock on this page gives you enough info to mod your config - cant see your router on

@@ -6,7 +6,7 @@ Simply change the version number at the end of the --image tag.
 
 ```bash
 ❯ talosctl upgrade --nodes 10.8.20.40 \
-            --image ghcr.io/talos-systems/installer:v1.0.0-beta.0
+            --image ghcr.io/siderolabs/installer:v1.0.0-beta.0
 NODE         ACK                        STARTED
 10.8.20.40   Upgrade request received   2022-03-06 21:29:55.796035744 +1100 AEDT m=+4.542098674
 ```
