@@ -80,7 +80,7 @@ prometheus:
         static_configs:
           - targets:
               # - "pikvm.${CLUSTER_DOMAIN}:9100" # FIXME
-              - "hyperion.${CLUSTER_DOMAIN}:9100"
+              - "hyperion.lab:9100"
 
       - job_name: "kubernetes-ingresses"
         metrics_path: /probe
@@ -143,7 +143,7 @@ prometheus:
           - source_labels: [__meta_kubernetes_service_name]
             target_label: kubernetes_name
 
-      # - job_name: "kubernetes-services-tcp" # FIXME 
+      # - job_name: "kubernetes-services-tcp" # FIXME
       #   metrics_path: /probe
       #   scrape_interval: 60s
       #   params:
