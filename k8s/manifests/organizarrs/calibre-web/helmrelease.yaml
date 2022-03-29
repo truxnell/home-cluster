@@ -1,0 +1,68 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: calibre-web
+  namespace: organizarrs
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: calibre-web
+      version: 8.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: ghcr.io/linuxserver/calibre-web
+      tag: version-0.6.17
+
+    env:
+      TZ: "${TZ}"
+      PGID: 65539
+      DOCKER_MODS: "linuxserver/calibre-web:calibre"
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: calibre-web-config-v1
+
+      nfs-nas-media:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDRESS}
+            path: /volume1/
+        mountPath: /media
+        readOnly: false
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+          external-dns/is-public: "false"
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "book-open-page-variant"
+        hosts:
+          - host: &host "calibre-web.${CLUSTER_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+            secretName: &tls calibre-web-${CLUSTER_NAME}-tls
+
+    resources:
+      requests:
+        memory: 256Mi
+      limits:
+        memory: 512Mi

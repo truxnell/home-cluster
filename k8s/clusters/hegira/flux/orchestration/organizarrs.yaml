@@ -165,3 +165,22 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: organizarrs-calibre-web
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: organizarrs-namespace
+    - name: rook-ceph-cluster
+    - name: network-system-traefik
+  interval: 5m
+  path: "./k8s/manifests/organizarrs/calibre-web"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
