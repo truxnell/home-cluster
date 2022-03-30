@@ -81,6 +81,14 @@ prometheus:
           - targets:
               # - "pikvm.${CLUSTER_DOMAIN}:9100" # FIXME
               - "hyperion.lab:9100"
+      - job_name: pikvm
+        metrics_path: /api/export/prometheus/metrics
+        basic_auth:
+          username: "${SECRET_PIKVM_USERNAME}"
+          password: "${SECRET_PIKVM_PASSWORD}"
+        static_configs:
+          - targets:
+              - "pikvm.${SECRET_PRIVATE_DOMAIN}"
 
       - job_name: "kubernetes-ingresses"
         metrics_path: /probe
