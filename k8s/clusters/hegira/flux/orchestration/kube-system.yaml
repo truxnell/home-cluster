@@ -47,6 +47,8 @@ metadata:
   name: kube-system-descheduler
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/kube-system/descheduler"
   prune: true

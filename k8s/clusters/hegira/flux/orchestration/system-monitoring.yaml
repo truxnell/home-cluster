@@ -54,6 +54,7 @@ metadata:
 spec:
   dependsOn:
     - name: system-monitoring-namespace
+    - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/system-monitoring/thanos"
   prune: true
@@ -171,6 +172,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
+    - name: system-monitoring-namespace
     - name: system-monitoring-namespace
     - name: kube-system-reloader
   interval: 5m
