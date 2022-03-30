@@ -14,11 +14,4 @@ Feel free to open a [Github issue](https://github.com/Truxnell/home-cluster/issu
 
 **Fledgling documentation avaliable at [https://k8s.voltaicforge.com](https://k8s.voltaicforge.com)**
 
-## Tools
 
-| Tool         | Description                                                                                        |
-| ------------ | -------------------------------------------------------------------------------------------------- |
-| GitCrypt     | Encrypt secrets to git                                                                             |
-| Taskfile.dev | Manage and run short tasks out of .taskfile directory                                              |
-| Flux         | Sync this repo to k3s instance to enable infrastructure as code                                    |
-| Ansible      | Manage inventory of computers, run series of pre-defined commands to allow repeatable environments |
