@@ -54,7 +54,9 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: media-namespace
+    - name: media-namespac
+    - name: network-system-traefik
+    - name: rook-ceph-cluster
   interval: 5m
   path: "./k8s/manifests/media/dizquetv"
   prune: true
