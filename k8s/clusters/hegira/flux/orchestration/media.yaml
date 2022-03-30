@@ -54,7 +54,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: media-namespac
+    - name: media-namespace
     - name: network-system-traefik
     - name: rook-ceph-cluster
   interval: 5m
