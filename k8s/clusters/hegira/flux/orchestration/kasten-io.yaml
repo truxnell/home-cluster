@@ -31,3 +31,20 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: kasten-k10-config
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: kasten-namespace
+    - name: kasten-k10
+  interval: 5m
+  path: "./k8s/manifests/kasten-io/k10/k10-config"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
