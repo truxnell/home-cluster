@@ -2,63 +2,63 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: nginx-phpfm
+  name: hajimari
   namespace: services
 spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://drpsychick.github.io/charts
-      chart: nginx-phpfpm
-      version: 0.0.3
+      chart: nginx-php
+      version: 1.0.0
       sourceRef:
         kind: HelmRepository
-        name: drpsychick-charts
+        name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
   install:
     remediation: # perform remediation when helm install fails
-      retries: 3
+      retries: 5
   upgrade:
     remediation: # perform remediation when helm upgrade fails
       retries: 3
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
-
-  # Values link: https://github.com/DrPsychick/charts/blob/master/drpsychick/nginx-phpfpm/values.yaml
   values:
-    nginx:
-      replicaCount: 1
-      image:
-        tag: "1.21.0"
-    phpfpm:
-      replicaCount: 1
-      image:
-        # Custom container, php with mysql installed
-        registry: ghcr.io/truxnell/container-images
-        repository: php-mysql
-        tag: "v7.2-fpm-mysql"
+    image:
+      repository: ghcr.io/truxnell/container-images/nginx-php
+      tag: v1.0.0
 
     ingress:
-      enabled: true
-      annotations:
-        kubernetes.io/ingress.class: traefik
-        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-        external-dns/is-public: "false"
-        traefik.ingress.kubernetes.io/router.entrypoints: web
-        traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
-        hajimari.io/enable: "false"
-
-      hosts:
-        - host: &host nginx.${CLUSTER_DOMAIN}
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - hosts:
-            - *host
-          secretName: &tls nginx-${CLUSTER_NAME}-tls
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          external-dns/is-public: "false"
+          traefik.ingress.kubernetes.io/router.entrypoints: web
+          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+          hajimari.io/enable: "false"
+        hosts:
+          - host: nginx.trux.dev
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - nginx.trux.dev
+            secretName: nginx-hegira-tls
 
     persistence:
-      enabled: true
-      existingClaim: nginx-php-config-v1
+      data:
+        enabled: true
+        existingClaim: nginx-php-config-v1
+
+    service:
+      main:
+        type: LoadBalancer
+        loadBalancerIP: "10.8.20.215"
+        externalTrafficPolicy: Local
+        ports:
+          http:
+            port: 80
+            targetPort: 8080
