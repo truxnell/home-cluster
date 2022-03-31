@@ -1,4 +1,4 @@
-## My Home Cluster
+# My Home Cluster
 
 [![Discord](https://img.shields.io/badge/discord-chat-7289DA.svg?maxAge=60&style=flat-square)](https://discord.gg/7PbmHRK)
 [![renovate](https://github.com/Truxnell/home-cluster/actions/workflows/renovate.yaml/badge.svg)](https://github.com/Truxnell/home-cluster/actions/workflows/renovate.yaml)
@@ -14,4 +14,8 @@ Feel free to open a [Github issue](https://github.com/Truxnell/home-cluster/issu
 
 **Fledgling documentation avaliable at [https://k8s.voltaicforge.com](https://k8s.voltaicforge.com)**
 
+# License
 
+This repo is avaliable under the MIT License.
+
+Full lisence details are avaliable in [LICENSE.md](LICENSE.md)
