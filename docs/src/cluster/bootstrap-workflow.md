@@ -15,11 +15,10 @@ The folder-structure doc still makes it a bit tricky to see the dependancies and
     flowchart TB
         ka[kubectl apply] --> dc[deploy-cluster.yaml]
         subgraph deploy
-            dc --> mf["deploy/manage-flux.yaml*"]
+            cr --> mf["deploy/manage-flux.yaml*"]
             dc --> cr["deploy/cluster-repositories.yaml"*]
             mf --> cc["deploy/cluster-config.yaml*"]
             cc --> co["deploy/cluster-orchestration*"]
-            cr --> co
         end
         subgraph cluster-repositories
             direction LR
