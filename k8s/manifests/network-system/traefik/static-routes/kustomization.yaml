@@ -8,3 +8,4 @@ resources:
   # - brewpiless #FIXME
   - prusa
   - pikvm
+  - brother-printer
