@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: hajimari
+  name: nginx-php
   namespace: services
 spec:
   interval: 5m
