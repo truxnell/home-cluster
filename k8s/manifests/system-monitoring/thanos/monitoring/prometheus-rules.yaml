@@ -1,0 +1,53 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: thanos-all
+  namespace: monitoring
+spec:
+  groups:
+    - name: thanos-all
+      rules:
+        - alert: ThanosSidecarPrometheusDown
+          annotations:
+            description: Thanos Sidecar {{$labels.instance}} cannot connect to Prometheus.
+            runbook_url: https://github.com/thanos-io/thanos/tree/main/mixin/runbook.md#alert-name-thanossidecarprometheusdown
+            summary: Thanos Sidecar cannot connect to Prometheus
+          expr: |
+            thanos_sidecar_prometheus_up{job=~".*thanos-sidecar.*"} == 0
+          for: 5m
+          labels:
+            severity: critical
+        - alert: ThanosSidecarBucketOperationsFailed
+          annotations:
+            description: Thanos Sidecar {{$labels.instance}} bucket operations are failing
+            runbook_url: https://github.com/thanos-io/thanos/tree/main/mixin/runbook.md#alert-name-thanossidecarbucketoperationsfailed
+            summary: Thanos Sidecar bucket operations are failing
+          expr: |
+            sum by (job, instance) (rate(thanos_objstore_bucket_operation_failures_total{job=~".*thanos-sidecar.*"}[5m])) > 0
+          for: 5m
+          labels:
+            severity: critical
+        - alert: ThanosSidecarUnhealthy
+          annotations:
+            description:
+              Thanos Sidecar {{$labels.instance}} is unhealthy for more than {{$value}}
+              seconds.
+            runbook_url: https://github.com/thanos-io/thanos/tree/main/mixin/runbook.md#alert-name-thanossidecarunhealthy
+            summary: Thanos Sidecar is unhealthy.
+          expr: |
+            time() - max by (job, instance) (thanos_sidecar_last_heartbeat_success_time_seconds{job=~".*thanos-sidecar.*"}) >= 240
+          for: 5m
+          labels:
+            severity: critical
+        - alert: ThanosSidecarIsDown
+          annotations:
+            description:
+              ThanosSidecar has disappeared. Prometheus target for the component
+              cannot be discovered.
+            runbook_url: https://github.com/thanos-io/thanos/tree/main/mixin/runbook.md#alert-name-thanossidecarisdown
+            summary: Thanos component has disappeared.
+          expr: |
+            thanos_sidecar_prometheus_up{job=~".*thanos-sidecar.*"} == 0
+          for: 5m
+          labels:
+            severity: critical
