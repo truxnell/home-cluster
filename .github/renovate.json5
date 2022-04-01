@@ -52,10 +52,9 @@
     // Read and process GitHub Releases
     {
       "fileMatch": [
-        "cluster/.+\\.ya?ml$",
-        "ansible/.+\\.ya?ml$",
-        "hack/.+\\.sh$"
-      ],
+        "k8s/mainfests/.+\\.ya?ml$",
+        "k8s/global/.+\\.ya?ml$"
+         ],
       "matchStrings": [
         "datasource=(?<datasource>.*?)\n *url: https:\/\/github\\.com\/(?<depName>.*?)\\.git\n *ref:\n *tag: (?<currentValue>.*)\n",
         "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_version: \"(?<currentValue>.*)\"\n",
@@ -66,8 +65,9 @@
     // Read and process Custom Resource Definitions
     {
       "fileMatch": [
-        "cluster/.+\\.ya?ml$"
-      ],
+        "k8s/mainfests/.+\\.ya?ml$",
+        "k8s/global/.+\\.ya?ml$"
+         ],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n",
         "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/"
@@ -77,8 +77,9 @@
     // Read and process Custom Resources
     {
       "fileMatch": [
-        "cluster/.+\\.ya?ml$"
-      ],
+        "k8s/mainfests/.+\\.ya?ml$",
+        "k8s/global/.+\\.ya?ml$"
+         ],
       "matchStrings": [
         "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n .*: (?<currentValue>.*=?)"
       ],
