@@ -75,11 +75,11 @@ prometheus:
           - targets:
               - "pikvm.${CLUSTER_DOMAIN}"
 
-      - job_name: node-exporter
-        honor_timestamps: true
-        static_configs:
-          - targets:
-              # - "pikvm.${CLUSTER_DOMAIN}:9100" # FIXME
+      # - job_name: node-exporter
+      #   honor_timestamps: true
+      #   static_configs:
+      #     - targets:
+      # - "pikvm.${CLUSTER_DOMAIN}:9100" # FIXME (use same as hyperion above?)
 
       - job_name: "kubernetes-ingresses"
         metrics_path: /probe
