@@ -48,7 +48,7 @@ spec:
     - op: add
       path: /machine/time
       value:
-        disabled: true
+        disabled: false
         servers:
           - time.cloudflare.com
 
