@@ -6,16 +6,16 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/Truxnell/home-cluster?color=purple&style=flat-square)](https://github.com/billimek/k8s-gitops/commits/main)
 [![Lines of code](https://img.shields.io/tokei/lines/github/truxnell/home-cluster?style=flat-square&color=brightgreen&label=lines&logo=codefactor&logoColor=white)](https://github.com/onedr0p/home-cluster/graphs/contributors)
 
-# :book:&nbsp; Overview
+## :book:&nbsp; Overview
 
 This repository is my homelab cluster, using tools such as [Flux2](https://github.com/fluxcd/flux2) define the infrastructure as code.
 
 Feel free to open a [Github issue](https://github.com/Truxnell/home-cluster/issues/new) if you have any questions!
 
-**Fledgling documentation avaliable at [https://k8s.voltaicforge.com](https://k8s.voltaicforge.com)**
+**Fledgling documentation available at [https://k8s.voltaicforge.com](https://k8s.voltaicforge.com)**
 
-# License
+## License
 
-This repo is avaliable under the MIT License.
+This repo is available under the MIT License.
 
-Full lisence details are avaliable in [LICENSE.md](LICENSE.md)
+Full license details are available in [LICENSE.md](LICENSE.md)
