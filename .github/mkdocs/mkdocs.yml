@@ -116,6 +116,7 @@ markdown_extensions:
       base_path:
         - ../../docs/src/
         - ../../docs/_includes/
+        - docs/_includes/
       auto_append:
         - abbreviations.md
       check_paths: true
