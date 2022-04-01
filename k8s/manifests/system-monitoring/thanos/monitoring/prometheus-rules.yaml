@@ -2,7 +2,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: thanos-all
-  namespace: monitoring
+  namespace: system-monitoring
 spec:
   groups:
     - name: thanos-all
