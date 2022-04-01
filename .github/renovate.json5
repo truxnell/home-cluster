@@ -28,63 +28,61 @@
   "rebaseWhen": "conflicted",
   // Set up Renovate Managers
   "helmv3": {
-    "fileMatch": ["k8s/charts/.+/Chart\\.yaml$"]
+    "fileMatch": ["k8s/charts/.+/Chart\\.ya?ml$"]
   },
   "helm-values": {
     "fileMatch": [
-      "k8s/manifests/.+/helmrelease\\.yaml$",
-      "k8s/global/.+/helmrelease\\.yaml$"
+      "k8s/manifests/.+/helmrelease\\.ya?ml$",
+      "k8s/global/.+/helmrelease\\.ya?ml$"
     ]
   },
   "kubernetes": {
     "fileMatch": [
-      "k8s/manifests/.+\\.yaml$",
-      "k8s/global/.+\\.yaml$"
-    ],
+      "k8s/manifests/.+\\.ya?ml$",
+      "k8s/global/.+\\.ya?ml$"
+    ]
   },
   "flux": {
    "fileMatch": [
-     "k8s/mainfests/.+\\.yaml$",
-     "k8s/global/.+\\.yaml$"
+     "k8s/mainfests/.+\\.ya?ml$",
+     "k8s/global/.+\\.ya?ml$"
    ]
   },
   "regexManagers": [
-    // regexManager to read and process GitHub release artifacts
+    // Read and process GitHub Releases
     {
       "fileMatch": [
-        "k8s/manifests/.+\\.yaml$",
-        "k8s/global/.+\\.yaml$"
+        "cluster/.+\\.ya?ml$",
+        "ansible/.+\\.ya?ml$",
+        "hack/.+\\.sh$"
       ],
       "matchStrings": [
-        "https:\/\/github.com\/(?<org>.*=?)\/(?<repo>.*=?)\/releases\/download\/(?<currentValue>.*=?)\/.*"
+        "datasource=(?<datasource>.*?)\n *url: https:\/\/github\\.com\/(?<depName>.*?)\\.git\n *ref:\n *tag: (?<currentValue>.*)\n",
+        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_version: \"(?<currentValue>.*)\"\n",
+        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_VERSION=\"(?<currentValue>.*)\"\n"
       ],
-      "datasourceTemplate": "github-releases",
-      "depNameTemplate": "{{org}}/{{repo}}"
+      "datasourceTemplate": "github-releases"
     },
-    // Generic Regex Manager
+    // Read and process Custom Resource Definitions
     {
       "fileMatch": [
-        "k8s/manifests/.+\\.yaml$",
-        "k8s/global/.+\\.yaml$"
+        "cluster/.+\\.ya?ml$"
       ],
       "matchStrings": [
-        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<currentValue>.*=?)"
+        "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n",
+        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/"
       ],
-      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
-      "registryUrlTemplate": "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}"
+      "datasourceTemplate": "helm"
     },
-    // Generic Docker image Regex manager
+    // Read and process Custom Resources
     {
       "fileMatch": [
-        "k8s/manifests/.+\\.yaml$",
-        "k8s/global/.+\\.yaml$"
+        "cluster/.+\\.ya?ml$"
       ],
       "matchStrings": [
-        "# renovate: docker-image( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<depName>.*?):(?<currentValue>.*=?)"
+        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n .*: (?<currentValue>.*=?)"
       ],
-      "datasourceTemplate": "docker",
-      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}docker{{/if}}",
-      "registryUrlTemplate": "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}"
+      "datasourceTemplate": "docker"
     }
   ],
   "packageRules": [
@@ -95,7 +93,7 @@
     },
     {
       "matchDatasources": ["docker"],
-      "commitMessageExtra": "to {{newVersion}}",
+      "commitMessageExtra": "to {{newVersion}}"
     },
     // Custom version schemes
     {
@@ -150,7 +148,7 @@
       "matchPackagePatterns": ["^rook.ceph"],
       "groupName": "rook-ceph-suite",
       "additionalBranchPrefix": "",
-      "separateMinorPatch": true,
+      "separateMinorPatch": true
     },
     {
       "matchDatasources": ["docker"],
@@ -162,18 +160,18 @@
       ],
       "groupName": "kubernetes",
       "additionalBranchPrefix": "",
-      "separateMinorPatch": true,
+      "separateMinorPatch": true
     },
     {
       "matchDatasources": ["helm", "docker"],
       "matchPackageNames": [
         "quay.io/cilium/cilium",
         "quay.io/cilium/operator-generic",
-        "cilium",
+        "cilium"
       ],
       "groupName": "cilium",
       "additionalBranchPrefix": "",
-      "separateMinorPatch": true,
+      "separateMinorPatch": true
     }
   ]
 }
