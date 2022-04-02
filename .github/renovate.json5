@@ -50,18 +50,18 @@
     ]
    }, 
   "regexManagers": [
-    // regexManager to read and process GitHub release artifacts
-    {
-      "fileMatch": [
-        "k8s/clusters/.+\\.ya?ml$",
-        "k8s/global/.+\\.ya?ml$"
-      ],
-      "matchStrings": [
-        "https:\/\/github.com\/(?<org>.*=?)\/(?<repo>.*=?)\/releases\/download\/(?<currentValue>.*=?)\/.*"
-      ],
-      "datasourceTemplate": "github-releases",
-      "depNameTemplate": "{{org}}/{{repo}}"
-    },
+    // // regexManager to read and process GitHub release artifacts
+    // {
+    //   "fileMatch": [
+    //     "k8s/clusters/.+\\.ya?ml$",
+    //     "k8s/global/.+\\.ya?ml$"
+    //   ],
+    //   "matchStrings": [
+    //     "https:\/\/github.com\/(?<org>.*=?)\/(?<repo>.*=?)\/releases\/download\/(?<currentValue>.*=?)\/.*"
+    //   ],
+    //   "datasourceTemplate": "github-releases",
+    //   "depNameTemplate": "{{org}}/{{repo}}"
+    // },
     // Generic Regex Manager
     {
       "fileMatch": [
