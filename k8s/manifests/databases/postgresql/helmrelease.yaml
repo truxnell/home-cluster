@@ -24,7 +24,7 @@ spec:
       repository: bitnami/postgresql
       tag: 14.2.0
     auth:
-      password: "${SECRET_POSTGRES_PASSWORD}"
+      postgresPassword: "${SECRET_POSTGRES_PASSWORD}"
       database: "postgres"
 
     extendedConfiguration: { "sharedBuffers": "1024MB" }
