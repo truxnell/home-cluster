@@ -63,7 +63,7 @@
 
       ],
       "datasourceTemplate": "github-releases",
-      // "depNameTemplate": "{{org}}/{{repo}}"
+      "depNameTemplate": "{{org}}/{{repo}}"
     },
     // Generic Regex Manager
     {
