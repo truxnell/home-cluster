@@ -12,6 +12,9 @@ Examples:
 
 > Below is sourced form [https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716) with some minor amendmends
 
+!!! Info
+    The best source for this is [https://www.conventionalcommits.org/](https://www.conventionalcommits.org/)
+
 ## Semantic commit rundown
 See how a minor change to your commit message style can make you a better programmer.
 
