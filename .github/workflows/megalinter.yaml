@@ -1,5 +1,5 @@
 ---
-name: Lint
+name: PR - MEGALinter
 
 on: # yamllint disable-line rule:truthy
   workflow_dispatch:
