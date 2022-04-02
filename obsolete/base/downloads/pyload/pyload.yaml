@@ -7,7 +7,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: pyload
       version: 6.2.0
       sourceRef:
@@ -40,4 +39,3 @@ spec:
       media:
         enabled: true
         existingClaim: leela-downloads-pvc
-        

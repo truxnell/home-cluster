@@ -11,7 +11,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://grafana.github.io/helm-charts
       chart: promtail
       version: 3.11.0
       sourceRef:

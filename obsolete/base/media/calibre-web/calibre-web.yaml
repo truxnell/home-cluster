@@ -7,7 +7,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: calibre-web
       version: 8.2.0
       sourceRef:
@@ -38,4 +37,3 @@ spec:
       media:
         enabled: true
         existingClaim: leela-media-pvc
-        

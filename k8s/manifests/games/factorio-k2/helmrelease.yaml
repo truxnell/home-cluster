@@ -8,7 +8,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://github.com/Truxnell/charts
       chart: ./charts/stable/factorio/
       version: 0.0.1
       sourceRef:

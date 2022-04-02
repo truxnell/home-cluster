@@ -11,7 +11,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://nicholaswilde.github.io/helm-charts/
       chart: syncthing
       version: 0.1.8
       sourceRef:
@@ -35,12 +34,12 @@ spec:
         enabled: true
         existingClaim: "config-syncthing-pvc"
     additionalVolumeMounts:
-    - name: backup-omv
-      mountPath: "/backup"
+      - name: backup-omv
+        mountPath: "/backup"
     additionalVolumes:
-    - name: backup-omv
-      persistentVolumeClaim:
-        claimName: nfs-backup-omv-pvc
+      - name: backup-omv
+        persistentVolumeClaim:
+          claimName: nfs-backup-omv-pvc
     service:
       type: LoadBalancer
       loadBalancerIP: 192.168.1.213
@@ -63,10 +62,10 @@ spec:
         hajimari.io/icon: "cloud-sync-outline"
         hajimari.io/group: "home"
       hosts:
-      - host: syncthing.${SECRET_DOMAIN}
-        paths:
-        - path: /
-          pathType: Prefix
+        - host: syncthing.${SECRET_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
       tls:
-      - hosts:
-        - "syncthing.${SECRET_DOMAIN}"
+        - hosts:
+            - "syncthing.${SECRET_DOMAIN}"
