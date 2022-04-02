@@ -42,12 +42,6 @@
       "k8s/global/.+\\.ya?ml$"
     ]
   },
-  "flux": {
-   "fileMatch": [
-     "k8s/mainfests/.+\\.ya?ml$",
-     "k8s/global/.+\\.ya?ml$"
-   ]
-  },
   // "regexManagers": [
   //   // Read and process GitHub Releases
   //   {
