@@ -17,8 +17,8 @@ jobs:
         uses: tibdex/github-app-token@v1
         id: generate-token
         with:
-          app_id: "${{ secrets.BOT_APP_ID }}"
-          private_key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
+          app_id: "${{ secrets.TRUXNELL_APP_ID }}"
+          private_key: "${{ secrets.TRUXNELL_APP_PRIVATE_KEY }}"
       - name: Install Helm
         uses: azure/setup-helm@v1
         with:
