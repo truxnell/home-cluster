@@ -23,11 +23,11 @@ spec:
       registry: quay.io
       repository: bitnami/postgresql
       tag: 14.2.0
+    auth:
+      password: "${SECRET_POSTGRES_PASSWORD}"
+      database: "postgres"
 
-    postgresqlPassword: "${SECRET_POSTGRES_PASSWORD}"
-    postgresqlDatabase: "postgres"
-
-    postgresqlExtendedConf: { "sharedBuffers": "200MB" }
+    extendedConfiguration: { "sharedBuffers": "1024MB" }
 
     metrics:
       enabled: true
