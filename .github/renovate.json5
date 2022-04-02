@@ -50,30 +50,30 @@
     ]
    }, 
   "regexManagers": [
-    // // regexManager to read and process GitHub release artifacts
-    // {
-    //   "fileMatch": [
-    //     "k8s/clusters/.+\\.ya?ml$",
-    //     "k8s/global/.+\\.ya?ml$"
-    //   ],
-    //   "matchStrings": [
-    //     "https:\/\/github.com\/(?<org>.*=?)\/(?<repo>.*=?)\/releases\/download\/(?<currentValue>.*=?)\/.*"
-    //   ],
-    //   "datasourceTemplate": "github-releases",
-    //   "depNameTemplate": "{{org}}/{{repo}}"
-    // },
-    // Generic Regex Manager
+    // regexManager to read and process GitHub release artifacts
     {
       "fileMatch": [
         "k8s/clusters/.+\\.ya?ml$",
         "k8s/global/.+\\.ya?ml$"
       ],
       "matchStrings": [
-        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<currentValue>.*=?)"
+        "https:\/\/github.com\/(?<org>.*=?)\/(?<repo>.*=?)\/releases\/download\/(?<currentValue>.*=?)\/.*"
       ],
-      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
-      "registryUrlTemplate": "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}"
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "{{org}}/{{repo}}"
     },
+    // // Generic Regex Manager
+    // {
+    //   "fileMatch": [
+    //     "k8s/clusters/.+\\.ya?ml$",
+    //     "k8s/global/.+\\.ya?ml$"
+    //   ],
+    //   "matchStrings": [
+    //     "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<currentValue>.*=?)"
+    //   ],
+    //   "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+    //   "registryUrlTemplate": "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}"
+    // },
     // Generic Docker image Regex manager
     {
       "fileMatch": [
@@ -113,14 +113,6 @@
       "matchDatasources": ["docker"],
       "matchPackageNames": ["quay.io/minio/minio"],
       "versioning": "regex:^RELEASE\\.(?<major>\\d{4})-(?<minor>\\d{2})-(?<patch>\\d{2})"
-    },
-    {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": [
-        "ghcr.io/linuxserver/calibre",
-        "ghcr.io/linuxserver/calibre-web"
-      ],
-      "versioning": "regex:^version-v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
     },
     {
       "matchDatasources": ["docker"],
