@@ -42,44 +42,45 @@
       "k8s/global/.+\\.ya?ml$"
     ]
   },
-  // "regexManagers": [
-  //   // Read and process GitHub Releases
-  //   {
-  //     "fileMatch": [
-  //       "k8s/mainfests/.+\\.ya?ml$",
-  //       "k8s/global/.+\\.ya?ml$"
-  //        ],
-  //     "matchStrings": [
-  //       "datasource=(?<datasource>.*?)\n *url: https:\/\/github\\.com\/(?<depName>.*?)\\.git\n *ref:\n *tag: (?<currentValue>.*)\n",
-  //       "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_version: \"(?<currentValue>.*)\"\n",
-  //       "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_VERSION=\"(?<currentValue>.*)\"\n"
-  //     ],
-  //     "datasourceTemplate": "github-releases"
-  //   },
-  //   // Read and process Custom Resource Definitions
-  //   {
-  //     "fileMatch": [
-  //       "k8s/mainfests/.+\\.ya?ml$",
-  //       "k8s/global/.+\\.ya?ml$"
-  //        ],
-  //     "matchStrings": [
-  //       "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n",
-  //       "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/"
-  //     ],
-  //     "datasourceTemplate": "helm"
-  //   },
-  //   // Read and process Custom Resources
-  //   {
-  //     "fileMatch": [
-  //       "k8s/mainfests/.+\\.ya?ml$",
-  //       "k8s/global/.+\\.ya?ml$"
-  //        ],
-  //     "matchStrings": [
-  //       "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n .*: (?<currentValue>.*=?)"
-  //     ],
-  //     "datasourceTemplate": "docker"
-  //   }
-  // ],
+  "regexManagers": [
+    // regexManager to read and process GitHub release artifacts
+    {
+      "fileMatch": [
+        "k8s/clusters/.+\\.yaml$",
+        "k8s/global/.+\\.yaml$"
+      ],
+      "matchStrings": [
+        "https:\/\/github.com\/(?<org>.*=?)\/(?<repo>.*=?)\/releases\/download\/(?<currentValue>.*=?)\/.*"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "{{org}}/{{repo}}"
+    },
+    // Generic Regex Manager
+    {
+      "fileMatch": [
+        "k8s/clusters/.+\\.yaml$",
+        "k8s/global/.+\\.yaml$"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<currentValue>.*=?)"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+      "registryUrlTemplate": "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}"
+    },
+    // Generic Docker image Regex manager
+    {
+      "fileMatch": [
+        "k8s/clusters/.+\\.yaml$",
+        "k8s/global/.+\\.yaml$"
+      ],
+      "matchStrings": [
+        "# renovate: docker-image( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<depName>.*?):(?<currentValue>.*=?)"
+      ],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}docker{{/if}}",
+      "registryUrlTemplate": "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}"
+    }
+  ],
   "packageRules": [
     // Setup datasources
     {
