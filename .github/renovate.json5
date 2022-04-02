@@ -57,14 +57,13 @@
         "k8s/global/.+\\.ya?ml$"
       ],
       "matchStrings": [
-        "https:\/\/github.com\/(?<org>.*=?)\/(?<repo>.*=?)\/releases\/download\/(?<currentValue>.*=?)\/.*",
         "datasource=(?<datasource>.*?)\n *url: https:\/\/github\\.com\/(?<depName>.*?)\\.git\n *ref:\n *tag: (?<currentValue>.*)\n",
         "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_version: \"(?<currentValue>.*)\"\n",
         "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_VERSION=\"(?<currentValue>.*)\"\n"
 
       ],
       "datasourceTemplate": "github-releases",
-      "depNameTemplate": "{{org}}/{{repo}}"
+      // "depNameTemplate": "{{org}}/{{repo}}"
     },
     // Generic Regex Manager
     {
