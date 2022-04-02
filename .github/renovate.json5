@@ -45,15 +45,16 @@
   "flux": {
     "fileMatch": [
       "k8s/manifests/.+\\.ya?ml$",
-      "k8s/global/.+\\.ya?ml$"
+      "k8s/global/.+\\.ya?ml$",
+      "k8s/clusters/.+\\.ya?ml$"
     ]
    }, 
   "regexManagers": [
     // regexManager to read and process GitHub release artifacts
     {
       "fileMatch": [
-        "k8s/clusters/.+\\.yaml$",
-        "k8s/global/.+\\.yaml$"
+        "k8s/clusters/.+\\.ya?ml$",
+        "k8s/global/.+\\.ya?ml$"
       ],
       "matchStrings": [
         "https:\/\/github.com\/(?<org>.*=?)\/(?<repo>.*=?)\/releases\/download\/(?<currentValue>.*=?)\/.*"
@@ -64,8 +65,8 @@
     // Generic Regex Manager
     {
       "fileMatch": [
-        "k8s/clusters/.+\\.yaml$",
-        "k8s/global/.+\\.yaml$"
+        "k8s/clusters/.+\\.ya?ml$",
+        "k8s/global/.+\\.ya?ml$"
       ],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<currentValue>.*=?)"
@@ -76,8 +77,8 @@
     // Generic Docker image Regex manager
     {
       "fileMatch": [
-        "k8s/clusters/.+\\.yaml$",
-        "k8s/global/.+\\.yaml$"
+        "k8s/clusters/.+\\.ya?ml$",
+        "k8s/global/.+\\.ya?ml$"
       ],
       "matchStrings": [
         "# renovate: docker-image( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<depName>.*?):(?<currentValue>.*=?)"
