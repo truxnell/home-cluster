@@ -1,5 +1,5 @@
 ---
-name: Update Pre-Commit Dependencies
+name: Schedule - Update Pre-Commit Dependencies
 
 on:
   workflow_dispatch: {}
