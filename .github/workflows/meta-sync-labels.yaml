@@ -8,6 +8,8 @@ on: # yamllint disable-line rule:truthy
       - main
     paths:
       - ".github/labels.yaml"
+  schedule:
+    - cron: "0 * * * *"
 
 jobs:
   labels:
