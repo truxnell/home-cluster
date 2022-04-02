@@ -1,5 +1,5 @@
 ---
-name: Helm Release Differ
+name: PR - Helm Release Differ
 
 on: # yamllint disable-line rule:truthy
   pull_request:
@@ -45,8 +45,8 @@ jobs:
         uses: tibdex/github-app-token@v1
         id: generate-token
         with:
-          app_id: ${{ secrets.BJWS_APP_ID }}
-          private_key: ${{ secrets.BJWS_APP_PRIVATE_KEY }}
+          app_id: ${{ secrets.TRUXNELL_APP_ID }}
+          private_key: ${{ secrets.TRUXNELL_APP_PRIVATE_KEY }}
 
       - name: Checkout default branch
         uses: actions/checkout@v3
