@@ -32,8 +32,7 @@
   },
   "helm-values": {
     "fileMatch": [
-      "k8s/manifests/.+/helmrelease\\.ya?ml$",
-      "k8s/global/.+/helmrelease\\.ya?ml$"
+      "k8s/manifests/.+\\.yaml$"
     ]
   },
   "kubernetes": {
