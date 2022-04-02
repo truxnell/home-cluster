@@ -4,3 +4,6 @@ area/ci:
 area/cluster:
   - "k8s/global/**/*"
   - "k8s/clusters/**/*"
+  - "k8s/manifests/**/*"
+area/docs:
+  - "docs/**/*"
