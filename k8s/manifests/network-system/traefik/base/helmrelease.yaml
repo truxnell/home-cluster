@@ -28,7 +28,7 @@ spec:
 
     deployment:
       kind: Deployment
-      replicas: 1 #FIXME
+      replicas: 1 # FIXME
 
     service:
       enabled: true

@@ -7,7 +7,7 @@ kubeApiServer:
   enabled: true
 
 kubeControllerManager:
-  enabled: false #FIXME
+  enabled: false # FIXME
 
 kubeEtcd:
   enabled: true
@@ -22,10 +22,10 @@ kubelet:
         targetLabel: instance
 
 kubeProxy:
-  enabled: false #FIXME
+  enabled: false # FIXME
 
 kubeScheduler:
-  enabled: false #FIXME
+  enabled: false # FIXME
 
 kubeStateMetrics:
   enabled: true

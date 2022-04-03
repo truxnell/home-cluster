@@ -21,4 +21,4 @@ spec:
       serviceMonitor:
         enabled: true
     nodeSelector:
-      kubernetes.io/arch: amd64 #FIXME
+      kubernetes.io/arch: amd64 # FIXME

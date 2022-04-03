@@ -63,8 +63,7 @@ spec:
       limits:
         memory: 500Mi
 
-    config: #This like doesnt go to the right spot - i manually edited the config.yaml in the pvc:(
-      # So i guess i dont get how this is supposed to be setup.
+    config: # This is only for first install - once config is stored in pvc this does nothing
       homeassistant: true
       device_options:
         retain: true
