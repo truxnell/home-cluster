@@ -34,13 +34,14 @@ spec:
     metrics:
       enabled: true
       image:
-        repository: bitnami/postgresql
-        tag: 14.2.0-debian-10-r14
+        repository: bitnami/postgres-exporter
+        tag: 0.10.1-debian-10-r70
       serviceMonitor:
         enabled: true
 
     primary:
-      extendedConfiguration: { "sharedBuffers": "1024MB" }
+      extendedConfiguration: |
+        shared_buffers = 1024MB
       persistence:
         enabled: true
         existingClaim: postgresql-config-v1
