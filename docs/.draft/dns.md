@@ -35,7 +35,7 @@ nextdns restart
 Cloudflare block all country except a few whitelisted
 
 Grabbed ideas from onedrops tf repo:
-https://github.com/onedr0p/home-ops/blob/main/terraform/cloudflare/firewall_rules.tf    
+https://github.com/onedr0p/home-ops/blob/main/terraform/cloudflare/firewall_rules.tf
 
 ## uptime monitor
 

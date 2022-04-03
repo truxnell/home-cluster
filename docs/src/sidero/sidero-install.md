@@ -24,7 +24,7 @@ Ask yourself the following questions:
 ### Software considerations
 
 !!! Info "Refer to Sidero documentation on cli pre-requisites"
-    
+
     > Ref: [https://www.sidero.dev/docs/v0.5/getting-started/prereq-cli-tools/](https://www.sidero.dev/docs/v0.5/getting-started/prereq-cli-tools/)
 
 Grab the binaries specified:
@@ -46,7 +46,7 @@ Grab the binaries specified:
 ## Setup DHCP to serve PXE boot files
 
 !!! Info "Refer to Sidero documentation on DHCP setup"
-    
+
     > Ref: [https://www.sidero.dev/docs/v0.5/getting-started/prereq-dhcp/](https://www.sidero.dev/docs/v0.5/getting-started/prereq-dhcp/)
 
 This step will be specific to your network

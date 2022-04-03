@@ -1,7 +1,7 @@
 # Semantic Commit Messages
 
 In this repo, I have made some effort to use semantic commit messaging to be a bit more descriptive/declaritive of what my changes do.
-Despite being a personal project, it still aids in readability of your own changes, and helps track why and how changes are made in a glancable format. 
+Despite being a personal project, it still aids in readability of your own changes, and helps track why and how changes are made in a glancable format.
 
 Examples:
 

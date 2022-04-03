@@ -1,7 +1,7 @@
 # Project information
 site_name: Truxnell | K8S Home-Cluster
 site_description: >-
-  This repo is my homelab, declared in yaml and applied to my 
+  This repo is my homelab, declared in yaml and applied to my
   Kurbenetes cluster in a declarative gitOps fashion via flux.
 site_author: Nat Allan
 site_url: https://truxnell.github.io/home-cluster

@@ -53,7 +53,7 @@ Migration - targeting specific app, only deployments & pv/pvc, and changing name
 ```
 ❯ velero create restore nginx-migrate-4 --from-backup velero-daily-backup-20220209060011 -l app.kubernetes.io/name=nginx-phpfpm  --namespace-mappings http:services
 Restore request "nginx-migrate-4" submitted successfully.
-Run `velero restore describe nginx-migrate-4` or `velero restore logs nginx-migrate-4` for more details.    
+Run `velero restore describe nginx-migrate-4` or `velero restore logs nginx-migrate-4` for more details.
 ```
 
 ## Cross-cluster restore

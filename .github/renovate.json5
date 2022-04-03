@@ -48,7 +48,7 @@
       "k8s/global/.+\\.ya?ml$",
       "k8s/clusters/.+\\.ya?ml$"
     ]
-   }, 
+   },
   "regexManagers": [
     // regexManager to read and process GitHub release artifacts
     {

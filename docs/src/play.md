@@ -5,4 +5,3 @@ k8s PV PVC
 ``` title=".browserslistrc"
 --8<--​ "index.md"
 ```
-

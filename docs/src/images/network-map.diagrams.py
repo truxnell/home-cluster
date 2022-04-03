@@ -15,11 +15,11 @@ graph_attr = {
 with Diagram("Network Map", show=False):
 
     with Cluster("Internet"):
-        internet=Internet("Internet") 
-        
+        internet=Internet("Internet")
+
 
     with Cluster("Local"):
-        
+
         with Cluster("Hardware"):
             netgear = Router("Netgear")
             net_bridge = Edge(style="dashed",label="bridge")
@@ -30,7 +30,7 @@ with Diagram("Network Map", show=False):
 
         with Cluster("Trusted\n10.8.10.1/24"):
             android=Android("Smartphones")
-            windows=Windows("Win Laptops") 
+            windows=Windows("Win Laptops")
             linux=LinuxGeneral("Linux laptops")
 
             # android - usw
@@ -39,8 +39,8 @@ with Diagram("Network Map", show=False):
 
             technocore=Custom("Technocore - Sidero", "k8s.png")
             hegira=Custom("Hegira - k8s", "k8s.png")
-            
-            
+
+
         with Cluster("IOT / Untrusted\n10.8.30.1/24"):
             alexa=IotAlexaEcho("Alexa")
             light=IotLightbulb("IOT Lightbulb")
@@ -58,5 +58,3 @@ with Diagram("Network Map", show=False):
     ap >> windows
     ap >> alexa
     ap >> linux
-    
-    

@@ -17,4 +17,3 @@ This allows me to:
 [<img src="https://www.talos.dev/images/logo.svg" alt="flux" style=";width:200px;height:100px"/>](https://talos.dev)
 [<img src="https://seeklogo.com/images/C/cilium-logo-B9B53FC8EA-seeklogo.com.png" alt="flux" style=";object-fit:contain;width:200px;height:100px"/>](https://cilium.org)
 [<img src="https://mp.s81c.com/pwb-production/c4a833f11e311146a23c643651068b75/kasten-logo-inline-by-Veeam-e768bc74-095a-40de-b6b3-fa8abf4a75e6_7998963c-5e38-4285-ac1d-bdcac69e1523.png" alt="flux" style=";object-fit:contain;width:200px;height:100px"/>](https://www.kasten.io)
-

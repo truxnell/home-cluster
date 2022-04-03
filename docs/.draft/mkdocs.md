@@ -17,4 +17,3 @@ In the mkdocs folder
 Im using
 * Abbereviations
 * Admonitions
- 

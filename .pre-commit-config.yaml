@@ -10,7 +10,7 @@ repos:
     hooks:
       - args:
           - --config-file
-          - .github/lint/.yamllint.yaml
+          - .github/linters/.yamllint.yaml
         id: yamllint
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -43,7 +43,9 @@ repos:
       - id: forbid-secrets
         exclude: |
           (?x)^(
-              .secrets/gitcrypt/.*
+              k8s/manifests/kasten-io/k10/k10-config/blueprints/secret.yaml
+              k8s/manifests/home-automation/mosquitto/secret.sops.yaml
+
           )$
 
   - repo: https://github.com/sirosen/texthooks

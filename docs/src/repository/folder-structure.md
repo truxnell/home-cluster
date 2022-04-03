@@ -203,5 +203,3 @@ This enables multiple clusters to re-use the exact same manifests - often using 
     ├── system-monitoring           # system monitoring (prometheus, grafana, botkube)
     └── vpn                         # vpn apps (pod gateway, used for qbittorrent/namespace routing)
 ```
-
-

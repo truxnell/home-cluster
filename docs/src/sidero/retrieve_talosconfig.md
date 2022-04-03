@@ -38,7 +38,7 @@ pod/ubuntu-debug configured
 Inside pod:
 
 ```bash hl_lines="12 13"
-cat hostRoot/system/state/config.yaml 
+cat hostRoot/system/state/config.yaml
 
 version: v1alpha1 # Indicates the schema used to decode the contents.
 debug: false # Enable verbose logging to the console.
@@ -60,4 +60,3 @@ machine:
 
     ...
 ```
-

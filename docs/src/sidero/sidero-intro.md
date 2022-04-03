@@ -19,4 +19,3 @@ This means a dramatic reduction in attack surface, reduced/eliminates configurat
     In short, it can allow nodes to be connected to the network, PXE boot to a installer, and then wipe/provision the node with TalosOS.  The node will then reboot, getting a configuration file from Sidero.  This will stand up a Master node, etc, and connect workers to your note.
 
 This can be a great alternative to lengthy Ansible/Terraform scripts, which often are taking a general purpose OS like Debian or Ubuntu and trying to strip it down for Kurbenetes.
-
