@@ -22,6 +22,7 @@ spec:
       registry: quay.io
       repository: bitnami/postgresql
       tag: 14.2.0
+
     global:
       postgresql:
         auth:
@@ -30,20 +31,22 @@ spec:
     auth:
       database: "postgres"
 
-    extendedConfiguration: { "sharedBuffers": "1024MB" }
-
     metrics:
       enabled: true
+      image:
+        repository: bitnami/postgresql
+        tag: 0.10.1-debian-10-r14
       serviceMonitor:
         enabled: true
 
-    persistence:
-      size: 10Gi
-      existingClaim: postgresql-config-v1
-
-    service:
-      type: LoadBalancer
-      loadBalancerIP: ${LB_POSTGRES}
+    primary:
+      extendedConfiguration: { "sharedBuffers": "1024MB" }
+      persistence:
+        enabled: true
+        existingClaim: postgresql-config-v1
+      service:
+        type: LoadBalancer
+        loadBalancerIP: ${LB_POSTGRES}
 
     # commonAnnotations: # FIXME
     #   prometheus.io/probe: "true"
