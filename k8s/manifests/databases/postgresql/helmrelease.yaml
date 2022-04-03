@@ -40,8 +40,8 @@ spec:
         enabled: true
 
     primary:
-      # extendedConfiguration: |
-      #   shared_buffers = 1024MB
+      extendedConfiguration: |
+        shared_buffers = 1024MB
       persistence:
         enabled: true
         existingClaim: postgresql-config-v1
