@@ -35,7 +35,7 @@ spec:
       enabled: true
       image:
         repository: bitnami/postgresql
-        tag: 0.10.1-debian-10-r14
+        tag: 14.2.0-debian-10-r14
       serviceMonitor:
         enabled: true
 
