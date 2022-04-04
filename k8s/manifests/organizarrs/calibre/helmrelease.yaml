@@ -76,11 +76,13 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: calibre-webserver
+                  port: 8081
         tls:
           - hosts:
               - *host
             secretName: &tls calibre-cs-${CLUSTER_NAME}-tls
-
 
     service:
       webserver:
