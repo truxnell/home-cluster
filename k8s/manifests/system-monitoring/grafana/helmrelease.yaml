@@ -66,7 +66,7 @@ spec:
           - name: AlertManager
             type: alertmanager
             access: proxy
-            url: http://alertmanager-operated:9093
+            url: http://alertmanager-operated.system-monitoring:9093
             jsonData:
               implementation: "prometheus"
 
