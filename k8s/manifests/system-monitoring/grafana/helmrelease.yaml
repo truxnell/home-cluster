@@ -63,6 +63,12 @@ spec:
             type: loki
             access: proxy
             url: http://loki.system-monitoring:3100
+          - name: AlertManager
+            type: alertmanager
+            access: proxy
+            url: http://alertmanager-operated:9093
+            jsonData:
+              implementation: "prometheus"
 
     dashboardProviders:
       dashboardproviders.yaml:
@@ -160,7 +166,6 @@ spec:
         node-exporter-full:
           url: https://grafana.com/api/dashboards/1860/revisions/22/download
           datasource: Prometheus
-
 
       cilium:
         cilium-agent:
