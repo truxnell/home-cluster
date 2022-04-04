@@ -1,0 +1,38 @@
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Provider
+metadata:
+  name: alertmanager
+  namespace: flux-system
+spec:
+  type: alertmanager
+  address: http://prometheus-alertmanager.system-monitoring:9093/api/v2/alerts/
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Alert
+metadata:
+  name: home-ops
+  namespace: flux-system
+spec:
+  providerRef:
+    name: alertmanager
+  eventSeverity: error
+  eventSources:
+    - kind: GitRepository
+      name: "*"
+    - kind: HelmRelease
+      name: "*"
+    - kind: HelmRepository
+      name: "*"
+    - kind: ImagePolicy
+      name: "*"
+    - kind: ImageRepository
+      name: "*"
+    - kind: ImageUpdateAutomation
+      name: "*"
+    - kind: Kustomization
+      name: "*"
+  exclusionList:
+    - "error.*lookup github\\.com"
+    - "waiting.*socket"
+  suspend: false
