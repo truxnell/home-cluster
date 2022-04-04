@@ -46,7 +46,7 @@ spec:
               imagePullPolicy: IfNotPresent
               env:
                 - name: TZ
-                  value: "${TIMEZONE}"
+                  value: "${TZ}"
               command:
                 - /app/trash
               args:
@@ -63,7 +63,7 @@ spec:
               imagePullPolicy: IfNotPresent
               env:
                 - name: TZ
-                  value: "${TIMEZONE}"
+                  value: "${TZ}"
               command:
                 - /app/trash
               args:
