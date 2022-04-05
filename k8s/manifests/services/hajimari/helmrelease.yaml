@@ -37,10 +37,10 @@ spec:
         any: true
 
       name: "nat"
-      customApps:
-        - name: PiAware
-          url: "http://192.168.150.25:8080"
-          icon: "airplane"
+      # customApps:
+      #   - name: PiAware
+      #     url: "http://192.168.150.25:8080"
+      #     icon: "airplane"
 
       groups:
         - name: Communicate
@@ -51,6 +51,8 @@ spec:
               url: "https://gmail.com"
             - name: Slack
               url: "https://slack.com/signin"
+            - name: "Runbox"
+              url: "https://runbox.com/app/login"
 
         - name: Cloud
           links:
@@ -65,6 +67,15 @@ spec:
             - name: OnShape
               url: "https://cad.onshape.com"
 
+        - name: Git
+          links:
+            - name: Trux Home-Cluster
+              url: https://github.com/Truxnell/home-cluster
+            - name: Trux Home Assistant
+              url: https://github.com/Truxnell/hass-config
+            - name: k@h charts
+              url: https://github.com/k8s-at-home/charts/tree/master/charts
+
         - name: Media
           links:
             - name: Spotify
@@ -76,11 +87,6 @@ spec:
           links:
             - name: Reddit
               url: "http://reddit.com"
-
-        - name: Tech
-          links:
-            - name: Hacker News
-              url: "https://news.ycombinator.com/"
 
     ingress:
       main:
