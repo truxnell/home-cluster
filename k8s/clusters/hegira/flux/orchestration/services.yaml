@@ -67,3 +67,21 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: services-minio
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: services-namespace
+    - name: network-system-traefik
+  interval: 5m
+  path: "./k8s/manifests/services/minio"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
