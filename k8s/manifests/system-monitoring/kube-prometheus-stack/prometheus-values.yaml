@@ -61,7 +61,7 @@ prometheus:
             labels:
               app: "synology"
 
-      - job_name: minio # FIXME
+      - job_name: minio
         honor_timestamps: true
         metrics_path: /minio/v2/metrics/cluster
         static_configs:
