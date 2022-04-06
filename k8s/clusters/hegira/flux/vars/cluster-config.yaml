@@ -39,6 +39,7 @@ data:
   LB_CALIBRE: "10.8.20.217"
   LB_MOSQUITTO: "10.8.20.219"
   LB_FACTORIO: "10.8.20.230"
+  LB_NGINX_INGRESS: "10.8.20.220"
 
   # Device IP's
   ROUTER_IP: "unifi"
