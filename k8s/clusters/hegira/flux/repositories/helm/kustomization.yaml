@@ -4,17 +4,14 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - ../../../../../global/flux/repositories/helm
-  - ./codecentric-charts.yaml
-  - ./drpsychick.yaml
-  - ./emqx-charts.yaml
   - ./external-dns-charts.yaml
   - ./grafana-charts.yaml
   - ./hajimari-charts.yaml
+  - ./ingress-nginx-charts.yaml
   - ./k8s-at-home-truxnell.yaml
   - ./nfs-subdir-external-provisioner-charts.yaml
   - ./kasten-charts.yaml
   - ./kubernetes-sigs-descheduler-charts.yaml
-  - ./sqljames-charts.yaml
   - ./vmware-charts.yaml
   - ./weaveworks-kured-charts.yaml
   - ./rook-ceph-charts.yaml
