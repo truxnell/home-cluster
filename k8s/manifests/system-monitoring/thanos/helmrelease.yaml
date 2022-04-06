@@ -40,7 +40,10 @@ spec:
           hajimari.io/icon: "archive-clock"
         tls: true
 
-    existingObjstoreSecret: thanos-objstore-secret
+    existingObjstoreSecret: &secret thanos-objstore-secret
+
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: *secret
 
     queryFrontend:
       enabled: false
