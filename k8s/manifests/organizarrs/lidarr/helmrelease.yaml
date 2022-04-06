@@ -26,12 +26,13 @@ spec:
     ingress:
       main:
         enabled: true
+        ingressClassName: "nginx"
         annotations:
-          kubernetes.io/ingress.class: traefik
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/lidarr/nord.css"></head>';
+            sub_filter_once on;
           external-dns/is-public: "false"
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
           hajimari.io/enable: "true"
           hajimari.io/icon: "music-box"
         hosts:
@@ -46,12 +47,13 @@ spec:
 
       api:
         enabled: true
+        ingressClassName: "nginx"
         annotations:
-          kubernetes.io/ingress.class: traefik
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/lidarr/nord.css"></head>';
+            sub_filter_once on;
           external-dns/is-public: "false"
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
         hosts:
           - host: *host
             paths:
