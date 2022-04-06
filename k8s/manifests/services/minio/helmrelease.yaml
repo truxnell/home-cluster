@@ -23,6 +23,7 @@ spec:
 
     env:
       TZ: "${TZ}"
+      MINIO_PROMETHEUS_AUTH_TYPE: "public"
       MINIO_UPDATE: "off"
       MINIO_ROOT_USER: ${SECRET_MINIO_ROOT_USER}
       MINIO_ROOT_PASSWORD: ${SECRET_MINIO_ROOT_PASSWORD}
