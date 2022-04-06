@@ -1,0 +1,60 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: theme-park
+  namespace: services
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: /k8s/charts/kah-common-chart/
+      sourceRef:
+        kind: GitRepository
+        name: home-cluster
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: ghcr.io/k8s-at-home/theme-park
+      tag: v1.7.3
+
+    nameOverride: "theme-park"
+
+    env:
+      TZ: "${TZ}"
+
+    service:
+      main:
+        ports:
+          http:
+            enabled: true
+            port: 80
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: traefik
+          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+          external-dns/is-public: "false"
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+        hosts:
+          - host: &host-minio "theme-park.${CLUSTER_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: 9001
+        tls:
+          - secretName: tls.theme-park
+            hosts:
+              - *host-minio
+
+    resources:
+      requests:
+        memory: 50Mi
+        cpu: 100m
+      limits:
+        memory: 100Mi
