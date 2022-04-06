@@ -18,6 +18,8 @@ spec:
   install:
     createNamespace: true
   values:
+    existingObjstoreSecret: &secret thanos-objstore-secret
+
     query:
       enabled: true
       replicaLabels:
@@ -26,6 +28,9 @@ spec:
       dnsDiscovery:
         sidecarsService: prometheus-thanos-discovery
         sidecarsNamespace: system-monitoring
+
+      podAnnotations:
+        configmap.reloader.stakater.com/reload: *secret
 
       ingress:
         enabled: true
@@ -40,27 +45,30 @@ spec:
           hajimari.io/icon: "archive-clock"
         tls: true
 
-    existingObjstoreSecret: &secret thanos-objstore-secret
-
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: *secret
-
     queryFrontend:
       enabled: false
+      podAnnotations:
+        configmap.reloader.stakater.com/reload: *secret
 
     bucketweb:
       enabled: true
+      podAnnotations:
+        configmap.reloader.stakater.com/reload: *secret
 
     compactor:
       enabled: true
       persistence:
         enabled: false
+      podAnnotations:
+        configmap.reloader.stakater.com/reload: *secret
 
     storegateway:
       enabled: true
       persistence:
         enabled: true
         size: 5Gi
+      podAnnotations:
+        configmap.reloader.stakater.com/reload: *secret
 
     ruler:
       enabled: false
