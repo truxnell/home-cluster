@@ -21,14 +21,18 @@ spec:
       extraEnvs:
         - name: TZ
           value: "${TZ}"
+
       service:
         externalIPs:
           - "${LB_NGINX_INGRESS}"
         externalTrafficPolicy: Local
+
       publishService:
         enabled: true
+
       ingressClassResource:
         default: true
+
       config:
         client-header-timeout: 120
         client-body-buffer-size: "100M"
@@ -43,6 +47,7 @@ spec:
         proxy-body-size: "100M"
         ssl-protocols: "TLSv1.3 TLSv1.2"
         use-forwarded-headers: "true"
+
       metrics:
         enabled: true
         serviceMonitor:
@@ -52,8 +57,10 @@ spec:
             any: true
         prometheusRule:
           enabled: false
+
       extraArgs:
         default-ssl-certificate: "networking/${CLUSTER_DOMAIN/./-}-tls"
+
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: kubernetes.io/hostname
@@ -61,19 +68,23 @@ spec:
           labelSelector:
             matchLabels:
               app.kubernetes.io/instance: ingress-nginx
+
       tolerations:
         - effect: NoSchedule
           operator: Exists
         - effect: NoExecute
           operator: Exists
+
       podAnnotations:
         configmap.reloader.stakater.com/reload: "cloudflare-proxied-networks"
+
       resources:
         requests:
           memory: 250Mi
           cpu: 100m
         limits:
           memory: 1000Mi
+
     defaultBackend:
       enabled: true
       image:
@@ -81,9 +92,10 @@ spec:
         tag: 2.12.1
       extraEnvs:
         - name: TEMPLATE_NAME
-          value: cat
+          value: cats
         - name: SHOW_DETAILS
           value: "false"
+
   valuesFrom:
     # Cloudflare Networks
     # https://www.cloudflare.com/ips/
