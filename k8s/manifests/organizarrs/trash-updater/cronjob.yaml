@@ -6,8 +6,8 @@ metadata:
   namespace: organizarrs
   labels:
     app: trash-updater
-spec:
-  schedule: "0 3 * * *"
+spec: #TODO #920 refactor to use secret vars
+  schedule: "0 12 * * *" # 2am AEST
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
