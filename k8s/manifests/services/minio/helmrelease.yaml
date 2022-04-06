@@ -27,6 +27,9 @@ spec:
       MINIO_UPDATE: "off"
       MINIO_ROOT_USER: ${SECRET_MINIO_ROOT_USER}
       MINIO_ROOT_PASSWORD: ${SECRET_MINIO_ROOT_PASSWORD}
+      MINIO_BROWSER_REDIRECT_URL: minio.${CLUSTER_DOMAIN}
+      MINIO_PROMETHEUS_URL: "http://prometheus-prometheus.system-monitoring:9090"
+      MINIO_SERVER_URL: "https://s3.${CLUSTER_DOMAIN}"
     args:
       - server
       - /data
