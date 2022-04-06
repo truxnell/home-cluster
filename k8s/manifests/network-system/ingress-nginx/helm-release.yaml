@@ -23,8 +23,7 @@ spec:
           value: "${TZ}"
 
       service:
-        externalIPs:
-          - "${LB_NGINX_INGRESS}"
+        loadBalancerIP: "${LB_NGINX_INGRESS}"
         externalTrafficPolicy: Local
 
       publishService:
