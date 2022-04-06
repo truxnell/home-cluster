@@ -6,7 +6,7 @@ metadata:
   namespace: organizarrs
   labels:
     app: trash-updater
-spec: #TODO #920 refactor to use secret vars
+spec:
   schedule: "0 12 * * *" # 2am AEST
   concurrencyPolicy: Forbid
   jobTemplate:
@@ -20,15 +20,9 @@ spec: #TODO #920 refactor to use secret vars
               image: ghcr.io/k8s-at-home/trash-updater:v1.8.2
               env:
                 - name: RADARR_API_KEY
-                  valueFrom:
-                    secretKeyRef:
-                      name: trash-updater-secrets
-                      key: radarrApiKey
+                  value: ${RADARR_API_KEY}
                 - name: SONARR_API_KEY
-                  valueFrom:
-                    secretKeyRef:
-                      name: trash-updater-secrets
-                      key: sonarrApiKey
+                  value: ${SONARR_API_KEY}
               command:
                 - "/bin/bash"
                 - -c
