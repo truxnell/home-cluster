@@ -46,8 +46,10 @@ prometheus:
       image: quay.io/thanos/thanos:v0.25.1
       version: v0.22.0
       objectStorageConfig:
-        name: thanos-objstore-secret
+        name: &secret thanos-objstore-secret
         key: objstore.yml
+    podAnnotations:
+      secret.reloader.stakater.com/reload: *secret
 
     additionalScrapeConfigs:
       - job_name: hyperion
