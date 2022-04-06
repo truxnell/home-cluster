@@ -153,7 +153,7 @@ spec:
   dependsOn:
     - name: network-system-namespace
   interval: 5m
-  path: "./k8s/manifests/network-system/traefik/ingress-nginx"
+  path: "./k8s/manifests/network-system/ingress-nginx"
   prune: true
   wait: true
   sourceRef:
