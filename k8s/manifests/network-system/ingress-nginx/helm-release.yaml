@@ -52,14 +52,14 @@ spec:
         enabled: true
         serviceMonitor:
           enabled: true
-          namespace: networking
+          namespace: network-system
           namespaceSelector:
             any: true
         prometheusRule:
           enabled: false
 
       extraArgs:
-        default-ssl-certificate: "networking/${CLUSTER_DOMAIN/./-}-tls"
+        default-ssl-certificate: "network-system/${CLUSTER_DOMAIN/./-}-tls"
 
       topologySpreadConstraints:
         - maxSkew: 1
