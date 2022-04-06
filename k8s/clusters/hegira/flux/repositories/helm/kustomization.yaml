@@ -8,7 +8,6 @@ resources:
   - ./grafana-charts.yaml
   - ./hajimari-charts.yaml
   - ./ingress-nginx-charts.yaml
-  - ./k8s-at-home-truxnell.yaml
   - ./nfs-subdir-external-provisioner-charts.yaml
   - ./kasten-charts.yaml
   - ./kubernetes-sigs-descheduler-charts.yaml
