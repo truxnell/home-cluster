@@ -44,6 +44,10 @@ data:
   ROUTER_IP: "unifi"
   NAS_ADDRESS: "hyperion.lab"
   ZIGBEE_POE_COORDINATOR: "10.8.30.110"
+
   # Addresses
   POSTGRES_ADDRESS: postgresql.databases.svc.cluster.local
   REDIS_ADDRESS: redis-master-0.databases.svc.cluster.local
+
+  # Theme Park theme
+  THEME_PARK_THEME: nord
