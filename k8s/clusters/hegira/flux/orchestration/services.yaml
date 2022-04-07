@@ -84,20 +84,20 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: services-theme-park
-#   namespace: flux-system
-# spec:
-#   dependsOn:
-#     - name: services-namespace
-#     - name: network-system-ingress-nginx
-#   interval: 5m
-#   path: "./k8s/manifests/services/theme-park"
-#   prune: true
-#   wait: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: services-theme-park
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: services-namespace
+    - name: network-system-ingress-nginx
+  interval: 5m
+  path: "./k8s/manifests/services/theme-park"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
