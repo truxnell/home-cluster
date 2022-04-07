@@ -1,8 +1,7 @@
 # My Home Cluster
 
 [![Discord](https://img.shields.io/badge/discord-chat-7289DA.svg?maxAge=60&style=flat-square)](https://discord.gg/7PbmHRK)
-[![renovate](https://github.com/Truxnell/home-cluster/actions/workflows/renovate.yaml/badge.svg)](https://github.com/Truxnell/home-cluster/actions/workflows/renovate.yaml)
-[![kustomize](https://github.com/Truxnell/home-cluster/actions/workflows/kustomize.yml/badge.svg)](https://github.com/Truxnell/home-cluster/actions/workflows/kustomize.yml)
+workflows/kustomize.yml)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Truxnell/home-cluster?color=purple&style=flat-square)](https://github.com/billimek/k8s-gitops/commits/main)
 [![Lines of code](https://img.shields.io/tokei/lines/github/truxnell/home-cluster?style=flat-square&color=brightgreen&label=lines&logo=codefactor&logoColor=white)](https://github.com/onedr0p/home-cluster/graphs/contributors)
 
