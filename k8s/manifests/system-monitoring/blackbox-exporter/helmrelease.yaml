@@ -24,6 +24,7 @@ spec:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
         external-dns/is-public: "false"
         hajimari.io/enable: "true"
         hajimari.io/appName: "Blackbox Exporter"
@@ -73,23 +74,23 @@ spec:
       # Nodes
 
       targets:
-        # below are no good until I setup shed wifi link and get rid of POE
-        # FIXME
-        # - module: icmp
-        #   name: prusa
-        #   url: octopi.lan
-        # - module: icmp
-        #   name: brewpiless
-        #   url: ESP_7DE997.lan
-        # - module: icmp
-        #   name: weatherstation
-        #   url: ESP-B9C83C.iot
-        # - module: icmp
-        #   name: wled-officedesk
-        #   url: wled-officedesk.iot
-        # - module: icmp
-        #   name: espresence-study
-        #   url: espresense-study.iot
+      # below are no good until I setup shed wifi link and get rid of POE
+      # FIXME
+      # - module: icmp
+      #   name: prusa
+      #   url: octopi.lan
+      # - module: icmp
+      #   name: brewpiless
+      #   url: ESP_7DE997.lan
+      # - module: icmp
+      #   name: weatherstation
+      #   url: ESP-B9C83C.iot
+      # - module: icmp
+      #   name: wled-officedesk
+      #   url: wled-officedesk.iot
+      # - module: icmp
+      #   name: espresence-study
+      #   url: espresense-study.iot
 
     prometheusRule:
       enabled: true

@@ -207,7 +207,7 @@ spec:
           gnetId: 11312
           revision: 8
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/13646
+      # Ref: https://grafana.com/grafana/dashboards/13646
       ceph:
         # Ref: https://grafana.com/grafana/dashboards/5336
         ceph-cluster:
@@ -269,6 +269,7 @@ spec:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
         external-dns/is-public: "false"
         hajimari.io/enable: "true"
         hajimari.io/icon: "graph-line"

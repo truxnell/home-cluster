@@ -5,6 +5,7 @@ prometheus:
     pathType: Prefix
     annotations:
       kubernetes.io/ingress.class: "nginx"
+      cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
       external-dns/is-public: "false"
       hajimari.io/enable: "true"
       hajimari.io/icon: database-clock
@@ -141,34 +142,34 @@ prometheus:
           - source_labels: [__meta_kubernetes_service_name]
             target_label: kubernetes_name
 
-        # - job_name: "kubernetes-services-tcp" # FIXME
-        #   metrics_path: /probe
-        #   scrape_interval: 60s
-        #   params:
-        #     module: [tcp_connect]
-        #   kubernetes_sd_configs:
-        #     - role: service
-        #   relabel_configs:
-        #     - source_labels:
-        #         [__meta_kubernetes_service_annotation_prometheus_io_probe]
-        #       action: keep
-        #       regex: true
-        #     - source_labels:
-        #         [__meta_kubernetes_service_annotation_prometheus_io_protocol]
-        #       action: keep
-        #       regex: tcp
-        #     - source_labels: [__address__]
-        #       target_label: __param_target
-        #     - target_label: __address__
-        #       replacement: blackbox-exporter.system-monitoring.svc.cluster.local:9115
-        #     - source_labels: [__param_target]
-        #       target_label: instance
-        #     - action: labelmap
-        #       regex: __meta_kubernetes_service_label_(.+)
-        #     - source_labels: [__meta_kubernetes_namespace]
-        #       target_label: kubernetes_namespace
-        #     - source_labels: [__meta_kubernetes_service_name]
-        #       target_label: kubernetes_name
+          # - job_name: "kubernetes-services-tcp" # FIXME
+          #   metrics_path: /probe
+          #   scrape_interval: 60s
+          #   params:
+          #     module: [tcp_connect]
+          #   kubernetes_sd_configs:
+          #     - role: service
+          #   relabel_configs:
+          #     - source_labels:
+          #         [__meta_kubernetes_service_annotation_prometheus_io_probe]
+          #       action: keep
+          #       regex: true
+          #     - source_labels:
+          #         [__meta_kubernetes_service_annotation_prometheus_io_protocol]
+          #       action: keep
+          #       regex: tcp
+          #     - source_labels: [__address__]
+          #       target_label: __param_target
+          #     - target_label: __address__
+          #       replacement: blackbox-exporter.system-monitoring.svc.cluster.local:9115
+          #     - source_labels: [__param_target]
+          #       target_label: instance
+          #     - action: labelmap
+          #       regex: __meta_kubernetes_service_label_(.+)
+          #     - source_labels: [__meta_kubernetes_namespace]
+          #       target_label: kubernetes_namespace
+          #     - source_labels: [__meta_kubernetes_service_name]
+          #       target_label: kubernetes_name
     resources:
       requests:
         memory: 3072Mi

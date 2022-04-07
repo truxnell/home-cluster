@@ -46,6 +46,7 @@ spec:
       host: k10.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
       annotations:
         kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
         external-dns/is-public: "false"
         hajimari.io/enable: "true"
         hajimari.io/icon: backup-restore

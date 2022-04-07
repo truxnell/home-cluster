@@ -29,6 +29,7 @@ spec:
         enabled: true
         annotations:
           kubernetes.io/ingress.class: "nginx"
+          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/so/nord.css"></head>';
@@ -51,6 +52,7 @@ spec:
         enabled: true
         annotations:
           kubernetes.io/ingress.class: "nginx"
+          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           external-dns/is-public: "false"
         hosts:
           - host: *host
