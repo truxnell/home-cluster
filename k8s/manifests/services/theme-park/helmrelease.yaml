@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: ghcr.io/truxnell/container-images/theme-park
-      tag: latest
+      tag: sha256:d6d4f4460a2bbcf191b3c9c384ee6c81bc1eb695fd499f32bdc5b2b746a46339
 
     nameOverride: "theme-park"
 
@@ -29,7 +29,7 @@ spec:
         ports:
           http:
             enabled: true
-            port: 80
+            port: 8080
 
     ingress:
       main:
@@ -44,7 +44,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  port: 80
+                  port: 8080
         tls:
           - secretName: tls.theme-park
             hosts:
