@@ -43,7 +43,8 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
-#TODO #931 Add api
+        #TODO #931 Add api
+        tls:
           - hosts:
               - *host
             secretName: prowlarr-${CLUSTER_NAME}-tls
