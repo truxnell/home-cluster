@@ -32,7 +32,7 @@ spec:
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="${THEME-PARK-URL}/css/base/sabnzbd/${THEME_PARK_THEME}.css"></head>';
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="${THEME_PARK_URL}/css/base/sabnzbd/${THEME_PARK_THEME}.css"></head>';
             sub_filter_once on;
           external-dns/is-public: "false"
           hajimari.io/enable: "true"
