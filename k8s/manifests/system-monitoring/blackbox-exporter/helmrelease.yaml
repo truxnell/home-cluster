@@ -23,10 +23,8 @@ spec:
     ingress:
       enabled: true
       annotations:
-        kubernetes.io/ingress.class: traefik
-        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+        kubernetes.io/ingress.class: "nginx"
+        external-dns/is-public: "false"
         hajimari.io/enable: "true"
         hajimari.io/appName: "Blackbox Exporter"
         hajimari.io/icon: package-variant-closed

@@ -155,10 +155,6 @@ spec:
           gnetId: 13407
           revision: 1
           datasource: Prometheus
-        traefik:
-          gnetId: 12250
-          revision: 1
-          datasource: Prometheus
         node-problem-detector:
           gnetId: 15549
           revision: 1
@@ -272,11 +268,8 @@ spec:
     ingress:
       enabled: true
       annotations:
-        kubernetes.io/ingress.class: traefik
-        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+        kubernetes.io/ingress.class: "nginx"
         external-dns/is-public: "false"
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
         hajimari.io/enable: "true"
         hajimari.io/icon: "graph-line"
       hosts:
