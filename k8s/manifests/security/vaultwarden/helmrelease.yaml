@@ -44,7 +44,7 @@ spec:
         enabled: true
         annotations:
           kubernetes.io/ingress.class: "nginx"
-          external-dns/is-public: "false"
+          external-dns/is-public: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: "shield-key"
 
