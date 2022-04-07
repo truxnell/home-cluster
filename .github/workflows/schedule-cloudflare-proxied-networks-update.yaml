@@ -21,8 +21,8 @@ jobs:
         uses: tibdex/github-app-token@v1
         id: generate-token
         with:
-          app_id: "${{ secrets.TRUXNELL_BOT_APP_ID }}"
-          private_key: "${{ secrets.TRUXNELL_BOT_APP_PRIVATE_KEY }}"
+          app_id: "${{ secrets.TRUXNELL_APP_ID }}"
+          private_key: "${{ secrets.TRUXNELL_APP_PRIVATE_KEY }}"
       - name: Cloudflare Proxied Networks
         run: |
           bash ./.github/scripts/cloudflare-proxied-networks.sh > ${{ env.CLOUDFLARE_PROXIED_NETWORKS_FILE }}
