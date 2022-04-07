@@ -35,6 +35,7 @@ spec:
       main:
         enabled: true
         annotations:
+          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           kubernetes.io/ingress.class: "nginx"
           external-dns/is-public: "false"
         hosts:
