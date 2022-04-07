@@ -16,8 +16,8 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/truxnell/container-images/theme-park:latest
-      tag: v1.7.3
+      repository: ghcr.io/truxnell/container-images/theme-park
+      tag: latest
 
     nameOverride: "theme-park"
 
