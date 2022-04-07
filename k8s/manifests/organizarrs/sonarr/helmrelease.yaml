@@ -28,11 +28,12 @@ spec:
       main:
         enabled: true
         annotations:
-          kubernetes.io/ingress.class: traefik
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+          kubernetes.io/ingress.class: "nginx"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.dev/css/base/so/nord.css"></head>';
+            sub_filter_once on;
           external-dns/is-public: "false"
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
           hajimari.io/enable: "true"
           hajimari.io/icon: "television-box"
           hajimari.io/appName: sonarr
@@ -49,10 +50,8 @@ spec:
       api:
         enabled: true
         annotations:
-          kubernetes.io/ingress.class: traefik
-          external-dns/is-public: "true"
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
+          kubernetes.io/ingress.class: "nginx"
+          external-dns/is-public: "false"
         hosts:
           - host: *host
             paths:

@@ -22,7 +22,7 @@ spec:
   dependsOn:
     - name: downloads-namespace
     - name: rook-ceph-cluster
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
   interval: 5m
   path: "./k8s/manifests/downloads/sabnzbd"
   prune: true
@@ -40,7 +40,7 @@ spec:
   dependsOn:
     - name: downloads-namespace
     - name: rook-ceph-cluster
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
   interval: 5m
   path: "./k8s/manifests/downloads/qbittorrent"
   prune: true

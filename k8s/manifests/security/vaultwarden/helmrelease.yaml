@@ -43,14 +43,10 @@ spec:
       main:
         enabled: true
         annotations:
-          kubernetes.io/ingress.class: traefik
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-          external-dns.alpha.kubernetes.io/target: "ipv4.${CLUSTER_DOMAIN}"
-          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-          external-dns/is-public: "true"
+          kubernetes.io/ingress.class: "nginx"
+          external-dns/is-public: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: "shield-key"
-          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
 
         hosts:
           - host: &host vault.${CLUSTER_DOMAIN}
@@ -69,11 +65,8 @@ spec:
       admin:
         enabled: true
         annotations:
-          kubernetes.io/ingress.class: traefik
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+          kubernetes.io/ingress.class: "nginx"
           external-dns/is-public: "false"
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
 
         hosts:
           - host: *host
