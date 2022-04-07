@@ -16,7 +16,7 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    # initContainers:
+    # initContainers: #TODO #930
     #   npm-update-modules:
     #     image: node:12-buster-slim@sha256:426f05df1d1feefa841471c0faa22a20db286766bf528993421847f9a3b8efe3
     #     command: ["npm", "update", "--verbose"]
@@ -35,11 +35,8 @@ spec:
       main:
         enabled: true
         annotations:
-          kubernetes.io/ingress.class: traefik
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+          kubernetes.io/ingress.class: "nginx"
           external-dns/is-public: "false"
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.middlewares: network-system-rfc1918-ips@kubernetescrd
           hajimari.io/enable: "false"
           hajimari.io/icon: "resistor-nodes"
         hosts:

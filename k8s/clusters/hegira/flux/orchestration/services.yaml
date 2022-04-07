@@ -22,7 +22,7 @@ spec:
   dependsOn:
     - name: services-namespace
     - name: kube-system-reloader
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
     - name: rook-ceph-cluster
   interval: 5m
   path: "./k8s/manifests/services/hajimari"
@@ -40,7 +40,7 @@ metadata:
 spec:
   dependsOn:
     - name: services-namespace
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
     - name: databases-postgresql
   interval: 5m
   path: "./k8s/manifests/services/joplin-server"
@@ -58,7 +58,7 @@ metadata:
 spec:
   dependsOn:
     - name: services-namespace
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
     - name: databases-postgresql
   interval: 5m
   path: "./k8s/manifests/services/nginx-php"
@@ -76,7 +76,7 @@ metadata:
 spec:
   dependsOn:
     - name: services-namespace
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
   interval: 5m
   path: "./k8s/manifests/services/minio"
   prune: true
@@ -93,7 +93,7 @@ spec:
 # spec:
 #   dependsOn:
 #     - name: services-namespace
-#     - name: network-system-traefik
+#     - name: network-system-ingress-nginx
 #   interval: 5m
 #   path: "./k8s/manifests/services/theme-park"
 #   prune: true

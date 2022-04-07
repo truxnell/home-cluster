@@ -22,7 +22,7 @@ spec:
   dependsOn:
     - name: organizarrs-namespace
     - name: rook-ceph-cluster
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
   interval: 5m
   path: "./k8s/manifests/organizarrs/prowlarr"
   prune: true
@@ -41,7 +41,7 @@ spec:
     - name: organizarrs-namespace
     - name: rook-ceph-cluster
     - name: organizarrs-prowlarr
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
   interval: 5m
   path: "./k8s/manifests/organizarrs/sonarr"
   prune: true
@@ -60,7 +60,7 @@ spec:
     - name: organizarrs-namespace
     - name: rook-ceph-cluster
     - name: organizarrs-prowlarr
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
   interval: 5m
   path: "./k8s/manifests/organizarrs/radarr"
   prune: true
@@ -79,7 +79,7 @@ spec:
     - name: organizarrs-namespace
     - name: rook-ceph-cluster
     - name: organizarrs-prowlarr
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
   interval: 5m
   path: "./k8s/manifests/organizarrs/lidarr"
   prune: true
@@ -98,7 +98,7 @@ spec:
     - name: organizarrs-namespace
     - name: rook-ceph-cluster
     - name: organizarrs-prowlarr
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
   interval: 5m
   path: "./k8s/manifests/organizarrs/readarr"
   prune: true
@@ -117,7 +117,7 @@ spec:
     - name: organizarrs-namespace
     - name: rook-ceph-cluster
     - name: media-plex
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
     - name: organizarrs-prowlarr
   interval: 5m
   path: "./k8s/manifests/organizarrs/gaps"
@@ -137,7 +137,7 @@ spec:
     - name: organizarrs-namespace
     - name: rook-ceph-cluster
     - name: media-plex
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
     - name: organizarrs-sonarr
     - name: organizarrs-radarr
   interval: 5m
@@ -157,7 +157,7 @@ spec:
   dependsOn:
     - name: organizarrs-namespace
     - name: rook-ceph-cluster
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
   interval: 5m
   path: "./k8s/manifests/organizarrs/calibre"
   prune: true
@@ -175,7 +175,7 @@ spec:
   dependsOn:
     - name: organizarrs-namespace
     - name: rook-ceph-cluster
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
   interval: 5m
   path: "./k8s/manifests/organizarrs/calibre-web"
   prune: true

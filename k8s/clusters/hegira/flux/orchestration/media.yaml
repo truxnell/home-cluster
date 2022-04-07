@@ -38,7 +38,7 @@ spec:
   dependsOn:
     - name: media-namespace
     - name: network-system-metallb
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
   interval: 5m
   path: "./k8s/manifests/media/plex"
   prune: true
@@ -55,7 +55,7 @@ metadata:
 spec:
   dependsOn:
     - name: media-namespace
-    - name: network-system-traefik
+    - name: network-system-ingress-nginx
     - name: rook-ceph-cluster
   interval: 5m
   path: "./k8s/manifests/media/dizquetv"
@@ -64,38 +64,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: media-calibre
-#   namespace: flux-system
-# spec:
-#   dependsOn:
-#     - name: media-namespace
-#   interval: 5m
-#   path: "./k8s/manifests/media/calibre"
-#   prune: true
-#   wait: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: home-cluster
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: media-calibre-web
-#   namespace: flux-system
-# spec:
-#   dependsOn:
-#     - name: media-namespace
-#   interval: 5m
-#   path: "./k8s/manifests/media/calibre-web"
-#   prune: true
-#   wait: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: home-cluster
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
