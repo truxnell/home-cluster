@@ -43,7 +43,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  port: 9001
+                  port: 80
         tls:
           - secretName: tls.theme-park
             hosts:
