@@ -1,0 +1,31 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prusa-mk3s
+  namespace: network-system
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: CLUSTER_CERT
+    external-dns/is-public: "false"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "printer-3d-nozzle-outline"
+    hajimari.io/appName: "prusa-mk3s"
+
+spec:
+  tls:
+    - secretName: prusa-mk3s-${CLUSTER_NAME}-tls
+      hosts:
+        - "prusa-mk3s.${CLUSTER_DOMAIN}"
+
+  rules:
+    - host: prusa-mk3s.${CLUSTER_DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prusa-mk3s
+                port:
+                  number: 80

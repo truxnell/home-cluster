@@ -1,0 +1,17 @@
+# ---
+# apiVersion: monitoring.coreos.com/v1
+# kind: Probe
+# metadata:
+#   name: brewpiless-http
+#   namespace: network-system
+# spec:
+#   jobName: brewpiless-http
+#   interval: 1m
+#   scrapeTimeout: 5s
+#   module: http_2xx
+#   prober:
+#     url: blackbox-exporter.system-monitoring:9115
+#   targets:
+#     staticConfig:
+#       static:
+#         - "https://brewpi.${CLUSTER_DOMAIN}"
