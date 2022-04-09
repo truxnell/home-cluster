@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - ./cert-manager.yaml
   - ./rook-ceph.yaml
-  # # - ./dev.yaml
   - ./downloads.yaml
   - ./databases.yaml
   - ./flux-system.yaml
