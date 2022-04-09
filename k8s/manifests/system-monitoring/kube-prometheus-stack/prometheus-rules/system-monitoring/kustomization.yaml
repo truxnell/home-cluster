@@ -3,7 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - node-exporter.yaml
-  - blackbox-exporter.yaml
+  # - blackbox-exporter.yaml # TODO #952 Fix blackbox alerts (after fix DNS)
   - loki.yaml
   - prom-smartctl.yaml
   - thanos.yaml
