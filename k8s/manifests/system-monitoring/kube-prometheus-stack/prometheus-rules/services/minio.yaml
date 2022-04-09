@@ -1,0 +1,20 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: minio-rules
+  namespace: cert-manager
+spec:
+  groups:
+    - name: minio.rules
+      rules:
+        - alert: MinioS3Errors
+          expr: |
+            increase(minio_s3_requests_errors_total[5m]) > 5
+          for: 0m
+          labels:
+            severity: critical
+          annotations:
+            description: "Minio is experiencing increased S3 errors.  Operations
+              may not occur as expected, and service may be impacted"
+            summary: "Minio is experiecing elevated S3 errors."

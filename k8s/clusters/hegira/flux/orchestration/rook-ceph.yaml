@@ -96,20 +96,3 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: rook-ceph-monitoring
-  namespace: flux-system
-spec:
-  dependsOn:
-    - name: rook-ceph-namespace
-    - name: rook-ceph-operator
-  interval: 5m
-  path: "./k8s/manifests/rook-ceph/monitoring"
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: home-cluster

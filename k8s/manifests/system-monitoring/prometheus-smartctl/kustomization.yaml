@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - ./daemonset.yaml
   - ./service.yaml
-  - ./servicemonitor.yaml
