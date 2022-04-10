@@ -1,4 +1,4 @@
-# My Home Cluster
+# Truxnell's home k8s cluster
 
 [![Discord](https://img.shields.io/discord/673534664354430999?color=7289da&label=DISCORD&style=for-the-badge)](https://discord.gg/sTMX7Vh)
 [![GitHub stars](https://img.shields.io/github/stars/Truxnell/home-cluster?color=green&style=for-the-badge)](https://github.com/Truxnell/home-cluster/stargazers)
