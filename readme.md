@@ -13,6 +13,13 @@ Feel free to open a [Github issue](https://github.com/Truxnell/home-cluster/issu
 
 **Fledgling documentation available at [https://k8s.voltaicforge.com](https://k8s.voltaicforge.com)**
 
+
+## Sister repos
+
+I use this repo in conjuction with:
+
+- [https://github.com/Truxnell/home-udmp-utils](https://github.com/Truxnell/home-udmp-utils).  Extra scripts for tools I run on my UDM-PRO (PXE boot config, DNS, ad blocking, etc)
+
 ## License
 
 This repo is available under the MIT License.
