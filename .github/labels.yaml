@@ -10,6 +10,8 @@
   color: "ffc300"
 - name: renovate/helm
   color: "ffc300"
+- name: renovate/github-release
+  color: "317737"
 
 # Semantic Type
 - name: type/patch
@@ -58,3 +60,5 @@
   color: "7B55D7"
 - name: question
   color: "cc317c"
+- name: community
+  color: "133737"
