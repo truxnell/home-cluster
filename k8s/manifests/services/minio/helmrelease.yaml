@@ -32,11 +32,14 @@ spec:
       MINIO_PROMETHEUS_URL: "http://prometheus-prometheus.system-monitoring:9090"
       MINIO_PROMETHEUS_JOB_ID: "minio"
 
-    args:
-      - server
-      - /data
-      - --console-address
-      - :9001
+      args:
+        - "gateway"
+        - "nas"
+        - "/data"
+        - "-S"
+        - "/etc/minio/certs/"
+        - "--console-address"
+        - ":9001"
 
     persistence:
       config:
