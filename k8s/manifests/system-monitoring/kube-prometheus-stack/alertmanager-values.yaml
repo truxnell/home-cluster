@@ -24,7 +24,7 @@ alertmanager:
       group_by: ["job", "alertname", "severity", "name", "job_name", "instance"]
       group_wait: 30s
       group_interval: 5m
-      repeat_interval: 12ih
+      repeat_interval: 12h
       receiver: "discord"
       routes:
         - receiver: "null"
