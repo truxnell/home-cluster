@@ -27,32 +27,18 @@ spec:
       strategies:
         RemoveDuplicates:
           enabled: false
-
         RemovePodsViolatingNodeAffinity:
           enabled: true
           params:
             nodeAffinityType:
               - requiredDuringSchedulingIgnoredDuringExecution
-
         RemovePodsViolatingTopologySpreadConstraint:
           enabled: true
           params:
             includeSoftConstraints: true
-
         RemovePodsViolatingInterPodAntiAffinity:
           enabled: true
           params:
             nodeFit: true
-
         LowNodeUtilization:
-          enabled: true
-          params:
-            nodeResourceUtilizationThresholds:
-              thresholds:
-                cpu: 20
-                memory: 20
-                pods: 20
-              targetThresholds:
-                cpu: 50
-                memory: 50
-                pods: 50
+          enabled: false
