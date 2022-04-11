@@ -29,24 +29,24 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: databases-redis
-  namespace: flux-system
-spec:
-  dependsOn:
-    - name: databases-namespace
-    - name: system-monitoring-kube-prom-stack
-    - name: rook-ceph-cluster
-  interval: 5m
-  path: "./k8s/manifests/databases/redis"
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: home-cluster
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: databases-redis
+#   namespace: flux-system
+# spec:
+#   dependsOn:
+#     - name: databases-namespace
+#     - name: system-monitoring-kube-prom-stack
+#     - name: rook-ceph-cluster
+#   interval: 5m
+#   path: "./k8s/manifests/databases/redis"
+#   prune: true
+#   wait: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: home-cluster
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
