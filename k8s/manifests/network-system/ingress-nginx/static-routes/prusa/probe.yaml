@@ -14,4 +14,4 @@
 #   targets:
 #     staticConfig:
 #       static:
-#         - "https://brewpi.${CLUSTER_DOMAIN}"
+#         - "https://brewpi.${EXTERNAL_DOMAIN}"

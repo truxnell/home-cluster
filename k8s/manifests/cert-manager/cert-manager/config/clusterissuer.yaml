@@ -5,7 +5,7 @@ metadata:
   name: letsencrypt-staging
 spec:
   acme:
-    email: acme@${CLUSTER_DOMAIN}
+    email: acme@${EXTERNAL_DOMAIN}
     preferredChain: ""
     privateKeySecretRef:
       name: letsencrypt-staging
@@ -17,7 +17,7 @@ spec:
             apiTokenSecretRef:
               key: api-token
               name: cloudflare-api-token-secret
-            email: acme@${CLUSTER_DOMAIN}
+            email: acme@${EXTERNAL_DOMAIN}
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -25,7 +25,7 @@ metadata:
   name: letsencrypt-production
 spec:
   acme:
-    email: acme@${CLUSTER_DOMAIN}
+    email: acme@${EXTERNAL_DOMAIN}
     preferredChain: ""
     privateKeySecretRef:
       name: letsencrypt-production
@@ -37,4 +37,4 @@ spec:
             apiTokenSecretRef:
               key: api-token
               name: cloudflare-api-token-secret
-            email: acme@${CLUSTER_DOMAIN}
+            email: acme@${EXTERNAL_DOMAIN}

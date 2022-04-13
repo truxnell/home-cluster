@@ -12,11 +12,11 @@ prometheus:
       hajimari.io/appName: Prometheus
 
     hosts:
-      - prometheus.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+      - prometheus.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}
     tls:
       - secretName: prometheus-${CLUSTER_NAME}-tls
         hosts:
-          - prometheus.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+          - prometheus.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}
 
   thanosService:
     enabled: true
@@ -73,13 +73,13 @@ prometheus:
           password: "${SECRET_PIKVM_PASSWORD}"
         static_configs:
           - targets:
-              - "pikvm.${CLUSTER_DOMAIN}"
+              - "pikvm.${EXTERNAL_DOMAIN}"
 
       # - job_name: node-exporter
       #   honor_timestamps: true
       #   static_configs:
       #     - targets:
-      # - "pikvm.${CLUSTER_DOMAIN}:9100" # FIXME (use same as hyperion above?)
+      # - "pikvm.${EXTERNAL_DOMAIN}:9100" # FIXME (use same as hyperion above?)
 
       - job_name: coredns
         honor_timestamps: true

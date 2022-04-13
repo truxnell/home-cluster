@@ -32,14 +32,14 @@ spec:
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${CLUSTER_DOMAIN}/css/base/sonarr/nord.css"></head>';
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/sonarr/nord.css"></head>';
             sub_filter_once on;
           external-dns/is-public: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: "television-box"
           hajimari.io/appName: sonarr
         hosts:
-          - host: &host "sonarr.${CLUSTER_DOMAIN}"
+          - host: &host "sonarr.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix

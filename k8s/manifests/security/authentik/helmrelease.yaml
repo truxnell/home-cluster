@@ -32,14 +32,14 @@ spec:
         hajimari.io/appName: authentik
 
       hosts:
-        - host: id.${CLUSTER_DOMAIN}
+        - host: id.${EXTERNAL_DOMAIN}
           paths:
             - path: /
 
       tls:
         - secretName: authentik-${CLUSTER_NAME}-tls
           hosts:
-            - id.${CLUSTER_DOMAIN}
+            - id.${EXTERNAL_DOMAIN}
 
     geoip:
       enabled: false
@@ -50,7 +50,7 @@ spec:
         password: ${SECRET_SMTP_PASSWORD}
         username: ${SECRET_SMTP_USERNAME}
         use_ssl: true
-        from: id@${CLUSTER_DOMAIN}
+        from: id@${EXTERNAL_DOMAIN}
       secret_key: ${SECRET_KEYAUTHENTIK_DB_PASSWORD}
       log_level: debug
 

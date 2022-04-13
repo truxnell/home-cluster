@@ -18,7 +18,7 @@ spec:
   tls:
     - secretName: pikvm-${CLUSTER_NAME}-tls
       hosts:
-        - &host "pikvm.${CLUSTER_DOMAIN}"
+        - &host "pikvm.${EXTERNAL_DOMAIN}"
 
   rules:
     - host: *host

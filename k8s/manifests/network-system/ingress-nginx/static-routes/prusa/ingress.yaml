@@ -16,10 +16,10 @@ spec:
   tls:
     - secretName: prusa-mk3s-${CLUSTER_NAME}-tls
       hosts:
-        - "prusa-mk3s.${CLUSTER_DOMAIN}"
+        - "prusa-mk3s.${EXTERNAL_DOMAIN}"
 
   rules:
-    - host: prusa-mk3s.${CLUSTER_DOMAIN}
+    - host: prusa-mk3s.${EXTERNAL_DOMAIN}
       http:
         paths:
           - path: /

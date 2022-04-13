@@ -16,7 +16,7 @@ spec:
   tls:
     - secretName: printer-${CLUSTER_NAME}-tls
       hosts:
-        - &host "printer.${CLUSTER_DOMAIN}"
+        - &host "printer.${EXTERNAL_DOMAIN}"
 
   rules:
     - host: *host

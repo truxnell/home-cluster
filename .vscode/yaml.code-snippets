@@ -72,7 +72,7 @@
       "          kubernetes.io/ingress.class: \"nginx\"",
       "          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}",
       "          external-dns/is-public: \"true\"",
-      "          external-dns.alpha.kubernetes.io/target: ipv4.\\${CLUSTER_DOMAIN}",
+      "          external-dns.alpha.kubernetes.io/target: ipv4.\\${EXTERNAL_DOMAIN}",
       "          external-dns.alpha.kubernetes.io/cloudflare-proxied: \"${1|true,false|}\"",
       "          hajimari.io/enable: \"${2}\"",
       "          hajimari.io/icon: ${3}",

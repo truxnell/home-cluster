@@ -22,7 +22,7 @@ spec:
 
     env:
       TZ: "${TZ}"
-      HOST_WHITELIST_ENTRIES: "sabnzbd.${CLUSTER_DOMAIN}, sabnzbd"
+      HOST_WHITELIST_ENTRIES: "sabnzbd.${EXTERNAL_DOMAIN}, sabnzbd"
 
     ingress:
       main:
@@ -32,13 +32,13 @@ spec:
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${CLUSTER_DOMAIN}/css/base/sabnzbd/nord.css"></head>';
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/sabnzbd/nord.css"></head>';
             sub_filter_once on;
           external-dns/is-public: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: "download-box"
         hosts:
-          - host: &host "sabnzbd.${CLUSTER_DOMAIN}"
+          - host: &host "sabnzbd.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix

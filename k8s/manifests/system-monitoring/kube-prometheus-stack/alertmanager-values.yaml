@@ -58,11 +58,11 @@ alertmanager:
       hajimari.io/appName: Alertmanager
 
     hosts:
-      - alertmanager.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+      - alertmanager.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}
     tls:
       - secretName: alertmanager-${CLUSTER_NAME}-tls
         hosts:
-          - alertmanager.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+          - alertmanager.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}
 
   alertmanagerSpec:
     storage:

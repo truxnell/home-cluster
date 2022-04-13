@@ -97,7 +97,7 @@ spec:
           external-dns/is-public: "false"
 
         hosts:
-          - host: "hajimari.${CLUSTER_DOMAIN}"
+          - host: "hajimari.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -105,7 +105,7 @@ spec:
         tls:
           - secretName: hajimari-${CLUSTER_NAME}-tls
             hosts:
-              - "hajimari.${CLUSTER_DOMAIN}"
+              - "hajimari.${EXTERNAL_DOMAIN}"
 
     persistence:
       data:

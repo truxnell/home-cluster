@@ -32,7 +32,7 @@ spec:
     adminPassword: "${SECRET_GRAFANA_PASSWORD}"
     grafana.ini:
       server:
-        root_url: "https://grafana.${CLUSTER_DOMAIN}"
+        root_url: "https://grafana.${EXTERNAL_DOMAIN}"
       paths:
         data: /var/lib/grafana/data
         logs: /var/log/grafana
@@ -274,7 +274,7 @@ spec:
         hajimari.io/enable: "true"
         hajimari.io/icon: "graph-line"
       hosts:
-        - &host "grafana.${CLUSTER_DOMAIN}"
+        - &host "grafana.${EXTERNAL_DOMAIN}"
       tls:
         - hosts:
             - *host

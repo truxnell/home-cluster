@@ -16,10 +16,10 @@ spec:
   tls:
     - secretName: brewpi-${CLUSTER_NAME}-tls
       hosts:
-        - "brewpi.${CLUSTER_DOMAIN}"
+        - "brewpi.${EXTERNAL_DOMAIN}"
 
   rules:
-    - host: brewpi.${CLUSTER_DOMAIN}
+    - host: brewpi.${EXTERNAL_DOMAIN}
       http:
         paths:
           - path: /

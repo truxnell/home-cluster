@@ -7,4 +7,4 @@ metadata:
 spec:
   forceHttps: true
   # Needs to be web/index.html as the base domain returns 401 unauthorized.
-  url: https://plex.${CLUSTER_DOMAIN}/web/index.html
+  url: https://plex.${EXTERNAL_DOMAIN}/web/index.html

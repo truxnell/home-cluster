@@ -2,14 +2,14 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: acme-crt
+  name: "${EXTERNAL_DOMAIN/./-}"
   namespace: cert-manager
 spec:
-  secretName: "${CLUSTER_DOMAIN_CERT}"
+  secretName: "${EXTERNAL_DOMAIN_CERT}"
   issuerRef:
-    # name: letsencrypt-staging
     name: letsencrypt-production
     kind: ClusterIssuer
+  commonName: "${SECRET_PUBLIC_DOMAIN}"
   dnsNames:
-    - "${CLUSTER_DOMAIN}"
-    - "*.${CLUSTER_DOMAIN}"
+    - "${EXTERNAL_DOMAIN}"
+    - "*.${EXTERNAL_DOMAIN}"

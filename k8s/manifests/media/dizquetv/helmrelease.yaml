@@ -46,7 +46,7 @@ spec:
           hajimari.io/icon: television-classic
           hajimari.io/appName: dizquetv
         hosts:
-          - host: &host "dizquetv.${CLUSTER_DOMAIN}"
+          - host: &host "dizquetv.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix

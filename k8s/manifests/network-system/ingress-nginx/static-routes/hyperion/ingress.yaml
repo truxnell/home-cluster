@@ -16,10 +16,10 @@ spec:
   tls:
     - secretName: hyperion-${CLUSTER_NAME}-tls
       hosts:
-        - "hyperion.${CLUSTER_DOMAIN}"
+        - "hyperion.${EXTERNAL_DOMAIN}"
 
   rules:
-    - host: hyperion.${CLUSTER_DOMAIN}
+    - host: hyperion.${EXTERNAL_DOMAIN}
       http:
         paths:
           - path: /

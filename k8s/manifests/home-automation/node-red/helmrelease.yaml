@@ -41,7 +41,7 @@ spec:
           hajimari.io/enable: "false"
           hajimari.io/icon: "resistor-nodes"
         hosts:
-          - host: &host "node-red.${CLUSTER_DOMAIN}"
+          - host: &host "node-red.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix

@@ -14,4 +14,4 @@
 #   targets:
 #     staticConfig:
 #       static:
-#         - "https://plex.${CLUSTER_DOMAIN}"
+#         - "https://plex.${EXTERNAL_DOMAIN}"
