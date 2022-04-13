@@ -55,7 +55,6 @@ spec:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: "nginx"
-        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
         nginx.ingress.kubernetes.io/auth-url: "https://auth.${SECRET_DOMAIN}/oauth2/auth"
         nginx.ingress.kubernetes.io/auth-signin: https://auth.${SECRET_DOMAIN}/oauth2/start
         # forecastle.stakater.com/icon: "https://raw.githubusercontent.com/syncthing/syncthing/main/assets/logo-text-128.png"
