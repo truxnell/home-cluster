@@ -33,7 +33,7 @@ spec:
             nodeAffinityType:
               - requiredDuringSchedulingIgnoredDuringExecution
         RemovePodsViolatingTopologySpreadConstraint:
-          enabled: true
+          enabled: false # FIXME
           params:
             includeSoftConstraints: true
         RemovePodsViolatingInterPodAntiAffinity:

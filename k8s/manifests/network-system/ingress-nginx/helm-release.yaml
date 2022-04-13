@@ -60,13 +60,13 @@ spec:
       extraArgs:
         default-ssl-certificate: "cert-manager/${EXTERNAL_DOMAIN/./-}-tls"
 
-      # topologySpreadConstraints:
-      #   - maxSkew: 1
-      #     topologyKey: kubernetes.io/hostname
-      #     whenUnsatisfiable: DoNotSchedule
-      #     labelSelector:
-      #       matchLabels:
-      #         app.kubernetes.io/instance: ingress-nginx
+        topologySpreadConstraints:
+          - maxSkew: 1
+            topologyKey: kubernetes.io/hostname
+            whenUnsatisfiable: DoNotSchedule
+            labelSelector:
+              matchLabels:
+                app.kubernetes.io/instance: ingress-nginx
 
       tolerations:
         - effect: NoSchedule
