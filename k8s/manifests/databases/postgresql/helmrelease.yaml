@@ -42,6 +42,8 @@ spec:
     primary:
       extendedConfiguration: |
         shared_buffers = 1024MB
+        max_wal_size = 2048
+        min_wal_size = 160
       persistence:
         enabled: true
         existingClaim: postgresql-config-v1
