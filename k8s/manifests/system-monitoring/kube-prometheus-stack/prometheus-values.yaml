@@ -13,7 +13,8 @@ prometheus:
     hosts:
       - prometheus.${EXTERNAL_DOMAIN}
     tls:
-      - hosts:
+      - secretName: prometheus-${CLUSTER_NAME}-tls
+        hosts:
           - prometheus.${EXTERNAL_DOMAIN}
 
   thanosService:
