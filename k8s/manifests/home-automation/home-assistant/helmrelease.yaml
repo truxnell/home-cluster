@@ -63,7 +63,15 @@ spec:
       config:
         enabled: true
         existingClaim: home-assistant-config-v1
-    podAnnotations:
+      nfs-nas-backup`:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDRESS}
+            path: /volume1/backup/kubernetes/apps/homeassistant
+        mountPath: /data/backups
+        readOnly: false
 
     addons:
       codeserver:
