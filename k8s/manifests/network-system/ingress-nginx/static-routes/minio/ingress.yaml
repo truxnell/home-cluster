@@ -25,7 +25,7 @@ spec:
               service:
                 name: minio
                 port:
-                  name: https
+                  name: http
     - host: s3.${EXTERNAL_DOMAIN}
       http:
         paths:
@@ -33,6 +33,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: api
+                name: minio
                 port:
-                  name: https
+                  name: api
