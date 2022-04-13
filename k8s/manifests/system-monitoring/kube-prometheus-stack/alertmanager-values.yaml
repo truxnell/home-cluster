@@ -49,19 +49,18 @@ alertmanager:
   ingress:
     enabled: true
     pathType: Prefix
+    ingressClassName: "nginx"
     annotations:
-      kubernetes.io/ingress.class: "nginx"
       external-dns/is-public: "false"
       hajimari.io/enable: "true"
       hajimari.io/icon: bell-alert
       hajimari.io/appName: Alertmanager
 
     hosts:
-      - alertmanager.${EXTERNAL_DOMAIN}
+      - &host alertmanager.${EXTERNAL_DOMAIN}
     tls:
-      - secretName: alertmanager-${CLUSTER_NAME}-tls
-        hosts:
-          - alertmanager.${EXTERNAL_DOMAIN}
+      - hosts:
+          - *host
 
   alertmanagerSpec:
     storage:
