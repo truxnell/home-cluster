@@ -63,7 +63,7 @@ spec:
       config:
         enabled: true
         existingClaim: home-assistant-config-v1
-      nfs-nas-backup`:
+      nfs-nas-backup:
         enabled: true
         type: custom
         volumeSpec:
