@@ -40,9 +40,14 @@ spec:
           external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
 
         hosts:
-          - host: "theme-park.${EXTERNAL_DOMAIN}"
+          - host: &host "theme-park.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
+
+        tls:
+          - secretName: tls.theme-park
+            hosts:
+              - *host
 
     resources:
       requests:
