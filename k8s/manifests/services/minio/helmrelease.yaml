@@ -8,101 +8,62 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: /k8s/charts/kah-common-chart/
+      chart: minio
+      version: 11.2.8
       sourceRef:
-        kind: GitRepository
-        name: home-cluster
+        kind: HelmRepository
+        name: bitnami-charts
         namespace: flux-system
       interval: 5m
   values:
-    image:
-      repository: quay.io/minio/minio
-      tag: RELEASE.2022-04-12T06-55-35Z
+    # image:
+    #   repository: bitnami/minio
+    #   tag: 2022.4.9-debian-10-r0
 
     nameOverride: "minio"
 
-    env:
-      TZ: "${TZ}"
-      MINIO_PROMETHEUS_AUTH_TYPE: "public"
-      MINIO_UPDATE: "off"
-      MINIO_ROOT_USER: ${SECRET_MINIO_ROOT_USER}
-      MINIO_ROOT_PASSWORD: ${SECRET_MINIO_ROOT_PASSWORD}
-      MINIO_BROWSER_REDIRECT_URL: "https://minio.${CLUSTER_DOMAIN}"
-      MINIO_SERVER_URL: "https://s3.${CLUSTER_DOMAIN}"
-      MINIO_PROMETHEUS_URL: "http://prometheus-prometheus.system-monitoring:9090"
-      MINIO_PROMETHEUS_JOB_ID: "minio"
+    extraEnvVars:
+      - name: TZ
+        value: Australia/Melbourne
+      # - MINIO_BROWSER_REDIRECT_URL: "https://minio.${CLUSTER_DOMAIN}"
+      # - MINIO_SERVER_URL: "https://s3.${CLUSTER_DOMAIN}"
+      - name: MINIO_PROMETHEUS_URL
+        value: "http://prometheus-prometheus.system-monitoring:9090"
+      - name: MINIO_PROMETHEUS_JOB_ID
+        value: "minio"
 
-    args:
-      - "gateway"
-      - "nas"
-      - "/data"
-      - "-S"
-      - "/etc/minio/certs/"
-      - "--console-address"
-      - ":9001"
+    auth:
+      rootUser: truxnell
+      rootPassword: fVG7hawu
+
+    defaultBuckets: "hegira-loki, hegira-thanos"
 
     persistence:
-      config:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${NAS_ADDRESS}"
-            path: /volume1/minio/.minio
-        mountPath: /root/.minio
-      data:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${NAS_ADDRESS}"
-            path: /volume1/minio
-        mountPath: /data
+      enabled: true
+      existingClaim: "minio-nfs"
 
-    service:
-      main:
-        ports:
-          http:
-            enabled: true
-            port: 9001
-          api:
-            enabled: true
-            port: 9000
+    prometheus:
+      servicemonitor:
+        enabled: true
 
     ingress:
-      main:
-        enabled: true
-        annotations:
-          kubernetes.io/ingress.class: "nginx"
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-          external-dns/is-public: "false"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: storage
-        hosts:
-          - host: &host-minio "minio.${CLUSTER_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  port: 9001
-          - host: &host-s3 "s3.${CLUSTER_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  port: 9000
-        tls:
-          - secretName: tls.minio
-            hosts:
-              - *host-minio
-              - *host-s3
+      enabled: true
+      ingressClassname: "nginx"
+      hostname: minio.trux.dev
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: letsencrypt-production
+        external-dns/is-public: "false"
+        hajimari.io/enable: "true"
+        hajimari.io/icon: storage
+      tls: true
 
-    podAnnotations:
-      secret.reloader.stakater.com/reload: "minio"
+    # podAnnotations:
+    #   secret.reloader.stakater.com/reload: "minio"
 
-    resources:
-      requests:
-        memory: 100Mi
-        cpu: 100m
-      limits:
-        memory: 750Mi
+    # resources:
+    #   requests:
+    #     memory: 100Mi
+    #     cpu: 100m
+    #   limits:
+    #     memory: 750Mi

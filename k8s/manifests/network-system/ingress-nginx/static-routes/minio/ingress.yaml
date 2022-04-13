@@ -1,0 +1,39 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minio
+  namespace: network-system
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+    external-dns/is-public: "false"
+    hajimari.io/enable: "false"
+
+spec:
+  tls:
+    - secretName: minio-${CLUSTER_NAME}-tls
+      hosts:
+        - "minio.${CLUSTER_DOMAIN}"
+
+  rules:
+    - host: minio.${CLUSTER_DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: minio
+                port:
+                  name: https
+    - host: s3.${CLUSTER_DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: api
+                port:
+                  name: https

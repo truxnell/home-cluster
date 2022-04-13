@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: minio-nfs
+spec:
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nfs
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: hyperion.lab
+    path: "/volume1/minio"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minio-nfs
+  namespace: services
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nfs
+  resources:
+    requests:
+      storage: 1Mi
