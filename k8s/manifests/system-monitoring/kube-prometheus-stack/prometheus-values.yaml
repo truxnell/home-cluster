@@ -11,7 +11,7 @@ prometheus:
       hajimari.io/appName: Prometheus
 
     hosts:
-      - prometheus1.${EXTERNAL_DOMAIN}
+      - prometheus.${EXTERNAL_DOMAIN}
     tls:
       - secretName: prometheus-${CLUSTER_NAME}-tls
         hosts:
