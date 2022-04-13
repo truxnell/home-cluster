@@ -7,9 +7,9 @@ spec:
   type: ExternalName
 
   ports:
-    - name: https
-      port: 9000
     - name: api
+      port: 9000
+    - name: http
       port: 9001
 
   externalName: hyperion.lab
