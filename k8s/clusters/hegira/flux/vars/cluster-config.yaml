@@ -42,7 +42,7 @@ data:
 
   # Device IP's
   ROUTER_IP: "unifi"
-  NAS_ADDRESS: "hyperion.lab"
+  NAS_ADDRESS: "hyperion.${INTERNAL_DOMAIN}"
   ZIGBEE_POE_COORDINATOR: "10.8.30.110"
 
   # Addresses

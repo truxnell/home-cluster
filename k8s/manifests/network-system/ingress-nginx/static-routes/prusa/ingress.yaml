@@ -6,7 +6,6 @@ metadata:
   namespace: network-system
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
     external-dns/is-public: "false"
     hajimari.io/enable: "true"
     hajimari.io/icon: "printer-3d-nozzle-outline"
@@ -16,10 +15,10 @@ spec:
   tls:
     - secretName: prusa-mk3s-${CLUSTER_NAME}-tls
       hosts:
-        - "prusa-mk3s.${CLUSTER_DOMAIN}"
+        - "prusa-mk3s.${EXTERNAL_DOMAIN}"
 
   rules:
-    - host: prusa-mk3s.${CLUSTER_DOMAIN}
+    - host: prusa-mk3s.${EXTERNAL_DOMAIN}
       http:
         paths:
           - path: /

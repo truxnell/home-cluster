@@ -51,18 +51,17 @@ alertmanager:
     pathType: Prefix
     annotations:
       kubernetes.io/ingress.class: "nginx"
-      cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
       external-dns/is-public: "false"
       hajimari.io/enable: "true"
       hajimari.io/icon: bell-alert
       hajimari.io/appName: Alertmanager
 
     hosts:
-      - alertmanager.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+      - alertmanager.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}
     tls:
       - secretName: alertmanager-${CLUSTER_NAME}-tls
         hosts:
-          - alertmanager.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+          - alertmanager.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}
 
   alertmanagerSpec:
     storage:

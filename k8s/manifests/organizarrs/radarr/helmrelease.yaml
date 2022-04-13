@@ -26,16 +26,15 @@ spec:
         enabled: true
         annotations:
           kubernetes.io/ingress.class: "nginx"
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${CLUSTER_DOMAIN}/css/base/radarr/nord.css"></head>';
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/radarr/nord.css"></head>';
             sub_filter_once on;
           external-dns/is-public: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: "filmstrip"
         hosts:
-          - host: &host "radarr.${CLUSTER_DOMAIN}"
+          - host: &host "radarr.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -48,7 +47,6 @@ spec:
         enabled: true
         annotations:
           kubernetes.io/ingress.class: "nginx"
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           external-dns/is-public: "false"
         hosts:
           - host: *host

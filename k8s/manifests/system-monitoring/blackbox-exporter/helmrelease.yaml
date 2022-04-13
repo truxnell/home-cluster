@@ -24,14 +24,13 @@ spec:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: "nginx"
-        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
         external-dns/is-public: "false"
         hajimari.io/enable: "true"
         hajimari.io/appName: "Blackbox Exporter"
         hajimari.io/icon: package-variant-closed
 
       hosts:
-        - host: blackbox-exporter.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+        - host: blackbox-exporter.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}
           paths:
             - path: /
               pathType: Prefix
@@ -39,7 +38,7 @@ spec:
       tls:
         - secretName: blackbox-exporter-${CLUSTER_NAME}-tls
           hosts:
-            - blackbox-exporter.${CLUSTER_NAME}.${CLUSTER_DOMAIN}
+            - blackbox-exporter.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}
     podAnnotations:
       configmap.reloader.stakater.com/reload: "blackbox-exporter"
 

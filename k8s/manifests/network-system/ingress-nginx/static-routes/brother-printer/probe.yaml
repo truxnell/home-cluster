@@ -14,4 +14,4 @@
 #   targets:
 #     staticConfig:
 #       static:
-#         - "https://piKVM.${CLUSTER_DOMAIN}"
+#         - "https://piKVM.${EXTERNAL_DOMAIN}"

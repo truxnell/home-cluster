@@ -10,4 +10,4 @@ spec:
     - name: http
       port: 80
 
-  externalName: octopi.local
+  externalName: octopi.${INTERNAL_DOMAIN}

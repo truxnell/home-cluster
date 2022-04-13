@@ -29,14 +29,13 @@ spec:
       dashboard:
         annotations:
           kubernetes.io/ingress.class: "nginx"
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           external-dns/is-public: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: content-save
           hajimari.io/appName: "rook-ceph"
 
         host:
-          name: &host "rook.${CLUSTER_NAME}.${CLUSTER_DOMAIN}"
+          name: &host "rook.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}"
           path: "/"
         tls:
           - secretName: rook-ceph-${CLUSTER_NAME}-tls

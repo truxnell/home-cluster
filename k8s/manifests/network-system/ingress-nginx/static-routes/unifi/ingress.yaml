@@ -6,7 +6,9 @@ metadata:
   namespace: network-system
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/proxy-ssl-verify: "off"
+
     external-dns/is-public: "false"
     hajimari.io/enable: "true"
     hajimari.io/icon: "router-wireless"
@@ -16,10 +18,10 @@ spec:
   tls:
     - secretName: unifi-${CLUSTER_NAME}-tls
       hosts:
-        - "unifi.${CLUSTER_DOMAIN}"
+        - "unifi.${EXTERNAL_DOMAIN}"
 
   rules:
-    - host: unifi.${CLUSTER_DOMAIN}
+    - host: unifi.${EXTERNAL_DOMAIN}
       http:
         paths:
           - path: /

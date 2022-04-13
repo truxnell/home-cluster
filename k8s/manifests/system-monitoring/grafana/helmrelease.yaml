@@ -32,7 +32,7 @@ spec:
     adminPassword: "${SECRET_GRAFANA_PASSWORD}"
     grafana.ini:
       server:
-        root_url: "https://grafana.${CLUSTER_DOMAIN}"
+        root_url: "https://grafana.${EXTERNAL_DOMAIN}"
       paths:
         data: /var/lib/grafana/data
         logs: /var/log/grafana
@@ -269,12 +269,11 @@ spec:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: "nginx"
-        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
         external-dns/is-public: "false"
         hajimari.io/enable: "true"
         hajimari.io/icon: "graph-line"
       hosts:
-        - &host "grafana.${CLUSTER_DOMAIN}"
+        - &host "grafana.${EXTERNAL_DOMAIN}"
       tls:
         - hosts:
             - *host

@@ -58,7 +58,7 @@ spec:
           enabled: false
 
       extraArgs:
-        default-ssl-certificate: "network-system/${CLUSTER_DOMAIN/./-}-tls"
+        default-ssl-certificate: "cert-manager/${EXTERNAL_DOMAIN/./-}-tls"
 
       topologySpreadConstraints:
         - maxSkew: 1

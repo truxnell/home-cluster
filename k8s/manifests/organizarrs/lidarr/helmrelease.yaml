@@ -30,13 +30,13 @@ spec:
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${CLUSTER_DOMAIN}/css/base/lidarr/nord.css"></head>';
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/lidarr/nord.css"></head>';
             sub_filter_once on;
           external-dns/is-public: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: "music-box"
         hosts:
-          - host: &host "lidarr.${CLUSTER_DOMAIN}"
+          - host: &host "lidarr.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix

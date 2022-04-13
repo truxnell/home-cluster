@@ -6,7 +6,6 @@ metadata:
   namespace: network-system
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
     external-dns/is-public: "false"
     hajimari.io/enable: "true"
     hajimari.io/icon: "glass-mug-variant"
@@ -16,10 +15,10 @@ spec:
   tls:
     - secretName: brewpi-${CLUSTER_NAME}-tls
       hosts:
-        - "brewpi.${CLUSTER_DOMAIN}"
+        - "brewpi.${EXTERNAL_DOMAIN}"
 
   rules:
-    - host: brewpi.${CLUSTER_DOMAIN}
+    - host: brewpi.${EXTERNAL_DOMAIN}
       http:
         paths:
           - path: /

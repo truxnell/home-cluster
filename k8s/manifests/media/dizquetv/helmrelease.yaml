@@ -40,13 +40,12 @@ spec:
         enabled: true
         annotations:
           kubernetes.io/ingress.class: "nginx"
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           external-dns/is-public: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: television-classic
           hajimari.io/appName: dizquetv
         hosts:
-          - host: &host "dizquetv.${CLUSTER_DOMAIN}"
+          - host: &host "dizquetv.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix

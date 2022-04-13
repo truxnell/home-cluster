@@ -6,7 +6,6 @@ metadata:
   namespace: network-system
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
     external-dns/is-public: "false"
     hajimari.io/enable: "true"
     hajimari.io/icon: "server"
@@ -16,10 +15,10 @@ spec:
   tls:
     - secretName: hyperion-${CLUSTER_NAME}-tls
       hosts:
-        - "hyperion.${CLUSTER_DOMAIN}"
+        - "hyperion.${EXTERNAL_DOMAIN}"
 
   rules:
-    - host: hyperion.${CLUSTER_DOMAIN}
+    - host: hyperion.${EXTERNAL_DOMAIN}
       http:
         paths:
           - path: /

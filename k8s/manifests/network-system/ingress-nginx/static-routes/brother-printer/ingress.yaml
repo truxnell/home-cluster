@@ -6,7 +6,6 @@ metadata:
   namespace: network-system
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
     external-dns/is-public: "false"
     hajimari.io/enable: "true"
     hajimari.io/icon: "monitor-share"
@@ -16,7 +15,7 @@ spec:
   tls:
     - secretName: printer-${CLUSTER_NAME}-tls
       hosts:
-        - &host "printer.${CLUSTER_DOMAIN}"
+        - &host "printer.${EXTERNAL_DOMAIN}"
 
   rules:
     - host: *host

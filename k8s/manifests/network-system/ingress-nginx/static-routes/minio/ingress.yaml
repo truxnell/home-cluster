@@ -6,7 +6,6 @@ metadata:
   namespace: network-system
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
     external-dns/is-public: "false"
     hajimari.io/enable: "false"
 
@@ -14,10 +13,10 @@ spec:
   tls:
     - secretName: minio-${CLUSTER_NAME}-tls
       hosts:
-        - "minio.${CLUSTER_DOMAIN}"
+        - "minio.${EXTERNAL_DOMAIN}"
 
   rules:
-    - host: minio.${CLUSTER_DOMAIN}
+    - host: minio.${EXTERNAL_DOMAIN}
       http:
         paths:
           - path: /
@@ -27,7 +26,7 @@ spec:
                 name: minio
                 port:
                   name: https
-    - host: s3.${CLUSTER_DOMAIN}
+    - host: s3.${EXTERNAL_DOMAIN}
       http:
         paths:
           - path: /

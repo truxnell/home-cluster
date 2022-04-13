@@ -30,7 +30,7 @@ spec:
     policy: sync
     txtPrefix: "k8s."
     domainFilters:
-      - "${CLUSTER_DOMAIN}"
+      - "${EXTERNAL_DOMAIN}"
     crd:
       create: false
       apiversion: externaldns.k8s.io/v1alpha1

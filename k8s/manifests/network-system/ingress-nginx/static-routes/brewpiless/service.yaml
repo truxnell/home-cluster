@@ -10,4 +10,4 @@ spec:
     - name: http
       port: 80
 
-  externalName: 192.168.2.97
+  externalName: ESP_7DE997.${INTERNAL_DOMAIN}

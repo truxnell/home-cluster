@@ -10,4 +10,4 @@ spec:
     - name: https
       port: 443
 
-  externalName: unifi.lab
+  externalName: unifi.${INTERNAL_DOMAIN}

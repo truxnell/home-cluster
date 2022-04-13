@@ -14,4 +14,4 @@
 #   targets:
 #     staticConfig:
 #       static:
-#         - "https://unifi.${CLUSTER_DOMAIN}"
+#         - "https://unifi.${EXTERNAL_DOMAIN}"

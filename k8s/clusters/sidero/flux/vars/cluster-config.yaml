@@ -11,7 +11,7 @@ data:
   LB_SIDERO: "10.8.20.29"
 
   # Sidero IP
-  CL_0_SIDERO_IP: technocore.${CLUSTER_DOMAIN}
+  CL_0_SIDERO_IP: technocore.${EXTERNAL_DOMAIN}
 
   # Controlplane IP
   # hegira master ip range is 10.8.20.3x
