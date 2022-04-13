@@ -63,7 +63,7 @@ prometheus:
         metrics_path: /minio/v2/metrics/cluster
         static_configs:
           - targets:
-              - "minio.${EXTERNAL_DOMAIN}:9000"
+              - "minio.${EXTERNAL_DOMAIN}"
 
       - job_name: pikvm
         metrics_path: /api/export/prometheus/metrics
