@@ -12,7 +12,7 @@ metadata:
 
 spec:
   rules:
-    - host: &host "flux-receiver.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}"
+    - host: &host "flux-receiver.${EXTERNAL_DOMAIN}"
       http:
         paths:
           - path: /hook/

@@ -35,7 +35,7 @@ spec:
           hajimari.io/appName: "rook-ceph"
 
         host:
-          name: &host "rook.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}"
+          name: &host "rook.${EXTERNAL_DOMAIN}"
           path: "/"
         tls:
           - secretName: rook-ceph-${CLUSTER_NAME}-tls

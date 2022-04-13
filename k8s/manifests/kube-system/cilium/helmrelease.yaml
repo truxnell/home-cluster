@@ -85,11 +85,11 @@ spec:
             hajimari.io/appName: hubble
             hajimari.io/icon: lan
           hosts:
-            - "hubble.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}"
+            - "hubble.${EXTERNAL_DOMAIN}"
           tls:
             - secretName: hubble-${CLUSTER_NAME}-tls
               hosts:
-                - "hubble.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}"
+                - "hubble.${EXTERNAL_DOMAIN}"
 
     bgp:
       enabled: false

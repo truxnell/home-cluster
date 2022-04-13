@@ -11,11 +11,11 @@ prometheus:
       hajimari.io/appName: Prometheus
 
     hosts:
-      - prometheus.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}
+      - prometheus.${EXTERNAL_DOMAIN}
     tls:
       - secretName: prometheus-${CLUSTER_NAME}-tls
         hosts:
-          - prometheus.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}
+          - prometheus.${EXTERNAL_DOMAIN}
 
   thanosService:
     enabled: true

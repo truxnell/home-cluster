@@ -30,7 +30,7 @@ spec:
         hajimari.io/icon: package-variant-closed
 
       hosts:
-        - host: blackbox-exporter.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}
+        - host: blackbox-exporter.${EXTERNAL_DOMAIN}
           paths:
             - path: /
               pathType: Prefix
@@ -38,7 +38,7 @@ spec:
       tls:
         - secretName: blackbox-exporter-${CLUSTER_NAME}-tls
           hosts:
-            - blackbox-exporter.${CLUSTER_NAME}.${EXTERNAL_DOMAIN}
+            - blackbox-exporter.${EXTERNAL_DOMAIN}
     podAnnotations:
       configmap.reloader.stakater.com/reload: "blackbox-exporter"
 
