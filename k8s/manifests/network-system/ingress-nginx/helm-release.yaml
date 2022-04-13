@@ -43,7 +43,7 @@ spec:
         hsts-max-age: "31449600"
         keep-alive: 120
         keep-alive-requests: 10000
-        proxy-body-size: 0
+        proxy-body-size: "100M"
         ssl-protocols: "TLSv1.3 TLSv1.2"
         use-forwarded-headers: "true"
 
@@ -58,15 +58,15 @@ spec:
           enabled: false
 
       extraArgs:
-        default-ssl-certificate: "cert-manager/${EXTERNAL_DOMAIN/./-}-tls"
+        default-ssl-certificate: "network-system/${CLUSTER_DOMAIN/./-}-tls"
 
-        topologySpreadConstraints:
-          - maxSkew: 1
-            topologyKey: kubernetes.io/hostname
-            whenUnsatisfiable: DoNotSchedule
-            labelSelector:
-              matchLabels:
-                app.kubernetes.io/instance: ingress-nginx
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/instance: ingress-nginx
 
       tolerations:
         - effect: NoSchedule
