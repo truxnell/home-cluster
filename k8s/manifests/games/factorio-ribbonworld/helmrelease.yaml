@@ -11,7 +11,7 @@ spec:
       chart: factorio
       version: 1.0.0
       sourceRef:
-        kind: GitRepository
+        kind: HelmRepository
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
@@ -50,7 +50,7 @@ spec:
 
       server_settings:
         name: Ribbonworld
-        description: "DThin and long!"
+        description: "Thin and long!"
         game_password: "${SECRET_FACTORIO_SERVER_PASSWORD}"
         non_blocking_saving: true
 
