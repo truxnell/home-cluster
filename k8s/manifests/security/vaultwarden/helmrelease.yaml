@@ -64,7 +64,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: tls.vaultwarden
+            secretName: &tls tls.vaultwarden
       admin:
         enabled: true
         annotations:
