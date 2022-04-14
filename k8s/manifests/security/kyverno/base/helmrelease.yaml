@@ -15,7 +15,7 @@ spec:
         name: kyverno-charts
         namespace: flux-system
       interval: 5m
-valuesKey:
+values:
   # TODO: change this to "mode: ha" when the new version gets released
   replicaCount: 3
 
