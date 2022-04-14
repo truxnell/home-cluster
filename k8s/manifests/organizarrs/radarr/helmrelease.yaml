@@ -42,7 +42,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: tls.radarr
+            secretName: &tls tls.radarr
 
       api:
         enabled: true
