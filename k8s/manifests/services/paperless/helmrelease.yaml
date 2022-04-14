@@ -33,10 +33,12 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
         annotations:
+          kubernetes.io/ingress.class: "nginx"
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-          external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
+          external-dns/is-public: "false"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: file-outline
         hosts:
           - host: &host "paperless.${EXTERNAL_DOMAIN}"
             paths:
