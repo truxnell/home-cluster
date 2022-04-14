@@ -10,6 +10,7 @@ resources:
   - ./ingress-nginx-charts.yaml
   - ./nfs-subdir-external-provisioner-charts.yaml
   - ./kasten-charts.yaml
+  - .kyverno-charts.yaml
   - ./kubernetes-sigs-descheduler-charts.yaml
   - ./vmware-charts.yaml
   - ./weaveworks-kured-charts.yaml
