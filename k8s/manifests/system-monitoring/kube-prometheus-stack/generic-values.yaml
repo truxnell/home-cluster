@@ -34,7 +34,6 @@ prometheusOperator:
   prometheusConfigReloader:
     resources:
       requests:
-        cpu: 100m
         memory: 50Mi
       limits:
         cpu: 200m
