@@ -15,5 +15,5 @@ spec:
         name: kyverno-charts
         namespace: flux-system
       interval: 5m
-values:
-  mode: ha
+  values:
+    mode: ha
