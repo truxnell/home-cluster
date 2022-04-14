@@ -73,7 +73,6 @@ spec:
       transcode:
         enabled: true
         type: emptyDir
-        medium: Memory
 
       nfs-nas-media:
         enabled: true
@@ -97,11 +96,11 @@ spec:
 
     resources:
       requests:
-        cpu: 1000m
+        cpu: 100m
         memory: 2000Mi
         gpu.intel.com/i915: 1
       limits:
-        memory: 16000Mi
+        memory: 10000Mi
         gpu.intel.com/i915: 1
 
     addons:
