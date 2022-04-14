@@ -16,4 +16,13 @@ spec:
         namespace: flux-system
       interval: 5m
 valuesKey:
-  mode: ha
+  # TODO: change this to "mode: ha" when the new version gets released
+  replicaCount: 3
+
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: kubernetes.io/hostname
+      whenUnsatisfiable: DoNotSchedule
+      labelSelector:
+        matchLabels:
+          app.kubernetes.io/instance: kyverno
