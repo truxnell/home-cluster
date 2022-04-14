@@ -34,6 +34,7 @@ spec:
         hostname: "thanos-cluster.${EXTERNAL_DOMAIN}"
         annotations:
           kubernetes.io/ingress.class: "nginx"
+          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           external-dns/is-public: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: "archive-clock"
