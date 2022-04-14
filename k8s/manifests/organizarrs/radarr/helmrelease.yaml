@@ -41,7 +41,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: &tls radarr-${CLUSTER_NAME}-tlssonarr
+            secretName: tls.radarr
 
       api:
         enabled: true

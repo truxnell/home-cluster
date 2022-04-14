@@ -13,7 +13,7 @@ metadata:
 
 spec:
   tls:
-    - secretName: brewpi-${CLUSTER_NAME}-tls
+    - secretName: tls.brewpi
       hosts:
         - "brewpi.${EXTERNAL_DOMAIN}"
 

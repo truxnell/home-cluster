@@ -42,7 +42,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: overseerr-${CLUSTER_NAME}-tls
+            secretName: tls.overseerr
 
     persistence:
       config:

@@ -44,7 +44,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: &tls sabnzbd-${CLUSTER_NAME}-tls
+            secretName: &tls tls.sabnzbd
 
       api:
         enabled: true

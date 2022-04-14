@@ -15,7 +15,7 @@ metadata:
 
 spec:
   tls:
-    - secretName: unifi-${CLUSTER_NAME}-tls
+    - secretName: tls.unifi
       hosts:
         - "unifi.${EXTERNAL_DOMAIN}"
 

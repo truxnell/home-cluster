@@ -102,7 +102,7 @@ spec:
                 pathType: Prefix
 
         tls:
-          - secretName: hajimari-${CLUSTER_NAME}-tls
+          - secretName: tls.hajimari
             hosts:
               - "hajimari.${EXTERNAL_DOMAIN}"
 

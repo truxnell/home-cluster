@@ -13,7 +13,7 @@ metadata:
 
 spec:
   tls:
-    - secretName: prusa-mk3s-${CLUSTER_NAME}-tls
+    - secretName: tls.prusa-mk3s
       hosts:
         - "prusa-mk3s.${EXTERNAL_DOMAIN}"
 

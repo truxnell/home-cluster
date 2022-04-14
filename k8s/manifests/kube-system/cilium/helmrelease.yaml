@@ -87,7 +87,7 @@ spec:
           hosts:
             - "hubble.${EXTERNAL_DOMAIN}"
           tls:
-            - secretName: hubble-${CLUSTER_NAME}-tls
+            - secretName: tls.hubble
               hosts:
                 - "hubble.${EXTERNAL_DOMAIN}"
 

@@ -59,7 +59,7 @@ alertmanager:
     hosts:
       - &host alertmanager.${EXTERNAL_DOMAIN}
     tls:
-      - secretName: alertmanager-${CLUSTER_NAME}-tls
+      - secretName: tls.alertmanager
         hosts:
           - *host
 

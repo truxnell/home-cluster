@@ -42,7 +42,7 @@ spec:
         tls:
           - hosts:
               - nginx.trux.dev
-            secretName: nginx-hegira-tls
+            secretName: tls.nginx
 
     persistence:
       data:
