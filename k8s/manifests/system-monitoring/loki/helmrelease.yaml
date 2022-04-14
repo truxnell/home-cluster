@@ -46,7 +46,7 @@ spec:
       tls:
         - hosts:
             - *host
-          secretName: loki-${CLUSTER_NAME}-tls
+          secretName: tls.loki
 
     persistence:
       enabled: false

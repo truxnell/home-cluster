@@ -49,7 +49,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: hass-${CLUSTER_NAME}-tls-v2
+            secretName: tls.hass
 
     probes:
       liveness:
@@ -104,7 +104,7 @@ spec:
           tls:
             - hosts:
                 - *host-code
-              secretName: hass-config-${CLUSTER_NAME}-tls
+              secretName: tls.hass-config
 
         volumeMounts:
           - name: config

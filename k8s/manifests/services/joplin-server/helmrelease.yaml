@@ -74,4 +74,4 @@ spec:
         tls:
           - hosts:
               - "joplin.${EXTERNAL_DOMAIN}"
-            secretName: joplin-${CLUSTER_NAME}-tls
+            secretName: tls.joplin

@@ -13,7 +13,7 @@ metadata:
 
 spec:
   tls:
-    - secretName: printer-${CLUSTER_NAME}-tls
+    - secretName: tls.printer
       hosts:
         - &host "printer.${EXTERNAL_DOMAIN}"
 

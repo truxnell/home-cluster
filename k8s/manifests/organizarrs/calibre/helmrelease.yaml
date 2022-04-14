@@ -57,7 +57,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: &tls calibre-${CLUSTER_NAME}-tls
+            secretName: tls.calibre
       webserver:
         enabled: true
         annotations:
@@ -74,7 +74,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: &tls calibre-cs-${CLUSTER_NAME}-tls
+            secretName: tls.calibre-cs
 
     service:
       webserver:

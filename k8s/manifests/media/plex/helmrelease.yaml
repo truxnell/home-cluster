@@ -60,7 +60,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: plex-${CLUSTER_NAME}-tls
+          - secretName: tls.plex
             hosts:
               - "plex.${EXTERNAL_DOMAIN}"
 

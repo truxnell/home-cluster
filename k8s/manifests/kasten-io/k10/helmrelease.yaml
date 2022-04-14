@@ -56,7 +56,7 @@ spec:
         - k10.${EXTERNAL_DOMAIN}
       tls:
         enabled: true
-        secretName: k10-${CLUSTER_NAME}-tls
+        secretName: tls.k10
 
     grafana:
       enabled: false

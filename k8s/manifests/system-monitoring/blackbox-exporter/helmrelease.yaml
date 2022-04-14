@@ -36,7 +36,7 @@ spec:
               pathType: Prefix
 
       tls:
-        - secretName: blackbox-exporter-${CLUSTER_NAME}-tls
+        - secretName: tls.blackbox-exporter
           hosts:
             - blackbox-exporter.${EXTERNAL_DOMAIN}
     podAnnotations:

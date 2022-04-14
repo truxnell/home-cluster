@@ -43,7 +43,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: &tls lidarr-${CLUSTER_NAME}-tls
+            secretName: tls.lidarr
 
       api:
         enabled: true

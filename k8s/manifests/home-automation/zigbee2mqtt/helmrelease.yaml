@@ -45,7 +45,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: zigbee2mqtt-${CLUSTER_NAME}-tls
+            secretName: tls.zigbee2mqtt
 
     persistence:
       config:

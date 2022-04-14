@@ -50,6 +50,6 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: dizquetv-${CLUSTER_NAME}-tls
+          - secretName: tls.dizquetv
             hosts:
               - *host

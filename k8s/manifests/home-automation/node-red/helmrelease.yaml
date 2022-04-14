@@ -47,7 +47,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: node-red-${CLUSTER_NAME}-tls
+            secretName: tls.node-red
 
     persistence:
       config:
