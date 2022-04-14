@@ -47,7 +47,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: prowlarr-${CLUSTER_NAME}-tls
+            secretName: tls.prowlarr
 
     persistence:
       config:

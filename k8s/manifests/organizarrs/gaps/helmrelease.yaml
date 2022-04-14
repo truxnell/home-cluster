@@ -44,7 +44,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: &tls gaps-${CLUSTER_NAME}-tlssonarr
+            secretName: tls.gaps
 
     persistence:
       data:

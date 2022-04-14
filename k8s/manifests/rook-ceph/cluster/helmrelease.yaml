@@ -38,7 +38,7 @@ spec:
           name: &host "rook.${EXTERNAL_DOMAIN}"
           path: "/"
         tls:
-          - secretName: rook-ceph-${CLUSTER_NAME}-tls
+          - secretName: tls.rook-ceph
             hosts:
               - *host
 

@@ -60,7 +60,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: &tls calibre-web-${CLUSTER_NAME}-tls
+            secretName: &tls tls.calibre-web
 
     resources:
       requests:

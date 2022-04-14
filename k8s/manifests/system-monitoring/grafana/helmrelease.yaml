@@ -277,7 +277,7 @@ spec:
       tls:
         - hosts:
             - *host
-          secretName: &tls grafana-${CLUSTER_NAME}-tlssonarr
+          secretName: tls.grafana
 
     serviceAccount:
       create: true

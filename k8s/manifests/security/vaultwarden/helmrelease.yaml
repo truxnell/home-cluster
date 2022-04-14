@@ -63,7 +63,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: &tls vaultwarden-${CLUSTER_NAME}-tls
+            secretName: tls.vaultwarden
       admin:
         enabled: true
         annotations:

@@ -71,7 +71,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: &tls qbittorrent-${CLUSTER_NAME}-tls
+            secretName: &tls tls.qbittorrent
 
     service:
       main:
