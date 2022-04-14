@@ -38,11 +38,11 @@ spec:
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
         hosts:
-          - host: &host "paperless.${INGRESS_DOMAIN}"
+          - host: &host "paperless.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
         tls:
-          - secretName: paperless-tls
+          - secretName: tls.paperless
             hosts:
               - *host
 
