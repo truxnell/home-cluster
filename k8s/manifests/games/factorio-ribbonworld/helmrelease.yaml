@@ -8,82 +8,55 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: ./charts/stable/factorio/
-      version: 0.0.1
+      chart: factorio
+      version: 1.0.0
       sourceRef:
         kind: GitRepository
-        name: k8s-at-home-truxnell
+        name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
-  install:
-    remediation: # perform remediation when helm install fails
-      retries: 3
-  upgrade:
-    remediation: # perform remediation when helm upgrade fails
-      retries: 3
-      remediateLastFailure: true # remediate the last failure, when no retries remain
-    cleanupOnFail: true
 
-  # Values link: https://github.com/Truxnell/charts/blob/master/charts/stable/factorio/values.yaml
   values:
     image:
-      # -- image repository
-      repository: factoriotools/factorio
-      # -- image tag
       tag: stable@sha256:a837cb72f531414074dccf1d353cc2a780cdf493e7b86efafe059c77d0363772
 
     env:
       # -- Set the container timezone
-      TZ: "${TZ}"
-      LOAD_LATEST_SAVE: true # Defaults to True
-      SAVE_NAME: ribbonworld # Defaults to _autosave1
-      GENERATE_NEW_SAVE: false # Defaults to false
-      PORT: 34197 # Defaults to 34197
-      RCON_PORT: 27015 # Defaults to 27015
-      UPDATE_MODS_ON_START: true # No default
-      USERNAME: ${SECRET_FACTORIO_USERNAME} # No default - this is your factorio.com username
-      TOKEN: ${SECRET_FACTORIO_TOKEN} # No default - this is your factorio.com token
+      TZ: Australia/Melbourne
 
+    # -- Configures service settings for the chart.
+    # @default -- See values.yaml
     service:
-      factorio-game:
-        enabled: true
+      main:
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
         externalTrafficPolicy: Cluster
-        loadBalancerIP: "${LB_FACTORIO}" # Set a IP here to ensure the game server is given a static internal IP
+        loadBalancerIP: "${LB_FACTORIO}"
         annotations:
           metallb.universe.tf/allow-shared-ip: factorio
-        ports:
-          factorio-game:
-            port: 34197
-            protocol: UDP
-            targetPort: 34197
-      factorio-rcon:
-        enabled: false
-        type: LoadBalancer # Setting Ip external to cluster for easy port forward
-        externalTrafficPolicy: Cluster
-        loadBalancerIP: "${LB_FACTORIO}" # Set a IP here to ensure the game server is given a static internal IP
-        annotations:
-          metallb.universe.tf/allow-shared-ip: factorio
-        ports:
-          factorio-rcon:
-            enabled: false
-            port: 27016
-            protocol: TCP
-            targetPort: 27016
 
     persistence:
-      factorio:
+      config:
         enabled: true
         existingClaim: factorio-ribbonworld-config-v1
 
-    # Prefer higher single core speed node
-    affinity:
-      nodeAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            preference:
-              matchExpressions:
-                - key: kubernetes.io/hostname
-                  operator: In
-                  values:
-                    - tycho
+    config:
+      factorioServer:
+        save_name: "Ribbonworld"
+        generate_new_save: false
+        update_mods_on_start: true
+        load_latest_save: true
+        token: ${SECRET_FACTORIO_TOKEN}
+        username: ${SECRET_FACTORIO_USERNAME}
+
+      server_settings:
+        name: Ribbonworld
+        description: "DThin and long!"
+        game_password: "${SECRET_FACTORIO_SERVER_PASSWORD}"
+        non_blocking_saving: true
+
+      rcon:
+        password: "${SECRET_FACTORIO_RCON_PASSWORD}"
+        port: 30100
+
+      admin_list:
+        - durandal666
