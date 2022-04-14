@@ -11,7 +11,7 @@ spec:
       chart: ./charts/stable/factorio/
       version: 0.0.1
       sourceRef:
-        kind: GitRepository
+        kind: HelmRepository
         name: k8s-at-home-truxnell
         namespace: flux-system
       interval: 5m
