@@ -15,6 +15,7 @@ spec:
     - secretName: tls.minio
       hosts:
         - "minio.${EXTERNAL_DOMAIN}"
+        - "s3..${EXTERNAL_DOMAIN}"
 
   rules:
     - host: minio.${EXTERNAL_DOMAIN}
