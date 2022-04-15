@@ -36,7 +36,6 @@ prometheusOperator:
       requests:
         memory: 50Mi
       limits:
-        cpu: 200m
         memory: 100Mi
 
 grafana:

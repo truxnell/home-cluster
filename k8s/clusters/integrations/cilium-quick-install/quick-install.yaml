@@ -640,7 +640,7 @@ spec:
               mountPath: /var/run/cilium
           resources:
             requests:
-              cpu: 100m
+              cpu: 20m
               memory: 100Mi
       restartPolicy: Always
       priorityClassName: system-node-critical
