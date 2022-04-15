@@ -24,6 +24,9 @@ spec:
       TZ: "${TZ}"
       PAPERLESS_ADMIN_USER: ${PAPERLESS_ADMIN_USER}
       PAPERLESS_ADMIN_PASSWORD: ${PAPERLESS_ADMIN_PASS}
+      PAPERLESS_REDIS: redis://localhost:6379
+      PAPERLESS_TIME_ZONE: "${TZ}"
+      USERMAP_GID: 65543
 
     persistence:
       data:
@@ -53,3 +56,8 @@ spec:
         memory: 128Mi
       limits:
         memory: 256Mi
+
+    additionalContainers:
+      - name: broker
+        image: redis:6.2
+        imagePullPolicy: IfNotPresent
