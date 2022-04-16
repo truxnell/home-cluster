@@ -62,9 +62,10 @@ prometheus:
       - job_name: minio
         honor_timestamps: true
         metrics_path: /minio/v2/metrics/cluster
+        scheme: http
         static_configs:
           - targets:
-              - "minio.${EXTERNAL_DOMAIN}"
+              - "s3.${EXTERNAL_DOMAIN}"
 
       - job_name: pikvm
         metrics_path: /api/export/prometheus/metrics
