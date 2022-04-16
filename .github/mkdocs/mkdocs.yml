@@ -147,7 +147,7 @@ nav:
       - Network Map: diagrams/network-map.md
       - Cluster Map: diagrams/cluster-map.md
   - Cluster:
-      - Bootstrap Worklow: cluster/bootstrap-workflow.md
+      - Bootstrap Workflow: cluster/bootstrap-workflow.md
   - Applications:
       - k10: apps/k10.md
       # - Get Started: get-started/index.md
