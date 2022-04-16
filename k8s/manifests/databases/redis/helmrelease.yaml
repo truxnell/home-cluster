@@ -15,6 +15,14 @@ spec:
         name: bitnami-charts
         namespace: flux-system
       interval: 5m
+  install:
+    remediation: # perform remediation when helm install fails
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
   values:
     architecture: standalone
 
@@ -30,10 +38,10 @@ spec:
     replica:
       persistence:
         enabled: false
-      # service:
-      #   annotations:
-      #     prometheus.io/probe: "true"
-      #     prometheus.io/protocol: tcp
+        # service:
+        #   annotations:
+        #     prometheus.io/probe: "true"
+        #     prometheus.io/protocol: tcp
 
     sentinal:
       enabled: true
