@@ -3,6 +3,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: minio
+  namespace: services
 spec:
   groups:
     - name: minio
@@ -50,7 +51,8 @@ spec:
             severity: warning
         - alert: MinioNodeDiskUsage
           annotations:
-            description: MinIO node is reporting less than 10% disk space available.
+            description:
+              MinIO node is reporting less than 10% disk space available.
               {{ $value | humanizePercentage }} of disk space available on node {{ $labels.server }}
             summary: MinIO node is low on disk space.
           expr: |
