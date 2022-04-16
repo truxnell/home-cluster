@@ -17,7 +17,7 @@ spec:
       interval: 5m
   install:
     remediation: # perform remediation when helm install fails
-      retries: 5
+      retries: 3
   upgrade:
     remediation: # perform remediation when helm upgrade fails
       retries: 3

@@ -15,6 +15,14 @@ spec:
         name: bitnami-charts
         namespace: flux-system
       interval: 5m
+  install:
+    remediation: # perform remediation when helm install fails
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
   values:
     # image:
     #   repository: bitnami/minio
@@ -25,8 +33,8 @@ spec:
     extraEnvVars:
       - name: TZ
         value: Australia/Melbourne
-      # - MINIO_BROWSER_REDIRECT_URL: "https://minio.${EXTERNAL_DOMAIN}"
-      # - MINIO_SERVER_URL: "https://s3.${EXTERNAL_DOMAIN}"
+        # - MINIO_BROWSER_REDIRECT_URL: "https://minio.${EXTERNAL_DOMAIN}"
+        # - MINIO_SERVER_URL: "https://s3.${EXTERNAL_DOMAIN}"
       - name: MINIO_PROMETHEUS_URL
         value: "http://prometheus-prometheus.system-monitoring:9090"
       - name: MINIO_PROMETHEUS_JOB_ID
@@ -58,12 +66,12 @@ spec:
         hajimari.io/icon: storage
       tls: true
 
-    # podAnnotations:
-    #   secret.reloader.stakater.com/reload: "minio"
+      # podAnnotations:
+      #   secret.reloader.stakater.com/reload: "minio"
 
-    # resources:
-    #   requests:
-    #     memory: 100Mi
-    #     cpu: 20m
-    #   limits:
-    #     memory: 750Mi
+      # resources:
+      #   requests:
+      #     memory: 100Mi
+      #     cpu: 20m
+      #   limits:
+      #     memory: 750Mi
