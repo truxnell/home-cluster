@@ -2,35 +2,62 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: minio-rules
-  namespace: cert-manager
+  name: minio
 spec:
   groups:
-    - name: minio.rules
+    - name: minio
       rules:
-        - alert: MinioS3Errors
+        - alert: MinioAbsent
+          annotations:
+            description: MinIO component has dissapeared from Prometheus service discovery.
+            summary: MinIO component has disappeared.
           expr: |
-            increase(minio_s3_requests_errors_total[5m]) > 5
-          for: 0m
+            absent(up{job=~".*minio.*"} == 1)
+          for: 10m
           labels:
             severity: critical
-          annotations:
-            description: "Minio is experiencing increased S3 errors.  Operations
-              may not occur as expected, and service may be impacted"
-            summary: "Minio is experiecing elevated S3 errors."
         - alert: MinioDiskOffline
-          expr: minio_cluster_nodes_online_total = 0
-          for: 0m
+          annotations:
+            description: MinIO is reporting {{ $value }} disk(s) offline
+              on server {{ $labels.server }}
+            summary: MinIO disk(s) offline.
+          expr: |
+            minio_cluster_disk_offline_total != 0
+          for: 1m
           labels:
             severity: critical
+        - alert: MinioNodeOffline
           annotations:
-            summary: Minio nodes offline (instance {{ $labels.instance }})
-            description: "Minio node is offline\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-        - alert: MinioDiskSpaceUsage
-          expr: minio_node_disk_free_bytes / minio_node_disk_used_bytes * 100 < 5
-          for: 0m
+            description: MinIO is reporting that node {{ $labels.server }} is offline.
+            summary: MinIO node is offline.
+          expr: |
+            minio_cluster_nodes_offline_total != 0
+          for: 1m
+          labels:
+            severity: critical
+        - alert: MinioClusterUsage
+          annotations:
+            description: MinIO cluster is reporting less than 10% storage free.
+              {{ $value | humanizePercentage }} of cluster storage is available.
+            summary: MinIO cluster is low on capacity.
+          expr: |
+            sum(minio_cluster_capacity_usable_free_bytes)
+              /
+            sum(minio_cluster_capacity_usable_total_bytes)
+              < .10
+          for: 15m
           labels:
             severity: warning
+        - alert: MinioNodeDiskUsage
           annotations:
-            summary: Minio disk space usage (instance {{ $labels.instance }})
-            description: "Minio available free space is low (< 50%)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+            description: MinIO node is reporting less than 10% disk space available.
+              {{ $value | humanizePercentage }} of disk space available on node {{ $labels.server }}
+            summary: MinIO node is low on disk space.
+          expr: |
+            sum(minio_node_disk_free_bytes) by (server)
+              /
+            sum(minio_node_disk_total_bytes) by (server)
+              < .10
+          for: 15m
+          labels:
+            severity: warning
