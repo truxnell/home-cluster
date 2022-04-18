@@ -14,6 +14,15 @@ spec:
         kind: HelmRepository
         name: rook-ceph-charts
         namespace: flux-system
+  install:
+    remediation: # perform remediation when helm install fails
+      retries: 5
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 5
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
+
   values:
     toolbox:
       enabled: false
