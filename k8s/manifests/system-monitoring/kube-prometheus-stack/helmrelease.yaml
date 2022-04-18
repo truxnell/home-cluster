@@ -16,11 +16,16 @@ spec:
         kind: HelmRepository
         name: prometheus-community-charts
         namespace: flux-system
-
   install:
     crds: CreateReplace
+    remediation: # perform remediation when helm install fails
+      retries: 5
   upgrade:
     crds: CreateReplace
+    remediation: # perform remediation when helm upgrade fails
+      retries: 5
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
 
   valuesFrom:
     - kind: Secret
