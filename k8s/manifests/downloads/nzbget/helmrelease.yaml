@@ -59,6 +59,10 @@ spec:
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${INGRESS_DOMAIN}/css/base/nzbget/plex.css"></head>';
             sub_filter_once on;
+          external-dns/is-public: "false"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "download-box"
+
         hosts:
           - host: &host "nzbget.${EXTERNAL_DOMAIN}"
             paths:
