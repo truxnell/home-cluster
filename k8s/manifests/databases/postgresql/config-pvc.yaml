@@ -11,6 +11,6 @@ spec:
 
   resources:
     requests:
-      storage: 5Gi
+      storage: 20Gi
 
   storageClassName: ceph-block
