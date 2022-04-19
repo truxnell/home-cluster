@@ -16,6 +16,7 @@
 
 <div align="center">
 
+[![Uptime CI](https://img.shields.io/github/workflow/status/Truxnell/upptime/Uptime%20CI?label=Upptime%20CI&style=for-the-badge)](https://github.com/Truxnell/upptime/actions?query=workflow%3A%22Uptime+CI%22)
 [![Upptime status](https://img.shields.io/endpoint?label=Status%20page&style=for-the-badge&url=https%3A%2F%2Fraw.githubusercontent.com%2FTruxnell%2Fupptime%2Fmaster%2Fapi%2Fstatus%2Fuptime.json)](https://status.voltaicforge.com)
 ![Plex](https://img.shields.io/endpoint?label=Plex&logo=plex&style=for-the-badge&url=https%3A%2F%2Fraw.githubusercontent.com%2FTruxnell%2Fupptime%2Fmaster%2Fapi%2Fplex%2Fuptime.json)
 ![HASS](https://img.shields.io/endpoint?label=homeassistant&logo=homeassistant&style=for-the-badge&url=https%3A%2F%2Fraw.githubusercontent.com%2FTruxnell%2Fupptime%2Fmaster%2Fapi%2Fhome-assistant%2Fuptime.json)
