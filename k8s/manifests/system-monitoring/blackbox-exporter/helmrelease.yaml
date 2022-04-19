@@ -95,7 +95,7 @@ spec:
           url: wled-officedesk.${INTERNAL_DOMAIN}
         - module: icmp
           name: poe-zigbee-coordinator
-          url: .${INTERNAL_DOMAIN}
+          url: espressif.${INTERNAL_DOMAIN}
 
     prometheusRule:
       enabled: true
