@@ -6,4 +6,3 @@ resources:
   # - code-server-ssh-key.sops.yaml
   # - home-assistant.sops.yaml
   - helmrelease.yaml
-  - endpoint-monitor.yaml
