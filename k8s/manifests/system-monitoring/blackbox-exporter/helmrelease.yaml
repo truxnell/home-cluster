@@ -46,29 +46,26 @@ spec:
         - secretName: tls.blackbox-exporter
           hosts:
             - blackbox-exporter.${EXTERNAL_DOMAIN}
+
     podAnnotations:
       configmap.reloader.stakater.com/reload: "blackbox-exporter"
 
+    allowIcmp: true
+
     config:
       modules:
-        icmp:
-          prober: icmp
-          timeout: 30s
-          icmp:
-            preferred_ip_protocol: "ip4"
-            payload_size: 64
         http_2xx:
           prober: http
           timeout: 5s
           http:
             valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
-            follow_redirects: false
+            follow_redirects: true
             preferred_ip_protocol: "ip4"
+        icmp:
+          prober: icmp
+          timeout: 30s
           icmp:
             preferred_ip_protocol: "ip4"
-        tcp_connect:
-          prober: tcp
-          timeout: 30s
 
     serviceMonitor:
       enabled: true
