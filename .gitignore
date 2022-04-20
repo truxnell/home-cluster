@@ -24,3 +24,10 @@ tests/__pycache__
 
 # Sops
 .decrypted~*.yaml
+
+# Other files
+kubeconfig
+talosconfig
+
+# machineConfigs
+k8s/talos/**/machineConfigs
