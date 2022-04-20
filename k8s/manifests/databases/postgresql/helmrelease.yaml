@@ -29,6 +29,11 @@ spec:
       postgresql:
         auth:
           postgresPassword: "${SECRET_POSTGRES_PASSWORD}"
+    image:
+      registry: docker.io #FIXME #1014
+      repository: bitnami/postgresql
+      tag: 14.2.0-debian-10-r0
+      pullPolicy: IfNotPresent
 
     auth:
       database: "postgres"
