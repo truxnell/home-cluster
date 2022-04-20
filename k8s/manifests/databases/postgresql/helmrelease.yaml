@@ -25,11 +25,6 @@ spec:
     cleanupOnFail: true
   # values yaml: https://github.com/bitnami/charts/blob/master/bitnami/postgresql/values.yaml
   values:
-    image:
-      registry: quay.io
-      repository: bitnami/postgresql
-      tag: 14.2.0
-
     global:
       postgresql:
         auth:
@@ -40,9 +35,6 @@ spec:
 
     metrics:
       enabled: true
-      image:
-        repository: bitnami/postgres-exporter
-        tag: 0.10.1-debian-10-r70
       serviceMonitor:
         enabled: true
 
