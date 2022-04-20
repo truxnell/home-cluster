@@ -1,0 +1,92 @@
+---
+name: hegira
+
+nodes:
+  - hostname: leela
+    domain: ${domains.hardware}
+    ip_address: 10.8.20.30
+    controlplane: true
+  - hostname: xerxes
+    domain: ${domains.hardware}
+    ip_address: 10.8.20.40
+  - hostname: shodan
+    domain: ${domains.hardware}
+    ip_address: 10.8.20.42
+  - hostname: tycho
+    domain: ${domains.hardware}
+    ip_address: 10.8.20.44
+
+controlplane:
+  endpoint: "https://10.8.20.30:6443"
+
+  configPatches:
+    - op: add
+      path: /machine/kubelet/extraArgs
+      value:
+        rotate-server-certificates: "true"
+        feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
+
+    - op: add
+      path: /machine/time
+      value:
+        disabled: false
+        servers:
+          - time.cloudflare.com
+
+    - op: add
+      path: /machine/network/interfaces
+      value:
+        - interface: eth0
+          dhcp: true
+
+    - op: add
+      path: /cluster/proxy/disabled
+      value: true
+
+    - op: add
+      path: /cluster/apiServer/certSANs
+      value:
+        - hegira.${domains.hardware}
+
+    - op: add
+      path: /machine/certSANs
+      value:
+        - hegira.${domains.hardware}
+
+    - op: add
+      path: /cluster/network/cni
+      value:
+        name: "custom"
+        urls:
+          - "https://raw.githubusercontent.com/Truxnell/home-cluster/main/k8s/clusters/hegira/integrations/cilium-quick-install/quick-install.yaml"
+
+    - op: replace
+      path: /cluster/extraManifests
+      value:
+        - "https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/v0.3.0/deploy/ha-install.yaml"
+
+workers:
+  configPatches:
+    - op: add
+      path: /machine/kubelet/extraArgs
+      value:
+        rotate-server-certificates: "true"
+
+    - op: add
+      path: /machine/time
+      value:
+        disabled: false
+        servers:
+          - time.cloudflare.com
+
+    - op: add
+      path: /machine/sysctls
+      value:
+        fs.inotify.max_user_watches: "1048576"
+        fs.inotify.max_user_instances: "8192"
+
+    - op: add
+      path: /machine/network/interfaces
+      value:
+        - interface: eth0
+          dhcp: true
