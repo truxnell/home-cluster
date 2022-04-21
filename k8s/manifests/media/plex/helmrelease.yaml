@@ -117,7 +117,7 @@ spec:
         image:
           repository: grafana/promtail
           tag: 2.5.0
-        loki: http://loki.system-monitoring.svc.cluster.local:3100/loki/api/v1/push
+        loki: http://loki.system-monitoring.cluster.local:3100/loki/api/v1/push
         logs:
           - name: promtail/plex
             path: "/config/Library/Application Support/Plex Media Server/Logs/*.log"
