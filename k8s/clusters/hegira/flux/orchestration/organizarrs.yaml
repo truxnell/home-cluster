@@ -96,9 +96,6 @@ metadata:
 spec:
   dependsOn:
     - name: organizarrs-namespace
-    - name: rook-ceph-cluster
-    - name: organizarrs-prowlarr
-    - name: network-system-ingress-nginx
   interval: 5m
   path: "./k8s/manifests/organizarrs/readarr"
   prune: true
@@ -115,10 +112,6 @@ metadata:
 spec:
   dependsOn:
     - name: organizarrs-namespace
-    - name: rook-ceph-cluster
-    - name: media-plex
-    - name: network-system-ingress-nginx
-    - name: organizarrs-prowlarr
   interval: 5m
   path: "./k8s/manifests/organizarrs/gaps"
   prune: true
