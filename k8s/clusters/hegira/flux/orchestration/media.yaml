@@ -73,7 +73,6 @@ metadata:
 spec:
   dependsOn:
     - name: media-namespace
-    - name: media-plex
   interval: 5m
   path: "./k8s/manifests/media/tautulli"
   prune: true
