@@ -419,9 +419,9 @@ metadata:
   annotations:
     meta.helm.sh/release-name: cilium
     meta.helm.sh/release-namespace: kube-system
-    app.kubernetes.io/managed-by: Helm
   labels:
     k8s-app: cilium
+    app.kubernetes.io/managed-by: Helm
 spec:
   selector:
     matchLabels:
