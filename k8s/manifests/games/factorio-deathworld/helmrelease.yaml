@@ -78,3 +78,8 @@ spec:
 
       admin_list:
         - durandal666
+
+    startupProbe:
+      enabled: true
+      failureThreshold: 30
+      periodSeconds: 10
