@@ -2,7 +2,6 @@
 version: "3"
 
 tasks:
-
   rook-ceph-toolbox:
     desc: Exec into the Rook Ceph toolbox
     cmds:
@@ -12,8 +11,7 @@ tasks:
   k10-password:
     desc: Retrieve the k10 passphrase
     cmds:
-      - kubectl get serviceaccount k10-k10 -o jsonpath="{.secrets[0].name}" --namespace kasten-io
-      - kubectl get secret k10-k10-token-bdpdn --namespace kasten-io -ojsonpath="{.data.token}{'\n'}" | base64 --decode
+      - kubectl get secret $(kubectl get serviceaccount k10-k10 -o jsonpath="{.secrets[0].name}" --namespace kasten-io) --namespace kasten-io -ojsonpath="{.data.token}{'\n'}" | base64 --decode
 
   pause:
     desc: Pause all Helm Releases that rely on NFS storage
