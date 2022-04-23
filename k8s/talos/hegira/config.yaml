@@ -3,17 +3,17 @@ name: hegira
 
 nodes:
   - hostname: leela
-    domain: ${domains.hardware}
+    # domain: ${domains.hardware}
     ip_address: 10.8.20.30
     controlplane: true
   - hostname: xerxes
-    domain: ${domains.hardware}
+    # domain: ${domains.hardware}
     ip_address: 10.8.20.40
   - hostname: shodan
-    domain: ${domains.hardware}
+    # domain: ${domains.hardware}
     ip_address: 10.8.20.42
   - hostname: tycho
-    domain: ${domains.hardware}
+    # domain: ${domains.hardware}
     ip_address: 10.8.20.44
 
 controlplane:
@@ -65,6 +65,13 @@ controlplane:
       value:
         - "https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/v0.3.0/deploy/ha-install.yaml"
 
+    - op: add
+      path: /machine/sysctls
+      value:
+        fs.inotify.max_user_watches: "1048576"
+        fs.inotify.max_user_instances: "8192"
+        vm.max_map_count: "524288"
+
 workers:
   configPatches:
     - op: add
@@ -84,6 +91,7 @@ workers:
       value:
         fs.inotify.max_user_watches: "1048576"
         fs.inotify.max_user_instances: "8192"
+        vm.max_map_count: "524288"
 
     - op: add
       path: /machine/network/interfaces
