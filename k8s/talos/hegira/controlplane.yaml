@@ -18,6 +18,7 @@ machine:
 
     # Used to provide additional options to the kubelet.
     kubelet:
+        # renovate: docker-image
         image: ghcr.io/siderolabs/kubelet:v1.23.5 # The `image` field is an optional reference to an alternative kubelet image.
 
     # # The `image` field is an optional reference to an alternative kubelet image.
@@ -130,6 +131,7 @@ machine:
     # Used to provide instructions for installations.
     install:
         disk: /dev/sda # The disk used for installations.
+        # renovate: docker-image
         image: ghcr.io/talos-systems/installer:v1.0.3 # Allows for supplying the image used to perform the installation.
         bootloader: true # Indicates if a bootloader should be installed.
         wipe: false # Indicates if the installation disk should be wiped at installation time.
@@ -322,16 +324,19 @@ cluster:
         # image: k8s.gcr.io/kube-apiserver:v1.23.1
     # Controller manager server specific configuration options.
     controllerManager:
+        # renovate: docker-image
         image: k8s.gcr.io/kube-controller-manager:v1.23.5 # The container image used in the controller manager manifest.
     # image: k8s.gcr.io/kube-controller-manager:v1.23.1
 
     # Kube-proxy server-specific configuration options
     proxy:
+        # renovate: docker-image
         image: k8s.gcr.io/kube-proxy:v1.23.5 # The container image used in the kube-proxy manifest.
     # image: k8s.gcr.io/kube-proxy:v1.23.1
 
     # Scheduler server specific configuration options.
     scheduler:
+        # renovate: docker-image
         image: k8s.gcr.io/kube-scheduler:v1.23.5 # The container image used in the scheduler manifest.
     # image: k8s.gcr.io/kube-scheduler:v1.23.1
 
