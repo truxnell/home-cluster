@@ -56,3 +56,9 @@ tasks:
       - kubectl scale -n media deploy/sabnzbd --replicas 1
       - flux resume hr -n media sonarr
       - kubectl scale -n media deploy/sonarr --replicas 1
+
+  build-talos-config:
+    desc: Build talos configs
+    cmds:
+      - python k8s/talos/buildClusterConfig.py  --variables-file k8s/talos/hegira/variables.sops.yaml k8s/talos/hegira/config.yaml
+      - find k8s/talos/hegira/machineConfigs/ -maxdepth 1 -type f -exec talosctl validate -m metal -c {} \;
