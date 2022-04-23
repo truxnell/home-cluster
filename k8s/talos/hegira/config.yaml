@@ -3,17 +3,17 @@ name: hegira
 
 nodes:
   - hostname: leela
-    # domain: ${domains.hardware}
+    domain: ""
     ip_address: 10.8.20.30
     controlplane: true
   - hostname: xerxes
-    # domain: ${domains.hardware}
+    domain: ""
     ip_address: 10.8.20.40
   - hostname: shodan
-    # domain: ${domains.hardware}
+    domain: ""
     ip_address: 10.8.20.42
   - hostname: tycho
-    # domain: ${domains.hardware}
+    domain: ""
     ip_address: 10.8.20.44
 
 controlplane:
@@ -47,6 +47,11 @@ controlplane:
       path: /cluster/apiServer/certSANs
       value:
         - hegira.${domains.hardware}
+
+    - op: add
+      path: /cluster/apiServer/extraArgs
+      value:
+        feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
 
     - op: add
       path: /machine/certSANs
