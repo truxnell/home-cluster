@@ -130,7 +130,7 @@ machine:
     install:
         disk: /dev/sda # The disk used for installations.
         # renovate: docker-image
-        image: ghcr.io/talos-systems/installer:v1.0.0 # Allows for supplying the image used to perform the installation.
+        image: ghcr.io/talos-systems/installer:v1.0.0
         bootloader: true # Indicates if a bootloader should be installed.
         wipe: false # Indicates if the installation disk should be wiped at installation time.
 
