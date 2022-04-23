@@ -81,7 +81,8 @@
     {
       "fileMatch": [
         "k8s/clusters/.+\\.ya?ml$",
-        "k8s/global/.+\\.ya?ml$"
+        "k8s/global/.+\\.ya?ml$",
+        "k8s/talos/.+\\.ya?ml$"
       ],
       "matchStrings": [
         "# renovate: docker-image( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<depName>.*?):(?<currentValue>.*=?)"
