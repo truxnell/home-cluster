@@ -5,16 +5,20 @@ nodes:
   - hostname: leela
     domain: ""
     ip_address: 10.8.20.30
+    install_drive: /dev/sda
     controlplane: true
   - hostname: xerxes
     domain: ""
     ip_address: 10.8.20.40
+    install_drive: /dev/sda
   - hostname: shodan
     domain: ""
     ip_address: 10.8.20.42
+    install_drive: /dev/nvme0n1
   - hostname: tycho
     domain: ""
     ip_address: 10.8.20.44
+    install_drive: /dev/sda
 
 controlplane:
   endpoint: "https://10.8.20.30:6443"
