@@ -26,7 +26,8 @@
         "vexorian/dizquetv",
         "grafana/grafana",
         "ghcr.io/tarampampam/error-pages",
-        "k8s-at-home/tautulli"
+        "k8s-at-home/tautulli",
+        "zricethezav/gitleaks"
       ],
       "schedule": ["after 2am, before 5am"]
 
