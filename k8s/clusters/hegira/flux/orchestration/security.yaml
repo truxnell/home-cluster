@@ -45,36 +45,36 @@ spec:
 #   sourceRef:
 #     kind: GitRepository
 #     name: home-cluster
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: security-kyverno-base
-#   namespace: flux-system
-# spec:
-#   dependsOn:
-#     - name: security-namespace
-#   interval: 5m
-#   path: "./k8s/manifests/security/kyverno/base"
-#   prune: true
-#   wait: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: home-cluster
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: security-kyverno-policies
-#   namespace: flux-system
-# spec:
-#   dependsOn:
-#     - name: security-namespace
-#     - name: security-kyverno-base
-#   interval: 5m
-#   path: "./k8s/manifests/security/kyverno/policies"
-#   prune: true
-#   wait: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: security-kyverno-base
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: security-namespace
+  interval: 5m
+  path: "./k8s/manifests/security/kyverno/base"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: security-kyverno-policies
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: security-namespace
+    - name: security-kyverno-base
+  interval: 5m
+  path: "./k8s/manifests/security/kyverno/policies"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
