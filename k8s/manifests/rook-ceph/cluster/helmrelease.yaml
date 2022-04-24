@@ -15,6 +15,7 @@ spec:
         name: rook-ceph-charts
         namespace: flux-system
   install:
+    createNamespace: true
     remediation: # perform remediation when helm install fails
       retries: 5
   upgrade:

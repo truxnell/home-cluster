@@ -2,25 +2,9 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: system-monitoring-namespace
-  namespace: flux-system
-spec:
-  interval: 5m
-  path: "./k8s/manifests/system-monitoring"
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: home-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
   name: system-monitoring-kube-prom-stack
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: system-monitoring-namespace
   interval: 5m
   path: "./k8s/manifests/system-monitoring/kube-prometheus-stack"
   prune: true
@@ -36,7 +20,6 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: system-monitoring-namespace
     - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/system-monitoring/kube-prometheus-stack/prometheus-rules"
@@ -52,9 +35,6 @@ metadata:
   name: system-monitoring-thanos
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: system-monitoring-namespace
-    - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/system-monitoring/thanos"
   prune: true
@@ -69,9 +49,6 @@ metadata:
   name: system-monitoring-botkube
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: system-monitoring-namespace
-    - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/system-monitoring/botkube"
   prune: true
@@ -86,9 +63,6 @@ metadata:
   name: system-monitoring-grafana
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: system-monitoring-namespace
-    - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/system-monitoring/grafana"
   prune: true
@@ -104,7 +78,6 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: system-monitoring-namespace
     - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/system-monitoring/unifi-poller"
@@ -120,9 +93,6 @@ metadata:
   name: system-monitoring-promtail
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: system-monitoring-namespace
-    - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/system-monitoring/promtail"
   prune: true
@@ -137,9 +107,6 @@ metadata:
   name: system-monitoring-loki
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: system-monitoring-namespace
-    - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/system-monitoring/loki"
   prune: true
@@ -154,9 +121,6 @@ metadata:
   name: system-monitoring-blackbox-exporter
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: system-monitoring-namespace
-    - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/system-monitoring/blackbox-exporter"
   prune: true
@@ -172,7 +136,6 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: system-monitoring-namespace
     - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/system-monitoring/prometheus-smartctl"
