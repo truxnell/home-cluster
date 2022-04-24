@@ -10,9 +10,7 @@ resources:
   - home-automation.yaml
   - kasten-io.yaml
   - kube-system.yaml
-  - kyverno.yaml
   - media.yaml
-  - monitoring.yaml
   - network-system.yaml
   - organizarrs.yaml
   - rook-ceph.yaml
