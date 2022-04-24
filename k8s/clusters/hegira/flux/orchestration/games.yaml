@@ -2,25 +2,9 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: games-namespace
-  namespace: flux-system
-spec:
-  interval: 5m
-  path: "./k8s/manifests/games"
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: home-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
   name: games-factorio-k2
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: games-namespace
   interval: 5m
   path: "./k8s/manifests/games/factorio-k2"
   prune: true
@@ -36,7 +20,6 @@ spec:
 #   namespace: flux-system
 # spec:
 #   dependsOn:
-#     - name: games-namespace
 #   interval: 5m
 #   path: "./k8s/manifests/games/factorio-formic"
 #   prune: true
@@ -51,8 +34,6 @@ metadata:
   name: games-factorio-ribbonworld
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: games-namespace
   interval: 5m
   path: "./k8s/manifests/games/factorio-ribbonworld"
   prune: true
@@ -67,8 +48,6 @@ metadata:
   name: games-factorio-deathworld
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: games-namespace
   interval: 5m
   path: "./k8s/manifests/games/factorio-deathworld"
   prune: true
@@ -84,7 +63,6 @@ spec:
 #   namespace: flux-system
 # spec:
 #   dependsOn:
-#     - name: games-namespace
 #   interval: 5m
 #   path: "./k8s/manifests/games/foundryvtt"
 #   prune: true

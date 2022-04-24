@@ -2,20 +2,6 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: network-system-namespace
-  namespace: flux-system
-spec:
-  interval: 5m
-  path: "./k8s/manifests/network-system"
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: home-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
   name: network-system-metallb
   namespace: flux-system
 spec:
@@ -63,7 +49,6 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: network-system-namespace
     - name: network-system-external-dns-crds
   interval: 5m
   path: "./k8s/manifests/network-system/external-dns"
@@ -79,8 +64,6 @@ metadata:
   name: network-system-ingress-nginx
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: network-system-namespace
   interval: 5m
   path: "./k8s/manifests/network-system/ingress-nginx"
   prune: true
@@ -95,8 +78,6 @@ metadata:
   name: network-system-static-routes
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: network-system-namespace
   interval: 5m
   path: "./k8s/manifests/network-system/ingress-nginx/static-routes"
   prune: true

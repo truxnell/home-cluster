@@ -2,25 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: security-namespace
-  namespace: flux-system
-spec:
-  interval: 5m
-  path: "./k8s/manifests/security"
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: home-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
   name: security-vaultwarden
   namespace: flux-system
 spec:
   dependsOn:
-    - name: security-namespace
+    - name: databases-postgresql
   interval: 5m
   path: "./k8s/manifests/security/vaultwarden"
   prune: true
@@ -36,7 +22,6 @@ spec:
 #   namespace: flux-system
 # spec:
 #   dependsOn:
-#     - name: security-namespace
 #     - name: databases-postgresql
 #   interval: 5m
 #   path: "./k8s/manifests/security/authentik"
@@ -52,8 +37,6 @@ metadata:
   name: security-kyverno-base
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: security-namespace
   interval: 5m
   path: "./k8s/manifests/security/kyverno/base"
   prune: true
@@ -69,7 +52,6 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: security-namespace
     - name: security-kyverno-base
   interval: 5m
   path: "./k8s/manifests/security/kyverno/policies"
