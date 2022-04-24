@@ -21,8 +21,6 @@ metadata:
 spec:
   dependsOn:
     - name: games-namespace
-    - name: network-system-metallb
-    - name: rook-ceph-cluster
   interval: 5m
   path: "./k8s/manifests/games/factorio-k2"
   prune: true
@@ -39,7 +37,6 @@ spec:
 # spec:
 #   dependsOn:
 #     - name: games-namespace
-#     - name: network-system-metallb
 #   interval: 5m
 #   path: "./k8s/manifests/games/factorio-formic"
 #   prune: true
@@ -56,8 +53,6 @@ metadata:
 spec:
   dependsOn:
     - name: games-namespace
-    - name: network-system-metallb
-    - name: rook-ceph-cluster
   interval: 5m
   path: "./k8s/manifests/games/factorio-ribbonworld"
   prune: true
@@ -74,8 +69,6 @@ metadata:
 spec:
   dependsOn:
     - name: games-namespace
-    - name: network-system-metallb
-    - name: rook-ceph-cluster
   interval: 5m
   path: "./k8s/manifests/games/factorio-deathworld"
   prune: true
