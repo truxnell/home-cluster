@@ -9,6 +9,7 @@ spec:
   dependsOn:
     - name: cluster-config
     - name: cluster-repositories
+    - name: cluster-namespaces
     - name: manage-flux
   path: ./k8s/clusters/hegira/flux/orchestration
   prune: true
