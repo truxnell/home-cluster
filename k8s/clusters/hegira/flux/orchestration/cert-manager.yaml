@@ -21,6 +21,7 @@ metadata:
 spec:
   dependsOn:
     - name: cert-manager-namespace
+    - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/cert-manager/cert-manager/base"
   prune: true
