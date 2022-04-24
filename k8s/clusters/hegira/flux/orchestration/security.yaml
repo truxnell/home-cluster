@@ -21,10 +21,6 @@ metadata:
 spec:
   dependsOn:
     - name: security-namespace
-    - name: kube-system-reloader
-    - name: network-system-ingress-nginx
-    - name: rook-ceph-cluster
-    - name: databases-postgresql
   interval: 5m
   path: "./k8s/manifests/security/vaultwarden"
   prune: true
@@ -41,7 +37,6 @@ spec:
 # spec:
 #   dependsOn:
 #     - name: security-namespace
-#     - name: network-system-ingress-nginx
 #     - name: databases-postgresql
 #   interval: 5m
 #   path: "./k8s/manifests/security/authentik"
