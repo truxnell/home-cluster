@@ -37,6 +37,7 @@ metadata:
 spec:
   dependsOn:
     - name: organizarrs-namespace
+    - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/organizarrs/sonarr"
   prune: true
@@ -53,6 +54,7 @@ metadata:
 spec:
   dependsOn:
     - name: organizarrs-namespace
+    - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/organizarrs/radarr"
   prune: true
@@ -69,6 +71,7 @@ metadata:
 spec:
   dependsOn:
     - name: organizarrs-namespace
+    - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/organizarrs/lidarr"
   prune: true

@@ -37,6 +37,7 @@ metadata:
 spec:
   dependsOn:
     - name: downloads-namespace
+    - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/downloads/qbittorrent"
   prune: true
