@@ -19,8 +19,6 @@ metadata:
   name: network-system-metallb
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: network-system-namespace
   interval: 5m
   path: "./k8s/manifests/network-system/metallb"
   prune: true
@@ -35,8 +33,6 @@ metadata:
   name: network-system-cloudflare-ddns
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: network-system-namespace
   interval: 5m
   path: "./k8s/manifests/network-system/cloudflare-ddns"
   prune: true
@@ -99,7 +95,6 @@ metadata:
 spec:
   dependsOn:
     - name: network-system-namespace
-    - name: network-system-ingress-nginx
   interval: 5m
   path: "./k8s/manifests/network-system/ingress-nginx/static-routes"
   prune: true

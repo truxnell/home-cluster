@@ -21,7 +21,6 @@ metadata:
 spec:
   dependsOn:
     - name: vpn-namespace
-    - name: cert-manager-certmanager
   interval: 5m
   path: "./k8s/manifests/vpn/downloads-gateway"
   prune: true

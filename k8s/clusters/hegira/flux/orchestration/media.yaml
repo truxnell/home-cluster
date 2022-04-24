@@ -37,8 +37,6 @@ metadata:
 spec:
   dependsOn:
     - name: media-namespace
-    - name: network-system-metallb
-    - name: network-system-ingress-nginx
   interval: 5m
   path: "./k8s/manifests/media/plex"
   prune: true
@@ -55,8 +53,6 @@ metadata:
 spec:
   dependsOn:
     - name: media-namespace
-    - name: network-system-ingress-nginx
-    - name: rook-ceph-cluster
   interval: 5m
   path: "./k8s/manifests/media/dizquetv"
   prune: true
