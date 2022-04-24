@@ -26,28 +26,28 @@ spec:
     cleanupOnFail: true
   values:
     nameOverride: external-dns
-    interval: "5m"
-    logLevel: debug
+
     sources:
       - ingress
-      - crd
+
     provider: cloudflare
+
     cloudflare:
       secretName: cloudflare-api-key
       email: "${EMAIL_1}"
       proxied: true
+
     policy: sync
     txtPrefix: "k8s."
     domainFilters:
       - "${EXTERNAL_DOMAIN}"
+
     crd:
-      create: false
-      apiversion: externaldns.k8s.io/v1alpha1
-      kind: DNSEndpoint
+      create: true
+
     annotationFilter: "external-dns/is-public in (true)"
+
     resources:
       requests:
         memory: 100Mi
         cpu: 25m
-      limits:
-        memory: 250Mi
