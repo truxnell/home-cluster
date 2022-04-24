@@ -2,25 +2,9 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: organizarrs-namespace
-  namespace: flux-system
-spec:
-  interval: 5m
-  path: "./k8s/manifests/organizarrs"
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: home-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
   name: organizarrs-prowlarr
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: organizarrs-namespace
   interval: 5m
   path: "./k8s/manifests/organizarrs/prowlarr"
   prune: true
@@ -36,7 +20,6 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: organizarrs-namespace
     - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/organizarrs/sonarr"
@@ -53,7 +36,6 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: organizarrs-namespace
     - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/organizarrs/radarr"
@@ -70,7 +52,6 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: organizarrs-namespace
     - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/organizarrs/lidarr"
@@ -86,8 +67,6 @@ metadata:
   name: organizarrs-readarr
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: organizarrs-namespace
   interval: 5m
   path: "./k8s/manifests/organizarrs/readarr"
   prune: true
@@ -102,8 +81,6 @@ metadata:
   name: organizarrs-gaps
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: organizarrs-namespace
   interval: 5m
   path: "./k8s/manifests/organizarrs/gaps"
   prune: true
@@ -118,8 +95,6 @@ metadata:
   name: organizarrs-overseerr
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: organizarrs-namespace
   interval: 5m
   path: "./k8s/manifests/organizarrs/overseerr"
   prune: true
@@ -134,8 +109,6 @@ metadata:
   name: organizarrs-calibre
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: organizarrs-namespace
   interval: 5m
   path: "./k8s/manifests/organizarrs/calibre"
   prune: true
@@ -150,8 +123,6 @@ metadata:
   name: organizarrs-calibre-web
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: organizarrs-namespace
   interval: 5m
   path: "./k8s/manifests/organizarrs/calibre-web"
   prune: true
@@ -166,8 +137,6 @@ metadata:
   name: organizarrs-trash-updater
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: organizarrs-namespace
   interval: 5m
   path: "./k8s/manifests/organizarrs/trash-updater"
   prune: true

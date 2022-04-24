@@ -2,25 +2,9 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: services-namespace
-  namespace: flux-system
-spec:
-  interval: 5m
-  path: "./k8s/manifests/services"
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: home-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
   name: services-hajimari
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: services-namespace
   interval: 5m
   path: "./k8s/manifests/services/hajimari"
   prune: true
@@ -36,7 +20,6 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: services-namespace
     - name: databases-postgresql
   interval: 5m
   path: "./k8s/manifests/services/joplin-server"
@@ -53,7 +36,6 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: services-namespace
     - name: databases-postgresql
   interval: 5m
   path: "./k8s/manifests/services/nginx-php"
@@ -69,8 +51,6 @@ spec:
 #   name: services-minio
 #   namespace: flux-system
 # spec:
-#   dependsOn:
-#     - name: services-namespace
 #   interval: 5m
 #   path: "./k8s/manifests/services/minio"
 #   prune: true
@@ -85,8 +65,6 @@ metadata:
   name: services-theme-park
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: services-namespace
   interval: 5m
   path: "./k8s/manifests/services/theme-park"
   prune: true
@@ -101,8 +79,6 @@ metadata:
   name: services-paperless
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: services-namespace
   interval: 5m
   path: "./k8s/manifests/services/paperless"
   prune: true
