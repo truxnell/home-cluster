@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: network-system-metallb
+  name: core-network-system-metallb
   namespace: flux-system
 spec:
   interval: 5m
@@ -16,7 +16,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: network-system-ingress-nginx
+  name: core-network-system-ingress-nginx
   namespace: flux-system
 spec:
   interval: 5m

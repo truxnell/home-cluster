@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: system-monitoring-kube-prom-stack
+  name: core-system-monitoring-kube-prom-stack
   namespace: flux-system
 spec:
   interval: 5m
@@ -16,7 +16,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: system-monitoring-thanos
+  name: core-system-monitoring-thanos
   namespace: flux-system
 spec:
   interval: 5m
@@ -30,7 +30,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: system-monitoring-grafana
+  name: core-system-monitoring-grafana
   namespace: flux-system
 spec:
   interval: 5m
@@ -44,7 +44,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: system-monitoring-promtail
+  name: core-system-monitoring-promtail
   namespace: flux-system
 spec:
   interval: 5m
@@ -58,7 +58,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: system-monitoring-loki
+  name: core-system-monitoring-loki
   namespace: flux-system
 spec:
   interval: 5m
