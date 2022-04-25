@@ -33,8 +33,6 @@ metadata:
   name: rook-ceph-snapshot-controller
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: rook-ceph-external-snapshotter-crds
   interval: 5m
   path: "./k8s/manifests/core/rook-ceph/snapshot-controller/"
   prune: true
