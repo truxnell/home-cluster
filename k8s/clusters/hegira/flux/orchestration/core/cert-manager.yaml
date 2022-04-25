@@ -5,8 +5,6 @@ metadata:
   name: cert-manager-certmanager
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/core/cert-manager/cert-manager/base"
   prune: true

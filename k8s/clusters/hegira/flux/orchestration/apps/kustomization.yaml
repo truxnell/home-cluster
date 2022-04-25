@@ -2,11 +2,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./cert-manager.yaml
-  - ./rook-ceph.yaml
-  - ./downloads.yaml
   - ./databases.yaml
-  - ./flux-system.yaml
+  - ./downloads.yaml
   - ./games.yaml
   - ./home-automation.yaml
   - ./kasten-io.yaml
@@ -16,6 +13,4 @@ resources:
   - ./organizarrs.yaml
   - ./security.yaml
   - ./services.yaml
-  - ./system-monitoring.yaml
-  - ./testing.yaml
   - ./vpn.yaml

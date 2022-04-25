@@ -24,6 +24,9 @@ spec:
       retries: 5
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
+  dependsOn:
+    - name: kube-prometheus-stack
+      namespace: system-monitoring
 
   values:
     installCRDs: true
