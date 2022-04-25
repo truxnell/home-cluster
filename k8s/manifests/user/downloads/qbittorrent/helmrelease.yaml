@@ -25,7 +25,7 @@ spec:
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
   dependsOn:
-    - name: vpn-gateway
+    - name: downloads-gateway
       namespace: vpn
   values:
     image:
