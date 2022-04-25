@@ -73,9 +73,9 @@ prometheus:
         metrics_path: /api/export/prometheus/metrics
         tls_config:
           insecure_skip_verify: true
-        # basic_auth:
-        #   username: "${SECRET_PIKVM_USERNAME}"
-        #   password: "${SECRET_PIKVM_PASSWORD}"
+        basic_auth:
+          username: "${SECRET_PIKVM_USERNAME}"
+          password: "${SECRET_PIKVM_PASSWORD}"
         static_configs:
           - targets:
               - "pikvm.${INTERNAL_DOMAIN}"
