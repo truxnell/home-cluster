@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - ./cert-manager.yaml
   - ./flux-system.yaml
-  - ./kasten-io.yaml
   - ./kube-system.yaml
   - ./network-system.yaml
   - ./rook-ceph.yaml
