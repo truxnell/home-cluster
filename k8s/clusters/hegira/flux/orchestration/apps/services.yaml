@@ -1,0 +1,88 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: services-hajimari
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/apps/services/hajimari"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: services-joplin-server
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: databases-postgresql
+  interval: 5m
+  path: "./k8s/manifests/apps/services/joplin-server"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: services-nginx-php
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: databases-mariadb
+  interval: 5m
+  path: "./k8s/manifests/apps/services/nginx-php"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: services-minio
+#   namespace: flux-system
+# spec:
+#   interval: 5m
+#   path: "./k8s/manifests/apps/services/minio"
+#   prune: true
+#   wait: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: services-theme-park
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/apps/services/theme-park"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: services-paperless
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/apps/services/paperless"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster

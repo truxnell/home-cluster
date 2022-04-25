@@ -1,0 +1,12 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./cert-manager.yaml
+  - ./flux-system.yaml
+  - ./kasten-io.yaml
+  - ./kube-system.yaml
+  - ./network-system.yaml
+  - ./rook-ceph.yaml
+  - ./security.yaml
+  - ./system-monitoring.yaml
