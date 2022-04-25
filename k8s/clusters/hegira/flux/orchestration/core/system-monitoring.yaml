@@ -1,0 +1,70 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: system-monitoring-kube-prom-stack
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/core/system-monitoring/kube-prometheus-stack"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: system-monitoring-thanos
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/core/system-monitoring/thanos"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: system-monitoring-grafana
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/core/system-monitoring/grafana"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: system-monitoring-promtail
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/core/system-monitoring/promtail"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: system-monitoring-lokii
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/core/system-monitoring/loki"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
