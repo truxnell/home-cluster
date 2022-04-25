@@ -65,7 +65,7 @@ prometheus:
         scheme: http
         static_configs:
           - targets:
-              - "s3.${EXTERNAL_DOMAIN}"
+              - "hyperion.${INTERNAL_DOMAIN}:9000"
 
       - job_name: pikvm
         metrics_path: /api/export/prometheus/metrics
@@ -74,13 +74,13 @@ prometheus:
           password: "${SECRET_PIKVM_PASSWORD}"
         static_configs:
           - targets:
-              - "pikvm.${EXTERNAL_DOMAIN}"
+              - "pikvm.${INTERNAL_DOMAIN}"
 
       # - job_name: node-exporter
       #   honor_timestamps: true
       #   static_configs:
       #     - targets:
-      # - "pikvm.${EXTERNAL_DOMAIN}:9100" # FIXME (use same as hyperion above?)
+      # - "pikvm.${INTERNAL_DOMAIN}:9100" # FIXME (use same as hyperion above?)
 
       - job_name: coredns
         honor_timestamps: true
