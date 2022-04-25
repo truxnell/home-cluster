@@ -2,15 +2,12 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-orchestration-core
+  name: deploy-cluster-orchestration-apps
   namespace: flux-system
 spec:
   interval: 10m0s
   dependsOn:
-    - name: cluster-config
-    - name: cluster-repositories
-    - name: cluster-namespaces
-    - name: manage-flux
+    - name: deploy-cluster-orchestration-core
   path: ./k8s/clusters/hegira/flux/orchestration/core
   prune: true
   wait: true
@@ -29,7 +26,7 @@ spec:
       - kind: Secret
         name: global-secrets
       - kind: ConfigMap
-        name: cluster-config
+        name: deploy-cluster-config
       - kind: Secret
         name: cluster-secrets
   patches:
@@ -52,7 +49,7 @@ spec:
               - kind: Secret
                 name: global-secrets
               - kind: ConfigMap
-                name: cluster-config
+                name:  deploy-cluster-config
               - kind: Secret
                 name: cluster-secrets
       target:

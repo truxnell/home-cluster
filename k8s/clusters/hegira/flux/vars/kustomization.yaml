@@ -5,4 +5,4 @@ resources:
   - ../../../../global/flux/vars/global-secrets.sops.yaml
   - ../../../../global/flux/vars/global-config.yaml
   - ./cluster-secrets.sops.yaml
-  - ./cluster-config.yaml
+  - ./ deploy-cluster-config.yaml
