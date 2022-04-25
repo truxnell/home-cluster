@@ -151,13 +151,13 @@ spec:
       nodes:
         - name: "${WORKER01_HOSTNAME}"
           devices:
-            - name: "${WORKER01_DRIVE}"
+            - name: "/dev/disk/by-id/nvme-CT1000P1SSD8_21022C81EB37"
         - name: "${WORKER02_HOSTNAME}"
           devices:
-            - name: "${WORKER02_DRIVE}"
+            - name: "/dev/disk/by-id/nvme-CT1000P1SSD8_20452B5D0862"
         - name: "${WORKER03_HOSTNAME}"
           devices:
-            - name: "${WORKER03_DRIVE}"
+            - name: "/dev/disk/by-id/nvme-KINGSTON_SNVS1000G_50026B7684F12095"
     cephBlockPools:
       - name: ceph-blockpool
         spec:
