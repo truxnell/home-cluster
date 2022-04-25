@@ -21,6 +21,8 @@ metadata:
   name: network-system-ingress-nginx
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: system-monitoring-kube-prom-stack
   interval: 5m
   path: "./k8s/manifests/core/network-system/ingress-nginx"
   prune: true
