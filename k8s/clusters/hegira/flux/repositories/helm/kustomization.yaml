@@ -17,6 +17,7 @@ resources:
   - ./weaveworks-kured-charts.yaml
   - ./rook-ceph-charts.yaml
   - ./authentik-charts.yaml
+  - ./metallb-charts.yaml
   - ./cilium-charts.yaml
   - ./deliveryhero-charts.yaml
   - ./jetstack-charts.yaml
