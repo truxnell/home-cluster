@@ -8,7 +8,7 @@
 #   dependsOn:
 #     - name: system-monitoring-kube-prom-stack
 #   interval: 5m
-#   path: "./k8s/manifests/databases/redis"
+#   path: "./k8s/manifests/apps/databases/redis"
 #   prune: true
 #   wait: true
 #   sourceRef:
@@ -21,10 +21,8 @@ metadata:
   name: databases-postgresql
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: system-monitoring-kube-prom-stack
   interval: 5m
-  path: "./k8s/manifests/databases/postgresql"
+  path: "./k8s/manifests/apps/databases/postgresql"
   prune: true
   wait: true
   sourceRef:
@@ -37,10 +35,8 @@ metadata:
   name: databases-mariadb
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: system-monitoring-kube-prom-stack
   interval: 5m
-  path: "./k8s/manifests/databases/mariadb"
+  path: "./k8s/manifests/apps/databases/mariadb"
   prune: true
   wait: true
   sourceRef:

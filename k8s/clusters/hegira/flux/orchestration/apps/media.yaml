@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/media/plex"
+  path: "./k8s/manifests/apps/media/plex"
   prune: true
   wait: true
   sourceRef:
@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/media/dizquetv"
+  path: "./k8s/manifests/apps/media/dizquetv"
   prune: true
   wait: true
   sourceRef:
@@ -34,7 +34,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/media/tautulli"
+  path: "./k8s/manifests/apps/media/tautulli"
   prune: true
   wait: true
   sourceRef:
