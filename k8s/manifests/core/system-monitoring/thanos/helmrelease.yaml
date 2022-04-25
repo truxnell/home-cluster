@@ -27,6 +27,8 @@ spec:
   dependsOn:
     - name: kube-prometheus-stack
       namespace: system-monitoring
+    - name: rook-ceph-cluster
+      namespace: system-monitoring
   values:
     existingObjstoreSecret: &secret thanos-objstore-secret
 
