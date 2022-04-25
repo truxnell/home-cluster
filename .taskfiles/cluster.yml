@@ -34,7 +34,7 @@ tasks:
   bootstrap-cluster:
     desc: Bootstrap ClusterPolicy
     cmds:
-      - kubectl apply -k k8s/clusters/sidero/
+      - kubectl apply -k k8s/clusters/hegira/
 
   k10-password:
     desc: Retrieve the k10 passphrase
