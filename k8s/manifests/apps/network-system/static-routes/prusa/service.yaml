@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prusa-mk3s
+  namespace: network-system
+spec:
+  type: ExternalName
+
+  ports:
+    - name: http
+      port: 80
+
+  externalName: octopi.${INTERNAL_DOMAIN}

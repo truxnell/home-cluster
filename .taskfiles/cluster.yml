@@ -12,6 +12,30 @@ tasks:
     cmds:
       - kubectl -n rook-ceph get secret rook-ceph-dashboard-password -o jsonpath="{['data']['password']}" | base64 --decode && echo
 
+  talos-apply:
+    desc: Apply manifests to talos nodes
+    cmds:
+      - talosctl -n 10.8.20.30 apply-config -f k8s/talos/hegira/machineConfigs/leela.yaml --insecure
+      - talosctl -n 10.8.20.40 apply-config -f k8s/talos/hegira/machineConfigs/xerxes.yaml --insecure
+      - talosctl -n 10.8.20.42 apply-config -f k8s/talos/hegira/machineConfigs/shodan.yaml --insecure
+      - talosctl -n 10.8.20.44 apply-config -f k8s/talos/hegira/machineConfigs/tycho.yaml --insecure
+
+  bootstrap-sops:
+    desc: Bootstrap cluster
+    cmds:
+      - kubectl create ns flux-system
+      - cat ~/.config/sops/age/keys.txt | kubectl -n flux-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
+
+  bootstrap-flux:
+    desc: Bootstrap flux (as per version in manifest)
+    cmds:
+      - yq '.spec.ref.tag' k8s/global/flux/repositories/git/flux.yaml | xargs -I{} flux install --version={} --export | kubectl apply -f -
+
+  bootstrap-cluster:
+    desc: Bootstrap ClusterPolicy
+    cmds:
+      - kubectl apply -k k8s/clusters/sidero/
+
   k10-password:
     desc: Retrieve the k10 passphrase
     cmds:
