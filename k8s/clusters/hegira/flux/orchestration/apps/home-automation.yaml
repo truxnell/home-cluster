@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/home-automation/mosquitto"
+  path: "./k8s/manifests/apps/home-automation/mosquitto"
   prune: true
   wait: true
   sourceRef:
@@ -19,9 +19,8 @@ spec:
 #   name: home-automation-esphome
 #   namespace: flux-system
 # spec:
-#   dependsOn:
 #   interval: 5m
-#   path: "./k8s/manifests/home-automation/esphome"
+#   path: "./k8s/manifests/apps/home-automation/esphome"
 #   prune: true
 #   wait: true
 #   sourceRef:
@@ -34,10 +33,8 @@ metadata:
   name: home-automation-home-assistant
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: databases-postgresql
   interval: 5m
-  path: "./k8s/manifests/home-automation/home-assistant"
+  path: "./k8s/manifests/apps/home-automation/home-assistant"
   prune: true
   wait: true
   sourceRef:
@@ -51,7 +48,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/home-automation/node-red"
+  path: "./k8s/manifests/apps/home-automation/node-red"
   prune: true
   wait: true
   sourceRef:
@@ -65,7 +62,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/home-automation/zigbee2mqtt"
+  path: "./k8s/manifests/apps/home-automation/zigbee2mqtt"
   prune: true
   wait: true
   sourceRef:

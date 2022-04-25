@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/downloads/sabnzbd"
+  path: "./k8s/manifests/apps/downloads/sabnzbd"
   prune: true
   wait: true
   sourceRef:
@@ -19,10 +19,8 @@ metadata:
   name: downloads-qbittorrent
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: system-monitoring-kube-prom-stack
   interval: 5m
-  path: "./k8s/manifests/downloads/qbittorrent"
+  path: "./k8s/manifests/apps/downloads/qbittorrent"
   prune: true
   wait: true
   sourceRef:
@@ -36,7 +34,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/downloads/nzbget"
+  path: "./k8s/manifests/apps/downloads/nzbget"
   prune: true
   wait: true
   sourceRef:

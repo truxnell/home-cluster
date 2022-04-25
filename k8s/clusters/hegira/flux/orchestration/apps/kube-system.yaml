@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/kube-system/reloader"
+  path: "./k8s/manifests/apps/kube-system/reloader"
   prune: true
   wait: true
   sourceRef:
@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/kube-system/metrics-server"
+  path: "./k8s/manifests/apps/kube-system/metrics-server"
   prune: true
   wait: true
   sourceRef:
@@ -34,7 +34,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/kube-system/descheduler"
+  path: "./k8s/manifests/apps/kube-system/descheduler"
   prune: true
   wait: true
   sourceRef:
@@ -48,7 +48,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/kube-system/node-feature-discovery"
+  path: "./k8s/manifests/apps/kube-system/node-feature-discovery"
   prune: true
   wait: true
   sourceRef:
@@ -61,10 +61,8 @@ metadata:
   name: kube-system-node-problem-detector
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: system-monitoring-kube-prom-stack
   interval: 5m
-  path: "./k8s/manifests/kube-system/node-problem-detector"
+  path: "./k8s/manifests/apps/kube-system/node-problem-detector"
   prune: true
   wait: true
   sourceRef:
@@ -78,7 +76,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/kube-system/intel-gpu-plugin"
+  path: "./k8s/manifests/apps/kube-system/intel-gpu-plugin"
   prune: true
   wait: true
   sourceRef:
@@ -92,7 +90,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/kube-system/kube-cleanup-operator"
+  path: "./k8s/manifests/apps/kube-system/kube-cleanup-operator"
   prune: true
   wait: true
   sourceRef:

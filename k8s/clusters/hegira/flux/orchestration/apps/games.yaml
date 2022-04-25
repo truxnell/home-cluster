@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/games/factorio-k2"
+  path: "./k8s/manifests/apps/games/factorio-k2"
   prune: true
   wait: true
   sourceRef:
@@ -21,7 +21,7 @@ spec:
 # spec:
 #   dependsOn:
 #   interval: 5m
-#   path: "./k8s/manifests/games/factorio-formic"
+#   path: "./k8s/manifests/apps/games/factorio-formic"
 #   prune: true
 #   wait: true
 #   sourceRef:
@@ -35,7 +35,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/games/factorio-ribbonworld"
+  path: "./k8s/manifests/apps/games/factorio-ribbonworld"
   prune: true
   wait: true
   sourceRef:
@@ -49,7 +49,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/games/factorio-deathworld"
+  path: "./k8s/manifests/apps/games/factorio-deathworld"
   prune: true
   wait: true
   sourceRef:
@@ -64,7 +64,7 @@ spec:
 # spec:
 #   dependsOn:
 #   interval: 5m
-#   path: "./k8s/manifests/games/foundryvtt"
+#   path: "./k8s/manifests/apps/games/foundryvtt"
 #   prune: true
 #   wait: true
 #   sourceRef:

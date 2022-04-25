@@ -19,8 +19,6 @@ metadata:
   name: services-joplin-server
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: databases-postgresql
   interval: 5m
   path: "./k8s/manifests/apps/services/joplin-server"
   prune: true
@@ -35,8 +33,6 @@ metadata:
   name: services-nginx-php
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: databases-mariadb
   interval: 5m
   path: "./k8s/manifests/apps/services/nginx-php"
   prune: true

@@ -33,6 +33,9 @@ spec:
     env:
       TZ: "${TZ}"
 
+    podAnnotations:
+      setGateway: "true"
+
     ingress:
       main:
         enabled: true
