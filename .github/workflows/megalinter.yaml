@@ -30,12 +30,36 @@ jobs:
           GITHUB_TOKEN: "${{ steps.generate-token.outputs.token }}"
           PRINT_ALPACA: false
           VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'workflow_dispatch' }}
-          DISABLE_LINTERS: KUBERNETES_KUBECONFORM,SPELL_CSPELL
-          KUBERNETES_DIRECTORY: k8s
+          ENABLE_LINTERS: |-
+            ${{
+              join(
+                fromJSON('
+                  [
+                    "ACTION_ACTIONLINT",
+                    "ANSIBLE_ANSIBLE_LINT",
+                    "COPYPASTE_JSCPD",
+                    "CREDENTIALS_SECRETLINT",
+                    "GIT_GIT_DIFF",
+                    "KUBERNETES_KUBEVAL",
+                    "MARKDOWN_MARKDOWNLINT",
+                    "PYTHON_PYLINT",
+                    "PYTHON_FLAKE8",
+                    "TERRAFORM_TERRAFORM_FMT",
+                    "YAML_PRETTIER",
+                    "YAML_YAMLLINT"
+                  ]
+                '),
+                ','
+              )
+            }}
+             KUBERNETES_DIRECTORY: k8s
           KUBERNETES_KUBEVAL_ARGUMENTS: --ignore-missing-schemas
-          MARKDOWN_MARKDOWNLINT_CONFIG_FILE: .markdownlint.yaml
-          SPELL_MISSPELL_DISABLE_ERRORS: true
-          YAML_YAMLLINT_CONFIG_FILE: .yamllint.yaml
+          KUBERNETES_KUBEVAL_FILTER_REGEX_INCLUDE: "(k8s/clusters|k8s/global)"
+          MARKDOWN_MARKDOWNLINT_CONFIG_FILE: .github/linters/markdownlint.config.yaml
+          MARKDOWN_MARKDOWNLINT_RULES_PATH: .github/
+          PYTHON_FLAKE8_CONFIG_FILE: .github/linters/.flake8
+          YAML_YAMLLINT_CONFIG_FILE: .github/linters/.yamllint.yaml
+          YAML_PRETTIER_FILTER_REGEX_EXCLUDE: "(.*\\.sops\\.ya?ml)"
 
       - name: Archive artifacts
         if: ${{ success() }} || ${{ failure() }}
