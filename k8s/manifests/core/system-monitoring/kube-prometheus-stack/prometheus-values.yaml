@@ -67,6 +67,8 @@ prometheus:
           - targets:
               - "hyperion.${INTERNAL_DOMAIN}:9000"
 
+        #   username: "${SECRET_PIKVM_USERNAME}"
+        #   password: "${SECRET_PIKVM_PASSWORD}"
       - job_name: pikvm
         metrics_path: /api/export/prometheus/metrics
         scheme: http
