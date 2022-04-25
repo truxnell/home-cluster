@@ -5,10 +5,8 @@ metadata:
   name: security-vaultwarden
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: databases-postgresql
   interval: 5m
-  path: "./k8s/manifests/security/vaultwarden"
+  path: "./k8s/manifests/apps/security/vaultwarden"
   prune: true
   wait: true
   sourceRef:
@@ -21,10 +19,8 @@ spec:
 #   name: security-authentik
 #   namespace: flux-system
 # spec:
-#   dependsOn:
-#     - name: databases-postgresql
 #   interval: 5m
-#   path: "./k8s/manifests/security/authentik"
+#   path: "./k8s/manifests/apps/security/authentik"
 #   prune: true
 #   wait: true
 #   sourceRef:
