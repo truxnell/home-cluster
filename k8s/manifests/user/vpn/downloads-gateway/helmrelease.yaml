@@ -33,6 +33,7 @@ spec:
 
     routed_namespaces:
       - downloads
+      - organizarrs
 
     publicPorts:
       - hostname: qbittorrent # hostname assigned to the pod
