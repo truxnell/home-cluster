@@ -5,6 +5,6 @@ resources:
   - ./apply-cluster-config.yaml
   - ./apply-cluster-crds.yaml
   - ./apply-cluster-orchestration-core.yaml
-  # - ./apply-cluster-orchestration-apps.yaml
+  # - ./apply-cluster-orchestration-user.yaml
   - ./apply-cluster-repositories.yaml
   - ./apply-manage-flux.yaml

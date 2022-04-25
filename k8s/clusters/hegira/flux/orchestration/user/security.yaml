@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: security-vaultwarden
+  name: user-security-vaultwarden
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/security/vaultwarden"
+  path: "./k8s/manifests/user/security/vaultwarden"
   prune: true
   wait: true
   sourceRef:
@@ -16,11 +16,11 @@ spec:
 # apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 # kind: Kustomization
 # metadata:
-#   name: security-authentik
+#   name: user-security-authentik
 #   namespace: flux-system
 # spec:
 #   interval: 5m
-#   path: "./k8s/manifests/apps/security/authentik"
+#   path: "./k8s/manifests/user/security/authentik"
 #   prune: true
 #   wait: true
 #   sourceRef:

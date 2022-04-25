@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: system-monitoring-kube-prom-stack-promrules
+  name: user-services-hajimari
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/system-monitoring/prometheus-rules"
+  path: "./k8s/manifests/user/services/hajimari"
   prune: true
   wait: true
   sourceRef:
@@ -16,11 +16,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: system-monitoring-botkube
+  name: user-services-joplin-server
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/system-monitoring/botkube"
+  path: "./k8s/manifests/user/services/joplin-server"
   prune: true
   wait: true
   sourceRef:
@@ -30,11 +30,39 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: system-monitoring-unifipoller
+  name: user-services-nginx-php
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/system-monitoring/unifi-poller"
+  path: "./k8s/manifests/user/services/nginx-php"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: user-services-minio
+#   namespace: flux-system
+# spec:
+#   interval: 5m
+#   path: "./k8s/manifests/user/services/minio"
+#   prune: true
+#   wait: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: user-services-theme-park
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/user/services/theme-park"
   prune: true
   wait: true
   sourceRef:
@@ -44,25 +72,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: system-monitoring-blackbox-exporter
+  name: user-services-paperless
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/system-monitoring/blackbox-exporter"
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: home-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: system-monitoring-prometheus-smartctl
-  namespace: flux-system
-spec:
-  interval: 5m
-  path: "./k8s/manifests/apps/system-monitoring/prometheus-smartctl"
+  path: "./k8s/manifests/user/services/paperless"
   prune: true
   wait: true
   sourceRef:

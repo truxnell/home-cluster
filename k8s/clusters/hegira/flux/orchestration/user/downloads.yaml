@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: network-system-static-routes
+  name: user-downloads-sabnzbd
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/network-system/static-routes"
+  path: "./k8s/manifests/user/downloads/sabnzbd"
   prune: true
   wait: true
   sourceRef:
@@ -16,11 +16,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: network-system-cloudflare-ddns
+  name: user-downloads-qbittorrent
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/network-system/cloudflare-ddns"
+  path: "./k8s/manifests/user/downloads/qbittorrent"
   prune: true
   wait: true
   sourceRef:
@@ -30,11 +30,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: network-system-external-dns
+  name: user-downloads-nzbget
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/network-system/external-dns"
+  path: "./k8s/manifests/user/downloads/nzbget"
   prune: true
   wait: true
   sourceRef:

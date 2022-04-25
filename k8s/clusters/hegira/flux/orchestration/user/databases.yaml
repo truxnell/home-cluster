@@ -2,13 +2,13 @@
 # apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 # kind: Kustomization
 # metadata:
-#   name: databases-redis
+#   name: user-databases-redis
 #   namespace: flux-system
 # spec:
 #   dependsOn:
-#     - name: system-monitoring-kube-prom-stack
+#     -   name: system-monitoring-kube-prom-stack
 #   interval: 5m
-#   path: "./k8s/manifests/apps/databases/redis"
+#   path: "./k8s/manifests/user/databases/redis"
 #   prune: true
 #   wait: true
 #   sourceRef:
@@ -18,11 +18,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: databases-postgresql
+  name: user-databases-postgresql
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/databases/postgresql"
+  path: "./k8s/manifests/user/databases/postgresql"
   prune: true
   wait: true
   sourceRef:
@@ -32,11 +32,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: databases-mariadb
+  name: user-databases-mariadb
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/databases/mariadb"
+  path: "./k8s/manifests/user/databases/mariadb"
   prune: true
   wait: true
   sourceRef:

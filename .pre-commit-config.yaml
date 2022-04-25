@@ -43,9 +43,9 @@ repos:
       - id: forbid-secrets
         exclude: |
           (?x)^(
-              k8s/manifests/apps/kasten-io/k10/k10-config/blueprints/secret.yaml|
-              k8s/manifests/apps/home-automation/mosquitto/secret.yaml|
-              k8s/manifests/apps/vpn/downloads-gateway/secret.yaml
+              k8s/manifests/user/kasten-io/k10/k10-config/blueprints/secret.yaml|
+              k8s/manifests/user/home-automation/mosquitto/secret.yaml|
+              k8s/manifests/user/vpn/downloads-gateway/secret.yaml
           )$
 
   - repo: https://github.com/sirosen/texthooks

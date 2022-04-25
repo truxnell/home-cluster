@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-reloader
+  name: user-kube-system-reloader
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/kube-system/reloader"
+  path: "./k8s/manifests/user/kube-system/reloader"
   prune: true
   wait: true
   sourceRef:
@@ -16,11 +16,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-metrics-server
+  name: user-kube-system-metrics-server
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/kube-system/metrics-server"
+  path: "./k8s/manifests/user/kube-system/metrics-server"
   prune: true
   wait: true
   sourceRef:
@@ -30,11 +30,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-descheduler
+  name: user-kube-system-descheduler
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/kube-system/descheduler"
+  path: "./k8s/manifests/user/kube-system/descheduler"
   prune: true
   wait: true
   sourceRef:
@@ -44,11 +44,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-node-feature-discovery
+  name: user-kube-system-node-feature-discovery
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/kube-system/node-feature-discovery"
+  path: "./k8s/manifests/user/kube-system/node-feature-discovery"
   prune: true
   wait: true
   sourceRef:
@@ -58,11 +58,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-node-problem-detector
+  name: user-kube-system-node-problem-detector
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/kube-system/node-problem-detector"
+  path: "./k8s/manifests/user/kube-system/node-problem-detector"
   prune: true
   wait: true
   sourceRef:
@@ -72,11 +72,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-intel-gpu-plugin
+  name: user-kube-system-intel-gpu-plugin
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/kube-system/intel-gpu-plugin"
+  path: "./k8s/manifests/user/kube-system/intel-gpu-plugin"
   prune: true
   wait: true
   sourceRef:
@@ -86,11 +86,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-system-kube-cleanup-operator
+  name: user-kube-system-kube-cleanup-operator
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/kube-system/kube-cleanup-operator"
+  path: "./k8s/manifests/user/kube-system/kube-cleanup-operator"
   prune: true
   wait: true
   sourceRef:

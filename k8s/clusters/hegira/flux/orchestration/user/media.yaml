@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: media-plex
+  name: user-media-plex
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/media/plex"
+  path: "./k8s/manifests/user/media/plex"
   prune: true
   wait: true
   sourceRef:
@@ -16,11 +16,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: media-dizquetv
+  name: user-media-dizquetv
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/media/dizquetv"
+  path: "./k8s/manifests/user/media/dizquetv"
   prune: true
   wait: true
   sourceRef:
@@ -30,11 +30,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: media-tautulli
+  name: user-media-tautulli
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/media/tautulli"
+  path: "./k8s/manifests/user/media/tautulli"
   prune: true
   wait: true
   sourceRef:

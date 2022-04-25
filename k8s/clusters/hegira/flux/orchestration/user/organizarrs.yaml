@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: organizarrs-prowlarr
+  name: user-organizarrs-prowlarr
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/organizarrs/prowlarr"
+  path: "./k8s/manifests/user/organizarrs/prowlarr"
   prune: true
   wait: true
   sourceRef:
@@ -16,11 +16,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: organizarrs-sonarr
+  name: user-organizarrs-sonarr
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/organizarrs/sonarr"
+  path: "./k8s/manifests/user/organizarrs/sonarr"
   prune: true
   wait: true
   sourceRef:
@@ -30,11 +30,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: organizarrs-radarr
+  name: user-organizarrs-radarr
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/organizarrs/radarr"
+  path: "./k8s/manifests/user/organizarrs/radarr"
   prune: true
   wait: true
   sourceRef:
@@ -44,11 +44,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: organizarrs-lidarr
+  name: user-organizarrs-lidarr
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/organizarrs/lidarr"
+  path: "./k8s/manifests/user/organizarrs/lidarr"
   prune: true
   wait: true
   sourceRef:
@@ -58,11 +58,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: organizarrs-readarr
+  name: user-organizarrs-readarr
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/organizarrs/readarr"
+  path: "./k8s/manifests/user/organizarrs/readarr"
   prune: true
   wait: true
   sourceRef:
@@ -72,11 +72,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: organizarrs-gaps
+  name: user-organizarrs-gaps
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/organizarrs/gaps"
+  path: "./k8s/manifests/user/organizarrs/gaps"
   prune: true
   wait: true
   sourceRef:
@@ -86,11 +86,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: organizarrs-overseerr
+  name: user-organizarrs-overseerr
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/organizarrs/overseerr"
+  path: "./k8s/manifests/user/organizarrs/overseerr"
   prune: true
   wait: true
   sourceRef:
@@ -100,11 +100,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: organizarrs-calibre
+  name: user-organizarrs-calibre
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/organizarrs/calibre"
+  path: "./k8s/manifests/user/organizarrs/calibre"
   prune: true
   wait: true
   sourceRef:
@@ -114,11 +114,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: organizarrs-calibre-web
+  name: user-organizarrs-calibre-web
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/organizarrs/calibre-web"
+  path: "./k8s/manifests/user/organizarrs/calibre-web"
   prune: true
   wait: true
   sourceRef:
@@ -128,11 +128,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: organizarrs-trash-updater
+  name: user-organizarrs-trash-updater
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/organizarrs/trash-updater"
+  path: "./k8s/manifests/user/organizarrs/trash-updater"
   prune: true
   wait: true
   sourceRef:

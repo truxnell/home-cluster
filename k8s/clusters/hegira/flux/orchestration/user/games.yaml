@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: games-factorio-k2
+  name: user-games-factorio-k2
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/games/factorio-k2"
+  path: "./k8s/manifests/user/games/factorio-k2"
   prune: true
   wait: true
   sourceRef:
@@ -16,12 +16,12 @@ spec:
 # apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 # kind: Kustomization
 # metadata:
-#   name: games-factorio-formic
+#   name: user-games-factorio-formic
 #   namespace: flux-system
 # spec:
 #   dependsOn:
 #   interval: 5m
-#   path: "./k8s/manifests/apps/games/factorio-formic"
+#   path: "./k8s/manifests/user/games/factorio-formic"
 #   prune: true
 #   wait: true
 #   sourceRef:
@@ -31,11 +31,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: games-factorio-ribbonworld
+  name: user-games-factorio-ribbonworld
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/games/factorio-ribbonworld"
+  path: "./k8s/manifests/user/games/factorio-ribbonworld"
   prune: true
   wait: true
   sourceRef:
@@ -45,11 +45,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: games-factorio-deathworld
+  name: user-games-factorio-deathworld
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/games/factorio-deathworld"
+  path: "./k8s/manifests/user/games/factorio-deathworld"
   prune: true
   wait: true
   sourceRef:
@@ -59,12 +59,12 @@ spec:
 # apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 # kind: Kustomization
 # metadata:
-#   name: games-foundryvtt
+#   name: user-games-foundryvtt
 #   namespace: flux-system
 # spec:
 #   dependsOn:
 #   interval: 5m
-#   path: "./k8s/manifests/apps/games/foundryvtt"
+#   path: "./k8s/manifests/user/games/foundryvtt"
 #   prune: true
 #   wait: true
 #   sourceRef:

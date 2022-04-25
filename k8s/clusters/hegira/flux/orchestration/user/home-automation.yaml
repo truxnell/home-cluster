@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: home-automation-mosquitto
+  name: user-home-automation-mosquitto
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/home-automation/mosquitto"
+  path: "./k8s/manifests/user/home-automation/mosquitto"
   prune: true
   wait: true
   sourceRef:
@@ -16,11 +16,11 @@ spec:
 # apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 # kind: Kustomization
 # metadata:
-#   name: home-automation-esphome
+#   name: user-home-automation-esphome
 #   namespace: flux-system
 # spec:
 #   interval: 5m
-#   path: "./k8s/manifests/apps/home-automation/esphome"
+#   path: "./k8s/manifests/user/home-automation/esphome"
 #   prune: true
 #   wait: true
 #   sourceRef:
@@ -30,11 +30,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: home-automation-home-assistant
+  name: user-home-automation-home-assistant
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/home-automation/home-assistant"
+  path: "./k8s/manifests/user/home-automation/home-assistant"
   prune: true
   wait: true
   sourceRef:
@@ -44,11 +44,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: home-automation-node-red
+  name: user-home-automation-node-red
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/home-automation/node-red"
+  path: "./k8s/manifests/user/home-automation/node-red"
   prune: true
   wait: true
   sourceRef:
@@ -58,11 +58,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: home-automation-zigbee2mqtt
+  name: user-home-automation-zigbee2mqtt
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/apps/home-automation/zigbee2mqtt"
+  path: "./k8s/manifests/user/home-automation/zigbee2mqtt"
   prune: true
   wait: true
   sourceRef:
