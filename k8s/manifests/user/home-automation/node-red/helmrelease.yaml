@@ -25,14 +25,23 @@ spec:
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
   values:
-    # initContainers: #TODO #930
-    #   npm-update-modules:
-    #     image: node:12-buster-slim@sha256:426f05df1d1feefa841471c0faa22a20db286766bf528993421847f9a3b8efe3
-    #     command: ["npm", "update", "--verbose"]
-    #     workingDir: /data
-    #     volumeMounts:
-    #       - name: config
-    #         mountPath: /data
+    initContainers:
+      npm-update:
+        image: node:17-alpine
+        command:
+          - /bin/sh
+          - -c
+          - |
+            if [[ -f /data/package.json ]]; then
+                npm install --save $(npm outdated | cut -d' ' -f 1 | sed '1d' | xargs -I '$' echo '$@latest' | xargs echo);
+            else
+                echo "Skipping npm updates, no package.json found.";
+            fi
+        workingDir: /data
+        volumeMounts:
+          - name: config
+            mountPath: /data
+
     image:
       repository: ghcr.io/k8s-at-home/node-red
       tag: v2.2.2
