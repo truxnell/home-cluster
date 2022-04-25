@@ -13,4 +13,5 @@ resources:
   - ./organizarrs.yaml
   - ./security.yaml
   - ./services.yaml
+  - ./system-monitoring.yaml
   - ./vpn.yaml
