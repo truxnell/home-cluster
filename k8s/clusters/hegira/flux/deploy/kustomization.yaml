@@ -2,9 +2,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./deploy-cluster-config.yaml
-  - ./deploy-cluster-crds.yaml
-  - ./deploy-cluster-orchestration-core.yaml
-  # - ./deploy-cluster-orchestration-apps.yaml
-  - ./deploy-cluster-repositories.yaml
-  - ./deploy-manage-flux.yaml
+  - ./apply-cluster-config.yaml
+  - ./apply-cluster-crds.yaml
+  - ./apply-cluster-orchestration-core.yaml
+  # - ./apply-cluster-orchestration-apps.yaml
+  - ./apply-cluster-repositories.yaml
+  - ./apply-manage-flux.yaml
