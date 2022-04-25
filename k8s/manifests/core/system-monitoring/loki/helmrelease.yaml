@@ -24,6 +24,9 @@ spec:
       retries: 3
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
+  dependsOn:
+    - name: kube-prometheus-stack
+      namespace: system-monitoring
   values:
     image:
       repository: ghcr.io/k8s-at-home/loki
