@@ -71,7 +71,8 @@ prometheus:
         #   password: "${SECRET_PIKVM_PASSWORD}"
       - job_name: pikvm
         metrics_path: /api/export/prometheus/metrics
-        scheme: http
+        tls_config:
+          insecure_skip_verify: true
         # basic_auth:
         #   username: "${SECRET_PIKVM_USERNAME}"
         #   password: "${SECRET_PIKVM_PASSWORD}"
