@@ -19,6 +19,9 @@ spec:
     timeout: 10m
     recreate: true
     cleanupOnFail: true
+  dependsOn:
+    - name: kube-prometheus-stack
+      namespace: system-monitoring
   values:
     controller:
       image:
