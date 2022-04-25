@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: kasten-k10
+    - name: user-kasten-k10
   interval: 5m
   path: "./k8s/manifests/user/kasten-io/k10/config"
   prune: true
