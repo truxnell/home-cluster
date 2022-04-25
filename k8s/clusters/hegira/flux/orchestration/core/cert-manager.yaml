@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cert-manager-certmanager
+    - name: core-cert-manager-certmanager
   interval: 5m
   path: "./k8s/manifests/core/cert-manager/cert-manager/config"
   prune: true
@@ -36,7 +36,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cert-manager-certmanager-config
+    - name: core-cert-manager-certmanager-config
   interval: 5m
   path: "./k8s/manifests/core/cert-manager/cert-manager/certificate"
   prune: true
