@@ -5,6 +5,7 @@
       "automerge": true,
       "automergeType": "branch",
       "requiredStatusChecks": null,
+      "stabilityDays": 1,
       "matchUpdateTypes": ["minor", "patch"],
       "matchPackageNames": [
         "ghcr.io/k8s-at-home/plex",
@@ -27,16 +28,24 @@
         "grafana/grafana",
         "ghcr.io/tarampampam/error-pages",
         "k8s-at-home/tautulli",
-        "zricethezav/gitleaks"
       ],
       "schedule": ["after 2am, before 5am"]
 
+    },
+    {
+      "description": "Package requirements: minor updates are silent",
+      "matchFiles": ["requirements.txt"],
+      "automerge": true,
+      "stabilityDays": 1,
+      "automergeType": "branch",
+      "matchUpdateTypes": ["minor", "patch"],
     },
     {
       "matchDatasources": ["helm"],
       "automerge": true,
       "automergeType": "branch",
       "requiredStatusChecks": null,
+      "stabilityDays": 1,
       "matchUpdateTypes": ["minor", "patch"],
       "matchPackageNames": ["kube-prometheus-stack"]
     },
@@ -45,6 +54,7 @@
       "automerge": true,
       "automergeType": "branch",
       "requiredStatusChecks": null,
+      "stabilityDays": 1,
       "matchUpdateTypes": ["minor", "patch"],
       "excludePackageNames": ["lycheeverse/lychee-action"]
     },
