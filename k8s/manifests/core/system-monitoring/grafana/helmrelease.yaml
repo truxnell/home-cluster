@@ -27,6 +27,8 @@ spec:
   dependsOn:
     - name: kube-prometheus-stack
       namespace: system-monitoring
+    - name: thanos
+      namespace: system-monitoring
   values:
     replicas: 1
     env:
