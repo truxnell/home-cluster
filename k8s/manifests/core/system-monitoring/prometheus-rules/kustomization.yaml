@@ -5,4 +5,5 @@ resources:
   - cert-manager
   - flux-system
   - kube-system
+  - rook-ceph
   - system-monitoring
