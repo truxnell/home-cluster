@@ -13,8 +13,9 @@
     "github>Truxnell/home-cluster//.github/renovate/labels",
     "github>Truxnell/home-cluster//.github/renovate/semanticCommits",
     // "github>Truxnell/home-cluster//.github/renovate/allowedVersions",
-    "github>Truxnell/home-cluster//.github/renovate/autoMerge"
+    "github>Truxnell/home-cluster//.github/renovate/autoMerge",
     // "github>Truxnell/home-cluster//.github/renovate/updateSchedule",
+    ":gitmoji:"
   ],
   "platform": "github",
   "username": "trux-bot[bot]",
