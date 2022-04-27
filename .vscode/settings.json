@@ -47,11 +47,14 @@
   "favorites.sortOrder": "MANUAL",
   "prettier.configPath": ".github/linters/.prettierrc.yaml",
   "prettier.ignorePath": ".github/linters/.prettierignore",
-  "editor.fontFamily": "FiraCode Nerd Font",
+  "editor.fontFamily": "MesloLGS NF",
   "editor.fontLigatures": true,
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs":"active",
   "editor.hover.delay": 1500,
   "explorer.autoReveal": false,
+  "conventionalCommits.scopes": [
+    "vscode"
+  ],
 
 }
