@@ -54,7 +54,9 @@
   "editor.hover.delay": 1500,
   "explorer.autoReveal": false,
   "conventionalCommits.scopes": [
-    "vscode"
+    "vscode",
+    "lidarr",
+    "ci"
   ],
 
 }
