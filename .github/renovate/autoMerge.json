@@ -27,7 +27,7 @@
         "vexorian/dizquetv",
         "grafana/grafana",
         "ghcr.io/tarampampam/error-pages",
-        "k8s-at-home/tautulli",
+        "k8s-at-home/tautulli"
       ],
       "schedule": ["after 2am, before 5am"]
 
@@ -38,7 +38,7 @@
       "automerge": true,
       "stabilityDays": 1,
       "automergeType": "branch",
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchUpdateTypes": ["minor", "patch"]
     },
     {
       "matchDatasources": ["helm"],
