@@ -26,7 +26,7 @@ spec:
     cleanupOnFail: true
   values:
     image:
-      repository: ghcr.io/k8s-at-home/lidarr
+      repository: ghcr.io/k8s-at-home/lidarr-nightly
       tag: v1.0.0.2557
 
     env:
@@ -116,11 +116,3 @@ spec:
         scrapeTimeout: 1m
       prometheusRule:
         enabled: true
-      exporter:
-        image:
-          repository: ghcr.io/onedr0p/exportarr
-          tag: v1.0.0
-        env:
-          port: 9794
-          additionalMetrics: true
-          unknownQueueItems: true
