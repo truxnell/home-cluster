@@ -1,9 +1,17 @@
 {
   "files.associations": {
-    "**/ansible/*.yaml": "ansible"
+    "*.json5": "jsonc",
+    "**/ansible/**/*.yml": "ansible",
+    "**/ansible/**/*.sops.yml": "yaml",
+    "**/ansible/**/inventory/**/*.yml": "yaml",
+    "**/terraform/**/*.tf": "terraform"
   },
-  "yaml.schemas": {
-    "Kubernetes": "deployments/*.yaml"
+"material-icon-theme.folders.associations": {
+  ".taskfiles": "utils",
+  "hack": "scripts"
+},
+"yaml.schemas": {
+    "Kubernetes": "k8s/*.yaml"
   },
   "favorites.resources": [
     {
@@ -36,5 +44,14 @@
     }
   ],
   "cSpell.enabled": false,
-  "favorites.sortOrder": "MANUAL"
+  "favorites.sortOrder": "MANUAL",
+  "prettier.configPath": ".github/linters/.prettierrc.yaml",
+  "prettier.ignorePath": ".github/linters/.prettierignore",
+  "editor.fontFamily": "FiraCode Nerd Font",
+  "editor.fontLigatures": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs":"active",
+  "editor.hover.delay": 1500,
+  "explorer.autoReveal": false,
+
 }
