@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: rook-ceph-cluster
-      version: v1.9.0
+      version: v1.9.1
       sourceRef:
         kind: HelmRepository
         name: rook-ceph-charts
@@ -39,6 +39,8 @@ spec:
       bdev_async_discard = true
 
     cephClusterSpec:
+      cephVersion:
+        image: quay.io/ceph/ceph:v17.2.0
       healthCheck:
         livenessProbe:
           mon:
