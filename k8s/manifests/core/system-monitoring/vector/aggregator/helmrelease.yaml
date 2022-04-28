@@ -50,10 +50,12 @@ spec:
           type: vector
           version: "2"
 
-        vyos_logs:
-          address: 0.0.0.0:6001
-          type: vector
-          version: "2"
+        udmp_logs:
+          address: 0.0.0.0:514
+          type: syslog
+          mode: "tcp"
+        vector_metrics:
+          type: internal_metrics
 
       # Sinks
       sinks:
@@ -84,11 +86,10 @@ spec:
               {{`{{ kubernetes.pod_node_name }}`}}
             pod: >-
               {{`{{ kubernetes.pod_name }}`}}
-
-        loki_vyos:
+        loki_udmp:
           type: loki
           inputs:
-            - vyos_logs
+            - udmp_logs
           endpoint: http://loki.system-monitoring:3100
           encoding:
             codec: json
@@ -101,6 +102,9 @@ spec:
             syslog_identifier: >-
               {{`{{ SYSLOG_IDENTIFIER }}`}}
 
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: vector-aggregator
+
   postRenderers:
     - kustomize:
         patchesJson6902:
@@ -110,4 +114,4 @@ spec:
             patch:
               - op: add
                 path: /spec/loadBalancerIP
-                value: ${LB_VECTOR_AGGREGATOR}
+                value: 10.8.20.220
