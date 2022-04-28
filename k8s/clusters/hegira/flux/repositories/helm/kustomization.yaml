@@ -28,3 +28,4 @@ resources:
   - ./stakater-charts.yaml
   - ./vmware-tanzu-charts.yaml
   - ./infracloudio-charts.yaml
+  - ./vector-charts.yaml
