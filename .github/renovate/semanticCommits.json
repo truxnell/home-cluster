@@ -1,108 +1,132 @@
 {
+  "semanticCommitType": ":arrow_up:",
+  "semanticCommitScope": null,
   "packageRules": [
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": ":arrowup: feat(container)!: "
+      "commitMessagePrefix": "feat(container)!: "
     },
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": ":arrowup: feat",
+      "semanticCommitType": "feat",
       "semanticCommitScope": "container"
     },
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["patch"],
-      "semanticCommitType": ":arrowup: fix",
+      "semanticCommitType": "fix",
       "semanticCommitScope": "container"
     },
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": ":arrowup: feat(helm)!: "
+      "commitMessagePrefix": "feat(helm)!: "
     },
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": ":arrowup: feat",
+      "semanticCommitType": "feat",
       "semanticCommitScope": "helm"
     },
 
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["patch"],
-      "semanticCommitType": ":arrowup: fix",
+      "semanticCommitType": "fix",
       "semanticCommitScope": "helm"
     },
     {
       "matchDatasources": ["galaxy", "galaxy-collection"],
       "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": ":arrowup: feat(ansible)!: "
+      "commitMessagePrefix": "feat(ansible)!: "
     },
     {
       "matchDatasources": ["galaxy", "galaxy-collection"],
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": ":arrowup: feat",
+      "semanticCommitType": "feat",
       "semanticCommitScope": "ansible"
     },
 
     {
       "matchDatasources": ["galaxy", "galaxy-collection"],
       "matchUpdateTypes": ["patch"],
-      "semanticCommitType": ":arrowup: fix",
+      "semanticCommitType": "fix",
       "semanticCommitScope": "ansible"
     },
     {
       "matchDatasources": ["terraform-provider"],
       "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": ":arrowup: feat(terraform)!: "
+      "commitMessagePrefix": "feat(terraform)!: "
     },
     {
       "matchDatasources": ["terraform-provider"],
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": ":arrowup: feat",
+      "semanticCommitType": "feat",
       "semanticCommitScope": "terraform"
     },
     {
       "matchDatasources": ["terraform-provider"],
       "matchUpdateTypes": ["patch"],
-      "semanticCommitType": ":arrowup: fix",
+      "semanticCommitType": "fix",
       "semanticCommitScope": "terraform"
     },
     {
       "matchDatasources": ["github-releases", "github-tags"],
       "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": ":arrowup: feat(github-release)!: "
+      "commitMessagePrefix": "feat(github-release)!: "
     },
     {
       "matchDatasources": ["github-releases", "github-tags"],
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": ":arrowup: feat",
+      "semanticCommitType": "feat",
       "semanticCommitScope": "github-release"
     },
     {
       "matchDatasources": ["github-releases", "github-tags"],
       "matchUpdateTypes": ["patch"],
-      "semanticCommitType": ":arrowup: fix",
+      "semanticCommitType": "fix",
       "semanticCommitScope": "github-release"
     },
     {
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": ":arrowup: feat(github-action)!: "
+      "commitMessagePrefix": "feat(github-action)!: "
     },
     {
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": ":arrowup: feat",
+      "semanticCommitType": "feat",
       "semanticCommitScope": "github-action"
     },
     {
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["patch"],
-      "semanticCommitType": ":arrowup: fix",
+      "semanticCommitType": "fix",
       "semanticCommitScope": "github-action"
+    },
+    
+    
+    {
+      "updateTypes": [
+        "lockFileMaintenance",
+        "pin"
+      ],
+      "semanticCommitType": ":pushpin:"
+    },
+    {
+      "updateTypes": [
+        "rollback"
+      ],
+      "semanticCommitType": ":arrow_down:"
+    },
+    {
+      "updateTypes": [
+        "digest",
+        "bump"
+      ],
+      "semanticCommitType": ":bookmark:"
     }
   ]
 }
