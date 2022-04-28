@@ -15,7 +15,6 @@
     // "github>Truxnell/home-cluster//.github/renovate/allowedVersions",
     "github>Truxnell/home-cluster//.github/renovate/autoMerge",
     // "github>Truxnell/home-cluster//.github/renovate/updateSchedule",
-    ":gitmoji:"
   ],
   "platform": "github",
   "username": "trux-bot[bot]",
