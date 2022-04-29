@@ -106,9 +106,13 @@ spec:
           endpoint: http://loki.system-monitoring:3100
           encoding:
             codec: "json"
+          batch:
+            max_bytes: 2049000
           out_of_order_action: rewrite_timestamp
+          remove_label_fields: true
+          remove_timestamp: true
           labels:
-            datasource: "loki_udmp"
+            host: udmp
 
         talos_kernel:
           type: loki
