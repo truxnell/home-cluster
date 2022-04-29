@@ -33,7 +33,8 @@ spec:
       repository: ghcr.io/k8s-at-home/loki
 
     env:
-      - TZ: ${TZ}
+      - name: TZ
+        value: ${TZ}
 
     config:
       storage_config:
