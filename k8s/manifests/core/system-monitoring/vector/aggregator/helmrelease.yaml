@@ -52,15 +52,13 @@ spec:
 
         talos_kernel_logs:
           address: 0.0.0.0:6050
-          type: vector
+          type: socket
           mode: "udp"
-          version: "2"
 
         talos_service_logs:
           address: 0.0.0.0:6051
-          type: vector
+          type: socket
           mode: "udp"
-          version: "2"
 
         udmp_logs:
           address: 0.0.0.0:514
