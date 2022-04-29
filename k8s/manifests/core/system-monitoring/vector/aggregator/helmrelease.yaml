@@ -68,6 +68,13 @@ spec:
         vector_metrics:
           type: internal_metrics
 
+      transforms:
+        udmp_logs_remap:
+        type: remap
+        inputs:
+          - udmp_logs
+        source: |
+          . = parse_json!(.message)
       # Sinks
       sinks:
         loki_kubernetes:
@@ -101,18 +108,15 @@ spec:
         loki_udmp:
           type: loki
           inputs:
-            - udmp_logs
+            - udmp_logs_remap
           endpoint: http://loki.system-monitoring:3100
           encoding:
             codec: json
           batch:
             max_bytes: 400000
-          out_of_order_action: rewrite_timestamp
+          out_of_order_action: accept
           labels:
-            hostname: >-
-              {{`{{ host }}`}}
-            syslog_identifier: >-
-              {{`{{ SYSLOG_IDENTIFIER }}`}}
+            hostname: udmp
 
         talos_kernel:
           type: loki
