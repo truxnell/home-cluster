@@ -54,12 +54,12 @@ spec:
         talos_kernel_logs:
           type: socket
           mode: udp
-          path: 127.0.0.1:12000
+          address: 127.0.0.1:12000
 
         talos_service_logs:
           type: socket
           mode: udp
-          path: 127.0.0.1:12001
+          address: 127.0.0.1:12001
 
       # Sinks
       sinks:
