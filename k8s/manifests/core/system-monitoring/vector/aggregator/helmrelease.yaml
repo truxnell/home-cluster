@@ -63,7 +63,7 @@ spec:
         udmp_logs:
           address: 0.0.0.0:514
           type: syslog
-          mode: "tcp"
+          mode: "udp"
 
         vector_metrics:
           type: internal_metrics
