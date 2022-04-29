@@ -54,13 +54,11 @@ spec:
           address: 0.0.0.0:6050
           type: http
           encoding: json
-          acknowledgements: null
 
         talos_service_logs:
           address: 0.0.0.0:6051
           type: http
           encoding: json
-          acknowledgements: null
 
         udmp_logs:
           address: 0.0.0.0:514
