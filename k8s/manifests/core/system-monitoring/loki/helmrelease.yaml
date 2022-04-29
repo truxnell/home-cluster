@@ -27,9 +27,13 @@ spec:
   dependsOn:
     - name: kube-prometheus-stack
       namespace: system-monitoring
+  # https://github.com/grafana/loki/blob/main/production/helm/loki/values.yaml
   values:
     image:
       repository: ghcr.io/k8s-at-home/loki
+
+    env:
+      TZ: ${TZ}
 
     config:
       storage_config:
