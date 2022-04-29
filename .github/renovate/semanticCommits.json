@@ -5,109 +5,109 @@
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": "feat(container)!: "
+      "commitMessagePrefix": ":arrow_up: feat(container)!: "
     },
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": "feat",
+      "semanticCommitType": ":arrow_up: feat",
       "semanticCommitScope": "container"
     },
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["patch"],
-      "semanticCommitType": "fix",
+      "semanticCommitType": ":arrow_up: fix",
       "semanticCommitScope": "container"
     },
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": "feat(helm)!: "
+      "commitMessagePrefix": ":arrow_up: feat(helm)!: "
     },
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": "feat",
+      "semanticCommitType": ":arrow_up: feat",
       "semanticCommitScope": "helm"
     },
 
     {
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["patch"],
-      "semanticCommitType": "fix",
+      "semanticCommitType": ":arrow_up: fix",
       "semanticCommitScope": "helm"
     },
     {
       "matchDatasources": ["galaxy", "galaxy-collection"],
       "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": "feat(ansible)!: "
+      "commitMessagePrefix": ":arrow_up: feat(ansible)!: "
     },
     {
       "matchDatasources": ["galaxy", "galaxy-collection"],
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": "feat",
+      "semanticCommitType": ":arrow_up: feat",
       "semanticCommitScope": "ansible"
     },
 
     {
       "matchDatasources": ["galaxy", "galaxy-collection"],
       "matchUpdateTypes": ["patch"],
-      "semanticCommitType": "fix",
+      "semanticCommitType": ":arrow_up: fix",
       "semanticCommitScope": "ansible"
     },
     {
       "matchDatasources": ["terraform-provider"],
       "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": "feat(terraform)!: "
+      "commitMessagePrefix": ":arrow_up: feat(terraform)!: "
     },
     {
       "matchDatasources": ["terraform-provider"],
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": "feat",
+      "semanticCommitType": ":arrow_up: feat",
       "semanticCommitScope": "terraform"
     },
     {
       "matchDatasources": ["terraform-provider"],
       "matchUpdateTypes": ["patch"],
-      "semanticCommitType": "fix",
+      "semanticCommitType": ":arrow_up: fix",
       "semanticCommitScope": "terraform"
     },
     {
       "matchDatasources": ["github-releases", "github-tags"],
       "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": "feat(github-release)!: "
+      "commitMessagePrefix": ":arrow_up: feat(github-release)!: "
     },
     {
       "matchDatasources": ["github-releases", "github-tags"],
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": "feat",
+      "semanticCommitType": ":arrow_up: feat",
       "semanticCommitScope": "github-release"
     },
     {
       "matchDatasources": ["github-releases", "github-tags"],
       "matchUpdateTypes": ["patch"],
-      "semanticCommitType": "fix",
+      "semanticCommitType": ":arrow_up: fix",
       "semanticCommitScope": "github-release"
     },
     {
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": "feat(github-action)!: "
+      "commitMessagePrefix": ":arrow_up: feat(github-action)!: "
     },
     {
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": "feat",
+      "semanticCommitType": ":arrow_up: feat",
       "semanticCommitScope": "github-action"
     },
     {
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["patch"],
-      "semanticCommitType": "fix",
+      "semanticCommitType": ":arrow_up: fix",
       "semanticCommitScope": "github-action"
     },
-    
-    
+
+
     {
       "updateTypes": [
         "lockFileMaintenance",
