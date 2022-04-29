@@ -64,17 +64,11 @@ spec:
           address: 0.0.0.0:514
           type: syslog
           mode: "udp"
+          max_length: 102_400
 
         vector_metrics:
           type: internal_metrics
 
-      transforms:
-        udmp_logs_remap:
-          type: remap
-          inputs:
-            - udmp_logs
-          source: |
-            . = parse_json!(.message)
       # Sinks
       sinks:
         loki_kubernetes:
@@ -108,15 +102,13 @@ spec:
         loki_udmp:
           type: loki
           inputs:
-            - udmp_logs_remap
+            - udmp_logs
           endpoint: http://loki.system-monitoring:3100
           encoding:
-            codec: json
-          batch:
-            max_bytes: 400000
+            codec: json"
           out_of_order_action: rewrite_timestamp
           labels:
-            hostname: udmp
+            datasource: "loki_udmp"
 
         talos_kernel:
           type: loki
