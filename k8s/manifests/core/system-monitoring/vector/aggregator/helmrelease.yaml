@@ -50,10 +50,21 @@ spec:
           type: vector
           version: "2"
 
+        talos_kernel_logs:
+          address: 0.0.0.0:6050
+          type: vector
+          version: "2"
+
+        talos_service_logs:
+          address: 0.0.0.0:6051
+          type: vector
+          version: "2"
+
         udmp_logs:
           address: 0.0.0.0:514
           type: syslog
           mode: "tcp"
+
         vector_metrics:
           type: internal_metrics
 
@@ -86,6 +97,7 @@ spec:
               {{`{{ kubernetes.pod_node_name }}`}}
             pod: >-
               {{`{{ kubernetes.pod_name }}`}}
+
         loki_udmp:
           type: loki
           inputs:
@@ -101,6 +113,44 @@ spec:
               {{`{{ host }}`}}
             syslog_identifier: >-
               {{`{{ SYSLOG_IDENTIFIER }}`}}
+
+        talos_kernel:
+          type: loki
+          inputs:
+            - talos_kernel_logs
+          endpoint: http://loki.system-monitoring:3100
+          encoding:
+            codec: json
+          batch:
+            max_bytes: 400000
+          out_of_order_action: rewrite_timestamp
+          labels:
+            hostname: >-
+              {{`{{ host }}`}}
+            talos-level: >-
+              {{`{{ talos-level }}`}}
+            priority: >-
+              {{`{{ priority }}`}}
+            facility: >-
+              {{`{{ facility }}`}}
+
+        talos_service:
+          type: loki
+          inputs:
+            - talos_service_logs
+          endpoint: http://loki.system-monitoring:3100
+          encoding:
+            codec: json
+          batch:
+            max_bytes: 400000
+          out_of_order_action: rewrite_timestamp
+          labels:
+            hostname: >-
+              {{`{{ host }}`}}
+            talos-level: >-
+              {{`{{ talos-level }}`}}
+            talos-service: >-
+              {{`{{ talos-service }}`}}
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: vector-aggregator

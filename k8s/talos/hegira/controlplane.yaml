@@ -142,7 +142,8 @@ machine:
         #     model: WDC* # Disk model `/sys/block/<dev>/device/model`.
 
         # # Allows for supplying extra kernel args via the bootloader.
-        # extraKernelArgs:
+        extraKernelArgs:
+            - talos.logging.kernel=udp://0.0.0.0:12000/
         #     - talos.platform=metal
         #     - reboot=k
     # Features describe individual Talos features that can be switched on or off.
@@ -270,11 +271,11 @@ machine:
     #         - SUBSYSTEM=="drm", KERNEL=="renderD*", GROUP="44", MODE="0660"
 
     # # Configures the logging system.
-    # logging:
-    #     # Logging destination.
-    #     destinations:
-    #         - endpoint: tcp://1.2.3.4:12345 # Where to send logs. Supported protocols are "tcp" and "udp".
-    #           format: json_lines # Logs format.
+    logging:
+        #     # Logging destination.
+        destinations:
+            - endpoint: udp://0.0.0.0:12001 # Where to send logs. Supported protocols are "tcp" and "udp".
+              format: json_lines # Logs format.
 # Provides cluster specific configuration options.
 cluster:
     id: u1JHRbk07g3j2qQMcgWN-g3M9VvSEJzUqZ07jNWOrLA= # Globally unique identifier for this cluster (base64 encoded random 32 bytes).
