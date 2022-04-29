@@ -143,7 +143,7 @@ machine:
 
         # # Allows for supplying extra kernel args via the bootloader.
         extraKernelArgs:
-            - talos.logging.kernel=udp://0.0.0.0:12000/
+            - talos.logging.kernel=udp://127.0.0.1:12000/
         #     - talos.platform=metal
         #     - reboot=k
     # Features describe individual Talos features that can be switched on or off.
@@ -274,7 +274,7 @@ machine:
     logging:
         #     # Logging destination.
         destinations:
-            - endpoint: udp://0.0.0.0:12001 # Where to send logs. Supported protocols are "tcp" and "udp".
+            - endpoint: udp://127.0.0.1:12001 # Where to send logs. Supported protocols are "tcp" and "udp".
               format: json_lines # Logs format.
 # Provides cluster specific configuration options.
 cluster:
