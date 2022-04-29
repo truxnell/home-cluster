@@ -127,7 +127,7 @@ spec:
           labels:
             hostname: >-
               {{`{{ host }}`}}
-            talos-level: >-
+            talos_level: >-
               {{`{{ talos-level }}`}}
             priority: >-
               {{`{{ priority }}`}}
@@ -147,9 +147,9 @@ spec:
           labels:
             hostname: >-
               {{`{{ host }}`}}
-            talos-level: >-
+            talos_level: >-
               {{`{{ talos-level }}`}}
-            talos-service: >-
+            talos_service: >-
               {{`{{ talos-service }}`}}
 
     podAnnotations:
