@@ -114,7 +114,7 @@ spec:
             codec: json
           batch:
             max_bytes: 400000
-          out_of_order_action: accept
+          out_of_order_action: rewrite_timestamp
           labels:
             hostname: udmp
 
