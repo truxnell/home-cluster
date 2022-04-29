@@ -70,11 +70,11 @@ spec:
 
       transforms:
         udmp_logs_remap:
-        type: remap
-        inputs:
-          - udmp_logs
-        source: |
-          . = parse_json!(.message)
+          type: remap
+          inputs:
+            - udmp_logs
+          source: |
+            . = parse_json!(.message)
       # Sinks
       sinks:
         loki_kubernetes:
