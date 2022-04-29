@@ -105,7 +105,7 @@ spec:
             - udmp_logs
           endpoint: http://loki.system-monitoring:3100
           encoding:
-            codec: json"
+            codec: "json"
           out_of_order_action: rewrite_timestamp
           labels:
             datasource: "loki_udmp"
