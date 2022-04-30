@@ -83,6 +83,11 @@ spec:
     serviceMonitor:
       enabled: true
 
+    service:
+      type: LoadBalancer # Setting Ip external to cluster for easy port forward
+      externalTrafficPolicy: Cluster
+      loadBalancerIP: 10.8.20.219
+
     alerting_groups:
       #
       # SMART Failures
