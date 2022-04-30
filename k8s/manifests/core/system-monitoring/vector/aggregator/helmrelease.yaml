@@ -121,9 +121,9 @@ spec:
           remove_label_fields: true
           remove_timestamp: true
           labels:
-            host: udmp
-            appname: "{{ appname }}"
-            hostanme: "{{ hostname }}"
+            hostname: udmp
+            appname: >-
+              {{`"{{ appname }}"`}}
 
         talos_kernel:
           type: loki
