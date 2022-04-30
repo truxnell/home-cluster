@@ -61,7 +61,7 @@ spec:
           encoding: json
 
         udmp_logs:
-          address: 0.0.0.0:514
+          address: 0.0.0.0:6100
           type: syslog
           mode: "udp"
           max_length: 102_400
