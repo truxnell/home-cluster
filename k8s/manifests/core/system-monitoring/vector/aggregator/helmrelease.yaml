@@ -69,6 +69,15 @@ spec:
         vector_metrics:
           type: internal_metrics
 
+      # Transforms
+      transforms:
+        udmp_logs_xform:
+          type: "remap"
+          inputs:
+            - "udmp_logs"
+          source: |-
+            .timestamp=null
+
       # Sinks
       sinks:
         loki_kubernetes:
@@ -102,7 +111,7 @@ spec:
         loki_udmp:
           type: loki
           inputs:
-            - udmp_logs
+            - udmp_logs_xform
           endpoint: http://loki.system-monitoring:3100
           encoding:
             codec: "json"
@@ -113,6 +122,8 @@ spec:
           remove_timestamp: true
           labels:
             host: udmp
+            appname: "{{ appname }}"
+            hostanme: "{{ hostname }}"
 
         talos_kernel:
           type: loki
