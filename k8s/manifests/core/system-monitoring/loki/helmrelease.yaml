@@ -86,7 +86,7 @@ spec:
     service:
       type: LoadBalancer # Setting Ip external to cluster for easy port forward
       externalTrafficPolicy: Cluster
-      loadBalancerIP: 10.8.20.219
+      loadBalancerIP: 10.8.20.221
 
     alerting_groups:
       #
