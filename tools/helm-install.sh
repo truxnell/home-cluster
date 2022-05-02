@@ -4,19 +4,19 @@
 
 entry() {
 
-
+    echo "Performing $OPERATION of helm chart $SOURCE/$CHART named $NAME, version $VERSION into namespace 'testing' using values from $FILE"
     case "$OPERATION" in
         install)
-            yq -r  .spec.values $FILE  | helm install $NAME $SOURCE/$CHART -n testing -f -
+            yq -r  .spec.values $FILE  | helm install $NAME $SOURCE/$CHART --version $VERSION -n testing -f -
             ;;
         upgrade)
-            yq -r  .spec.values $FILE  | helm upgrade $NAME $SOURCE/$CHART -n testing -f -
+            yq -r  .spec.values $FILE  | helm upgrade $NAME $SOURCE/$CHART --version $VERSION -n testing -f -
             ;;
         delete)
             helm uninstall $NAME -n testing
             ;;
         template)
-            yq -r  .spec.values $FILE  | helm template $NAME $SOURCE/$CHART -n testing -f -
+            yq -r  .spec.values $FILE  | helm template $NAME $SOURCE/$CHART --version $VERSION -n testing -f -
             ;;
     esac
 
@@ -102,7 +102,7 @@ parse_command_line() {
     CHART="$(yq -r .spec.chart.spec.chart $FILE)"
     NAME="$(yq -r .metadata.name $FILE)"
     SOURCE="$(yq -r .spec.chart.spec.sourceRef.name $FILE | sed "s/-charts//")"
-
+    VERSION="$(yq -r .spec.chart.spec.version $FILE)"
 
 }
 
@@ -118,6 +118,7 @@ main() {
     local NAME=
     local SOURCE=
     local OPERATION=
+    local VERSION=
     parse_command_line "$@"
     check "jq"
     check "yq"
