@@ -1,5 +1,7 @@
 ---
 alertmanager:
+  fullnameOverride: alertmanager
+
   config:
     receivers:
       - name: "null"
