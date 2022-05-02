@@ -58,3 +58,8 @@ repos:
     rev: v8.8.4
     hooks:
       - id: gitleaks
+
+  - repo: https://github.com/Truxnell/pre-commit
+    rev: v0.0.1
+    hooks:
+      - id: kustomize_build
