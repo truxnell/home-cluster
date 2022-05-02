@@ -58,5 +58,6 @@
     "lidarr",
     "ci"
   ],
+  "discord.enabled": true,
 
 }
