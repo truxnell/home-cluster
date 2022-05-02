@@ -15,7 +15,8 @@ spec:
         [
           "/bin/sh",
           "-c",
-          "dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/nvme0n1",
+          "blkdiscard /dev/nvme0n1",
+          "dd if=/dev/zero bs=1M count=10000 oflag=direct of=/dev/nvme0n1",
         ]
 ---
 apiVersion: v1
@@ -34,16 +35,17 @@ spec:
         [
           "/bin/sh",
           "-c",
-          "dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/nvme1n1",
+          "blkdiscard /dev/nvme1n1",
+          "dd if=/dev/zero bs=1M count=10000 oflag=direct of=/dev/nvme1n1",
         ]
 ---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: disk-wipe-tycho
+  name: disk-wipe-icarus
 spec:
   restartPolicy: Never
-  nodeName: tycho
+  nodeName: icarus
   containers:
     - name: disk-wipe
       image: busybox
@@ -53,5 +55,6 @@ spec:
         [
           "/bin/sh",
           "-c",
-          "dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/nvme0n1",
+          "blkdiscard /dev/nvme0n1",
+          "dd if=/dev/zero bs=1M count=10000 oflag=direct of=/dev/nvme0n1",
         ]
