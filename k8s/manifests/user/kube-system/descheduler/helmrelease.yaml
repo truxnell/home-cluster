@@ -38,6 +38,7 @@ spec:
       # resourceNamescape: "kube-system"
 
     podAnnotations:
+      botkube.io/disable: "true"
       configmap.reloader.stakater.com/reload: "descheduler"
 
     deschedulerPolicy:
