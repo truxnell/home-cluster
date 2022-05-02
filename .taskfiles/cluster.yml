@@ -18,7 +18,11 @@ tasks:
       - talosctl -n 10.8.20.30 apply-config -f k8s/talos/hegira/machineConfigs/leela.yaml --insecure
       - talosctl -n 10.8.20.40 apply-config -f k8s/talos/hegira/machineConfigs/xerxes.yaml --insecure
       - talosctl -n 10.8.20.42 apply-config -f k8s/talos/hegira/machineConfigs/shodan.yaml --insecure
-      - talosctl -n 10.8.20.44 apply-config -f k8s/talos/hegira/machineConfigs/tycho.yaml --insecure
+      - talosctl -n 10.8.20.44 apply-config -f k8s/talos/hegira/machineConfigs/icarus.yaml --insecure
+  bootstrap-wipe-rook:
+    desc: Wipe rook disks in talos
+    cmds:
+      - kubectl apply -f tools/wipe-rook.yaml
 
   bootstrap-sops:
     desc: Bootstrap cluster
