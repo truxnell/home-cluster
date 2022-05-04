@@ -60,6 +60,8 @@ repos:
       - id: gitleaks
 
   - repo: https://github.com/Truxnell/pre-commit
-    rev: v0.0.2
+    rev: v0.0.6
     hooks:
       - id: kustomize_build
+        files: ^k8s/
+        args: ["--server"]
