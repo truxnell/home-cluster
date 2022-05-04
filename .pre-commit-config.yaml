@@ -64,4 +64,4 @@ repos:
     hooks:
       - id: kustomize_build
         files: ^k8s/
-        args: ["--server"]
+        args: ["--dry-run server"]
