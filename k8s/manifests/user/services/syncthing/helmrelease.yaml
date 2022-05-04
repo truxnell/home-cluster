@@ -30,7 +30,7 @@ spec:
   values:
     image:
       repository: syncthing/syncthing
-      tag: 1.19.2
+      tag: 1.20.1
     env:
       TZ: ${TZ}
       PUID: "1000"
