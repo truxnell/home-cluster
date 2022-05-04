@@ -19,7 +19,7 @@ machine:
     # Used to provide additional options to the kubelet.
     kubelet:
         # renovate: docker-image
-        image: ghcr.io/siderolabs/kubelet:v1.23.6
+        image: ghcr.io/siderolabs/kubelet:v1.24.0
     # image: ghcr.io/talos-systems/kubelet:v1.23.1
 
     # # The `ClusterDNS` field is an optional reference to an alternative kubelet clusterDNS ip list.
