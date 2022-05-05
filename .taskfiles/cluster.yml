@@ -24,6 +24,12 @@ tasks:
     cmds:
       - kubectl apply -f tools/wipe-rook.yaml
 
+  git-check-yaml:
+    desc: Check yaml for kustomize/kube errors
+    cmds:
+      - git diff --name-only origin/main.. | grep --color kustomization.yaml | sed 's/kustomization.yaml//' | xargs -I{} kustomize build {}
+      - git diff --name-only origin/main.. | grep --color .yaml | xargs cat | kubectl apply -f - --dry-run=server
+
   bootstrap-sops:
     desc: Bootstrap cluster
     cmds:
