@@ -7,6 +7,7 @@ on:
 
 jobs:
   automerge:
+    if: ${{(github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.actor == 'trux-bot'}}
     runs-on: ubuntu-latest
     steps:
      - name: Generate Token
@@ -16,10 +17,10 @@ jobs:
          app_id: ${{ secrets.TRUXNELL_APP_ID }}
          private_key: ${{ secrets.TRUXNELL_APP_PRIVATE_KEY }}
 
-     - name: automerge
+     - name: automerge-servers
        uses: "pascalgn/automerge-action@v0.15.2"
        env:
-         GITHUB_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+         GITHUB_TOKEN: "${{ steps.generate-token.outputs.token }}"
          MERGE_METHOD: rebase
          UPDATE_METHOD: rebase
          MERGE_LABELS: "automerge-servers"
