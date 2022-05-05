@@ -1,6 +1,5 @@
 ---
 prometheus:
-  fullnameOverride: prometheus
 
   ingress:
     enabled: true
