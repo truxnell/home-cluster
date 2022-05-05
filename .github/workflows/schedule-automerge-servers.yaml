@@ -1,0 +1,29 @@
+name: "Automatic Merge"
+
+on:
+  schedule:
+    - cron:  '0 2-7 * * *'
+
+jobs:
+  merge:
+    name: "Automerge labeled requests"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Token
+              uses: tibdex/github-app-token@v1
+              id: generate-token
+              with:
+                app_id: ${{ secrets.TRUXNELL_APP_ID }}
+                private_key: ${{ secrets.TRUXNELL_APP_PRIVATE_KEY }}
+
+      - id: automerge
+        name: automerge
+        uses: "pascalgn/automerge-action@v0.15.2"
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+          MERGE_LABELS: automerge-servers
+          MERGE_COMMIT_MESSAGE: pull-request-title
+          MERGE_FILTER_AUTHOR: trux-bot
+          MERGE_RETRY_SLEEP: 60000
+          MERGE_DELETE_BRANCH: true
+          
