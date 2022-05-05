@@ -2,7 +2,7 @@ name: "Schedule - Automatic Merge"
 
 on:
   schedule:
-    - cron: "17-22 * * * *"
+    - cron: "0 17-22 * * *"
 
 jobs:
   automerge:
