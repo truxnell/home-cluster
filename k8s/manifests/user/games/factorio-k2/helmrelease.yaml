@@ -27,6 +27,7 @@ spec:
 
   values:
     image:
+      image: factoriotools/factorio
       tag: stable@sha256:a837cb72f531414074dccf1d353cc2a780cdf493e7b86efafe059c77d0363772
 
     env:
