@@ -6,23 +6,13 @@ on:
     - cron:  '0 2-7 * * *'
 
 jobs:
-  merge:
-    name: "Automerge labeled requests"
+  automerge:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate Token
-        uses: tibdex/github-app-token@v1
-        id: generate-token
-        with:
-          app_id: ${{ secrets.TRUXNELL_APP_ID }}
-          private_key: ${{ secrets.TRUXNELL_APP_PRIVATE_KEY }}
-
-      - id: automerge
-        name: automerge
-        uses: "pascalgn/automerge-action@v0.15.2"
+      - name: automerge
+        uses: "pascalgn/automerge-action@75ca70eb25b33837664f25d6270d20b629d23614"
         env:
-          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
-          MERGE_COMMIT_MESSAGE: pull-request-title
-          MERGE_RETRY_SLEEP: 60000
-          MERGE_DELETE_BRANCH: true
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_METHOD: rebase
+          UPDATE_METHOD: rebase
           
