@@ -8,6 +8,8 @@ spec:
   dependsOn:
     - name: loki
       namespace: system-monitoring
+    - name: kube-prometheus-stack
+      namespace: system-monitoring
   interval: 5m
   chart:
     spec:
