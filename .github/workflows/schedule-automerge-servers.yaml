@@ -22,4 +22,4 @@ jobs:
          GITHUB_TOKEN: "${{ steps.generate-token.outputs.token }}"
          MERGE_METHOD: rebase
          UPDATE_METHOD: rebase
-
+         LOG: trace
