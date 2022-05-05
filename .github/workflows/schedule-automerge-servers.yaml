@@ -22,5 +22,7 @@ jobs:
          GITHUB_TOKEN: "${{ steps.generate-token.outputs.token }}"
          MERGE_METHOD: rebase
          UPDATE_METHOD: rebase
+         MERGE_LABELS: "automerge-servers"
+         MERGE_COMMIT_MESSAGE: pull-request-title
          LOG: TRACE
 
