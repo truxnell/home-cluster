@@ -23,7 +23,7 @@ jobs:
          MERGE_METHOD: rebase
          UPDATE_METHOD: rebase
          MERGE_LABELS: "automerge-servers"
-         MERGE_FILTER_AUTHOR: "trux-bot"
+         MERGE_FILTER_AUTHOR: "trux-bot[bot]"
          MERGE_COMMIT_MESSAGE: pull-request-title
          LOG: TRACE
 
