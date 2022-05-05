@@ -1,13 +1,12 @@
 name: "Schedule - Automatic Merge"
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron:  '0 2-7 * * *'
+    - cron:  '*/5 * * * *'
 
 jobs:
   automerge:
-    if: ${{(github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.actor == 'trux-bot'}}
+    if: ${{github.event_name == 'schedule' && github.actor == 'trux-bot'}}
     runs-on: ubuntu-latest
     steps:
      - name: Generate Token
