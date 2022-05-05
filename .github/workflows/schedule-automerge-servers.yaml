@@ -1,4 +1,4 @@
-name: "Automatic Merge"
+name: "Schedule - Automatic Merge"
 
 on:
   workflow_dispatch:
@@ -22,7 +22,6 @@ jobs:
         uses: "pascalgn/automerge-action@v0.15.2"
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
-          MERGE_LABELS: "automerge-servers"
           MERGE_COMMIT_MESSAGE: pull-request-title
           MERGE_RETRY_SLEEP: 60000
           MERGE_DELETE_BRANCH: true
