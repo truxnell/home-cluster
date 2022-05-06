@@ -4,6 +4,10 @@
   color: "72ccf3"
 - name: area/cluster
   color: "72ccf3"
+- name: area/os
+  color: "cc72f3"
+- name: area/docs
+  color: "f372cc"
 
 # Renovate
 - name: renovate/container
