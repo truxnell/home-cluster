@@ -1,15 +1,15 @@
 ---
 # Area
 - name: area/ci
-  color: "72ccf3"
+  color: "72CCF3"
 - name: area/cluster
-  color: "72ccf3"
+  color: "72CCF3"
 
 # Renovate
 - name: renovate/container
-  color: "ffc300"
+  color: "FFC300"
 - name: renovate/helm
-  color: "ffc300"
+  color: "FFC300"
 - name: renovate/github-release
   color: "317737"
 
@@ -27,38 +27,40 @@
   description: >-
     Denotes a PR that changes 0-9 lines, ignoring generated files.
 - name: size/S
-  color: "77bb00"
+  color: "77BB00"
   description: >-
     Denotes a PR that changes 10-29 lines, ignoring generated files.
 - name: size/M
-  color: "eebb00"
+  color: "EEBB00"
   description: >-
     Denotes a PR that changes 30-99 lines, ignoring generated files.
 - name: size/L
-  color: "ee9900"
+  color: "EE9900"
   description: >-
     Denotes a PR that changes 100-499 lines, ignoring generated files.
 - name: size/XL
-  color: "ee5500"
+  color: "EE5500"
   description: >-
     Denotes a PR that changes 500-999 lines, ignoring generated files.
 - name: size/XXL
-  color: "ee0000"
+  color: "EE0000"
   description: >-
     Denotes a PR that changes 1000+ lines, ignoring generated files.
 
 # Uncategorized
+- name: automerge-servers
+  color: "CC3A79"
 - name: bug
-  color: "ee0701"
+  color: "EE0701"
 - name: do-not-merge
-  color: "ee0701"
+  color: "EE0701"
 - name: docs
   color: "F4D1B7"
 - name: enhancement
-  color: "84b6eb"
+  color: "84B6EB"
 - name: link-checker
   color: "7B55D7"
 - name: question
-  color: "cc317c"
+  color: "C317C"
 - name: community
   color: "133737"
