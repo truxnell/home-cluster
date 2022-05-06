@@ -7,3 +7,5 @@ area/cluster:
   - "k8s/manifests/**/*"
 area/docs:
   - "docs/**/*"
+area/os:
+  - "k8s/talos/**/*
