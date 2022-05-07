@@ -17,11 +17,11 @@
 <div align="center">
 
 [![Uptime CI](https://img.shields.io/github/workflow/status/Truxnell/upptime/Uptime%20CI?label=Upptime%20CI&style=for-the-badge)](https://github.com/Truxnell/upptime/actions?query=workflow%3A%22Uptime+CI%22)
-[![Upptime status](https://img.shields.io/endpoint?label=Status%20page&style=for-the-badge&url=https%3A%2F%2Fraw.githubusercontent.com%2FTruxnell%2Fupptime%2Fmaster%2Fapi%2Fstatus%2Fuptime.json)](https://status.voltaicforge.com)
-![Plex](https://img.shields.io/endpoint?label=Plex&logo=plex&style=for-the-badge&url=https%3A%2F%2Fraw.githubusercontent.com%2FTruxnell%2Fupptime%2Fmaster%2Fapi%2Fplex%2Fuptime.json)
-![HASS](https://img.shields.io/endpoint?label=homeassistant&logo=homeassistant&style=for-the-badge&url=https%3A%2F%2Fraw.githubusercontent.com%2FTruxnell%2Fupptime%2Fmaster%2Fapi%2Fhome-assistant%2Fuptime.json)
-![Joplin](https://img.shields.io/endpoint?label=Joplin&logo=joplin&style=for-the-badge&url=https%3A%2F%2Fraw.githubusercontent.com%2FTruxnell%2Fupptime%2Fmaster%2Fapi%2Fjoplin%2Fuptime.json)
-![Vaultwarden](https://img.shields.io/endpoint?label=Vaultwarden&logo=bitwarden&style=for-the-badge&url=https%3A%2F%2Fraw.githubusercontent.com%2FTruxnell%2Fupptime%2Fmaster%2Fapi%2Fvaultwarden%2Fuptime.json)
+[![Upptime status](https://img.shields.io/endpoint?label=Status%20page&style=for-the-badge&url=https%3A%2F%2Fraw.githubusercontent.com%2FTruxnell%2Fupptime%2Fmaster%2Fapi%2Fstatus%2Fuptime-month.json)](https://status.voltaicforge.com)
+![Plex](https://img.shields.io/endpoint?label=Plex&logo=plex&style=for-the-badge&url=https%3A%2F%2Fraw.githubusercontent.com%2FTruxnell%2Fupptime%2Fmaster%2Fapi%2Fplex%2Fuptime-month.json)
+![HASS](https://img.shields.io/endpoint?label=homeassistant&logo=homeassistant&style=for-the-badge&url=https%3A%2F%2Fraw.githubusercontent.com%2FTruxnell%2Fupptime%2Fmaster%2Fapi%2Fhome-assistant%2Fuptime-month.json)
+![Joplin](https://img.shields.io/endpoint?label=Joplin&logo=joplin&style=for-the-badge&url=https%3A%2F%2Fraw.githubusercontent.com%2FTruxnell%2Fupptime%2Fmaster%2Fapi%2Fjoplin%2Fuptime-month.json)
+![Vaultwarden](https://img.shields.io/endpoint?label=Vaultwarden&logo=bitwarden&style=for-the-badge&url=https%3A%2F%2Fraw.githubusercontent.com%2FTruxnell%2Fupptime%2Fmaster%2Fapi%2Fvaultwarden%2Fuptime-month.json)
 
 </div>
 
@@ -32,7 +32,6 @@ This repository is my homelab cluster, using tools such as [Flux2](https://githu
 Feel free to open a [Github issue](https://github.com/Truxnell/home-cluster/issues/new) if you have any questions!
 
 **Fledgling documentation available at [https://k8s.voltaicforge.com](https://k8s.voltaicforge.com)**
-
 
 ## Sister repos
 
