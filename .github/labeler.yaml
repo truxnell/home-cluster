@@ -8,4 +8,4 @@ area/cluster:
 area/docs:
   - "docs/**/*"
 area/os:
-  - "k8s/talos/**/*
+  - "k8s/talos/**/*"
