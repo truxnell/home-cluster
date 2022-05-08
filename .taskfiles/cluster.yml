@@ -98,5 +98,11 @@ tasks:
   build-talos-config:
     desc: Build talos configs
     cmds:
+      - git stash && git pull && git stash pop
       - python k8s/talos/buildClusterConfig.py  --variables-file k8s/talos/hegira/variables.sops.yaml k8s/talos/hegira/config.yaml
       - find k8s/talos/hegira/machineConfigs/ -maxdepth 1 -type f -exec talosctl validate -m metal -c {} \;
+
+  delete-failed-pods:
+    desc: Deletes failed pods
+    cmds:
+      - kubectl delete pods --field-selector status.phase=Failed -A --ignore-not-found=true
