@@ -82,3 +82,17 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: user-system-monitoring-vpa
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/user/system-monitoring/vpa"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
