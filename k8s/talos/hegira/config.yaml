@@ -4,18 +4,18 @@ name: hegira
 nodes:
   - hostname: leela
     domain: ""
-    ip_address: 10.8.20.30
-    install_drive: /dev/sda
+    ip_address: 10.8.20.33
+    install_drive: /dev/nvme0n1
     controlplane: true
   - hostname: durandal
     domain: ""
     ip_address: 10.8.20.31
-    install_drive: /dev/sda
+    install_drive: /dev/nvme0n1
     controlplane: true
   - hostname: tycho
     domain: ""
     ip_address: 10.8.20.32
-    install_drive: /dev/sda
+    install_drive: /dev/nvme0n1
     controlplane: true
   - hostname: xerxes
     domain: ""
@@ -52,6 +52,8 @@ controlplane:
       value:
         - interface: eth0
           dhcp: true
+          vip:
+            ip: 10.8.20.30
 
     - op: add
       path: /cluster/proxy/disabled

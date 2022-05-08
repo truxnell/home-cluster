@@ -50,78 +50,102 @@ machine:
     #         - fdc7::/16
 
     # Provides machine specific network configuration options.
-    network: {}
-    # # `interfaces` is used to define the network interface configuration.
-    # interfaces:
-    #     - interface: eth0 # The interface name.
-    #       # Assigns static IP addresses to the interface.
-    #       addresses:
-    #         - 192.168.2.0/24
-    #       # A list of routes associated with the interface.
-    #       routes:
-    #         - network: 0.0.0.0/0 # The route's network.
-    #           gateway: 192.168.2.1 # The route's gateway.
-    #           metric: 1024 # The optional metric for the route.
-    #       mtu: 1500 # The interface's MTU.
-    #
-    #       # # Bond specific options.
-    #       # bond:
-    #       #     # The interfaces that make up the bond.
-    #       #     interfaces:
-    #       #         - eth0
-    #       #         - eth1
-    #       #     mode: 802.3ad # A bond option.
-    #       #     lacpRate: fast # A bond option.
+    network:
+        {}
+        # # `interfaces` is used to define the network interface configuration.
+        # interfaces:
+        #     - interface: eth0 # The interface name.
+        #       # Assigns static IP addresses to the interface.
+        #       addresses:
+        #         - 192.168.2.0/24
+        #       # A list of routes associated with the interface.
+        #       routes:
+        #         - network: 0.0.0.0/0 # The route's network.
+        #           gateway: 192.168.2.1 # The route's gateway.
+        #           metric: 1024 # The optional metric for the route.
+        #       mtu: 1500 # The interface's MTU.
+        #
+        #       # # Bond specific options.
+        #       # bond:
+        #       #     # The interfaces that make up the bond.
+        #       #     interfaces:
+        #       #         - eth0
+        #       #         - eth1
+        #       #     mode: 802.3ad # A bond option.
+        #       #     lacpRate: fast # A bond option.
 
-    #       # # Indicates if DHCP should be used to configure the interface.
-    #       # dhcp: true
+        #       # # Indicates if DHCP should be used to configure the interface.
+        #       # dhcp: true
 
-    #       # # DHCP specific options.
-    #       # dhcpOptions:
-    #       #     routeMetric: 1024 # The priority of all routes received via DHCP.
+        #       # # DHCP specific options.
+        #       # dhcpOptions:
+        #       #     routeMetric: 1024 # The priority of all routes received via DHCP.
 
-    #       # # Wireguard specific configuration.
+        #       # # Wireguard specific configuration.
 
-    #       # # wireguard server example
-    #       # wireguard:
-    #       #     privateKey: ABCDEF... # Specifies a private key configuration (base64 encoded).
-    #       #     listenPort: 51111 # Specifies a device's listening port.
-    #       #     # Specifies a list of peer configurations to apply to a device.
-    #       #     peers:
-    #       #         - publicKey: ABCDEF... # Specifies the public key of this peer.
-    #       #           endpoint: 192.168.1.3 # Specifies the endpoint of this peer entry.
-    #       #           # AllowedIPs specifies a list of allowed IP addresses in CIDR notation for this peer.
-    #       #           allowedIPs:
-    #       #             - 192.168.1.0/24
-    #       # # wireguard peer example
-    #       # wireguard:
-    #       #     privateKey: ABCDEF... # Specifies a private key configuration (base64 encoded).
-    #       #     # Specifies a list of peer configurations to apply to a device.
-    #       #     peers:
-    #       #         - publicKey: ABCDEF... # Specifies the public key of this peer.
-    #       #           endpoint: 192.168.1.2 # Specifies the endpoint of this peer entry.
-    #       #           persistentKeepaliveInterval: 10s # Specifies the persistent keepalive interval for this peer.
-    #       #           # AllowedIPs specifies a list of allowed IP addresses in CIDR notation for this peer.
-    #       #           allowedIPs:
-    #       #             - 192.168.1.0/24
+        #       # # wireguard server example
+        #       # wireguard:
+        #       #     privateKey: ABCDEF... # Specifies a private key configuration (base64 encoded).
+        #       #     listenPort: 51111 # Specifies a device's listening port.
+        #       #     # Specifies a list of peer configurations to apply to a device.
+        #       #     peers:
+        #       #         - publicKey: ABCDEF... # Specifies the public key of this peer.
+        #       #           endpoint: 192.168.1.3 # Specifies the endpoint of this peer entry.
+        #       #           # AllowedIPs specifies a list of allowed IP addresses in CIDR notation for this peer.
+        #       #           allowedIPs:
+        #       #             - 192.168.1.0/24
+        #       # # wireguard peer example
+        #       # wireguard:
+        #       #     privateKey: ABCDEF... # Specifies a private key configuration (base64 encoded).
+        #       #     # Specifies a list of peer configurations to apply to a device.
+        #       #     peers:
+        #       #         - publicKey: ABCDEF... # Specifies the public key of this peer.
+        #       #           endpoint: 192.168.1.2 # Specifies the endpoint of this peer entry.
+        #       #           persistentKeepaliveInterval: 10s # Specifies the persistent keepalive interval for this peer.
+        #       #           # AllowedIPs specifies a list of allowed IP addresses in CIDR notation for this peer.
+        #       #           allowedIPs:
+        #       #             - 192.168.1.0/24
 
-    #       # # Virtual (shared) IP address configuration.
-    #       # vip:
-    #       #     ip: 172.16.199.55 # Specifies the IP address to be used.
+        #       # # Virtual (shared) IP address configuration.
+        #       # vip:
+        #       #     ip: 172.16.199.55 # Specifies the IP address to be used.
 
-    # # Used to statically set the nameservers for the machine.
-    # nameservers:
-    #     - 8.8.8.8
-    #     - 1.1.1.1
+        # # Used to statically set the nameservers for the machine.
+        # nameservers:
+        #     - 8.8.8.8
+        #     - 1.1.1.1
 
-    # # Allows for extra entries to be added to the `/etc/hosts` file
-    # extraHostEntries:
-    #     - ip: 192.168.1.100 # The IP of the host.
-    #       # The host alias.
-    #       aliases:
-    #         - example
-    #         - example.domain.tld
+        # # Allows for extra entries to be added to the `/etc/hosts` file
+        # extraHostEntries:
+        #     - ip: 10.8.20.30
+        #       aliases:
+        #           - hegira
+        #           - hegira.${domains.hardware}
 
+        #     - ip: 10.8.20.33
+        #       aliases:
+        #           - leela
+        #           - leela.${domains.hardware}
+        #     - ip: 10.8.20.31
+        #       aliases:
+        #           - durandal
+        #           - durandal.${domains.hardware}
+        #     - ip: 10.8.20.32
+        #       aliases:
+        #           - tycho
+        #           - tycho.${domains.hardware}
+        #     - ip: 10.8.20.40
+        #       aliases:
+        #           - xerxes
+        #           - xerxes.${domains.hardware}
+        #     - ip: 10.8.20.42
+        #       aliases:
+        #           - shodan
+        #           - shodan.${domains.hardware}
+        #     - ip: 10.8.20.44
+        #       aliases:
+        #           - icarus
+        #           - icarus.${domains.hardware}
     # # Configures KubeSpan feature.
     # kubespan:
     #     enabled: true # Enable the KubeSpan feature.
