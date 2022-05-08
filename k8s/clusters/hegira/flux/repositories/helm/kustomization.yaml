@@ -4,28 +4,29 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - ../../../../../global/flux/repositories/helm
-  - ./external-dns-charts.yaml
-  - ./grafana-charts.yaml
-  - ./hajimari-charts.yaml
-  - ./ingress-nginx-charts.yaml
-  - ./nfs-subdir-external-provisioner-charts.yaml
-  - ./kasten-charts.yaml
-  - ./kyverno-charts.yaml
-  - ./lwolf-charts.yaml
-  - ./kubernetes-sigs-descheduler-charts.yaml
-  - ./vmware-charts.yaml
-  - ./weaveworks-kured-charts.yaml
-  - ./rook-ceph-charts.yaml
   - ./authentik-charts.yaml
-  - ./metallb-charts.yaml
   - ./cilium-charts.yaml
   - ./deliveryhero-charts.yaml
+  - ./external-dns-charts.yaml
+  - ./fairwinds-charts.yaml
+  - ./grafana-charts.yaml
+  - ./hajimari-charts.yaml
+  - ./infracloudio-charts.yaml
+  - ./ingress-nginx-charts.yaml
   - ./jetstack-charts.yaml
   - ./k8s-at-home-charts.yaml
+  - ./kasten-charts.yaml
+  - ./kubernetes-sigs-descheduler-charts.yaml
   - ./kubernetes-sigs-metrics-server-charts.yaml
   - ./kubernetes-sigs-nfd-charts.yaml
+  - ./kyverno-charts.yaml
+  - ./lwolf-charts.yaml
+  - ./metallb-charts.yaml
+  - ./nfs-subdir-external-provisioner-charts.yaml
   - ./prometheus-community-charts.yaml
+  - ./rook-ceph-charts.yaml
   - ./stakater-charts.yaml
-  - ./vmware-tanzu-charts.yaml
-  - ./infracloudio-charts.yaml
   - ./vector-charts.yaml
+  - ./vmware-charts.yaml
+  - ./vmware-tanzu-charts.yaml
+  - ./weaveworks-kured-charts.yaml
