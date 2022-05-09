@@ -316,7 +316,7 @@ cluster:
     # API server specific configuration options.
     apiServer:
         # renovate: docker-image
-        image: k8s.gcr.io/kube-apiserver:v1.23.6 # The container image used in the API server manifest.
+        image: k8s.gcr.io/kube-apiserver:v1.23.6
 
         # Extra certificate subject alternative names for the API server's certificate.
         certSANs:
