@@ -54,13 +54,15 @@ spec:
 
         talos_kernel_logs:
           address: 0.0.0.0:6050
-          type: http
-          encoding: json
+          type: socket
+          mode: udp
+          max_length: 102400
 
         talos_service_logs:
           address: 0.0.0.0:6051
-          type: http
-          encoding: json
+          type: socket
+          mode: udp
+          max_length: 102400
 
         udmp_logs:
           address: 0.0.0.0:6100
