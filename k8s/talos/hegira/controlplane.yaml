@@ -132,7 +132,7 @@ machine:
     install:
         disk: /dev/sda # The disk used for installations.
         # renovate: docker-image
-        image: ghcr.io/talos-systems/installer:v1.0.3
+        image: ghcr.io/talos-systems/installer:v1.0.4
         bootloader: true # Indicates if a bootloader should be installed.
         wipe: false # Indicates if the installation disk should be wiped at installation time.
 
@@ -143,7 +143,7 @@ machine:
 
         # # Allows for supplying extra kernel args via the bootloader.
         extraKernelArgs:
-            - talos.logging.kernel=udp://127.0.0.1:12000/
+            - talos.logging.kernel=udp://vector.trux.dev:6050/
         #     - talos.platform=metal
         #     - reboot=k
     # Features describe individual Talos features that can be switched on or off.
@@ -274,7 +274,7 @@ machine:
     logging:
         #     # Logging destination.
         destinations:
-            - endpoint: udp://127.0.0.1:12001 # Where to send logs. Supported protocols are "tcp" and "udp".
+            - endpoint: udp://vector.trux.dev:6051/ # Where to send logs. Supported protocols are "tcp" and "udp".
               format: json_lines # Logs format.
 # Provides cluster specific configuration options.
 cluster:
@@ -315,6 +315,7 @@ cluster:
         key: ${cluster.serviceAccount.key}
     # API server specific configuration options.
     apiServer:
+        # renovate: docker-image
         image: k8s.gcr.io/kube-apiserver:v1.23.6 # The container image used in the API server manifest.
 
         # Extra certificate subject alternative names for the API server's certificate.
@@ -332,7 +333,7 @@ cluster:
     # Kube-proxy server-specific configuration options
     proxy:
         # renovate: docker-image
-        image: k8s.gcr.io/kube-proxy:v1.23.5 # The container image used in the kube-proxy manifest.
+        image: k8s.gcr.io/kube-proxy:v1.23.6 # The container image used in the kube-proxy manifest.
     # image: k8s.gcr.io/kube-proxy:v1.23.1
 
     # Scheduler server specific configuration options.
