@@ -82,6 +82,13 @@ spec:
           source: |-
             .timestamp=null
 
+        talos_kernel_logs_xform:
+          type: "remap"
+          inputs:
+            - "talos_kernel_logs"
+          source: |-
+            .message=string!(.message)
+
       # Sinks
       sinks:
         loki_kubernetes:
@@ -132,7 +139,7 @@ spec:
         talos_kernel:
           type: loki
           inputs:
-            - talos_kernel_logs
+            - talos_kernel_logs_xform
           endpoint: http://loki.system-monitoring:3100
           encoding:
             codec: json
