@@ -138,7 +138,7 @@ spec:
         talos_kernel:
           type: loki
           inputs:
-            - talos_kernel_logs_xform
+            - talos_kernel_logs
           endpoint: http://loki.system-monitoring:3100
           encoding:
             codec: json
