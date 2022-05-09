@@ -130,10 +130,6 @@ spec:
           inputs:
             - udmp_logs_xform
           endpoint: http://loki.system-monitoring:3100
-          encoding:
-            codec: json
-            except_fields:
-              - __host
           batch:
             max_bytes: 1048576
           out_of_order_action: rewrite_timestamp
@@ -169,6 +165,8 @@ spec:
           endpoint: http://loki.system-monitoring:3100
           encoding:
             codec: json
+            except_fields:
+              - __host
           batch:
             max_bytes: 400000
           out_of_order_action: rewrite_timestamp
