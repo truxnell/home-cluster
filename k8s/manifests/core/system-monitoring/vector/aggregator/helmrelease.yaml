@@ -57,12 +57,18 @@ spec:
           type: socket
           mode: udp
           max_length: 102400
+          decoding:
+            codec: json
+          host_key: __host
 
         talos_service_logs:
           address: 0.0.0.0:6051
           type: socket
           mode: udp
           max_length: 102400
+          decoding:
+            codec: json
+          host_key: __host
 
         udmp_logs:
           address: 0.0.0.0:6100
@@ -125,9 +131,11 @@ spec:
             - udmp_logs_xform
           endpoint: http://loki.system-monitoring:3100
           encoding:
-            codec: "json"
+            codec: json
+            except_fields:
+              - __host
           batch:
-            max_bytes: 400000
+            max_bytes: 1048576
           out_of_order_action: rewrite_timestamp
           remove_label_fields: true
           remove_timestamp: true
@@ -143,16 +151,14 @@ spec:
           endpoint: http://loki.system-monitoring:3100
           encoding:
             codec: json
+            except_fields:
+              - __host
           batch:
-            max_bytes: 400000
+            max_bytes: 1048576
           out_of_order_action: rewrite_timestamp
           labels:
             hostname: >-
-              {{`{{ host }}`}}
-            talos_level: >-
-              {{`{{ talos-level }}`}}
-            priority: >-
-              {{`{{ priority }}`}}
+              {{`{{ __host }}`}}
             facility: >-
               {{`{{ facility }}`}}
 
@@ -168,9 +174,7 @@ spec:
           out_of_order_action: rewrite_timestamp
           labels:
             hostname: >-
-              {{`{{ host }}`}}
-            talos_level: >-
-              {{`{{ talos-level }}`}}
+              {{`{{ __host }}`}}
             talos_service: >-
               {{`{{ talos-service }}`}}
 
