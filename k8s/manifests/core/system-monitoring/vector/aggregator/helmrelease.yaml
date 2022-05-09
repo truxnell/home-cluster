@@ -88,13 +88,6 @@ spec:
           source: |-
             .timestamp=null
 
-        talos_kernel_logs_xform:
-          type: "remap"
-          inputs:
-            - "talos_kernel_logs"
-          source: |-
-            .message=string!(.message)
-
       # Sinks
       sinks:
         loki_kubernetes:
