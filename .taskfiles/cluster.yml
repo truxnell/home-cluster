@@ -19,10 +19,10 @@ tasks:
       - talosctl -n 10.8.20.40 apply-config -f k8s/talos/hegira/machineConfigs/xerxes.yaml --insecure
       - talosctl -n 10.8.20.42 apply-config -f k8s/talos/hegira/machineConfigs/shodan.yaml --insecure
       - talosctl -n 10.8.20.44 apply-config -f k8s/talos/hegira/machineConfigs/icarus.yaml --insecure
-  bootstrap-wipe-rook:
-    desc: Wipe rook disks in talos
-    cmds:
-      - kubectl apply -f tools/wipe-rook.yaml
+  # bootstrap-wipe-rook:
+  #   desc: Wipe rook disks in talos
+  #   cmds:
+  #     - kubectl apply -f tools/wipe-rook.yaml
 
   git-check-yaml:
     desc: Check yaml for kustomize/kube errors
@@ -42,7 +42,7 @@ tasks:
       - yq '.spec.ref.tag' k8s/global/flux/repositories/git/flux.yaml | xargs -I{} flux install --version={} --export | kubectl apply -f -
 
   bootstrap-cluster:
-    desc: Bootstrap ClusterPolicy
+    desc: Bootstrap Cluster
     cmds:
       - kubectl apply -k k8s/clusters/hegira/
 
