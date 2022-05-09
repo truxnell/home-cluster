@@ -56,7 +56,7 @@ spec:
           hajimari.io/icon: ruler
 
         hosts:
-          - host: &host "goldilocks.${INGRESS_DOMAIN}"
+          - host: &host "goldilocks.${CLUSTER_DOMAIN}"
             paths:
               - path: /
                 type: Prefix
