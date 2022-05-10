@@ -169,7 +169,7 @@ spec:
             hostname: >-
               {{`{{ __host }}`}}
             talosservice: >-
-              {{`{{ talos-service }}`}}
+              {{`{{ "talos-service" }}`}}
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: vector-aggregator
