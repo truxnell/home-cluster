@@ -168,7 +168,7 @@ spec:
           labels:
             hostname: >-
               {{`{{ __host }}`}}
-            talos_service: >-
+            talosservice: >-
               {{`{{ talos-service }}`}}
 
     podAnnotations:
