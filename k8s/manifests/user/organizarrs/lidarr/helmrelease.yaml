@@ -26,7 +26,7 @@ spec:
     cleanupOnFail: true
   values:
     image:
-      repository: ghcr.io/k8s-at-home/lidarr-nightly
+      repository: ghcr.io/k8s-at-home/lidarr
       tag: v1.0.1.2578
 
     env:
