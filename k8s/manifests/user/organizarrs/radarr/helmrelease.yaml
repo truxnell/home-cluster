@@ -28,8 +28,10 @@ spec:
     image:
       repository: ghcr.io/k8s-at-home/radarr
       tag: v4.1.0.6175
+
     env:
       TZ: ${TZ}
+
     ingress:
       main:
         enabled: true
@@ -73,6 +75,7 @@ spec:
       config:
         enabled: true
         existingClaim: radarr-config-v1
+
       nfs-nas-media:
         enabled: true
         type: custom
@@ -82,6 +85,7 @@ spec:
             path: /volume1/
         mountPath: /media
         readOnly: false
+
       nfs-nas-backup:
         enabled: true
         type: custom
@@ -91,6 +95,7 @@ spec:
             path: /volume1/backup/kubernetes/apps/radarr
         mountPath: /config/Backups
         readOnly: false
+
     podSecurityContext:
       runAsUser: 1000
       runAsGroup: 1000
@@ -98,17 +103,20 @@ spec:
       fsGroupChangePolicy: OnRootMismatch
       supplementalGroups:
         - 5600
+
     resources:
       requests:
-        cpu: 20m
-        memory: 1800M
+        cpu: 23m
+        memory: 814M
       limits:
-        memory: 2850M
+        memory: 814M
+
     prometheus:
       podMonitor:
         enabled: true
         interval: 3m
         scrapeTimeout: 1m30s
+
     metrics:
       enabled: true
       serviceMonitor:
