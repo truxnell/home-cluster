@@ -78,3 +78,10 @@ spec:
             path: /volume1/backup/kubernetes/apps/prowlarr
         mountPath: /config/Backups
         readOnly: false
+
+    resources:
+      requests:
+        cpu: 11m
+        memory: 921M
+      limits:
+        memory: 921M

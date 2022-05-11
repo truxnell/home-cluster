@@ -77,6 +77,7 @@ spec:
       config:
         enabled: true
         existingClaim: sonarr-config-v1
+
       nfs-nas-media:
         enabled: true
         type: custom
@@ -86,6 +87,7 @@ spec:
             path: /volume1/
         mountPath: /media
         readOnly: false
+
       nfs-nas-backup:
         enabled: true
         type: custom
@@ -101,12 +103,14 @@ spec:
       runAsGroup: 1000
       fsGroup: 1000
       fsGroupChangePolicy: OnRootMismatch
+
     resources:
       requests:
-        memory: 350Mi
-        cpu: 25m
+        cpu: 78m
+        memory: 672M
       limits:
-        memory: 5000Mi
+        memory: 672M
+
     metrics:
       enabled: true
       serviceMonitor:
