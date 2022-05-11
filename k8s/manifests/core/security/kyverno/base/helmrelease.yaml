@@ -38,3 +38,11 @@ spec:
         labelSelector:
           matchLabels:
             app.kubernetes.io/instance: kyverno
+
+    resources:
+      requests:
+        cpu: 163m
+        memory: 204M
+      limits:
+        cpu: 163m
+        memory: 204M
