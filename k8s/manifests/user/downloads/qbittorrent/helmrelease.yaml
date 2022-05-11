@@ -104,10 +104,10 @@ spec:
 
     resources:
       requests:
-        cpu: "100m"
-        memory: "1000Mi"
+        memory: 250Mi
+        cpu: 500m
       limits:
-        memory: "4000Mi"
+        memory: 6000Mi
 
     addons:
       netshoot:
@@ -117,7 +117,7 @@ spec:
       enabled: true
       exporter:
         image:
-          repository: docker.io/esanchezm/prometheus-qbittorrent-exporter
+          repository: ghcr.io/k8s-at-home/prometheus-qbittorrent-exporter
           tag: v1.2.0
       serviceMonitor:
         interval: 1m
