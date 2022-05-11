@@ -88,6 +88,30 @@ spec:
           source: |-
             .timestamp=null
 
+        talos_kernel_logs_xform:
+          type: remap
+          inputs:
+            - talos_kernel_logs
+          source: |-
+            .__host, err = replace(.__host, "10.8.20.31", "durandal")
+            .__host = replace(.__host, "10.8.20.32", "tycho")
+            .__host = replace(.__host, "10.8.20.33", "leela")
+            .__host = replace(.__host, "10.8.20.40", "xerxes")
+            .__host = replace(.__host, "10.8.20.42", "shodan")
+            .node = replace(.__host, "10.8.20.44", "icarus")
+
+        talos_service_logs_xform:
+          type: remap
+          inputs:
+            - talos_service_logs
+          source: |-
+            .__host = replace!(.__host, "10.8.20.31", "durandal")
+            .__host = replace(.__host, "10.8.20.32", "tycho")
+            .__host = replace(.__host, "10.8.20.33", "leela")
+            .__host = replace(.__host, "10.8.20.40", "xerxes")
+            .__host = replace(.__host, "10.8.20.42", "shodan")
+            .node = replace(.__host, "10.8.20.44", "icarus")
+
       # Sinks
       sinks:
         loki_kubernetes:
@@ -103,20 +127,20 @@ spec:
           remove_label_fields: true
           remove_timestamp: true
           labels:
-            app: >-
-              {{`{{ kubernetes.pod_labels.app\.kubernetes\.io/name }}`}}
-            container: >-
-              {{`{{ kubernetes.container_name }}`}}
-            filename: >-
-              {{`{{ kubernetes.file }}`}}
-            instance: >-
-              {{`{{ kubernetes.pod_labels.app\.kubernetes\.io/instance }}`}}
-            namespace: >-
-              {{`{{ kubernetes.pod_namespace }}`}}
-            node: >-
-              {{`{{ kubernetes.pod_node_name }}`}}
-            pod: >-
-              {{`{{ kubernetes.pod_name }}`}}
+            k8s_app: >-
+              {{`{{ "kubernetes.pod_labels.app\.kubernetes\.io/name" }}`}}
+            k8s_container: >-
+              {{`{{ "kubernetes.container_name" }}`}}
+            k8s_filename: >-
+              {{`{{ "kubernetes.file" }}`}}
+            k8s_instance: >-
+              {{`{{ "kubernetes.pod_labels.app\.kubernetes\.io/instance" }}`}}
+            k8s_namespace: >-
+              {{`{{ "kubernetes.pod_namespace" }}`}}
+            k8s_node: >-
+              {{`{{ "kubernetes.pod_node_name" }}`}}
+            k8s_pod: >-
+              {{`{{ "kubernetes.pod_name" }}`}}
 
         loki_udmp:
           type: loki
@@ -131,14 +155,14 @@ spec:
           encoding:
             codec: json
           labels:
-            hostname: udmp
-            appname: >-
+            hostname: udmprp
+            service: >-
               {{`"{{ appname }}"`}}
 
         talos_kernel:
           type: loki
           inputs:
-            - talos_kernel_logs
+            - talos_kernel_logs_xform
           endpoint: http://loki.system-monitoring:3100
           encoding:
             codec: json
@@ -150,13 +174,13 @@ spec:
           labels:
             hostname: >-
               {{`{{ __host }}`}}
-            facility: >-
+            service: >-
               {{`{{ facility }}`}}
 
         talos_service:
           type: loki
           inputs:
-            - talos_service_logs
+            - talos_service_logs_xform
           endpoint: http://loki.system-monitoring:3100
           encoding:
             codec: json
@@ -168,7 +192,7 @@ spec:
           labels:
             hostname: >-
               {{`{{ __host }}`}}
-            talosservice: >-
+            service: >-
               {{`{{ "talos-service" }}`}}
 
     podAnnotations:
