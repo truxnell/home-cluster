@@ -51,3 +51,10 @@ spec:
       servicemonitor:
         enabled: true
         prometheusInstance: monitoring
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 145M
+      limits:
+        memory: 145M
