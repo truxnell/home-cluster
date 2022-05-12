@@ -85,3 +85,10 @@ spec:
       enabled: true
       failureThreshold: 30
       periodSeconds: 10
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 1555M
+      limits:
+        memory: 8006M
