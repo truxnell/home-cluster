@@ -79,3 +79,11 @@ spec:
           - hosts:
               - "joplin.${EXTERNAL_DOMAIN}"
             secretName: tls.joplin
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 145M
+      limits:
+        cpu: 15m
+        memory: 145M

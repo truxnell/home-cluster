@@ -63,3 +63,11 @@ spec:
           http:
             port: 80
             targetPort: 8080
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 79M
+      limits:
+        cpu: 15m
+        memory: 79M
