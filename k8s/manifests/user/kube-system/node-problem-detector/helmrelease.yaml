@@ -32,3 +32,10 @@ spec:
 
     nodeSelector:
       kubernetes.io/arch: amd64 # FIXME
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 64M
+      limits:
+        memory: 64M

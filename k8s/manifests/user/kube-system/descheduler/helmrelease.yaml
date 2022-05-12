@@ -87,6 +87,9 @@ spec:
               podRestartThreshold: 10
               includingInitContainers: true
 
-    tolerations:
-      - key: "arm"
-        operator: "Exists"
+    resources:
+      requests:
+        cpu: 15m
+        memory: 64M
+      limits:
+        memory: 64M
