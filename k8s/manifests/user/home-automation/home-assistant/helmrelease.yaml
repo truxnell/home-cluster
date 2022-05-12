@@ -123,10 +123,18 @@ spec:
         volumeMounts:
           - name: config
             mountPath: /config
+      resources:
+        requests:
+          cpu: 11m
+          memory: 352M
+        limits:
+          cpu: 11m
+          memory: 352M
 
     resources:
       requests:
-        cpu: 20m
-        memory: 100Mi
+        cpu: 109m
+        memory: 549M
       limits:
-        memory: 4000Mi
+        cpu: 109m
+        memory: 549M
