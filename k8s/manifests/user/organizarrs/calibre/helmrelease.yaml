@@ -75,7 +75,7 @@ spec:
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           external-dns/is-public: "false"
         hosts:
-          - host: &host "calibre-cs.${EXTERNAL_DOMAIN}"
+          - host: &host-cs "calibre-cs.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -84,7 +84,7 @@ spec:
                   port: 8081
         tls:
           - hosts:
-              - *host
+              - *host-cs
             secretName: tls.calibre-cs
 
     service:

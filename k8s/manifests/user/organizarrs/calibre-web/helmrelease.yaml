@@ -32,7 +32,7 @@ spec:
     env:
       TZ: "${TZ}"
       PGID: 65539
-      DOCKER_MODS: "linuxserver/calibre-web:calibre|ghcr.io/gilbn/theme.park:calibre-web"
+      DOCKER_MODS: "linuxserver/calibre-web:calibre"
 
     persistence:
       config:
