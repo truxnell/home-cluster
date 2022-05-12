@@ -28,6 +28,7 @@ spec:
     image:
       repository: golift/unifi-poller
       tag: 2.1.3
+
     env:
       TZ: "Australia/Melborne"
       UP_UNIFI_DEFAULT_ROLE: "homelab-controller"
@@ -40,6 +41,7 @@ spec:
       UP_INFLUXDB_DISABLE: true
       UP_PROMETHEUS_DISABLE: false
       UP_PROMETHEUS_NAMESPACE: "unifipoller"
+
     metrics:
       enabled: true
       serviceMonitor:
@@ -47,3 +49,11 @@ spec:
         scrapeTimeout: 30s
       prometheusRule:
         enabled: true
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 64M
+      limits:
+        cpu: 15m
+        memory: 64M

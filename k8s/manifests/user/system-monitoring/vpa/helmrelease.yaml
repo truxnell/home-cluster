@@ -44,5 +44,14 @@ spec:
 
     updater:
       enabled: false
+
     admissionController:
       enabled: false
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 79M
+      limits:
+        cpu: 15m
+        memory: 79M

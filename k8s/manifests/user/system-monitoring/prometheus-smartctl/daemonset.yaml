@@ -54,4 +54,10 @@ spec:
               port: *metricsport
             timeoutSeconds: 1
 
-          resources: {}
+          resources:
+            requests:
+              cpu: 15m
+              memory: 64M
+            limits:
+              cpu: 15m
+              memory: 64M

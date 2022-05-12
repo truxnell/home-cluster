@@ -271,6 +271,14 @@ spec:
             - delete
             - error
 
+    resources:
+      requests:
+        cpu: 15m
+        memory: 15G
+      limits:
+        cpu: 15m
+        memory: 15G
+
   valuesFrom:
     - kind: Secret
       name: botkube

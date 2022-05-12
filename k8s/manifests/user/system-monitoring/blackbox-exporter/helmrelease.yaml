@@ -27,8 +27,10 @@ spec:
   values:
     # Values: https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-blackbox-exporter/values.yaml
     fullnameOverride: blackbox-exporter
+
     image:
       repository: quay.io/prometheus/blackbox-exporter
+
     ingress:
       enabled: true
       annotations:
@@ -97,6 +99,14 @@ spec:
         - module: icmp
           name: poe-zigbee-coordinator
           url: espressif.${INTERNAL_DOMAIN}
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 64M
+      limits:
+        cpu: 15m
+        memory: 64M
 
     prometheusRule:
       enabled: true
