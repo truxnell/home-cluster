@@ -21,13 +21,13 @@ data:
   WORKER02_HOSTNAME: 10.8.20.42
   WORKER02_DRIVE: nvme1n1
 
-  # tycho
+  # icarus
   WORKER03_HOSTNAME: 10.8.20.44
   WORKER03_DRIVE: nvme0n1
 
   TZ: Australia/Melbourne
 
-  # Ip Range: 10.8.20.x/24TZ
+  # Ip Range: 10.8.20.x/24
   LB_RANGE: "10.8.20.200-10.8.20.250"
   LB_NGINX_INGRESS: "10.8.20.210"
   LB_MARIADB: "10.8.20.211"
@@ -48,6 +48,3 @@ data:
   # Addresses
   POSTGRES_ADDRESS: postgresql.databases
   REDIS_ADDRESS: redis-master-0.databases
-
-  # Theme Park theme
-  THEME_PARK_THEME: nord

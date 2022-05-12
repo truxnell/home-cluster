@@ -44,17 +44,35 @@ spec:
       serviceMonitor:
         enabled: true
 
+      resources:
+        requests:
+          cpu: 11m
+          memory: 32M
+        limits:
+          cpu: 11m
+          memory: 32M
+
     primary:
       extendedConfiguration: |
         shared_buffers = 1024MB
         max_wal_size = 2048
         min_wal_size = 160
+
       persistence:
         enabled: true
         existingClaim: postgresql-config-v1
+
       service:
         type: LoadBalancer
         loadBalancerIP: ${LB_POSTGRES}
+
+      resources:
+        requests:
+          cpu: 35m
+          memory: 9149M
+        limits:
+          cpu: 35m
+          memory: 9149M
 
       # commonAnnotations: # FIXME
       #   prometheus.io/probe: "true"
