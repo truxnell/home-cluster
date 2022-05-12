@@ -1,0 +1,26 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: deployment-restart
+  namespace: games
+spec:
+  concurrencyPolicy: Forbid
+  schedule: "30 18 * * 4"
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      activeDeadlineSeconds: 600
+      template:
+        spec:
+          serviceAccountName: deployment-restart
+          restartPolicy: Never
+          containers:
+            - name: kubectl
+              # renovate: docker-image
+              image: ghcr.io/k8s-at-home/kubectl:v1.24.0
+              command:
+                - "kubectl"
+                - "rollout"
+                - "restart"
+                - "deployment/factorio-k2"
