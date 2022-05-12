@@ -31,12 +31,20 @@ kubeStateMetrics:
   enabled: true
 
 prometheusOperator:
+  resources:
+    requests:
+      cpu: 35m
+      memory: 273M
+    limits:
+      memory: 326M
+
   prometheusConfigReloader:
     resources:
       requests:
-        memory: 50Mi
+        cpu: 11m
+        memory: 32M
       limits:
-        memory: 100Mi
+        memory: 32M
 
 grafana:
   enabled: false
@@ -49,8 +57,15 @@ grafana:
 
 kube-state-metrics:
   fullnameOverride: kube-state-metrics
+  resources:
+    requests:
+      cpu: 15m
+      memory: 127M
+    limits:
+      memory: 153M
 
 nodeExporter:
+  enabled: true
   serviceMonitor:
     relabelings:
       - action: replace
@@ -62,6 +77,12 @@ nodeExporter:
 
 prometheus-node-exporter:
   fullnameOverride: node-exporter
+  resources:
+    requests:
+      cpu: 23m
+      memory: 64M
+    limits:
+      memory: 64M
   tolerations:
     - effect: "NoExecute"
       operator: "Exists"

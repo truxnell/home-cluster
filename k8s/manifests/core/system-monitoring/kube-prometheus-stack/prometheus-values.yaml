@@ -30,7 +30,8 @@ prometheus:
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
     probeSelectorNilUsesHelmValues: false
-    retention: 6h
+    retentionSize: "6GB"
+    retention: 2d
     enableAdminAPI: true
     walCompression: true
     storageSpec:
@@ -40,9 +41,17 @@ prometheus:
           resources:
             requests:
               storage: 10Gi
+    resources:
+      requests:
+        cpu: 350m
+        memory: 4744M
+      limits:
+        cpu: 350m
+        memory: 4744M
     thanos:
-      image: quay.io/thanos/thanos:v0.25.1
-      version: v0.22.0
+      image: quay.io/thanos/thanos:v0.26.0
+      # renovate: datasource=docker depName=quay.io/thanos/thanos
+      version: v0.26.0
       objectStorageConfig:
         name: &secret thanos-objstore-secret
         key: objstore.yml
@@ -181,9 +190,3 @@ prometheus:
             target_label: kubernetes_namespace
           - source_labels: [__meta_kubernetes_service_name]
             target_label: kubernetes_name
-
-    resources:
-      requests:
-        memory: 3072Mi
-      limits:
-        memory: 4096Mi

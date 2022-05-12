@@ -41,6 +41,14 @@ spec:
         sidecarsService: prometheus-thanos-discovery
         sidecarsNamespace: system-monitoring
 
+      resources:
+        requests:
+          cpu: 15m
+          memory: 64M
+        limits:
+          cpu: 15m
+          memory: 64M
+
       ingress:
         enabled: true
         hostname: "thanos-cluster.${EXTERNAL_DOMAIN}"
@@ -59,6 +67,13 @@ spec:
       enabled: true
       podAnnotations:
         secret.reloader.stakater.com/reload: *secret
+      resources:
+        requests:
+          cpu: 15m
+          memory: 64M
+        limits:
+          cpu: 15m
+          memory: 64M
 
     compactor:
       enabled: true
@@ -66,6 +81,12 @@ spec:
         enabled: false
       podAnnotations:
         secret.reloader.stakater.com/reload: *secret
+      resources:
+        requests:
+          cpu: 15m
+          memory: 629M
+        limits:
+          memory: 629M
 
     storegateway:
       enabled: true
@@ -74,6 +95,12 @@ spec:
         size: 5Gi
       podAnnotations:
         configmap.reloader.stakater.com/reload: *secret
+      resources:
+        requests:
+          cpu: 23m
+          memory: 64M
+        limits:
+          memory: 64M
 
     ruler:
       enabled: false

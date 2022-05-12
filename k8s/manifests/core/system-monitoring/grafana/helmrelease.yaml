@@ -301,5 +301,12 @@ spec:
     persistence:
       enabled: false
 
+    resources:
+      requests:
+        cpu: 11m
+        memory: 94M
+      limits:
+        memory: 94M
+
     podAnnotations:
       configmap.reloader.stakater.com/reload: "grafana"

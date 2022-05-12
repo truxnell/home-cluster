@@ -1,6 +1,5 @@
 ---
 alertmanager:
-
   config:
     receivers:
       - name: "null"
@@ -22,18 +21,15 @@ alertmanager:
               {{ end }}
 
     route:
-      group_by: ["job", "alertname", "severity", "name", "job_name", "instance"]
+      group_by: ["alertname", "job"]
       group_wait: 30s
       group_interval: 5m
       repeat_interval: 12h
       receiver: "discord"
       routes:
         - receiver: "null"
-          match:
-            alertname: InfoInhibitor
-        - receiver: "null"
-          match:
-            alertname: Watchdog
+          matchers:
+            - alertname =~ "InfoInhibitor|Watchdog"
         - receiver: "discord"
           match_re:
             # severity: critical|warning
@@ -76,6 +72,7 @@ alertmanager:
 
     resources:
       requests:
-        memory: 48Mi
+        cpu: 11m
+        memory: 37M
       limits:
-        memory: 96Mi
+        memory: 37M

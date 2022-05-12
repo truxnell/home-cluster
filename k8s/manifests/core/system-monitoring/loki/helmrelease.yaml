@@ -83,6 +83,14 @@ spec:
     serviceMonitor:
       enabled: true
 
+    resources:
+      requests:
+        cpu: 35m
+        memory: 324M
+      limits:
+        cpu: 35m
+    memory: 324M
+
     service:
       type: LoadBalancer # Setting Ip external to cluster for easy port forward
       externalTrafficPolicy: Cluster
