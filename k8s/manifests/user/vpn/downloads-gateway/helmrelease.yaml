@@ -54,6 +54,14 @@ spec:
       VPN_LOCAL_CIDRS: "172.16.0.0/12 ${NETWORK_K8S_POD_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVERS_CIDR}"
       VXLAN_GATEWAY_FIRST_DYNAMIC_IP: 20
 
+    resources:
+      requests:
+        cpu: 11m
+        memory: 22M
+      limits:
+        cpu: 11m
+        memory: 22M
+
     webhook:
       image:
         repository: ghcr.io/k8s-at-home/gateway-admision-controller
@@ -70,7 +78,7 @@ spec:
 
     addons:
       netshoot:
-        enabled: true
+        enabled: false
 
       vpn:
         enabled: true
@@ -98,10 +106,10 @@ spec:
 
         resources:
           requests:
-            cpu: 20m
-            memory: 64Mi
+            cpu: 11m
+            memory: 37M
           limits:
-            memory: 128Mi
+            memory: 37M
 
         livenessProbe:
           exec:
