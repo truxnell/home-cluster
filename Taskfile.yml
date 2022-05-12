@@ -6,10 +6,9 @@ vars:
     sh: git rev-parse --show-toplevel
 
 includes:
-  ansible: .taskfiles/Taskfile_ansible.yml
-  secrets: .taskfiles/Taskfile_secrets.yml
+  linter: .taskfiles/linter.yml
   flux: .taskfiles/flux.yml
   cluster: .taskfiles/cluster.yml
   format: .taskfiles/format.yml
-  lint: .taskfiles/lint.yml
   bootstrap: .taskfiles/bootstrap.yml
+  talos: .taskfiles/talos.yml
