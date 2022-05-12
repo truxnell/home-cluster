@@ -85,11 +85,11 @@ spec:
 
     resources:
       requests:
-        cpu: 35m
-        memory: 324M
+        cpu: 22m
+        memory: 297M
       limits:
-        cpu: 35m
-    memory: 324M
+        cpu: 45m
+        memory: 387M
 
     service:
       type: LoadBalancer # Setting Ip external to cluster for easy port forward

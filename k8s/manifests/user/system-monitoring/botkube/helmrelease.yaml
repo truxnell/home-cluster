@@ -273,11 +273,10 @@ spec:
 
     resources:
       requests:
-        cpu: 15m
-        memory: 15G
+        cpu: 23m
+        memory: 204M
       limits:
-        cpu: 15m
-        memory: 15G
+        memory: 326M
 
   valuesFrom:
     - kind: Secret

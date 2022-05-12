@@ -42,7 +42,7 @@ prometheusOperator:
     resources:
       requests:
         cpu: 11m
-        memory: 32M
+        memory: 24M
       limits:
         memory: 32M
 
@@ -60,9 +60,9 @@ kube-state-metrics:
   resources:
     requests:
       cpu: 15m
-      memory: 127M
+      memory: 80M
     limits:
-      memory: 153M
+      memory: 122wM
 
 nodeExporter:
   enabled: true

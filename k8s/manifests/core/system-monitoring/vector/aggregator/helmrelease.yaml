@@ -201,10 +201,10 @@ spec:
 
     resources:
       requests:
-        cpu: 49m
-        memory: 127M
+        cpu: 22m
+        memory: 145M
       limits:
-        memory: 127M
+        memory: 214M
 
   postRenderers:
     - kustomize:

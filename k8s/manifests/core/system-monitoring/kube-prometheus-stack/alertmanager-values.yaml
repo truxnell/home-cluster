@@ -70,9 +70,9 @@ alertmanager:
             requests:
               storage: 1Gi
 
-    resources:
-      requests:
-        cpu: 11m
-        memory: 37M
-      limits:
-        memory: 37M
+  resources:
+    requests:
+      cpu: 10m
+      memory: 50M
+    limits:
+      memory: 99M

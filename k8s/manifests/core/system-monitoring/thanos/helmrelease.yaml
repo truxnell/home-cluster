@@ -73,7 +73,7 @@ spec:
           memory: 64M
         limits:
           cpu: 15m
-          memory: 64M
+          memory: 83M
 
     compactor:
       enabled: true
@@ -84,9 +84,10 @@ spec:
       resources:
         requests:
           cpu: 15m
-          memory: 629M
+          memory: 183M
         limits:
-          memory: 629M
+          cpu: 29m
+          memory: 11G
 
     storegateway:
       enabled: true
@@ -97,10 +98,11 @@ spec:
         configmap.reloader.stakater.com/reload: *secret
       resources:
         requests:
-          cpu: 23m
-          memory: 64M
+          cpu: 15m
+          memory: 183M
         limits:
-          memory: 64M
+          cpu: 29m
+          memory: 11G
 
     ruler:
       enabled: false
