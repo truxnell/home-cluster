@@ -88,3 +88,10 @@ spec:
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: vector-agent
+
+    resources:
+      requests:
+        cpu: 23m
+        memory: 204M
+      limits:
+        memory: 204M

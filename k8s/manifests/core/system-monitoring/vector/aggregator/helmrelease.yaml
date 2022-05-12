@@ -87,13 +87,14 @@ spec:
             - "udmp_logs"
           source: |-
             .timestamp=null
+            .appname = replace!(.appname, "\"", "")
 
         talos_kernel_logs_xform:
           type: remap
           inputs:
             - talos_kernel_logs
           source: |-
-            .__host, err = replace(.__host, "10.8.20.31", "durandal")
+            .__host = replace!(.__host, "10.8.20.31", "durandal")
             .__host = replace(.__host, "10.8.20.32", "tycho")
             .__host = replace(.__host, "10.8.20.33", "leela")
             .__host = replace(.__host, "10.8.20.40", "xerxes")
@@ -155,7 +156,7 @@ spec:
           encoding:
             codec: json
           labels:
-            hostname: udmprp
+            hostname: udmpro
             service: >-
               {{`"{{ appname }}"`}}
 
@@ -197,6 +198,13 @@ spec:
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: vector-aggregator
+
+    resources:
+      requests:
+        cpu: 49m
+        memory: 127M
+      limits:
+        memory: 127M
 
   postRenderers:
     - kustomize:
