@@ -54,7 +54,7 @@ spec:
 
     primary:
       extendedConfiguration: |
-        shared_buffers = 1024MB
+        shared_buffers = 256MB
         max_wal_size = 2048
         min_wal_size = 160
 
@@ -68,11 +68,10 @@ spec:
 
       resources:
         requests:
-          cpu: 35m
-          memory: 9149M
+          cpu: 22m
+          memory: 256M
         limits:
-          cpu: 35m
-          memory: 9149M
+          memory: 5129M
 
       # commonAnnotations: # FIXME
       #   prometheus.io/probe: "true"
