@@ -64,61 +64,53 @@ spec:
 
       resources:
         mgr:
-          limits:
-            # cpu: "500m"
-            memory: "1Gi"
           requests:
-            # cpu: "250m"
-            memory: "512Mi"
+            cpu: "125m"
+            memory: "549M"
+          limits:
+            memory: "1219M"
         mon:
-          limits:
-            # cpu: "1000m"
-            memory: "2Gi"
           requests:
-            # cpu: "500m"
-            memory: "1Gi"
+            cpu: "49m"
+            memory: "477M"
+          limits:
+            memory: "1059M"
         osd:
-          limits:
-            # cpu: "1000m"
-            memory: "4Gi"
           requests:
-            # cpu: "500m"
-            memory: "4Gi"
+            cpu: "442m"
+            memory: "2678M"
+          limits:
+            memory: "5944M"
         prepareosd:
-          limits:
-            # cpu: "250m"
-            memory: "200Mi"
           requests:
-            # cpu: "250m"
+            cpu: "250m"
             memory: "50Mi"
+          limits:
+            memory: "200Mi"
         mgr-sidecar:
-          limits:
-            # cpu: "250m"
-            memory: "100Mi"
           requests:
-            # cpu: "100m"
-            memory: "40Mi"
+            cpu: "49m"
+            memory: "94M"
+          limits:
+            memory: "208M"
         crashcollector:
-          limits:
-            # cpu: "250m"
-            memory: "60Mi"
           requests:
-            # cpu: "100m"
-            memory: "60Mi"
+            cpu: "15m"
+            memory: "64M"
+          limits:
+            memory: "64M"
         logcollector:
-          limits:
-            # cpu: "250m"
-            memory: "1Gi"
           requests:
-            # cpu: "100m"
-            memory: "100Mi"
+            cpu: "100m"
+            memory: "100M"
+          limits:
+            memory: "1G"
         cleanup:
-          limits:
-            # cpu: "250m"
-            memory: "1Gi"
           requests:
-            # cpu: "250m"
-            memory: "100Mi"
+            cpu: "250m"
+            memory: "100M"
+          limits:
+            memory: "1G"
 
       dashboard:
         enabled: true
@@ -217,4 +209,34 @@ spec:
             csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
             csi.storage.k8s.io/fstype: ext4
 
-    cephObjectStores: []
+    cephObjectStores:
+      - name: ceph-objectstore
+        spec:
+          metadataPool:
+            failureDomain: host
+            replicated:
+              size: 3
+          dataPool:
+            failureDomain: host
+            erasureCoded:
+              dataChunks: 2
+              codingChunks: 1
+          preservePoolsOnDelete: true
+          gateway:
+            port: 80
+            resources:
+              requests:
+                cpu: 1000m
+                memory: 1Gi
+              limits:
+                memory: 2Gi
+            instances: 1
+          healthCheck:
+            bucket:
+              interval: 60s
+        storageClass:
+          enabled: true
+          name: ceph-bucket
+          reclaimPolicy: Delete
+          parameters:
+            region: us-east-1
