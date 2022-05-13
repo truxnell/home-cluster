@@ -105,28 +105,9 @@ spec:
 
     resources:
       requests:
-        cpu: 20m
-        memory: 2000Mi
+        cpu: 345m
+        memory: 5251M
         gpu.intel.com/i915: 1
       limits:
-        memory: 10000Mi
+        memory: 10000M
         gpu.intel.com/i915: 1
-
-    addons:
-      promtail:
-        enabled: true
-        image:
-          repository: grafana/promtail
-          tag: 2.5.0
-        loki: http://loki.system-monitoring.cluster.local:3100/loki/api/v1/push
-        logs:
-          - name: promtail/plex
-            path: "/config/Library/Application Support/Plex Media Server/Logs/*.log"
-          - name: promtail/plex/plugins
-            path: "/config/Library/Application Support/Plex Media Server/Logs/PMS Plugin Logs/*.log"
-        volumeMounts:
-          - name: config
-            mountPath: /config
-            readOnly: true
-        securityContext:
-          runAsUser: 0
