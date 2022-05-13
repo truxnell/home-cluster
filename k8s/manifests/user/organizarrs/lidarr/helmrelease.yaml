@@ -104,10 +104,10 @@ spec:
 
     resources:
       requests:
-        cpu: 126m
-        memory: 1556M
+        cpu: 10m
+        memory: 764M
       limits:
-        memory: 1556M
+        memory: 1873M
 
     metrics:
       enabled: true

@@ -106,10 +106,10 @@ spec:
 
     resources:
       requests:
-        cpu: 23m
-        memory: 814M
+        cpu: 10m
+        memory: 512M
       limits:
-        memory: 814M
+        memory: 974M
 
     prometheus:
       podMonitor:
