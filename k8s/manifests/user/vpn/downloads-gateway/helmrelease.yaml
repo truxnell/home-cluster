@@ -56,10 +56,9 @@ spec:
 
     resources:
       requests:
-        cpu: 11m
+        cpu: 10m
         memory: 22M
       limits:
-        cpu: 11m
         memory: 22M
 
     webhook:
@@ -106,10 +105,10 @@ spec:
 
         resources:
           requests:
-            cpu: 11m
-            memory: 37M
+            cpu: 10m
+            memory: 22M
           limits:
-            memory: 37M
+            memory: 46M
 
         livenessProbe:
           exec:
