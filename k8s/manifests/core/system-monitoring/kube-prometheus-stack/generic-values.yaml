@@ -62,7 +62,7 @@ kube-state-metrics:
       cpu: 15m
       memory: 80M
     limits:
-      memory: 122wM
+      memory: 122M
 
 nodeExporter:
   enabled: true
