@@ -87,7 +87,6 @@ spec:
             - "udmp_logs"
           source: |-
             .timestamp=null
-            .appname = replace!(.appname, "\"", "")
 
         talos_kernel_logs_xform:
           type: remap
