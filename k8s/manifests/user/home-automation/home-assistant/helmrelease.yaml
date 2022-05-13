@@ -33,16 +33,31 @@ spec:
       tag: 2022.5.3
     env:
       TZ: "${TZ}"
+
     # envFrom:
     #   - secretRef:
     #       name: home-assistant
+    initContainers:
+      wait-for-pg:
+        image: busybox:latest
+        imagePullPolicy: IfNotPresent
+        command:
+          [
+            "sh",
+            "-c",
+            'until nc -vz postgresql.databases 5432; do echo "Waiting for postgresql..."; sleep 3; done;',
+          ]
+
     hostNetwork: true
+
     dnsPolicy: ClusterFirstWithHostNet
+
     service:
       main:
         type: LoadBalancer
         loadBalancerIP: "${LB_HOMEASSISTANT}"
         externalTrafficPolicy: Local
+
     ingress:
       main:
         enabled: true
@@ -125,16 +140,14 @@ spec:
             mountPath: /config
       resources:
         requests:
-          cpu: 11m
-          memory: 352M
+          cpu: 10m
+          memory: 110M
         limits:
-          cpu: 11m
-          memory: 352M
+          memory: 454M
 
     resources:
       requests:
-        cpu: 109m
-        memory: 549M
+        cpu: 48m
+        memory: 443M
       limits:
-        cpu: 109m
-        memory: 549M
+        memory: 709M
