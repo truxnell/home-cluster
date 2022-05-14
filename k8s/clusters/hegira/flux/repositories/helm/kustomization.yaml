@@ -26,6 +26,7 @@ resources:
   - ./prometheus-community-charts.yaml
   - ./rook-ceph-charts.yaml
   - ./stakater-charts.yaml
+  - ./trilio-charts.yaml
   - ./vector-charts.yaml
   - ./vmware-charts.yaml
   - ./vmware-tanzu-charts.yaml
