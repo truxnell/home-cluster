@@ -35,16 +35,16 @@ prometheusOperator:
     requests:
       cpu: 35m
       memory: 273M
-    limits:
-      memory: 326M
+    # limits:
+      # memory: 326M
 
   prometheusConfigReloader:
     resources:
       requests:
         cpu: 11m
         memory: 24M
-      limits:
-        memory: 32M
+      # limits:
+        # memory: 32M
 
 grafana:
   enabled: false
@@ -61,8 +61,8 @@ kube-state-metrics:
     requests:
       cpu: 15m
       memory: 80M
-    limits:
-      memory: 122M
+    # limits:
+    #   memory: 122M
 
 nodeExporter:
   enabled: true
@@ -81,8 +81,8 @@ prometheus-node-exporter:
     requests:
       cpu: 23m
       memory: 64M
-    limits:
-      memory: 64M
+    # limits:
+    #   memory: 64M
   tolerations:
     - effect: "NoExecute"
       operator: "Exists"
