@@ -45,9 +45,8 @@ prometheus:
       requests:
         cpu: 350m
         memory: 4744M
-      limits:
-        cpu: 350m
-        memory: 4744M
+      # limits:
+      # memory: 4744M
     thanos:
       image: quay.io/thanos/thanos:v0.26.0
       # renovate: datasource=docker depName=quay.io/thanos/thanos
