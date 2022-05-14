@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - tls-cert.yaml
   - helmrelease.yaml
-  # - license.sops.yaml
+  - license.sops.yaml
   # - secret-dex.sops.yaml
   # - rbac.yaml
