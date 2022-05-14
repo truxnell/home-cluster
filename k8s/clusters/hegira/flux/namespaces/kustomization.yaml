@@ -18,4 +18,5 @@ resources:
   - services.yaml
   - system-monitoring.yaml
   - testing.yaml
+  - trilio.yaml
   - vpn.yaml
