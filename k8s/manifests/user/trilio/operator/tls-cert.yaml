@@ -10,4 +10,4 @@ spec:
     name: letsencrypt-production
   secretName: trilio-cluster-0-tls
   dnsNames:
-    - trilio.${CLUSTER_NAME}.${INGRESS_DOMAIN}
+    - trilio.${EXTERNAL_DOMAIN}
