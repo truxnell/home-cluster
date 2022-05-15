@@ -119,10 +119,10 @@ spec:
         name: vuetorrent
         image: k8s.gcr.io/git-sync/git-sync:v3.5.0
         args:
-          - --repo https://github.com/WDaan/VueTorrent
-          - --branch master
-          - --dest /config/
-          - --wait 86400
+          - --repo "https://github.com/WDaan/VueTorrent"
+          - --branch "master"
+          - --dest "/config/"
+          - --wait "86400"
         volumeMounts:
           - name: config
             mountPath: /config
