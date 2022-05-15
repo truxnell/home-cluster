@@ -123,8 +123,8 @@ spec:
           - https://github.com/WDaan/VueTorrent
           - --branch
           - master
-          - --dest
-          - config
+          - --root
+          - /config
           - --wait
           - 86400
         volumeMounts:
