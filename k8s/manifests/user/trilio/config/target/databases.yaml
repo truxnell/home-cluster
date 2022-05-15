@@ -2,11 +2,11 @@
 apiVersion: "triliovault.trilio.io/v1"
 kind: "Target"
 metadata:
-  name: "nas"
+  name: "hyperion"
   namespace: "databases"
 spec:
   nfsCredentials:
-    nfsExport: "${NAS_ADDRESS}:/volume1/Backup/Kubernetes/trilio/cluster-0/downloads"
+    nfsExport: "${NAS_ADDRESS}:/volume1/backup/kurbenetes/trilio/databases"
   objectStoreCredentials:
     bucketName: ""
   thresholdCapacity: "512Gi"
