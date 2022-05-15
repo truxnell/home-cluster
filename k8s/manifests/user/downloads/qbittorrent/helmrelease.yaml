@@ -121,7 +121,7 @@ spec:
         image: curlimages/curl:7.76.1
         command:
           - /bin/sh
-          - -c;
+          - -c
           - |
             LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' https://github.com/WDaan/VueTorrent/releases/latest);
             LATEST_VERSION=$(echo $LATEST_RELEASE | sed -e 's/.*"tag_name":"\([^"]*\)".*/\1/');
