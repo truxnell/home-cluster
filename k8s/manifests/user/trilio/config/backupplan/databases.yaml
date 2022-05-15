@@ -28,7 +28,7 @@ spec:
     target:
       apiVersion: triliovault.trilio.io/v1
       kind: Target
-      name: nas
+      name: hyperion
       namespace: databases
 
   excludeResources:
