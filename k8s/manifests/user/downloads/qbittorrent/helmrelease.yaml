@@ -123,7 +123,8 @@ spec:
           - /bin/sh
           - -c
           - |
-            sleep 30
+            echo "Sleeping 240"
+            sleep 240
             echo "Getting latest version of vuetorrent"
             LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' https://github.com/WDaan/VueTorrent/releases/latest);
             LATEST_VERSION=$(echo $LATEST_RELEASE | sed -e 's/.*"tag_name":"\([^"]*\)".*/\1/');
