@@ -124,9 +124,9 @@ spec:
           - --branch
           - master
           - --dest
-          - conifg
+          - config
           - --wait
-          - "86400"
+          - 86400
         volumeMounts:
           - name: config
             mountPath: /config
