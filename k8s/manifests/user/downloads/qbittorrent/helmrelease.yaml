@@ -116,7 +116,7 @@ spec:
 
     initContainers:
       zzvuetorrent:
-        name: vuetorrent
+        name: zzvuetorrent
         # renovate: docker-image
         image: curlimages/curl:latest
         command:
