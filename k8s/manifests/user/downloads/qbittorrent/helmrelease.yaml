@@ -122,7 +122,7 @@ spec:
           GIT_SYNC_REPO: "https://github.com/WDaan/VueTorrent"
           GIT_SYNC_BRANCH: "master"
           GIT_SYNC_DEST: "/config/"
-          GIT_SYNC_WAIT: "86401"
+          GIT_SYNC_WAIT: "86402"
         volumeMounts:
           - name: config
             mountPath: /config
