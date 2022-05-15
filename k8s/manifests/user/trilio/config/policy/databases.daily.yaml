@@ -3,7 +3,7 @@ kind: "Policy"
 apiVersion: "triliovault.trilio.io/v1"
 metadata:
   name: "daily-schedule"
-  namespace: "downloads"
+  namespace: "databases"
 spec:
   type: "Schedule"
   scheduleConfig:
