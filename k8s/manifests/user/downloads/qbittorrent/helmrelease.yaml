@@ -134,6 +134,12 @@ spec:
           runAsUser: 568
           runAsGroup: 568
 
+    # To give vuetorrent time to download
+    startupProbe:
+      enabled: true
+      failureThreshold: 30
+      periodSeconds: 10
+
     metrics:
       enabled: true
       exporter:
