@@ -118,7 +118,7 @@ spec:
       vuetorrent:
         name: vuetorrent
         image: k8s.gcr.io/git-sync/git-sync:v3.5.0
-        env:
+        args:
           - --repo https://github.com/WDaan/VueTorrent
           - --branch master
           - --dest /config/
