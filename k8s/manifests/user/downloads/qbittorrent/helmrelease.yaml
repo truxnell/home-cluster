@@ -115,17 +115,20 @@ spec:
         initContainers: {}
 
     initContainers:
-      vuetorrent:
-        name: vuetorrent
+      zzvuetorrent:
+        name: zzvuetorrent
         # renovate: docker-image
         image: curlimages/curl:latest
         command:
           - /bin/sh
           - -c
           - |
-            echo "Sleeping 240"
-            sleep 240
+            if [ "$(curl -s https://am.i.mullvad.net/city)" != "${SECRET_WIREGUARD_CITY}" ];
+            echo "VPN down, exiting"
+            exit 1
+            fi
             echo "Getting latest version of vuetorrent"
+            sleep 20
             LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' https://github.com/WDaan/VueTorrent/releases/latest);
             LATEST_VERSION=$(echo $LATEST_RELEASE | sed -e 's/.*"tag_name":"\([^"]*\)".*/\1/');
             echo "Downloading vuetorrent $LATEST_VERSION"
