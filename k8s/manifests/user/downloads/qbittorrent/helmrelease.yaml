@@ -117,12 +117,12 @@ spec:
     additionalContainers:
       vuetorrent:
         name: vuetorrent
-        image: openweb/git-sync:latest
+        image: k8s.gcr.io/git-sync/git-sync:v3.5.0
         env:
-          GIT_SYNC_REPO: "https://github.com/WDaan/VueTorrent"
-          GIT_SYNC_BRANCH: "master"
-          GIT_SYNC_DEST: "/config/"
-          GIT_SYNC_WAIT: "86400"
+          - --repo https://github.com/WDaan/VueTorrent
+          - --branch master
+          - --dest /config/
+          - --wait 86400
         volumeMounts:
           - name: config
             mountPath: /config
