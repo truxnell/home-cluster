@@ -123,7 +123,7 @@ spec:
           - /bin/sh
           - -c
           - |
-            for i in {1..100}; do sleep 10; echo "Try mullvad"; if [ "$(curl -s https://am.i.mullvad.net/city)" = "${SECRET_WIREGUARD_CITY}" ]; then break; fi; done;
+            for i in {1..100}; do sleep 10; echo "Try mullvad $(curl -s https://am.i.mullvad.net/city)"; if [ "$(curl -s https://am.i.mullvad.net/city)" = "${SECRET_WIREGUARD_CITY}" ]; then break; fi; done;
             echo "Getting latest version of vuetorrent"
             sleep 20
             LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' https://github.com/WDaan/VueTorrent/releases/latest);
