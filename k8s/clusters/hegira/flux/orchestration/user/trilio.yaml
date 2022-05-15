@@ -12,3 +12,19 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: user-trilio-operator-target
+  namespace: flux-system
+spec:
+  interval: 5m
+  dependsOn:
+    - name: user-trilio-operator
+  path: "./k8s/manifests/user/trilio/config/target/"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
