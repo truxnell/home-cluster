@@ -118,7 +118,7 @@ spec:
       vuetorrent:
         name: vuetorrent
         # renovate: docker-image
-        image: busybox:1.28
+        image: curlimages/curl:latest
         command:
           - /bin/sh
           - -c
