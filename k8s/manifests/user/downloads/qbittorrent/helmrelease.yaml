@@ -117,7 +117,7 @@ spec:
     additionalContainers:
       vuetorrent:
         name: vuetorrent
-        image: curlimages/curl:latest
+        image: druid/git-sync
         args:
           - --repo https://github.com/WDaan/VueTorrent
           - --branch master
