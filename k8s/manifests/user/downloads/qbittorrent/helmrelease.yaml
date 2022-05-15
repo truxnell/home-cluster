@@ -121,7 +121,8 @@ spec:
         args:
           - --repo https://github.com/WDaan/VueTorrent
           - --branch master
-          - --wait 30
+          - --dest /config/
+          - --wait 86400
         volumeMounts:
           - name: config
             mountPath: /config
