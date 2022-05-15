@@ -6,7 +6,7 @@ metadata:
   namespace: "databases"
 spec:
   nfsCredentials:
-    nfsExport: "${NAS_ADDRESS}:/volume1/backup/kurbenetes/trilio/databases"
+    nfsExport: "${NAS_ADDRESS}:/volume1/backup/kubernetes/trilio/databases/"
   objectStoreCredentials:
     bucketName: ""
   thresholdCapacity: "512Gi"
