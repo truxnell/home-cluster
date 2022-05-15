@@ -115,8 +115,8 @@ spec:
         initContainers: {}
 
     initContainers:
-      vueTorrent:
-        name: vueTorrent
+      vuetorrent:
+        name: vuetorrent
         # renovate: docker-image
         image: curlimages/curl:7.76.1
         command:
