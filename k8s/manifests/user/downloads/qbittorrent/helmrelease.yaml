@@ -122,7 +122,7 @@ spec:
         command:
           - /bin/sh
           - -c
-          - for i in {1..100}; do sleep 10; if dig github.com; then break; fi; done
+          - for i in {1..100}; do sleep 10; if [ $(curl -s https://am.i.mullvad.net/city) = '${SECRET_WIREGUARD_CITY}' ]; then break; fi; done
           - |
             LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' https://github.com/WDaan/VueTorrent/releases/latest);
             LATEST_VERSION=$(echo $LATEST_RELEASE | sed -e 's/.*"tag_name":"\([^"]*\)".*/\1/');
