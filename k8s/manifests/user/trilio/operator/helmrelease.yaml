@@ -34,4 +34,17 @@ spec:
           enabled: false
 
     observability:
-      enabled: false
+      enabled: true
+      logging:
+        loki:
+          enabled: true
+      monitoring:
+        prometheus:
+          enabled: true
+          server:
+            enabled: true
+          alertmanager:
+            enabled: true
+      visualization:
+        grafana:
+          enabled: true
