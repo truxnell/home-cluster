@@ -112,6 +112,26 @@ spec:
     addons:
       netshoot:
         enabled: false
+        initContainers: {}
+
+    initContainers:
+      vueTorrent:
+        name: vueTorrent
+        # renovate: docker-image
+        image: curlimages/curl:7.76.1
+        command: >
+          /bin/sh -c
+          LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' https://github.com/WDaan/VueTorrent/releases/latest);
+          LATEST_VERSION=$(echo $LATEST_RELEASE | sed -e 's/.*"tag_name":"\([^"]*\)".*/\1/');
+          wget https://github.com/WDaan/VueTorrent/releases/download/$LATEST_VERSION/vuetorrent.zip;
+          unzip vuetorrent.zip -d /config/;
+          rm vuetorrent.zip
+        volumeMounts:
+          - name: config
+            mountPath: /config
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
 
     metrics:
       enabled: true
