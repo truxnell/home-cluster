@@ -120,3 +120,79 @@ tasks:
     desc: Deletes failed pods
     cmds:
       - kubectl delete pods --field-selector status.phase=Failed -A --ignore-not-found=true
+
+  debug-volume:
+    desc: Attach a volume to a container for debugging, ex. VOLUME=zigbee2mqtt-config-v1 NAMESPACE=home task debug-volume
+    interactive: true
+    silent: true
+    cmds:
+      - |
+        kubectl run debug-{{.VOLUME}} -n {{.NAMESPACE}} -i --tty --rm --image=null --overrides='
+          {
+            "spec": {
+              "containers": [
+                {
+                  "name": "debug",
+                  "image": "docker.io/library/alpine:3.15",
+                  "command": [
+                    "/bin/sh"
+                  ],
+                  "stdin": true,
+                  "stdinOnce": true,
+                  "tty": true,
+                  "lifecycle": {
+                    "postStart": {
+                      "exec": {
+                        "command": [
+                          "/bin/sh",
+                          "-c",
+                          "apk add --no-cache curl vim"
+                        ]
+                      }
+                    }
+                  },
+                  "volumeMounts": [
+                    {
+                      "name": "backups",
+                      "mountPath": "/mnt/backups/"
+                    },
+                    {
+                      "name": "debug-volume",
+                      "mountPath": "/mnt/volume/"
+                    }
+                  ]
+                }
+              ],
+              "volumes": [
+                {
+                  "name": "backups",
+                  "nfs": {
+                    "server": '{{.NAS_ADDRESS | default "hyperion"}}',
+                    "path": '{{.NAS_PATH | default "/volume1/backups/"}}'
+                  }
+                },
+                {
+                  "name": "debug-volume",
+                  "persistentVolumeClaim": {
+                    "claimName": "{{.VOLUME}}"
+                  }
+                }
+              ],
+              "restartPolicy": "Never"
+            }
+          }'
+
+  debug-node:
+    desc: Create a privileged container on a node for debugging, ex. NODE=anvil task debug-node
+    interactive: true
+    cmds:
+      - |
+        kubectl run debug-{{.NODE}} -i --tty --rm --image="docker.io/library/alpine:3.15" --privileged --overrides='
+          {
+            "spec": {
+              "nodeSelector": {
+                "kubernetes.io/hostname": "{{.NODE}}"
+              },
+              "restartPolicy": "Never"
+            }
+          }'
