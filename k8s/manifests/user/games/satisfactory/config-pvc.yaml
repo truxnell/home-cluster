@@ -6,6 +6,7 @@ metadata:
   namespace: games
   labels:
     kasten.io/backup-volume: "enabled"
+    triliovault.trilio.io/backup: "true"
 spec:
   accessModes:
     - ReadWriteOnce
@@ -21,8 +22,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: satisfactory-gamedata
   namespace: games
-  labels:
-    kasten.io/backup-volume: "enabled"
 spec:
   accessModes:
     - ReadWriteOnce
