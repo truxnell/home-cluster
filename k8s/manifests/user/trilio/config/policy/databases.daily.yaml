@@ -8,4 +8,4 @@ spec:
   type: "Schedule"
   scheduleConfig:
     schedule:
-      - "30 2 * * *"
+      - "0 20 * * *"

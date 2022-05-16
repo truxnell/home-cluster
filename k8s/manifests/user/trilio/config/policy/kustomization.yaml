@@ -5,3 +5,21 @@ resources:
   - databases.daily.yaml
   - databases.retention.yaml
   - databases.weekly.yaml
+  - downloads.daily.yaml
+  - downloads.retention.yaml
+  - downloads.weekly.yaml
+  - games.daily.yaml
+  - games.retention.yaml
+  - games.weekly.yaml
+  - media.daily.yaml
+  - media.retention.yaml
+  - media.weekly.yaml
+  - organizarrs.daily.yaml
+  - organizarrs.retention.yaml
+  - organizarrs.weekly.yaml
+  - security.daily.yaml
+  - security.retention.yaml
+  - security.weekly.yaml
+  - services.daily.yaml
+  - services.retention.yaml
+  - services.weekly.yaml
