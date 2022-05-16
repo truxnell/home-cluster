@@ -1,0 +1,15 @@
+---
+apiVersion: "triliovault.trilio.io/v1"
+kind: "Target"
+metadata:
+  name: "hyperion"
+  namespace: "security"
+spec:
+  nfsCredentials:
+    nfsExport: "${NAS_ADDRESS}:/volume1/backup/kubernetes/trilio/security"
+    nfsOptions: nfsvers=4,rsize=8192,wsize=8192,nosuid
+  objectStoreCredentials:
+    bucketName: ""
+  thresholdCapacity: "512Gi"
+  type: "NFS"
+  vendor: "Other"

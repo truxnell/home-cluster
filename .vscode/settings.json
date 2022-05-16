@@ -56,7 +56,8 @@
   "conventionalCommits.scopes": [
     "vscode",
     "lidarr",
-    "ci"
+    "ci",
+    "trilio"
   ],
   "discord.enabled": true,
 
