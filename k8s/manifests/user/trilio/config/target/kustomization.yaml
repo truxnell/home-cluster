@@ -10,3 +10,4 @@ resources:
   - organizarrs.yaml
   - security.yaml
   - services.yaml
+  - trilio-dr.yaml
