@@ -28,7 +28,7 @@ spec:
   values:
     image:
       repository: node
-      tag: 14.15.1@sha256:d938c1761e3afbae9242848ffbb95b9cc1cb0a24d889f8bd955204d347a7266e
+      tag: slim@sha256:d938c1761e3afbae9242848ffbb95b9cc1cb0a24d889f8bd955204d347a7266e
 
     env:
       # -- Set the container timezone
