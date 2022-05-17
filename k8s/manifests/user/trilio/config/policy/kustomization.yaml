@@ -11,6 +11,9 @@ resources:
   - games.daily.yaml
   - games.retention.yaml
   - games.weekly.yaml
+  - home-automation.daily.yaml
+  - home-automation.retention.yaml
+  - home-automation.weekly.yaml
   - media.daily.yaml
   - media.retention.yaml
   - media.weekly.yaml

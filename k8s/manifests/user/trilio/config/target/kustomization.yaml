@@ -5,6 +5,7 @@ resources:
   - databases.yaml
   - downloads.yaml
   - games.yaml
+  - home-automation.yaml
   - license.sops.yaml
   - media.yaml
   - organizarrs.yaml
