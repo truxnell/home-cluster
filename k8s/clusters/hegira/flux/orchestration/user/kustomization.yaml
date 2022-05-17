@@ -6,7 +6,6 @@ resources:
   - ./downloads.yaml
   - ./games.yaml
   - ./home-automation.yaml
-  - ./kasten-io.yaml
   - ./kube-system.yaml
   - ./media.yaml
   - ./network-system.yaml

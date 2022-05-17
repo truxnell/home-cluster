@@ -5,7 +5,6 @@ metadata:
   name: tautulli-config-v1
   namespace: media
   labels:
-    kasten.io/backup-volume: "enabled"
     triliovault.trilio.io/backup: "true"
 spec:
   accessModes:

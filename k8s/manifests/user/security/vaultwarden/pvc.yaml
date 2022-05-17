@@ -5,7 +5,6 @@ metadata:
   name: vaultwarden-config-v1
   namespace: security
   labels:
-    kasten.io/backup-volume: "enabled"
     triliovault.trilio.io/backup: "true"
 spec:
   accessModes:
