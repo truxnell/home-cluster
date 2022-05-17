@@ -5,7 +5,6 @@ metadata:
   name: postgresql-config-v1
   namespace: databases
   labels:
-    kasten.io/backup-volume: "enabled"
     triliovault.trilio.io/backup: "true"
 spec:
   accessModes:
