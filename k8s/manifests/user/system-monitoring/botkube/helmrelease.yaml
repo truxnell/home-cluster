@@ -77,7 +77,7 @@ spec:
             include:
               - all
             ignore:
-              - trilio
+              - kasten-io
           events:
             - create
             - delete
