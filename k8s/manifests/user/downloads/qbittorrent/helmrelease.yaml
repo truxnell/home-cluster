@@ -35,6 +35,20 @@ spec:
 
     hostname: qbittorrent
 
+    initContainers:
+      copy-config:
+        image: busybox:latest
+        command:
+          - "/bin/sh"
+          - -c
+        args:
+          - cp /data/configfiles/* /data/config/; chown -R 568:568 /data/config
+        volumeMounts:
+          - name: config
+            mountPath: /data/config
+          - name: configfiles
+            mountPath: /data/configfiles
+
     podAnnotations:
       setGateway: "true"
 
@@ -62,9 +76,27 @@ spec:
       USE_PROFILE: "true"
 
     persistence:
+      cache:
+        enabled: true
+        type: emptyDir
+        mountPath: /config/qBittorrent/cache
+
       config:
         enabled: true
+        type: emptyDir
+        mountPath: /config/qBittorrent/config
+
+      configfiles:
+        enabled: true
+        type: configMap
+        name: qbittorrent-config
+        mountPath: "-"
+
+      data:
+        enabled: true
         existingClaim: qbittorrent-config-v1
+        mountPath: /config/qBittorrent/data
+
       nfs-nas-media:
         enabled: true
         type: custom
