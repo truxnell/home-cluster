@@ -6,7 +6,7 @@ metadata:
   namespace: home
   labels:
     kasten.io/backup-volume: "enabled"
-    triliovault.trilio.io/backup: "true"
+    kasten.io/backup-volume: "enabled"
 spec:
   accessModes:
     - ReadWriteOnce

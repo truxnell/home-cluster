@@ -40,4 +40,4 @@ spec:
   includeResources:
     labelSelector:
       - matchLabels:
-          triliovault.trilio.io/backup: "true"
+          kasten.io/backup-volume: "enabled"

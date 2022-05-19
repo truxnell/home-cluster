@@ -58,7 +58,8 @@
     "lidarr",
     "ci",
     "trilio",
-    "qbittorrent"
+    "qbittorrent",
+    "k10"
   ],
   "discord.enabled": true,
 
