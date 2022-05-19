@@ -1,0 +1,17 @@
+{
+  "Movies": {
+      "save_path": "/media/downloads/qbittorrent/Movies"
+  },
+  "Music": {
+      "save_path": "/media/downloads/qbittorrent/Music"
+  },
+  "Seeding": {
+      "save_path": "/media/downloads/qbittorrent/Seeding"
+  },
+  "Series": {
+      "save_path": "/media/downloads/qbittorrent/Series"
+  },
+  "Special": {
+      "save_path": "/media/downloads/qbittorrent/Special"
+  }
+}

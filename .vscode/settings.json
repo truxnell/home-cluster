@@ -47,7 +47,7 @@
   "favorites.sortOrder": "MANUAL",
   "prettier.configPath": ".github/linters/.prettierrc.yaml",
   "prettier.ignorePath": ".github/linters/.prettierignore",
-  "editor.fontFamily": "MesloLGS NF",
+  "editor.fontFamily": "FiraCode Nerd Font Mono, 'Droid Sans Mono', 'monospace', monospace",
   "editor.fontLigatures": true,
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs":"active",
@@ -57,7 +57,8 @@
     "vscode",
     "lidarr",
     "ci",
-    "trilio"
+    "trilio",
+    "qbittorrent"
   ],
   "discord.enabled": true,
 
