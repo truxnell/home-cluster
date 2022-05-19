@@ -5,6 +5,7 @@ metadata:
   name: nzbget-config
   namespace: downloads
   labels:
+    kasten.io/backup-volume: "enabled"
     triliovault.trilio.io/backup: "true"
 spec:
   accessModes:

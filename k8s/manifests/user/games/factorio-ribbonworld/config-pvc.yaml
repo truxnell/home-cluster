@@ -5,6 +5,7 @@ metadata:
   name: factorio-ribbonworld-config-v1
   namespace: games
   labels:
+    kasten.io/backup-volume: "enabled"
     triliovault.trilio.io/backup: "true"
 spec:
   accessModes:
