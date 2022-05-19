@@ -5,6 +5,7 @@ metadata:
   name: satisfactory-data
   namespace: games
   labels:
+    kasten.io/backup-volume: "enabled"
     triliovault.trilio.io/backup: "true"
 spec:
   accessModes:

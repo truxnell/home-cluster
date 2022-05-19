@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: k10-backups
+spec:
+  storageClassName: k10-backup-nfs
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: "${NAS_ADDRESS}"
+    path: /volume1/backup/kubernetes/k10/

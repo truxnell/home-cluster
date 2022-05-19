@@ -5,6 +5,7 @@ metadata:
   name: hajimari-config-v1
   namespace: services
   labels:
+    kasten.io/backup-volume: "enabled"
     triliovault.trilio.io/backup: "true"
 spec:
   accessModes:

@@ -5,6 +5,7 @@ metadata:
   name: node-red-config-v1
   namespace: home-automation
   labels:
+    kasten.io/backup-volume: "enabled"
     triliovault.trilio.io/backup: "true"
 spec:
   accessModes:
