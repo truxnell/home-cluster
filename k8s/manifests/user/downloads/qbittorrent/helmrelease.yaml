@@ -51,6 +51,7 @@ spec:
 
     podAnnotations:
       setGateway: "true"
+      configmap.reloader.stakater.com/reload: qbittorrent-config
 
     settings:
       automaticPortSetup: false
