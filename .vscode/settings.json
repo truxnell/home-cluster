@@ -59,7 +59,8 @@
     "ci",
     "trilio",
     "qbittorrent",
-    "k10"
+    "k10",
+    "flux"
   ],
   "discord.enabled": true,
 
