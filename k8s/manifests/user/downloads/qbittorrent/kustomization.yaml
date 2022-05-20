@@ -5,11 +5,3 @@ namespace: downloads
 resources:
   - ./config-pvc.yaml
   - ./helmrelease.yaml
-configMapGenerator:
-  - name: qbittorrent-config
-    files:
-      - config/categories.json
-      - config/qBittorrent.conf
-      - config/watched_folders.json
-generatorOptions:
-  disableNameSuffixHash: true

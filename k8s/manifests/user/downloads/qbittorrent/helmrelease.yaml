@@ -35,69 +35,20 @@ spec:
 
     hostname: qbittorrent
 
-    initContainers:
-      copy-config:
-        image: busybox:latest
-        command:
-          - "/bin/sh"
-          - -c
-        args:
-          - cp /data/configfiles/* /data/config/; chown -R 568:568 /data/config
-        volumeMounts:
-          - name: config
-            mountPath: /data/config
-          - name: configfiles
-            mountPath: /data/configfiles
-
     podAnnotations:
       setGateway: "true"
-      configmap.reloader.stakater.com/reload: qbittorrent-config
 
     settings:
       automaticPortSetup: false
 
-    # Just spin & wait forever
-    command:
-      - /bin/bash
-      - -c
-      - --
-    args:
-      - "while true; do sleep 30; done;"
-    probes:
-      liveness:
-        enabled: false
-      readiness:
-        enabled: false
-      startup:
-        enabled: false
-
     env:
       TZ: "${TZ}"
       UMASK: "022"
-      USE_PROFILE: "true"
 
     persistence:
-      cache:
-        enabled: true
-        type: emptyDir
-        mountPath: /config/qBittorrent/cache
-
       config:
         enabled: true
-        type: emptyDir
-        mountPath: /config/qBittorrent/config
-
-      configfiles:
-        enabled: true
-        type: configMap
-        name: qbittorrent-config
-        mountPath: "-"
-
-      data:
-        enabled: true
         existingClaim: qbittorrent-config-v1
-        mountPath: /config/qBittorrent/data
-
       nfs-nas-media:
         enabled: true
         type: custom
@@ -163,25 +114,25 @@ spec:
         enabled: false
         initContainers: {}
 
-    # additionalContainers:
-    #   vuetorrent:
-    #     name: vuetorrent
-    #     image: k8s.gcr.io/git-sync/git-sync:v3.5.0
-    #     args:
-    #       - --repo
-    #       - https://github.com/WDaan/VueTorrent
-    #       - --branch
-    #       - latest-release
-    #       - --root
-    #       - /config
-    #       - --wait
-    #       - "86400"
-    #     volumeMounts:
-    #       - name: config
-    #         mountPath: /config
-    #     securityContext:
-    #       runAsUser: 568
-    #       runAsGroup: 568
+    additionalContainers:
+      vuetorrent:
+        name: vuetorrent
+        image: k8s.gcr.io/git-sync/git-sync:v3.5.0
+        args:
+          - --repo
+          - https://github.com/WDaan/VueTorrent
+          - --branch
+          - latest-release
+          - --root
+          - /config
+          - --wait
+          - "86400"
+        volumeMounts:
+          - name: config
+            mountPath: /config
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
 
     # To give vuetorrent time to download
     startupProbe:
