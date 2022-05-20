@@ -14,7 +14,7 @@ spec:
     server: "${NAS_ADDRESS}"
     path: /volume1/backup/kubernetes/k10/
   mountOptions:
-    - nfsvers=4.2
+    - nfsvers=4.1
     - nconnect=8
     - hard
     - noatime
