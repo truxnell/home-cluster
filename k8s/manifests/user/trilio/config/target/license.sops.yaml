@@ -1,9 +1,0 @@
----
-# TrilioVault License
-apiVersion: triliovault.trilio.io/v1
-kind: License
-metadata:
-    name: trilio-license-1
-    namespace: trilio
-spec:
-    key: xLkNDgwKD3jajVHBjoIwFLz3K5rsuVlaC4IJBxc9bFZdE8T7ozyyTbCSUsz69wtyWAPGOKem8zLz3sxbCo5u4Uq5pF60kHIhOBWeECSxCE6fzQoc0n/EPck8n3FJ1oXuJ+gI8Qc0WhFQTl+QTlhnWySVVmgaPKJt7hViQbagjUMDRuH6t9b2OizQ+85vviFJzqcazHWibN6BMrrrLlpWFZjuPWyya0852u8yazq7u3nGSYr2gvZzNZYKUYQ4j4BBJAWTggPLeRAw9DmW0s9l6QUkXe/oA8TdPwtwjp4fKlbMAmCco2JQoM/yGfhCRSIMSyCbIYWxfXw4LrPNYdAIPHyqcQsJJj3c57VvrfqBBp9UmapzjQ9OUVXbuC61ni7IV5tjNgnrxbQSqEFpN64t5oFHk33W/AEsW587MC0CFQC6MCxXM9DnZDrFzVhIYI6d1JzMCwIUBj1ga351XErSr467VN/yV8XvAVI=X02fj

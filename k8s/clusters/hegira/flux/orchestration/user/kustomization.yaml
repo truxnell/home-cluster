@@ -14,5 +14,4 @@ resources:
   - ./security.yaml
   - ./services.yaml
   - ./system-monitoring.yaml
-  - ./trilio.yaml
   - ./vpn.yaml
