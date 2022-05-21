@@ -58,7 +58,8 @@ spec:
         proxy-body-size: "100M"
         ssl-protocols: "TLSv1.3 TLSv1.2"
         use-forwarded-headers: "true"
-
+        location-snippet: |
+          add_header X-Clacks-Overhead "GNU Terry Pratchett"
       metrics:
         enabled: true
         serviceMonitor:
