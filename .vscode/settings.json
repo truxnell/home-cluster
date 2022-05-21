@@ -60,7 +60,8 @@
     "trilio",
     "qbittorrent",
     "k10",
-    "flux"
+    "flux",
+    "ingress-nginx"
   ],
   "discord.enabled": true,
 
