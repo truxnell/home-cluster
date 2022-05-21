@@ -58,8 +58,11 @@ spec:
         proxy-body-size: "100M"
         ssl-protocols: "TLSv1.3 TLSv1.2"
         use-forwarded-headers: "true"
+        # The below X-Clacks-Overehad is a do-nothing header
+        # That is simply a memorarium for Sir Terry Pratchett
+        # Ref: https://xclacksoverhead.org/home/about
         location-snippet: |
-          add_header X-Clacks-Overhead "GNU Terry Pratchett"
+          add_header X-Clacks-Overhead "GNU Terry Pratchett" always;
       metrics:
         enabled: true
         serviceMonitor:
