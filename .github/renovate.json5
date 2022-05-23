@@ -27,28 +27,28 @@
   "suppressNotifications": ["prIgnoreNotification"],
   "rebaseWhen": "conflicted",
   // Set up Renovate Managers
-  "helmv3": {
-    "fileMatch": ["k8s/charts/.+/Chart\\.ya?ml$"]
-  },
-  "helm-values": {
-    "fileMatch": [
-      "k8s/manifests/.+/helmrelease\\.ya?ml$",
-      "k8s/global/.+/helmrelease\\.ya?ml$"
-    ]
-  },
-  "kubernetes": {
-    "fileMatch": [
-      "k8s/manifests/.+\\.ya?ml$",
-      "k8s/global/.+\\.ya?ml$"
-    ]
-  },
-  "flux": {
-    "fileMatch": [
-      "k8s/manifests/.+\\.ya?ml$",
-      "k8s/global/.+\\.ya?ml$",
-      "k8s/clusters/.+\\.ya?ml$"
-    ]
-   },
+  //"helmv3": {
+  //  "fileMatch": ["k8s/charts/.+/Chart\\.ya?ml$"]
+  //},
+  //"helm-values": {
+  //  "fileMatch": [
+  //    "k8s/manifests/.+/helmrelease\\.ya?ml$",
+  //    "k8s/global/.+/helmrelease\\.ya?ml$"
+  //  ]
+  //},
+  //"kubernetes": {
+  //  "fileMatch": [
+  //    "k8s/manifests/.+\\.ya?ml$",
+  //    "k8s/global/.+\\.ya?ml$"
+  //  ]
+  //},
+  //"flux": {
+  //  "fileMatch": [
+  //    "k8s/manifests/.+\\.ya?ml$",
+  //    "k8s/global/.+\\.ya?ml$",
+  //    "k8s/clusters/.+\\.ya?ml$"
+  //  ]
+  // },
   "regexManagers": [
     // regexManager to read and process GitHub release artifacts
     {
