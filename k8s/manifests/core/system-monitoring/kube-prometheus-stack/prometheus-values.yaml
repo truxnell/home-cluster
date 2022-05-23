@@ -64,8 +64,7 @@ prometheus:
         static_configs:
           - targets:
               - ${NAS_ADDRESS}:9100
-            labels:
-              app: "synology"
+              - "technocore.${INTERNAL_DOMAIN}"
 
       - job_name: minio
         honor_timestamps: true
@@ -86,13 +85,12 @@ prometheus:
           password: "${SECRET_PIKVM_PASSWORD}"
         static_configs:
           - targets:
-              - "pikvm.${INTERNAL_DOMAIN}"
 
-      # - job_name: node-exporter
-      #   honor_timestamps: true
-      #   static_configs:
-      #     - targets:
-      # - "pikvm.${INTERNAL_DOMAIN}:9100" # FIXME (use same as hyperion above?)
+      - job_name: node-exporter
+        honor_timestamps: true
+        static_configs:
+          - targets:
+      - "pikvm.${INTERNAL_DOMAIN}:9100"
 
       - job_name: coredns
         honor_timestamps: true
