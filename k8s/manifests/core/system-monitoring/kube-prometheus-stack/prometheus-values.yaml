@@ -92,7 +92,7 @@ prometheus:
           password: "${SECRET_PIKVM_PASSWORD}"
         static_configs:
           - targets:
-              - "technocore.${SECRET_PRIVATE_DOMAIN}"
+              - "technocore.${INTERNAL_DOMAIN}"
 
       - job_name: coredns
         scrape_interval: 1m
