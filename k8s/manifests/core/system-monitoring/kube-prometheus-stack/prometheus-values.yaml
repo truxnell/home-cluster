@@ -92,14 +92,11 @@ prometheus:
           password: "${SECRET_PIKVM_PASSWORD}"
         static_configs:
           - targets:
-
-      - job_name: node-exporter
-        honor_timestamps: true
-        static_configs:
-          - targets:
-      - "pikvm.${INTERNAL_DOMAIN}:9100"
+              - "technocore.${SECRET_PRIVATE_DOMAIN}"
 
       - job_name: coredns
+        scrape_interval: 1m
+        scrape_timeout: 10s
         honor_timestamps: true
         static_configs:
           - targets:
