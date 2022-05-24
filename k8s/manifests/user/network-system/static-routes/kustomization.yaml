@@ -6,6 +6,5 @@ resources:
   - unifi
   - brewpiless # FIXME
   - prusa
-  - pikvm
   - brother-printer
   - minio
