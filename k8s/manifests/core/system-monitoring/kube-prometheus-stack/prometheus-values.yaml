@@ -64,6 +64,13 @@ prometheus:
         static_configs:
           - targets:
               - ${NAS_ADDRESS}:9100
+
+      - job_name: node-exporter
+        scrape_interval: 1m
+        scrape_timeout: 10s
+        honor_timestamps: true
+        static_configs:
+          - targets:
               - "technocore.${INTERNAL_DOMAIN}"
 
       - job_name: minio
