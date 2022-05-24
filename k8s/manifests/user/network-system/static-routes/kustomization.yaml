@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - hyperion
   - unifi
-  # - brewpiless # FIXME
+  - brewpiless # FIXME
   - prusa
   - pikvm
   - brother-printer
