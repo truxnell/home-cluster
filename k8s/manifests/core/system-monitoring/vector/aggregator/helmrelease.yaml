@@ -52,6 +52,11 @@ spec:
           type: vector
           version: "2"
 
+        journal_logs:
+          type: vector
+          address: 0.0.0.0:6001
+          version: "2"
+
         talos_kernel_logs:
           address: 0.0.0.0:6050
           type: socket
@@ -114,6 +119,22 @@ spec:
 
       # Sinks
       sinks:
+        loki_journal:
+          type: loki
+          inputs:
+            - journal_logs
+          endpoint: http://loki.system-monitoring:3100
+          encoding:
+            codec: json
+          batch:
+            max_bytes: 2049000
+          out_of_order_action: accept
+          remove_label_fields: true
+          remove_timestamp: true
+          labels:
+            hostname: >-
+              {{`{{ host }}`}}
+
         loki_kubernetes:
           type: loki
           inputs:
