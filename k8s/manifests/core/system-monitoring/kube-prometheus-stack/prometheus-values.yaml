@@ -102,7 +102,7 @@ prometheus:
           apikey: ${SECRET_OCTOPRINT_APIKEY}
         static_configs:
           - targets:
-              - "prusa.${INTERNAL_DOMAIN}"
+              - "prusa.${INTERNAL_DOMAIN}:5000"
 
       - job_name: coredns
         scrape_interval: 1m
