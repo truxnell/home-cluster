@@ -92,3 +92,13 @@ spec:
         memory: 1555M
       limits:
         memory: 8006M
+
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - tycho
