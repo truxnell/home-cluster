@@ -94,6 +94,16 @@ prometheus:
           - targets:
               - "technocore.${INTERNAL_DOMAIN}"
 
+      - job_name: "octoprint"
+        scrape_interval: 1m
+        scrape_timeout: 10s
+        metrics_path: "/plugin/prometheus_exporter/metrics"
+        params:
+          apikey: ${SECRET_OCTOPRINT_APIKEY}
+        static_configs:
+          - targets:
+              - "prusa.${INTERNAL_DOMAIN}"
+
       - job_name: coredns
         scrape_interval: 1m
         scrape_timeout: 10s
