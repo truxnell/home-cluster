@@ -95,10 +95,10 @@ spec:
 
     affinity:
       nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
+        preferedDuringSchedulingIgnoredDuringExecution:
           nodeSelectorTerms:
             - matchExpressions:
                 - key: kubernetes.io/hostname
                   operator: In
                   values:
-                    - tycho
+                    - icarus
