@@ -85,8 +85,6 @@ prometheus:
         #   password: "${SECRET_PIKVM_PASSWORD}"
       - job_name: pikvm
         metrics_path: /api/export/prometheus/metrics
-        tls_config:
-          insecure_skip_verify: true
         basic_auth:
           username: "${SECRET_PIKVM_USERNAME}"
           password: "${SECRET_PIKVM_PASSWORD}"
@@ -98,6 +96,8 @@ prometheus:
         scrape_interval: 1m
         scrape_timeout: 10s
         metrics_path: "/plugin/prometheus_exporter/metrics"
+        tls_config:
+          insecure_skip_verify: true
         params:
           apikey: ${SECRET_OCTOPRINT_APIKEY}
         static_configs:
