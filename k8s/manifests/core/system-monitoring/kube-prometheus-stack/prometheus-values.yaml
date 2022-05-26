@@ -99,7 +99,7 @@ prometheus:
         tls_config:
           insecure_skip_verify: true
         params:
-          apikey: "${SECRET_OCTOPRINT_APIKEY}"
+          apikey: ['__${SECRET_OCTOPRINT_APIKEY__']
         static_configs:
           - targets:
               - "prusa.${INTERNAL_DOMAIN}:5000"
