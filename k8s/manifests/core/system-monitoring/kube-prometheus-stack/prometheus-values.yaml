@@ -98,8 +98,6 @@ prometheus:
         metrics_path: "/plugin/prometheus_exporter/metrics"
         tls_config:
           insecure_skip_verify: true
-        params:
-          apikey: ['__${SECRET_OCTOPRINT_APIKEY}__']
         static_configs:
           - targets:
               - "prusa.${INTERNAL_DOMAIN}:5000"
