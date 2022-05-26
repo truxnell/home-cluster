@@ -87,8 +87,9 @@ spec:
           - host: &host "obsidian-db.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
+                pathType: Prefix
         tls:
-          - secretName: obsidian-db-tls
+          - secretName: obsidian.tls
             hosts:
               - *host
 
