@@ -98,7 +98,7 @@ prometheus:
         scrape_timeout: 10s
         metrics_path: "/plugin/prometheus_exporter/metrics"
         params:
-          apikey: "'${SECRET_OCTOPRINT_APIKEY}'"
+          apikey: ["${SECRET_OCTOPRINT_APIKEY}"]
         tls_config:
           insecure_skip_verify: true
         static_configs:
