@@ -63,7 +63,9 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: plex
-          hajimari.io/appName: plex # TODO #942 fix hajimari ingress to /web/index (base is 401)
+          hajimari.io/appName: plex
+          hajimari.io/url: "https://plex.${EXTERNAL_DOMAIN}/web/"
+
         hosts:
           - host: "plex.${EXTERNAL_DOMAIN}"
             paths:
