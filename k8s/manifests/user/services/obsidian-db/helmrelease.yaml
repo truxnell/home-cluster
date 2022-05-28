@@ -94,9 +94,10 @@ spec:
             hosts:
               - *host
 
-    # resources: # FIXME #1255
-    #   requests:
-    #     cpu: 23m
-    #     memory: 79M
-    #   limits:
-    #     memory: 79M
+    resources:
+      requests:
+        cpu: 93m
+        memory: 145M
+      limits:
+        cpu: 93m
+        memory: 145M
