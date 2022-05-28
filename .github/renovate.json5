@@ -9,12 +9,12 @@
     ":separatePatchReleases",
     "docker:enableMajor",
     ":enablePreCommit",
-    // "github>Truxnell/home-cluster//.github/renovate/commitMessage",
-    // "github>Truxnell/home-cluster//.github/renovate/labels",
-    // "github>Truxnell/home-cluster//.github/renovate/semanticCommits",
-    // "github>Truxnell/home-cluster//.github/renovate/allowedVersions",
-    // "github>Truxnell/home-cluster//.github/renovate/autoMerge",
-    // "github>Truxnell/home-cluster//.github/renovate/updateSchedule",
+    "github>Truxnell/home-cluster//.github/renovate/commitMessage",
+    "github>Truxnell/home-cluster//.github/renovate/labels",
+    "github>Truxnell/home-cluster//.github/renovate/semanticCommits",
+    "github>Truxnell/home-cluster//.github/renovate/allowedVersions",
+    "github>Truxnell/home-cluster//.github/renovate/autoMerge",
+    "github>Truxnell/home-cluster//.github/renovate/updateSchedule",
   ],
   platform: "github",
   username: "trux-bot[bot]",
@@ -46,42 +46,42 @@
       "k8s/clusters/.+\\.ya?ml$",
     ],
   },
-  // regexManagers: [
-  //   // regexManager to read and process GitHub release artifacts
-  //   {
-  //     fileMatch: ["k8s/clusters/.+\\.ya?ml$", "k8s/global/.+\\.ya?ml$"],
-  //     matchStrings: [
-  //       "datasource=(?<datasource>.*?)\n *url: https://github\\.com/(?<depName>.*?)\\.git\n *ref:\n *tag: (?<currentValue>.*)\n",
-  //       'datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_version: "(?<currentValue>.*)"\n',
-  //       'datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_VERSION="(?<currentValue>.*)"\n',
-  //     ],
-  //     datasourceTemplate: "github-releases",
-  //     depNameTemplate: "{{org}}/{{repo}}",
-  //   },
-  //   // Generic Regex Manager
-  //   {
-  //     fileMatch: ["k8s/clusters/.+\\.ya?ml$", "k8s/global/.+\\.ya?ml$"],
-  //     matchStrings: [
-  //       "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<currentValue>.*=?)",
-  //     ],
-  //     versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
-  //     registryUrlTemplate: "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}",
-  //   },
-  //   // Generic Docker image Regex manager
-  //   {
-  //     fileMatch: [
-  //       "k8s/clusters/.+\\.ya?ml$",
-  //       "k8s/global/.+\\.ya?ml$",
-  //       "k8s/talos/.+\\.ya?ml$",
-  //     ],
-  //     matchStrings: [
-  //       "# renovate: docker-image( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<depName>.*?):(?<currentValue>.*=?)",
-  //     ],
-  //     datasourceTemplate: "docker",
-  //     versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}docker{{/if}}",
-  //     registryUrlTemplate: "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}",
-  //   },
-  // ],
+  regexManagers: [
+    // regexManager to read and process GitHub release artifacts
+    {
+      fileMatch: ["k8s/clusters/.+\\.ya?ml$", "k8s/global/.+\\.ya?ml$"],
+      matchStrings: [
+        "datasource=(?<datasource>.*?)\n *url: https://github\\.com/(?<depName>.*?)\\.git\n *ref:\n *tag: (?<currentValue>.*)\n",
+        'datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_version: "(?<currentValue>.*)"\n',
+        'datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_VERSION="(?<currentValue>.*)"\n',
+      ],
+      datasourceTemplate: "github-releases",
+      depNameTemplate: "{{org}}/{{repo}}",
+    },
+    // Generic Regex Manager
+    {
+      fileMatch: ["k8s/clusters/.+\\.ya?ml$", "k8s/global/.+\\.ya?ml$"],
+      matchStrings: [
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<currentValue>.*=?)",
+      ],
+      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+      registryUrlTemplate: "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}",
+    },
+    // Generic Docker image Regex manager
+    {
+      fileMatch: [
+        "k8s/clusters/.+\\.ya?ml$",
+        "k8s/global/.+\\.ya?ml$",
+        "k8s/talos/.+\\.ya?ml$",
+      ],
+      matchStrings: [
+        "# renovate: docker-image( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<depName>.*?):(?<currentValue>.*=?)",
+      ],
+      datasourceTemplate: "docker",
+      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}docker{{/if}}",
+      registryUrlTemplate: "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}",
+    },
+  ],
   packageRules: [
     // Setup datasources
     {
