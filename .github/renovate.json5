@@ -88,10 +88,10 @@
       matchDatasources: ["helm"],
       ignoreDeprecated: true,
     },
-    {
-      matchDatasources: ["docker"],
-      commitMessageExtra: "to {{newVersion}}",
-    },
+    // {
+    //   matchDatasources: ["docker"],
+    //   commitMessageExtra: "to {{newVersion}}",
+    // },
     // Custom version schemes
     {
       matchDatasources: ["docker"],
