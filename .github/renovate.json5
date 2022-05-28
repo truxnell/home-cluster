@@ -27,9 +27,6 @@
   suppressNotifications: ["prIgnoreNotification"],
   rebaseWhen: "conflicted",
   // Set up Renovate Managers
-  helmv3: {
-    fileMatch: ["k8s/charts/.+/Chart\\.ya?ml$"],
-  },
   "helm-values": {
     fileMatch: [
       "k8s/manifests/.+/helmrelease\\.ya?ml$",
@@ -39,6 +36,9 @@
   kubernetes: {
     fileMatch: ["k8s/manifests/.+\\.ya?ml$", "k8s/global/.+\\.ya?ml$"],
   },
+  helmv3: {
+    fileMatch: ["k8s/charts/.+/Chart\\.ya?ml$"],
+  },
   flux: {
     fileMatch: [
       "k8s/manifests/.+\\.ya?ml$",
@@ -46,42 +46,42 @@
       "k8s/clusters/.+\\.ya?ml$",
     ],
   },
-  regexManagers: [
-    // regexManager to read and process GitHub release artifacts
-    {
-      fileMatch: ["k8s/clusters/.+\\.ya?ml$", "k8s/global/.+\\.ya?ml$"],
-      matchStrings: [
-        "datasource=(?<datasource>.*?)\n *url: https://github\\.com/(?<depName>.*?)\\.git\n *ref:\n *tag: (?<currentValue>.*)\n",
-        'datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_version: "(?<currentValue>.*)"\n',
-        'datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_VERSION="(?<currentValue>.*)"\n',
-      ],
-      datasourceTemplate: "github-releases",
-      depNameTemplate: "{{org}}/{{repo}}",
-    },
-    // Generic Regex Manager
-    {
-      fileMatch: ["k8s/clusters/.+\\.ya?ml$", "k8s/global/.+\\.ya?ml$"],
-      matchStrings: [
-        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<currentValue>.*=?)",
-      ],
-      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
-      registryUrlTemplate: "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}",
-    },
-    // Generic Docker image Regex manager
-    {
-      fileMatch: [
-        "k8s/clusters/.+\\.ya?ml$",
-        "k8s/global/.+\\.ya?ml$",
-        "k8s/talos/.+\\.ya?ml$",
-      ],
-      matchStrings: [
-        "# renovate: docker-image( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<depName>.*?):(?<currentValue>.*=?)",
-      ],
-      datasourceTemplate: "docker",
-      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}docker{{/if}}",
-      registryUrlTemplate: "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}",
-    },
-  ],
+  // regexManagers: [
+  //   // regexManager to read and process GitHub release artifacts
+  //   {
+  //     fileMatch: ["k8s/clusters/.+\\.ya?ml$", "k8s/global/.+\\.ya?ml$"],
+  //     matchStrings: [
+  //       "datasource=(?<datasource>.*?)\n *url: https://github\\.com/(?<depName>.*?)\\.git\n *ref:\n *tag: (?<currentValue>.*)\n",
+  //       'datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_version: "(?<currentValue>.*)"\n',
+  //       'datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_VERSION="(?<currentValue>.*)"\n',
+  //     ],
+  //     datasourceTemplate: "github-releases",
+  //     depNameTemplate: "{{org}}/{{repo}}",
+  //   },
+  //   // Generic Regex Manager
+  //   {
+  //     fileMatch: ["k8s/clusters/.+\\.ya?ml$", "k8s/global/.+\\.ya?ml$"],
+  //     matchStrings: [
+  //       "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<currentValue>.*=?)",
+  //     ],
+  //     versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+  //     registryUrlTemplate: "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}",
+  //   },
+  //   // Generic Docker image Regex manager
+  //   {
+  //     fileMatch: [
+  //       "k8s/clusters/.+\\.ya?ml$",
+  //       "k8s/global/.+\\.ya?ml$",
+  //       "k8s/talos/.+\\.ya?ml$",
+  //     ],
+  //     matchStrings: [
+  //       "# renovate: docker-image( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<depName>.*?):(?<currentValue>.*=?)",
+  //     ],
+  //     datasourceTemplate: "docker",
+  //     versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}docker{{/if}}",
+  //     registryUrlTemplate: "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}",
+  //   },
+  // ],
   packageRules: [
     // Setup datasources
     {
