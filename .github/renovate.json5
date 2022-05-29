@@ -22,6 +22,7 @@
   onboarding: false,
   requireConfig: false,
   gitAuthor: "Trux-Bot <19149206+trux-bot[bot]@users.noreply.github.com>",
+  commitBody: "Signed-off-by: Nat Allan <19149206+Truxnell@users.noreply.github.com>",
   timezone: "Australia/Melbourne",
   dependencyDashboardTitle: "Renovate Dashboard 🤖",
   suppressNotifications: ["prIgnoreNotification"],
