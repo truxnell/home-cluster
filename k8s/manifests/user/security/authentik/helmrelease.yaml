@@ -60,7 +60,7 @@ spec:
         username: ${SECRET_SMTP_USERNAME}
         use_ssl: true
         from: id@${EXTERNAL_DOMAIN}
-      secret_key: ${SECRET_KEYAUTHENTIK_DB_PASSWORD}
+      secret_key: ${SECRET_AUTHENTIK_DB_PASSWORD}
       log_level: debug
 
       error_reporting:
