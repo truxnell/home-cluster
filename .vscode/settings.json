@@ -64,7 +64,8 @@
     "ingress-nginx",
     "authentik",
     "node-problem",
-    "cluster"
+    "cluster",
+    "language-tools"
   ],
   "discord.enabled": true,
 
