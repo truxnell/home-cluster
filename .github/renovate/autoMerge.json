@@ -27,7 +27,6 @@
         "k8s-at-home/tautulli"
       ],
       "schedule": ["after 2am, before 5am"]
-
     },
     {
       "description": "Package requirements: minor updates are silent",
@@ -63,6 +62,15 @@
       "groupName": "Factorio Servers",
       "labels": ["automerge-servers"],
       "matchPackageNames": ["factoriotools/factorio"]
+    },
+    {
+      "matchDatasources": ["helm", "docker"],
+      "automerge": false,
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": ["major", "minor", "patch", "digest"],
+      "groupName": "Satisfactory` Servers",
+      "labels": ["automerge-servers"],
+      "matchPackageNames": ["yfricke/satisfactory-server"]
     }
   ]
 }
