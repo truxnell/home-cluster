@@ -28,7 +28,7 @@ spec:
     architecture: standalone
 
     auth:
-      password: ${SECRET_AUTHENTIK_REDIS_PASSWORD}
+      password: ${SECRET_REDIS_PASSWORD}
 
     # master:
     #   service:
