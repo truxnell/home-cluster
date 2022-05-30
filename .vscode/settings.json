@@ -62,7 +62,8 @@
     "k10",
     "flux",
     "ingress-nginx",
-    "authentik"
+    "authentik",
+    "node-problem"
   ],
   "discord.enabled": true,
 

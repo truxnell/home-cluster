@@ -30,9 +30,6 @@ spec:
       serviceMonitor:
         enabled: true
 
-    nodeSelector:
-      kubernetes.io/arch: amd64 # FIXME
-
     resources:
       requests:
         cpu: 15m
