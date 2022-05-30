@@ -20,10 +20,12 @@ spec:
   values:
     global:
       nameOverride: *app
-    initContainers:
+
+
     image:
       repository: silviof/docker-languagetool
       tag: "5.7"
+
     service:
       main:
         enabled: true
@@ -33,6 +35,7 @@ spec:
           api:
             enabled: true
             port: 8010
+
     ingress:
       main:
         enabled: true
