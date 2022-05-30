@@ -58,3 +58,8 @@ spec:
         memory: 1640M
       limits:
         # memory: 4315M
+
+    startupProbe:
+      enabled: true
+      failureThreshold: 30
+      periodSeconds: 10

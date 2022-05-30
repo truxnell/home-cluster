@@ -66,7 +66,8 @@
     "node-problem",
     "cluster",
     "language-tools",
-    "satisfactory"
+    "satisfactory",
+    "actions"
   ],
   "discord.enabled": true,
 
