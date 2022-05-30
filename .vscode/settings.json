@@ -61,7 +61,8 @@
     "qbittorrent",
     "k10",
     "flux",
-    "ingress-nginx"
+    "ingress-nginx",
+    "authentik"
   ],
   "discord.enabled": true,
 

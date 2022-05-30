@@ -47,4 +47,4 @@ data:
 
   # Addresses
   POSTGRES_ADDRESS: postgresql.databases
-  REDIS_ADDRESS: redis-master-0.databases
+  REDIS_ADDRESS: redis-master.databases
