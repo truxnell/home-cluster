@@ -63,7 +63,8 @@
     "flux",
     "ingress-nginx",
     "authentik",
-    "node-problem"
+    "node-problem",
+    "cluster"
   ],
   "discord.enabled": true,
 

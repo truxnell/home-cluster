@@ -1,0 +1,35 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app language-tools
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: kah-common-chart
+      version: 1.1.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 15m
+  install:
+    createNamespace: true
+  values:
+    global:
+      nameOverride: *app
+    initContainers:
+    image:
+      repository: silviof/docker-languagetool
+      tag: 5.7
+    service:
+      main:
+        enabled: true
+        ports:
+          http:
+            enabled: false
+          api:
+            enabled: true
+            port: 8010
