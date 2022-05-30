@@ -27,8 +27,8 @@ spec:
   # Values: https://github.com/k8s-at-home/charts/blob/master/charts/stable/satisfactory/values.yaml
   values:
     image:
-      repository: wolveix/satisfactory-server
-      tag: v1.2.4
+      repository: yfricke/satisfactory-server
+      tag: latest@sha256:e54122927d4309aa3cf3a31331e04b4345c9dba512c02591ffb253dc5819f445
 
     env:
       # -- Set the container timezone
@@ -50,8 +50,7 @@ spec:
         existingClaim: satisfactory-data
 
       server-cache:
-        enabled: true
-        existingClaim: satisfactory-gamedata
+        enabled: false
 
     resources:
       requests:

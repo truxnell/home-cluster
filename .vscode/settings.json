@@ -65,7 +65,8 @@
     "authentik",
     "node-problem",
     "cluster",
-    "language-tools"
+    "language-tools",
+    "satisfactory"
   ],
   "discord.enabled": true,
 
