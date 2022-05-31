@@ -29,7 +29,7 @@ spec:
   values:
     authSecret:
       create: false
-      name: "actions-runner-controller-auth"
+      name: &auth-secret "actions-runner-controller-auth"
 
     image:
       repository: summerwind/actions-runner-controller
@@ -39,6 +39,8 @@ spec:
     #     memory: 64Mi
     #   limits:
     #     memory: 128Mi
+    podAnnotations:
+      secret.reloader.stakater.com/reload: *auth-secret
 
     githubWebhookServer:
       enabled: true
@@ -46,7 +48,7 @@ spec:
 
       secret:
         create: true
-        # name: "actions-runner-controller-webhook"
+        # name: &webhook-secret"actions-runner-controller-webhook"
 
       ingress:
         enabled: true
@@ -65,6 +67,9 @@ spec:
           - hosts:
               - *host
             secretName: tls.acr-hook
+
+        # podAnnotations:
+        #   secret.reloader.stakater.com/reload: *webhook-secret
 
       # resources:
       #   requests:
