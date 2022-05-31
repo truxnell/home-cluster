@@ -5,6 +5,7 @@ resources:
   - cert-manager.yaml
   - databases.yaml
   - downloads.yaml
+  - dev.yaml
   - flux-system.yaml
   - games.yaml
   - home-automation.yaml

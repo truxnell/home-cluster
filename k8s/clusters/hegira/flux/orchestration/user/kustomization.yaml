@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ./databases.yaml
   - ./downloads.yaml
+  - ./dev.yaml
   - ./games.yaml
   - ./home-automation.yaml
   - ./kasten-io.yaml

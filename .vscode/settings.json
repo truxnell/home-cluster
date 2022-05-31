@@ -67,7 +67,8 @@
     "cluster",
     "language-tools",
     "satisfactory",
-    "actions"
+    "actions",
+    "arc"
   ],
   "discord.enabled": true,
 
