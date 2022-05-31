@@ -68,7 +68,8 @@
     "language-tools",
     "satisfactory",
     "actions",
-    "arc"
+    "arc",
+    "nzbget"
   ],
   "discord.enabled": true,
 
