@@ -65,10 +65,10 @@ spec:
         ingressClassName: "nginx"
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
-          external-dns.alpha.kubernetes.io/target: ingress.${INGRESS_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${INGRESS_DOMAIN}/css/base/nzbget/plex.css"></head>';
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/nzbget/plex.css"></head>';
             sub_filter_once on;
           external-dns/is-public: "false"
           hajimari.io/enable: "true"
