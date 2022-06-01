@@ -59,7 +59,7 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
         ingressClassName: "nginx"
         hosts:
-          - host: &host "acr-hook.${EXTERNAL_DOMAIN}"
+          - host: &host "arc-hook.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
