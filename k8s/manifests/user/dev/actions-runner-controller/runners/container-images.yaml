@@ -9,8 +9,7 @@ spec:
     spec:
       image: summerwind/actions-runner-dind
       imagePullPolicy: Always
-      dockerEnabled: true
-      dockerdWithinRunnerContainer: false
+      dockerdWithinRunnerContainer: true
       ephemeral: true
       repository: Truxnell/container-images
       securityContext:
