@@ -10,9 +10,9 @@ spec:
       image: summerwind/actions-runner-dind
       imagePullPolicy: Always
       dockerdWithinRunnerContainer: true
+      dockerEnabled: true
       ephemeral: true
       repository: Truxnell/container-images
-      priveleged: true
       securityContext:
         supplementalGroups:
           - 65542
