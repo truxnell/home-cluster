@@ -47,8 +47,8 @@ spec:
       syncPeriod: 10m
 
       secret:
-        create: true
-        # name: &webhook-secret"actions-runner-controller-webhook"
+        create: false
+        name: &webhook-secret "actions-runner-controller-webhook"
 
       ingress:
         enabled: true
@@ -68,8 +68,8 @@ spec:
               - *host
             secretName: tls.acr-hook
 
-        # podAnnotations:
-        #   secret.reloader.stakater.com/reload: *webhook-secret
+        podAnnotations:
+          secret.reloader.stakater.com/reload: *webhook-secret
 
       # resources:
       #   requests:
