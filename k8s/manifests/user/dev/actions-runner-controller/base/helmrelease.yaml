@@ -68,8 +68,8 @@ spec:
               - *host
             secretName: tls.acr-hook
 
-        podAnnotations:
-          secret.reloader.stakater.com/reload: *webhook-secret
+      podAnnotations:
+        secret.reloader.stakater.com/reload: *webhook-secret
 
       # resources:
       #   requests:
