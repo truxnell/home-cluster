@@ -12,6 +12,7 @@ spec:
       dockerdWithinRunnerContainer: true
       ephemeral: true
       repository: Truxnell/container-images
+      priveleged: true
       securityContext:
         supplementalGroups:
           - 65542
