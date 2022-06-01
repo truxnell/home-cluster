@@ -2,7 +2,7 @@
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: RunnerDeployment
 metadata:
-  name: runner-container-images-private
+  name: runner-container-images
   namespace: dev
 spec:
   template:
@@ -31,11 +31,11 @@ spec:
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: HorizontalRunnerAutoscaler
 metadata:
-  name: container-images-private-autoscaler
+  name: container-images-autoscaler
   namespace: dev
 spec:
   scaleTargetRef:
-    name: runner-container-images-private
+    name: runner-container-images
   scaleUpTriggers:
     - githubEvent:
         checkRun:

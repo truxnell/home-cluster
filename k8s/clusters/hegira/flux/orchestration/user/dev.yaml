@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: user-downloads-arc-base
+  name: user-dev-arc-base
   namespace: flux-system
 spec:
   interval: 5m
@@ -16,13 +16,13 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: user-downloads-arc-runners
+  name: user-dev-arc-runners
   namespace: flux-system
 spec:
   interval: 5m
   path: "./k8s/manifests/user/dev/actions-runner-controller/runners"
   dependsOn:
-    - name: user-downloads-arc-base
+    - name: user-dev-arc-base
   prune: true
   wait: true
   sourceRef:
