@@ -69,7 +69,8 @@
     "satisfactory",
     "actions",
     "arc",
-    "nzbget"
+    "nzbget",
+    "static"
   ],
   "discord.enabled": true,
 

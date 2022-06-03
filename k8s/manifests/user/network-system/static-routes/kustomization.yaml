@@ -5,6 +5,5 @@ resources:
   - hyperion
   - unifi
   # - brewpiless # FIXME
-  - prusa
   - brother-printer
   - minio
