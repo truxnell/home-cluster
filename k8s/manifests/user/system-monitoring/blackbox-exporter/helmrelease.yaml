@@ -83,9 +83,6 @@ spec:
 
       targets:
         - module: icmp
-          name: prusa
-          url: octopi.${INTERNAL_DOMAIN}
-        - module: icmp
           name: brewpiless
           url: ESP_7DE997.${INTERNAL_DOMAIN}
         - module: icmp
