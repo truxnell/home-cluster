@@ -33,6 +33,13 @@ spec:
       repository: sdelrio/hs110-exporter
       tag: v1.0.0
 
+    env:
+      TZ: "${TZ}"
+      HS110IP: "${HS110_IP_1}"
+      FREQUENCY: 1m
+      LISTENPORT: 8110
+      LABEL: location=shed
+
     service:
       main:
         enabled: true

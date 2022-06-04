@@ -48,3 +48,6 @@ data:
   # Addresses
   POSTGRES_ADDRESS: postgresql.databases
   REDIS_ADDRESS: redis-master.databases
+
+  # HS110 IP's
+  HS110_IP_1: 10.8.30.130 # Prusa
