@@ -38,5 +38,5 @@ spec:
         enabled: true
         ports:
           http:
-            enabled: false
+            enabled: true
             port: 8110
