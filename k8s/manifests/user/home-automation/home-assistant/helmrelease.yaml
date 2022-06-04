@@ -39,6 +39,9 @@ spec:
       - secretRef:
           name: home-assistant-secrets
 
+    podAnnotations:
+      secret.reloader.stakater.com/reload: home-assistant-secrets
+
     initContainers:
       wait-for-pg:
         image: busybox:latest

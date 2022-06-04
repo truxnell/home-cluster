@@ -4,5 +4,5 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   # - code-server-ssh-key.sops.yaml
-  # - home-assistant.sops.yaml
+  - secret-home-assistant.sops.yaml
   - helmrelease.yaml
