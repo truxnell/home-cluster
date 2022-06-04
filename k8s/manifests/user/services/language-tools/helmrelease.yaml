@@ -21,7 +21,6 @@ spec:
     global:
       nameOverride: *app
 
-
     image:
       repository: silviof/docker-languagetool
       tag: "5.7"
@@ -45,7 +44,7 @@ spec:
           external-dns/is-public: "false"
 
         hosts:
-          - host: "lt.${EXTERNAL_DOMAIN}"
+          - host: &host "lt.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -53,4 +52,4 @@ spec:
         tls:
           - secretName: tls.language-tools
             hosts:
-              - "lt.${EXTERNAL_DOMAIN}"
+              - *host
