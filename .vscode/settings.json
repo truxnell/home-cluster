@@ -72,7 +72,8 @@
     "nzbget",
     "static",
     "blackbox",
-    "hs110"
+    "hs110",
+    "hass"
   ],
   "discord.enabled": true,
 
