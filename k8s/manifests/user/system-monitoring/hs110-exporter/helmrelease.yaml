@@ -36,7 +36,7 @@ spec:
     env:
       TZ: "${TZ}"
       HS110IP: "${HS110_IP_1}"
-      FREQUENCY: 1m
+      FREQUENCY: 60
       LISTENPORT: 8110
       LABEL: location=shed
 
