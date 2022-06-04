@@ -71,7 +71,8 @@
     "arc",
     "nzbget",
     "static",
-    "blackbox"
+    "blackbox",
+    "hs110"
   ],
   "discord.enabled": true,
 
