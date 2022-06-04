@@ -70,7 +70,8 @@
     "actions",
     "arc",
     "nzbget",
-    "static"
+    "static",
+    "blackbox"
   ],
   "discord.enabled": true,
 
