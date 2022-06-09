@@ -69,8 +69,8 @@ spec:
             port: 8123
           emulated-hue:
             enabled: true
-            port: 8300
-            targetPort: 8300
+            port: 80
+            targetPort: 80
 
     ingress:
       main:
