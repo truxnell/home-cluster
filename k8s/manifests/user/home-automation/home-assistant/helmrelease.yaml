@@ -62,6 +62,16 @@ spec:
         type: LoadBalancer
         loadBalancerIP: "${LB_HOMEASSISTANT}"
         externalTrafficPolicy: Local
+        annotations:
+          metallb.universe.tf/allow-shared-ip: &key hass
+      emulated_hue:
+        enabled: true
+        port: 8300
+        type: LoadBalancer
+        loadBalancerIP: "${LB_HOMEASSISTANT}"
+        externalTrafficPolicy: Local
+        annotations:
+          metallb.universe.tf/allow-shared-ip: *key
 
     ingress:
       main:
