@@ -67,7 +67,7 @@ spec:
         ports:
           http:
             port: 8123
-          emulated_hue:
+          emulated-hue:
             enabled: true
             port: 8300
             targetPort: 8300
