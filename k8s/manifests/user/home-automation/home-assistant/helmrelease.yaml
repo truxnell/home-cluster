@@ -53,7 +53,7 @@ spec:
             'until nc -vz postgresql.databases 5432; do echo "Waiting for postgresql..."; sleep 3; done;',
           ]
 
-    hostNetwork: true
+    # hostNetwork: true
 
     dnsPolicy: ClusterFirstWithHostNet
 
