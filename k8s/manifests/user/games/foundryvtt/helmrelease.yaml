@@ -28,7 +28,7 @@ spec:
   values:
     image:
       repository: felddy/foundryvtt
-      tag: 10.263.0
+      tag: 10.270.0
 
     env:
       TZ: ${TZ}
