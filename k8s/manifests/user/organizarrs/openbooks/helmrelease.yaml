@@ -31,10 +31,15 @@ spec:
       repository: docker.io/evanbuss/openbooks
       tag: latest@sha256:8965fdfa3ee471e7322271b27cb685ac794baf0fa4e6aa7419870b9f2ecac430
       pullPolicy: IfNotPresent
+    args:
+      - --persist
+      - --dir
+      - "/media/downloads/openbooks/"
+
     env:
       TZ: ${TZ}
-      PUID: "1000"
-      GUID: "1000"
+      PUID: "568"
+      GUID: "568"
 
     service:
       main:
