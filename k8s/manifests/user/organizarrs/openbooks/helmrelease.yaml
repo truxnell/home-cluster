@@ -29,7 +29,7 @@ spec:
       nameOverride: *app
     image:
       repository: docker.io/evanbuss/openbooks
-      tag: latest@sha256:8965fdfa3ee471e7322271b27cb685ac794baf0fa4e6aa7419870b9f2ecac430
+      tag: latest@sha256:ef1a80c82d2cbce1670e94833a4fbf84a0cd2e6f723c6b2cfffed8dc320701af
       pullPolicy: IfNotPresent
     args:
       - --persist
