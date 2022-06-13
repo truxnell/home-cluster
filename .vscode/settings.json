@@ -73,7 +73,8 @@
     "static",
     "blackbox",
     "hs110",
-    "hass"
+    "hass",
+    "openbooks"
   ],
   "discord.enabled": true,
 
