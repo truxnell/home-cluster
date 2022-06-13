@@ -57,7 +57,7 @@ spec:
                 pathType: Prefix
 
         tls:
-          - secretName: tls.language-tools
+          - secretName: tls.openbooks
             hosts:
               - *host
 
