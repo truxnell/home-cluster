@@ -1,0 +1,73 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app openbooks
+  namespace: organizarrs
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kah-common-chart
+      version: 1.1.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 15m
+  install:
+    createNamespace: true
+    remediation: # perform remediation when helm install fails
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
+  values:
+    global:
+      nameOverride: *app
+    image:
+      repository: docker.io/evanbuss/openbooks
+      tag: v4.3.0
+      pullPolicy: IfNotPresent
+    env:
+      TZ: ${TZ}
+      PUID: "1000"
+      GUID: "1000"
+
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: "nginx"
+          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+          external-dns/is-public: "false"
+
+        hosts:
+          - host: &host "openbooks${EXTERNAL_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+
+        tls:
+          - secretName: tls.language-tools
+            hosts:
+              - *host
+
+    persistence:
+      nfs-nas-media:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDRESS}
+            path: /volume1/
+        mountPath: /media
+        readOnly: false
