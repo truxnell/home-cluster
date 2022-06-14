@@ -98,6 +98,15 @@ spec:
             path: /volume1/downloads/
         mountPath: /downloads-amd/
         readOnly: false
+      nfs-nas-music:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDRESS}
+            path: /volume1/music/
+        mountPath: /media/music
+        readOnly: false
 
     # Nothing to probe, so...
     probes:
