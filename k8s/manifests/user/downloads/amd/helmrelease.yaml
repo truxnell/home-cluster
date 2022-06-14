@@ -43,7 +43,7 @@ spec:
           [
             "sh",
             "-c",
-            'until nc -vz lidarr.organizarrs 5432; do echo "Waiting for lidarr..."; sleep 3; done;',
+            'until nc -vz lidarr.organizarrs 8686; do echo "Waiting for lidarr..."; sleep 3; done;',
           ]
 
     env:
