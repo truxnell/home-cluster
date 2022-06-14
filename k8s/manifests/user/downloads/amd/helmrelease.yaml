@@ -49,9 +49,9 @@ spec:
     env:
       TZ: ${TZ}
       PUID: 568
-      GUID: 568
+      PGUID: 568
       AUTOSTART: true
-      SCRIPTINTERVAL: 1h
+      SCRIPTINTERVAL: 24h
       DOWNLOADMODE: wanted
       FALLBACKSEARCH: True
       LIST: both
