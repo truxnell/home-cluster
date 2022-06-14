@@ -81,6 +81,6 @@ spec:
         volumeSpec:
           nfs:
             server: ${NAS_ADDRESS}
-            path: /volume1/
+            path: /volume1/downloads/
         mountPath: /downloads-amd/
         readOnly: false

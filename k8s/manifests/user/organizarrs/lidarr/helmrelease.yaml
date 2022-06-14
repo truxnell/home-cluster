@@ -87,6 +87,16 @@ spec:
         mountPath: /media
         readOnly: false
 
+      nfs-nas-amd:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDRESS}
+            path: /volume1/downloads/
+        mountPath: /downloads-amd/
+        readOnly: false
+
       nfs-nas-backup:
         enabled: true
         type: custom
