@@ -62,8 +62,8 @@ spec:
           name: "22000-tcp"
     ingress:
       enabled: true
+      ingressClassName: "nginx"
       annotations:
-        kubernetes.io/ingress.class: "nginx"
         cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
         nginx.ingress.kubernetes.io/auth-url: "https://auth.${SECRET_DOMAIN}/oauth2/auth"
         nginx.ingress.kubernetes.io/auth-signin: https://auth.${SECRET_DOMAIN}/oauth2/start

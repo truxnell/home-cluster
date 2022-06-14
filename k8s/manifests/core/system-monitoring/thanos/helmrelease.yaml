@@ -52,8 +52,8 @@ spec:
       ingress:
         enabled: true
         hostname: "thanos-cluster.${EXTERNAL_DOMAIN}"
+        ingressClassName: "nginx"
         annotations:
-          kubernetes.io/ingress.class: "nginx"
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           external-dns/is-public: "false"
           hajimari.io/enable: "true"

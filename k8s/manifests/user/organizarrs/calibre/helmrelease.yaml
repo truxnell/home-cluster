@@ -53,8 +53,8 @@ spec:
     ingress:
       main:
         enabled: true
+        ingressClassName: "nginx"
         annotations:
-          kubernetes.io/ingress.class: "nginx"
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           external-dns/is-public: "false"
           hajimari.io/enable: "true"
@@ -70,8 +70,8 @@ spec:
             secretName: tls.calibre
       webserver:
         enabled: true
+        ingressClassName: "nginx"
         annotations:
-          kubernetes.io/ingress.class: "nginx"
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           external-dns/is-public: "false"
         hosts:
