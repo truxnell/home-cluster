@@ -32,7 +32,7 @@ spec:
       nameOverride: *app
     image:
       repository: randomninjaatk/amd
-      tag: latest@sha256:9d0cf8206966456e065a1ded124b28dd0fb6172c5e6ded082e10788cfcadb24f
+      tag: latest@sha256:3ad88a180cd45d98a6a0d6da6239cb1d62a0c8ef5a17da264b5cfcb96ba05c7b
       pullPolicy: IfNotPresent
 
     initContainers:
