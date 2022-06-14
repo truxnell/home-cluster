@@ -74,7 +74,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: nzbget-config
+        existingClaim: amd-config
       nfs-nas-media:
         enabled: true
         type: custom
