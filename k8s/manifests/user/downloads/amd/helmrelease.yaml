@@ -24,6 +24,9 @@ spec:
       retries: 3
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
+  dependsOn:
+    - name: lidarr
+      namespace: organizarrs
   values:
     global:
       nameOverride: *app
@@ -31,6 +34,17 @@ spec:
       repository: randomninjaatk/amd
       tag: latest@sha256:9d0cf8206966456e065a1ded124b28dd0fb6172c5e6ded082e10788cfcadb24f
       pullPolicy: IfNotPresent
+
+    initContainers:
+      wait-for-pg:
+        image: busybox:latest
+        imagePullPolicy: IfNotPresent
+        command:
+          [
+            "sh",
+            "-c",
+            'until nc -vz lidarr.organizarrs 5432; do echo "Waiting for lidarr..."; sleep 3; done;',
+          ]
 
     env:
       TZ: ${TZ}
