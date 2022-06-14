@@ -35,9 +35,9 @@ spec:
     ingress:
       main:
         enabled: true
+        ingressClassName: "nginx"
         annotations:
-          kubernetes.io/ingress.class: "nginx"
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+          cert-manager.io/cluster-issuer: &cert ${CLUSTER_CERT}
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/readarr/plex.css"></head>';
@@ -57,9 +57,9 @@ spec:
 
       api:
         enabled: true
+        ingressClassName: "nginx"
         annotations:
-          kubernetes.io/ingress.class: "nginx"
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+          cert-manager.io/cluster-issuer: *cert
           external-dns/is-public: "false"
         hosts:
           - host: *host

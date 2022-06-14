@@ -59,8 +59,8 @@ spec:
       enabled: true
       ingressClassname: "nginx"
       hostname: minio.trux.dev
+      ingressClassName: "nginx"
       annotations:
-        kubernetes.io/ingress.class: "nginx"
         cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
         external-dns/is-public: "false"
         hajimari.io/enable: "true"
