@@ -52,7 +52,7 @@ spec:
       PGUID: 568
       AUTOSTART: true
       SCRIPTINTERVAL: 24h
-      DOWNLOADMODE: wanted
+      DOWNLOADMODE: artist
       FALLBACKSEARCH: True
       LIST: both
       SearchType: both
@@ -77,7 +77,7 @@ spec:
       PLEXURL: http://x.x.x.x:8686
       PLEXTOKEN: plextoken
       ALBUM_TYPE_FILTER: COMPILE
-      POSTPROCESSTHREADS: 1
+      POSTPROCESSTHREADS: 4
 
     service:
       main:
