@@ -48,8 +48,8 @@ spec:
 
     env:
       TZ: ${TZ}
-      PUID: "568"
-      GUID: "568"
+      PUID: 568
+      GUID: 568
       AUTOSTART: true
       SCRIPTINTERVAL: 1h
       DOWNLOADMODE: wanted
