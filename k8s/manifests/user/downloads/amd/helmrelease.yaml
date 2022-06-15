@@ -76,7 +76,7 @@ spec:
       PLEXLIBRARYNAME: Music
       PLEXURL: http://x.x.x.x:8686
       PLEXTOKEN: plextoken
-      ALBUM_TYPE_FILTER: COMPILE
+      ALBUM_TYPE_FILTER: SINGLE,ALBUM,EP
       POSTPROCESSTHREADS: 4
 
     service:
