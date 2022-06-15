@@ -53,7 +53,7 @@ spec:
       AUTOSTART: true
       SCRIPTINTERVAL: 24h
       DOWNLOADMODE: artist
-      FALLBACKSEARCH: True
+      FALLBACKSEARCH: false
       LIST: both
       SearchType: artist
       Concurrency: 10
