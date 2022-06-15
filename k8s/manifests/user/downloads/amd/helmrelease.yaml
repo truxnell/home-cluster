@@ -55,14 +55,14 @@ spec:
       DOWNLOADMODE: artist
       FALLBACKSEARCH: True
       LIST: both
-      SearchType: both
-      Concurrency: 1
+      SearchType: artist
+      Concurrency: 10
       EMBEDDED_COVER_QUALITY: 80
       FORMAT: MP3
       BITRATE: 320
       ENABLEPOSTPROCESSING: true
       FORCECONVERT: false
-      requirequality: false
+      requirequality: true
       MatchDistance: 10
       replaygain: true
       FolderPermissions: 766
