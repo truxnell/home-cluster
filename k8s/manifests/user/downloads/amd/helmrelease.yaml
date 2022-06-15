@@ -52,8 +52,8 @@ spec:
       PGUID: 568
       AUTOSTART: true
       SCRIPTINTERVAL: 24h
-      DOWNLOADMODE: artist
-      FALLBACKSEARCH: false
+      DOWNLOADMODE: wanted
+      FALLBACKSEARCH: True
       LIST: both
       SearchType: artist
       Concurrency: 10
