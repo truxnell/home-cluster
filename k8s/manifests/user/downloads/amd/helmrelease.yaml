@@ -52,13 +52,13 @@ spec:
       PGUID: 568
       AUTOSTART: true
       SCRIPTINTERVAL: 24h
-      DOWNLOADMODE: artist
+      DOWNLOADMODE: wanted
       FALLBACKSEARCH: True
       LIST: both
       SearchType: artist
       Concurrency: 10
       EMBEDDED_COVER_QUALITY: 80
-      FORMAT: MP3
+      FORMAT: FLAC
       BITRATE: 320
       ENABLEPOSTPROCESSING: true
       FORCECONVERT: false
