@@ -74,7 +74,8 @@
     "blackbox",
     "hs110",
     "hass",
-    "openbooks"
+    "openbooks",
+    "amd"
   ],
   "discord.enabled": true,
 
