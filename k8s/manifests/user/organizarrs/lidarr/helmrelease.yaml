@@ -26,7 +26,7 @@ spec:
     cleanupOnFail: true
   values:
     image:
-      repository: ghcr.io/k8s-at-home/lidarr
+      repository: ghcr.io/k8s-at-home/lidarr-develop
       tag: v1.0.2.2592
 
     env:
@@ -120,7 +120,7 @@ spec:
         cpu: 10m
         memory: 764M
       limits:
-        memory: 1873M
+        memory: 4873M
 
     metrics:
       enabled: true
