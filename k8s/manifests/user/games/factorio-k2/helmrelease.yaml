@@ -72,7 +72,7 @@ spec:
         name: K2
         description: "K2 on K8s"
         game_password: "${SECRET_FACTORIO_SERVER_PASSWORD}"
-        non_blocking_saving: true
+        non_blocking_saving: false
 
       rcon:
         password: "${SECRET_FACTORIO_RCON_PASSWORD}"
