@@ -2,10 +2,10 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: trash-updater
+  name: recyclarr
   namespace: organizarrs
   labels:
-    app: trash-updater
+    app: recyclarr
 spec:
   schedule: "0 17 * * *" # 3am AEST
   concurrencyPolicy: Forbid
@@ -17,7 +17,7 @@ spec:
 
           initContainers:
             - name: render-config
-              image: ghcr.io/k8s-at-home/trash-updater:v1.8.2
+              image: ghcr.io/k8s-at-home/recyclarr:v1.8.2
               env:
                 - name: RADARR_API_KEY
                   value: ${RADARR_API_KEY}
@@ -27,7 +27,7 @@ spec:
                 - "/bin/bash"
                 - -c
               args:
-                - "envsubst < /config/trash.yaml > /shared/trash.yaml"
+                - "envsubst < /config/recyclarr.yaml > /shared/recyclarr.yaml"
               volumeMounts:
                 - name: config
                   mountPath: /config
@@ -35,35 +35,35 @@ spec:
                   mountPath: /shared
 
           containers:
-            - name: trash-updater-sonarr
-              image: ghcr.io/k8s-at-home/trash-updater:v1.8.2
+            - name: recyclarr-sonarr
+              image: ghcr.io/k8s-at-home/recyclarr:v1.8.2
               imagePullPolicy: IfNotPresent
               env:
                 - name: TZ
                   value: "${TZ}"
               command:
-                - /app/trash
+                - /app/recyclarr
               args:
                 - sonarr
                 - --config
-                - /config/trash.yaml
+                - /config/recyclarr.yaml
               volumeMounts:
                 - name: shared
                   mountPath: /config
                   readOnly: true
 
-            - name: trash-updater-radarr
-              image: ghcr.io/k8s-at-home/trash-updater:v1.8.2
+            - name: recyclarr-radarr
+              image: ghcr.io/k8s-at-home/recyclarr:v1.8.2
               imagePullPolicy: IfNotPresent
               env:
                 - name: TZ
                   value: "${TZ}"
               command:
-                - /app/trash
+                - /app/recyclarr
               args:
                 - radarr
                 - --config
-                - /config/trash.yaml
+                - /config/recyclarr.yaml
               volumeMounts:
                 - name: shared
                   mountPath: /config
@@ -74,6 +74,6 @@ spec:
           volumes:
             - name: config
               configMap:
-                name: trash-updater-config
+                name: recyclarr-config
             - name: shared
               emptyDir: {}

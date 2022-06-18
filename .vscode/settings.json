@@ -78,7 +78,8 @@
     "amd",
     "rook",
     "kps",
-    "sonarr"
+    "sonarr",
+    "recyclarr"
   ],
   "discord.enabled": true,
 

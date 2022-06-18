@@ -128,11 +128,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: user-organizarrs-trash-updater
+  name: user-organizarrs-recyclarr
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/organizarrs/trash-updater"
+  path: "./k8s/manifests/user/organizarrs/recyclarr"
   prune: true
   wait: true
   sourceRef:
