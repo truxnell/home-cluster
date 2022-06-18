@@ -128,3 +128,7 @@ spec:
         scrapeTimeout: 1m
       prometheusRule:
         enabled: true
+
+    probes:
+      liveness:
+        enabled: false
