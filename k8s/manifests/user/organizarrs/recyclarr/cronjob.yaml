@@ -41,6 +41,8 @@ spec:
               env:
                 - name: TZ
                   value: "${TZ}"
+                - name: RECYCLARR_APP_DATA
+                  value: /config
               command:
                 - /app/recyclarr
               args:
@@ -58,6 +60,8 @@ spec:
               env:
                 - name: TZ
                   value: "${TZ}"
+                - name: RECYCLARR_APP_DATA
+                  value: /config
               command:
                 - /app/recyclarr
               args:
