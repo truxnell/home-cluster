@@ -76,7 +76,9 @@
     "hass",
     "openbooks",
     "amd",
-    "rook"
+    "rook",
+    "kps",
+    "sonarr"
   ],
   "discord.enabled": true,
 
