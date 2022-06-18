@@ -75,7 +75,8 @@
     "hs110",
     "hass",
     "openbooks",
-    "amd"
+    "amd",
+    "rook"
   ],
   "discord.enabled": true,
 
