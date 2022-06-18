@@ -17,7 +17,7 @@ spec:
 
           initContainers:
             - name: render-config
-              image: ghcr.io/k8s-at-home/recyclarr:v1.8.2
+              image: ghcr.io/k8s-at-home/recyclarr:v2.2.0
               env:
                 - name: RADARR_API_KEY
                   value: ${RADARR_API_KEY}
@@ -36,7 +36,7 @@ spec:
 
           containers:
             - name: recyclarr-sonarr
-              image: ghcr.io/k8s-at-home/recyclarr:v1.8.2
+              image: ghcr.io/k8s-at-home/recyclarr:v2.2.0
               imagePullPolicy: IfNotPresent
               env:
                 - name: TZ
@@ -53,7 +53,7 @@ spec:
                   readOnly: true
 
             - name: recyclarr-radarr
-              image: ghcr.io/k8s-at-home/recyclarr:v1.8.2
+              image: ghcr.io/k8s-at-home/recyclarr:v2.2.0
               imagePullPolicy: IfNotPresent
               env:
                 - name: TZ
