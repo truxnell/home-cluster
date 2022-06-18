@@ -1,12 +1,15 @@
 ---
 alertmanager:
   config:
+    global:
+      resolve_timeout: 5m
+
     receivers:
       - name: "null"
       - name: "pushover"
         pushover_configs:
-          - user_key: ${SECRET_KUBE_PROMETHEUS_STACK_ALERTMANAGER_PUSHOVER_USER_KEY}
-            token: ${SECRET_KUBE_PROMETHEUS_STACK_ALERTMANAGER_PUSHOVER_TOKEN}
+          - user_key: ${SECRET_ALERTMANAGER_PUSHOVER_USER_KEY}
+            token: ${SECRET_ALERTMANAGER_PUSHOVER_TOKEN}
             send_resolved: true
             html: true
             priority: |-
