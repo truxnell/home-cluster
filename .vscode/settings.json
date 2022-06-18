@@ -79,7 +79,8 @@
     "rook",
     "kps",
     "sonarr",
-    "recyclarr"
+    "recyclarr",
+    "hajimari"
   ],
   "discord.enabled": true,
 
