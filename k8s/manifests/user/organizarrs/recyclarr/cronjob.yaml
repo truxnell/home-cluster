@@ -2,27 +2,29 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: recyclarr
-  namespace: organizarrs
-  labels:
-    app: recyclarr
+  name: &app recyclarr
+  namespace: media
 spec:
-  schedule: "0 17 * * *" # 3am AEST
-  concurrencyPolicy: Forbid
+  schedule: "0 17 * * *"
+  concurrencyPolicy: "Forbid"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 5
   jobTemplate:
     spec:
+      backoffLimit: 3
+      ttlSecondsAfterFinished: 300
       template:
         spec:
           automountServiceAccountToken: false
-
+          restartPolicy: OnFailure
           initContainers:
-            - name: render-config
+            - name: render-configs
               image: ghcr.io/k8s-at-home/recyclarr:v2.2.0
               env:
-                - name: RADARR_API_KEY
-                  value: ${RADARR_API_KEY}
                 - name: SONARR_API_KEY
-                  value: ${SONARR_API_KEY}
+                  value: "${SONARR_API_KEY}"
+                - name: RADARR_API_KEY
+                  value: "${RADARR_API_KEY}"
               command:
                 - "/bin/bash"
                 - -c
@@ -33,14 +35,13 @@ spec:
                   mountPath: /config
                 - name: shared
                   mountPath: /shared
-
           containers:
-            - name: recyclarr-sonarr
+            - name: sonarrs
               image: ghcr.io/k8s-at-home/recyclarr:v2.2.0
               imagePullPolicy: IfNotPresent
               env:
                 - name: TZ
-                  value: "${TZ}"
+                  value: "${TIMEZONE}"
                 - name: RECYCLARR_APP_DATA
                   value: /config
               command:
@@ -51,15 +52,15 @@ spec:
                 - /config/recyclarr.yaml
               volumeMounts:
                 - name: shared
-                  mountPath: /config
+                  mountPath: /config/recyclarr.yaml
+                  subPath: recyclarr.yaml
                   readOnly: true
-
-            - name: recyclarr-radarr
+            - name: radarrs
               image: ghcr.io/k8s-at-home/recyclarr:v2.2.0
               imagePullPolicy: IfNotPresent
               env:
                 - name: TZ
-                  value: "${TZ}"
+                  value: "${TIMEZONE}"
                 - name: RECYCLARR_APP_DATA
                   value: /config
               command:
@@ -70,14 +71,12 @@ spec:
                 - /config/recyclarr.yaml
               volumeMounts:
                 - name: shared
-                  mountPath: /config
+                  mountPath: /config/recyclarr.yaml
+                  subPath: recyclarr.yaml
                   readOnly: true
-
-          restartPolicy: OnFailure
-
           volumes:
             - name: config
               configMap:
-                name: recyclarr-config
+                name: *app
             - name: shared
               emptyDir: {}
