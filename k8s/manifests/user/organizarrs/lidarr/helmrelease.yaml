@@ -131,4 +131,4 @@ spec:
 
     probes:
       liveness:
-        enabled: false
+        custom: false
