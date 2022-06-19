@@ -1,5 +1,5 @@
 domains:
-    hardware: natallan.com
+    hardware: lan
 cluster:
     aescbcEncryptionSecret: ENC[AES256_GCM,data:LRLwjxqEggpjwctv1+EmBdWA0l3Po8kge+iBW8erHBplIhstX9SlYLh0i1o=,iv:qK+ZT8Z/3b55M/wBTgvY8WVbSdL2C3ZkljvacWdiVIo=,tag:HPOfIQV9sNHguZiSOKFq7w==,type:str]
     aggregatorCA:
@@ -30,8 +30,8 @@ sops:
             UnlvN1phOEdwSkhHcUZ2eTBNdFVPSEkKqM1B69aF4gxO3lKMnSN9ZBL9N/VcxY20
             P3FzML66em/oS2yr6Y+PV6MeCE3KAkN57rhbQ37tLeqUEtGpGhmrMA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2022-04-20T10:10:34Z"
-    mac: ENC[AES256_GCM,data:PXFwCG6jr+FXeB92TgP1foQ3o3ExD/BpHJWWxdawbFl8IJUSk12vYtTAq03RUm2+HHIhT1VZTtjO+Iauk0yOAOPau+HwKVaUrTWdNR8eneMeJWIvxA85/FDPkFPLbQsE0RpbRnVb+E1azMpvy9MSx5CbT6FA540V0/7NVV4UV7g=,iv:bJP3s1xqaDp7I1sTMfGVvZb28giIM7lRbboyW8FG/Ro=,tag:nUbYS5kE6C9U89CXSOnUXQ==,type:str]
+    lastmodified: "2022-06-19T12:32:58Z"
+    mac: ENC[AES256_GCM,data:Jydv7HSGoVytpiEkTB/BCOeVfTd7WdJTMq4fnl2zhfS6GK45leL/lfz22o5g3EbX4JwFkDrk8NNku00o+ugLlqbkRVqSSz49nGaJbFJCZdoS8SMek7X99Y+eGBH8Bf0EEh/wNq/+sNK4hgrhg3FvufHi5byeKJ8bmUl9Vw2BfVo=,iv:5Ji/HCYV5v/Cth2+RBe2do0vWCi6cEFi1u55oUdE0yw=,tag:1xj04oBvzA39pYRzMaEHKg==,type:str]
     pgp: []
     encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData))
-    version: 3.7.2
+    version: 3.7.3

@@ -43,7 +43,7 @@ spec:
 
     nativeRoutingCIDR: ${NETWORK_K8S_POD_CIDR}
 
-    k8sServiceHost: "hegira.${INTERNAL_DOMAIN}"
+    k8sServiceHost: "hegira.natallan.com"
     k8sServicePort: 6443
 
     loadBalancer:
