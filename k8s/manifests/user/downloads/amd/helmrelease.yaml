@@ -51,7 +51,7 @@ spec:
       PUID: 568
       PGUID: 568
       AUTOSTART: true
-      SCRIPTINTERVAL: 24h
+      SCRIPTINTERVAL: 1h
       DOWNLOADMODE: wanted
       FALLBACKSEARCH: True
       LIST: both
