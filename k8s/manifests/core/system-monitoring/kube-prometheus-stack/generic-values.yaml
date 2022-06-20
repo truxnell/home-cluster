@@ -36,7 +36,7 @@ prometheusOperator:
       cpu: 35m
       memory: 273M
     # limits:
-      # memory: 326M
+    # memory: 326M
 
   prometheusConfigReloader:
     resources:
@@ -44,7 +44,7 @@ prometheusOperator:
         cpu: 11m
         memory: 24M
       # limits:
-        # memory: 32M
+      # memory: 32M
 
 grafana:
   enabled: false
@@ -77,6 +77,17 @@ nodeExporter:
 
 prometheus-node-exporter:
   fullnameOverride: node-exporter
+  prometheus:
+  monitor:
+    enabled: true
+    relabelings:
+      - action: replace
+        regex: (.*)
+        replacement: $1
+        sourceLabels:
+          - __meta_kubernetes_pod_node_name
+        targetLabel: kubernetes_node
+
   resources:
     requests:
       cpu: 23m
