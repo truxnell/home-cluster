@@ -88,10 +88,10 @@ spec:
         - module: icmp
           name: weatherstation
           url: ESP-B9C83C.${INTERNAL_DOMAIN}
-        - module: http
+        - module: http_2xx
           name: wled-officedesk
           url: wled-officedesk.${INTERNAL_DOMAIN}
-        - module: http
+        - module: http_2xx
           name: poe-zigbee-coordinator
           url: espressif.${INTERNAL_DOMAIN}
 
