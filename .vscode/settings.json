@@ -84,7 +84,8 @@
     "cillium",
     "thanos",
     "vector",
-    "calibre-web"
+    "calibre-web",
+    "grafana"
   ],
   "discord.enabled": true,
 
