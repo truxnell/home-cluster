@@ -64,17 +64,19 @@ spec:
 
       resources:
         mgr:
-          requests:
-            cpu: "125m"
-            memory: "549M"
-          limits:
-            memory: "1219M"
+          resources:
+            requests:
+              cpu: 108m
+              memory: 629M
+            limits:
+              memory: 762M
         mon:
-          requests:
-            cpu: "49m"
-            memory: "477M"
-          limits:
-            memory: "1059M"
+          resources:
+            requests:
+              cpu: 22m
+              memory: 1169M
+            limits:
+              memory: 1418M
         osd:
           requests:
             cpu: "442m"

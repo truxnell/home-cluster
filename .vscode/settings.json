@@ -81,7 +81,8 @@
     "sonarr",
     "recyclarr",
     "hajimari",
-    "cillium"
+    "cillium",
+    "thanos"
   ],
   "discord.enabled": true,
 
