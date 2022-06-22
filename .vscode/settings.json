@@ -85,7 +85,8 @@
     "thanos",
     "vector",
     "calibre-web",
-    "grafana"
+    "grafana",
+    "kyverno"
   ],
   "discord.enabled": true,
 
