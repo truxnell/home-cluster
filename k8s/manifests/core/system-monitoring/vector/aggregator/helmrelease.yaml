@@ -222,9 +222,9 @@ spec:
     resources:
       requests:
         cpu: 22m
-        memory: 145M
+        memory: 324M
       limits:
-        memory: 214M
+        memory: 426M
 
   postRenderers:
     - kustomize:
