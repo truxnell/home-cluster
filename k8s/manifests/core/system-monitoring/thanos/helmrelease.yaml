@@ -44,10 +44,10 @@ spec:
       resources:
         requests:
           cpu: 15m
-          memory: 64M
+          memory: 204M
         limits:
           cpu: 15m
-          memory: 64M
+          memory: 247M
 
       ingress:
         enabled: true
