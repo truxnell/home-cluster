@@ -78,3 +78,12 @@ spec:
         memory: 145M
       limits:
         memory: 250M
+
+    # Nothing to probe, so...
+    probes:
+      # liveness:
+      #   enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false

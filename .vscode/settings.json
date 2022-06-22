@@ -83,7 +83,8 @@
     "hajimari",
     "cillium",
     "thanos",
-    "vector"
+    "vector",
+    "calibre-web"
   ],
   "discord.enabled": true,
 
