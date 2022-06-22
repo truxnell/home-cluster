@@ -47,6 +47,8 @@ spec:
     grafana.ini:
       server:
         root_url: "https://grafana.${EXTERNAL_DOMAIN}"
+      default:
+        force_migration: true
       paths:
         data: /var/lib/grafana/data
         logs: /var/log/grafana
