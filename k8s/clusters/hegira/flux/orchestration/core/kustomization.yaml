@@ -7,5 +7,5 @@ resources:
   - ./kube-system.yaml
   - ./network-system.yaml
   - ./rook-ceph.yaml
-  - ./security.yaml
+  # - ./security.yaml
   - ./system-monitoring.yaml
