@@ -299,7 +299,8 @@ spec:
       autoMount: true
 
     persistence:
-      enabled: false
+      enabled: true
+      existingClaim: grafana-config-v1
 
     resources:
       requests:
