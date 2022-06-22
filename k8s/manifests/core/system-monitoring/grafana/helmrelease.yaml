@@ -43,12 +43,11 @@ spec:
       GF_DATE_FORMATS_INTERVAL_DAY: "DD/MM"
       GF_DATE_FORMATS_INTERVAL_MONTH: "MM-YYYY"
       GF_DATE_FORMATS_INTERVAL_YEAR: "YYYY"
+      GF_DEFAULT_FORCE_MIGRATION: true
     adminPassword: "${SECRET_GRAFANA_PASSWORD}"
     grafana.ini:
       server:
         root_url: "https://grafana.${EXTERNAL_DOMAIN}"
-      default:
-        force_migration: true
       paths:
         data: /var/lib/grafana/data
         logs: /var/log/grafana
