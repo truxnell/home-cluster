@@ -29,7 +29,7 @@ spec:
     # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/plex/values.yaml
     image:
       repository: ghcr.io/k8s-at-home/plex
-      tag: v1.27.0.5897-3940636f2
+      tag: v1.27.1.5916-6b0e31a64
     env:
       TZ: "${TZ}"
       ADVERTISE_IP: "https://plex.${EXTERNAL_DOMAIN}:443/,http://${LB_PLEX}:32400/"
