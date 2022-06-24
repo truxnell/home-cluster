@@ -31,8 +31,8 @@ spec:
     global:
       nameOverride: *app
     image:
-      repository: randomninjaatk/lidarr-extended
-      tag: latest@sha256:6945c3610b5369798efe2987e4c697c4abcebca575e50f2e50ffa7cceba46c2c
+      repository: randomninjaatk/amd
+      tag: latest@sha256:3ad88a180cd45d98a6a0d6da6239cb1d62a0c8ef5a17da264b5cfcb96ba05c7b
       pullPolicy: IfNotPresent
 
     initContainers:
@@ -51,19 +51,15 @@ spec:
       PUID: 568
       PGUID: 568
       AUTOSTART: true
-      audioFormat: native
-      audioBitrate: lossless
-      dlClientSearch: deezer
-      arlToken: ${SECRET_ARL_TOKEN}
-      addRelatedArtists: true
-
       SCRIPTINTERVAL: 1h
       DOWNLOADMODE: wanted
       FALLBACKSEARCH: True
       LIST: both
       SearchType: artist
       Concurrency: 10
-      FORMAT: losless
+      EMBEDDED_COVER_QUALITY: 80
+      FORMAT: FLAC
+      BITRATE: 320
       ENABLEPOSTPROCESSING: true
       FORCECONVERT: false
       requirequality: true
@@ -75,6 +71,7 @@ spec:
       MBRATELIMIT: 1
       LidarrUrl: http://lidarr.organizarrs:8686
       LidarrAPIkey: ${SECRET_LIDARR_API_KEY}
+      ARL_TOKEN: ${SECRET_ARL_TOKEN}
       NOTIFYPLEX: false
       PLEXLIBRARYNAME: Music
       PLEXURL: http://x.x.x.x:8686
@@ -99,7 +96,7 @@ spec:
           nfs:
             server: ${NAS_ADDRESS}
             path: /volume1/downloads/
-        mountPath: /downloads/
+        mountPath: /downloads-amd/
         readOnly: false
       nfs-nas-music:
         enabled: true
