@@ -103,7 +103,7 @@ spec:
             .__host = replace(.__host, "10.8.20.33", "leela")
             .__host = replace(.__host, "10.8.20.40", "xerxes")
             .__host = replace(.__host, "10.8.20.42", "shodan")
-            .node = replace(.__host, "10.8.20.44", "icarus")
+            .__host = replace(.__host, "10.8.20.44", "icarus")
 
         talos_service_logs_xform:
           type: remap
@@ -115,7 +115,7 @@ spec:
             .__host = replace(.__host, "10.8.20.33", "leela")
             .__host = replace(.__host, "10.8.20.40", "xerxes")
             .__host = replace(.__host, "10.8.20.42", "shodan")
-            .node = replace(.__host, "10.8.20.44", "icarus")
+            .__host = replace(.__host, "10.8.20.44", "icarus")
 
       # Sinks
       sinks:
@@ -143,7 +143,7 @@ spec:
           encoding:
             codec: json
           batch:
-            max_bytes: 400000
+            max_bytes: 2049000
           out_of_order_action: rewrite_timestamp
           remove_label_fields: true
           remove_timestamp: true
