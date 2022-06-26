@@ -28,7 +28,7 @@ spec:
     controllerType: deployment
     image:
       repository: ghcr.io/k8s-at-home/sonarr-nightly
-      tag: v4.0.0.2158
+      tag: v4.0.0.2162
 
     env:
       TZ: "${TZ}"
