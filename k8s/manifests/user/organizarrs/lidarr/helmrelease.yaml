@@ -128,9 +128,6 @@ spec:
         scrapeTimeout: 1m
       prometheusRule:
         enabled: true
-      exporter:
-        env:
-          additionalMetrics: true
 
     probes:
       liveness:
