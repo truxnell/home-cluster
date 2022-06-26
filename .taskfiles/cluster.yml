@@ -201,3 +201,8 @@ tasks:
     desc: What dockerhub images are running in my cluster
     cmds:
       - kubectl get pods --all-namespaces -o=jsonpath="{range .items[*]}{'\n'}{range .spec.containers[*]}{.image}{'\n'}{end}{end}" | sort | uniq | grep -Ev 'quay|gcr|ghcr|ecr|us-docker' | grep -Ev 'bitnami|rook|intel|grafana' |  sed -e 's/docker\.io\///g' | sort | uniq
+
+  netshoot:
+    desc: Create a netshoot container for debugging
+    cmds:
+      - kubectl run tmp-shell --rm -i --tty --image ghcr.io/nicolaka/netshoot:latest {{.CLI_ARGS}}
