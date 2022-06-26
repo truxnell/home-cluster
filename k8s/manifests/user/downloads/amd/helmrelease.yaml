@@ -62,7 +62,7 @@ spec:
       BITRATE: 320
       ENABLEPOSTPROCESSING: true
       FORCECONVERT: false
-      requirequality: true
+      requirequality: false
       MatchDistance: 10
       replaygain: true
       FolderPermissions: 766
