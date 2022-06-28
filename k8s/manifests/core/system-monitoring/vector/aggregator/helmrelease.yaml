@@ -224,6 +224,7 @@ spec:
         cpu: 22m
         memory: 324M
       limits:
+        cpu: null
         memory: 426M
 
   postRenderers:

@@ -48,6 +48,7 @@ spec:
           cpu: 10m
           memory: 32M
         limits:
+          cpu: null
           memory: 32M
 
     resources:
@@ -55,4 +56,5 @@ spec:
         cpu: 10m
         memory: 183M
       limits:
+        cpu: null
         memory: 237M

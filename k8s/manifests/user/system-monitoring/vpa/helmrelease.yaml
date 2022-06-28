@@ -33,6 +33,7 @@ spec:
         cpu: 15m
         memory: 110M
       limits:
+        cpu: null
         memory: 316M
 
       extraArgs:

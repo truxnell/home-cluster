@@ -37,6 +37,7 @@ spec:
           cpu: 23m
           memory: 64M
         limits:
+          cpu: null
           memory: 64M
 
       affinity:
@@ -55,6 +56,7 @@ spec:
           cpu: 15m
           memory: 64M
         limits:
+          cpu: null
           memory: 64M
 
       config:

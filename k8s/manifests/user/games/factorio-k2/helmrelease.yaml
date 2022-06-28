@@ -91,6 +91,7 @@ spec:
         cpu: 1000m
         memory: 1555M
       limits:
+        cpu: null
         memory: 8006M
 
     affinity:
