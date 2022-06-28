@@ -111,6 +111,5 @@ spec:
         memory: 5251M
         gpu.intel.com/i915: 1
       limits:
-        cpu: null
         memory: 10000M
         gpu.intel.com/i915: 1

@@ -71,7 +71,6 @@ spec:
           cpu: 22m
           memory: 256M
         limits:
-          cpu: null
           memory: 5129M
 
       # commonAnnotations: # FIXME

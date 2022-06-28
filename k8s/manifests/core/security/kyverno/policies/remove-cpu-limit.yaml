@@ -18,10 +18,8 @@ spec:
               - (name): "*"
                 resources:
                   limits:
-                    cpu: null
 
             containers:
               - (name): "*"
                 resources:
                   limits:
-                    cpu: null

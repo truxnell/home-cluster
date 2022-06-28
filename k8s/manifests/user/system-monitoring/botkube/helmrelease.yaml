@@ -276,7 +276,6 @@ spec:
         cpu: 23m
         memory: 204M
       limits:
-        cpu: null
         memory: 326M
 
   valuesFrom:

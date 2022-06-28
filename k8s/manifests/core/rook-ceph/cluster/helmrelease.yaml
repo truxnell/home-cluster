@@ -69,7 +69,6 @@ spec:
               cpu: 108m
               memory: 629M
             limits:
-              cpu: null
               memory: 1500M
         mon:
           resources:
@@ -77,49 +76,42 @@ spec:
               cpu: 22m
               memory: 1169M
             limits:
-              cpu: null
               memory: 1418M
         osd:
           requests:
             cpu: "442m"
             memory: "2678M"
           limits:
-            cpu: null
             memory: "5944M"
         prepareosd:
           requests:
             cpu: "250m"
             memory: "50Mi"
           limits:
-            cpu: null
             memory: "200Mi"
         mgr-sidecar:
           requests:
             cpu: "49m"
             memory: "94M"
           limits:
-            cpu: null
             memory: "208M"
         crashcollector:
           requests:
             cpu: "15m"
             memory: "64M"
           limits:
-            cpu: null
             memory: "64M"
         logcollector:
           requests:
             cpu: "100m"
             memory: "100M"
           limits:
-            cpu: null
             memory: "1G"
         cleanup:
           requests:
             cpu: "250m"
             memory: "100M"
           limits:
-            cpu: null
             memory: "1G"
 
       dashboard:

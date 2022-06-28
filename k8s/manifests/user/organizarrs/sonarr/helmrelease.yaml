@@ -110,7 +110,6 @@ spec:
         cpu: 10m
         memory: 477M
       limits:
-        cpu: null
         memory: 1300M
 
     metrics:

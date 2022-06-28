@@ -88,5 +88,4 @@ spec:
         cpu: 22m
         memory: 588M
       limits:
-        cpu: null
         memory: 1265M

@@ -308,7 +308,6 @@ spec:
         cpu: 34m
         memory: 94M
       limits:
-        cpu: null
         memory: 213M
 
     podAnnotations:

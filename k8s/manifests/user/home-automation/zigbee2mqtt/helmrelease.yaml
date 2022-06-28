@@ -69,7 +69,6 @@ spec:
         cpu: 22m
         memory: 164M
       limits:
-        cpu: null
         memory: 262M
 
     config: # This is only for first install - once config is stored in pvc this does nothing
