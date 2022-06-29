@@ -35,13 +35,14 @@ spec:
           cpu: 35m
           memory: 64M
         limits:
+          cpu: null
           memory: 64M
 
     dashboard:
       replicaCount: 1
       resources:
         requests:
-          cpu: 15m
+          cpu: null
           memory: 64M
         limits:
           memory: 64M

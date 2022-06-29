@@ -46,7 +46,7 @@ spec:
           cpu: 15m
           memory: 204M
         limits:
-          cpu: 15m
+          cpu: null
           memory: 247M
 
       ingress:
@@ -72,7 +72,7 @@ spec:
           cpu: 15m
           memory: 64M
         limits:
-          cpu: 15m
+          cpu: null
           memory: 83M
 
     compactor:
@@ -86,7 +86,7 @@ spec:
           cpu: 15m
           memory: 183M
         limits:
-          cpu: 29m
+          cpu: null
           memory: 11G
 
     storegateway:
@@ -101,7 +101,7 @@ spec:
           cpu: 15m
           memory: 183M
         limits:
-          cpu: 29m
+          cpu: null
           memory: 11G
 
     ruler:
