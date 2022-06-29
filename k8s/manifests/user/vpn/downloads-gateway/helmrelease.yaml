@@ -110,16 +110,16 @@ spec:
           limits:
             memory: 46M
 
-        livenessProbe:
-          exec:
-            command:
-              - sh
-              - -c
-              - if [ $(curl -s https://am.i.mullvad.net/city) = '${SECRET_WIREGUARD_CITY}' ]; then exit 0; else exit $?; fi
-          initialDelaySeconds: 30
-          periodSeconds: 60
-          failureThreshold: 1
-          timeoutSeconds: 30
+        # livenessProbe:
+        #   exec:
+        #     command:
+        #       - sh
+        #       - -c
+        #       - if [ $(curl -s https://am.i.mullvad.net/city) = '${SECRET_WIREGUARD_CITY}' ]; then exit 0; else exit $?; fi
+        #   initialDelaySeconds: 30
+        #   periodSeconds: 60
+        #   failureThreshold: 1
+        #   timeoutSeconds: 30
 
         networkPolicy:
           enabled: true
