@@ -1,0 +1,56 @@
+digraph "Network Map" {
+	graph [fontcolor="#2D3436" fontname="Sans-Serif" fontsize=15 label="Network Map" nodesep=0.60 pad=2.0 rankdir=LR ranksep=0.75 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	subgraph cluster_Internet {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label=Internet labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"72a1d9ee20424129b7a4e24d43799a8e" [label=Internet height=1.9 image="/usr/local/lib/python3.9/site-packages/resources/onprem/network/internet.png" shape=none]
+	}
+	subgraph cluster_Local {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label=Local labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		subgraph cluster_Hardware {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label=Hardware labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			"26f531321afc407d8412af8333168865" [label=Netgear height=1.9 image="/usr/local/lib/python3.9/site-packages/resources/generic/network/router.png" shape=none]
+			"08ce438dbd0b4dc7ad0ba3affd0bc53a" [label="UDM-PRO" height=1.9 image="/usr/local/lib/python3.9/site-packages/resources/generic/network/router.png" shape=none]
+			dea0c79d82da49398a25690f77ec5786 [label="USW-24-POE" height=1.9 image="/usr/local/lib/python3.9/site-packages/resources/generic/network/switch.png" shape=none]
+			"9f63a1e99ca04e1e867dde998f85da75" [label="3 x Unifi AC Lite" height=1.9 image="unifi_ac.png" shape=none]
+			"79d22093fa5d487895a9d60baeae44fb" [label="2 x Nanobeam Gen2 5AC" height=1.9 image="nanobeam.png" shape=none]
+		}
+		subgraph "cluster_Trusted
+10.8.10.1/24" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="Trusted
+10.8.10.1/24" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			c2c7bbf90bcd401caf88d558f781d698 [label=Smartphones height=1.9 image="/usr/local/lib/python3.9/site-packages/resources/generic/os/android.png" shape=none]
+			"9b2154bfd9394e568bfc74c4d0523c69" [label="Win Laptops" height=1.9 image="/usr/local/lib/python3.9/site-packages/resources/generic/os/windows.png" shape=none]
+			"90b8eb3c172141dd8c54f7b601059bb1" [label="Linux laptops" height=1.9 image="/usr/local/lib/python3.9/site-packages/resources/generic/os/linux-general.png" shape=none]
+		}
+		subgraph "cluster_Lab
+10.8.20.1/24" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="Lab
+10.8.20.1/24" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			d3ad25ce2fff4a66b2834688348fbd58 [label="Technocore - Sidero" height=1.9 image="k8s.png" shape=none]
+			"53955dab3d1f48a38b8dab6e473dd720" [label="Hegira - k8s" height=1.9 image="k8s.png" shape=none]
+		}
+		subgraph "cluster_IOT / Untrusted
+10.8.30.1/24" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="IOT / Untrusted
+10.8.30.1/24" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			"403095e1c94b4168a62304e17d968198" [label=Alexa height=1.9 image="/usr/local/lib/python3.9/site-packages/resources/aws/iot/iot-alexa-echo.png" shape=none]
+			"602d504d853042ccb4f6bcae4104416e" [label="IOT Lightbulb" height=1.9 image="/usr/local/lib/python3.9/site-packages/resources/aws/iot/iot-lightbulb.png" shape=none]
+			de065a5b1fdc49eb833ddd22e40dc4a0 [label="IOT Sensors" height=1.9 image="/usr/local/lib/python3.9/site-packages/resources/aws/iot/iot-sensor.png" shape=none]
+		}
+	}
+	"72a1d9ee20424129b7a4e24d43799a8e" -> "26f531321afc407d8412af8333168865" [dir=none fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"26f531321afc407d8412af8333168865" -> "08ce438dbd0b4dc7ad0ba3affd0bc53a" [label=bridge dir=none fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=dashed]
+	"08ce438dbd0b4dc7ad0ba3affd0bc53a" -> dea0c79d82da49398a25690f77ec5786 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	dea0c79d82da49398a25690f77ec5786 -> "9f63a1e99ca04e1e867dde998f85da75" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	dea0c79d82da49398a25690f77ec5786 -> "79d22093fa5d487895a9d60baeae44fb" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	dea0c79d82da49398a25690f77ec5786 -> d3ad25ce2fff4a66b2834688348fbd58 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	dea0c79d82da49398a25690f77ec5786 -> "53955dab3d1f48a38b8dab6e473dd720" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"9f63a1e99ca04e1e867dde998f85da75" -> "602d504d853042ccb4f6bcae4104416e" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"9f63a1e99ca04e1e867dde998f85da75" -> de065a5b1fdc49eb833ddd22e40dc4a0 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"9f63a1e99ca04e1e867dde998f85da75" -> c2c7bbf90bcd401caf88d558f781d698 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"9f63a1e99ca04e1e867dde998f85da75" -> "9b2154bfd9394e568bfc74c4d0523c69" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"9f63a1e99ca04e1e867dde998f85da75" -> "403095e1c94b4168a62304e17d968198" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"9f63a1e99ca04e1e867dde998f85da75" -> "90b8eb3c172141dd8c54f7b601059bb1" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+}
