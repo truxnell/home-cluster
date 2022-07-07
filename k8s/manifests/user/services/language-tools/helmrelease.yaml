@@ -23,7 +23,7 @@ spec:
 
     image:
       repository: silviof/docker-languagetool
-      tag: "5.7"
+      tag: "5.8"
 
     service:
       main:
