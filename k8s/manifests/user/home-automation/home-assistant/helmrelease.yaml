@@ -29,7 +29,7 @@ spec:
       namespace: databases
   values:
     image:
-      repository: ghcr.io/onedr0p/home-assistant
+      repository: ghcr.io/home-assistant/home-assistant
       tag: 2022.7.1
 
     env:
