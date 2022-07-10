@@ -5,3 +5,4 @@ resources:
   - node-exporter.yaml
   - blackbox-exporter.yaml # TODO #952 Fix blackbox alerts (after fix DNS)
   - prom-smartctl.yaml
+  - zfs_exporter.yaml

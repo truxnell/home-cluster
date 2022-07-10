@@ -1,0 +1,22 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: zfs-rules
+  namespace: system-monitoring
+  labels:
+    prometheus: k8s
+    role: alert-rules
+spec:
+  groups:
+    - name: zfs.rules
+      rules:
+        - alert: ZFSPoolNotHealthy
+          annotations:
+            summary: ZFS Pool {{$labels.pool}} on {{$labels.instance}}
+              is currently {{$labels.state}}
+          expr: |
+            zfs_pool_health != 0
+          for: 5m
+          labels:
+            severity: critical
