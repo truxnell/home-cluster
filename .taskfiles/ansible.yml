@@ -1,0 +1,26 @@
+---
+version: "3"
+
+env:
+  ANSIBLE_CONFIG: ./infrastructure/ansible/ansible.cfg
+
+vars:
+  ANSIBLE_HOSTS: ./infrastructure/ansible/inventory/home/hosts.yml
+  ANSIBLE_GROUPS: control-nodes:generic-nodes
+
+tasks:
+  deps:
+    desc: Install Ansible dependencies
+    cmds:
+      - ansible-galaxy install -r ./infrastructure/ansible/requirements.yml --force
+      # - pip3 install -r ./infrastructure/ansible/requirements.txt
+
+  pikvm:update:
+    desc: Install flux + cluster github on cluster
+    cmds:
+      - ansible-playbook -i infrastructure/ansible/inventory/hosts.yml infrastructure/ansible/playbooks/pikvm/update.yml
+
+  octoprint:update:
+    desc: Install flux + cluster github on cluster
+    cmds:
+      - ansible-playbook -i infrastructure/ansible/inventory/hosts.yml infrastructure/ansible/playbooks/octoprint/update.yml

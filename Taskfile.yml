@@ -10,3 +10,4 @@ includes:
   cluster: .taskfiles/cluster.yml
   format: .taskfiles/format.yml
   bootstrap: .taskfiles/bootstrap.yml
+  ansible: .taskfiles/ansible.yml
