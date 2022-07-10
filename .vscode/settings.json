@@ -86,7 +86,9 @@
     "vector",
     "calibre-web",
     "grafana",
-    "kyverno"
+    "kyverno",
+    "factorio",
+    "pod-gateway"
   ],
   "discord.enabled": true,
 

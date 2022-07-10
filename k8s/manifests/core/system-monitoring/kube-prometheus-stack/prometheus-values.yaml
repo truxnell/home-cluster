@@ -75,6 +75,7 @@ prometheus:
               - "technocore.${INTERNAL_DOMAIN}:9100"
               - "prusa.${INTERNAL_DOMAIN}:9100"
               - "10.8.10.228:9100" #TODO: Move to prod when setup
+              - "10.8.10.228:9134" #TODO: Move to prod when setup
 
       - job_name: ts110
         scrape_interval: 1m
