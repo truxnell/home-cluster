@@ -36,7 +36,7 @@ spec:
           memory: 64M
         limits:
           cpu: null
-          memory: 64M
+          memory: 128M
 
     dashboard:
       replicaCount: 1
