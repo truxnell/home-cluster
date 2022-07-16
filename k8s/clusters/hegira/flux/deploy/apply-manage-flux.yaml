@@ -17,11 +17,39 @@ spec:
   patches:
     - target:
         kind: Deployment
-        name: helm-controller
+        labelSelector: control-plane=controller
       patch: |-
-        - op: replace
-          path: /spec/template/spec/containers/0/resources/requests/memory
-          value: 512Mi
-        - op: replace
-          path: /spec/template/spec/containers/0/resources/limits/memory
-          value: 2Gi
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: not-used
+        spec:
+          template:
+            spec:
+              containers:
+                - name: manager
+                  resources:
+                    requests:
+                      memory: 512Mi
+                    limits:
+                      memory: "2Gi"
+    - target:
+        kind: Namespace
+        labelSelector: app.kubernetes.io/instance=flux-system
+      patch: |-
+        apiVersion: apps/v1
+        kind: Namespace
+        metadata:
+          name: not-used
+          labels:
+            goldilocks.fairwinds.com~1enabled: "true"
+    - target:
+        group: networking.k8s.io
+        version: v1
+        kind: NetworkPolicy
+      patch: |-
+        $patch: delete
+        apiVersion: networking.k8s.io/v1
+        kind: NetworkPolicy
+        metadata:
+          name: not-used
