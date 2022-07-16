@@ -77,6 +77,14 @@ prometheus:
               - "10.8.10.228:9100" #TODO: Move to prod when setup
               - "10.8.10.228:9134" #TODO: Move to prod when setup
 
+      - job_name: windows-exporter
+        scrape_interval: 1m
+        scrape_timeout: 10s
+        honor_timestamps: true
+        static_configs:
+          - targets:
+              - "10.8.20.222:9182"
+
       - job_name: ts110
         scrape_interval: 1m
         scrape_timeout: 10s
