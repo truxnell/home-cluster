@@ -59,3 +59,14 @@ spec:
         memory: 1640M
       limits:
         # memory: 4315M
+
+    affinity:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - icarus
