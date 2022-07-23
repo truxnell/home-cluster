@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: deployment-restart
+  name: deployment-restart-factorio-k2
   namespace: games
 spec:
   concurrencyPolicy: Forbid
