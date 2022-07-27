@@ -74,8 +74,8 @@ prometheus:
           - targets:
               - "technocore.${INTERNAL_DOMAIN}:9100"
               - "prusa.${INTERNAL_DOMAIN}:9100"
-              - "10.8.10.228:9100" #TODO: Move to prod when setup
-              - "10.8.10.228:9134" #TODO: Move to prod when setup
+              - "10.8.20.11:9100" #TODO: Move to fqdn 
+              - "10.8.20.1:9134" #TODO: Move to fqdn
 
       - job_name: windows-exporter
         scrape_interval: 1m
