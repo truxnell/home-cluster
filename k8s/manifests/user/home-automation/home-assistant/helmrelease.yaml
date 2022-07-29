@@ -102,7 +102,7 @@ spec:
         volumeSpec:
           nfs:
             server: ${NAS_ADDRESS_2}
-            path: /volume1/backup/kubernetes/apps/homeassistant
+            path: /tank/backup/kubernetes/apps/homeassistant
         mountPath: /data/backups
         readOnly: false
 

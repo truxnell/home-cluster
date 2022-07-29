@@ -12,7 +12,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: "${NAS_ADDRESS_2}"
-    path: /volume1/backup/kubernetes/k10/
+    path: /tank/backup/kubernetes/k10/
   mountOptions:
     - nfsvers=4.1
     - nconnect=8

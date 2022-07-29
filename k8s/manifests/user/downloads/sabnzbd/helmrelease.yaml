@@ -82,7 +82,7 @@ spec:
         volumeSpec:
           nfs:
             server: ${NAS_ADDRESS_2}
-            path: /volume1/
+            path: /tank/
         mountPath: /media
         readOnly: false
 

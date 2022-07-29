@@ -90,7 +90,7 @@ spec:
         volumeSpec:
           nfs:
             server: ${NAS_ADDRESS_2}
-            path: /volume1/backup/kubernetes/apps/prowlarr
+            path: /tank/backup/kubernetes/apps/prowlarr
         mountPath: /config/Backups
         readOnly: false
 

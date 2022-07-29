@@ -89,7 +89,7 @@ spec:
         volumeSpec:
           nfs:
             server: ${NAS_ADDRESS_2}
-            path: /volume1/
+            path: /tank/
         mountPath: /media
         readOnly: false
       nfs-nas-backup:
@@ -98,7 +98,7 @@ spec:
         volumeSpec:
           nfs:
             server: ${NAS_ADDRESS_2}
-            path: /volume1/backup/kubernetes/apps/readarr
+            path: /tank/backup/kubernetes/apps/readarr
         mountPath: /config/Backups
         readOnly: false
 

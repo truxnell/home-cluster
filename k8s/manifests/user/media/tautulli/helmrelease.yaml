@@ -63,7 +63,7 @@ spec:
         volumeSpec:
           nfs:
             server: ${NAS_ADDRESS_2}
-            path: /volume1/backup/kubernetes/apps/tautulli
+            path: /tank/backup/kubernetes/apps/tautulli
         mountPath: /config/backups
         readOnly: false
 
