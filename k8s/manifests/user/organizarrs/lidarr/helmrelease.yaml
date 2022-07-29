@@ -81,8 +81,8 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: ${NAS_ADDRESS}
-            path: /volume1/
+            server: ${NAS_ADDRESS_2}
+            path: /tank/
         mountPath: /media
         readOnly: false
 
@@ -91,8 +91,8 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: ${NAS_ADDRESS}
-            path: /volume1/downloads/
+            server: ${NAS_ADDRESS_2}
+            path: /tank/downloads/
         mountPath: /downloads-amd/
         readOnly: false
 
@@ -101,8 +101,8 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: ${NAS_ADDRESS}
-            path: /volume1/backup/kubernetes/apps/lidarr
+            server: ${NAS_ADDRESS_2}
+            path: /tank/backup/kubernetes/apps/lidarr
         mountPath: /config/Backups
         readOnly: false
 
