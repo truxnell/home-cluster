@@ -88,7 +88,8 @@
     "grafana",
     "kyverno",
     "factorio",
-    "pod-gateway"
+    "pod-gateway",
+    "games"
   ],
   "discord.enabled": true,
 

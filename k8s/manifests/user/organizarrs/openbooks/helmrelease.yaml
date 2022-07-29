@@ -72,7 +72,7 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: ${NAS_ADDRESS}
+            server: ${NAS_ADDRESS_2}
             path: /volume1/
         mountPath: /media
         readOnly: false
