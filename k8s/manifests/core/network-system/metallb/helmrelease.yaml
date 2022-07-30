@@ -33,3 +33,5 @@ spec:
       tolerateMaster: true
 
     existingConfigMap: "metallb-config"
+    crds:
+      enabled: true
