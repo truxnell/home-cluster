@@ -29,9 +29,7 @@ spec:
       prometheusRule:
         enabled: true
 
-    configInline:
-      address-pools:
-        - name: default
-          protocol: layer2
-          addresses:
-            - "${LB_RANGE}"
+    speaker:
+      tolerateMaster: true
+
+    existingConfigMap: "metallb-config"
