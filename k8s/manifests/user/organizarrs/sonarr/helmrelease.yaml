@@ -84,8 +84,8 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: ${NAS_ADDRESS}
-            path: /volume1/
+            server: ${NAS_ADDRESS_2}
+            path: /tank/
         mountPath: /media
         readOnly: false
 
@@ -94,8 +94,8 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: ${NAS_ADDRESS}
-            path: /volume1/backup/kubernetes/apps/sonarr
+            server: ${NAS_ADDRESS_2}
+            path: /tank/backup/kubernetes/apps/sonarr
         mountPath: /config/Backups
         readOnly: false
 
