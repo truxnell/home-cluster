@@ -168,7 +168,7 @@ tasks:
                   "name": "backups",
                   "nfs": {
                     "server": '{{.NAS_ADDRESS | default "hyperion"}}',
-                    "path": '{{.NAS_PATH | default "/volume1/backups/"}}'
+                    "path": '{{.NAS_PATH | default "/tank/backups/"}}'
                   }
                 },
                 {

@@ -89,7 +89,9 @@
     "kyverno",
     "factorio",
     "pod-gateway",
-    "games"
+    "games",
+    "metallb",
+    "plex"
   ],
   "discord.enabled": true,
 
