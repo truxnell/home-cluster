@@ -83,7 +83,8 @@ prometheus:
         honor_timestamps: true
         static_configs:
           - targets:
-              - "hs110-exporter-1.system-monitoring:8110"
+              - "hs110-exporter-prusa.system-monitoring:8110"
+              - "hs110-exporter-rack.system-monitoring:8110"
 
       - job_name: minio
         honor_timestamps: true
