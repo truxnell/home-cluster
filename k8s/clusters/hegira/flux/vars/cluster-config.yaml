@@ -51,3 +51,4 @@ data:
 
   # HS110 IP's
   HS110_IP_1: 10.8.30.130 # Prusa
+  HS110_IP_2: 10.8.30.131 # Rack

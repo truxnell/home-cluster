@@ -100,11 +100,25 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: user-system-monitoring-hs110-exporter
+  name: user-system-monitoring-hs110-exporter-prusa
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/system-monitoring/hs110-exporter"
+  path: "./k8s/manifests/user/system-monitoring/hs110-exporter-prusa"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: user-system-monitoring-hs110-exporter-rack
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/user/system-monitoring/hs110-exporter-rack"
   prune: true
   wait: true
   sourceRef:
