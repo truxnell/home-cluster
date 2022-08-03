@@ -12,7 +12,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: hyperion.${INTERNAL_DOMAIN}
-    path: "/volume1/minio"
+    path: "/tank/minio"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

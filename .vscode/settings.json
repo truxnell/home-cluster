@@ -91,7 +91,8 @@
     "pod-gateway",
     "games",
     "metallb",
-    "plex"
+    "plex",
+    "cert-manager"
   ],
   "discord.enabled": true,
 

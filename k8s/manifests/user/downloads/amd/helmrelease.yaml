@@ -94,8 +94,8 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: ${NAS_ADDRESS}
-            path: /volume1/downloads/
+            server: ${NAS_ADDRESS_2}
+            path: /tank/downloads/
         mountPath: /downloads-amd/
         readOnly: false
       nfs-nas-music:
@@ -103,8 +103,8 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: ${NAS_ADDRESS}
-            path: /volume1/music/
+            server: ${NAS_ADDRESS_2}
+            path: /tank/music/
         mountPath: /media/music
         readOnly: false
 
