@@ -93,7 +93,11 @@
     "metallb",
     "plex",
     "cert-manager",
-    "ingress"
+    "ingress",
+    "pyload",
+    "sonarr",
+    "rook",
+    "z2m"
   ],
   "discord.enabled": true,
 

@@ -11,3 +11,4 @@ includes:
   format: .taskfiles/format.yml
   bootstrap: .taskfiles/bootstrap.yml
   ansible: .taskfiles/ansible.yml
+  music: .taskfiles/music.yml
