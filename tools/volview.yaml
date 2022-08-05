@@ -18,4 +18,4 @@ spec:
   volumes:
     - name: pvc
       persistentVolumeClaim:
-        claimName: "dizquetv-config-v1" # Change this
+        claimName: "satisfactory-data" # Change this

@@ -13,4 +13,4 @@ spec:
     - name: http
       port: 9001
 
-  externalName: hyperion.${INTERNAL_DOMAIN}
+  externalName: ${NAS_ADDRESS_2}

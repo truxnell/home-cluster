@@ -92,7 +92,8 @@
     "games",
     "metallb",
     "plex",
-    "cert-manager"
+    "cert-manager",
+    "ingress"
   ],
   "discord.enabled": true,
 
