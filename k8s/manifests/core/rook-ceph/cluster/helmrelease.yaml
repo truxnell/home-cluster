@@ -144,15 +144,15 @@ spec:
       config:
         osdsPerDevice: "1"
       nodes:
-        - name: "${WORKER01_HOSTNAME}"
+        - name: "10.8.20.40"
           devices:
-            - name: "${WORKER01_DRIVE}"
-        - name: "${WORKER02_HOSTNAME}"
+            - name: "/dev/disk/by-id/nvme-CT1000P1SSD8_21022C81EB37"
+        - name: "10.8.20.42"
           devices:
-            - name: "${WORKER02_DRIVE}"
-        - name: "${WORKER03_HOSTNAME}"
+            - name: "/dev/disk/by-id/nvme-CT1000P1SSD8_20452B5D0862"
+        - name: "10.8.40.44"
           devices:
-            - name: "${WORKER03_DRIVE}"
+            - name: "/dev/disk/by-id/nvme-KINGSTON_SNVS1000G_50026B7684F12095"
     cephBlockPools:
       - name: ceph-blockpool
         spec:
