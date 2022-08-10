@@ -32,6 +32,7 @@ spec:
 
     monitoring:
       enabled: true
+      createPrometheusRules: true
 
     configOverride: |
       [global]
@@ -193,7 +194,7 @@ spec:
                 # cpu: "500m"
                 memory: "4Gi"
               requests:
-                # cpu: "250m"
+                cpu: "1000m"
                 memory: "4Gi"
         storageClass:
           enabled: true
@@ -212,33 +213,33 @@ spec:
             csi.storage.k8s.io/fstype: ext4
 
     cephObjectStores: []
-    #   - name: ceph-objectstore
-    #     spec:
-    #       metadataPool:
-    #         failureDomain: host
-    #         replicated:
-    #           size: 3
-    #       dataPool:
-    #         failureDomain: host
-    #         erasureCoded:
-    #           dataChunks: 2
-    #           codingChunks: 1
-    #       preservePoolsOnDelete: true
-    #       gateway:
-    #         port: 80
-    #         resources:
-    #           requests:
-    #             cpu: 1000m
-    #             memory: 1Gi
-    #           limits:
-    #             memory: 2Gi
-    #         instances: 1
-    #       healthCheck:
-    #         bucket:
-    #           interval: 60s
-    #     storageClass:
-    #       enabled: true
-    #       name: ceph-bucket
-    #       reclaimPolicy: Delete
-    #       parameters:
-    #         region: us-east-1
+      - name: ceph-objectstore
+        spec:
+          metadataPool:
+            failureDomain: host
+            replicated:
+              size: 3
+          dataPool:
+            failureDomain: host
+            erasureCoded:
+              dataChunks: 2
+              codingChunks: 1
+          preservePoolsOnDelete: true
+          gateway:
+            port: 80
+            resources:
+              requests:
+                cpu: 1000m
+                memory: 1Gi
+              limits:
+                memory: 2Gi
+            instances: 1
+          healthCheck:
+            bucket:
+              interval: 60s
+        storageClass:
+          enabled: true
+          name: ceph-bucket
+          reclaimPolicy: Delete
+          parameters:
+            region: us-east-1
