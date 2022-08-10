@@ -41,8 +41,7 @@ spec:
     kubeProxyReplacement: "strict"
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
 
-    nativeRoutingCIDR: ${NETWORK_K8S_POD_CIDR}
-    enableIPv4Masquerade: true
+    ipv4NativeRoutingCIDR: ${NETWORK_K8S_POD_CIDR}
 
     k8sServiceHost: "hegira.${INTERNAL_DOMAIN}"
     k8sServicePort: 6443
@@ -63,6 +62,19 @@ spec:
 
     operator:
       rollOutPods: true
+      replicas: 1
+      prometheus:
+        enabled: true
+        serviceMonitor:
+          enabled: true
+
+    prometheus:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    proxy:
+      prometheus:
+        enabled: true
 
     containerRuntime:
       integration: containerd
