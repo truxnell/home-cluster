@@ -42,6 +42,7 @@ spec:
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
 
     nativeRoutingCIDR: ${NETWORK_K8S_POD_CIDR}
+    enableIPv4Masquerade: true
 
     k8sServiceHost: "hegira.${INTERNAL_DOMAIN}"
     k8sServicePort: 6443
