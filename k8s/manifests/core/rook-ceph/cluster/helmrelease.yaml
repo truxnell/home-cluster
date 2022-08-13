@@ -40,44 +40,22 @@ spec:
       bdev_async_discard = true
 
     cephClusterSpec:
-      healthCheck:
-        livenessProbe:
-          mon:
-            probe:
-              timeoutSeconds: 5
-          mgr:
-            probe:
-              timeoutSeconds: 5
-          osd:
-            probe:
-              timeoutSeconds: 5
-
-        startupProbe:
-          mon:
-            probe:
-              timeoutSeconds: 5
-          mgr:
-            probe:
-              timeoutSeconds: 5
-          osd:
-            probe:
-              timeoutSeconds: 5
+      network:
+        provider: host
 
       resources:
         mgr:
-          resources:
-            requests:
-              cpu: 108m
-              memory: 629M
-            limits:
-              memory: 1500M
+          requests:
+            cpu: "125m"
+            memory: "549M"
+          limits:
+            memory: "1219M"
         mon:
-          resources:
-            requests:
-              cpu: 22m
-              memory: 1169M
-            limits:
-              memory: 1418M
+          requests:
+            cpu: "49m"
+            memory: "477M"
+          limits:
+            memory: "1059M"
         osd:
           requests:
             cpu: "442m"
@@ -115,9 +93,28 @@ spec:
           limits:
             memory: "1G"
 
+      crashCollector:
+        disable: false
+
       dashboard:
         enabled: true
         urlPrefix: /
+
+      storage:
+        useAllNodes: false
+        useAllDevices: false
+        config:
+          osdsPerDevice: "1"
+        nodes:
+          - name: "xerxes"
+            devices:
+              - name: "/dev/disk/by-id/nvme-CT1000P1SSD8_21022C81EB37"
+          - name: "shodan"
+            devices:
+              - name: "/dev/disk/by-id/nvme-CT1000P1SSD8_20452B5D0862"
+          - name: "icarus"
+            devices:
+              - name: "/dev/disk/by-id/nvme-KINGSTON_SNVS1000G_50026B7684F12095"
 
     ingress:
       dashboard:
@@ -138,21 +135,9 @@ spec:
             hosts:
               - *host
 
-    storage:
-      useAllNodes: false
-      useAllDevices: false
-      config:
-        osdsPerDevice: "1"
-      nodes:
-        - name: "10.8.20.40"
-          devices:
-            - name: "/dev/disk/by-id/nvme-CT1000P1SSD8_21022C81EB37"
-        - name: "10.8.20.42"
-          devices:
-            - name: "/dev/disk/by-id/nvme-CT1000P1SSD8_20452B5D0862"
-        - name: "10.8.40.44"
-          devices:
-            - name: "/dev/disk/by-id/nvme-KINGSTON_SNVS1000G_50026B7684F12095"
+    cephBlockPoolsVolumeSnapshotClass:
+      enabled: false
+
     cephBlockPools:
       - name: ceph-blockpool
         spec:

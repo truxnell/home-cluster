@@ -8,16 +8,10 @@ spec:
   nodeName: xerxes
   containers:
     - name: disk-wipe
-      image: busybox
+      image: quay.io/ceph/ceph:v16.2.10
       securityContext:
         privileged: true
-      command:
-        [
-          "/bin/sh",
-          "-c",
-          "blkdiscard /dev/nvme0n1",
-          "dd if=/dev/zero bs=1M count=10000 oflag=direct of=/dev/nvme0n1",
-        ]
+      command: ["/bin/sh", "-c", "sgdisk -Z /dev/nvme0n1"]
 ---
 apiVersion: v1
 kind: Pod
@@ -28,16 +22,11 @@ spec:
   nodeName: shodan
   containers:
     - name: disk-wipe
-      image: busybox
+      image: quay.io/ceph/ceph:v16.2.10
       securityContext:
         privileged: true
-      command:
-        [
-          "/bin/sh",
-          "-c",
-          "blkdiscard /dev/nvme1n1",
-          "dd if=/dev/zero bs=1M count=10000 oflag=direct of=/dev/nvme1n1",
-        ]
+      command: ["/bin/sh", "-c", "sgdisk -Z /dev/nvme1n1"]
+
 ---
 apiVersion: v1
 kind: Pod
@@ -48,13 +37,7 @@ spec:
   nodeName: icarus
   containers:
     - name: disk-wipe
-      image: busybox
+      image: quay.io/ceph/ceph:v16.2.10
       securityContext:
         privileged: true
-      command:
-        [
-          "/bin/sh",
-          "-c",
-          "blkdiscard /dev/nvme0n1",
-          "dd if=/dev/zero bs=1M count=10000 oflag=direct of=/dev/nvme0n1",
-        ]
+      command: ["/bin/sh", "-c", "sgdisk -Z /dev/nvme0n1"]
