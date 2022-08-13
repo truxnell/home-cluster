@@ -29,6 +29,9 @@ spec:
       retries: 3
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
+  dependsOn:
+    - name: kube-prometheus-stack
+      namespace: system-monitoring
   values:
     cluster:
       name: "${CLUSTER_NAME}"
@@ -119,7 +122,6 @@ spec:
 
     externalIPs:
       enabled: false
-    
+
     securityContext:
       privileged: true
-
