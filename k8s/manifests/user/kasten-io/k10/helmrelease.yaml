@@ -38,8 +38,9 @@ spec:
         storageClass: ceph-block
 
     auth:
-      tokenAuth:
+      basicAuth:
         enabled: true
+        htpasswd: ${SECRET_K10_HTPASSWD}
 
     clusterName: hegira
 
