@@ -1,0 +1,154 @@
+clusterName: hegira
+talosVersion: v1.1.2
+kubernetesVersion: 1.24.3
+endpoint: https://hegira.${domainName}:6443
+allowSchedulingOnMasters: true
+cniConfig:
+  name: custom
+  urls:
+    - https://raw.githubusercontent.com/Truxnell/home-cluster/main/k8s/clusters/hegira/integrations/cilium-quick-install/quick-install.yaml
+nodes:
+  - hostname: xerxes.${domainName}
+    ipAddress: 10.8.20.40
+    controlPlane: true
+    installDisk: /dev/sda
+    disableSearchDomain: true
+    networkInterfaces:
+      - interface: eth0
+        mtu: 0
+        dhcp: true
+  - hostname: shodan.${domainName}
+    ipAddress: 10.8.20.42
+    controlPlane: true
+    installDisk: /dev/nvme0n1
+    disableSearchDomain: true
+    networkInterfaces:
+      - interface: eth0
+        mtu: 0
+        dhcp: true
+  - hostname: icarus.${domainName}
+    ipAddress: 10.8.20.44
+    controlPlane: true
+    installDisk: /dev/sda
+    disableSearchDomain: true
+    networkInterfaces:
+      - interface: eth0
+        mtu: 0
+        dhcp: true
+controlPlane:
+  inlinePatch:
+    cluster:
+      aescbcEncryptionSecret: ${aescbcEncryptionKey}
+      aggregatorCA:
+        crt: ${k8sAggregatorCert}
+        key: ${k8sAggregatorCertKey}
+      apiServer:
+        admissionControl: []
+        certSANs:
+          - ${clusterEndpointIP}
+          - heigra.${domainName}
+        extraArgs:
+          feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
+      ca:
+        crt: ${clusterCert}
+        key: ${clusterCertKey}
+      controllerManager:
+        extraArgs:
+          feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
+      discovery:
+        registries:
+          service:
+            disabled: true
+      etcd:
+        ca:
+          crt: ${etcdCert}
+          key: ${etcdCertKey}
+      extraManifests:
+        - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/v0.5.1/deploy/ha-install.yaml
+      proxy:
+        disabled: true
+        extraArgs:
+          feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
+      scheduler:
+        extraArgs:
+          feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
+      secret: ${clusterSecret}
+      serviceAccount:
+        key: ${k8sServiceAccountKey}
+      token: ${clusterToken}
+    machine:
+      ca:
+        crt: ${machineCert}
+        key: ${machineCertKey}
+      certSANs:
+        - ${clusterEndpointIP}
+        - hegira.${domainName}
+      files:
+        - content: |
+            [plugins."io.containerd.grpc.v1.cri"]
+              enable_unprivileged_ports = true
+              enable_unprivileged_icmp = true
+          op: create
+          path: /var/cri/conf.d/allow-unpriv-ports.toml
+      install:
+        extraKernelArgs:
+          - talos.logging.kernel=udp://vector.trux.dev:6050/
+      kubelet:
+        extraArgs:
+          feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
+          rotate-server-certificates: "true"
+      logging:
+        destinations:
+          - endpoint: udp://vector.trux.dev:6051/
+            format: json_lines
+      time:
+        disabled: false
+        servers:
+          - time.cloudflare.com
+      token: ${machineToken}
+worker:
+  inlinePatch:
+    cluster:
+      aescbcEncryptionSecret: ${aescbcEncryptionKey}
+      ca:
+        crt: ${clusterCert}
+        key: ${clusterCertKey}
+      discovery:
+        registries:
+          service:
+            disabled: true
+      secret: ${clusterSecret}
+      token: ${clusterToken}
+    machine:
+      ca:
+        crt: ${machineCert}
+        key: ${machineCertKey}
+      certSANs:
+        - ${clusterEndpointIP}
+        - heigra.${domainName}
+      files:
+        - content: |
+            [plugins."io.containerd.grpc.v1.cri"]
+              enable_unprivileged_ports = true
+              enable_unprivileged_icmp = true
+          op: create
+          path: /var/cri/conf.d/allow-unpriv-ports.toml
+      install:
+        extraKernelArgs:
+          - talos.logging.kernel=udp://vector.trux.dev:6050/
+      kubelet:
+        extraArgs:
+          feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
+          rotate-server-certificates: "true"
+      logging:
+        destinations:
+          - endpoint: udp://vector.trux.dev:6051/
+            format: json_lines
+      sysctls:
+        fs.inotify.max_user_instances: "8192"
+        fs.inotify.max_user_watches: "1048576"
+      time:
+        disabled: false
+        servers:
+          - time.cloudflare.com
+      token: ${machineToken}
