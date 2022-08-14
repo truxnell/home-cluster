@@ -49,7 +49,6 @@ spec:
           cpu: 11m
           memory: 32M
         limits:
-          cpu: 11m
           memory: 32M
 
     primary:
