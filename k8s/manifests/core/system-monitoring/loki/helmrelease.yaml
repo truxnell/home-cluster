@@ -27,6 +27,8 @@ spec:
   dependsOn:
     - name: kube-prometheus-stack
       namespace: system-monitoring
+    - name: ingress-nginx
+      namespace: network-system
   # https://github.com/grafana/loki/blob/main/production/helm/loki/values.yaml
   values:
     image:
