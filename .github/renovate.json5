@@ -20,7 +20,7 @@
   username: "trux-bot[bot]",
   repositories: ["Truxnell/home-cluster"],
   onboarding: false,
-  requireConfig: false,
+  requireConfig: "optional",
   gitAuthor: "Trux-Bot <19149206+trux-bot[bot]@users.noreply.github.com>",
   commitBody: "Signed-off-by: Nat Allan <19149206+Truxnell@users.noreply.github.com>",
   timezone: "Australia/Melbourne",
