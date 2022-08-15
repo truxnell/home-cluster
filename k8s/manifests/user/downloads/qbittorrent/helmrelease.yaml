@@ -117,7 +117,7 @@ spec:
     additionalContainers:
       vuetorrent:
         name: vuetorrent
-        image: k8s.gcr.io/git-sync/git-sync:v3.5.1
+        image: k8s.gcr.io/git-sync/git-sync:v3.6.0
         args:
           - --repo
           - https://github.com/WDaan/VueTorrent
