@@ -4,9 +4,8 @@ kind: Ingress
 metadata:
   name: unifi
   namespace: network-system
-  ingressClassName: "nginx"
   annotations:
-    cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
+    cert-manager.io/cluster-issuer: letsencrypt-production
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
     nginx.ingress.kubernetes.io/proxy-ssl-verify: "off"
     external-dns/is-public: "false"
@@ -15,13 +14,14 @@ metadata:
     hajimari.io/appName: "unifi"
 
 spec:
+  ingressClassName: "nginx"
   tls:
     - secretName: tls.unifi
       hosts:
-        - "unifi.${EXTERNAL_DOMAIN}"
+        - "unifi.natallan.com"
 
   rules:
-    - host: unifi.${EXTERNAL_DOMAIN}
+    - host: unifi.natallan.com
       http:
         paths:
           - path: /

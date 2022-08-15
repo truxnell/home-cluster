@@ -4,13 +4,13 @@ kind: Ingress
 metadata:
   name: minio
   namespace: network-system
-  ingressClassName: "nginx"
   annotations:
     cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
     external-dns/is-public: "false"
     hajimari.io/enable: "false"
 
 spec:
+  ingressClassName: "nginx"
   tls:
     - secretName: tls.minio
       hosts:

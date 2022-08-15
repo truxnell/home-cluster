@@ -4,7 +4,6 @@ kind: Ingress
 metadata:
   name: printer
   namespace: network-system
-  ingressClassName: "nginx"
   annotations:
     cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
     external-dns/is-public: "false"
@@ -13,6 +12,7 @@ metadata:
     hajimari.io/appName: "printer"
 
 spec:
+  ingressClassName: "nginx"
   tls:
     - secretName: tls.printer
       hosts:
