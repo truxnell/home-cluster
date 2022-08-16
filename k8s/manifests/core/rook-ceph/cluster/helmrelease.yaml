@@ -107,7 +107,7 @@ spec:
         nodes:
           - name: "xerxes"
             devices:
-              - name: "/dev/disk/by-id/nvme-CT1000P1SSD8_21022C81EB37" 
+              - name: "/dev/disk/by-id/nvme-CT1000P2SSD8_2225E63ED7D7" 
           - name: "shodan"
             devices:
               - name: "/dev/disk/by-id/nvme-CT1000P1SSD8_20452B5D0862"
