@@ -64,7 +64,7 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_EXTERNAL_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${$EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -85,7 +85,7 @@ spec:
       snapshots:
         enabled: true
         type: nfs
-        server: "expanse.${SECRET_INTERNAL_DOMAIN}"
+        server: "expanse.${INTERNAL_DOMAIN}"
         path: /tank/backups/kubernetes/kopia/
         mountPath: /snapshots
     podAnnotations:
