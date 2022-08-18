@@ -9,9 +9,9 @@
       "matchUpdateTypes": ["minor", "patch"],
       "matchPackageNames": [
         "ghcr.io/k8s-at-home/plex",
-        "ghcr.io/k8s-at-home/radarr",
+        "ghcr.io/k8s-at-home/radarr-nightly",
         "ghcr.io/k8s-at-home/sonarr",
-        "ghcr.io/k8s-at-home/lidarr",
+        "ghcr.io/k8s-at-home/lidarr-nightly",
         "ghcr.io/k8s-at-home/nzbget",
         "ghcr.io/k8s-at-home/prowlarr",
         "ghcr.io/k8s-at-home/readarr-nightly",
