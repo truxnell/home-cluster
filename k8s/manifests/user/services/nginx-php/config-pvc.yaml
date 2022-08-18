@@ -5,7 +5,9 @@ metadata:
   name: nginx-php-config-v1
   namespace: services
   labels:
-    kasten.io/backup-volume: "enabled"
+    app.kubernetes.io/name: &name nginx-php
+    app.kubernetes.io/instance: *name
+    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce

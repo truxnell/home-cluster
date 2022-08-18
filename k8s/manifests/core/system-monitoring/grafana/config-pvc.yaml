@@ -5,7 +5,9 @@ metadata:
   name: grafana-config-v1
   namespace: system-monitoring
   labels:
-    kasten.io/backup-volume: "enabled"
+    app.kubernetes.io/name: &name grafana
+    app.kubernetes.io/instance: *name
+    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce
