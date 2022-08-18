@@ -5,7 +5,9 @@ metadata:
   name: plex-config-v1
   namespace: media
   labels:
-    kasten.io/backup-volume: "enabled"
+    app.kubernetes.io/name: &name plex
+    app.kubernetes.io/instance: *name
+    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce

@@ -5,7 +5,9 @@ metadata:
   name: couchdb-data
   namespace: services
   labels:
-    kasten.io/backup-volume: "enabled"
+    app.kubernetes.io/name: &name obsidian-db
+    app.kubernetes.io/instance: *name
+    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce

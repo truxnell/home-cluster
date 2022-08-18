@@ -5,7 +5,9 @@ metadata:
   name: mariadb-config-v1
   namespace: databases
   labels:
-    kasten.io/backup-volume: "enabled"
+    app.kubernetes.io/name: &name mariadb
+    app.kubernetes.io/instance: *name
+    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce

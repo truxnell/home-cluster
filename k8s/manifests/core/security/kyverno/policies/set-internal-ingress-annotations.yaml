@@ -4,6 +4,9 @@ kind: ClusterPolicy
 metadata:
   name: set-internal-ingress-annotations
 spec:
+  mutateExistingOnPolicyUpdate: true
+  generateExistingOnPolicyUpdate: true
+
   rules:
     - name: set-internal-ingress-annotations
       match:
@@ -20,4 +23,5 @@ spec:
         patchStrategicMerge:
           metadata:
             annotations:
-              +(nginx.ingress.kubernetes.io/whitelist-source-range): "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+              +(nginx.ingress.kubernetes.io/whitelist-source-range): |-
+                "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"

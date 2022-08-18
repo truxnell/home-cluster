@@ -68,20 +68,20 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: user-services-paperless
-  namespace: flux-system
-spec:
-  interval: 5m
-  path: "./k8s/manifests/user/services/paperless"
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: home-cluster
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: user-services-paperless
+#   namespace: flux-system
+# spec:
+#   interval: 5m
+#   path: "./k8s/manifests/user/services/paperless"
+#   prune: true
+#   wait: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: home-cluster
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
@@ -105,6 +105,20 @@ metadata:
 spec:
   interval: 5m
   path: "./k8s/manifests/user/services/language-tools"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: user-services-kopia
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/user/services/kopia"
   prune: true
   wait: true
   sourceRef:

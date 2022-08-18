@@ -5,7 +5,9 @@ metadata:
   name: qbittorrent-config-v1
   namespace: downloads
   labels:
-    kasten.io/backup-volume: "enabled"
+    app.kubernetes.io/name: &name qbittorrent
+    app.kubernetes.io/instance: *name
+    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce

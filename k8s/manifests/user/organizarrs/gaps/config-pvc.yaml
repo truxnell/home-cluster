@@ -5,7 +5,9 @@ metadata:
   name: gaps-config-v1
   namespace: organizarrs
   labels:
-    kasten.io/backup-volume: "enabled"
+    app.kubernetes.io/name: &name gaps
+    app.kubernetes.io/instance: *name
+    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce

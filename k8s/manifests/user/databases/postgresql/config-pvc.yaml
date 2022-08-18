@@ -5,7 +5,9 @@ metadata:
   name: postgresql-config-v1
   namespace: databases
   labels:
-    kasten.io/backup-volume: "enabled"
+    app.kubernetes.io/name: &name postgresql
+    app.kubernetes.io/instance: *name
+    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce
