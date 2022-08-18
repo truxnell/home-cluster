@@ -39,6 +39,14 @@ spec:
           matchLabels:
             app.kubernetes.io/instance: kyverno
 
+    extraArgs:
+      - --autogenInternals=false
+      - --clientRateLimitQPS=30
+      - --clientRateLimitBurst=60
+
+    serviceMonitor:
+      enabled: true
+
     resources:
       requests:
         cpu: 92m

@@ -33,3 +33,4 @@ resources:
   - ./vmware-charts.yaml
   - ./vmware-tanzu-charts.yaml
   - ./weaveworks-kured-charts.yaml
+  - ./bjw-s-charts.yaml
