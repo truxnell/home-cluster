@@ -85,7 +85,7 @@ spec:
       snapshots:
         enabled: true
         type: nfs
-        server: "expanse.${INTERNAL_DOMAIN}"
+        server: "george.${INTERNAL_DOMAIN}"
         path: /tank/backups/kubernetes/kopia/
         mountPath: /snapshots
     podAnnotations:
