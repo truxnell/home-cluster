@@ -127,7 +127,7 @@ spec:
                           claimName: "{{ claimName }}"
                       - name: snapshots
                         nfs:
-                          server: "george.${SECRET_INTERNAL_DOMAIN}"
+                          server: "george.${INTERNAL_DOMAIN}"
                           path: /tank/backup/kubernetes/kopia
                     affinity:
                       podAffinity:

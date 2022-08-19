@@ -10,7 +10,7 @@ metadata:
     external-dns.alpha.kubernetes.io/target: ipv4.${EXTERNAL_DOMAIN}
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
 spec:
-  kubernetes.io/ingress.class: "nginx"
+  ingressClassName: "nginx"
   rules:
     - host: &host "flux-receiver.${EXTERNAL_DOMAIN}"
       http:

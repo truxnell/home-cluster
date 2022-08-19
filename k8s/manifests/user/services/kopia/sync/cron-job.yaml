@@ -5,7 +5,7 @@ metadata:
   name: &app kopia-sync
   namespace: services
 spec:
-  schedule: "0 */12 * * *"
+  schedule: "0 19 * * *"
   suspend: false
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 1
@@ -61,7 +61,7 @@ spec:
           volumes:
             - name: snapshots
               nfs:
-                server: "george.${SECRET_INTERNAL_DOMAIN}"
+                server: "george.${INTERNAL_DOMAIN}"
                 path: /tank/backup/kubernetes/kopia
             - name: remote-config
               secret:
