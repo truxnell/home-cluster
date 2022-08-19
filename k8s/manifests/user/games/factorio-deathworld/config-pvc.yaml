@@ -5,7 +5,7 @@ metadata:
   name: factorio-deathworld-config-v1
   namespace: games
   labels:
-    app.kubernetes.io/name: factorio
+    app.kubernetes.io/name: factorio-deathworld
     app.kubernetes.io/instance: factorio-deathworld
     snapshot.home.arpa/enabled: "true"
 spec:

@@ -5,7 +5,7 @@ metadata:
   name: factorio-ribbonworld-config-v1
   namespace: games
   labels:
-    app.kubernetes.io/name: factorio
+    app.kubernetes.io/name: factorio-ribbonworld
     app.kubernetes.io/instance: factorio-ribbonworld
     snapshot.home.arpa/enabled: "true"
 spec:

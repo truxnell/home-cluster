@@ -26,6 +26,9 @@ spec:
     cleanupOnFail: true
 
   values:
+    # Override names to make it easier to discern in PMB
+    global:
+      nameOverride: factorio-deathworld
     image:
       repository: factoriotools/factorio
       tag: stable@sha256:494be44c1ffd3f94fb5f2c66cd9305eebba336f0eca2af664da58555d46d24e8
