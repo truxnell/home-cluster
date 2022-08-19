@@ -19,6 +19,7 @@ metadata:
 spec:
   generateExistingOnPolicyUpdate: true
   mutateExistingOnPolicyUpdate: true
+
   rules:
     - name: create-snapshot-cronjob
       match:
@@ -58,7 +59,7 @@ spec:
         synchronize: true
         apiVersion: batch/v1
         kind: CronJob
-        name: "{{ claimName }}-snap"
+        name: "{{ appName }}-snap"
         namespace: "{{ request.object.metadata.namespace }}"
         data:
           metadata:

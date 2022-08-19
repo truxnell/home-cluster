@@ -2,8 +2,10 @@
 version: "3"
 
 vars:
-  PROJECT_ROOT:
-    sh: git rev-parse --show-toplevel
+  PROJECT_DIR:
+    sh: "git rev-parse --show-toplevel"
+  CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
+
 
 includes:
   flux: .taskfiles/flux.yml
@@ -11,4 +13,4 @@ includes:
   format: .taskfiles/format.yml
   bootstrap: .taskfiles/bootstrap.yml
   ansible: .taskfiles/ansible.yml
-  kopia: .taskfiles/kopia.yaml
+  snapshot: .taskfiles/snapshot.yaml

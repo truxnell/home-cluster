@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: ${APP}-restore-snapshot
+  name: ${APP}-restore-snap
   namespace: ${NAMESPACE}
 spec:
   ttlSecondsAfterFinished: 3600
@@ -23,7 +23,7 @@ spec:
               shopt -s dotglob
               printf "\e[1;32m%-6s\e[m\n" "[01/04] Connect to repo ..."      && kopia repo connect filesystem --path=/snapshots --override-hostname=cluster --override-username=root
               printf "\e[1;32m%-6s\e[m\n" "[02/04] Remove previous data ..." && rm -rf /data/${NAMESPACE}/${APP}/*
-              printf "\e[1;32m%-6s\e[m\n" "[03/04] Restore snapshot ..."     && kopia snap restore "${SNAPSHOT}" /data/${NAMESPACE}/${APP}
+              printf "\e[1;32m%-6s\e[m\n" "[03/04] Restore snapshot (${SNAPSHOT})..."     && kopia snap restore "${SNAPSHOT}" /data/${NAMESPACE}/${APP}/
               printf "\e[1;32m%-6s\e[m\n" "[04/04] Disconnect from repo ..." && kopia repo disconnect
           volumeMounts:
             - name: ${APP}-data
@@ -38,5 +38,5 @@ spec:
             claimName: ${VOLUME}
         - name: snapshots
           nfs:
-            server: expanse
-            path: /tycho/Apps/External/Kopia
+            server: 10.8.20.11
+            path: /tank/backup/kubernetes/kopia/
