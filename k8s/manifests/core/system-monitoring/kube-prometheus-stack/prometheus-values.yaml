@@ -92,7 +92,7 @@ prometheus:
         scheme: http
         static_configs:
           - targets:
-              - "hyperion.${INTERNAL_DOMAIN}:9000"
+              - "george.${INTERNAL_DOMAIN}:9000"
 
       - job_name: pikvm
         metrics_path: /api/export/prometheus/metrics
