@@ -29,8 +29,6 @@ spec:
     auth:
       rootPassword: ${SECRET_MARIADB_ROOT_PASSWORD}
     primary:
-      # annotations:
-      #   kanister.kasten.io/blueprint: bitnami-maraidb # FIXME
       persistence:
         enabled: true
         existingClaim: mariadb-config-v1

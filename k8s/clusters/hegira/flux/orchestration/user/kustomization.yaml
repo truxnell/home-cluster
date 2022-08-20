@@ -7,12 +7,11 @@ resources:
   - ./dev.yaml
   - ./games.yaml
   - ./home-automation.yaml
-  - ./kasten-io.yaml
   - ./kube-system.yaml
   - ./media.yaml
   - ./network-system.yaml
   - ./organizarrs.yaml
-  # - ./security.yaml
+  - ./security.yaml
   - ./services.yaml
   - ./system-monitoring.yaml
   - ./vpn.yaml
