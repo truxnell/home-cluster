@@ -31,7 +31,7 @@ spec:
       nameOverride: factorio-ribbonworld
     image:
       repository: factoriotools/factorio
-      tag: stable@sha256:494be44c1ffd3f94fb5f2c66cd9305eebba336f0eca2af664da58555d46d24e8
+      tag: stable@sha256:3a3ce0094b4580b165e21669b5ea8cbd8a852a34f19fa77ffba6030055479785
 
     env:
       # -- Set the container timezone
