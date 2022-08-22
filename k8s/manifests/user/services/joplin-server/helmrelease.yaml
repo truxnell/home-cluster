@@ -25,7 +25,7 @@ spec:
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
   dependsOn:
-    - name: postgresql
+    - name: postgres
       namespace: databases
   # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/joplin-server/values.yaml
   values:
