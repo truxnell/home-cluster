@@ -14,6 +14,18 @@ spec:
     name: postgres-superuser
   monitoring:
     enablePodMonitor: true
+  bootstrap:
+    initdb:
+      import:
+        type: monolith
+        databases:
+          - vaultwarden
+          - hass
+        roles:
+          - hass
+          - vaultwarden
+        source:
+          externalCluster: pg_old
   backup:
     retentionPolicy: 30d
     barmanObjectStore:
@@ -30,3 +42,14 @@ spec:
         secretAccessKey:
           name: postgres-minio
           key: MINIO_SECRET_KEY
+  externalClusters:
+    - name: pg_old
+      connectionParameters:
+        # Use the correct IP or host name for the source database
+        host: postgresql.databases
+        user: postgres
+        dbname: postgres
+        sslmode: disable
+      password:
+        name: postgres-pass
+        key: password

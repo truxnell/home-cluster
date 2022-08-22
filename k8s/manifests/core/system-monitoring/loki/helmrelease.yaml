@@ -69,7 +69,7 @@ spec:
       ingressClassName: "nginx"
       annotations:
         cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-        external-dns/is-public: "false"
+        external-dns.home.arpa/enabled: "true"
       hosts:
         - host: &host "loki.${EXTERNAL_DOMAIN}"
           paths:

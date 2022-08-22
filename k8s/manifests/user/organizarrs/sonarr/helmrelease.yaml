@@ -43,7 +43,7 @@ spec:
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/sonarr/plex.css"></head>';
             sub_filter_once on;
-          external-dns/is-public: "false"
+          external-dns.home.arpa/enabled: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: "television-box"
           hajimari.io/appName: sonarr

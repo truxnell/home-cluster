@@ -42,7 +42,7 @@ spec:
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/readarr/plex.css"></head>';
             sub_filter_once on;
-          external-dns/is-public: "false"
+          external-dns.home.arpa/enabled: "true"
           hajimari.io/enable: "true"
           hajimari.io/icon: book-open
         hosts:
@@ -60,7 +60,7 @@ spec:
         ingressClassName: "nginx"
         annotations:
           cert-manager.io/cluster-issuer: *cert
-          external-dns/is-public: "false"
+          external-dns.home.arpa/enabled: "true"
         hosts:
           - host: *host
             paths:
