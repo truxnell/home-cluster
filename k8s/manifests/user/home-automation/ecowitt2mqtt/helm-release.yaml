@@ -32,8 +32,10 @@ spec:
       TZ: "${TZ}"
       ECOWITT2MQTT_MQTT_BROKER: mosquitto.home-automation
       ECOWITT2MQTT_MQTT_PORT: 1883
+      ECOWITT2MQTT_MQTT_TOPIC: ecowitt2mqtt/pws
       ECOWITT2MQTT_PORT: &port 8080
       ECOWITT2MQTT_HASS_DISCOVERY: "true"
+      ECOWITT2MQTT_INPUT_UNIT_SYSTEM: metric # Come on guys nobody want to use freedum units
     envFrom:
       - secretRef:
           name: *app
