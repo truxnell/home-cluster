@@ -74,7 +74,7 @@ spec:
           enabled: false
 
       extraArgs:
-        default-ssl-certificate: "network-system/${CLUSTER_DOMAIN/./-}-tls"
+        default-ssl-certificate: "network-system/${EXTERNAL_DOMAIN/./-}-tls"
 
       topologySpreadConstraints:
         - maxSkew: 1
@@ -99,17 +99,6 @@ spec:
           cpu: 20m
         limits:
           memory: 1000Mi
-
-    defaultBackend:
-      enabled: true
-      image:
-        repository: ghcr.io/tarampampam/error-pages
-        tag: 2.18.0
-      extraEnvs:
-        - name: TEMPLATE_NAME
-          value: cats
-        - name: SHOW_DETAILS
-          value: "false"
 
   valuesFrom:
     # Cloudflare Networks
