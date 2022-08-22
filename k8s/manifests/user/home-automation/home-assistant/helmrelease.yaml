@@ -129,7 +129,7 @@ spec:
           ingressClassName: "nginx"
           annotations:
             cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-            external-dns.home.arpa/enabled: "true"
+            external-dns/is-public: "false"
           hosts:
             - host: &host-code "hass-config.${EXTERNAL_DOMAIN}"
               paths:

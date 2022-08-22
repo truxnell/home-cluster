@@ -8,7 +8,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-production
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
     nginx.ingress.kubernetes.io/proxy-ssl-verify: "off"
-    external-dns.home.arpa/enabled: "true"
+    external-dns/is-public: "false"
     hajimari.io/enable: "true"
     hajimari.io/icon: "router-wireless"
     hajimari.io/appName: "unifi"

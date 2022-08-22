@@ -95,7 +95,7 @@ spec:
         ingressClassName: "nginx"
         annotations:
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-          external-dns.home.arpa/enabled: "true"
+          external-dns/is-public: "false"
           prometheus.io/probe: "true"
           prometheus.io/protocol: http
 
