@@ -8,7 +8,6 @@ metadata:
     cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
     nginx.ingress.kubernetes.io/proxy-ssl-verify: "off"
-    external-dns/is-public: "false"
     hajimari.io/enable: "true"
     hajimari.io/icon: "glass-mug-variant"
     hajimari.io/appName: "brewpi"

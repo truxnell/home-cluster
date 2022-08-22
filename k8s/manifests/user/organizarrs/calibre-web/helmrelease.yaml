@@ -59,7 +59,6 @@ spec:
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/calibreweb/plex.css"></head>';
             sub_filter_once on;
-          external-dns/is-public: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: "book-open-page-variant"
         hosts:

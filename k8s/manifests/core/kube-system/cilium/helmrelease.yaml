@@ -106,7 +106,6 @@ spec:
           ingressClassName: "nginx"
           annotations:
             cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-            external-dns/is-public: "false"
             hajimari.io/enable: "true"
             hajimari.io/appName: hubble
             hajimari.io/icon: lan

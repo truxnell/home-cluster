@@ -6,7 +6,6 @@ prometheus:
     ingressClassName: "nginx"
     annotations:
       cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-      external-dns/is-public: "false"
       hajimari.io/enable: "true"
       hajimari.io/icon: database-clock
       hajimari.io/appName: Prometheus

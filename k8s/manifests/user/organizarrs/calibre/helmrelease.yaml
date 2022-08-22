@@ -56,7 +56,6 @@ spec:
         ingressClassName: "nginx"
         annotations:
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-          external-dns/is-public: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: "book-open-page-variant"
         hosts:
@@ -73,7 +72,6 @@ spec:
         ingressClassName: "nginx"
         annotations:
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-          external-dns/is-public: "false"
         hosts:
           - host: &host-cs "calibre-cs.${EXTERNAL_DOMAIN}"
             paths:

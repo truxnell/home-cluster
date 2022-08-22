@@ -45,7 +45,6 @@ spec:
         ingressClassName: "nginx"
         annotations:
           cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-          external-dns/is-public: "false"
           hajimari.io/enable: "false"
           hajimari.io/icon: "router-wireless-settings"
         hosts:
