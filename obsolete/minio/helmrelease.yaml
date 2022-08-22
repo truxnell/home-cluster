@@ -61,7 +61,6 @@ spec:
       hostname: minio.trux.dev
       ingressClassName: "nginx"
       annotations:
-        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
         hajimari.io/enable: "true"
         hajimari.io/icon: storage
       tls: true

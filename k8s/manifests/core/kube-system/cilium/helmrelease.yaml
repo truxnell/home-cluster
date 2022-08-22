@@ -105,16 +105,14 @@ spec:
           enabled: true
           ingressClassName: "nginx"
           annotations:
-            cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
             hajimari.io/enable: "true"
             hajimari.io/appName: hubble
             hajimari.io/icon: lan
           hosts:
             - &host "hubble.${EXTERNAL_DOMAIN}"
           tls:
-            - secretName: tls.hubble
-              hosts:
-                - *host
+            hosts:
+              - *host
 
     bgp:
       enabled: false

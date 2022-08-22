@@ -35,7 +35,6 @@ spec:
       enabled: true
       ingressClassName: "nginx"
       annotations:
-        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
         hajimari.io/enable: "false"
 
       hosts:
@@ -45,9 +44,8 @@ spec:
               pathType: Prefix
 
       tls:
-        - secretName: tls.blackbox-exporter
-          hosts:
-            - blackbox-exporter.${EXTERNAL_DOMAIN}
+        hosts:
+          - blackbox-exporter.${EXTERNAL_DOMAIN}
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: "blackbox-exporter"

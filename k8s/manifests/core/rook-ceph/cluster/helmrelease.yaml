@@ -120,7 +120,6 @@ spec:
         ingressClassName: "nginx"
         annotations:
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           hajimari.io/enable: "true"
           hajimari.io/icon: content-save
           hajimari.io/appName: "rook-ceph"
@@ -129,9 +128,8 @@ spec:
           name: &host "rook.${EXTERNAL_DOMAIN}"
           path: "/"
         tls:
-          - secretName: tls.rook-ceph
-            hosts:
-              - *host
+          hosts:
+            - *host
 
     cephBlockPoolsVolumeSnapshotClass:
       enabled: false

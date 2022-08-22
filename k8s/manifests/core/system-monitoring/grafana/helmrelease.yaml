@@ -286,7 +286,6 @@ spec:
       enabled: true
       ingressClassName: "nginx"
       annotations:
-        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
         hajimari.io/enable: "true"
         hajimari.io/icon: "graph-line"
       hosts:
@@ -294,7 +293,6 @@ spec:
       tls:
         - hosts:
             - *host
-          secretName: tls.grafana
 
     serviceAccount:
       create: true

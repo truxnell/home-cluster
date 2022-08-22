@@ -46,7 +46,6 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
 
         hosts:
           - host: &host "theme-park.${EXTERNAL_DOMAIN}"
@@ -54,9 +53,8 @@ spec:
               - path: /
 
         tls:
-          - secretName: tls.theme-park
-            hosts:
-              - *host
+          hosts:
+            - *host
 
     resources:
       requests:

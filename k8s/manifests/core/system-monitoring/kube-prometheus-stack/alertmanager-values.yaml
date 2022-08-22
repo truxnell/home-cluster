@@ -70,7 +70,6 @@ alertmanager:
     pathType: Prefix
     ingressClassName: "nginx"
     annotations:
-      cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
       hajimari.io/enable: "true"
       hajimari.io/icon: bell-alert
       hajimari.io/appName: Alertmanager
@@ -78,9 +77,8 @@ alertmanager:
     hosts:
       - &host alertmanager.${EXTERNAL_DOMAIN}
     tls:
-      - secretName: tls.alertmanager
-        hosts:
-          - *host
+      hosts:
+        - *host
 
   alertmanagerSpec:
     storage:

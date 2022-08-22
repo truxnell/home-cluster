@@ -52,7 +52,6 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
 
         hosts:
           - host: &host "openbooks.${EXTERNAL_DOMAIN}"
@@ -61,9 +60,8 @@ spec:
                 pathType: Prefix
 
         tls:
-          - secretName: tls.openbooks
-            hosts:
-              - *host
+          hosts:
+            - *host
 
     persistence:
       nfs-nas-media:

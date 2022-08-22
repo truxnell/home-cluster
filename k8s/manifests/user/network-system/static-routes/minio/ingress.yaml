@@ -5,16 +5,14 @@ metadata:
   name: minio
   namespace: network-system
   annotations:
-    cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
     hajimari.io/enable: "false"
 
 spec:
   ingressClassName: "nginx"
   tls:
-    - secretName: tls.minio
-      hosts:
-        - "minio.${EXTERNAL_DOMAIN}"
-        - "s3.${EXTERNAL_DOMAIN}"
+    hosts:
+      - "minio.${EXTERNAL_DOMAIN}"
+      - "s3.${EXTERNAL_DOMAIN}"
 
   rules:
     - host: minio.${EXTERNAL_DOMAIN}

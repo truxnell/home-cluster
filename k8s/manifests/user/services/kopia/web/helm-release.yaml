@@ -64,7 +64,6 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           hajimari.io/enable: "true"
           hajimari.io/icon: ruler
         hosts:
@@ -73,9 +72,8 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: tls.kopia
-            hosts:
-              - *host
+          hosts:
+            - *host
     podSecurityContext:
       supplementalGroups:
         - 100

@@ -94,7 +94,6 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           prometheus.io/probe: "true"
           prometheus.io/protocol: http
 
@@ -105,9 +104,8 @@ spec:
                 pathType: Prefix
 
         tls:
-          - secretName: tls.hajimari
-            hosts:
-              - "hajimari.${EXTERNAL_DOMAIN}"
+          hosts:
+            - "hajimari.${EXTERNAL_DOMAIN}"
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: "hajimari-settings"

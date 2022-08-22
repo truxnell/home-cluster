@@ -5,7 +5,6 @@ metadata:
   name: unifi
   namespace: network-system
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-production
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
     nginx.ingress.kubernetes.io/proxy-ssl-verify: "off"
     hajimari.io/enable: "true"
@@ -15,9 +14,8 @@ metadata:
 spec:
   ingressClassName: "nginx"
   tls:
-    - secretName: tls.unifi
-      hosts:
-        - "unifi.natallan.com"
+    hosts:
+      - "unifi.natallan.com"
 
   rules:
     - host: unifi.natallan.com

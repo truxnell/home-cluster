@@ -38,7 +38,6 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/gaps/plex.css"></head>';
@@ -53,7 +52,6 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: tls.gaps
 
     persistence:
       data:

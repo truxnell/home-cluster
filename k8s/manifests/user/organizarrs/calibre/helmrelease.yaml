@@ -55,7 +55,6 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
           hajimari.io/enable: "true"
           hajimari.io/icon: "book-open-page-variant"
         hosts:
@@ -66,12 +65,10 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: tls.calibre
       webserver:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
         hosts:
           - host: &host-cs "calibre-cs.${EXTERNAL_DOMAIN}"
             paths:
@@ -83,7 +80,6 @@ spec:
         tls:
           - hosts:
               - *host-cs
-            secretName: tls.calibre-cs
 
     service:
       webserver:

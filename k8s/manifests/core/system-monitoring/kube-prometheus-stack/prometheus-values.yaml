@@ -5,7 +5,6 @@ prometheus:
     pathType: Prefix
     ingressClassName: "nginx"
     annotations:
-      cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
       hajimari.io/enable: "true"
       hajimari.io/icon: database-clock
       hajimari.io/appName: Prometheus
@@ -13,9 +12,8 @@ prometheus:
     hosts:
       - prometheus.${EXTERNAL_DOMAIN}
     tls:
-      - secretName: tls.prometheus
-        hosts:
-          - prometheus.${EXTERNAL_DOMAIN}
+      hosts:
+        - prometheus.${EXTERNAL_DOMAIN}
 
   thanosService:
     enabled: true

@@ -40,7 +40,6 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
 
         hosts:
           - host: &host "lt.${EXTERNAL_DOMAIN}"
@@ -49,6 +48,5 @@ spec:
                 pathType: Prefix
 
         tls:
-          - secretName: tls.language-tools
-            hosts:
-              - *host
+          hosts:
+            - *host

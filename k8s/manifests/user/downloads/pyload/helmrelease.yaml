@@ -51,8 +51,6 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
           hajimari.io/enable: "true"
           hajimari.io/icon: "download-outline"
 
@@ -61,6 +59,5 @@ spec:
             paths:
               - path: /
         tls:
-          - secretName: tls.pyload
-            hosts:
-              - *host
+          hosts:
+            - *host

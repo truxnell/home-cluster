@@ -37,7 +37,6 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
         hosts:
           - host: nginx.trux.dev
             paths:
@@ -46,7 +45,6 @@ spec:
         tls:
           - hosts:
               - nginx.trux.dev
-            secretName: tls.nginx
 
     persistence:
       data:
