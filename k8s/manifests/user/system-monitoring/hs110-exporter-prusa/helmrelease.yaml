@@ -8,37 +8,30 @@ spec:
   interval: 15m
   chart:
     spec:
-      chart: kah-common-chart
-      version: 1.2.2
+      chart: app-template
+      version: 0.1.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 15m
   install:
     createNamespace: true
-    remediation: # perform remediation when helm install fails
-      retries: 3
+    remediation:
+      retries: 5
   upgrade:
-    remediation: # perform remediation when helm upgrade fails
-      retries: 3
-      remediateLastFailure: true # remediate the last failure, when no retries remain
-    cleanupOnFail: true
-
+    remediation:
+      retries: 5
   values:
-    global:
-      nameOverride: *app
-
     image:
       repository: sdelrio/hs110-exporter
       tag: v1.0.0
 
     env:
       TZ: "${TZ}"
-      HS110IP: "${HS110_IP_1}"
+      HS110IP: "10.8.30.130"
       FREQUENCY: 60
       LISTENPORT: 8110
-      LABEL: location=shed
+      LABEL: location=prusa_mk3s
 
     service:
       main:
@@ -47,3 +40,10 @@ spec:
           http:
             enabled: true
             port: 8110
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 64M
+      limits:
+        memory: 74M

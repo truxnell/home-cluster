@@ -8,43 +8,52 @@ spec:
   interval: 15m
   chart:
     spec:
-      chart: kah-common-chart
-      version: 1.2.2
+      chart: app-template
+      version: 0.1.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 15m
   install:
     createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
   values:
-    global:
-      nameOverride: *app
-
     image:
       repository: silviof/docker-languagetool
-      tag: "5.8"
+      tag: latest@sha256:8ba30858c3882a08ed237533cc50479c89aa0eed60465680ae7c19d32986b18a
+
+    env:
+      TZ: "${TZ}"
 
     service:
       main:
-        enabled: true
         ports:
           http:
-            enabled: false
-          api:
-            enabled: true
             port: 8010
 
     ingress:
       main:
         enabled: true
         ingressClassName: "nginx"
+        #          annotations:
+        #            external-dns.home.arpa/enabled: "true"
+        #            auth.home.arpa/enabled: "true"
         hosts:
-          - host: &host "lt.${EXTERNAL_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
-
         tls:
           - hosts:
-            - *host
+              - *host
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 716M
+      limits:
+        memory: 1307M

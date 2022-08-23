@@ -2,35 +2,45 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: lidarr
+  name: &app lidarr
   namespace: organizarrs
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: lidarr
-      version: 14.2.2
+      chart: app-template
+      version: 0.1.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
   install:
     createNamespace: true
-    remediation: # perform remediation when helm install fails
-      retries: 3
+    remediation:
+      retries: 5
   upgrade:
-    remediation: # perform remediation when helm upgrade fails
-      retries: 3
-      remediateLastFailure: true # remediate the last failure, when no retries remain
-    cleanupOnFail: true
+    remediation:
+      retries: 5
   values:
     image:
-      repository: ghcr.io/k8s-at-home/lidarr-nightly
-      tag: v1.1.1.2664
+      repository: ghcr.io/onedr0p/lidarr-develop
+      tag: 1.1.0.2649@sha256:41ffae1283e1dcdc2dfd23591bf6fd3dd735c9348630a5daac56fc969dd21ebb
 
     env:
-      TZ: ${TZ}
+      TZ: "${TZ}"
+      LIDARR__INSTANCE_NAME: Lidarr
+      LIDARR__PORT: &port 80
+      LIDARR__LOG_LEVEL: info
+
+    envFrom:
+      - secretRef:
+          name: *app
+
+    service:
+      main:
+        ports:
+          http:
+            port: *port
 
     ingress:
       main:
@@ -41,90 +51,46 @@ spec:
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/lidarr/plex.css"></head>';
             sub_filter_once on;
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "music-box"
         hosts:
-          - host: &host "lidarr.${EXTERNAL_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
               - *host
-            secretName: &tls tls.lidarr
 
-      api:
-        enabled: true
-        ingressClassName: "nginx"
-        annotations:
-          external-dns.home.arpa/enabled: "true"
-        hosts:
-          - host: *host
-            paths:
-              - path: /api
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-            secretName: *tls
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 100
 
     persistence:
       config:
         enabled: true
         existingClaim: lidarr-config-v1
-      nfs-nas-media:
+      media:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: ${NAS_ADDRESS_2}
-            path: /tank/
+        type: nfs
+        server: &nas "george.${INTERNAL_DOMAIN}"
+        path: /tank/
         mountPath: /media
-        readOnly: false
-
-      nfs-nas-amd:
+      backup:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: ${NAS_ADDRESS_2}
-            path: /tank/downloads/
-        mountPath: /downloads-amd/
-        readOnly: false
-
-      nfs-nas-backup:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: ${NAS_ADDRESS_2}
-            path: /tank/backup/kubernetes/apps/lidarr
+        type: nfs
+        server: *nas
+        path: /tank/backup/kubernetes/apps/radarr
         mountPath: /config/Backups
-        readOnly: false
 
-    podSecurityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
-      fsGroupChangePolicy: OnRootMismatch
-      supplementalGroups:
-        - 100
+    podAnnotations:
+      secret.reloader.stakater.com/reload: *app
 
     resources:
       requests:
         cpu: 10m
-        memory: 764M
+        memory: 250Mi
       limits:
-        memory: 4873M
-
-    metrics:
-      enabled: true
-      serviceMonitor:
-        interval: 3m
-        scrapeTimeout: 1m
-      prometheusRule:
-        enabled: true
-
-    probes:
-      liveness:
-        custom: false
+        memory: 2000Mi

@@ -72,20 +72,6 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: user-organizarrs-gaps
-  namespace: flux-system
-spec:
-  interval: 5m
-  path: "./k8s/manifests/user/organizarrs/gaps"
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: home-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
   name: user-organizarrs-overseerr
   namespace: flux-system
 spec:

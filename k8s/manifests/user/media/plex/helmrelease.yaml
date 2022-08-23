@@ -2,55 +2,45 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: plex
+  name: &app plex
   namespace: media
 spec:
-  releaseName: plex
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: plex
-      version: 6.4.3
+      chart: app-template
+      version: 0.1.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
   install:
-    createNamespace: true
-    remediation: # perform remediation when helm install fails
-      retries: 3
+    remediation:
+      retries: 5
   upgrade:
-    remediation: # perform remediation when helm upgrade fails
-      retries: 3
-      remediateLastFailure: true # remediate the last failure, when no retries remain
-    cleanupOnFail: true
+    remediation:
+      retries: 5
+  dependsOn:
+    - name: intel-gpu-plugin
+      namespace: kube-system
+    - name: node-feature-discovery
+      namespace: kube-system
   values:
-    # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/plex/values.yaml
     image:
-      repository: ghcr.io/k8s-at-home/plex
-      tag: v1.28.1.6104-788f82488
+      repository: ghcr.io/onedr0p/plex
+      tag: 1.28.1.6104-788f82488@sha256:a53b17eb5f0bfeacc37cd0fc5e3e4067064467e4fb15ad4aa52fc3c062713eb9
+
     env:
       TZ: "${TZ}"
-      ADVERTISE_IP: "https://plex.${EXTERNAL_DOMAIN}:443/,http://${LB_PLEX}:32400/"
-      PLEX_CLAIM: "${SECRET_PLEX_TOKEN}"
 
-    podSecurityContext:
-      supplementalGroups:
-        - 44
-        - 109
-        - 100
-        - 65539
     service:
       main:
-        enabled: true
         type: LoadBalancer
-        loadBalancerIP: ${LB_PLEX}
         externalTrafficPolicy: Local
-        annotations:
-          metallb.universe.tf/allow-shared-ip: plex
-
-    # hostNetwork: true
+        loadBalancerIP: "${LB_PLEX}"
+        ports:
+          http:
+            port: 32400
 
     ingress:
       main:
@@ -58,54 +48,67 @@ spec:
         ingressClassName: "nginx"
         annotations:
           external-dns.home.arpa/enabled: "true"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: plex
-          hajimari.io/appName: plex
-          hajimari.io/url: "https://plex.${EXTERNAL_DOMAIN}/web/"
-
+          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            location = / {
+              if ($http_x_plex_device = ""){
+                return 301 $scheme://$host/web/index.html;
+              }
+            }
         hosts:
-          - host: "plex.${EXTERNAL_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-            - "plex.${EXTERNAL_DOMAIN}"
+              - *host
+
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 44
+        - 109
+        - 100
 
     persistence:
       config:
         enabled: true
         existingClaim: plex-config-v1
-
+      media:
+        enabled: true
+        type: nfs
+        server: &nas "george.${INTERNAL_DOMAIN}"
+        path: /tank/
+        mountPath: /data
+      backup:
+        enabled: true
+        type: nfs
+        server: *nas
+        path: /tank/backup/kubernetes/apps/plex
+        mountPath: /config/backup
       transcode:
         enabled: true
         type: emptyDir
 
-      nfs-nas-media:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: ${NAS_ADDRESS_2}
-            path: /tank/
-        mountPath: /data
-        readOnly: false
-
-      backup:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: ${NAS_ADDRESS_2}
-            path: /tank/backup/kubernetes/apps/plex
-        mountPath: /config/backup
-        readOnly: false
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: feature.node.kubernetes.io/custom-intel-gpu
+                  operator: In
+                  values:
+                    - "true"
 
     resources:
       requests:
-        cpu: 345m
-        memory: 5251M
-        # gpu.intel.com/i915: 1
+        gpu.intel.com/i915: 1
+        cpu: 100m
+        memory: 2000Mi
       limits:
-        memory: 10000M
-        # gpu.intel.com/i915: 1
+        gpu.intel.com/i915: 1
+        memory: 10000Mi

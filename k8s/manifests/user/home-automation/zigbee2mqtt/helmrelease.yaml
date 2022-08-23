@@ -2,88 +2,57 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: zigbee2mqtt
+  name: &app zigbee2mqtt
   namespace: home-automation
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: zigbee2mqtt
-      version: 9.4.2
+      chart: app-template
+      version: 0.1.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
   install:
     createNamespace: true
-    remediation: # perform remediation when helm install fails
-      retries: 3
+    remediation:
+      retries: 5
   upgrade:
-    remediation: # perform remediation when helm upgrade fails
-      retries: 3
-      remediateLastFailure: true # remediate the last failure, when no retries remain
-    cleanupOnFail: true
-  dependsOn:
-    - name: mosquitto
-      namespace: home-automation
+    remediation:
+      retries: 5
   values:
     image:
-      repository: docker.io/koenkk/zigbee2mqtt
-      tag: 1.27.0
-
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: "zigbee2mqtt-settings"
-
+      repository: ghcr.io/koenkk/zigbee2mqtt
+      tag: latest-dev@sha256:210f5111d579d052c2f96330a919823cc2a41c9f4c18f6abdcf476e91b3c7c0c
     env:
       TZ: "${TZ}"
       ZIGBEE2MQTT_DATA: /data
-
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
     ingress:
       main:
         enabled: true
         ingressClassName: "nginx"
-        annotations:
-          hajimari.io/enable: "false"
-          hajimari.io/icon: "router-wireless-settings"
         hosts:
-          - host: &host "zigbee2mqtt.${EXTERNAL_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
               - *host
-
     persistence:
       config:
         enabled: true
         existingClaim: zigbee2mqtt-config-v1
         mountPath: "/data"
-
     resources:
       requests:
-        cpu: 22m
-        memory: 164M
+        cpu: 10m
+        memory: 100Mi
       limits:
-        memory: 262M
-
-    config: # This is only for first install - once config is stored in pvc this does nothing
-      homeassistant: true
-      device_options:
-        retain: true
-      permit_join: false
-      mqtt:
-        base_topic: zigbee2mqtt
-        server: "mqtt://mosquitto"
-        user: "${SECRET_MOSQUITTO_USER}"
-        password: "${SECRET_MOSQUITTO_PASS}"
-      serial:
-        port: "tcp://${ZIGBEE_POE_COORDINATOR}:6638"
-      advanced:
-        log_output:
-          - console
-        network_key: GENERATE
-        pan_id: GENERATE
-      frontend:
-        port: 8080
+        memory: 500Mi
