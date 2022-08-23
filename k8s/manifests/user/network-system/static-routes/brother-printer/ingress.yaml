@@ -2,27 +2,28 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: printer
+  name: &app printer
   namespace: network-system
   annotations:
     hajimari.io/enable: "true"
     hajimari.io/icon: "monitor-share"
     hajimari.io/appName: "printer"
-
+  labels:
+    app.kubernetes.io/name: *app
+    app.kubernetes.io/instance: *app
 spec:
   ingressClassName: "nginx"
-  tls:
-    hosts:
-      - &host "printer.${EXTERNAL_DOMAIN}"
-
   rules:
-    - host: *host
+    - host: &host "printer.${EXTERNAL_DOMAIN}"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: printer
+                name: *app
                 port:
                   name: https
+  tls:
+    - hosts:
+      - *host

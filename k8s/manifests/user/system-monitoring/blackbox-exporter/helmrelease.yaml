@@ -44,7 +44,7 @@ spec:
               pathType: Prefix
 
       tls:
-        hosts:
+        - hosts:
           - blackbox-exporter.${EXTERNAL_DOMAIN}
 
     podAnnotations:

@@ -2,20 +2,16 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: minio
+  name: &app minio
   namespace: network-system
-  annotations:
-    hajimari.io/enable: "false"
-
+  labels:
+    app.kubernetes.io/name: *app
+    app.kubernetes.io/instance: *app
 spec:
   ingressClassName: "nginx"
-  tls:
-    hosts:
-      - "minio.${EXTERNAL_DOMAIN}"
-      - "s3.${EXTERNAL_DOMAIN}"
 
   rules:
-    - host: minio.${EXTERNAL_DOMAIN}
+    - host: &host1 "minio.${EXTERNAL_DOMAIN}"
       http:
         paths:
           - path: /
@@ -25,7 +21,7 @@ spec:
                 name: minio
                 port:
                   name: http
-    - host: s3.${EXTERNAL_DOMAIN}
+    - host: &host2 "s3.${EXTERNAL_DOMAIN}"
       http:
         paths:
           - path: /
@@ -35,3 +31,7 @@ spec:
                 name: minio
                 port:
                   name: api
+  tls:
+    - hosts:
+        - *host1
+        - *host2

@@ -111,7 +111,7 @@ spec:
           hosts:
             - &host "hubble.${EXTERNAL_DOMAIN}"
           tls:
-            hosts:
+            - hosts:
               - *host
 
     bgp:

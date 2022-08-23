@@ -12,7 +12,7 @@ prometheus:
     hosts:
       - &host prometheus.${EXTERNAL_DOMAIN}
     tls:
-      hosts:
+      - hosts:
         - *host
 
   thanosService:

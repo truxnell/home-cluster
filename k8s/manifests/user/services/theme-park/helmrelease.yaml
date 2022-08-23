@@ -53,7 +53,7 @@ spec:
               - path: /
 
         tls:
-          hosts:
+          - hosts:
             - *host
 
     resources:

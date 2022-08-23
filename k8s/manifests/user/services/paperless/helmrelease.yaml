@@ -54,7 +54,7 @@ spec:
             paths:
               - path: /
         tls:
-          hosts:
+          - hosts:
             - *host
 
     resources:

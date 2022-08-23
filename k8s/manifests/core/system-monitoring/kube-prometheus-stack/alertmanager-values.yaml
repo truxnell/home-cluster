@@ -77,7 +77,7 @@ alertmanager:
     hosts:
       - &host alertmanager.${EXTERNAL_DOMAIN}
     tls:
-      hosts:
+      - hosts:
         - *host
 
   alertmanagerSpec:

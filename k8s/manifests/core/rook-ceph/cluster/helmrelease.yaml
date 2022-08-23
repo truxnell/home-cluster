@@ -128,7 +128,7 @@ spec:
           name: &host "rook.${EXTERNAL_DOMAIN}"
           path: "/"
         tls:
-          hosts:
+          - hosts:
             - *host
 
     cephBlockPoolsVolumeSnapshotClass:

@@ -46,5 +46,5 @@ spec:
                 pathType: Prefix
 
         tls:
-          hosts:
+          - hosts:
             - *host

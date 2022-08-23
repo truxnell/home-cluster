@@ -35,7 +35,7 @@ spec:
       ECOWITT2MQTT_MQTT_TOPIC: ecowitt2mqtt/pws
       ECOWITT2MQTT_PORT: &port 8080
       ECOWITT2MQTT_HASS_DISCOVERY: "true"
-      ECOWITT2MQTT_INPUT_UNIT_SYSTEM: metric # Come on guys nobody want to use freedum units
+      ECOWITT2MQTT_OUTPUT_UNIT_SYSTEM: metric # Come on guys nobody want to use freedum units
     envFrom:
       - secretRef:
           name: *app
@@ -53,8 +53,6 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
-        tls:
-          - hosts:
               - *host
     # podSecurityContext:
     #   runAsUser: 568
