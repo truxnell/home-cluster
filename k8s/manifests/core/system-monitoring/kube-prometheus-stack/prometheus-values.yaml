@@ -10,10 +10,10 @@ prometheus:
       hajimari.io/appName: Prometheus
 
     hosts:
-      - prometheus.${EXTERNAL_DOMAIN}
+      - &host prometheus.${EXTERNAL_DOMAIN}
     tls:
       hosts:
-        - prometheus.${EXTERNAL_DOMAIN}
+        - *host
 
   thanosService:
     enabled: true
