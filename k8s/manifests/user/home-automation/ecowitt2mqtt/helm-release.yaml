@@ -54,18 +54,10 @@ spec:
               - path: /
                 pathType: Prefix
               - *host
-    # podSecurityContext:
-    #   runAsUser: 568
-    #   runAsGroup: 568
-    #   fsGroup: 568
-    #   fsGroupChangePolicy: "OnRootMismatch"
-    #   supplementalGroups:
-    #     - 44
-    #     - 109
-    #     - 100
-    # resources:
-    #   requests:
-    #     cpu: 100m
-    #     memory: 2000Mi
-    #   limits:
-    #     memory: 10000Mi
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 64M
+      limits:
+        memory: 89M
