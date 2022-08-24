@@ -28,11 +28,11 @@ spec:
     env:
       - name: CF_API_EMAIL
         value: ${EMAIL_1}
-      - name: CF_API_KEY
+      - name: CF_API_TOKEN
         valueFrom:
           secretKeyRef:
             name: external-dns
-            key: api-key
+            key: cloudflare_api_token
     extraArgs:
       - --cloudflare-proxied
       - --annotation-filter=external-dns.home.arpa/enabled in (true)
