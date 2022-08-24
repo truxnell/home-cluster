@@ -9,43 +9,45 @@ spec:
   chart:
     spec:
       chart: external-dns
-      version: 6.7.5
+      version: 1.11.0
       sourceRef:
         kind: HelmRepository
-        name: bitnami-charts
+        name: external-dns-charts
         namespace: flux-system
       interval: 5m
   install:
     createNamespace: true
     remediation: # perform remediation when helm install fails
-      retries: 3
+      retries: 5
   upgrade:
     remediation: # perform remediation when helm upgrade fails
-      retries: 3
+      retries: 5
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
   values:
-    nameOverride: external-dns
+    domainFilters:
+      - "${EXTERNAL_DOMAIN}"
 
     sources:
       - ingress
 
     provider: cloudflare
 
-    cloudflare:
-      secretName: cloudflare-api-key
-      email: "${EMAIL_1}"
-      proxied: true
+    env:
+      - name: CF_API_EMAIL
+        value: ${EMAIL_1}
+      - name: CF_API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: external-dns
+            key: cloudflare_api_token
+
+    extraArgs:
+      - --cloudflare-proxied
+      - --annotation-filter=external-dns.home.arpa/enabled in (true)
 
     policy: sync
     txtPrefix: "k8s."
-    domainFilters:
-      - "${EXTERNAL_DOMAIN}"
-
-    crd:
-      create: true
-
-    annotationFilter: "external-dns/is-public in (true)"
 
     resources:
       requests:
