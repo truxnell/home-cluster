@@ -74,7 +74,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: &nas "george.${EXTERNAL_DOMAIN}"
+        server: &nas "george.${INTERNAL_DOMAIN}"
         path: /tank1/
         mountPath: /media
       scripts:
