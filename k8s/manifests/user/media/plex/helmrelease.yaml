@@ -62,15 +62,21 @@ spec:
           hajimari.io/icon: plex
           hajimari.io/appName: plex
           hajimari.io/url: "https://plex.${EXTERNAL_DOMAIN}/web/"
-
+          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            location = / {
+              if ($http_x_plex_device = ""){
+                return 301 $scheme://$host/web/index.html;
+              }
+            }
         hosts:
-          - host: "plex.${EXTERNAL_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-            - "plex.${EXTERNAL_DOMAIN}"
+              - *host
 
     persistence:
       config:
