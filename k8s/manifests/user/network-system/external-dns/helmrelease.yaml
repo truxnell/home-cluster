@@ -42,7 +42,7 @@ spec:
     txtPrefix: "k8s."
 
     domainFilters:
-      - "${EXTERAL_DOMAIN}"
+      - "${EXTERNAL_DOMAIN}"
     serviceMonitor:
       enabled: true
     resources:
