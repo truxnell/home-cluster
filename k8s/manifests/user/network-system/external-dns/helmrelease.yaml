@@ -25,6 +25,7 @@ spec:
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
   values:
+    interval: 2m
     nameOverride: external-dns
 
     sources:
@@ -32,13 +33,23 @@ spec:
 
     provider: cloudflare
 
-    cloudflare:
-      secretName: cloudflare-api-key
-      email: "${EMAIL_1}"
-      proxied: true
-
+    env:
+      - name: CF_API_EMAIL
+        valueFrom:
+          secretKeyRef:
+            name: external-dns
+            key: email
+      - name: CF_API_KEY
+        valueFrom:
+          secretKeyRef:
+            name: external-dns
+            key: cloudflare-api-token
+    extraArgs:
+      - --cloudflare-proxied
+      - --annotation-filter=external-dns.home.arpa/enabled in (true)
     policy: sync
     txtPrefix: "k8s."
+    txtOwnerId: "default"
     domainFilters:
       - "${EXTERNAL_DOMAIN}"
 
@@ -46,6 +57,9 @@ spec:
       create: true
 
     annotationFilter: "external-dns/is-public in (true)"
+
+    serviceMonitor:
+      enabled: true
 
     resources:
       requests:
