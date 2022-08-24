@@ -60,6 +60,19 @@ spec:
         tls:
           - hosts:
               - *host
+      api:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          external-dns.home.arpa/enabled: "true"
+        hosts:
+          - host: *host
+            paths:
+              - path: /api
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
 
     podSecurityContext:
       runAsUser: 568
@@ -79,7 +92,7 @@ spec:
         server: &nas "george.${INTERNAL_DOMAIN}"
         path: /tank/
         mountPath: /media
-      nfs-nas-backup:
+      backup:
         enabled: true
         type: nfs
         server: *nas
