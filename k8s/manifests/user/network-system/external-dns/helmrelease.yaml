@@ -5,49 +5,49 @@ metadata:
   name: external-dns
   namespace: network-system
 spec:
-  interval: 15m
+  interval: 5m
   chart:
     spec:
       chart: external-dns
-      version: 1.11.0
+      version: 6.7.5
       sourceRef:
         kind: HelmRepository
-        name: external-dns-charts
+        name: bitnami-charts
         namespace: flux-system
+      interval: 5m
   install:
     createNamespace: true
-    remediation:
-      retries: 5
+    remediation: # perform remediation when helm install fails
+      retries: 3
   upgrade:
-    remediation:
-      retries: 5
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
   values:
-    interval: 2m
-    # logLevel: debug
-    provider: cloudflare
-    env:
-      - name: CF_API_EMAIL
-        value: ${EMAIL_1}
-      - name: CF_API_TOKEN
-        valueFrom:
-          secretKeyRef:
-            name: external-dns
-            key: cloudflare_api_token
-    extraArgs:
-      - --cloudflare-proxied
-      - --annotation-filter=external-dns.home.arpa/enabled in (true)
-    policy: sync
+    nameOverride: external-dns
+
     sources:
       - ingress
-    txtPrefix: "k8s."
 
+    provider: cloudflare
+
+    cloudflare:
+      secretName: cloudflare-api-key
+      email: "${EMAIL_1}"
+      proxied: true
+
+    policy: sync
+    txtPrefix: "k8s."
     domainFilters:
       - "${EXTERNAL_DOMAIN}"
-    serviceMonitor:
-      enabled: true
+
+    crd:
+      create: true
+
+    annotationFilter: "external-dns.home.arpa/enabled in (true)"
+
     resources:
       requests:
         memory: 100Mi
         cpu: 25m
-      limits:
-        memory: 250Mi
