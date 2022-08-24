@@ -56,8 +56,6 @@ spec:
     crd:
       create: true
 
-    annotationFilter: "external-dns/is-public in (true)"
-
     serviceMonitor:
       enabled: true
 
