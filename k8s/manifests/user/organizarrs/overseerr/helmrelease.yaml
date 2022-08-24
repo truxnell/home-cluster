@@ -42,10 +42,10 @@ spec:
           external-dns.home.arpa/enabled: "true"
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_PUBLIC_DOMAIN}/css/base/overseerr/nord.css"></head>';
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/overseerr/nord.css"></head>';
             sub_filter_once on;
         hosts:
-          - host: &host "requests.${SECRET_PUBLIC_DOMAIN}"
+          - host: &host "requests.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
