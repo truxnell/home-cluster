@@ -33,7 +33,7 @@ spec:
     provider: cloudflare
 
     cloudflare:
-      secretName: cloudflare-api-key
+      secretName: external-dns
       email: "${EMAIL_1}"
       proxied: true
 
