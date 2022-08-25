@@ -77,7 +77,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: georgeexpanse.${SECRET_PRIVATE_DOMAIN}"
+        server: george.${INTERNAL_DOMAIN}"
         path: /tank/
         mountPath: /media
       scripts:
