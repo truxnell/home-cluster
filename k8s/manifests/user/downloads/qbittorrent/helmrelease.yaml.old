@@ -1,0 +1,150 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: qbittorrent
+  namespace: downloads
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: qbittorrent
+      version: 13.5.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    remediation: # perform remediation when helm install fails
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
+  dependsOn:
+    - name: downloads-gateway
+      namespace: vpn
+  values:
+    image:
+      repository: ghcr.io/k8s-at-home/qbittorrent
+      tag: v4.4.3.1
+      pullPolicy: Always
+
+    hostname: qbittorrent
+
+    podAnnotations:
+      setGateway: "true"
+
+    settings:
+      automaticPortSetup: false
+
+    env:
+      TZ: "${TZ}"
+      UMASK: "022"
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: qbittorrent-config-v1
+      nfs-nas-media:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDRESS_2}
+            path: /tank/
+        mountPath: /media/
+        readOnly: false
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_hide_header "x-webkit-csp";
+            proxy_hide_header "content-security-policy";
+            proxy_hide_header "X-Frame-Options";
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/qbittorrent/plex.css"></head>';
+            sub_filter_once on;
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "cloud-download"
+        hosts:
+          - host: &host "qbittorrent.${EXTERNAL_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+            secretName: &tls tls.qbittorrent
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+      bittorrent:
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIP: ${LB_QBITTORRENT} ports:
+          bittorrent:
+            enabled: true
+            port: ${SECRET_VPN_FORWARDED_PORT_1}
+            protocol: TCP
+            targetPort: ${SECRET_VPN_FORWARDED_PORT_1}
+        externalTrafficPolicy: Local
+
+    resources:
+      requests:
+        memory: 250Mi
+        cpu: 500m
+      limits:
+        memory: 8000Mi
+
+    addons:
+      netshoot:
+        enabled: false
+        initContainers: {}
+
+    additionalContainers:
+      vuetorrent:
+        name: vuetorrent
+        image: k8s.gcr.io/git-sync/git-sync:v3.6.0
+        args:
+          - --repo
+          - https://github.com/WDaan/VueTorrent
+          - --branch
+          - latest-release
+          - --root
+          - /config
+          - --wait
+          - "86400"
+        volumeMounts:
+          - name: config
+            mountPath: /config
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+
+    # To give vuetorrent time to download
+    startupProbe:
+      enabled: true
+      failureThreshold: 30
+      periodSeconds: 10
+
+    metrics:
+      enabled: true
+      exporter:
+        image:
+          repository: ghcr.io/k8s-at-home/prometheus-qbittorrent-exporter
+          tag: v1.2.0
+      serviceMonitor:
+        interval: 1m
+        scrapeTimeout: 10s
+      prometheusRule:
+        enabled: true
