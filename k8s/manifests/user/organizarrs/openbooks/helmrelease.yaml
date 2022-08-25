@@ -52,7 +52,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: "george.${EXTERNAL_DOMAIN}"
+        server: "george.${INTERNAL_DOMAIN}"
         path: /tank/
         mountPath: /media
         readOnly: true
