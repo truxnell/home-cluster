@@ -4,3 +4,12 @@ kind: Kustomization
 resources:
   - ./config-pvc.yaml
   - ./helmrelease.yaml
+  - ./secrets.sops.yaml
+configMapGenerator:
+  - name: sonarr-pushover
+    files:
+      - ./scripts/pushover-notify.sh
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled

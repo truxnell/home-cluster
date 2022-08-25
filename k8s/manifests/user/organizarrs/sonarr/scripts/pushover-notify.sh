@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
 PUSHOVER_DEBUG="${PUSHOVER_DEBUG:-"true"}"
-# kubectl port-forward service/radarr -n default 7878:7878
-# export PUSHOVER_STARR_INSTANCE_NAME=Radarr;
+# kubectl port-forward service/sonarr -n default 8989:8989
 # export PUSHOVER_APP_URL="";
 # export PUSHOVER_TOKEN="";
 # export PUSHOVER_USER_KEY="";
-# export radarr_eventtype=Download;
+# export sonarr_eventtype=Download;
 # ./notify.sh
 
 CONFIG_FILE="/config/config.xml" && [[ "${PUSHOVER_DEBUG}" == "true" ]] && CONFIG_FILE="config.xml"
@@ -52,7 +51,7 @@ fi
 #
 # Send Notification on Test
 #
-if [[ "${radarr_eventtype:-}" == "Test" ]]; then
+if [[ "${sonarr_eventtype:-}" == "Test" ]]; then
     PUSHOVER_TITLE="Test Notification"
     PUSHOVER_MESSAGE="Howdy this is a test notification from ${PUSHOVER_STARR_INSTANCE_NAME}"
 fi
@@ -60,18 +59,21 @@ fi
 #
 # Send notification on Download or Upgrade
 #
-if [[ "${radarr_eventtype:-}" == "Download" ]]; then
-    printf -v PUSHOVER_TITLE "%s (%s) [%s]" \
-        "${radarr_movie_title:-"The Lord of the Rings: The Return of the King"}" \
-        "${radarr_movie_year:-"2003"}" \
-        "${radarr_moviefile_quality:-"Bluray-1080p"}"
+if [[ "${sonarr_eventtype:-}" == "Download" ]]; then
+    printf -v PUSHOVER_TITLE "%s - S%02dE%02d - %s [%s]" \
+        "${sonarr_series_title:-"That '70s Show"}" \
+        "${sonarr_episodefile_seasonnumber:-"8"}" \
+        "${sonarr_episodefile_episodenumbers:-"22"}" \
+        "${sonarr_episodefile_episodetitles:-"That '70s Finale"}" \
+        "${sonarr_episodefile_quality:-"Bluray-720p"}"
     printf -v PUSHOVER_MESSAGE "%s" \
-        "$(curl --silent --header "X-Api-Key:${PUSHOVER_STARR_APIKEY}" "http://localhost:${PUSHOVER_STARR_PORT}/api/v3/movie/${radarr_movie_id:-"2619"}" \
-            | jq -r ".overview")"
-    printf -v PUSHOVER_URL "https://%s/movie/%s" \
+        "$(curl --silent --header "X-Api-Key:${PUSHOVER_STARR_APIKEY}" "http://localhost:${PUSHOVER_STARR_PORT}/api/v3/episode?seriesId=${sonarr_series_id:-"1653"}" \
+            | jq -r ".[] | select(.episodeFileId==${sonarr_episodefile_id:-"167750"}) | .overview")"
+    printf -v PUSHOVER_URL "https://%s/series/%s" \
         "${PUSHOVER_APP_URL}" \
-        "${radarr_movie_tmdbid:-"122"}"
-    printf -v PUSHOVER_URL_TITLE "View movie in %s" \
+        "$(curl --silent --header "X-Api-Key:${PUSHOVER_STARR_APIKEY}" "http://localhost:${PUSHOVER_STARR_PORT}/api/v3/series/${sonarr_series_id:-"1653"}" \
+            | jq -r ".titleSlug")"
+    printf -v PUSHOVER_URL_TITLE "View series in %s" \
         "${PUSHOVER_STARR_INSTANCE_NAME}"
 fi
 
