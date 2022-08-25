@@ -29,6 +29,7 @@ spec:
       TZ: "${TZ}"
       PUID: "568"
       PGID: "568"
+
     service:
       main:
         ports:
@@ -70,11 +71,10 @@ spec:
         server: "george.${INTERNAL_DOMAIN}"
         path: /tank/
         mountPath: /media
-        readOnly: true
 
     resources:
       requests:
         cpu: 15m
-        memory: 381M
+        memory: 249M
       limits:
-        memory: 653M
+        memory: 299M
