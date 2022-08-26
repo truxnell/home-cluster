@@ -25,6 +25,7 @@ spec:
     image:
       repository: ghcr.io/linuxserver/calibre
       tag: version-v6.3.0
+
     env:
       TZ: "${TZ}"
       PUID: "568"
