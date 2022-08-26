@@ -2,50 +2,36 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app sabnzbd
+  name: sabnzbd
   namespace: downloads
 spec:
-  interval: 15m
+  interval: 5m
   chart:
     spec:
-      chart: app-template
-      version: 0.1.1
+      chart: sabnzbd
+      version: 9.4.2
       sourceRef:
         kind: HelmRepository
-        name: bjw-s-charts
+        name: k8s-at-home-charts
         namespace: flux-system
+      interval: 5m
   install:
     createNamespace: true
-    remediation:
-      retries: 5
+    remediation: # perform remediation when helm install fails
+      retries: 3
   upgrade:
-    remediation:
-      retries: 5
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
   values:
     image:
-      repository: ghcr.io/onedr0p/sabnzbd
-      tag: 3.6.1@sha256:f3b0f3f551f67e1a55e51dc92206070475037b33c658127c317d66df3f9e0dc8
+      repository: ghcr.io/k8s-at-home/sabnzbd
+      tag: v3.6.1
 
     env:
       TZ: "${TZ}"
-      SABNZBD__PORT: &port 80
-      SABNZBD__HOST_WHITELIST_ENTRIES: >-
-        sabnzbd,
-        sabnzbd.media,
-        sabnzbd.default.svc,
-        sabnzbd.default.svc.cluster,
-        sabnzbd.default.svc.cluster.local,
-        sabnzbd.${EXTERNAL_DOMAIN}
-
-    envFrom:
-      - secretRef:
-          name: *app
-
-    service:
-      main:
-        ports:
-          http:
-            port: *port
+      HOST_WHITELIST_ENTRIES: "sabnzbd.${EXTERNAL_DOMAIN}, sabnzbd"
 
     ingress:
       main:
@@ -56,14 +42,18 @@ spec:
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/sabnzbd/plex.css"></head>';
             sub_filter_once on;
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "download-box"
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host "sabnzbd.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
               - *host
+            secretName: &tls tls.sabnzbd
+
       api:
         enabled: true
         ingressClassName: "nginx"
@@ -78,31 +68,31 @@ spec:
               - *host
             secretName: *tls
 
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
-      supplementalGroups:
-        - 100
-
     persistence:
       config:
         enabled: true
         existingClaim: sabnzbd-config-v1
-      media:
+      nfs-nas-media:
         enabled: true
-        type: nfs
-        server: "george.${INTERNAL_DOMAIN}"
-        path: /tycho/Media
+        type: custom
+        volumeSpec:
+          nfs:
+            server: ${NAS_ADDRESS_2}
+            path: /tank/
         mountPath: /media
-      incomplete:
-        enabled: true
-        type: emptyDir
+        readOnly: false
+
+    podSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 5600
 
     resources:
       requests:
-        cpu: 10m
+        cpu: 100m
         memory: 250Mi
       limits:
         memory: 8000Mi
