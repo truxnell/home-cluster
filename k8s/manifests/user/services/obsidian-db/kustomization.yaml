@@ -4,12 +4,12 @@ kind: Kustomization
 namespace: services
 resources:
   - ./helmrelease.yaml
-  - ./pvc.yaml
+  - ./config-pvc.yaml
   - ./secret.sops.yaml
 configMapGenerator:
   - name: obsidian-db-config
     files:
-      - config.ini
+      - config/config.ini
 generatorOptions:
   disableNameSuffixHash: true
   annotations:

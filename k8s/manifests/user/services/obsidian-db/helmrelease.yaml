@@ -2,23 +2,50 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: obsidian-db
+  name: &app obsidian-db
   namespace: services
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: kah-common-chart
-      version: 1.2.2
+      chart: app-template
+      version: 0.1.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
   values:
+    image:
+      repository: docker.io/library/couchdb
+      tag: latest@sha256:28124b34f4148ed792f9bf2c71207cc3ea9bb7e76546d67daffb19234952df81
+
+    env:
+      TZ: "${TZ}"
+
+    envFrom:
+      - secretRef:
+          name: *app
+
+    service:
+      main:
+        ports:
+          http:
+            port: 5984
+
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: "obsidian-db-config"
+      secret.reloader.stakater.com/reload: "obsidian-db"
+
     initContainers:
       init-config:
-        image: busybox:latest
+        image: busybox:latest@sha256:ef320ff10026a50cf5f0213d35537ce0041ac1d96e9b7800bafd8bc9eff6c693
         command:
           - "sh"
           - "-c"
@@ -29,34 +56,20 @@ spec:
           - name: config-storage
             mountPath: /default.d
 
-    image:
-      repository: docker.io/library/couchdb
-      tag: 3.2.2
-
-    nameOverride: "obsidian-db"
-
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: "obsidian-db-config"
-      secret.reloader.stakater.com/reload: "obsidian-db"
-
-    service:
+    ingress:
       main:
-        ports:
-          http:
-            port: 5984
-
-    env:
-      TZ: "${TZ}"
-      COUCHDB_USER:
-        valueFrom:
-          secretKeyRef:
-            name: obsidian-db
-            key: couchdb-user
-      COUCHDB_PASSWORD:
-        valueFrom:
-          secretKeyRef:
-            name: obsidian-db
-            key: couchdb-password
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          external-dns.home.arpa/enabled: "true"
+        hosts:
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
 
     persistence:
       config:
@@ -75,26 +88,9 @@ spec:
         existingClaim: couchdb-data
         mountPath: /opt/couchdb/data
 
-    ingress:
-      main:
-        enabled: true
-        ingressClassName: "nginx"
-        annotations:
-          external-dns.home.arpa/enabled: "true"
-        hosts:
-          - host: &host "obsidian-db.${EXTERNAL_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - secretName: obsidian.tls
-            hosts:
-              - *host
-
     resources:
       requests:
-        cpu: 93m
-        memory: 145M
+        cpu: 23m
+        memory: 79Mi
       limits:
-        cpu: 93m
-        memory: 145M
+        memory: 100Mi
