@@ -25,6 +25,7 @@ spec:
     image:
       repository: ghcr.io/onedr0p/radarr-develop
       tag: 4.2.2.6503@sha256:b1d020c55eafe7a8df4dab105bec61b4dbca7071f274b3975f2bcbd888538b74
+
     env:
       TZ: "${TZ}"
       PUSHOVER_DEBUG: "false"
@@ -33,9 +34,11 @@ spec:
       RADARR__PORT: &port 80
       RADARR__APPLICATION_URL: "https://{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
       RADARR__LOG_LEVEL: info
+
     envFrom:
       - secretRef:
           name: *app
+
     service:
       main:
         ports:
@@ -82,6 +85,7 @@ spec:
       fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 100
+
     persistence:
       config:
         enabled: true
