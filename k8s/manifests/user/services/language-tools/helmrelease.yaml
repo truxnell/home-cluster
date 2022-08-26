@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: silviof/docker-languagetool
-      tag: latest@sha256:8a5a3d3ecb7710d4950f74238659b343ecb5596777b664475ddcd0039af3237f
+      tag: latest@sha256:8ba30858c3882a08ed237533cc50479c89aa0eed60465680ae7c19d32986b18a
 
     env:
       TZ: "${TZ}"
