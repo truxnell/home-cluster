@@ -93,7 +93,7 @@ spec:
         enabled: true
         type: nfs
         server: "george.${INTERNAL_DOMAIN}"
-        path: /tycho/Media
+        path: /tank/
         mountPath: /media
       incomplete:
         enabled: true

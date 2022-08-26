@@ -1,17 +1,3 @@
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: user-home-automation-mosquitto
-  namespace: flux-system
-spec:
-  interval: 5m
-  path: "./k8s/manifests/user/home-automation/mosquitto"
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: home-cluster
 # ---
 # apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 # kind: Kustomization
@@ -77,6 +63,20 @@ metadata:
 spec:
   interval: 5m
   path: "./k8s/manifests/user/home-automation/ecowitt2mqtt"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: user-home-automation-emqx
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/user/home-automation/emqx"
   prune: true
   wait: true
   sourceRef:
