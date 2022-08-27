@@ -2,45 +2,60 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: home-assistant
+  name: &app home-assistant
   namespace: home-automation
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: home-assistant
-      version: 13.4.2
+      chart: app-template
+      version: 0.1.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
   install:
     createNamespace: true
-    remediation: # perform remediation when helm install fails
-      retries: 3
+    remediation:
+      retries: 5
   upgrade:
-    remediation: # perform remediation when helm upgrade fails
-      retries: 3
-      remediateLastFailure: true # remediate the last failure, when no retries remain
-    cleanupOnFail: true
+    remediation:
+      retries: 5
   dependsOn:
     - name: postgres
       namespace: databases
   values:
     image:
-      repository: ghcr.io/home-assistant/home-assistant
-      tag: 2022.8.6
+      repository: ghcr.io/onedr0p/home-assistant
+      tag: 2022.8.6@sha256:3c3f508b3b79383bef875f79c45d688a59c945a0f4aa93ffeacf76bc84de81e2
 
     env:
       TZ: "${TZ}"
 
     envFrom:
       - secretRef:
-          name: home-assistant-secrets
+          name: *app
 
-    podAnnotations:
-      secret.reloader.stakater.com/reload: home-assistant-secrets
+    service:
+      main:
+        ports:
+          http:
+            port: 8123
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          external-dns.home.arpa/enabled: "true"
+        hosts:
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
 
     initContainers:
       wait-for-pg:
@@ -53,65 +68,25 @@ spec:
             'until nc -vz postgres-any.databases 5432; do echo "Waiting for cloudnative-pg..."; sleep 3; done;',
           ]
 
-    hostNetwork: true
-
-    dnsPolicy: ClusterFirstWithHostNet
-
-    service:
-      main:
-        type: LoadBalancer
-        loadBalancerIP: "${LB_HOMEASSISTANT}"
-        externalTrafficPolicy: Local
-
-    ingress:
-      main:
-        enabled: true
-        ingressClassName: "nginx"
-        annotations:
-          external-dns.home.arpa/enabled: "true"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "home-assistant"
-        hosts:
-          - host: &host "hass.${EXTERNAL_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-
-    probes:
-      liveness:
-        enabled: false
-      readiness:
-        enabled: false
-      startup:
-        enabled: false
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
 
     persistence:
       config:
         enabled: true
         existingClaim: home-assistant-config-v1
-      nfs-nas-backup:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: ${NAS_ADDRESS_2}
-            path: /tank/backup/kubernetes/apps/homeassistant
-        mountPath: /data/backups
-        readOnly: false
 
     addons:
       codeserver:
         enabled: true
         image:
-          repository: ghcr.io/k8s-at-home/code-server
-          tag: v4.6.0
+          repository: ghcr.io/coder/code-server
+          tag: 4.6.0
         env:
-          TZ: "${Tz}"
-        # git:
-        #   deployKeySecret: code-server
+          TZ: "${TZ}"
         workingDir: "/config"
         args:
           - --auth
@@ -123,26 +98,25 @@ spec:
         ingress:
           enabled: true
           ingressClassName: "nginx"
-          annotations:
           hosts:
-            - host: &host-code "hass-config.${EXTERNAL_DOMAIN}"
+            - host: &host "hass-code.${EXTERNAL_DOMAIN}"
               paths:
                 - path: /
                   pathType: Prefix
           tls:
             - hosts:
-                - *host-code
-
+                - *host
         volumeMounts:
           - name: config
             mountPath: /config
 
-      resources:
-        requests:
-          cpu: 10m
-          memory: 110M
-        limits:
-          memory: 454M
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
 
     resources:
       requests:

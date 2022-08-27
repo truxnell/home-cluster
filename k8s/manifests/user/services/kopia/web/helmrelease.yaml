@@ -73,7 +73,7 @@ spec:
                 pathType: Prefix
         tls:
           - hosts:
-            - *host
+              - *host
     podSecurityContext:
       supplementalGroups:
         - 100
