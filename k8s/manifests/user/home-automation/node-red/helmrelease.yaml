@@ -57,7 +57,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: pvc_name
+        existingClaim: node-red-config-v1
 
     resources:
       requests:
