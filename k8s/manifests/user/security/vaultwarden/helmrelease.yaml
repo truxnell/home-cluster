@@ -43,10 +43,10 @@ spec:
       main:
         ports:
           http:
-            port: 80
+            port: &port 80
           websocket:
             enabled: true
-            port: 3012
+            port: &websocket-port 3012
 
     ingress:
       main:
@@ -55,20 +55,20 @@ spec:
         annotations:
           external-dns.home.arpa/enabled: "true"
         hosts:
-          - host: &host "vault.${EXTERNAL_DOMAIN}"
+          - host: &host "warden.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
                 service:
-                  port: http
+                  port: *port
               - path: /notifications/hub/negotiate
                 pathType: Prefix
                 service:
-                  port: http
+                  port: *port
               - path: /notifications/hub
                 pathType: Prefix
                 service:
-                  port: websocket
+                  port: *websocket-port
         tls:
           - hosts:
               - *host
