@@ -91,7 +91,7 @@ spec:
     persistence:
       config:
         enabled: true
-        type: emptydir
+        type: emptyDir
         mountPath: /config
 
     resources:
