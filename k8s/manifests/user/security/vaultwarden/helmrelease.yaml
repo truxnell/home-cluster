@@ -39,6 +39,10 @@ spec:
       SMTP_PORT: 2525
       SMTP_SECURITY: off
 
+    envFrom:
+      - secretRef:
+          name: *app
+
     service:
       main:
         ports:
