@@ -36,6 +36,22 @@ spec:
         loadBalancerIP: "${LB_SATISFACTORY}"
         annotations:
           metallb.universe.tf/allow-shared-ip: satisfactory
+        ports:
+          http:
+            enabled: false
+            primary: false
+          query:
+            enabled: true
+            port: 15777
+            protocol: UDP
+          beacon:
+            enabled: true
+            port: 15000
+            protocol: UDP
+          game:
+            enabled: true
+            port: 7777
+            protocol: UDP
 
     podSecurityContext:
       runAsUser: 568
