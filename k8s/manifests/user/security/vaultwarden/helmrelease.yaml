@@ -55,7 +55,7 @@ spec:
         annotations:
           external-dns.home.arpa/enabled: "true"
         hosts:
-          - host: &host "warden.${SECRET_DOMAIN}"
+          - host: &host "vault.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
