@@ -28,6 +28,7 @@ spec:
 
     env:
       TZ: "${TZ}"
+      DATA_FOLDER: "config"
 
     service:
       main:
