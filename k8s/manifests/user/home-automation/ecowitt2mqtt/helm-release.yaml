@@ -22,7 +22,7 @@ spec:
     remediation:
       retries: 5
   dependsOn:
-    - name: mosquitto
+    - name: emqx
       namespace: home-automation
   values:
     image:
