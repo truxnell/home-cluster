@@ -57,10 +57,12 @@ spec:
       config:
         enabled: true
         existingClaim: satisfactory-data
+        mountPath: /config
 
       server-cache:
         enabled: true
         existingClaim: satisfactory-gamedata
+        mountPath: /config/gamefiles
 
     affinity:
       nodeAffinity:
