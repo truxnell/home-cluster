@@ -9,6 +9,7 @@ resources:
   - ./authelia-charts.yaml
   - ./cilium-charts.yaml
   - ./deliveryhero-charts.yaml
+  - ./emqx-charts.yaml
   - ./external-dns-charts.yaml
   - ./fairwinds-charts.yaml
   - ./grafana-charts.yaml
