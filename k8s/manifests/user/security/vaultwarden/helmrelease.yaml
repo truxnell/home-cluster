@@ -43,7 +43,6 @@ spec:
       SMTP_HOST: smtp-relay.services.svc.cluster.local
       SMTP_PORT: 2525
       SMTP_SECURITY: off
-      SIGNUPS_ALLOWED: "false"
       SHOW_PASSWORD_HINT: "false"
 
     envFrom:
