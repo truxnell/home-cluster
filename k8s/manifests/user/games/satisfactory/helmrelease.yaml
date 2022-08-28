@@ -2,47 +2,46 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: satisfactory
+  name: &app satisfactory
   namespace: games
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: satisfactory
-      version: 1.2.2
+      chart: app-template
+      version: 0.1.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
   install:
     createNamespace: true
-    remediation: # perform remediation when helm install fails
-      retries: 3
+    remediation:
+      retries: 5
   upgrade:
-    remediation: # perform remediation when helm upgrade fails
-      retries: 3
-      remediateLastFailure: true # remediate the last failure, when no retries remain
-    cleanupOnFail: true
-  # Values: https://github.com/k8s-at-home/charts/blob/master/charts/stable/satisfactory/values.yaml
+    remediation:
+      retries: 5
   values:
     image:
       repository: wolveix/satisfactory-server
       tag: v1.2.5
 
     env:
-      # -- Set the container timezone
-      TZ: ${TZ}
+      TZ: "${TZ}"
 
-    # -- Configures service settings for the chart.
-    # @default -- See values.yaml
     service:
       main:
-        type: LoadBalancer # Setting Ip external to cluster for easy port forward
+        type: LoadBalancer
         externalTrafficPolicy: Cluster
         loadBalancerIP: "${LB_SATISFACTORY}"
         annotations:
-          metallb.universe.tf/allow-shared-ip: factorio
+          metallb.universe.tf/allow-shared-ip: satisfactory
+
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
 
     persistence:
       config:
@@ -52,13 +51,6 @@ spec:
       server-cache:
         enabled: true
         existingClaim: satisfactory-gamedata
-
-    resources:
-      requests:
-        cpu: 200m
-        memory: 1640M
-      limits:
-        # memory: 4315M
 
     affinity:
       nodeAffinity:
@@ -70,3 +62,9 @@ spec:
                   operator: In
                   values:
                     - icarus
+    resources:
+      requests:
+        cpu: 200m
+        memory: 6740Mi
+      limits:
+        memory: 200Mi
