@@ -30,7 +30,7 @@ spec:
       tag: latest@sha256:2ceb7d08ea0dae0b0bcb354cb576a54ac6fec58ad8def6efbf0c7d912e253d91
     env:
       TZ: "${TZ}"
-      ECOWITT2MQTT_MQTT_BROKER: mosquitto.home-automation
+      ECOWITT2MQTT_MQTT_BROKER: emqx.home-automation
       ECOWITT2MQTT_MQTT_PORT: 1883
       ECOWITT2MQTT_MQTT_TOPIC: ecowitt2mqtt/pws
       ECOWITT2MQTT_PORT: &port 8080
