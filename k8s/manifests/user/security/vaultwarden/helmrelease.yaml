@@ -25,9 +25,9 @@ spec:
       repository: ghcr.io/k8s-at-home/vaultwarden
       tag: v1.25.2
 
-    controller:
-      replicas: 3
-      strategy: RollingUpdate
+    # controller:
+    #   replicas: 3
+    #   strategy: RollingUpdate
 
     env:
       TZ: "${TZ}"
