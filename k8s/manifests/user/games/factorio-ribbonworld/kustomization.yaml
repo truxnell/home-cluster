@@ -10,3 +10,4 @@ secretGenerator:
   - name: factorio-ribbonworld
     files:
       - server-settings.json=config/server-settings.sops.json
+    behaviour: merge
