@@ -7,7 +7,6 @@ resources:
   - ./helmrelease.yaml
   - ./secret.sops.yaml
 secretGenerator:
-  - name: factorio-ribbonworld
+  - name: factorio-ribbonworld-serversettings
     files:
       - server-settings.json=config/server-settings.sops.json
-    behaviour: merge

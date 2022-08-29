@@ -5,3 +5,4 @@ resources:
   - ./remove-cpu-limit.yaml
   - ./set-internal-ingress-annotations.yaml
   - ./snapshot-cronjob-controller.yaml
+  - ./sync-postgres-secret.yaml
