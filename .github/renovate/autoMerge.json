@@ -12,53 +12,12 @@
       ],
       "matchPackagePattern": [
         "ghcr.io/k8s-at-home"
+      ],
+      "schedule": [
+        "after 2am and before 6pm on saturday"
       ]
     },
-    {
-      "description": "Package requirements: minor updates are silent",
-      "matchFiles": [
-        "requirements.txt"
-      ],
-      "automerge": true,
-      "stabilityDays": 1,
-      "automergeType": "branch",
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ]
-    },
-    {
-      "matchDatasources": [
-        "helm"
-      ],
-      "automerge": true,
-      "automergeType": "branch",
-      "requiredStatusChecks": null,
-      "stabilityDays": 1,
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
-      "matchPackageNames": [
-        "kube-prometheus-stack"
-      ]
-    },
-    {
-      "matchManagers": [
-        "github-actions"
-      ],
-      "automerge": true,
-      "automergeType": "branch",
-      "requiredStatusChecks": null,
-      "stabilityDays": 1,
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
-      "excludePackageNames": [
-        "lycheeverse/lychee-action"
-      ]
-    },
+    // Automerge game servers immediately
     {
       "matchDatasources": [
         "helm",
@@ -77,28 +36,8 @@
         "automerge-servers"
       ],
       "matchPackageNames": [
-        "factoriotools/factorio"
-      ]
-    },
-    {
-      "matchDatasources": [
-        "helm",
-        "docker"
-      ],
-      "automerge": false,
-      "requiredStatusChecks": null,
-      "matchUpdateTypes": [
-        "major",
-        "minor",
-        "patch",
-        "digest"
-      ],
-      "groupName": "Satisfactory` Servers",
-      "labels": [
-        "automerge-servers"
-      ],
-      "matchPackageNames": [
-        "yfricke/satisfactory-server"
+        "factoriotools/factorio",
+        "ywolveix/satisfactory-server"
       ]
     }
   ]

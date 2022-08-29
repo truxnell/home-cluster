@@ -29,22 +29,6 @@ spec:
     #   replicas: 3
     #   strategy: RollingUpdate
 
-    env:
-      TZ: "${TZ}"
-      DATA_FOLDER: "config"
-      DOMAIN: https://vault.${EXTERNAL_DOMAIN}
-      SIGNUPS_ALLOWED: "false"
-      SMTP_FROM_NAME: Vault
-      SMTP_FROM: vaultwarden@${EXTERNAL_DOMAIN}
-      SMTP_SSL: "true"
-      WEBSOCKET_ADDRESS: 0.0.0.0
-      WEBSOCKET_ENABLED: true
-      WEBSOCKET_PORT: 3012
-      SMTP_HOST: smtp-relay.services.svc.cluster.local
-      SMTP_PORT: 2525
-      SMTP_SECURITY: off
-      SHOW_PASSWORD_HINT: "false"
-
     envFrom:
       - secretRef:
           name: *app

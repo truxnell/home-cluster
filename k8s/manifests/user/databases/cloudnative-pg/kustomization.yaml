@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - dashboard
   - secret.sops.yaml
-  - helm-release.yaml
+  - helmrelease.yaml
   - cluster.yaml
   - scheduled-backup.yaml

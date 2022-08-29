@@ -2,18 +2,16 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: grafana-config-v1
-  namespace: system-monitoring
+  name: kavita-config-v1
+  namespace: organizarrs
   labels:
-    app.kubernetes.io/name: &name grafana
+    app.kubernetes.io/name: &name kavita
     app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce
-
   resources:
     requests:
-      storage: 5Gi
-
+      storage: 2Gi
   storageClassName: ceph-block

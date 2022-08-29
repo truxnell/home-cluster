@@ -2,43 +2,54 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: factorio-ribbonworld
+  name: &app factorio-ribbonworld
   namespace: games
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: factorio
-      version: 1.2.2
+      chart: app-template
+      version: 0.1.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
   install:
     createNamespace: true
-    remediation: # perform remediation when helm install fails
-      retries: 3
+    remediation:
+      retries: 5
   upgrade:
-    remediation: # perform remediation when helm upgrade fails
-      retries: 3
-      remediateLastFailure: true # remediate the last failure, when no retries remain
-    cleanupOnFail: true
-
+    remediation:
+      retries: 5
   values:
-    # Override names to make it easier to discern in PMB
-    global:
-      nameOverride: factorio-ribbonworld
     image:
-      repository: factoriotools/factorio
+      repository: repository
       tag: stable@sha256:4cf14adab0bdf89e04c06248519707ee4919558047b925155ff3944885690622
 
-    env:
-      # -- Set the container timezone
-      TZ: Australia/Melbourne
+    global:
+      nameOverride: *app
 
-    # -- Configures service settings for the chart.
-    # @default -- See values.yaml
+    env:
+      TZ: "${TZ}"
+
+    initContainers:
+      copy-configmap:
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        command:
+          - "sh"
+          - "-c"
+          - |
+            mkdir -p /factorio/config
+            cp -vL /helmconfig/* /factorio/config/
+        volumeMounts:
+          - name: factorio-config
+            mountPath: /helmconfig/
+          - name: config
+            mountPath: /factorio/
+        securityContext:
+          runAsUser: 0
+
     service:
       main:
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
@@ -46,33 +57,54 @@ spec:
         loadBalancerIP: "${LB_FACTORIO}"
         annotations:
           metallb.universe.tf/allow-shared-ip: factorio
+        ports:
+          http:
+            enabled: false
+            primary: false
+          server:
+            enabled: true
+            port: 34197
+            protocol: UDP
+          rcon:
+            enabled: true
+            primary: true
+            port: 27015
+            protocol: TCP
+
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
 
     persistence:
       config:
         enabled: true
         existingClaim: factorio-ribbonworld-config-v1
-
-    config:
-      factorioServer:
-        save_name: "Ribbonworld"
-        generate_new_save: false
-        update_mods_on_start: true
-        load_latest_save: true
-        token: ${SECRET_FACTORIO_TOKEN}
-        username: ${SECRET_FACTORIO_USERNAME}
-
-      server_settings:
-        name: Ribbonworld
-        description: "Thin and long!"
-        game_password: "${SECRET_FACTORIO_SERVER_PASSWORD}"
-        non_blocking_saving: true
-
-      rcon:
-        password: "${SECRET_FACTORIO_RCON_PASSWORD}"
-        port: 30100
-
-      admin_list:
-        - durandal666
+      rconpw:
+        enabled: "true"
+        mountPath: "/helmconfig/rconpw"
+        subPath: "rconpw"
+        type: "custom"
+        volumeSpec:
+          configMap:
+            name: *app
+      admin-whitelist:
+        enabled: "true"
+        mountPath: "/helmconfig/admin-whitelist.json"
+        subPath: "admin-whitelist.json"
+        type: "custom"
+        volumeSpec:
+          configMap:
+            name: *app
+      server-settings:
+        enabled: "true"
+        mountPath: "/helmconfig/server-settings.json"
+        subPath: "server-settings.json"
+        type: "custom"
+        volumeSpec:
+          configMap:
+            name: *app
 
     startupProbe:
       enabled: true

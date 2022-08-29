@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app overseerr
+  name: &app kavita
   namespace: organizarrs
 spec:
   interval: 15m
@@ -23,29 +23,26 @@ spec:
       retries: 5
   values:
     image:
-      repository: ghcr.io/sct/overseerr
-      tag: 1.29.1
+      repository: kizaing/kavita
+      tag: nightly@sha256:1b38a076bd6761a08adae8a47b2673554d7ec0048822b43c8d7c6630cc97a9b6
     env:
       TZ: "${TZ}"
-      LOG_LEVEL: "info"
-      PORT: &port 80
+
     service:
       main:
         ports:
           http:
-            port: *port
+            port: 5000
+
     ingress:
       main:
         enabled: true
         ingressClassName: "nginx"
-        annotations:
-          # external-dns.home.arpa/enabled: "true"
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/overseerr/nord.css"></head>';
-            sub_filter_once on;
+#          annotations:
+#            external-dns.home.arpa/enabled: "true"
+#            auth.home.arpa/enabled: "true"
         hosts:
-          - host: &host "requests.${EXTERNAL_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -53,15 +50,27 @@ spec:
           - hosts:
               - *host
 
+    # podSecurityContext:
+    #   runAsUser: 568
+    #   runAsGroup: 568
+    #   fsGroup: 568
+    #   fsGroupChangePolicy: "OnRootMismatch"
+
     persistence:
       config:
         enabled: true
-        existingClaim: overseerr-config-v1
-        mountPath: /app/config
+        existingClaim: kavita-config-v1
+        mountPath: /kavita/config
+      media:
+        enabled: true
+        type: nfs
+        server: "george.${INTERNAL_DOMAIN}"
+        path: /tank/
+        mountPath: /media
 
     resources:
       requests:
-        cpu: 10m
-        memory: 250Mi
-      limits:
-        memory: 500Mi
+        cpu: 20m
+        memory: 100Mi
+      # limits:
+        # memory: 200Mi
