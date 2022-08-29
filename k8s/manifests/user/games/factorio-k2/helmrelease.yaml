@@ -31,7 +31,7 @@ spec:
       nameOverride: factorio-k2
     image:
       repository: factoriotools/factorio
-      tag: stable@sha256:3a3ce0094b4580b165e21669b5ea8cbd8a852a34f19fa77ffba6030055479785
+      tag: stable@sha256:4cf14adab0bdf89e04c06248519707ee4919558047b925155ff3944885690622
 
     env:
       # -- Set the container timezone
