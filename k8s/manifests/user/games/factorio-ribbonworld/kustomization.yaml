@@ -3,5 +3,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: games
 resources:
-  - config-pvc.yaml
-  - helmrelease.yaml
+  - ./config-pvc.yaml
+  - ./helmrelease.yaml
+  - ./secret.sops.yaml
+secretGenerator:
+  - name: factorio-ribbonworld
+    files:
+      - server-settings.json=config/server-settings.sops.json
+    behaviour: merge
