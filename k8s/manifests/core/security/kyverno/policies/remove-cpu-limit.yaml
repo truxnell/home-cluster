@@ -24,6 +24,9 @@ spec:
               selector:
                 matchLabels:
                   job-name: "*"
+          - resources:
+              namespaces:
+                - kube-system
       mutate:
         patchStrategicMerge:
           spec:
