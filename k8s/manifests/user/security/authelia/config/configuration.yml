@@ -19,41 +19,42 @@ access_control:
   rules:
     - domain: ["grafana.${EXTERNAL_DOMAIN}"]
       policy: bypass
-    # - domain: ["navidrome.${SECRET_PUBLIC_DOMAIN}"]
+    # - domain: ["navidrome.${EXTERNAL_DOMAIN}"]
     #   policy: bypass
     #   resources: ["^/rest.*$"]
 
-# identity_providers:
-#   oidc:
-#     cors:
-#       endpoints: ["authorization", "token", "revocation", "introspection"]
-#       allowed_origins_from_client_redirect_uris: true
-#     clients:
-#       - id: gitea
-#         secret: "${SECRET_GITEA_OAUTH_CLIENT_SECRET}"
-#         public: false
-#         authorization_policy: two_factor
-#         scopes: ["openid", "profile", "groups", "email"]
-#         redirect_uris: ["https://gitea.${SECRET_PUBLIC_DOMAIN}/user/oauth2/authelia/callback"]
-#         userinfo_signing_algorithm: none
-#       - id: grafana
-#         description: Grafana
-#         secret: "${SECRET_GRAFANA_OAUTH_CLIENT_SECRET}"
-#         public: false
-#         authorization_policy: two_factor
-#         pre_configured_consent_duration: 1y
-#         scopes: ["openid", "profile", "groups", "email"]
-#         redirect_uris: ["https://grafana.${SECRET_PUBLIC_DOMAIN}/login/generic_oauth"]
-#         userinfo_signing_algorithm: none
-#       - id: miniflux
-#         description: Miniflux
-#         secret: "${SECRET_MINIFLUX_OAUTH_CLIENT_SECRET}"
-#         public: false
-#         authorization_policy: two_factor
-#         pre_configured_consent_duration: 1y
-#         scopes: ["openid", "profile", "groups", "email"]
-#         redirect_uris: ["https://miniflux.${SECRET_PUBLIC_DOMAIN}/oauth2/oidc/callback"]
-#         userinfo_signing_algorithm: none
+identity_providers:
+  oidc:
+    cors:
+      endpoints: ["authorization", "token", "revocation", "introspection"]
+      allowed_origins_from_client_redirect_uris: true
+    clients:
+      #       - id: gitea
+      #         secret: "${SECRET_GITEA_OAUTH_CLIENT_SECRET}"
+      #         public: false
+      #         authorization_policy: two_factor
+      #         scopes: ["openid", "profile", "groups", "email"]
+      #         redirect_uris: ["https://gitea.${EXTERNAL_DOMAIN}/user/oauth2/authelia/callback"]
+      #         userinfo_signing_algorithm: none
+      #       - id: grafana
+      #         description: Grafana
+      #         secret: "${SECRET_GRAFANA_OAUTH_CLIENT_SECRET}"
+      #         public: false
+      #         authorization_policy: two_factor
+      #         pre_configured_consent_duration: 1y
+      #         scopes: ["openid", "profile", "groups", "email"]
+      #         redirect_uris: ["https://grafana.${EXTERNAL_DOMAIN}/login/generic_oauth"]
+      #         userinfo_signing_algorithm: none
+      - id: miniflux
+        description: Miniflux
+        secret: "${SECRET_MINIFLUX_OAUTH_CLIENT_SECRET}"
+        public: false
+        authorization_policy: two_factor
+        pre_configured_consent_duration: 1y
+        scopes: ["openid", "profile", "groups", "email"]
+        redirect_uris:
+          ["https://miniflux.${EXTERNAL_DOMAIN}/oauth2/oidc/callback"]
+        userinfo_signing_algorithm: none
 #       - id: outline
 #         description: Outline
 #         secret: "${SECRET_OUTLINE_OAUTH_CLIENT_SECRET}"
@@ -61,14 +62,14 @@ access_control:
 #         authorization_policy: two_factor
 #         pre_configured_consent_duration: 1y
 #         scopes: ["openid", "profile", "email"]
-#         redirect_uris: ["https://docs.${SECRET_PUBLIC_DOMAIN}/auth/oidc.callback"]
+#         redirect_uris: ["https://docs.${EXTERNAL_DOMAIN}/auth/oidc.callback"]
 #         userinfo_signing_algorithm: none
-      # - id: minio
-      #   description: Minio
-      #   secret: "${SECRET_MINIO_OAUTH_CLIENT_SECRET}"
-      #   public: false
-      #   authorization_policy: two_factor
-      #   pre_configured_consent_duration: 1y
-      #   scopes: ["openid", "profile", "groups", "email"]
-      #   redirect_uris: ["https://minio.${SECRET_PUBLIC_DOMAIN}/oauth_callback"]
-      #   userinfo_signing_algorithm: none
+# - id: minio
+#   description: Minio
+#   secret: "${SECRET_MINIO_OAUTH_CLIENT_SECRET}"
+#   public: false
+#   authorization_policy: two_factor
+#   pre_configured_consent_duration: 1y
+#   scopes: ["openid", "profile", "groups", "email"]
+#   redirect_uris: ["https://minio.${EXTERNAL_DOMAIN}/oauth_callback"]
+#   userinfo_signing_algorithm: none
