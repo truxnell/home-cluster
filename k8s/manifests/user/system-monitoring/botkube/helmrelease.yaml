@@ -70,6 +70,8 @@ spec:
                 "statefulsets",
                 "storageclasses",
                 "nodes",
+                "ingress",
+                "service"
               ]
       resources:
         - name: v1/pods
