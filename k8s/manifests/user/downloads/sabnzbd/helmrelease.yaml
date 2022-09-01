@@ -71,7 +71,7 @@ spec:
         hosts:
           - host: *host
             paths:
-              - path: /api
+              - path: /sabnzbd/api
                 pathType: Prefix
         tls:
           - hosts:
