@@ -11,7 +11,7 @@
         "digest"
       ],
       "matchPackagePattern": [
-        "ghcr.io/k8s-at-home"
+        "ghcr.io/onedr0p"
       ],
       "schedule": [
         "after 2am and before 6pm on saturday"
@@ -20,7 +20,6 @@
     // Automerge game servers immediately
     {
       "matchDatasources": [
-        "helm",
         "docker"
       ],
       "automerge": false,

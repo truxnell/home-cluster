@@ -78,9 +78,11 @@ alertmanager:
       - &host alertmanager.${EXTERNAL_DOMAIN}
     tls:
       - hosts:
-        - *host
+          - *host
 
   alertmanagerSpec:
+    replicas: 3
+    podAntiAffinity: hard
     storage:
       volumeClaimTemplate:
         spec:

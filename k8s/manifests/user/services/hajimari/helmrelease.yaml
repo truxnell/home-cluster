@@ -29,13 +29,25 @@ spec:
       repository: ghcr.io/toboshii/hajimari
       tag: v0.2.0
 
+    controller:
+      replicas: 3
+      strategy: RollingUpdate
+
     env:
       TZ: "${TZ}"
 
     hajimari:
-      defaultEnable: false
+      defaultEnable: true
       namespaceSelector:
-        any: true
+        matchNames:
+          - frigate
+          - home-automation
+          - system-monitoring
+          - downloads
+          - organizarrs
+          - media
+          - security
+          - network-system
 
       name: "nat"
       # customApps:
@@ -105,7 +117,7 @@ spec:
 
         tls:
           - hosts:
-            - "hajimari.${EXTERNAL_DOMAIN}"
+              - "hajimari.${EXTERNAL_DOMAIN}"
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: "hajimari-settings"

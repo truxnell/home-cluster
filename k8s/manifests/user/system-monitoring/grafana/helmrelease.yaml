@@ -26,7 +26,7 @@ spec:
       namespace: databases
   values:
 
-    replicas: 1
+    replicas: 3
 
     admin:
       existingSecret: grafana-admin
@@ -97,17 +97,14 @@ spec:
 
     dashboards:
       default:
-        # Ref: https://grafana.com/grafana/dashboards/7845
         zfs:
           gnetId: 7845
           revision: 4
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/13502
         minio:
           gnetId: 13502
           revision: 10
           datasource: Prometheus
-        # Ref: https://grafana.com/api/dashboards/1860/
         node-exporter-full:
           gnetId: 1860
           revision: 22
@@ -115,6 +112,10 @@ spec:
         persistent-volumes:
           gnedId: 13646
           revision: 2
+          datasource: Prometheus
+        blackbox-exporter:
+          gnedId: 13587
+          revision: 1
           datasource: Prometheus
 
     sidecar:

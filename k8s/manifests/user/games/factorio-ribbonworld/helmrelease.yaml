@@ -43,7 +43,7 @@ spec:
             mkdir -p /factorio/config
             cp -vL /helmconfig/* /factorio/config/
         volumeMounts:
-          - name: factorio-config
+          - name:
             mountPath: /helmconfig/
           - name: config
             mountPath: /factorio/
@@ -81,30 +81,6 @@ spec:
       config:
         enabled: true
         existingClaim: factorio-ribbonworld-config-v1
-      rconpw:
-        enabled: "true"
-        mountPath: "/helmconfig/rconpw"
-        subPath: "rconpw"
-        type: "custom"
-        volumeSpec:
-          configMap:
-            name: *app
-      admin-whitelist:
-        enabled: "true"
-        mountPath: "/helmconfig/admin-whitelist.json"
-        subPath: "admin-whitelist.json"
-        type: "custom"
-        volumeSpec:
-          configMap:
-            name: *app
-      server-settings:
-        enabled: "true"
-        mountPath: "/helmconfig/server-settings.json"
-        subPath: "server-settings.json"
-        type: "custom"
-        volumeSpec:
-          configMap:
-            name: *app
 
     startupProbe:
       enabled: true

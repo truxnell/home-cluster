@@ -26,6 +26,8 @@ spec:
     prometheus:
       serviceMonitor:
         enabled: true
+        serviceAccount: "system-monitoring/prometheus-prometheus"
+
       prometheusRule:
         enabled: true
 

@@ -13,7 +13,7 @@ prometheus:
       - &host prometheus.${EXTERNAL_DOMAIN}
     tls:
       - hosts:
-        - *host
+          - *host
 
   thanosService:
     enabled: true
@@ -21,14 +21,14 @@ prometheus:
     enabled: true
 
   prometheusSpec:
-    replicas: 1
-    replicaExternalLabelName: "replica"
+    replicas: 3
+    replicaExternalLabelName: __replica__
     ruleSelectorNilUsesHelmValues: false
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
     probeSelectorNilUsesHelmValues: false
-    retentionSize: "6GB"
-    retention: 2d
+    retentionSize: "8GB"
+    retention: 14d
     enableAdminAPI: true
     walCompression: true
     storageSpec:
@@ -45,9 +45,9 @@ prometheus:
         # limits:
         # memory: 4744M
     thanos:
-      image: quay.io/thanos/thanos:v0.26.0
+      image: quay.io/thanos/thanos:v0.28.0
       # renovate: datasource=docker depName=quay.io/thanos/thanos
-      version: v0.26.0
+      version: v0.28.0
       objectStorageConfig:
         name: &secret thanos-objstore-secret
         key: objstore.yml
@@ -64,7 +64,6 @@ prometheus:
           - targets:
               - "technocore.${INTERNAL_DOMAIN}:9100"
               - "prusa.${INTERNAL_DOMAIN}:9100"
-              - "10.8.20.11:9100" #TODO: Move to fqdn
 
       - job_name: windows-exporter
         scrape_interval: 1m
@@ -82,14 +81,6 @@ prometheus:
           - targets:
               - "hs110-exporter-prusa.system-monitoring:8110"
               - "hs110-exporter-rack.system-monitoring:8110"
-
-      - job_name: minio
-        honor_timestamps: true
-        metrics_path: /minio/v2/metrics/cluster
-        scheme: http
-        static_configs:
-          - targets:
-              - "george.${INTERNAL_DOMAIN}:9000"
 
       - job_name: pikvm
         metrics_path: /api/export/prometheus/metrics
@@ -139,10 +130,10 @@ prometheus:
                 __meta_kubernetes_ingress_path,
               ]
             regex: (.+);(.+);(.+)
-            replacement: ${1}://${2}${3}
+            replacement: $${1}://$${2}$${3}
             target_label: __param_target
           - target_label: __address__
-            replacement: blackbox-exporter.system-monitoring.cluster.local:9115
+            replacement: blackbox-exporter:9115
           - source_labels: [__param_target]
             target_label: instance
           - action: labelmap
@@ -171,7 +162,7 @@ prometheus:
           - source_labels: [__address__]
             target_label: __param_target
           - target_label: __address__
-            replacement: blackbox-exporter.system-monitoring.cluster.local:9115
+            replacement: blackbox-exporter:9115
           - source_labels: [__param_target]
             target_label: instance
           - action: labelmap
@@ -200,7 +191,7 @@ prometheus:
           - source_labels: [__address__]
             target_label: __param_target
           - target_label: __address__
-            replacement: blackbox-exporter-prometheus-blackbox-exporter:9115
+            replacement: blackbox-exporter:9115
           - source_labels: [__param_target]
             target_label: instance
           - action: labelmap

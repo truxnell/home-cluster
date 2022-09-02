@@ -13,5 +13,6 @@ spec:
   ports:
     - name: https
       port: 443
-
+    - name: node-exporter
+      port: 9000
   externalName: unifi.${INTERNAL_DOMAIN}
