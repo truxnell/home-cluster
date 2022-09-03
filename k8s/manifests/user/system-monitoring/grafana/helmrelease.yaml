@@ -109,8 +109,12 @@ spec:
           datasource: Prometheus
         # Ref: https://grafana.com/api/dashboards/1860/
         node-exporter-full:
-          gnetID: 1860
+          gnetId: 1860
           revision: 22
+          datasource: Prometheus
+        persistent-volumes:
+          gnedId: 13646
+          revision: 2
           datasource: Prometheus
 
     sidecar:
