@@ -18,4 +18,15 @@ spec:
   volumes:
     - name: pvc
       persistentVolumeClaim:
-        claimName: "satisfactory-data" # Change this
+        claimName: "kativa-config-v1" # Change this
+
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 1
+          preference:
+            matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                  - xerxes

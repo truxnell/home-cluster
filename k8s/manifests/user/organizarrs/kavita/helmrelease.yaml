@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app kativa
+  name: &app kavita
   namespace: organizarrs
 spec:
   interval: 15m
@@ -60,8 +60,8 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: kativa-config-v1
-        mountPath: /kativa/config
+        existingClaim: kavita-config-v1
+        mountPath: /kavita/config
       media:
         enabled: true
         type: nfs
