@@ -23,6 +23,8 @@ spec:
   dependsOn:
     - name: postgres
       namespace: databases
+    - name: authelia
+      namespace: security
   values:
     image:
       repository: docker.io/miniflux/miniflux

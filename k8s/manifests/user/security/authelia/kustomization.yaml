@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: security
 resources:
   - ./secret.sops.yaml
-  - ./helm-release.yaml
+  - ./helmrelease.yaml
   - ./service-monitor.yaml
 patchesStrategicMerge:
   - ./patches/env.yaml
