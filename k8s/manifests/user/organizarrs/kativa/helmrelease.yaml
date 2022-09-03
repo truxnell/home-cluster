@@ -61,7 +61,7 @@ spec:
       config:
         enabled: true
         existingClaim: kativa-config-v1
-        path: /kativa/config
+        mountPath: /kativa/config
       media:
         enabled: true
         type: nfs
