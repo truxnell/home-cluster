@@ -55,7 +55,7 @@ spec:
         hsts-max-age: "31449600"
         keep-alive: 120
         keep-alive-requests: 10000
-        proxy-body-size: "100M"
+        proxy-body-size: "16k"
         ssl-protocols: "TLSv1.3 TLSv1.2"
         use-forwarded-headers: "true"
         # The below X-Clacks-Overehead is a do-nothing header
