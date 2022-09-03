@@ -25,11 +25,15 @@ spec:
     - name: postgres
       namespace: databases
   values:
+
     replicas: 1
+
     admin:
       existingSecret: grafana-admin
+
     envFromSecrets:
       - name: grafana
+
     grafana.ini:
       auth:
         signout_redirect_url: "https://auth.${EXTERNAL_DOMAIN}/logout"
@@ -60,6 +64,7 @@ spec:
         org_name: HomeOps
         org_id: 1
         org_role: Viewer
+
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
@@ -72,6 +77,7 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/default
+
     datasources:
       datasources.yaml:
         apiVersion: 1
@@ -88,6 +94,7 @@ spec:
             type: loki
             access: proxy
             url: http://loki-gateway:80
+
     dashboards:
       default:
         # Ref: https://grafana.com/grafana/dashboards/7845
@@ -100,6 +107,12 @@ spec:
           gnetId: 13502
           revision: 10
           datasource: Prometheus
+        # Ref: https://grafana.com/api/dashboards/1860/
+        node-exporter-full:
+          gnetID: 1860
+          revision: 22
+          datasource: Prometheus
+
     sidecar:
       dashboards:
         enabled: true
@@ -110,6 +123,7 @@ spec:
       datasources:
         enabled: true
         searchNamespace: ALL
+
     plugins:
       - natel-discrete-panel
       - pr0ps-trackmap-panel
@@ -117,8 +131,10 @@ spec:
       - vonage-status-panel
       - grafana-worldmap-panel
       - grafana-clock-panel
+
     serviceMonitor:
       enabled: true
+
     ingress:
       enabled: true
       ingressClassName: "nginx"
@@ -129,17 +145,3 @@ spec:
       tls:
         - hosts:
             - *host
-    # persistence:
-    #   enabled: false
-    # affinity:
-    #   podAntiAffinity:
-    #     preferredDuringSchedulingIgnoredDuringExecution:
-    #       - weight: 100
-    #         podAffinityTerm:
-    #           labelSelector:
-    #             matchExpressions:
-    #               - key: app.kubernetes.io/name
-    #                 operator: In
-    #                 values:
-    #                   - grafana
-    #           topologyKey: kubernetes.io/hostname
