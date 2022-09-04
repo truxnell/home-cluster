@@ -57,6 +57,19 @@ spec:
         loadBalancerIP: "${LB_FACTORIO}"
         annotations:
           metallb.universe.tf/allow-shared-ip: factorio
+        ports:
+          http:
+            enabled: false
+            primary: false
+          server:
+            enabled: true
+            port: 34197
+            protocol: UDP
+          rcon:
+            enabled: true
+            primary: true
+            port: 27015
+            protocol: TCP
 
     podSecurityContext:
       runAsUser: 568
