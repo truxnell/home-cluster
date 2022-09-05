@@ -59,17 +59,6 @@ spec:
           - hosts:
               - *host
 
-    initContainers:
-      wait-for-pg:
-        image: busybox:latest
-        imagePullPolicy: IfNotPresent
-        command:
-          [
-            "sh",
-            "-c",
-            'until nc -vz postgres-any.databases 5432; do echo "Waiting for cloudnative-pg..."; sleep 3; done;',
-          ]
-
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
