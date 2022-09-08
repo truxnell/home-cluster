@@ -16,7 +16,7 @@ metadata:
 spec:
   ingressClassName: "nginx"
   rules:
-    - host: &host unifi.natallan.com
+    - host: &host unifi.${EXTERNAL_DOMAIN}
       http:
         paths:
           - path: /
