@@ -51,4 +51,4 @@ spec:
             - name: nas-backups
               nfs:
                 server: "george.${INTERNAL_DOMAIN}"
-                path: /volume1/Backup/Databases/postgresql
+                path: /tank/backups/kubernetes/apps/postgres
