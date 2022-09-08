@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: tomsquest/docker-radicale
-      tag: 3.1.8.0
+      tag: 386.3.0.6.3
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: *app
