@@ -10,7 +10,7 @@ commonLabels:
   app.kubernetes.io/name: radicale
   app.kubernetes.io/instance: radicale
 configMapGenerator:
-  - name: radicale-config
+  - name: radicale
     files:
       - config/config.cfg
 generatorOptions:
