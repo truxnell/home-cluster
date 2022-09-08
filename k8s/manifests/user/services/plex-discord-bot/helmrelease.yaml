@@ -29,7 +29,7 @@ spec:
       nameOverride: *app
     image:
       repository: jarulsamy/plex-bot
-      tag: latest@sha256:ef1a80c82d2cbce1670e94833a4fbf84a0cd2e6f723c6b2cfffed8dc320701af
+      tag: latest@sha256:bcc2b1032f402a289a3594cbca03853b3bae04c992981acfd4ab11a1e8308cb4
       pullPolicy: IfNotPresent
     args:
       - --persist
