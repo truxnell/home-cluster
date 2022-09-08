@@ -17,14 +17,12 @@ spec:
       match:
         any:
           - resources:
-              kinds: [Ingress]
+              kinds: ["Ingress"]
       exclude:
         any:
           - resources:
-              kinds: [Ingress]
-              selector:
-                annotations:
-                  auth.home.arpa/enabled: "false"
+              annotations:
+                probe.home.arpa/enabled: "true"
       mutate:
         patchStrategicMerge:
           metadata:
