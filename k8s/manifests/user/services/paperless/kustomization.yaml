@@ -5,3 +5,5 @@ resources:
   - ./helmrelease.yaml
   - ./pvc.yaml
   - ./secret.sops.yaml
+patchesStrategicMerge:
+  - ./patches/postgres.yaml

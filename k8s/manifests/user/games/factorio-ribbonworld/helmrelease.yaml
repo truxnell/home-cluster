@@ -23,7 +23,7 @@ spec:
       retries: 5
   values:
     image:
-      repository: repository
+      repository: factoriotools/factorio
       tag: stable@sha256:4cf14adab0bdf89e04c06248519707ee4919558047b925155ff3944885690622
 
     global:
@@ -71,16 +71,20 @@ spec:
             port: 27015
             protocol: TCP
 
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
+    # podSecurityContext:
+    #   runAsUser: 568
+    #   runAsGroup: 568
+    #   fsGroup: 568
+    #   fsGroupChangePolicy: "OnRootMismatch"
 
     persistence:
       config:
         enabled: true
         existingClaim: factorio-ribbonworld-config-v1
+      helmconfig:
+        enabled: "true"
+        type: "secret"
+        name: *app
 
     startupProbe:
       enabled: true

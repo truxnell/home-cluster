@@ -15,7 +15,9 @@ spec:
         kind: HelmRepository
         name: bjw-s-charts
         namespace: flux-system
-
+  dependsOn:
+    - name: postgres
+      namespace: databases
   values:
     image:
       repository: ghcr.io/paperless-ngx/paperless-ngx
@@ -23,16 +25,22 @@ spec:
 
     env:
       COMPOSE_PROJECT_NAME: paperless
+      PAPERLESS_OCR_LANGUAGE: eng
       PAPERLESS_CONSUMER_POLLING: "60"
       PAPERLESS_CONSUMER_RECURSIVE: "true"
       PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: "true"
-      PAPERLESS_OCR_LANGUAGES: nld
-      PAPERLESS_OCR_LANGUAGE: nld
-      PAPERLESS_PORT: 8000
-      PAPERLESS_REDIS: redis://redis.databases.svc.cluster.local:6379
+      PAPERLESS_PORT: &port 8000
+      PAPERLESS_REDIS: redis://localhost:6379
       PAPERLESS_TASK_WORKERS: 2
       PAPERLESS_TIME_ZONE: "${TZ}"
       PAPERLESS_URL: https://paperless.${EXTERNAL_DOMAIN}
+      PAPERLESS_DBHOST: postgres-rw.databases.svc.cluster.local
+      PAPERLESS_DBNAME: paperless
+      PAPERLESS_TIKA_ENABLED: 1
+      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://localhost:3000
+      PAPERLESS_TIKA_ENDPOINT: http://localhost:9998
+      PAPERLESS_ENABLE_HTTP_REMOTE_USER: TRUE
+      PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME: HTTP_X_AUTHENTIK_USERNAME
       USERMAP_GID: 65543
 
     envFrom:
@@ -43,7 +51,7 @@ spec:
       main:
         ports:
           http:
-            port: 8000
+            port: *port
 
     ingress:
       main:
@@ -53,7 +61,7 @@ spec:
           hajimari.io/icon: file-outline
           nginx.ingress.kubernetes.io/proxy-body-size: 4G
         hosts:
-          - host: &host "paperless.${EXTERNAL_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
         tls:
@@ -86,9 +94,26 @@ spec:
         server: "george.${INTERNAL_DOMAIN}"
         path: /tank/documents/paperless/export
 
-    resources:
-      requests:
-        cpu: 23m
-        memory: 2975M
-      limits:
-        memory: 6572M
+    additionalContainers:
+      redis:
+        name: redis
+        image: redis:7.0
+        imagePullPolicy: IfNotPresent
+
+      gotenburg:
+        name: gotenburg
+        image: thecodingmachine/gotenberg:7.6.0
+        env:
+          - name: DISABLE_GOOGLE_CHROME
+            value: "1"
+      tika:
+        image: apache/tika:2.4.1
+        name: tika
+        imagePullPolicy: Always
+
+    # resources:
+    #   requests:
+    #     cpu: 23m
+    #     memory: 2975M
+    #   limits:
+    #     memory: 6572M
