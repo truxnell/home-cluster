@@ -43,7 +43,7 @@ spec:
             mkdir -p /factorio/config
             cp -vL /helmconfig/* /factorio/config/
         volumeMounts:
-          - name:
+          - name: helmconfig
             mountPath: /helmconfig/
           - name: config
             mountPath: /factorio/
