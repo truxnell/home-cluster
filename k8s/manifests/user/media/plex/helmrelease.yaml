@@ -112,36 +112,3 @@ spec:
       limits:
         gpu.intel.com/i915: 1
         memory: 10000Mi
-    probes:
-      startup:
-        custom: true
-        spec:
-          httpGet:
-            host: "127.0.0.1"
-            path: /web/index.html
-            port: *port
-            scheme: HTTP
-          periodSeconds: 2
-          successThreshold: 1
-
-      liveness:
-        custom: true
-        spec:
-          httpGet:
-            host: "127.0.0.1"
-            path: /web/index.html
-            port: *port
-            scheme: HTTP
-          periodSeconds: 30
-          successThreshold: 1
-
-      readiness:
-        custom: true
-        spec:
-          httpGet:
-            host: "127.0.0.1"
-            path: /web/index.html
-            port: *port
-            scheme: HTTP
-          periodSeconds: 30
-          successThreshold: 1
