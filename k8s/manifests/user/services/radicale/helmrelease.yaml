@@ -37,6 +37,7 @@ spec:
         ingressClassName: "nginx"
         annotations:
           external-dns.home.arpa/enabled: "true"
+          nginx.ingress.kubernetes.io/proxy-body-size: 4G
         hosts:
           - host: &host "radicale.${EXTERNAL_DOMAIN}"
             paths:
