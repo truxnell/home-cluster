@@ -16,6 +16,7 @@ resources:
   - ./rook-ceph.yaml
   - ./security.yaml
   - ./services.yaml
+  - ./scripts.yaml
   - ./system-monitoring.yaml
   - ./testing.yaml
   - ./vpn.yaml
