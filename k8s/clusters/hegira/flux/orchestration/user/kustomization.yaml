@@ -9,6 +9,7 @@ resources:
   - ./home-automation.yaml
   - ./kube-system.yaml
   - ./media.yaml
+  - ./scripts.yaml
   - ./network-system.yaml
   - ./organizarrs.yaml
   - ./security.yaml

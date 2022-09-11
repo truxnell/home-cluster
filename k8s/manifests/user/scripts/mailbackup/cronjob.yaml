@@ -1,0 +1,57 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: mailbackup
+  namespace: scripts
+  labels:
+    app: mailbackup
+spec:
+  schedule: "@daily"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          automountServiceAccountToken: false
+
+          securityContext:
+            supplementalGroups:
+              - 65541
+
+          containers:
+            - name: mailbackup
+              image: ghcr.io/k8s-at-home/getmail:v6.18.9@sha256:3d329dcb5bd047920f99d377c56ef99a100014803e2f6c9fd4a00947a9a1993d
+              imagePullPolicy: IfNotPresent
+              command:
+                - "/scripts/mailbackup.sh"
+              volumeMounts:
+                - name: mailbackup-script
+                  mountPath: /scripts/mailbackup.sh
+                  subPath: mailbackup.sh
+                  readOnly: true
+                - name: secrets
+                  mountPath: /config
+                  readOnly: true
+                - mountPath: /data
+                  name: mailbackup
+
+          restartPolicy: OnFailure
+
+          volumes:
+            - name: mailbackup-script
+              projected:
+                defaultMode: 0775
+                sources:
+                  - configMap:
+                      name: mailbackup
+                      items:
+                        - key: mailbackup.sh
+                          path: mailbackup.sh
+            - name: secrets
+              secret:
+                secretName: mailbackup
+            - name: mailbackup
+              nfs:
+                server: "george.{INTERNAL_DOMAIN}"
+                path: /tank/mail/
