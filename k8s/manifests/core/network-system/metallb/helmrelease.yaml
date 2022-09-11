@@ -24,10 +24,10 @@ spec:
       namespace: system-monitoring
   values:
     prometheus:
-      serviceMonitor:
+      namespace: system-monitoring
+      serviceAccount: prometheus-prometheus
+      podMonitor:
         enabled: true
-        serviceAccount: "system-monitoring/prometheus-prometheus"
-
       prometheusRule:
         enabled: true
 
