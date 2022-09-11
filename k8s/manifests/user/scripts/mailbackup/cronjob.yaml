@@ -54,4 +54,4 @@ spec:
             - name: mailbackup
               nfs:
                 server: "george.${INTERNAL_DOMAIN}"
-                path: /tank/mail/
+                path: /tank/backup/mail/
