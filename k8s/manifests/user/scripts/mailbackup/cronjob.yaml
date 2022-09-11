@@ -53,5 +53,5 @@ spec:
                 secretName: mailbackup
             - name: mailbackup
               nfs:
-                server: "george.{INTERNAL_DOMAIN}"
+                server: "george.${INTERNAL_DOMAIN}"
                 path: /tank/mail/
