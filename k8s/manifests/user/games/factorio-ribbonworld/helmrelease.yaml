@@ -31,6 +31,8 @@ spec:
 
     env:
       TZ: "${TZ}"
+      PORT: &port 34197
+      RCON_PORT: &rcon 27015
 
     initContainers:
       copy-configmap:
@@ -63,12 +65,12 @@ spec:
             primary: false
           server:
             enabled: true
-            port: 34197
+            port: *port
             protocol: UDP
           rcon:
             enabled: true
             primary: true
-            port: 27015
+            port: *rcon
             protocol: TCP
 
     # podSecurityContext:
