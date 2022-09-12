@@ -160,7 +160,7 @@ spec:
               {{`{{ custom_app_name }}`}}
             namespace: >-
               {{`{{ kubernetes.pod_namespace }}`}}
-            node: >-
+            hostname: >-
               {{`{{ kubernetes.pod_node_name }}`}}
 
         loki_udmp:
@@ -176,7 +176,7 @@ spec:
           encoding:
             codec: json
           labels:
-            node: udmpro
+            hostname: udmpro
             app: >-
               {{`"{{ appname }}"`}}
 
@@ -193,7 +193,7 @@ spec:
             max_bytes: 1048576
           out_of_order_action: rewrite_timestamp
           labels:
-            node: >-
+            hostname: >-
               {{`{{ __host }}`}}
             app: >-
               {{`{{ facility }}`}}
@@ -211,7 +211,7 @@ spec:
             max_bytes: 524288
           out_of_order_action: rewrite_timestamp
           labels:
-            node: >-
+            hostname: >-
               {{`{{ __host }}`}}
             app: >-
               {{`{{ "talos-service" }}`}}
