@@ -5,3 +5,4 @@ resources:
   - ./helmrelease.yaml
   - ./prometheusrule.yaml
   - ./secret.sops.yaml
+  - ./configmap.yaml
