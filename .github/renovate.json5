@@ -168,6 +168,11 @@
       "matchPackageNames": ["quay.io/minio/minio"]
     },
     {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["tomsquest/docker-radicale"],
+      "versioning": "pep440"
+    },
+    {
       "description": "Use loose versioning for certain dependencies",
       "matchDatasources": ["docker", "github-releases"],
       "versioning": "loose",
