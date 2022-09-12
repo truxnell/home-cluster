@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: docker.io/evanbuss/openbooks
-      tag: latest@sha256:745159f06d0ba18fedbeecc21886e222c4a1ce253442bde7f24d11b3d8fc9344
+      tag: latest@sha256:dc4dab4c6cea1f662a8be5d13c3f8cc6974d406b707d09abb4d88fa0e925f7b7
 
     env:
       TZ: "${TZ}"
