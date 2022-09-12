@@ -86,6 +86,14 @@ spec:
 
       # Transforms
       transforms:
+        kubernetes_logs_remap:
+          type: remap
+          inputs:
+            - kubernetes_logs
+          source: |
+            # Standardize 'app' index
+            .custom_app_name = .pod_labels."app.kubernetes.io/name" || .pod_labels.app || .pod_labels."k8s-app" || "unknown"
+
         udmp_logs_xform:
           type: "remap"
           inputs:
@@ -123,7 +131,7 @@ spec:
           type: loki
           inputs:
             - journal_logs
-          endpoint: http://loki.system-monitoring:3100
+          endpoint: http://loki-gateway:80
           encoding:
             codec: json
           batch:
@@ -139,7 +147,7 @@ spec:
           type: loki
           inputs:
             - kubernetes_logs
-          endpoint: http://loki.system-monitoring:3100
+          endpoint: http://loki-gateway:80
           encoding:
             codec: json
           batch:
@@ -148,26 +156,18 @@ spec:
           remove_label_fields: true
           remove_timestamp: true
           labels:
-            k8s_app: >-
-              {{`{{ "kubernetes.pod_labels.app\.kubernetes\.io/name" }}`}}
-            k8s_container: >-
-              {{`{{ "kubernetes.container_name" }}`}}
-            k8s_filename: >-
-              {{`{{ "kubernetes.file" }}`}}
-            k8s_instance: >-
-              {{`{{ "kubernetes.pod_labels.app\.kubernetes\.io/instance" }}`}}
-            k8s_namespace: >-
-              {{`{{ "kubernetes.pod_namespace" }}`}}
-            k8s_node: >-
-              {{`{{ "kubernetes.pod_node_name" }}`}}
-            k8s_pod: >-
-              {{`{{ "kubernetes.pod_name" }}`}}
+            app: >-
+              {{`{{ custom_app_name }}`}}
+            namespace: >-
+              {{`{{ kubernetes.pod_namespace }}`}}
+            node: >-
+              {{`{{ kubernetes.pod_node_name }}`}}
 
         loki_udmp:
           type: loki
           inputs:
             - udmp_logs_xform
-          endpoint: http://loki.system-monitoring:3100
+          endpoint: http://loki-gateway:80
           batch:
             max_bytes: 1048576
           out_of_order_action: rewrite_timestamp
@@ -176,15 +176,15 @@ spec:
           encoding:
             codec: json
           labels:
-            hostname: udmpro
-            service: >-
+            node: udmpro
+            app: >-
               {{`"{{ appname }}"`}}
 
         talos_kernel:
           type: loki
           inputs:
             - talos_kernel_logs_xform
-          endpoint: http://loki.system-monitoring:3100
+          endpoint: http://loki-gateway:80
           encoding:
             codec: json
             except_fields:
@@ -193,28 +193,29 @@ spec:
             max_bytes: 1048576
           out_of_order_action: rewrite_timestamp
           labels:
-            hostname: >-
+            node: >-
               {{`{{ __host }}`}}
-            service: >-
+            app: >-
               {{`{{ facility }}`}}
 
         talos_service:
           type: loki
           inputs:
             - talos_service_logs_xform
-          endpoint: http://loki.system-monitoring:3100
+          endpoint: http://loki-gateway:80
           encoding:
             codec: json
             except_fields:
               - __host
           batch:
-            max_bytes: 400000
+            max_bytes: 524288
           out_of_order_action: rewrite_timestamp
           labels:
-            hostname: >-
+            node: >-
               {{`{{ __host }}`}}
-            service: >-
+            app: >-
               {{`{{ "talos-service" }}`}}
+            namespace: "talos:service"
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: vector-aggregator
