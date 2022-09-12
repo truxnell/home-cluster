@@ -9,6 +9,7 @@ resources:
   - ./authelia-charts.yaml
   - ./cilium-charts.yaml
   - ./deliveryhero-charts.yaml
+  - ./emqx-charts.yaml
   - ./external-dns-charts.yaml
   - ./fairwinds-charts.yaml
   - ./grafana-charts.yaml
@@ -17,7 +18,6 @@ resources:
   - ./ingress-nginx-charts.yaml
   - ./jetstack-charts.yaml
   - ./k8s-at-home-charts.yaml
-  - ./kasten-charts.yaml
   - ./kubernetes-sigs-descheduler-charts.yaml
   - ./kubernetes-sigs-metrics-server-charts.yaml
   - ./kubernetes-sigs-nfd-charts.yaml
@@ -33,3 +33,5 @@ resources:
   - ./vmware-charts.yaml
   - ./vmware-tanzu-charts.yaml
   - ./weaveworks-kured-charts.yaml
+  - ./bjw-s-charts.yaml
+  - ./cloudnative-pg.yaml

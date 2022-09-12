@@ -88,7 +88,16 @@
     "grafana",
     "kyverno",
     "factorio",
-    "pod-gateway"
+    "pod-gateway",
+    "games",
+    "metallb",
+    "plex",
+    "cert-manager",
+    "ingress",
+    "pyload",
+    "sonarr",
+    "rook",
+    "z2m"
   ],
   "discord.enabled": true,
 

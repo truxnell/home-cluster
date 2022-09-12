@@ -9,3 +9,7 @@ rules:
     resources: ["deployments"]
     resourceNames: ["factorio-k2"]
     verbs: ["get", "patch", "list", "watch"]
+  - apiGroups: ["apps", "extensions"]
+    resources: ["deployments"]
+    resourceNames: ["satisfactory"]
+    verbs: ["get", "patch", "list", "watch"]

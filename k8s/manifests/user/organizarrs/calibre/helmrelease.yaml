@@ -2,98 +2,80 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: calibre
+  name: &app calibre
   namespace: organizarrs
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: calibre
-      version: 5.3.2
+      chart: app-template
+      version: 0.1.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
   install:
     createNamespace: true
-    remediation: # perform remediation when helm install fails
-      retries: 3
+    remediation:
+      retries: 5
   upgrade:
-    remediation: # perform remediation when helm upgrade fails
-      retries: 3
-      remediateLastFailure: true # remediate the last failure, when no retries remain
-    cleanupOnFail: true
-  # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/calibre/values.yaml
+    remediation:
+      retries: 5
   values:
     image:
       repository: ghcr.io/linuxserver/calibre
-      tag: version-v5.44.0
+      tag: version-v6.4.0
 
     env:
-      TZ: "Australia/Melbourne"
+      TZ: "${TZ}"
       PUID: "568"
       PGID: "568"
 
-    persistence:
-      config:
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+      webserver:
         enabled: true
-        existingClaim: calibre-config-v1
-
-      nfs-nas-media:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: ${NAS_ADDRESS}
-            path: /volume1/
-        mountPath: /media
-        readOnly: false
+        ports:
+          webserver:
+            enabled: true
+            port: 8081
+            protocol: TCP
+            targetPort: 8081
+        type: ClusterIP
 
     ingress:
       main:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-          external-dns/is-public: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: "book-open-page-variant"
         hosts:
-          - host: &host "calibre.${EXTERNAL_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
               - *host
-            secretName: tls.calibre
-      webserver:
-        enabled: true
-        ingressClassName: "nginx"
-        annotations:
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-          external-dns/is-public: "false"
-        hosts:
-          - host: &host-cs "calibre-cs.${EXTERNAL_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  name: calibre-webserver
-                  port: 8081
-        tls:
-          - hosts:
-              - *host-cs
-            secretName: tls.calibre-cs
 
-    service:
-      webserver:
+    persistence:
+      config:
         enabled: true
+        existingClaim: calibre-config-v1
+      media:
+        enabled: true
+        type: nfs
+        server: "george.${INTERNAL_DOMAIN}"
+        path: /tank/
+        mountPath: /media
 
     resources:
       requests:
         cpu: 15m
-        memory: 381M
+        memory: 249M
       limits:
-        memory: 653M
+        memory: 299M

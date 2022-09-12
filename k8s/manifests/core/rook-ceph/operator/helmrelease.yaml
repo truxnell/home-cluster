@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: rook-ceph
-      version: v1.9.3
+      version: v1.10.1
       sourceRef:
         kind: HelmRepository
         name: rook-ceph-charts
@@ -32,6 +32,11 @@ spec:
     csi:
       kubeletDirPath: /var/lib/kubelet
       enableCSIHostNetwork: true
+      pluginTolerations:
+        - effect: "NoExecute"
+          operator: "Exists"
+        - effect: "NoSchedule"
+          operator: "Exists"
 
     monitoring:
       enabled: true

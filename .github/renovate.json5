@@ -12,15 +12,13 @@
     "github>Truxnell/home-cluster//.github/renovate/commitMessage",
     "github>Truxnell/home-cluster//.github/renovate/labels",
     "github>Truxnell/home-cluster//.github/renovate/semanticCommits",
-    // "github>Truxnell/home-cluster//.github/renovate/allowedVersions",
     "github>Truxnell/home-cluster//.github/renovate/autoMerge",
-    // "github>Truxnell/home-cluster//.github/renovate/updateSchedule",
   ],
   platform: "github",
   username: "trux-bot[bot]",
   repositories: ["Truxnell/home-cluster"],
   onboarding: false,
-  requireConfig: false,
+  requireConfig: "optional",
   gitAuthor: "Trux-Bot <19149206+trux-bot[bot]@users.noreply.github.com>",
   commitBody: "Signed-off-by: Nat Allan <19149206+Truxnell@users.noreply.github.com>",
   timezone: "Australia/Melbourne",
@@ -86,30 +84,19 @@
       matchDatasources: ["helm"],
       ignoreDeprecated: true,
     },
-    // {
-    //   matchDatasources: ["docker"],
-    //   commitMessageExtra: "to {{newVersion}}",
-    // },
-    // Custom version schemes
+    {
+      "description": "Use loose versioning for certain dependencies",
+      "matchDatasources": ["docker", "github-releases"],
+      "versioning": "loose",
+      "matchPackageNames": [
+        "ghcr.io/onedr0p/plex",
+        "ghcr.io/onedr0p/qbittorrent",
+      ]
+    },
     {
       matchDatasources: ["docker"],
       matchPackageNames: ["blakeblackshear/frigate"],
       versioning: "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$",
-    },
-    {
-      matchDatasources: ["docker"],
-      matchPackageNames: ["xirixiz/dsmr-reader-docker"],
-      versioning: "regex:^(?<compatibility>.*)-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$",
-    },
-    {
-      matchDatasources: ["docker"],
-      matchPackageNames: ["quay.io/minio/minio"],
-      versioning: "regex:^RELEASE\\.(?<major>\\d{4})-(?<minor>\\d{2})-(?<patch>\\d{2})",
-    },
-    {
-      matchDatasources: ["docker"],
-      matchPackageNames: ["ghcr.io/airsonic-advanced/airsonic-advanced"],
-      versioning: "regex:^edge-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-SNAPSHOT\\.(?<build>\\d+)$",
     },
     // Version strategies
     {
@@ -163,6 +150,31 @@
         "ghcr.io/linuxserver/calibre-web",
       ],
       versioning: "regex:^version-v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$",
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["blakeblackshear/frigate"],
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["docker.io/timberio/vector"],
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$"
+    },
+    {
+      "description": "Use custom versioning for Minio",
+      "matchDatasources": ["docker"],
+      "versioning": "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z(-(?<compatibility>.*))?$",
+      "matchPackageNames": ["quay.io/minio/minio"]
+    },
+    {
+      "description": "Use loose versioning for certain dependencies",
+      "matchDatasources": ["docker", "github-releases"],
+      "versioning": "loose",
+      "matchPackageNames": [
+        "ghcr.io/onedr0p/plex",
+        "ghcr.io/onedr0p/qbittorrent",
+      ]
     },
   ],
 }

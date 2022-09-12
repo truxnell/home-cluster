@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: metallb
-      version: 0.12.1
+      version: 0.13.5
       sourceRef:
         kind: HelmRepository
         name: metallb
@@ -24,14 +24,16 @@ spec:
       namespace: system-monitoring
   values:
     prometheus:
-      serviceMonitor:
+      namespace: system-monitoring
+      serviceAccount: prometheus-prometheus
+      podMonitor:
         enabled: true
       prometheusRule:
         enabled: true
 
-    configInline:
-      address-pools:
-        - name: default
-          protocol: layer2
-          addresses:
-            - "${LB_RANGE}"
+    speaker:
+      tolerateMaster: true
+
+    existingConfigMap: "metallb-config"
+    crds:
+      enabled: true

@@ -14,7 +14,7 @@ spec:
   chart:
     spec:
       chart: vector
-      version: 0.13.2
+      version: 0.16.0
       sourceRef:
         kind: HelmRepository
         name: vector-charts
@@ -94,4 +94,4 @@ spec:
         cpu: 22m
         memory: 249M
       limits:
-        memory: 618M
+        memory: 918M

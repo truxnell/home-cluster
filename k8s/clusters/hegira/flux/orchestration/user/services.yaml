@@ -16,48 +16,6 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: user-services-joplin-server
-  namespace: flux-system
-spec:
-  interval: 5m
-  path: "./k8s/manifests/user/services/joplin-server"
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: home-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: user-services-nginx-php
-  namespace: flux-system
-spec:
-  interval: 5m
-  path: "./k8s/manifests/user/services/nginx-php"
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepository
-    name: home-cluster
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: user-services-minio
-#   namespace: flux-system
-# spec:
-#   interval: 5m
-#   path: "./k8s/manifests/user/services/minio"
-#   prune: true
-#   wait: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: home-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
   name: user-services-theme-park
   namespace: flux-system
 spec:
@@ -105,6 +63,90 @@ metadata:
 spec:
   interval: 5m
   path: "./k8s/manifests/user/services/language-tools"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: user-services-kopia
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/user/services/kopia"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: user-services-smtp-relay
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/user/services/smtp-relay"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: user-services-miniflux
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/user/services/miniflux"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: user-services-minio
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/user/services/minio"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: user-services-excalidraw
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/user/services/excalidraw"
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: user-services-radicale
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: "./k8s/manifests/user/services/radicale"
   prune: true
   wait: true
   sourceRef:

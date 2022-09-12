@@ -2,88 +2,71 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: calibre-web
+  name: &app calibre-web
   namespace: organizarrs
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: calibre-web
-      version: 8.3.2
+      chart: app-template
+      version: 0.1.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
   install:
     createNamespace: true
-    remediation: # perform remediation when helm install fails
-      retries: 3
+    remediation:
+      retries: 5
   upgrade:
-    remediation: # perform remediation when helm upgrade fails
-      retries: 3
-      remediateLastFailure: true # remediate the last failure, when no retries remain
-    cleanupOnFail: true
+    remediation:
+      retries: 5
   values:
     image:
       repository: ghcr.io/linuxserver/calibre-web
-      tag: version-0.6.18
+      tag: version-0.6.19
 
     env:
+      DOCKER_MODS: ghcr.io/linuxserver/mods:universal-calibre
+      PGID: "65539"
+      PUID: "1001"
       TZ: "${TZ}"
-      PGID: 65539
-      DOCKER_MODS: "linuxserver/calibre-web:calibre"
 
-    persistence:
-      config:
-        enabled: true
-        existingClaim: calibre-web-config-v1
-
-      nfs-nas-media:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: ${NAS_ADDRESS}
-            path: /volume1/
-        mountPath: /media
-        readOnly: false
+    service:
+      main:
+        ports:
+          http:
+            port: 8083
 
     ingress:
       main:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/calibreweb/plex.css"></head>';
-            sub_filter_once on;
-          external-dns/is-public: "false"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "book-open-page-variant"
+          auth.home.arpa/enabled: "true"
         hosts:
-          - host: &host "calibre-web.${EXTERNAL_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
               - *host
-            secretName: &tls tls.calibre-web
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: calibre-web-config-v1
+      media:
+        enabled: true
+        type: nfs
+        server: "george.${INTERNAL_DOMAIN}"
+        path: /tank/
+        mountPath: /media
 
     resources:
       requests:
         cpu: 15m
-        memory: 145M
+        memory: 249Mi
       limits:
-        memory: 250M
-
-    # Lsio containers are f--ked....
-    probes:
-      liveness:
-        enabled: false
-      readiness:
-        enabled: false
-      startup:
-        enabled: false
+        memory: 299Mi

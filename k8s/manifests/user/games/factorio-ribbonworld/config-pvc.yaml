@@ -5,7 +5,9 @@ metadata:
   name: factorio-ribbonworld-config-v1
   namespace: games
   labels:
-    kasten.io/backup-volume: "enabled"
+    app.kubernetes.io/name: factorio-ribbonworld
+    app.kubernetes.io/instance: factorio-ribbonworld
+    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce

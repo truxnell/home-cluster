@@ -15,7 +15,9 @@ tasks:
   talos-apply:
     desc: Apply manifests to talos nodes
     cmds:
-      - talosctl -n 10.8.20.30 apply-config -f k8s/talos/hegira/machineConfigs/leela.yaml --insecure
+      - talosctl -n 10.8.20.31 apply-config -f k8s/talos/hegira/machineConfigs/durandal.yaml --insecure
+      - talosctl -n 10.8.20.32 apply-config -f k8s/talos/hegira/machineConfigs/tycho.yaml --insecure
+      - talosctl -n 10.8.20.33 apply-config -f k8s/talos/hegira/machineConfigs/leela.yaml --insecure
       - talosctl -n 10.8.20.40 apply-config -f k8s/talos/hegira/machineConfigs/xerxes.yaml --insecure
       - talosctl -n 10.8.20.42 apply-config -f k8s/talos/hegira/machineConfigs/shodan.yaml --insecure
       - talosctl -n 10.8.20.44 apply-config -f k8s/talos/hegira/machineConfigs/icarus.yaml --insecure
@@ -168,7 +170,7 @@ tasks:
                   "name": "backups",
                   "nfs": {
                     "server": '{{.NAS_ADDRESS | default "hyperion"}}',
-                    "path": '{{.NAS_PATH | default "/volume1/backups/"}}'
+                    "path": '{{.NAS_PATH | default "/tank/backups/"}}'
                   }
                 },
                 {

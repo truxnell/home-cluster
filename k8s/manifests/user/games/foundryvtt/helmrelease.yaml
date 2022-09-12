@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: foundryvtt
-      version: 3.3.2
+      version: 3.4.2
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -28,7 +28,7 @@ spec:
   values:
     image:
       repository: felddy/foundryvtt
-      tag: 10.270.0
+      tag: 10.285.0
 
     env:
       TZ: ${TZ}

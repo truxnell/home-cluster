@@ -5,7 +5,9 @@ metadata:
   name: foundryvtt-config-v1
   namespace: games
   labels:
-    kasten.io/backup-volume: "enabled"
+    app.kubernetes.io/name: &name foundryvtt
+    app.kubernetes.io/instance: *name
+    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce

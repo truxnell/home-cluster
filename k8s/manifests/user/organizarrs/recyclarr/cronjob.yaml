@@ -3,28 +3,22 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: &app recyclarr
-  namespace: media
+  namespace: organizarrs
 spec:
-  schedule: "0 17 * * *"
-  concurrencyPolicy: "Forbid"
-  successfulJobsHistoryLimit: 3
-  failedJobsHistoryLimit: 5
+  schedule: "@daily"
   jobTemplate:
     spec:
-      backoffLimit: 3
-      ttlSecondsAfterFinished: 300
+      ttlSecondsAfterFinished: 86400
       template:
         spec:
           automountServiceAccountToken: false
           restartPolicy: OnFailure
           initContainers:
             - name: render-configs
-              image: ghcr.io/k8s-at-home/recyclarr:v2.2.1
-              env:
-                - name: SONARR_API_KEY
-                  value: "${SONARR_API_KEY}"
-                - name: RADARR_API_KEY
-                  value: "${RADARR_API_KEY}"
+              image: ghcr.io/onedr0p/recyclarr:2.5.0@sha256:bd4dc562a12c31857c2e198de154d4ffa734d5e7f6fe817283c6fdf5807c5fb1
+              envFrom:
+                - secretRef:
+                    name: *app
               command:
                 - "/bin/bash"
                 - -c
@@ -37,13 +31,10 @@ spec:
                   mountPath: /shared
           containers:
             - name: sonarrs
-              image: ghcr.io/k8s-at-home/recyclarr:v2.2.1
-              imagePullPolicy: IfNotPresent
+              image: ghcr.io/onedr0p/recyclarr:2.5.0@sha256:bd4dc562a12c31857c2e198de154d4ffa734d5e7f6fe817283c6fdf5807c5fb1
               env:
                 - name: TZ
-                  value: "${TIMEZONE}"
-                - name: RECYCLARR_APP_DATA
-                  value: /config
+                  value: "${TZ}"
               command:
                 - /app/recyclarr
               args:
@@ -56,13 +47,10 @@ spec:
                   subPath: recyclarr.yaml
                   readOnly: true
             - name: radarrs
-              image: ghcr.io/k8s-at-home/recyclarr:v2.2.1
-              imagePullPolicy: IfNotPresent
+              image: ghcr.io/onedr0p/recyclarr:2.5.0@sha256:bd4dc562a12c31857c2e198de154d4ffa734d5e7f6fe817283c6fdf5807c5fb1
               env:
                 - name: TZ
-                  value: "${TIMEZONE}"
-                - name: RECYCLARR_APP_DATA
-                  value: /config
+                  value: "${TZ}"
               command:
                 - /app/recyclarr
               args:

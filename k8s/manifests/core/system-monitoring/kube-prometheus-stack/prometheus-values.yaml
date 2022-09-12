@@ -5,18 +5,15 @@ prometheus:
     pathType: Prefix
     ingressClassName: "nginx"
     annotations:
-      cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-      external-dns/is-public: "false"
       hajimari.io/enable: "true"
       hajimari.io/icon: database-clock
       hajimari.io/appName: Prometheus
 
     hosts:
-      - prometheus.${EXTERNAL_DOMAIN}
+      - &host prometheus.${EXTERNAL_DOMAIN}
     tls:
-      - secretName: tls.prometheus
-        hosts:
-          - prometheus.${EXTERNAL_DOMAIN}
+      - hosts:
+          - *host
 
   thanosService:
     enabled: true
@@ -24,14 +21,14 @@ prometheus:
     enabled: true
 
   prometheusSpec:
-    replicas: 1
-    replicaExternalLabelName: "replica"
+    replicas: 3
+    replicaExternalLabelName: __replica__
     ruleSelectorNilUsesHelmValues: false
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
     probeSelectorNilUsesHelmValues: false
-    retentionSize: "6GB"
-    retention: 2d
+    retentionSize: "8GB"
+    retention: 14d
     enableAdminAPI: true
     walCompression: true
     storageSpec:
@@ -48,9 +45,9 @@ prometheus:
         # limits:
         # memory: 4744M
     thanos:
-      image: quay.io/thanos/thanos:v0.26.0
+      image: quay.io/thanos/thanos:v0.28.0
       # renovate: datasource=docker depName=quay.io/thanos/thanos
-      version: v0.26.0
+      version: v0.28.0
       objectStorageConfig:
         name: &secret thanos-objstore-secret
         key: objstore.yml
@@ -59,13 +56,6 @@ prometheus:
       secret.reloader.stakater.com/reload: *secret
 
     additionalScrapeConfigs:
-      - job_name: hyperion
-        honor_timestamps: true
-        metrics_path: /metrics
-        static_configs:
-          - targets:
-              - ${NAS_ADDRESS}:9100
-
       - job_name: node-exporter
         scrape_interval: 1m
         scrape_timeout: 10s
@@ -74,8 +64,14 @@ prometheus:
           - targets:
               - "technocore.${INTERNAL_DOMAIN}:9100"
               - "prusa.${INTERNAL_DOMAIN}:9100"
-              - "10.8.10.228:9100" #TODO: Move to prod when setup
-              - "10.8.10.228:9134" #TODO: Move to prod when setup
+
+      - job_name: windows-exporter
+        scrape_interval: 1m
+        scrape_timeout: 10s
+        honor_timestamps: true
+        static_configs:
+          - targets:
+              - "10.8.20.222:9182"
 
       - job_name: ts110
         scrape_interval: 1m
@@ -83,15 +79,8 @@ prometheus:
         honor_timestamps: true
         static_configs:
           - targets:
-              - "hs110-exporter-1.system-monitoring:8110"
-
-      - job_name: minio
-        honor_timestamps: true
-        metrics_path: /minio/v2/metrics/cluster
-        scheme: http
-        static_configs:
-          - targets:
-              - "hyperion.${INTERNAL_DOMAIN}:9000"
+              - "hs110-exporter-prusa.system-monitoring:8110"
+              - "hs110-exporter-rack.system-monitoring:8110"
 
       - job_name: pikvm
         metrics_path: /api/export/prometheus/metrics
@@ -141,10 +130,10 @@ prometheus:
                 __meta_kubernetes_ingress_path,
               ]
             regex: (.+);(.+);(.+)
-            replacement: ${1}://${2}${3}
+            replacement: $${1}://$${2}$${3}
             target_label: __param_target
           - target_label: __address__
-            replacement: blackbox-exporter.system-monitoring.cluster.local:9115
+            replacement: blackbox-exporter:9115
           - source_labels: [__param_target]
             target_label: instance
           - action: labelmap
@@ -173,7 +162,7 @@ prometheus:
           - source_labels: [__address__]
             target_label: __param_target
           - target_label: __address__
-            replacement: blackbox-exporter.system-monitoring.cluster.local:9115
+            replacement: blackbox-exporter:9115
           - source_labels: [__param_target]
             target_label: instance
           - action: labelmap
@@ -202,7 +191,7 @@ prometheus:
           - source_labels: [__address__]
             target_label: __param_target
           - target_label: __address__
-            replacement: blackbox-exporter-prometheus-blackbox-exporter:9115
+            replacement: blackbox-exporter:9115
           - source_labels: [__param_target]
             target_label: instance
           - action: labelmap

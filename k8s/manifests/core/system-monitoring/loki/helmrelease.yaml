@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: loki
-      version: 2.12.2
+      version: 3.0.3
       sourceRef:
         kind: HelmRepository
         name: grafana-charts
@@ -27,6 +27,8 @@ spec:
   dependsOn:
     - name: kube-prometheus-stack
       namespace: system-monitoring
+    - name: ingress-nginx
+      namespace: network-system
   # https://github.com/grafana/loki/blob/main/production/helm/loki/values.yaml
   values:
     image:
@@ -40,7 +42,7 @@ spec:
       storage_config:
         aws:
           bucketnames: hegira-loki
-          endpoint: "${NAS_ADDRESS}:9000"
+          endpoint: "${NAS_ADDRESS_2}:9000"
           access_key_id: "${SECRET_MINIO_ACCESS_KEY}"
           secret_access_key: "${SECRET_MINIO_SECRET_KEY}"
           s3forcepathstyle: true
@@ -66,8 +68,6 @@ spec:
       enabled: true
       ingressClassName: "nginx"
       annotations:
-        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-        external-dns/is-public: "false"
       hosts:
         - host: &host "loki.${EXTERNAL_DOMAIN}"
           paths:
@@ -75,7 +75,6 @@ spec:
       tls:
         - hosts:
             - *host
-          secretName: tls.loki
 
     persistence:
       enabled: false

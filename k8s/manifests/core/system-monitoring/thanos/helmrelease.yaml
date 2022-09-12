@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: thanos
-      version: 10.5.5
+      version: 11.4.0
       sourceRef:
         kind: HelmRepository
         name: bitnami-charts
@@ -53,8 +53,6 @@ spec:
         hostname: "thanos-cluster.${EXTERNAL_DOMAIN}"
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-          external-dns/is-public: "false"
           hajimari.io/enable: "true"
           hajimari.io/icon: "archive-clock"
         tls: true

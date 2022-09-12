@@ -2,7 +2,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - cronjob.yaml
+  - cronjob-factorio-k2.yaml
+  - cronjob-satisfactory.yaml
   - role.yaml
   - rolebinding.yaml
   - serviceaccount.yaml

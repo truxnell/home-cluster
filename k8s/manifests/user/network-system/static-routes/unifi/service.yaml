@@ -2,13 +2,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: unifi
+  name: &app unifi
   namespace: network-system
+  labels:
+    app.kubernetes.io/name: *app
+    app.kubernetes.io/instance: *app
 spec:
   type: ExternalName
 
   ports:
     - name: https
       port: 443
-
+    - name: node-exporter
+      port: 9000
   externalName: unifi.${INTERNAL_DOMAIN}

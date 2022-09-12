@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: organizarrs
 resources:
   - cronjob.yaml
+  - secret.sops.yaml
 configMapGenerator:
   - name: recyclarr
     files:

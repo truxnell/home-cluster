@@ -4,6 +4,15 @@ creation_rules:
     encrypted_regex: "((?i)(pass|secret($|[^N])|key|token|^data$|^stringData))"
     age: >-
       age12kzuwvvedndehkke84apwamungqrcavf2khwjvd46f6lkq0wqq5q3s3vth
+
   - path_regex: infrastructure/.*\.sops\.ya?ml
+    age: >-
+      age12kzuwvvedndehkke84apwamungqrcavf2khwjvd46f6lkq0wqq5q3s3vth
+
+  - path_regex: k8s/manifests/.*\.sops\.toml
+    age: >-
+      age12kzuwvvedndehkke84apwamungqrcavf2khwjvd46f6lkq0wqq5q3s3vth
+
+  - path_regex: k8s/manifests/.*\.sops\.json
     age: >-
       age12kzuwvvedndehkke84apwamungqrcavf2khwjvd46f6lkq0wqq5q3s3vth

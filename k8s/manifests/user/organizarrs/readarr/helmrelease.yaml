@@ -2,80 +2,69 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: readarr
+  name: &app readarr
   namespace: organizarrs
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: readarr
-      version: 6.3.2
+      chart: app-template
+      version: 0.1.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
   install:
     createNamespace: true
-    remediation: # perform remediation when helm install fails
-      retries: 3
+    remediation:
+      retries: 5
   upgrade:
-    remediation: # perform remediation when helm upgrade fails
-      retries: 3
-      remediateLastFailure: true # remediate the last failure, when no retries remain
-    cleanupOnFail: true
+    remediation:
+      retries: 5
   values:
     image:
-      repository: ghcr.io/k8s-at-home/readarr-nightly
-      tag: v0.1.1.1377
+      repository: ghcr.io/onedr0p/readarr-nightly
+      tag: 0.1.1.1409@sha256:00a1098977f6d77dabdad2ba8a65937a45098cd7f41285441cf74994813d5c8f
 
     env:
-      TZ: ${TZ}
+      TZ: "${TIMEZONE}"
+      READARR__INSTANCE_NAME: Readarr (Audio)
+      READARR__PORT: &port 80
+      READARR__LOG_LEVEL: info
+
+    envFrom:
+      - secretRef:
+          name: *app
+
+    service:
+      main:
+        ports:
+          http:
+            port: *port
 
     ingress:
       main:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: &cert ${CLUSTER_CERT}
-          nginx.ingress.kubernetes.io/configuration-snippet: |
+          nginx.ingress.kubernetes.io/configuration-snippet: |-
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/readarr/plex.css"></head>';
             sub_filter_once on;
-          external-dns/is-public: "false"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: book-open
         hosts:
-          - host: &host readarr.${EXTERNAL_DOMAIN}
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
               - *host
-            secretName: &tls tls.readarr
-
-      api:
-        enabled: true
-        ingressClassName: "nginx"
-        annotations:
-          cert-manager.io/cluster-issuer: *cert
-          external-dns/is-public: "false"
-        hosts:
-          - host: *host
-            paths:
-              - path: /api
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-            secretName: *tls
 
     podSecurityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroup: 1000
-      fsGroupChangePolicy: OnRootMismatch
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 100
 
@@ -83,34 +72,25 @@ spec:
       config:
         enabled: true
         existingClaim: readarr-config-v1
-      nfs-nas-media:
+      media:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: ${NAS_ADDRESS}
-            path: /volume1/
+        type: nfs
+        server: &nas "george.${INTERNAL_DOMAIN}"
+        path: /tank/
         mountPath: /media
-        readOnly: false
-      nfs-nas-backup:
+      backup:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: ${NAS_ADDRESS}
-            path: /volume1/backup/kubernetes/apps/readarr
+        type: nfs
+        server: *nas
+        path: /tank/backup/kubernetes/apps/readarr
         mountPath: /config/Backups
-        readOnly: false
+
+    podAnnotations:
+      secret.reloader.stakater.com/reload: *app
 
     resources:
       requests:
-        cpu: 15m
-        memory: 866M
+        cpu: 10m
+        memory: 1200Mi
       limits:
-        memory: 2347M
-
-    prometheus:
-      podMonitor:
-        enabled: true
-        interval: 3m
-        scrapeTimeout: 1m30s
+        memory: 2000Mi

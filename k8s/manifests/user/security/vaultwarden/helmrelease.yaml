@@ -2,101 +2,82 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: vaultwarden
+  name: &app vaultwarden
   namespace: security
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: vaultwarden
-      version: 4.2.3
+      chart: app-template
+      version: 0.1.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
   install:
-    createNamespace: true
-    remediation: # perform remediation when helm install fails
-      retries: 3
+    remediation:
+      retries: 5
   upgrade:
-    remediation: # perform remediation when helm upgrade fails
-      retries: 3
-      remediateLastFailure: true # remediate the last failure, when no retries remain
-    cleanupOnFail: true
-  dependsOn:
-    - name: postgresql
-      namespace: databases
+    remediation:
+      retries: 5
   values:
-    # Values YAML: https://github.com/k8s-at-home/charts/blob/master/charts/stable/vaultwarden/values.yaml
     image:
       repository: ghcr.io/k8s-at-home/vaultwarden
-      tag: v1.25.0
+      tag: v1.25.2
 
-    env:
-      DATA_FOLDER: "config"
-      DOMAIN: https://vault.${EXTERNAL_DOMAIN}
-      DATABASE_URL: ${SECRET_VAULTWARDEN_DATABASE_URL}
-      ADMIN_TOKEN: ${SECRET_VAULTWARDEN_ADMIN_TOKEN}
-      SIGNUPS_ALLOWED: "false"
-      SMTP_FROM_NAME: Vault
-      SMTP_FROM: vault@${EXTERNAL_DOMAIN}
-      SMTP_HOST: ${SECRET_SMTP_HOST}
-      SMTP_PORT: ${SECRET_SMTP_PORT}
-      SMTP_SSL: "true"
-      SMTP_USERNAME: ${SECRET_SMTP_USERNAME}
-      SMTP_PASSWORD: ${SECRET_SMTP_PASSWORD}
-      TZ: "${TZ}"
-      WEBSOCKET_ADDRESS: 0.0.0.0
-      WEBSOCKET_ENABLED: true
-      WEBSOCKET_PORT: 3012
+    # controller:
+    #   replicas: 3
+    #   strategy: RollingUpdate
+
+    envFrom:
+      - secretRef:
+          name: *app
+
+    service:
+      main:
+        ports:
+          http:
+            port: &port 80
+          websocket:
+            enabled: true
+            port: &websocket-port 3012
 
     ingress:
       main:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-          external-dns/is-public: "true"
-          external-dns.alpha.kubernetes.io/target: ipv4.${EXTERNAL_DOMAIN}
-          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "shield-key"
-
+          external-dns.home.arpa/enabled: "true"
         hosts:
-          - host: &host vault.${EXTERNAL_DOMAIN}
+          - host: &host "vault.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  port: *port
               - path: /notifications/hub/negotiate
                 pathType: Prefix
+                service:
+                  port: *port
               - path: /notifications/hub
                 pathType: Prefix
-                servicePort: 3012
+                service:
+                  port: *websocket-port
         tls:
           - hosts:
               - *host
-            secretName: &tls tls.vaultwarden
-      admin:
-        enabled: true
-        ingressClassName: "nginx"
-        annotations:
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-          external-dns/is-public: "false"
 
-        hosts:
-          - host: *host
-            paths:
-              - path: /admin
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-            secretName: *tls
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+
     persistence:
       config:
         enabled: true
-        existingClaim: vaultwarden-config-v1
+        type: emptyDir
+        mountPath: /config
 
     resources:
       requests:

@@ -20,3 +20,8 @@ spec:
           for: 5m
           labels:
             severity: critical
+# TODO add dedup & fragmentation alerts
+# zfs_pool_deduplication_ratio{pool="tank"} 1
+# HELP zfs_pool_fragmentation_ratio The fragmentation ratio of the pool.
+# TYPE zfs_pool_fragmentation_ratio gauge
+#zfs_pool_fragmentation_ratio{pool="tank"} 0

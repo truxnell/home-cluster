@@ -2,40 +2,57 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: factorio-deathworld
+  name: &app factorio-deathworld
   namespace: games
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: factorio
-      version: 1.1.2
+      chart: app-template
+      version: 0.1.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
   install:
     createNamespace: true
-    remediation: # perform remediation when helm install fails
-      retries: 3
+    remediation:
+      retries: 5
   upgrade:
-    remediation: # perform remediation when helm upgrade fails
-      retries: 3
-      remediateLastFailure: true # remediate the last failure, when no retries remain
-    cleanupOnFail: true
-
+    remediation:
+      retries: 5
   values:
     image:
       repository: factoriotools/factorio
-      tag: stable@sha256:494be44c1ffd3f94fb5f2c66cd9305eebba336f0eca2af664da58555d46d24e8
+      tag: stable@sha256:b356ae32fcd01297b49921b3c48cd497006725695fbd0cb43591a4847a42e7ca
+
+    global:
+      nameOverride: *app
 
     env:
-      # -- Set the container timezone
-      TZ: ${TZ}
+      TZ: "${TZ}"
+      UPDATE_MODS_ON_START: "true"
+      PORT: &port 34200
+      RCON_PORT: &rcon 27016
 
-    # -- Configures service settings for the chart.
-    # @default -- See values.yaml
+    initContainers:
+      copy-configmap:
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        command:
+          - "sh"
+          - "-c"
+          - |
+            mkdir -p /factorio/config
+            cp -vL /helmconfig/* /factorio/config/
+        volumeMounts:
+          - name: helmconfig
+            mountPath: /helmconfig/
+          - name: config
+            mountPath: /factorio/
+        securityContext:
+          runAsUser: 0
+
     service:
       main:
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
@@ -44,42 +61,33 @@ spec:
         annotations:
           metallb.universe.tf/allow-shared-ip: factorio
         ports:
+          http:
+            enabled: false
+            primary: false
           server:
             enabled: true
-            port: 34200
+            port: *port
             protocol: UDP
           rcon:
             enabled: true
             primary: true
-            port: 27016
+            port: *rcon
             protocol: TCP
+
+    # podSecurityContext:
+    #   runAsUser: 568
+    #   runAsGroup: 568
+    #   fsGroup: 568
+    #   fsGroupChangePolicy: "OnRootMismatch"
 
     persistence:
       config:
         enabled: true
         existingClaim: factorio-deathworld-config-v1
-
-    config:
-      factorioServer:
-        save_name: "Deathworld"
-        generate_new_save: false
-        update_mods_on_start: true
-        load_latest_save: true
-        token: ${SECRET_FACTORIO_TOKEN}
-        username: ${SECRET_FACTORIO_USERNAME}
-
-      server_settings:
-        name: Deathworld
-        description: "Do you have what it takes to survive?"
-        game_password: "${SECRET_FACTORIO_SERVER_PASSWORD}"
-        non_blocking_saving: true
-
-      rcon:
-        password: "${SECRET_FACTORIO_RCON_PASSWORD}"
-        port: 30100
-
-      admin_list:
-        - durandal666
+      helmconfig:
+        enabled: "true"
+        type: "secret"
+        name: *app
 
     startupProbe:
       enabled: true

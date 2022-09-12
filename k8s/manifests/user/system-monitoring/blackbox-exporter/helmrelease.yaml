@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: prometheus-blackbox-exporter
-      version: 6.0.0
+      version: 7.0.0
       sourceRef:
         kind: HelmRepository
         name: prometheus-community-charts
@@ -25,8 +25,9 @@ spec:
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
   values:
-    # Values: https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-blackbox-exporter/values.yaml
     fullnameOverride: blackbox-exporter
+
+    replicas: 3
 
     image:
       repository: quay.io/prometheus/blackbox-exporter
@@ -35,8 +36,6 @@ spec:
       enabled: true
       ingressClassName: "nginx"
       annotations:
-        cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-        external-dns/is-public: "false"
         hajimari.io/enable: "false"
 
       hosts:
@@ -46,14 +45,19 @@ spec:
               pathType: Prefix
 
       tls:
-        - secretName: tls.blackbox-exporter
-          hosts:
+        - hosts:
             - blackbox-exporter.${EXTERNAL_DOMAIN}
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: "blackbox-exporter"
 
     allowIcmp: true
+
+    securityContext:
+      readOnlyRootFilesystem: true
+      allowPrivilegeEscalation: false
+      capabilities:
+        add: ["NET_RAW"]
 
     config:
       modules:
@@ -94,6 +98,9 @@ spec:
         - module: http_2xx
           name: poe-zigbee-coordinator
           url: espressif.${INTERNAL_DOMAIN}
+        - module: icmp
+          name: george
+          url: george.${INTERNAL_DOMAIN}
 
     resources:
       requests:
@@ -139,3 +146,10 @@ spec:
           for: 15m
           labels:
             severity: warning
+        - alert: BlackboxProbeHttpFailure
+          expr: probe_http_status_code <= 199 OR probe_http_status_code >= 400
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            message: The HTTP response for {{"{{ $labels.target }}"}} was not a HTTP status code is not 200-399

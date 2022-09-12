@@ -5,41 +5,29 @@ metadata:
   name: &app openbooks
   namespace: organizarrs
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: kah-common-chart
-      version: 1.1.2
+      chart: app-template
+      version: 0.1.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 15m
   install:
     createNamespace: true
-    remediation: # perform remediation when helm install fails
-      retries: 3
+    remediation:
+      retries: 5
   upgrade:
-    remediation: # perform remediation when helm upgrade fails
-      retries: 3
-      remediateLastFailure: true # remediate the last failure, when no retries remain
-    cleanupOnFail: true
+    remediation:
+      retries: 5
   values:
-    global:
-      nameOverride: *app
     image:
       repository: docker.io/evanbuss/openbooks
-      tag: latest@sha256:ef1a80c82d2cbce1670e94833a4fbf84a0cd2e6f723c6b2cfffed8dc320701af
-      pullPolicy: IfNotPresent
-    args:
-      - --persist
-      - --dir
-      - "/media/downloads/openbooks/"
+      tag: latest@sha256:745159f06d0ba18fedbeecc21886e222c4a1ce253442bde7f24d11b3d8fc9344
 
     env:
-      TZ: ${TZ}
-      PUID: "568"
-      GUID: "568"
+      TZ: "${TZ}"
 
     service:
       main:
@@ -51,28 +39,28 @@ spec:
       main:
         enabled: true
         ingressClassName: "nginx"
-        annotations:
-          cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
-          external-dns/is-public: "false"
-
         hosts:
-          - host: &host "openbooks.${EXTERNAL_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
-
         tls:
-          - secretName: tls.openbooks
-            hosts:
+          - hosts:
               - *host
 
     persistence:
-      nfs-nas-media:
+      media:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: ${NAS_ADDRESS}
-            path: /volume1/
+        type: nfs
+        server: "george.${INTERNAL_DOMAIN}"
+        path: /tank/
         mountPath: /media
-        readOnly: false
+        readOnly: true
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 64M
+      limits:
+        cpu: 167m
+        memory: 176M

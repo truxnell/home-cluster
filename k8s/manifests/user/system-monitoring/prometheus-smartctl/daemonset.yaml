@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: prometheus-smartctl
-          image: matusnovak/prometheus-smartctl:v1.3.0
+          image: matusnovak/prometheus-smartctl:v2.1.0
           imagePullPolicy: IfNotPresent
 
           securityContext:

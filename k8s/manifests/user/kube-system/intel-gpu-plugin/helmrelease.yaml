@@ -5,33 +5,26 @@ metadata:
   name: intel-gpu-plugin
   namespace: kube-system
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      chart: intel-gpu-plugin
-      version: 4.3.2
+      chart: app-template
+      version: 0.1.1
+      interval: 15m
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s-charts
         namespace: flux-system
-      interval: 5m
-  install:
-    createNamespace: true
-    remediation: # perform remediation when helm install fails
-      retries: 3
-  upgrade:
-    remediation: # perform remediation when helm upgrade fails
-      retries: 3
-      remediateLastFailure: true # remediate the last failure, when no retries remain
-    cleanupOnFail: true
+
   values:
+    controller:
+      type: daemonset
+      strategy: RollingUpdate
+
     image:
-      repository: intel/intel-gpu-plugin
+      repository: docker.io/intel/intel-gpu-plugin
       tag: 0.24.0
-      pullPolicy: IfNotPresent
-    args:
-      - -shared-dev-num
-      - "2"
+
     affinity:
       nodeAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
@@ -41,6 +34,47 @@ spec:
                   operator: In
                   values:
                     - "true"
+
+    args:
+      - -shared-dev-num
+      - "2"
+
+    service:
+      main:
+        enabled: false
+
+    ingress:
+      main:
+        enabled: false
+
+    persistence:
+      devfs:
+        enabled: true
+        type: hostPath
+        hostPath: /dev/dri
+        hostPathType: Directory
+        readOnly: true
+      sysfs:
+        enabled: true
+        type: hostPath
+        hostPath: /sys/class/drm
+        hostPathType: Directory
+        readOnly: true
+      kubeletsockets:
+        enabled: true
+        type: hostPath
+        hostPathType: Directory
+        hostPath: /var/lib/kubelet/device-plugins
+
+    # TODO(intel-gpu-plugin): Write probes to check for something to tell if it's working
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
+
     resources:
       requests:
         cpu: 15m

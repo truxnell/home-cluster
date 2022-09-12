@@ -5,20 +5,17 @@ metadata:
   name: brewpiless
   namespace: network-system
   annotations:
-    kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: ${CLUSTER_CERT}
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
     nginx.ingress.kubernetes.io/proxy-ssl-verify: "off"
-    external-dns/is-public: "false"
     hajimari.io/enable: "true"
     hajimari.io/icon: "glass-mug-variant"
     hajimari.io/appName: "brewpi"
 
 spec:
+  ingressClassName: "nginx"
   tls:
-    - secretName: tls.brewpi
-      hosts:
-        - "brewpi.${EXTERNAL_DOMAIN}"
+    - hosts:
+      - "brewpi.${EXTERNAL_DOMAIN}"
 
   rules:
     - host: brewpi.${EXTERNAL_DOMAIN}
