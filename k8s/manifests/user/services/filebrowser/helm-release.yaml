@@ -28,6 +28,7 @@ spec:
 
     env:
       TZ: "${TZ}"
+      FB_BASEURL: /config
     service:
       main:
         ports:
