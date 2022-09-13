@@ -34,7 +34,7 @@ spec:
 
     service:
       type: LoadBalancer
-      externalIPs:
+      loadBalancerIP:
         - "${LB_EMQX}"
       externalTrafficPolicy: Local
 
