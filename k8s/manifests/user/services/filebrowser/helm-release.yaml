@@ -28,10 +28,6 @@ spec:
 
     env:
       TZ: "${TZ}"
-      FB_DATABASE: "/config/filebrowser.db"
-      FB_ROOT: "/media"
-      FB_LOG: "stdout"
-      FB_NOAUTH: "true"
     service:
       main:
         ports:
@@ -56,6 +52,8 @@ spec:
       main:
         enabled: true
         ingressClassName: "nginx"
+        annotations:
+          auth.home.arpa/enabled: "true"
         hosts:
           - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
