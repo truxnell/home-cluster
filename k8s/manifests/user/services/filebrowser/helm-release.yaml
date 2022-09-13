@@ -73,7 +73,14 @@ spec:
         server: "george.${INTERNAL_DOMAIN}"
         path: /tank/
         mountPath: /media
-
+      settings:
+        enabled: true
+        mountPath: "/config/settings.json"
+        subPath: ".filebrowser.json"
+        type: "custom"
+        volumeSpec:
+          configMap:
+            name: filebrowser-config
     resources:
       requests:
         cpu: 10m

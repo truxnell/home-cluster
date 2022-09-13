@@ -6,6 +6,6 @@ resources:
   - ./config-pvc.yaml
   - ./helm-release.yaml
 configMapGenerator:
-  - name: config
+  - name: filebrowser-config
     files:
-      - ./config/config.json
+      - ./config/filebrowser.json
