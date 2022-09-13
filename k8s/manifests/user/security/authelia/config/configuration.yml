@@ -19,6 +19,17 @@ access_control:
   rules:
     - domain: ["grafana.${EXTERNAL_DOMAIN}"]
       policy: bypass
+    - domain:
+        - "filebrowser.${EXTERNAL_DOMAIN}"
+      resources:
+        - "^/api/public/dl/*"
+        - "/share/*"
+        - "/static/js/*"
+        - "/static/css/*"
+        - "/static/img/*"
+        - "/static/themes/*"
+        - "/static/fonts/*"
+      policy: bypass
 
 identity_providers:
   oidc:
