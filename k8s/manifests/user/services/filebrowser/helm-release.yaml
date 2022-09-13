@@ -28,7 +28,6 @@ spec:
 
     env:
       TZ: "${TZ}"
-      FB_BASEURL: /config
     service:
       main:
         ports:
@@ -79,7 +78,7 @@ spec:
         type: configMap
         name: filebrowser-config
         subPath: filebrowser.json
-        mountPath: /config/.filebrowser.json
+        mountPath: /.filebrowser.json
         readOnly: true
     resources:
       requests:
