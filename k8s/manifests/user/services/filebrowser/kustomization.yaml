@@ -9,3 +9,7 @@ configMapGenerator:
   - name: filebrowser-config
     files:
       - ./config/filebrowser.json
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
