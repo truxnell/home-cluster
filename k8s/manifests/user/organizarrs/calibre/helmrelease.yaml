@@ -29,7 +29,7 @@ spec:
     env:
       TZ: "${TZ}"
       PUID: "568"
-      PGID: "568"
+      PGID: "1000"
 
     service:
       main:
