@@ -67,6 +67,12 @@ spec:
         server: "george.${INTERNAL_DOMAIN}"
         path: /tank/
         mountPath: /media
+      backups:
+        enabled: true
+        type: nfs
+        server: "george.${INTERNAL_DOMAIN}"
+        path: /tank/backups/kubernetes/apps/kavita
+        mountPath: /kavita/config/backups
 
     resources:
       requests:
