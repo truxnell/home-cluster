@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - ./maintenance
   - ./sync
-  - ./photo-backup/
   - ./web
 namespace: services
 configMapGenerator:
