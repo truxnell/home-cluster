@@ -1,0 +1,57 @@
+---
+- hosts: octoprint
+
+  gather_facts: true
+  any_errors_fatal: true
+
+  tags: octoprint
+  remote_user: truxnell
+  become: yes
+
+  vars:
+    octoprint_port: 5000
+    webcam_type: usb
+    os_timezone: "Australia/Melbourne"
+    os_ssh_authorized_keys:
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMZS9J1ydflZ4iJdJgO8+vnN8nNSlEwyn9tbWU9OcysW nat@nat-laptop-fedora"
+    apt_packages_to_install:
+      - python3-dev
+      - avrdude
+
+  vars_prompt:
+    - name: reset_config
+      prompt: Do you want to reset the Octoprint config? (true/false)?
+      default: false
+      private: no
+
+  tasks:
+    - name: "role: os"
+      ansible.builtin.import_role:
+        name: os.octoprint
+      tags: os
+
+    # # acme
+    - name: "role: octoprint"
+      ansible.builtin.import_role:
+        name: semuadmin.octoprint
+      tags: octoprint
+
+    - name: "Install octoprint plugins"
+      ansible.builtin.import_role:
+        name: pip.octoprint
+      tags: pip
+
+    - name: "Install vector"
+      ansible.builtin.import_role:
+        name: vector.octoprint
+      tags: vector
+
+    - name: "Install acmesh"
+      ansible.builtin.import_role:
+        name: acme_sh.octoprint
+      tags: acme.sh
+
+    - name: "Install node-exporter"
+      ansible.builtin.import_role:
+        name: node_exporter.octoprint
+      tags: node-exporter

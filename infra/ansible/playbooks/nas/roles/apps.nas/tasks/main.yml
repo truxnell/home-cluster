@@ -1,0 +1,36 @@
+---
+- name: Create default directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: users
+    mode: 0775
+  loop:
+    - "{{ docker_base_dir }}"
+  tags:
+    - always
+
+- import_tasks: podman.yml
+  tags:
+    - podman
+
+- import_tasks: node-exporter.yml
+  tags:
+    - node-exporter
+
+# - import_tasks: zfs_exporter.yml
+#  tags:
+#    - zfs_exporter
+
+# - import_tasks: cadvisor.yml
+#   tags:
+#     - cadvisor
+
+- import_tasks: vector.yml
+  tags:
+    - vector
+
+- import_tasks: minio.yml
+  tags:
+    - minio

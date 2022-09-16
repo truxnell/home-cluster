@@ -1,0 +1,21 @@
+---
+collections:
+  - name: ansible.posix
+    version: 1.3.0
+  - name: community.general
+    version: 5.2.0
+  - name: kubernetes.core
+    version: 2.3.1
+  - name: community.sops
+    version: 1.2.1
+roles:
+  - src: geerlingguy.pip
+    version: 2.1.0
+  - src: geerlingguy.docker
+    version: 4.2.2
+  - name: semuadmin.octoprint
+    version: v1.0.4
+  - src: https://github.com/mrlesmithjr/ansible-zfs.git
+    scm: git
+    name: mrlesmithjr.zfs
+    version: b80e84d6938eb7730faeffc7ff7d8aa06ad5bef7

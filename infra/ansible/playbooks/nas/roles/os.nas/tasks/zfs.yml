@@ -1,0 +1,4 @@
+---
+- name: zfs
+  ansible.builtin.include_role:
+    role: "mrlesmithjr.zfs"

@@ -1,0 +1,9 @@
+networks:
+  - name: trusted
+    cidr: 10.8.10.0/24
+  - name: servers
+    cidr: 10.8.20.0/24
+  - name: iot
+    cidr: 10.8.30.0/24
+  - name: video
+    cidr: 10.8.40.0/24

@@ -1,0 +1,31 @@
+---
+- name: setup cadvisor
+  containers.podman.podman_container:
+    name: cadvisor
+    image: "gcr.io/google-containers/cadvisor:v0.36.0"
+    state: absent
+    privileged: true
+    network: host
+    volume:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:ro"
+      - "/sys:/sys:ro"
+      - "/dev/disk:/dev/disk/:ro"
+    command: "-port=8005"
+    generate_systemd:
+      path: "/home/{{ ansible_user }}/.config/systemd/user"
+      restart_policy: always
+      time: 120
+      names: true
+      container_prefix: ansible
+  become: false
+
+- name: ensure podman-systemd | cadvisor
+  ansible.builtin.systemd:
+    name: ansible-cadvisor
+    enabled: false
+    state: stopped
+    scope: user
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_user_uid }}"
+  become: false

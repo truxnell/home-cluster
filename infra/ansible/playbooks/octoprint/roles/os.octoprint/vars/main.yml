@@ -1,0 +1,8 @@
+---
+#
+# SECRET* vars are encrypted with sops
+#
+
+os_timezone: "Australia/Melbourne"
+os_ssh_authorized_keys:
+  - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMZS9J1ydflZ4iJdJgO8+vnN8nNSlEwyn9tbWU9OcysW nat@nat-laptop-fedora"

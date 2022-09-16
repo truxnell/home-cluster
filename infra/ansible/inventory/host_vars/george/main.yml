@@ -1,0 +1,149 @@
+---
+ansible_host: "10.8.20.11"
+ansible_python_interpreter: /usr/bin/python3
+ansible_user: durandal
+
+#zfs setup
+zfs_install_update: false
+zfs_enable_nfs: true
+zfs_manage_filesystem_permissions: true
+zfs_enable_samba: false
+zfs_enable_performance_tuning: false # Not idempotent
+zfs_create_pools: true
+zfs_create_filesystems: true
+zfs_monitoring_capacity_threshold: 92
+zfs_pools:
+  - name: "tank"
+    action: "create"
+    atime: "off"
+    ashift: 12
+    xattr: sa
+    compression: "lz4"
+    devices:
+      - "/dev/disk/by-id/scsi-SATA_WDC_WD180EDGZ-11_4ZG0VDDW"
+      - "/dev/disk/by-id/scsi-SATA_WDC_WD180EDGZ-11_4ZG0WM3W"
+    type: "mirror"
+    state: "present"
+  - name: "tank"
+    action: "add"
+    atime: "off"
+    ashift: 12
+    compression: "lz4"
+    devices:
+      - "/dev/disk/by-id/scsi-SATA_WDC_WD180EDGZ-11_2MGJ9DGB"
+      - "/dev/disk/by-id/scsi-SATA_WDC_WD180EDGZ-11_4EG1DZ3U"
+    type: "cache"
+    state: "present"
+zfs_filesystems:
+  - name: series
+    pool: tank
+    state: present
+    recordsize: 1M
+    owner: 568
+    group: 100
+    mountpoint: /tank/series/
+  - name: movies
+    pool: tank
+    state: present
+    recordsize: 1M
+    owner: 568
+    group: 100
+    mountpoint: /tank/movies/
+  - name: music
+    pool: tank
+    state: present
+    recordsize: 1M
+    owner: 568
+    group: 100
+    mountpoint: /tank/music/
+  - name: i486
+    pool: tank
+    state: present
+    recordsize: 1M
+    owner: 568
+    group: 100
+    mountpoint: /tank/i486/
+  - name: backup
+    pool: tank
+    state: present
+    recordsize: 1M
+    owner: 568
+    group: 100
+    mountpoint: /tank/backup/
+  - name: downloads
+    pool: tank
+    state: present
+    recordsize: 1M
+    owner: 568
+    group: 100
+    mountpoint: /tank/downloads/
+  - name: media
+    pool: tank
+    state: present
+    recordsize: 1M
+    owner: 568
+    group: 100
+    mountpoint: /tank/media/
+  - name: photos
+    pool: tank
+    state: present
+    recordsize: 1M
+    owner: 568
+    group: 100
+    mountpoint: /tank/photos/
+  - name: software
+    pool: tank
+    state: present
+    recordsize: 1M
+    owner: 568
+    group: 100
+    mountpoint: /tank/software/
+  - name: documents
+    pool: tank
+    state: present
+    owner: 568
+    group: 100
+    mountpoint: /tank/documents/
+  - name: frigate
+    pool: tank
+    state: present
+    recordsize: 1M
+    owner: 568
+    group: 100
+    mountpoint: /tank/frigate/
+  - name: minio
+    pool: tank
+    state: present
+    owner: 568
+    group: 100
+    mountpoint: /tank/minio/
+  - name: books
+    pool: tank
+    state: present
+    recordsize: 1M
+    owner: 568
+    group: 100
+    mountpoint: /tank/books/
+  - name: unsorted
+    pool: tank
+    state: present
+    recordsize: 1M
+    owner: 568
+    group: 100
+    mountpoint: /tank/unsorted/
+  - name: comics
+    pool: tank
+    state: present
+    recordsize: 1M
+    owner: 568
+    group: 100
+    mountpoint: /tank/comics/
+
+zfs_enable_monitoring: true
+zfs_monitoring_scrub_max_age: 8
+zfs_pools_scrub_cron:
+  minute: 0
+  hour: 2
+  day: "*"
+  month: "28"
+  weekday: "*"
