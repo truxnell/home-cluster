@@ -30,7 +30,3 @@
 - import_tasks: vector.yml
   tags:
     - vector
-
-- import_tasks: minio.yml
-  tags:
-    - minio

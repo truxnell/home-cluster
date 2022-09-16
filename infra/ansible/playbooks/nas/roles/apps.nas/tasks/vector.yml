@@ -30,7 +30,7 @@
       - "/home/{{ ansible_user }}/.config/vector.yaml:/etc/vector/vector.yaml"
       - "/var/log:/var/log:ro"
       - "{{ docker_base_dir }}/vector:/vector-data-dir"
-    command: "--config=/etc/vector/vector.yaml --watch-config true"
+    command: "--config=/etc/vector/vector.yaml --watch-config"
     generate_systemd:
       path: "/home/{{ ansible_user }}/.config/systemd/user"
       restart_policy: always

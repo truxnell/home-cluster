@@ -119,11 +119,26 @@ spec:
               - *host
     write:
       replicas: 3
+      affinity: |
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  {{- include "loki.writeSelectorLabels" . | nindent 10 }}
+              topologyKey: kubernetes.io/hostname
       persistence:
         size: 10Gi
         storageClass: ceph-block
+
     read:
       replicas: 3
+      affinity: |
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  {{- include "loki.writeSelectorLabels" . | nindent 10 }}
+              topologyKey: kubernetes.io/hostname
       extraVolumeMounts:
         - name: loki-rules
           mountPath: /rules/fake

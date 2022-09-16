@@ -5,7 +5,7 @@ creation_rules:
     age: >-
       age12kzuwvvedndehkke84apwamungqrcavf2khwjvd46f6lkq0wqq5q3s3vth
 
-  - path_regex: infrastructure/.*\.sops\.ya?ml
+  - path_regex: infra/.*\.sops\.ya?ml
     age: >-
       age12kzuwvvedndehkke84apwamungqrcavf2khwjvd46f6lkq0wqq5q3s3vth
 
