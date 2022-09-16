@@ -13,4 +13,4 @@ spec:
   ports:
     - name: http
       port: 80
-  externalName: brw90324b175a70.${INTERNAL_DOMAIN}
+  externalName: brw90324b175a70
