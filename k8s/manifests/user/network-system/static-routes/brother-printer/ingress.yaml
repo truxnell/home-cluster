@@ -23,7 +23,7 @@ spec:
               service:
                 name: *app
                 port:
-                  name: https
+                  name: http
   tls:
     - hosts:
         - *host
