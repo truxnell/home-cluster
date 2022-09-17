@@ -61,3 +61,19 @@ spec:
           annotations:
             summary: "Disk showing pending sectors (instance {{ $labels.instance }})"
             description: "Disk on node {{ $labels.instance }} has pending sectors."
+        - alert: DiskTooHot
+          expr: smartctl_device_statistics{statistic_name="Current Temperature"} > 45
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Disk showing temperature > 45degC (instance {{ $labels.instance }})"
+            description: "Disk on node {{ $labels.instance }} is too hot."
+        - alert: DiskTooCold
+          expr: smartctl_device_statistics{statistic_name="Current Temperature"} < 25
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Disk showing temperature < 25degC (instance {{ $labels.instance }})"
+            description: "Disk on node {{ $labels.instance }} is too cold."
