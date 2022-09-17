@@ -109,10 +109,12 @@ spec:
       affinity: |
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchLabels:
-                  {{- include "loki.gatewaySelectorLabels" . | nindent 10 }}
-              topologyKey: kubernetes.io/hostname
+            - weight: 1
+              preference:
+                - labelSelector:
+                    matchLabels:
+                      {{- include "loki.gatewaySelectorLabels" . | nindent 10 }}
+                  topologyKey: kubernetes.io/hostname
       ingress:
         enabled: true
         ingressClassName: "nginx"
@@ -129,10 +131,12 @@ spec:
       affinity: |
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchLabels:
-                  {{- include "loki.writeSelectorLabels" . | nindent 10 }}
-              topologyKey: kubernetes.io/hostname
+            - weight: 1
+              preference:
+                - labelSelector:
+                    matchLabels:
+                      {{- include "loki.writeSelectorLabels" . | nindent 10 }}
+                  topologyKey: kubernetes.io/hostname
       persistence:
         size: 10Gi
         storageClass: ceph-block
@@ -142,10 +146,12 @@ spec:
       affinity: |
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchLabels:
-                  {{- include "loki.readSelectorLabels" . | nindent 10 }}
-              topologyKey: kubernetes.io/hostname
+            - weight: 1
+              preference:
+                - labelSelector:
+                    matchLabels:
+                      {{- include "loki.readSelectorLabels" . | nindent 10 }}
+                  topologyKey: kubernetes.io/hostname
       extraVolumeMounts:
         - name: loki-rules
           mountPath: /rules/fake
