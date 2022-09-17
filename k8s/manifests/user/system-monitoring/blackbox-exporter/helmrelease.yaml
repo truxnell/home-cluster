@@ -68,6 +68,16 @@ spec:
             valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
             follow_redirects: true
             preferred_ip_protocol: "ip4"
+
+        http_403:
+          prober: http
+          timeout: 5s
+          http:
+            valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+            follow_redirects: true
+            preferred_ip_protocol: "ip4"
+            valid_status_codes: [403]
+
         icmp:
           prober: icmp
           timeout: 30s
@@ -101,6 +111,12 @@ spec:
         - module: icmp
           name: george
           url: george.${INTERNAL_DOMAIN}
+        - module: http_2xx
+          name: pikvm
+          url: technocore.${EXTERNAL_DOMAIN}
+        - module: http_2xx
+          name: prusa_mk3s
+          url: prusa.${INTERNAL_DOMAIN}
 
     resources:
       requests:
