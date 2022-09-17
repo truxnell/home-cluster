@@ -24,3 +24,8 @@
     mode: "0775"
   when:
     - not hushlogin_status.stat.exists
+
+- name: Adding user {{ ansible_user }} to disk group
+  ansible.builtin.user: name={{ ansible_user }}
+        groups=sudo,disk
+        append=yes

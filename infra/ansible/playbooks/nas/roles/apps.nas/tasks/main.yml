@@ -30,3 +30,6 @@
 - import_tasks: vector.yml
   tags:
     - vector
+- import_tasks: prom-smartctl.yml
+  tags:
+    - prom-smartctl

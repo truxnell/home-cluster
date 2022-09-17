@@ -1,0 +1,37 @@
+---
+
+- name: ensure smartctl config
+  ansible.builtin.template:
+    src: smartctl.yaml.j2
+    dest: /home/{{ ansible_user }}/.config/smartctl.yaml
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0600"
+
+- name: run prometheus-smartctl
+  containers.podman.podman_container:
+    name: prom-smartctl
+    image: "docker.io/pnnlmiscscripts/smartctl-exporter"
+    state: started
+    group_add: keep-groups
+    privileged: true
+    network: host
+    volume:
+      - "/dev:/dev"
+      - "/home/{{ ansible_user }}/.config/smartctl.yaml:/etc/smartctl_exporter.yaml"
+    generate_systemd:
+      path: "/home/{{ ansible_user }}/.config/systemd/user"
+      restart_policy: always
+      time: 120
+      names: true
+      container_prefix: ansible
+  become: false
+
+- name: enable podman-systemd | prom-smartctl
+  ansible.builtin.systemd:
+    name: ansible-prom-smartctl
+    enabled: true
+    scope: user
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_user_uid }}"
+  become: false
