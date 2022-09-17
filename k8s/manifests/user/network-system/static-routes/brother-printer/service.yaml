@@ -13,4 +13,4 @@ spec:
   ports:
     - name: http
       port: 80
-  externalName: brw90324b175a70
+  externalName: printer.${INTERNAL_DOMAIN}
