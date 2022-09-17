@@ -131,7 +131,7 @@ spec:
           preferredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
                 matchLabels:
-                  {{- include "loki.readSelectorLabels" . | nindent 10 }}
+                  {{- include "loki.writeSelectorLabels" . | nindent 10 }}
               topologyKey: kubernetes.io/hostname
       persistence:
         size: 10Gi
@@ -144,7 +144,7 @@ spec:
           preferredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
                 matchLabels:
-                  {{- include "loki.writeSelectorLabels" . | nindent 10 }}
+                  {{- include "loki.readSelectorLabels" . | nindent 10 }}
               topologyKey: kubernetes.io/hostname
       extraVolumeMounts:
         - name: loki-rules
