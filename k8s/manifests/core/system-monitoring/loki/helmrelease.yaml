@@ -113,7 +113,7 @@ spec:
               podAffinityTerm:
                 labelSelector:
                   matchLabels:
-                    {{- include "loki.gatewaySelectorLabels" . | nindent 10 }}
+                    {{- include "loki.gatewaySelectorLabels" . | nindent 12 }}
                 topologyKey: kubernetes.io/hostname
       ingress:
         enabled: true
@@ -135,7 +135,7 @@ spec:
               podAffinityTerm:
                 labelSelector:
                   matchLabels:
-                    {{- include "loki.writeSelectorLabels" . | nindent 10 }}
+                    {{- include "loki.writeSelectorLabels" . | nindent 12 }}
                 topologyKey: kubernetes.io/hostname
       persistence:
         size: 10Gi
@@ -150,7 +150,7 @@ spec:
               podAffinityTerm:
                 labelSelector:
                   matchLabels:
-                    {{- include "loki.readSelectorLabels" . | nindent 10 }}
+                    {{- include "loki.readSelectorLabels" . | nindent 12 }}
                 topologyKey: kubernetes.io/hostname
       extraVolumeMounts:
         - name: loki-rules
