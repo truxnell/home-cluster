@@ -1,0 +1,63 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    prometheus: k8s
+    role: alert-rules
+  name: smartctl-rules
+  namespace: system-monitoring
+spec:
+  # Below blog used to identify what alerts to look for
+  # https://www.backblaze.com/blog/what-smart-stats-indicate-hard-drive-failures/
+  groups:
+    - name: node-exporter.rules
+      rules:
+        - alert: DiskCriticalWarning
+          expr: critical_warning > 0
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Disk exhibiting critical warning (instance {{ $labels.instance }})"
+            description: "Disk on node {{ $labels.instance }} has a critical warning."
+        - alert: DiskMediaErrors
+          expr: media_errors > 0
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Disk exhibiting media errors (instance {{ $labels.instance }})"
+            description: "Disk on node {{ $labels.instance }} has a media error."
+        - alert: DiskSMARTStatusWarning
+          expr: smart_status != 1
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Disk showing SMART error (instance {{ $labels.instance }})"
+            description: "Disk on node {{ $labels.instance }} has a SMART error."
+        - alert: DiskOfflineUncorrectableError
+          expr: increase(smartctl_device_attribute{attribute_name="Offline_Uncorrectable",attribute_value_type="raw"}[1m])>0
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Disk showing Offline Uncorrectable errors (instance {{ $labels.instance }})"
+            description: "Disk on node {{ $labels.instance }} has offline uncorrectable errors."
+        - alert: DiskReallocatedSectorCount
+          expr: increase(smartctl_device_attribute{attribute_name="Reallocated_Sector_Ct",attribute_value_type="raw"}[1m])>0
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Disk showing reallocated sectors (instance {{ $labels.instance }})"
+            description: "Disk on node {{ $labels.instance }} has reallocated sectors."
+        - alert: DiskPendingSector
+          expr: increase(smartctl_device_attribute{attribute_name="Current_Pending_Sector",attribute_value_type="raw"}[1m])>0
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            summary: "Disk showing pending sectors (instance {{ $labels.instance }})"
+            description: "Disk on node {{ $labels.instance }} has pending sectors."
