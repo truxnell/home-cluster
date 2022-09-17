@@ -13,9 +13,10 @@
     name: prom-smartctl
     image: "docker.io/pnnlmiscscripts/smartctl-exporter"
     state: started
-    group_add: keep-groups
+    group_add: disk
     privileged: true
     network: host
+    command: "/bin/smartctl_exporter --debug"
     volume:
       - "/dev:/dev"
       - "/home/{{ ansible_user }}/.config/smartctl.yaml:/etc/smartctl_exporter.yaml"
@@ -25,7 +26,7 @@
       time: 120
       names: true
       container_prefix: ansible
-  become: false
+  become: true # Couldn't get it to run without root :(
 
 - name: enable podman-systemd | prom-smartctl
   ansible.builtin.systemd:
