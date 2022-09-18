@@ -123,7 +123,7 @@ prometheus:
             action: keep
             regex: true
           - source_labels:
-              [__meta_kubernetes_service_annotation_prometheus_io_module]
+              [__meta_kubernetes_ingress_annotation_prometheus_io_module]
             action: keep
             regex: http_2xx
           - source_labels:
@@ -159,7 +159,7 @@ prometheus:
             action: keep
             regex: true
           - source_labels:
-              [__meta_kubernetes_service_annotation_prometheus_io_module]
+              [__meta_kubernetes_ingress_annotation_prometheus_io_module]
             action: keep
             regex: http_403
           - source_labels:
