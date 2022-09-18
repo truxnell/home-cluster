@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/sonarr-widowmaker
-      tag: 4.0.0.2178@sha256:5ebc106ba5e8505bbeadc87f777b56492d9c548d1289cdda3f22e12189a4741b
+      tag: 4.0.0.2179@sha256:493d550cf436f005b7d36291e3fdb81a303580efe7334a2a797d19f1d42adfb7
     env:
       TZ: "${TZ}"
       PUSHOVER_DEBUG: "false"
