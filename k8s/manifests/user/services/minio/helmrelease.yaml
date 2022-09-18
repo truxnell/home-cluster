@@ -68,6 +68,14 @@ spec:
                 pathType: Prefix
                 service:
                   port: *port-console
+      s3:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          probe.home.arpa/enabled: "false"
+          prometheus.io/probe: "true"
+          prometheus.io/module: http_403
+        hosts:
           - host: &host-api "s3.${EXTERNAL_DOMAIN}"
             paths:
               - path: /

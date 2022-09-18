@@ -18,13 +18,14 @@ spec:
         any:
           - resources:
               kinds: ["Ingress"]
-      # exclude:
-      #   any:
-      #     - resources:
-      #         annotations:
-      #           probe.home.arpa/enabled: "true"
+      exclude:
+        any:
+          - resources:
+              annotations:
+                probe.home.arpa/enabled: "false"
       mutate:
         patchStrategicMerge:
           metadata:
             annotations:
               +(prometheus.io/probe): "true"
+              +(prometheus.io/module): "http_2xx"
