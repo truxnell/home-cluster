@@ -113,7 +113,7 @@ spec:
           url: george.${INTERNAL_DOMAIN}
         - module: http_2xx
           name: pikvm
-          url: technocore.${EXTERNAL_DOMAIN}
+          url: technocore.${INTERNAL_DOMAIN}
         - module: http_2xx
           name: prusa-mk3s
           url: prusa.${INTERNAL_DOMAIN}
