@@ -22,7 +22,7 @@ spec:
             description: Blackbox probe failed on {{ $labels.target }}
             summary: Blackbox probe failed.
           expr: |
-            probe_success == 0
+            count by(job,namespace,service,target) (probe_success == 0)
           for: 0m
           labels:
             severity: critical
@@ -32,8 +32,8 @@ spec:
               {{ $labels.target }}
             summary: Blackbox slow probe.
           expr: |
-            avg_over_time(probe_duration_seconds[1m])
-              > 1
+            avg by(job,namespace,service,target) (avg_over_time(probe_duration_seconds[1m]))
+             > 1
           for: 1m
           labels:
             severity: warning
@@ -54,7 +54,7 @@ spec:
               {{ $labels.target }}
             summary: Blackbox probe slow HTTP response
           expr: |
-            avg_over_time(probe_http_duration_seconds[1m])
+            avg by(job,namespace,service,target) (avg_over_time(probe_http_duration_seconds[1m]))
               > 1
           for: 1m
           labels:
@@ -65,7 +65,7 @@ spec:
               {{ $labels.target }}
             summary: Blackbox probe slow ping.
           expr: |
-            avg_over_time(probe_icmp_duration_seconds[1m])
+            avg by(job,namespace,service,target) (avg_over_time(probe_icmp_duration_seconds[1m]))
               > 1
           for: 1m
           labels:
