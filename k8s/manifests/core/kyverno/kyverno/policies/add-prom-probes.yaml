@@ -17,7 +17,8 @@ spec:
       match:
         any:
           - resources:
-              kinds: ["Ingress"]
+              kinds:
+                - Ingress
       exclude:
         any:
           - resources:

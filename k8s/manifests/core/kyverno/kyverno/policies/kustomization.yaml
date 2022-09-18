@@ -6,4 +6,4 @@ resources:
   - ./set-internal-ingress-annotations.yaml
   - ./snapshot-cronjob-controller.yaml
   - ./sync-postgres-secret.yaml
-  # - ./add-prom-probes.yaml
+  - ./add-prom-probes.yaml
