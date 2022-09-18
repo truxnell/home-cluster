@@ -112,7 +112,7 @@ prometheus:
 
       - job_name: "kubernetes-ingresses-http-2xx"
         metrics_path: /probe
-        scrape_interval: 60s
+        scrape_interval: 2m
         params:
           module: [http_2xx]
         kubernetes_sd_configs:
@@ -148,7 +148,7 @@ prometheus:
 
       - job_name: "kubernetes-ingresses-http403"
         metrics_path: /probe
-        scrape_interval: 60s
+        scrape_interval: 2m
         params:
           module: [http_403]
         kubernetes_sd_configs:
@@ -184,7 +184,7 @@ prometheus:
 
       - job_name: "kubernetes-services-http"
         metrics_path: /probe
-        scrape_interval: 60s
+        scrape_interval: 2m
         params:
           module: [http_2xx]
         kubernetes_sd_configs:
@@ -213,7 +213,7 @@ prometheus:
 
       - job_name: "kubernetes-services-tcp"
         metrics_path: /probe
-        scrape_interval: 60s
+        scrape_interval: 2m
         params:
           module: [tcp_connect]
         kubernetes_sd_configs:
