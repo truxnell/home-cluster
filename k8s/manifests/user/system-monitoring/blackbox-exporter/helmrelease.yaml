@@ -27,8 +27,6 @@ spec:
   values:
     fullnameOverride: blackbox-exporter
 
-    replicas: 3
-
     image:
       repository: quay.io/prometheus/blackbox-exporter
 
