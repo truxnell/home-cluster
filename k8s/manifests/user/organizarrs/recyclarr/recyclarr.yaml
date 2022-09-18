@@ -72,7 +72,7 @@ radarr:
 
     delete_old_custom_formats: true
 
-    trash_ids:
+    custom_formats:
       - names:
           - 3D
           - 5.1 Surround
