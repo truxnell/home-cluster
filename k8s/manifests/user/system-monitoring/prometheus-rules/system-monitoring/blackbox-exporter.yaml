@@ -23,7 +23,7 @@ spec:
             summary: Blackbox probe failed.
           expr: |
             count by(job,namespace,service,target) (probe_success == 0)
-          for: 0m
+          for: 5m
           labels:
             severity: critical
         - alert: BlackboxSlowProbe
@@ -34,7 +34,7 @@ spec:
           expr: |
             avg by(job,namespace,service,target) (avg_over_time(probe_duration_seconds[1m]))
              > 1
-          for: 1m
+          for: 5m
           labels:
             severity: warning
         - alert: BlackboxProbeHttpFailure
@@ -45,7 +45,7 @@ spec:
             probe_http_status_code <= 199
               OR
             probe_http_status_code >= 400
-          for: 0m
+          for: 5m
           labels:
             severity: critical
         - alert: BlackboxProbeSlowHttp
@@ -56,7 +56,7 @@ spec:
           expr: |
             avg by(job,namespace,service,target) (avg_over_time(probe_http_duration_seconds[1m]))
               > 1
-          for: 1m
+          for: 5m
           labels:
             severity: warning
         - alert: BlackboxProbeSlowPing
@@ -67,6 +67,6 @@ spec:
           expr: |
             avg by(job,namespace,service,target) (avg_over_time(probe_icmp_duration_seconds[1m]))
               > 1
-          for: 1m
+          for: 5m
           labels:
             severity: warning
