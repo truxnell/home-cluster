@@ -21,7 +21,7 @@ spec:
 
           containers:
             - name: mailbackup
-              image: ghcr.io/k8s-at-home/getmail:v6.18.9@sha256:3d329dcb5bd047920f99d377c56ef99a100014803e2f6c9fd4a00947a9a1993d
+              image: ghcr.io/k8s-at-home/getmail:v6.18.10@sha256:524c5c17d4a0b5108eaa2d5a0984470e1aef64073f762cc9520e035ddeff7c19
               imagePullPolicy: IfNotPresent
               command:
                 - "/scripts/mailbackup.sh"
