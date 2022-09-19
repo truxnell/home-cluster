@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: kizaing/kavita
-      tag: nightly@sha256:4ef5b4d836ee6d650131f78e411778aaec9d766fec2dc84b9b04112dc538d757
+      tag: 0.5.6
     env:
       TZ: "${TZ}"
 
@@ -39,8 +39,8 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-           external-dns.home.arpa/enabled: "true"
-           auth.home.arpa/enabled: "true"
+          external-dns.home.arpa/enabled: "true"
+          auth.home.arpa/enabled: "true"
         hosts:
           - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
@@ -79,4 +79,4 @@ spec:
         cpu: 20m
         memory: 100Mi
       # limits:
-        # memory: 200Mi
+      # memory: 200Mi
