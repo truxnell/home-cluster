@@ -26,7 +26,7 @@ spec:
       namespace: home-automation
   values:
     image:
-      repository: ghcr.io/koenkk/zigbee2mqtt
+      repository: koenkk/zigbee2mqtt
       tag: latest-dev@sha256:909221837317f46d726e45c59b60999e40505221cd1696a99a25ec8ad0017121
     env:
       TZ: "${TZ}"
