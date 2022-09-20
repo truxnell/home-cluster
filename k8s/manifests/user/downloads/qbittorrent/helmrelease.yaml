@@ -34,6 +34,8 @@ spec:
       QBITTORRENT__PORT: &port 80
       QBITTORRENT__BT_PORT: &port-bt ${SECRET_VPN_FORWARDED_PORT_1}
 
+    hostname: qbittorrent
+
     service:
       main:
         ports:
@@ -83,6 +85,8 @@ spec:
       runAsGroup: 568
       fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 100
 
     persistence:
       config:
