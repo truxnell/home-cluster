@@ -58,8 +58,8 @@ spec:
         ports:
           - port: ${SECRET_VPN_FORWARDED_PORT_1}
             type: udp
-          - port: 55954
-            type: ${SECRET_VPN_FORWARDED_PORT_1}
+          - port: ${SECRET_VPN_FORWARDED_PORT_1}
+            type: tcp
 
     routed_namespaces:
       - downloads
