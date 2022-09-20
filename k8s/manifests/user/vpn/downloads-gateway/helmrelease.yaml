@@ -26,10 +26,36 @@ spec:
     cleanupOnFail: true
   values:
     image:
-      repository: ghcr.io/k8s-at-home/pod-gateway
-      tag: v1.7.0
+      repository: ghcr.io/angelnu/pod-gateway
+      tag: v1.8.0@sha256:91a51d0cfcec00834ba3878e07fca2d7c3ce72ac259e2a2787600d0222dbdd9b
 
     DNS: 172.16.1.1
+
+    additionalContainers:
+      gluetun:
+        image: qmcgaw/gluetun:v3.31.1@sha256:dabf4efdadafd6acce67bf89b11396e5c87dd1e25705b36fc9211730c943db47
+
+        env:
+          - name: VPN_TYPE
+            value: wireguard
+          - name: VPN_INTERFACE
+            value: wg0
+          - name: FIREWALL
+            value: "off"
+          - name: DOT
+            value: "off"
+
+        envFrom:
+          - secretRef:
+              name: downloads-gateway-vpnconfig
+
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+    addons:
+      netshoot:
+        enabled: true
 
     routed_namespaces:
       - downloads
@@ -37,7 +63,6 @@ spec:
 
     publicPorts:
       - hostname: qbittorrent # hostname assigned to the pod
-        IP: 10 # must be an integer between 2 and VXLAN_GATEWAY_FIRST_DYNAMIC_IP (20 by default)
         ports:
           - type: udp
             port: ${SECRET_VPN_FORWARDED_PORT_1}
@@ -45,14 +70,13 @@ spec:
             port: ${SECRET_VPN_FORWARDED_PORT_1}
 
     settings:
+      NOT_ROUTED_TO_GATEWAY_CIDRS: 10.0.0.0/8 192.168.0.0/16
+      VPN_BLOCK_OTHER_TRAFFIC: true
       VPN_INTERFACE: wg0
+      VPN_LOCAL_CIDRS: 10.0.0.0/8 192.168.0.0/16
+      VPN_TRAFFIC_PORT: "51820"
       VXLAN_ID: 43
       VXLAN_IP_NETWORK: 172.16.1
-      VPN_BLOCK_OTHER_TRAFFIC: true
-      VPN_TRAFFIC_PORT: "${SECRET_WIREGUARD_PORT}"
-      NOT_ROUTED_TO_GATEWAY_CIDRS: "172.16.0.0/12 ${NETWORK_K8S_POD_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVERS_CIDR}"
-      VPN_LOCAL_CIDRS: "172.16.0.0/12 ${NETWORK_K8S_POD_CIDR} ${NETWORK_K8S_SERVICE_CIDR} ${NETWORK_SERVERS_CIDR}"
-      VXLAN_GATEWAY_FIRST_DYNAMIC_IP: 20
 
     resources:
       requests:
@@ -62,74 +86,12 @@ spec:
         memory: 22M
 
     webhook:
+      gatewayAnnotation: setGateway
+      gatewayDefault: false
+      gatewayLabel: setGateway
       image:
         repository: ghcr.io/k8s-at-home/gateway-admision-controller
         tag: v3.6.0
 
-      gatewayDefault: false
-      gatewayLabel: setGateway
-      gatewayAnnotation: setGateway
-      namespaceSelector:
-        label: "vpn-routed-gateway"
-
     podAnnotations:
       secret.reloader.stakater.com/reload: downloads-gateway-vpnconfig
-
-    addons:
-      netshoot:
-        enabled: false
-
-      vpn:
-        enabled: true
-        type: wireguard
-
-        wireguard:
-          image:
-            repository: ghcr.io/k8s-at-home/wireguard
-            tag: v1.0.20210914
-            pullPolicy: IfNotPresent
-
-        securityContext:
-          runAsUser: 568
-          runAsGroup: 568
-          capabilities:
-            drop:
-              - "SYS_MODULE"
-
-        env:
-          TZ: "${TZ}"
-          IPTABLES_BACKEND: nft
-          KILLSWITCH: "false"
-
-        configFileSecret: downloads-gateway-vpnconfig
-
-        resources:
-          requests:
-            cpu: 10m
-            memory: 22M
-          limits:
-            memory: 46M
-
-        # livenessProbe:
-        #   exec:
-        #     command:
-        #       - sh
-        #       - -c
-        #       - if [ $(curl -s https://am.i.mullvad.net/city) = '${SECRET_WIREGUARD_CITY}' ]; then exit 0; else exit $?; fi
-        #   initialDelaySeconds: 30
-        #   periodSeconds: 60
-        #   failureThreshold: 1
-        #   timeoutSeconds: 30
-
-        networkPolicy:
-          enabled: true
-
-          egress:
-            - to:
-                - ipBlock:
-                    cidr: 0.0.0.0/0
-              ports:
-                - port: 51820
-                  protocol: UDP
-            - to:
-                - namespaceSelector: {}
