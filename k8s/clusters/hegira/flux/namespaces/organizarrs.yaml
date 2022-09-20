@@ -4,5 +4,5 @@ kind: Namespace
 metadata:
   name: organizarrs
   labels:
-    vpn-routed-gateway: "true"
+    routed-gateway: "true"
     goldilocks.fairwinds.com/enabled: "true"
