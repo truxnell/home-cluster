@@ -65,7 +65,7 @@ spec:
 
     operator:
       rollOutPods: true
-      replicas: 1
+      replicas: 3
       prometheus:
         enabled: true
         serviceMonitor:
@@ -112,7 +112,7 @@ spec:
             - &host "hubble.${EXTERNAL_DOMAIN}"
           tls:
             - hosts:
-              - *host
+                - *host
 
     bgp:
       enabled: false
