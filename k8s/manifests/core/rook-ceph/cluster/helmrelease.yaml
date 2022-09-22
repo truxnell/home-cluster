@@ -64,7 +64,7 @@ spec:
             memory: "4Gi"
         prepareosd:
           limits:
-            memory: "400Mi"
+            memory: "900Mi"
           requests:
             cpu: "500m"
             memory: "50Mi"
@@ -129,7 +129,7 @@ spec:
           path: "/"
         tls:
           - hosts:
-            - *host
+              - *host
 
     cephBlockPoolsVolumeSnapshotClass:
       enabled: false
