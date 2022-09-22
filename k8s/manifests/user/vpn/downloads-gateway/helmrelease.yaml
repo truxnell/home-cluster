@@ -38,7 +38,7 @@ spec:
           - name: HEALTH_TARGET_ADDRESS
             value: "1.1.1.1"
           - name: HEALTH_VPN_DURATION_INITIAL
-            vaulue: 30s
+            value: 30s
         envFrom:
           - secretRef:
               name: downloads-gateway-vpnconfig
