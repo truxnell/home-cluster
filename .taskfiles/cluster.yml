@@ -208,3 +208,7 @@ tasks:
     desc: Create a netshoot container for debugging
     cmds:
       - kubectl run tmp-shell --rm -i --tty --image ghcr.io/nicolaka/netshoot:latest {{.CLI_ARGS}}
+  list-used-helmcharts:
+    desc: List helm charts in user
+    cmds:
+      - kubectl get hc -A | awk '{print $6}' | sort | uniq

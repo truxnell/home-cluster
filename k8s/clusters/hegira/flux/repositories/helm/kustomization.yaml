@@ -5,11 +5,10 @@ namespace: flux-system
 resources:
   - ../../../../../global/flux/repositories/helm
   - ./actions-runner-controller-charts.yaml
-  - ./authentik-charts.yaml
-  - ./authelia-charts.yaml
+  - ./bjw-s-charts.yaml
   - ./cilium-charts.yaml
-  - ./deliveryhero-charts.yaml
   - ./emqx-charts.yaml
+  - ./cloudnative-pg.yaml
   - ./external-dns-charts.yaml
   - ./fairwinds-charts.yaml
   - ./grafana-charts.yaml
@@ -22,16 +21,8 @@ resources:
   - ./kubernetes-sigs-metrics-server-charts.yaml
   - ./kubernetes-sigs-nfd-charts.yaml
   - ./kyverno-charts.yaml
-  - ./lwolf-charts.yaml
   - ./metallb-charts.yaml
-  - ./nfs-subdir-external-provisioner-charts.yaml
   - ./prometheus-community-charts.yaml
   - ./rook-ceph-charts.yaml
   - ./stakater-charts.yaml
-  - ./trilio-charts.yaml
   - ./vector-charts.yaml
-  - ./vmware-charts.yaml
-  - ./vmware-tanzu-charts.yaml
-  - ./weaveworks-kured-charts.yaml
-  - ./bjw-s-charts.yaml
-  - ./cloudnative-pg.yaml
