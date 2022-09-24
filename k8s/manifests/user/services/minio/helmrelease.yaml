@@ -106,5 +106,3 @@ spec:
       requests:
         memory: 600Mi
         cpu: 100m
-      limits:
-        memory: 1450Mi
