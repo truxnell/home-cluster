@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: wolveix/satisfactory-server
-      tag: v1.3.0
+      tag: v1.3.1
 
     env:
       TZ: "${TZ}"
