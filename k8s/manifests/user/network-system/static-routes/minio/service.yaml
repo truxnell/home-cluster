@@ -15,4 +15,4 @@ spec:
       port: 9001
     - name: s3
       port: 9000
-  externalName: unifi.${INTERNAL_DOMAIN}
+  externalName: george.${INTERNAL_DOMAIN}
