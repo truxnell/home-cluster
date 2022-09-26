@@ -12,7 +12,7 @@ spec:
     matchLabels:
       <<: *labels
   endpoints:
-    - port: api
+    - port: minio
       scheme: http
       path: /minio/v2/metrics/cluster
       interval: 1m
