@@ -56,7 +56,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: *app
+                name: minio
                 port:
                   name: s3
   tls:
