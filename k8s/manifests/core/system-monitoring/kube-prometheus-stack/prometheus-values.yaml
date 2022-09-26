@@ -69,7 +69,7 @@ prometheus:
         scrape_interval: 1m
         scrape_timeout: 10s
         honor_timestamps: true
-        metric_path: /minio/v2/metrics/cluster
+        metrics_path: /minio/v2/metrics/cluster
         scheme: http
         static_configs:
           - targets:
