@@ -21,7 +21,7 @@ spec:
         compression: bzip2
         maxParallel: 8
       destinationPath: s3://postgresql/
-      endpointURL: https://s3.trux.dev
+      endpointURL: http://george.${INTERNAL_DOMAIN}:9000
       serverName: postgres-v1
       s3Credentials:
         accessKeyId:
