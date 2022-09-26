@@ -1,0 +1,34 @@
+---
+- name: setup minio directory
+  ansible.builtin.file:
+    path: /tank/minio
+    state: directory
+    group: "1000"
+    owner: "1000"
+    mode: "0600"
+
+- name: run minio
+  containers.podman.podman_container:
+    name: minio
+    image: "quay.io/minio/minio:RELEASE.2022-09-17T00-09-45Z"
+    state: started
+    network: host
+    command:
+      - "server"
+      - "/data"
+      - "--console-address"
+      - ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    env:
+      TZ: ${TZ}
+      MINIO_UPDATE: "off"
+      MINIO_PROMETHEUS_URL: http://prometheus.{{ external_domain }}
+      MINIO_PROMETHEUS_JOB_ID: minio
+      MINIO_PROMETHEUS_AUTH_TYPE: "public"
+      MINIO_BROWSER_REDIRECT_URL: "http://george.{{ internal_domain }}:9001"
+      MINIO_SERVER_URL: "http://george.{{ internal_domain }}:9000"
+    volume:
+      - "/tank/minio:/data:z"
+  become: false
