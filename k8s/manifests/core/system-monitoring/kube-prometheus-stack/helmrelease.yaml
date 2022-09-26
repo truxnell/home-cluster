@@ -11,7 +11,7 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
-      version: 39.13.3
+      version: 40.0.0
       sourceRef:
         kind: HelmRepository
         name: prometheus-community-charts
@@ -27,16 +27,468 @@ spec:
       retries: 5
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
+  values:
+    fullnameOverride: prometheus
+    coreDns:
+      enabled: true
 
+    kubeApiServer:
+      enabled: true
+
+    kubeControllerManager:
+      enabled: false # FIXME
+
+    kubeEtcd:
+      enabled: true
+
+    kubelet:
+      enabled: true
+      serviceMonitor:
+        metricRelabelings:
+          - action: replace
+            sourceLabels:
+              - node
+            targetLabel: instance
+
+    kubeProxy:
+      enabled: false # FIXME
+
+    kubeScheduler:
+      enabled: false # FIXME
+
+    kubeStateMetrics:
+      enabled: true
+
+    prometheusOperator:
+      resources:
+        requests:
+          cpu: 35m
+          memory: 273M
+        # limits:
+        # memory: 326M
+
+      prometheusConfigReloader:
+        resources:
+          requests:
+            cpu: 11m
+            memory: 24M
+          # limits:
+          # memory: 32M
+
+    grafana:
+      enabled: false
+      forceDeployDashboards: true
+      sidecar:
+        dashboards:
+          multicluster:
+            global:
+              enabled: true
+
+    kube-state-metrics:
+      metricLabelsAllowlist:
+        - "persistentvolumeclaims=[*]"
+      prometheus:
+        monitor:
+          enabled: true
+          relabelings:
+            - action: replace
+              regex: (.*)
+              replacement: $1
+              sourceLabels:
+                - __meta_kubernetes_pod_node_name
+              targetLabel: kubernetes_node
+
+    nodeExporter:
+      enabled: true
+      serviceMonitor:
+        relabelings:
+          - action: replace
+            regex: (.*)
+            replacement: $1
+            sourceLabels:
+              - __meta_kubernetes_pod_node_name
+            targetLabel: kubernetes_node
+
+    prometheus-node-exporter:
+      fullnameOverride: node-exporter
+      extraArgs:
+        - --collector.filesystem.ignored-mount-points=^/(dev|proc|sys|var)($|/)
+        - --collector.filesystem.ignored-fs-types=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs|tmpfs)$
+      prometheus:
+        monitor:
+          enabled: true
+          relabelings:
+            - action: replace
+              regex: (.*)
+              replacement: $1
+              sourceLabels:
+                - __meta_kubernetes_pod_node_name
+              targetLabel: kubernetes_node
+
+      resources:
+        requests:
+          cpu: 23m
+          memory: 64M
+        # limits:
+        #   memory: 64M
+      tolerations:
+        - effect: "NoExecute"
+          operator: "Exists"
+        - effect: "NoSchedule"
+          operator: "Exists"
+
+    prometheus:
+      ingress:
+        enabled: true
+        pathType: Prefix
+        ingressClassName: "nginx"
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: database-clock
+          hajimari.io/appName: Prometheus
+
+        hosts:
+          - &host prometheus.${EXTERNAL_DOMAIN}
+        tls:
+          - hosts:
+              - *host
+
+      thanosService:
+        enabled: true
+      thanosServiceMonitor:
+        enabled: true
+
+      prometheusSpec:
+        replicas: 3
+        replicaExternalLabelName: __replica__
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        retentionSize: "8GB"
+        retention: 14d
+        enableAdminAPI: true
+        walCompression: true
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: ceph-block
+              resources:
+                requests:
+                  storage: 10Gi
+        resources:
+          requests:
+            cpu: 350m
+            memory: 4744M
+            # limits:
+            # memory: 4744M
+        thanos:
+          image: quay.io/thanos/thanos:v0.28.0
+          # renovate: datasource=docker depName=quay.io/thanos/thanos
+          version: v0.28.0
+          objectStorageConfig:
+            name: &secret thanos-objstore-secret
+            key: objstore.yml
+
+        podAnnotations:
+          secret.reloader.stakater.com/reload: *secret
+
+        additionalScrapeConfigs:
+          - job_name: node-exporter
+            scrape_interval: 1m
+            scrape_timeout: 10s
+            honor_timestamps: true
+            static_configs:
+              - targets:
+                  - "technocore.${INTERNAL_DOMAIN}:9100"
+                  - "george.${INTERNAL_DOMAIN}:9100"
+
+          - job_name: minio
+            scrape_interval: 1m
+            scrape_timeout: 10s
+            honor_timestamps: true
+            metrics_path: /minio/v2/metrics/cluster
+            scheme: http
+            static_configs:
+              - targets:
+                  - "george.${INTERNAL_DOMAIN}:9000"
+
+          - job_name: smartctl-exporter
+            scrape_interval: 10m
+            scrape_timeout: 10s
+            honor_timestamps: true
+            static_configs:
+              - targets:
+                  - "george.${INTERNAL_DOMAIN}:9633"
+
+          - job_name: windows-exporter
+            scrape_interval: 1m
+            scrape_timeout: 10s
+            honor_timestamps: true
+            static_configs:
+              - targets:
+                  - "10.8.20.222:9182"
+
+          - job_name: ts110
+            scrape_interval: 1m
+            scrape_timeout: 10s
+            honor_timestamps: true
+            static_configs:
+              - targets:
+                  - "hs110-exporter-prusa.system-monitoring:8110"
+                  - "hs110-exporter-rack.system-monitoring:8110"
+
+          - job_name: "octoprint"
+            scrape_interval: 1m
+            scrape_timeout: 10s
+            metrics_path: "/plugin/prometheus_exporter/metrics"
+            params:
+              apikey: ["${SECRET_OCTOPRINT_APIKEY}"]
+            tls_config:
+              insecure_skip_verify: true
+            static_configs:
+              - targets:
+                  - "prusa.${INTERNAL_DOMAIN}:5000"
+
+          - job_name: coredns
+            scrape_interval: 1m
+            scrape_timeout: 10s
+            honor_timestamps: true
+            static_configs:
+              - targets:
+                  - "10.8.5.2:9153"
+
+          - job_name: "kubernetes-ingresses-http-2xx"
+            metrics_path: /probe
+            scrape_interval: 2m
+            params:
+              module: [http_2xx]
+            kubernetes_sd_configs:
+              - role: ingress
+            relabel_configs:
+              - source_labels:
+                  [__meta_kubernetes_ingress_annotation_prometheus_io_probe]
+                action: keep
+                regex: true
+              - source_labels:
+                  [__meta_kubernetes_ingress_annotation_prometheus_io_module]
+                action: keep
+                regex: http_2xx
+              - source_labels:
+                  [
+                    __meta_kubernetes_ingress_scheme,
+                    __address__,
+                    __meta_kubernetes_ingress_path,
+                  ]
+                regex: (.+);(.+);(.+)
+                replacement: $${1}://$${2}$${3}
+                target_label: __param_target
+              - target_label: __address__
+                replacement: blackbox-exporter:9115
+              - source_labels: [__param_target]
+                target_label: instance
+              - action: labelmap
+                regex: __meta_kubernetes_ingress_label_(.+)
+              - source_labels: [__meta_kubernetes_namespace]
+                target_label: kubernetes_namespace
+              - source_labels: [__meta_kubernetes_ingress_name]
+                target_label: kubernetes_name
+
+          - job_name: "kubernetes-ingresses-http403"
+            metrics_path: /probe
+            scrape_interval: 2m
+            params:
+              module: [http_403]
+            kubernetes_sd_configs:
+              - role: ingress
+            relabel_configs:
+              - source_labels:
+                  [__meta_kubernetes_ingress_annotation_prometheus_io_probe]
+                action: keep
+                regex: true
+              - source_labels:
+                  [__meta_kubernetes_ingress_annotation_prometheus_io_module]
+                action: keep
+                regex: http_403
+              - source_labels:
+                  [
+                    __meta_kubernetes_ingress_scheme,
+                    __address__,
+                    __meta_kubernetes_ingress_path,
+                  ]
+                regex: (.+);(.+);(.+)
+                replacement: $${1}://$${2}$${3}
+                target_label: __param_target
+              - target_label: __address__
+                replacement: blackbox-exporter:9115
+              - source_labels: [__param_target]
+                target_label: instance
+              - action: labelmap
+                regex: __meta_kubernetes_ingress_label_(.+)
+              - source_labels: [__meta_kubernetes_namespace]
+                target_label: kubernetes_namespace
+              - source_labels: [__meta_kubernetes_ingress_name]
+                target_label: kubernetes_name
+
+          - job_name: "kubernetes-services-http"
+            metrics_path: /probe
+            scrape_interval: 2m
+            params:
+              module: [http_2xx]
+            kubernetes_sd_configs:
+              - role: service
+            relabel_configs:
+              - source_labels:
+                  [__meta_kubernetes_service_annotation_prometheus_io_probe]
+                action: keep
+                regex: true
+              - source_labels:
+                  [__meta_kubernetes_service_annotation_prometheus_io_protocol]
+                action: keep
+                regex: http
+              - source_labels: [__address__]
+                target_label: __param_target
+              - target_label: __address__
+                replacement: blackbox-exporter:9115
+              - source_labels: [__param_target]
+                target_label: instance
+              - action: labelmap
+                regex: __meta_kubernetes_service_label_(.+)
+              - source_labels: [__meta_kubernetes_namespace]
+                target_label: kubernetes_namespace
+              - source_labels: [__meta_kubernetes_service_name]
+                target_label: kubernetes_name
+
+          - job_name: "kubernetes-services-tcp"
+            metrics_path: /probe
+            scrape_interval: 2m
+            params:
+              module: [tcp_connect]
+            kubernetes_sd_configs:
+              - role: service
+            relabel_configs:
+              - source_labels:
+                  [__meta_kubernetes_service_annotation_prometheus_io_probe]
+                action: keep
+                regex: true
+              - source_labels:
+                  [__meta_kubernetes_service_annotation_prometheus_io_protocol]
+                action: keep
+                regex: tcp
+              - source_labels: [__address__]
+                target_label: __param_target
+              - target_label: __address__
+                replacement: blackbox-exporter:9115
+              - source_labels: [__param_target]
+                target_label: instance
+              - action: labelmap
+                regex: __meta_kubernetes_service_label_(.+)
+              - source_labels: [__meta_kubernetes_namespace]
+                target_label: kubernetes_namespace
+              - source_labels: [__meta_kubernetes_service_name]
+                target_label: kubernetes_name
+
+    alertmanager:
+      config:
+        global:
+          resolve_timeout: 5m
+
+        receivers:
+          - name: "null"
+          - name: "pushover"
+            pushover_configs:
+              - user_key: ${SECRET_ALERTMANAGER_PUSHOVER_USER_KEY}
+                token: ${SECRET_ALERTMANAGER_PUSHOVER_TOKEN}
+                send_resolved: true
+                html: true
+                priority: |-
+                  {{ if eq .Status "firing" }}1{{ else }}-1{{ end }}
+                url_title: View in Alert Manager
+                title: |-
+                  [{{ .Status | toUpper -}}
+                  {{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{- end -}}
+                  ] {{ .CommonLabels.alertname }}
+                message: |-
+                  {{- range .Alerts }}
+                    {{- if ne .Labels.severity "" }}
+                      <b>Severity:</b> <i>{{ .Labels.severity }}</i>
+                    {{- else }}
+                      <b>Severity:</b> <i>N/A</i>
+                    {{- end }}
+                    {{- if ne .Annotations.description "" }}
+                      <b>Description:</b> <i>{{ .Annotations.description }}</i>
+                    {{- else if ne .Annotations.summary "" }}
+                      <b>Summary:</b> <i>{{ .Annotations.summary }}</i>
+                    {{- else if ne .Annotations.message "" }}
+                      <b>Message:</b> <i>{{ .Annotations.message }}</i>
+                    {{- else }}
+                      <b>Description:</b> <i>N/A</i>
+                    {{- end }}
+                    {{- if gt (len .Labels.SortedPairs) 0 }}
+                      <b>Details:</b>
+                      {{- range .Labels.SortedPairs }}
+                        • <b>{{ .Name }}:</b> <i>{{ .Value }}</i>
+                      {{- end }}
+                    {{- end }}
+                  {{- end }}
+
+        route:
+          group_by: ["alertname", "job"]
+          group_wait: 30s
+          group_interval: 5m
+          repeat_interval: 6h
+          receiver: "pushover"
+          routes:
+            - receiver: "null"
+              matchers:
+                - alertname =~ "InfoInhibitor|Watchdog"
+            - receiver: "pushover"
+              matchers:
+                - severity = "critical"
+              continue: true
+
+        inhibit_rules:
+          - source_matchers:
+              - severity = "critical"
+            target_matchers:
+              - severity = "warning"
+            equal: ["alertname", "namespace"]
+
+      ingress:
+        enabled: true
+        pathType: Prefix
+        ingressClassName: "nginx"
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: bell-alert
+          hajimari.io/appName: Alertmanager
+
+        hosts:
+          - &host alertmanager.${EXTERNAL_DOMAIN}
+        tls:
+          - hosts:
+              - *host
+
+      alertmanagerSpec:
+        replicas: 3
+        podAntiAffinity: hard
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: ceph-block
+              resources:
+                requests:
+                  storage: 1Gi
+
+      resources:
+        requests:
+          cpu: 10m
+          memory: 50M
+        limits:
+          memory: 99M
   valuesFrom:
     - kind: Secret
       name: kube-prometheus-stack
       valuesKey: discord-webhook
       targetPath: alertmanager.config.global.slack_api_url
       optional: false
-    - kind: ConfigMap
-      name: kps-generic-values
-    - kind: ConfigMap
-      name: kps-prometheus-values
-    - kind: ConfigMap
-      name: kps-alertmanager-values
