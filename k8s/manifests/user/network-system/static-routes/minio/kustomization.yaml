@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - ./ingress.yaml
   - ./service.yaml
-  - ./service-monitor.yaml
