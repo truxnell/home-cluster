@@ -23,6 +23,8 @@
       - "9001:9001"
     env:
       TZ: ${TZ}
+      MINIO_ROOT_USER: "{{ minio.root_user }}"
+      MINIO_ROOT_PASSWORD: "{{ minio.root_password }}"
       MINIO_UPDATE: "off"
       MINIO_PROMETHEUS_URL: http://prometheus.{{ external_domain }}
       MINIO_PROMETHEUS_JOB_ID: minio
