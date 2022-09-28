@@ -146,8 +146,8 @@ spec:
     ingress:
       enabled: true
       ingressClassName: "nginx"
-      annotations:
-        external-dns.home.arpa/enabled: "true"
+      # annotations:
+      #   external-dns.home.arpa/enabled: "true"
       hosts:
         - &host "grafana.${EXTERNAL_DOMAIN}"
       tls:
