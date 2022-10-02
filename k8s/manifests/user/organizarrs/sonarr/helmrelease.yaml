@@ -97,7 +97,7 @@ spec:
       scripts:
         enabled: true
         type: configMap
-        name: radarr-pushover
+        name: sonarr-pushover
         subPath: pushover-notify.sh
         mountPath: /scripts/pushover-notify.sh
         defaultMode: 0775
@@ -106,7 +106,7 @@ spec:
         enabled: true
         type: nfs
         server: *nas
-        path: /tank/backup/kubernetes/apps/radarr
+        path: /tank/backup/kubernetes/apps/sonarr
         mountPath: /config/Backups
 
     podAnnotations:
