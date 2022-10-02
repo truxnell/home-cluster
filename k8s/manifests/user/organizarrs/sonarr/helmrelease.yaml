@@ -23,8 +23,8 @@ spec:
       retries: 5
   values:
     image:
-      repository: ghcr.io/onedr0p/sonarr-widowmaker
-      tag: 4.0.0.2179@sha256:493d550cf436f005b7d36291e3fdb81a303580efe7334a2a797d19f1d42adfb7
+      repository: ghcr.io/onedr0p/sonarr-develop
+      tag: 4.0.0.124@sha-256:4b2a08090f0caa00628125604c945e1dfc7c03e4419f753b2afd1786e398bbbd
     env:
       TZ: "${TZ}"
       PUSHOVER_DEBUG: "false"
