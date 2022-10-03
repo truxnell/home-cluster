@@ -7,3 +7,4 @@ resources:
   - ./snapshot-cronjob-controller.yaml
   - ./sync-postgres-secret.yaml
   - ./add-prom-probes.yaml
+  - ./sync-basic-auth-secret.yaml
