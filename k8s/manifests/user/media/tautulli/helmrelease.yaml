@@ -51,20 +51,6 @@ spec:
           - hosts:
               - *host
 
-      api:
-        enabled: true
-        ingressClassName: "nginx"
-        annotations:
-          external-dns.home.arpa/enabled: "true"
-        hosts:
-          - host: *host
-            paths:
-              - path: /api
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
