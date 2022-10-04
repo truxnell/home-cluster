@@ -117,6 +117,9 @@ spec:
         - module: http_2xx
           name: prusa-mk3s
           url: prusa.${INTERNAL_DOMAIN}:5000
+        - module: http_2xx
+          name: uptime-kuma
+          url: uptime-kuma.${EXTERNAL_DOMAIN}
 
     resources:
       requests:
