@@ -1,6 +1,6 @@
 # Fly.io Uptime Kuma
 
-> Ref: https://dev.to/palkan_tula/diy-multi-regional-uptime-monitoring-with-flyio-and-uptime-kuma-5c53
+> https://noted.lol/easy-off-site-monitoring-with-fly-io-and-uptime-kuma/
 
 ## Setup (from scratch, create fly.toml)
 
