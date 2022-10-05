@@ -119,7 +119,7 @@ spec:
           url: prusa.${INTERNAL_DOMAIN}:5000
         - module: http_2xx
           name: uptime-kuma
-          url: uptime-kuma.${EXTERNAL_DOMAIN}
+          url: status.${EXTERNAL_DOMAIN}
 
     resources:
       requests:
