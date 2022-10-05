@@ -15,9 +15,9 @@
 
 <div align="center">
 
-![Home Internet](https://uptime-kuma.trux.dev/api/badge/15/status?style=for-the-badge&label=Home%20Internet)]
-![Plex](https://uptime-kuma.trux.dev/api/badge/1/status?style=for-the-badge&label=Plex)]
-![Home Assistant](https://uptime-kuma.trux.dev/api/badge/5/status?style=for-the-badge&label=Home%20Assistant)]
+![Home Internet](https://uptime-kuma.trux.dev/api/badge/15/status?style=for-the-badge&label=Home%20Internet)
+![Plex](https://uptime-kuma.trux.dev/api/badge/1/status?style=for-the-badge&label=Plex)
+![Home Assistant](https://uptime-kuma.trux.dev/api/badge/5/status?style=for-the-badge&label=Home%20Assistant)
 </div>
 
 ## Overview
