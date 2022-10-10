@@ -120,6 +120,12 @@ spec:
         - module: http_2xx
           name: uptime-kuma
           url: status.${WEBSITE_DOMAIN}
+        - module: http_2xx
+          name: tyua_blinds_0
+          url: 10.8.30.140
+        - module: http_2xx
+          name: tyua_blinds_1
+          url: 10.8.30.141
 
     resources:
       requests:
