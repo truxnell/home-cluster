@@ -78,6 +78,15 @@ spec:
             preferred_ip_protocol: "ip4"
             valid_status_codes: [403]
 
+        http_401:
+          prober: http
+          timeout: 5s
+          http:
+            valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+            follow_redirects: true
+            preferred_ip_protocol: "ip4"
+            valid_status_codes: [401]
+
         icmp:
           prober: icmp
           timeout: 30s
@@ -119,10 +128,10 @@ spec:
         - module: http_2xx
           name: uptime-kuma
           url: status.${WEBSITE_DOMAIN}
-        - module: http_2xx
+        - module: http_401
           name: tyua-blinds-0
           url: 10.8.30.140
-        - module: http_2xx
+        - module: http_401
           name: tyua-blinds-1
           url: 10.8.30.141
 
