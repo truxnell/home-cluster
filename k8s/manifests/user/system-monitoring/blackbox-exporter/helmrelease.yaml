@@ -92,9 +92,8 @@ spec:
         interval: 2m
         scrapeTimeout: 30s
 
-      # Curtains
-      # Nodes
-
+      # DO NOT USE UNDERSCORES IN NAMES.
+      # K8S EXPECTS IT AS A RFC THINGY COMPLIANT URL
       targets:
         - module: icmp
           name: brewpiless
@@ -121,10 +120,10 @@ spec:
           name: uptime-kuma
           url: status.${WEBSITE_DOMAIN}
         - module: http_2xx
-          name: tyua_blinds_0
+          name: tyua-blinds-0
           url: 10.8.30.140
         - module: http_2xx
-          name: tyua_blinds_1
+          name: tyua-blinds-1
           url: 10.8.30.141
 
     resources:
