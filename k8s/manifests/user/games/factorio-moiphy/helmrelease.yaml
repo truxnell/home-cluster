@@ -84,6 +84,7 @@ spec:
     persistence:
       config:
         enabled: true
+        mountPath: /factorio
         existingClaim: factorio-moiphy-config-v1
       helmconfig:
         enabled: "true"
