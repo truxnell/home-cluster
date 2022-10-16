@@ -82,6 +82,7 @@ spec:
     persistence:
       config:
         enabled: true
+        mountPath: /factorio
         existingClaim: factorio-ribbonworld-config-v1
       helmconfig:
         enabled: "true"

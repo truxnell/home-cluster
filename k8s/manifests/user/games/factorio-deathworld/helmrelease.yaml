@@ -83,6 +83,7 @@ spec:
     persistence:
       config:
         enabled: true
+        mountPath: /factorio
         existingClaim: factorio-deathworld-config-v1
       helmconfig:
         enabled: "true"
