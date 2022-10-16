@@ -24,7 +24,7 @@ spec:
           image: hotio/cloudflareddns:latest
           env:
             - name: CF_HOSTS
-              value: ipv4.${EXTERNAL_DOMAIN}
+              value: ipv4.${EXTERNAL_DOMAIN};games.${EXTERNAL_DOMAIN}
             - name: CF_ZONES
               value: ${EXTERNAL_DOMAIN}
             - name: CF_APITOKEN
