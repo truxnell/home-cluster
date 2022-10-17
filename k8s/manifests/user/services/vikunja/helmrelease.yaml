@@ -32,8 +32,7 @@ spec:
 
     additionalContainers:
       - name: api
-        image: vikunja/api
-        tag: 0.19.2
+        image: vikunja/api:0.19.2
         env:
           - name: VIKUNJA_DATABASE_TYPE
             value: "postgres"
@@ -55,9 +54,21 @@ spec:
             value: smtp-relay.services.svc.cluster.local
           - name: VIKUNJA_MAILER_PORT
             value: "2525"
-        envFrom:
-          - secretRef:
-              name: *app
+          - name: &envjwt VIKUNJA_SERVICE_JWT
+            valueFrom:
+              secretKeyRef:
+                name: *app
+                key: *envjwt
+          - name: &envdbuser VIKUNJA_DATABASE_USER
+            valueFrom:
+              secretKeyRef:
+                name: *app
+                key: *envdbuser
+          - name: &envdbpass VIKUNJA_DATABASE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: *app
+                key: *envdbpass
 
         volumeMounts:
           - name: files
@@ -68,8 +79,7 @@ spec:
             readOnly: true
 
       - name: frontend
-        image: vikunja/frontend
-        tag: 0.19.1
+        image: vikunja/frontend:0.19.1
 
     service:
       main:
