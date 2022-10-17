@@ -39,11 +39,9 @@ data:
 Caddyfile: |-
     {
       admin off
-    {{- if .Values.caddy.noTls }}
       auto_https off
-    {{- end }}
     }
-    :{{ .Values.service.main.ports.http.port }} {
+    :8080 {
         log {
             output stdout
         }
