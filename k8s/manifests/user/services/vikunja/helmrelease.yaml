@@ -32,7 +32,8 @@ spec:
 
     additionalContainers:
       - name: api
-        image: vikunja/api:latest
+        image: vikunja/api
+        tag: 0.19.2
         envFrom:
           - secretRef:
               name: *app
@@ -46,7 +47,8 @@ spec:
             readOnly: true
 
       - name: frontend
-        image: vikunja/frontend:latest
+        image: vikunja/frontend
+        tag: 0.19.1
 
 
     service:
