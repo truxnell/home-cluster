@@ -142,11 +142,11 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: user-services-filebrowser
+  name: user-services-vikunja
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/filebrowser"
+  path: "./k8s/manifests/user/services/vikunja"
   prune: true
   wait: true
   sourceRef:

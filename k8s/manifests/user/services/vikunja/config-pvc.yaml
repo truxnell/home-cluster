@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: filebrowser-config-v1
+  name: vikunja-config-v1
   namespace: services
   labels:
-    app.kubernetes.io/name: &name filebrowser
+    app.kubernetes.io/name: &name vikunja
     app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
 spec:
