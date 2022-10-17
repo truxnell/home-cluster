@@ -51,8 +51,6 @@ spec:
             value: smtp-relay.services.svc.cluster.local
           - name: VIKUNJA_MAILER_PORT
             value: "2525"
-          - name: VIKUNJA_METRICS_ENABLED
-            value: "true"
           - name: &envjwt VIKUNJA_SERVICE_JWT
             valueFrom:
               secretKeyRef:
