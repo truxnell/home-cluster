@@ -22,9 +22,6 @@ spec:
     remediation:
       retries: 5
   values:
-    controller:
-      replicas: 3
-      strategy: RollingUpdate
     image:
       repository: caddy
       tag: 2.5.1-alpine

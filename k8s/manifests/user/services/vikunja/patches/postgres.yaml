@@ -22,10 +22,10 @@ spec:
           - name: POSTGRES_USER
             valueFrom:
               secretKeyRef:
-                name: vaultwarden
+                name: vikunja
                 key: VIKUNJA_DATABASE_USER
           - name: POSTGRES_PASS
             valueFrom:
               secretKeyRef:
-                name: vaultwarden
+                name: vikunja
                 key: VIKUNJA_DATABASE_PASSWORD
