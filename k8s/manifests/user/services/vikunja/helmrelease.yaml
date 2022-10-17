@@ -53,8 +53,6 @@ spec:
             value: "2525"
           - name: VIKUNJA_METRICS_ENABLED
             value: "true"
-          - name: VIKUNJA_REDIS_DB
-            value: "2"
           - name: &envjwt VIKUNJA_SERVICE_JWT
             valueFrom:
               secretKeyRef:
