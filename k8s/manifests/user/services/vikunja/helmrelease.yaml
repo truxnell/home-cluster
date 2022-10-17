@@ -51,6 +51,12 @@ spec:
             value: smtp-relay.services.svc.cluster.local
           - name: VIKUNJA_MAILER_PORT
             value: "2525"
+          - name: VIKUNJA_REDIS_ENABLED
+            value: "true"
+          - name: VIKUNJA_REDIS_HOST
+            value: redis.databases.svc.cluster.local.
+          - name: VIKUNJA_REDIS_DB
+            value: "2"
           - name: &envjwt VIKUNJA_SERVICE_JWT
             valueFrom:
               secretKeyRef:
