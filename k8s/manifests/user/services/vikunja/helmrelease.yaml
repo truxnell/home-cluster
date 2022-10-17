@@ -99,12 +99,6 @@ spec:
           - hosts:
               - *host
 
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
-
     persistence:
       files:
         enabled: true
@@ -117,7 +111,15 @@ spec:
         mountPath: "-"
         volumeSpec:
           configMap:
-            name: vikunja-config-yml
+            name: vikunja
+      caddy-config:
+         enabled: "true"
+         mountPath: /etc/caddy/Caddyfile
+         subPath: Caddyfile
+         type: "custom"
+         volumeSpec:
+           configMap:
+             name: vikunja
 
     # resources:
     #   requests:
