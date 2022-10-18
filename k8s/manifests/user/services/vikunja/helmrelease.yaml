@@ -30,6 +30,12 @@ spec:
     additionalContainers:
       - name: frontend
         image: vikunja/frontend:0.19.1
+        resources:
+          requests:
+            cpu: 10m
+            memory: 26Mi
+          limits:
+            memory: 28Mi
       - name: api
         image: vikunja/api:0.19.2
         env:
@@ -44,7 +50,7 @@ spec:
           - name: VIKUNJA_DATABASE_USER
             value: vikunja
           - name: VIKUNJA_SERVICE_FRONTENDURL
-            value: https://tasks.${SECRET_DOMAIN}
+            value: https://tasks.${EXTERNAL_DOMAIN}
           - name: VIKUNJA_MAILER_FROMEMAIL
             value: tasks@${EMAIL_DOMAIN}
           - name: VIKUNJA_MAILER_ENABLED
@@ -68,6 +74,12 @@ spec:
               secretKeyRef:
                 name: *app
                 key: *envdbpass
+        resources:
+          requests:
+            cpu: 15m
+            memory: 24Mi
+          limits:
+            memory: 300Mi
 
         volumeMounts:
           - name: files
@@ -118,17 +130,17 @@ spec:
           configMap:
             name: vikunja
       caddy-config:
-         enabled: "true"
-         mountPath: /etc/caddy/Caddyfile
-         subPath: Caddyfile
-         type: "custom"
-         volumeSpec:
-           configMap:
-             name: vikunja
+        enabled: "true"
+        mountPath: /etc/caddy/Caddyfile
+        subPath: Caddyfile
+        type: "custom"
+        volumeSpec:
+          configMap:
+            name: vikunja
 
-    # resources:
-    #   requests:
-    #     cpu: 5m
-    #     memory: 10Mi
-    #   limits:
-    #     memory: 500Mi
+    resources:
+      requests:
+        cpu: 15m
+        memory: 22Mi
+      limits:
+        memory: 60Mi
