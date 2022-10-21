@@ -48,7 +48,7 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: ${NAS_ADDRESS}
+            server: george.${INTERNAL_DOMAIN}
             path: /volume1/
         mountPath: /media
         readOnly: false
