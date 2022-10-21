@@ -1,0 +1,34 @@
+root:
+    log_level: debug
+discord:
+    prefix: '?'
+    token: ENC[AES256_GCM,data:2dSfClIbJvNKPtx0qkPzljtdTq1wP0i0vUJxBwFA8+/UOoFrET7UA08TXjp1eoD3K5HDv1EPWFc3Q2u92bExqgCvXlLR4pyN,iv:zW6k/MRIm/fL0963b31XXeoOnGvpKUzLjphVfcg8xj4=,tag:KIPTjfNNQU6LoF6PZGeprg==,type:str]
+    log_level: debug
+plex:
+    base_url: plex.media.svc.cluster.local
+    token: ENC[AES256_GCM,data:u/Dk+BaU5EQXZk0UMwvHlFC7/sI=,iv:L69K0B4sM2fSDVD/F1wnXk4TZMo8FyPH/1A8fxdKlHc=,tag:j65QNd6jlZXOsYD4vCjHgQ==,type:str]
+    library_name: NatFlix V2
+    log_level: debug
+lyrics:
+    # Add your token here if you enable lyrics
+    token: ENC[AES256_GCM,data:5mXUZA==,iv:ZgdGeUwiFfMOkimek2nIzjXZltJAFF/UNhGlCCRo4mI=,tag:a1wHXrobHtbinQEGNosqXQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age12kzuwvvedndehkke84apwamungqrcavf2khwjvd46f6lkq0wqq5q3s3vth
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwYXZsUlRYdGZmU1NqSk1N
+            ZTYzNElXbUNPWGo5Q0FsOTRVTUJZdXNLYjNnCmxCREl5aHJRTHRWYWxyOUhwbFVB
+            ZTJMcE5zbmgydnJLWVZ6dm5IVUpIdEEKLS0tIEw4NHhLcmpJbFVNYVlHdndNSlgz
+            TXUzblNZb0V2UlZTdDdidHBCci83SlEK+Kqv/jREc9mA88BppG9vCOLPVhyih6lN
+            soe929/zcRhWvWwPgZcP/8BTTMbA90U0N4o2yRRNI7z7xaVCtKdKfA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-10-21T13:24:44Z"
+    mac: ENC[AES256_GCM,data:PEqv3ZeA9MmerSwPERbvJIvtJCqFHsZUmTxt/BE3UVIEQayRs8HoNiTlOTZzsp8CkeNdsAR/7KGnEhLKHy72qY7cdtlORu1ChAXIf7xzUvY/OWnC4aVE5KrUE6W+VPJzgqaO0qz1r7G/kd2/HzMD7JgOVVr5UpAQXz5Pk0/Dn+g=,iv:aoQWNbbLXfW2IEjs7FZR6YMQ3ETDBdrnRf3bLYUl58E=,tag:UdJsQ0KOpbA9CMVrJjJf7g==,type:str]
+    pgp: []
+    encrypted_regex: ((?i)(pass|secret($|[^N])|key|token|^data$|^stringData))
+    version: 3.7.3

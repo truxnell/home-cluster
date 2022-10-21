@@ -31,10 +31,6 @@ spec:
       repository: jarulsamy/plex-bot
       tag: latest@sha256:bcc2b1032f402a289a3594cbca03853b3bae04c992981acfd4ab11a1e8308cb4
       pullPolicy: IfNotPresent
-    args:
-      - --persist
-      - --dir
-      - "/media/downloads/openbooks/"
 
     env:
       TZ: ${TZ}
@@ -43,25 +39,8 @@ spec:
 
     service:
       main:
-        ports:
-          http:
-            port: 80
+        enabled: false
 
-    ingress:
-      main:
-        enabled: true
-        ingressClassName: "nginx"
-        annotations:
-
-        hosts:
-          - host: &host "openbooks.${EXTERNAL_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-
-        tls:
-          - hosts:
-            - *host
 
     persistence:
       nfs-nas-media:
@@ -73,3 +52,17 @@ spec:
             path: /volume1/
         mountPath: /media
         readOnly: false
+      filebrowser:
+        enabled: true
+        type: configMap
+        name: *app
+        subPath: config.yaml
+        mountPath: /config/config.yaml
+        readOnly: true
+
+    # resources:
+    #   requests:
+    #     cpu: 10m
+    #     memory: 50Mi
+    #   limits:
+    #     memory: 500Mi
