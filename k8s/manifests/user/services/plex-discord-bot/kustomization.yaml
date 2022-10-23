@@ -7,7 +7,7 @@ resources:
 configMapGenerator:
   - name: plex-discord-bot
     files:
-      - ./config/config.sops.yaml
+      - ./config/config.yaml
 generatorOptions:
   disableNameSuffixHash: true
   annotations:

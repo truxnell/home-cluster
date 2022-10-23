@@ -1,0 +1,14 @@
+root:
+    log_level: debug
+discord:
+    prefix: '?'
+    token: ${SECRET_PLEX_BOT_DISCORD_TOKEN}
+    log_level: debug
+plex:
+    base_url: plex.media.svc.cluster.local
+    token: ${SECRET_PLEX_BOT_PLEX_TOKEN}
+    library_name: NatFlix V2
+    log_level: debug
+lyrics:
+    # Add your token here if you enable lyrics
+    token: none

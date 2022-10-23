@@ -56,7 +56,7 @@ spec:
         enabled: true
         type: configMap
         name: *app
-        # subPath: config.yaml
+        subPath: config.yaml
         mountPath: /config/config.yaml
         readOnly: true
 
