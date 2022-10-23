@@ -1,3 +1,4 @@
+---
 root:
     log_level: debug
 discord:
@@ -5,7 +6,7 @@ discord:
     token: ${SECRET_PLEX_BOT_DISCORD_TOKEN}
     log_level: debug
 plex:
-    base_url: http://plex.media.svc.cluster.local
+    base_url: http://plex.media.svc.cluster.local:32400
     token: ${SECRET_PLEX_BOT_PLEX_TOKEN}
     library_name: NatFlix V2
     log_level: debug
