@@ -8,7 +8,7 @@ discord:
 plex:
     base_url: http://plex.media.svc.cluster.local:32400
     token: ${SECRET_PLEX_BOT_PLEX_TOKEN}
-    library_name: NatFlix V2
+    library_name: Music
     log_level: debug
 lyrics:
     # Add your token here if you enable lyrics
