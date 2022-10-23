@@ -28,7 +28,7 @@ spec:
     global:
       nameOverride: *app
     image:
-      repository: ghcr.io/truxnell/plex-bot
+      repository: ghcr.io/truxnell/plex-bot/plex-bot
       tag: latest
       pullPolicy: Always
 
