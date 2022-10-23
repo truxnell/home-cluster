@@ -28,9 +28,9 @@ spec:
     global:
       nameOverride: *app
     image:
-      repository: jarulsamy/plex-bot
-      tag: latest@sha256:bcc2b1032f402a289a3594cbca03853b3bae04c992981acfd4ab11a1e8308cb4
-      pullPolicy: IfNotPresent
+      repository: ghcr.io/truxnell/plex-bot
+      tag: latest
+      pullPolicy: Always
 
     env:
       TZ: ${TZ}
