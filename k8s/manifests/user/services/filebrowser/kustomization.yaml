@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: services
 resources:
   - ./config-pvc.yaml
-  - ./helm-release.yaml
+  - ./helmrelease.yaml
 configMapGenerator:
   - name: filebrowser-config
     files:
