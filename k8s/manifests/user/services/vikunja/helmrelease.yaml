@@ -37,7 +37,7 @@ spec:
           limits:
             memory: 28Mi
       - name: api
-        image: vikunja/api:unstable@sha256:a68e7eecb3ade6ef9c92086634a5f163f518263d30bf0df6255fd05f8113cc5a
+        image: vikunja/api:unstable@sha256:a7d074f6df812e37ecb62564de0ab439c7325376849208e5952298486ec40241
         env:
           - name: VIKUNJA_SERVICE_TIMEZONE
             value: ${TZ}
