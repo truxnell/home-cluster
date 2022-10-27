@@ -29,7 +29,7 @@ spec:
 
     additionalContainers:
       - name: frontend
-        image: vikunja/frontend:unstable@sha256:0cf27b4dea97277b39d1d4007eef02adb7dae596bd9d8ad52cddd0051e641b8d
+        image: vikunja/frontend:unstable@sha256:d988c964ddae72af2dedf4cf369f024b0845ab1e96556417a53ddd7307f591c3
         resources:
           requests:
             cpu: 10m
