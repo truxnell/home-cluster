@@ -29,7 +29,7 @@ spec:
 
     additionalContainers:
       - name: frontend
-        image: vikunja/frontend:unstable@sha256:a18e91d2f8f7967354f2ab37b270a3001d33299eced65396dc7b657c38ac8ab5
+        image: vikunja/frontend:0.20.0
         resources:
           requests:
             cpu: 10m
@@ -37,7 +37,7 @@ spec:
           limits:
             memory: 28Mi
       - name: api
-        image: vikunja/api:unstable@sha256:d37dccaba0cc788097959b24f99c7b8c544eda4b282f9dd39c68412f80861de6
+        image: vikunja/api:0.20.0
         env:
           - name: VIKUNJA_SERVICE_TIMEZONE
             value: ${TZ}
