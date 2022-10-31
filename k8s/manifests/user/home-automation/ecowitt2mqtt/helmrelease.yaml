@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: bachya/ecowitt2mqtt
-      tag: latest@sha256:2d01290a501b21c04cf2140180c9141a9c0933ac855bc7475991c6c043b9b721
+      tag: latest@sha256:2b126575c0aba732a944a8ba868f3dc5ff4a633a5fc05dad120b67842412fd76
 
     controller:
       replicas: 3
