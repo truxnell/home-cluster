@@ -59,7 +59,7 @@ spec:
           nfs:
             server: george.${INTERNAL_DOMAIN}
             path: /tank/music
-        mountPath: /music
+        mountPath: /music/localtracks
         readOnly: false
 
       config:
