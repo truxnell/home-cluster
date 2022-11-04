@@ -58,8 +58,8 @@ spec:
         volumeSpec:
           nfs:
             server: george.${INTERNAL_DOMAIN}
-            path: /tank/music/
-        mountPath: /data/cogs/Audio/localtracks
+            path: /tank/music
+        mountPath: /music
         readOnly: false
 
       config:
