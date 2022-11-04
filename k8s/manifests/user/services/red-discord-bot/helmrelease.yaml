@@ -34,19 +34,14 @@ spec:
 
     env:
       TZ: ${TZ}
-      PUID: "568"
-      GUID: "568"
+      PUID: 568
+      PGID: 568
       PREFIX: "?"
 
     envFrom:
       - secretRef:
           name: *app
 
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
 
     service:
       main:
