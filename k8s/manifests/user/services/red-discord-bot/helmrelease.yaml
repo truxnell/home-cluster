@@ -34,11 +34,19 @@ spec:
 
     env:
       TZ: ${TZ}
+      PUID: "568"
+      GUID: "568"
       PREFIX: "?"
 
     envFrom:
       - secretRef:
           name: *app
+
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
 
     service:
       main:
@@ -59,7 +67,7 @@ spec:
         mountPath: /data/cogs/Audio/localtracks
         readOnly: false
 
-      data:
+      config:
         enabled: true
         existingClaim: red-discord-bot-config-v1
         mountPath: /data/
