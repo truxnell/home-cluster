@@ -4,3 +4,5 @@ kind: Kustomization
 namespace: services
 resources:
   - ./helmrelease.yaml
+  - ./secret.sops.yaml
+  - ./config-pvc.yaml

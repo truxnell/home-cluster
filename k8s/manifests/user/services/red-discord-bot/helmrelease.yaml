@@ -61,6 +61,11 @@ spec:
         mountPath: /data/cogs/Audio/localtracks
         readOnly: false
 
+      data:
+        enabled: true
+        existingClaim: red-discord-bot-config-v1
+        mountPath: /data/
+
     # resources:
     #   requests:
     #     cpu: 10m
