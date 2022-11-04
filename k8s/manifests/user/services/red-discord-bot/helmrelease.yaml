@@ -34,8 +34,6 @@ spec:
 
     env:
       TZ: ${TZ}
-      PUID: "1000"
-      GUID: "1000"
       PREFIX: "?"
 
     envFrom:
