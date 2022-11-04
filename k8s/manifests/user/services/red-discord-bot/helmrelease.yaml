@@ -35,7 +35,7 @@ spec:
     env:
       TZ: ${TZ}
       PUID: 568
-      PGID: 568
+      PGID: 1000
       PREFIX: "?"
 
     envFrom:
@@ -58,7 +58,7 @@ spec:
         volumeSpec:
           nfs:
             server: george.${INTERNAL_DOMAIN}
-            path: /tank/
+            path: /tank/music/
         mountPath: /data/cogs/Audio/localtracks
         readOnly: false
 
