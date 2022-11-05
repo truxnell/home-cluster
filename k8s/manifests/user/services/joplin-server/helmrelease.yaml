@@ -31,7 +31,7 @@ spec:
   values:
     image:
       repository: joplin/server
-      tag: latest@sha256:56d46e1a8baa62ba967635e36bec7b0a5a4d1cbd6009d0f68f000778a6ff32d0
+      tag: latest@sha256:4f29677b1d4e4741110b01fa91cf8b3842db2a00a9a42f97c75daa7c3649a20f
     env:
       # env-sample: https://github.com/laurent22/joplin/blob/dev/.env-sample
       # Basic setup
