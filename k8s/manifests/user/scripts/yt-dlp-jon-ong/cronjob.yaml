@@ -34,6 +34,8 @@ spec:
                   "--embed-thumbnail",
                   "--parse-metadata",
                   "Twitch Highlights:%(meta_album)s",
+                  "--parse-metadata",
+                  "Jonathan Ong:%(meta_artist)s",
                   "--xattrs",
                 ]
               volumeMounts:
