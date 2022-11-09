@@ -17,7 +17,7 @@ spec:
 
           containers:
             - name: *app
-              image: tnk4on/yt-dlp:latest
+              image: ghcr.io/truxnell/container-images/yt-dlp:latest
               imagePullPolicy: IfNotPresent
               args:
                 [
