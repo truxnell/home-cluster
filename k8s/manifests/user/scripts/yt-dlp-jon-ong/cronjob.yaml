@@ -23,17 +23,17 @@ spec:
                 [
                   "-f",
                   "ba",
-                  "'https://www.youtube.com/c/JonathanOng/videos'",
+                  "https://www.youtube.com/c/JonathanOng/videos",
                   "--remux-video",
                   "opus",
                   "-o",
-                  "'/music/Jonathan Ong/Twitch Highlights/%(title)s.%(ext)s'",
+                  "/music/Jonathan Ong/Twitch Highlights/%(title)s.%(ext)s",
                   "--download-archive",
                   "/music/Jonathan Ong/Twitch Highlights/yt-dl-history.txt",
                   "--add-metadata",
                   "--embed-thumbnail",
                   "--parse-metadata",
-                  "'Twitch Highlights:%(meta_album)s'",
+                  "Twitch Highlights:%(meta_album)s",
                   "--xattrs",
                 ]
               volumeMounts:
