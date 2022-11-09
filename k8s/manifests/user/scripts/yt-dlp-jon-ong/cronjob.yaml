@@ -27,16 +27,16 @@ spec:
                   "--remux-video",
                   "opus",
                   "-o",
-                  "/music/Jonathan Ong/Twitch Highlights/%(title)s.%(ext)s",
+                  "'/music/Jonathan Ong/Twitch Highlights/%(title)s.%(ext)s'",
                   "--download-archive",
-                  "/music/Jonathan Ong/Twitch Highlights/yt-dl-history.txt",
+                  "'/music/Jonathan Ong/Twitch Highlights/ytdlhistory.txt'",
                   "--add-metadata",
                   "--embed-thumbnail",
                   "--parse-metadata",
-                  "Twitch Highlights:%(meta_album)s",
+                  "'Twitch Highlights:%(meta_album)s'",
                   "--parse-metadata",
-                  "Jonathan Ong:%(meta_artist)s",
-                  "--xattrs",
+                  "'Jonathan Ong:%(meta_artist)s'",
+                  "-v"
                 ]
               volumeMounts:
                 - mountPath: /music
