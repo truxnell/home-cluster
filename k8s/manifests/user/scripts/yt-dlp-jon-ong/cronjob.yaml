@@ -1,0 +1,34 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: &app yt-dlp-jon-ong
+  namespace: scripts
+  labels:
+    app: *app
+spec:
+  schedule: "30 17 * * *"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          automountServiceAccountToken: false
+
+          containers:
+            - name: *app
+              image: tnk4on/yt-dlp:latest
+              imagePullPolicy: IfNotPresent
+              command:
+                - "-f ba 'https://www.youtube.com/c/JonathanOng/videos' --remux-video opus -o '/music/Jonathan Ong/Twitch Highlights/%(title)s.%(ext)s' --download-archive /music/Jonathan Ong/Twitch Highlights/archive.txt --add-metadata --embed-thumbnail --parse-metadata 'Twitch Highlights:%(meta_album)s' --xattrs"
+              volumeMounts:
+                - mountPath: /music
+                  name: nas
+
+          restartPolicy: OnFailure
+
+          volumes:
+            - name: nas
+              nfs:
+                server: "george.${INTERNAL_DOMAIN}"
+                path: /media/music/
