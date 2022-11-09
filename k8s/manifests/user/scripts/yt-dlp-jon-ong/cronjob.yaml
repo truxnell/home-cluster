@@ -31,4 +31,4 @@ spec:
             - name: nas
               nfs:
                 server: "george.${INTERNAL_DOMAIN}"
-                path: /media/music/
+                path: /tank/music/
