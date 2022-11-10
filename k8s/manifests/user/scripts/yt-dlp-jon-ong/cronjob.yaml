@@ -20,23 +20,21 @@ spec:
               image: ghcr.io/truxnell/container-images/yt-dlp:latest
               imagePullPolicy: IfNotPresent
               args:
-                [
-                  "-f",
-                  "ba",
-                  "\"https://www.youtube.com/c/JonathanOng/videos\"",
-                  "--remux-video",
-                  "opus",
-                  "-o",
-                  "\"/music/Jonathan Ong/Twitch Highlights/%(title)s.%(ext)s\"",
-                  "--download-archive",
-                  "\"/music/Jonathan Ong/Twitch Highlights/ytdlhistory.txt\"",
-                  "--add-metadata",
-                  "--embed-thumbnail",
-                  "--parse-metadata",
-                  "\"Twitch Highlights:%(meta_album)s\"",
-                  "--parse-metadata",
-                  "\"Jonathan Ong:%(meta_artist)s\"",
-                ]
+                - -f
+                - ba
+                - https://www.youtube.com/c/JonathanOng/videos
+                - --remux-video
+                - opus
+                - -o
+                - /music/Jonathan Ong/Twitch Highlights/%(title)s.%(ext)s
+                - --download-archive
+                - /music/Jonathan Ong/Twitch Highlights/ytdlhistory.txt
+                - --add-metadata
+                - --embed-thumbnail
+                - --parse-metadata
+                - Twitch Highlights:%(meta_album)s
+                - --parse-metadata
+                - Jonathan Ong:%(meta_artist)s
               volumeMounts:
                 - mountPath: /music
                   name: nas
