@@ -36,7 +36,6 @@ spec:
                   "'Twitch Highlights:%(meta_album)s'",
                   "--parse-metadata",
                   "'Jonathan Ong:%(meta_artist)s'",
-                  "-v"
                 ]
               volumeMounts:
                 - mountPath: /music
