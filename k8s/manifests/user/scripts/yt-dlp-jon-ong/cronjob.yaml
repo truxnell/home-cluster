@@ -35,6 +35,8 @@ spec:
                 - Twitch Highlights:%(meta_album)s
                 - --parse-metadata
                 - Jonathan Ong:%(meta_artist)s
+                - --parse-metadata
+                - Jonathan Ong:%(meta_album_artist)s
               volumeMounts:
                 - mountPath: /music
                   name: nas
