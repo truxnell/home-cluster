@@ -28,7 +28,7 @@ spec:
     fullNameOverride: *app
     image:
       repository: docker.io/benbusby/whoogle-search
-      tag: 0.7.2
+      tag: 0.7.4
     env:
       WHOOGLE_ALT_TW: nitter.${EXTERNAL_DOMAIN}
       WHOOGLE_ALT_YT: farside.link/invidious
