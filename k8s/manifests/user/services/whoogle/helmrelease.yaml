@@ -34,12 +34,12 @@ spec:
       WHOOGLE_ALT_YT: farside.link/invidious
       WHOOGLE_ALT_IG: imginn.com
       WHOOGLE_ALT_RD: libreddit.${EXTERNAL_DOMAIN}
-      WHOOGLE_ALT_MD: scripe.rip
-      WHOOGLE_ALT_TL: farside.link/lingva
+      WHOOGLE_ALT_MD: scribe.rip
+      WHOOGLE_ALT_TL: ""
       WHOOGLE_ALT_IMG: bibliogram.art
-      WHOOGLE_ALT_IMDB: farside.link/libremdb
+      WHOOGLE_ALT_IMDB: ""
       WHOOGLE_ALT_WIKI: wikiwand.com
-      WHOOGLE_ALT_QUORA: farside.link/quetre
+      WHOOGLE_ALT_QUORA: ""
       WHOOGLE_CONFIG_ALTS: 1
       # WHOOGLE_CONFIG_COUNTRY: AU
       # WHOOGLE_CONFIG_GET_ONLY: 1
