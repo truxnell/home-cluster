@@ -30,9 +30,6 @@ spec:
     image:
       repository: docker.io/zedeus/nitter
       tag: 2ac3afa5b273a502d7632e9346c7c3bc9283fb48
-    env:
-      LIBREDDIT_DEFAULT_SHOW_NSFW: true
-      LIBREDDIT_DEFAULT_WIDE: true
 
     service:
       main:
