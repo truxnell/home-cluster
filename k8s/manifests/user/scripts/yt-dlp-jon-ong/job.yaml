@@ -1,0 +1,41 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: &app yt-dlp-jon-ong
+  namespace: scripts
+  labels:
+    app: *app
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: *app
+          image: ghcr.io/truxnell/container-images/yt-dlp:v2022.10.04
+          imagePullPolicy: IfNotPresent
+          args:
+            - -f
+            - ba
+            - https://www.youtube.com/c/JonathanOng/videos
+            - --remux-video
+            - opus
+            - -o
+            - /music/1test/Twitch Highlights/%(title)s.%(ext)s
+            - --add-metadata
+            - --embed-thumbnail
+            - --parse-metadata
+            - Twitch Highlights:%(meta_album)s
+            - --parse-metadata
+            - Jonathan Ong:%(meta_artist)s
+            - --parse-metadata
+            - Jonathan Ong:%(meta_album_artist)s
+          volumeMounts:
+            - mountPath: /music
+              name: nas
+
+      volumes:
+        - name: nas
+          nfs:
+            server: "george"
+            path: /tank/music/
