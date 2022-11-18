@@ -34,3 +34,12 @@
     volume:
       - "/tank/minio:/data:z"
   become: false
+
+- name: enable podman-systemd | minio
+  ansible.builtin.systemd:
+    name: ansible-minio
+    enabled: true
+    scope: user
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_user_uid }}"
+  become: false
