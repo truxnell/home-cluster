@@ -32,19 +32,22 @@ spec:
     env:
       WHOOGLE_ALT_TW: farside.link/nitter
       WHOOGLE_ALT_YT: farside.link/invidious
-      WHOOGLE_ALT_IG: farside.link/bibliogram/u
+      WHOOGLE_ALT_IG: imginn.com
       WHOOGLE_ALT_RD: farside.link/libreddit
       WHOOGLE_ALT_MD: scripe.rip
       WHOOGLE_ALT_TL: farside.link/lingva
       WHOOGLE_ALT_IMG: bibliogram.art
       WHOOGLE_ALT_IMDB: farside.link/libremdb
-      WHOOGLE_ALT_WIKI: wikiless.org
+      WHOOGLE_ALT_WIKI: wikiwand.com
       WHOOGLE_ALT_QUORA: farside.link/quetre
       WHOOGLE_CONFIG_ALTS: 1
       # WHOOGLE_CONFIG_COUNTRY: AU
       # WHOOGLE_CONFIG_GET_ONLY: 1
       WHOOGLE_CONFIG_THEME: system
       # WHOOGLE_CONFIG_URL: https://whoogle.${SECRET_CLUSTER_DOMAIN}/
+      WHOOGLE_CONFIG_DISABLE: false
+      WHOOGLE_CONFIG_VIEW_IMAGE: true
+      WHOOGLE_CONFIG_NEW_TAB: false
     service:
       main:
         ports:
