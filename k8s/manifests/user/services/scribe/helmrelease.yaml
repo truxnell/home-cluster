@@ -1,0 +1,79 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app invidious-server
+  namespace: services
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.0.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    controller:
+      replicas: 3
+      strategy: RollingUpdate
+    fullNameOverride: *app
+
+    image:
+      repository: fariszr/scribe
+      tag: latest
+
+    env:
+      APP_DOMAIN: scribe.${EXTERNAL_DOMAIN}
+      LUCKY_ENV: production
+      PORT: 8080
+
+    envFrom:
+      - secretRef:
+          name: *app
+
+    service:
+      main:
+        ports:
+          http:
+            port: &port 8080
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          external-dns.home.arpa/enabled: "true"
+
+        hosts:
+          - host: &host "scribe.${EXTERNAL_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: *app
+
+
+    resources:
+      requests:
+        cpu: 5m
+        memory: 50Mi
+      limits:
+        memory: 250Mi
