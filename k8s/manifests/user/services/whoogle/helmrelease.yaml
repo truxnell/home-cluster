@@ -31,7 +31,7 @@ spec:
       tag: 0.7.4
     env:
       WHOOGLE_ALT_TW: nitter.${EXTERNAL_DOMAIN}
-      WHOOGLE_ALT_YT: farside.link/invidious
+      WHOOGLE_ALT_YT: invidious.${EXTERNAL_DOMAIN}
       WHOOGLE_ALT_IG: imginn.com
       WHOOGLE_ALT_RD: libreddit.${EXTERNAL_DOMAIN}
       WHOOGLE_ALT_MD: scribe.rip
