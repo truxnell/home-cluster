@@ -23,14 +23,14 @@ spec:
       retries: 5
   values:
     image:
-      repository: ghcr.io/onedr0p/lidarr-develop
-      tag: 1.1.0.2649@sha256:fa286e1271ac7fcd29f25be9b9b3a8170f1e0ad4e12607aa03a3463fdbaca31a
+      repository: youegraillot/lidarr-on-steroids
+      tag: 1.2.6
 
     env:
       TZ: "${TZ}"
-      LIDARR__INSTANCE_NAME: Lidarr
-      LIDARR__PORT: &port 80
-      LIDARR__LOG_LEVEL: info
+      AUTOCONFIG: true
+      PUID: 568
+      PGID: 568
 
     envFrom:
       - secretRef:
@@ -40,7 +40,12 @@ spec:
       main:
         ports:
           http:
-            port: *port
+            port: 8686
+      deemix:
+        ports:
+          http:
+            enabled: true
+            port: 6595
 
     ingress:
       main:
@@ -72,6 +77,9 @@ spec:
       config:
         enabled: true
         existingClaim: lidarr-config-v1
+      config-deemix:
+        enabled: true
+        existingClaim: lidarr-deemix-config-v1
       media:
         enabled: true
         type: nfs
