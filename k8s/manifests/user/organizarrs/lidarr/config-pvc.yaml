@@ -21,6 +21,25 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
+  name: lidarr-config-2-v1
+  namespace: organizarrs
+  labels:
+    app.kubernetes.io/name: &name lidarr
+    app.kubernetes.io/instance: *name
+    snapshot.home.arpa/enabled: "true"
+spec:
+  accessModes:
+    - ReadWriteOnce
+
+  resources:
+    requests:
+      storage: 20Gi
+
+  storageClassName: ceph-block
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
   name: lidarr-deemix-config-v1
   namespace: organizarrs
   labels:
