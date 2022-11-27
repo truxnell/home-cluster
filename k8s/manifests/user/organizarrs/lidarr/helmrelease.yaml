@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: youegraillot/lidarr-on-steroids
-      tag: 1.2.6
+      tag: 1.2.7
 
     env:
       TZ: "${TZ}"
