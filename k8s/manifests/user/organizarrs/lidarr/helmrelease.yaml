@@ -65,7 +65,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: lidarr-config-2-v1
+        existingClaim: lidarr-config-v1
       config-deemix:
         enabled: true
         existingClaim: lidarr-deemix-config-v1
