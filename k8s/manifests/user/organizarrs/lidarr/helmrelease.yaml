@@ -39,9 +39,7 @@ spec:
         ports:
           http:
             port: 8686
-      deemix:
-        ports:
-          http:
+          dmix:
             enabled: true
             port: 6595
 
