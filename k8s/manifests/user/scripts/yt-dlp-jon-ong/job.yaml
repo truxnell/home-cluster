@@ -17,11 +17,11 @@ spec:
           args:
             - -f
             - ba
-            - https://www.youtube.com/c/JonathanOng/videos
+            - https://www.twitch.tv/videos/1665385955
             - --remux-video
             - opus
             - -o
-            - /music/1test/Twitch Highlights/%(title)s.%(ext)s
+            - /music/Jonathan Ong/Twitch Highlights/%(title)s.%(ext)s
             - --add-metadata
             - --embed-thumbnail
             - --parse-metadata
@@ -30,6 +30,10 @@ spec:
             - Jonathan Ong:%(meta_artist)s
             - --parse-metadata
             - Jonathan Ong:%(meta_album_artist)s
+            - --parse-metadata
+            - Knights who say Ni:%(meta_title)s
+            - --download-sections
+            - "*2:14:54-2:15:53"
           volumeMounts:
             - mountPath: /music
               name: nas
