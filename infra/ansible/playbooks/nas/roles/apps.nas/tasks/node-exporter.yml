@@ -2,7 +2,7 @@
 - name: run node-exporter
   containers.podman.podman_container:
     name: node-exporter
-    image: "quay.io/prometheus/node-exporter:v1.4.0"
+    image: "quay.io/prometheus/node-exporter:v1.4.1"
     state: started
     privileged: true
     network: host
