@@ -10,7 +10,7 @@
 - name: run minio
   containers.podman.podman_container:
     name: minio
-    image: "quay.io/minio/minio:RELEASE.2022-11-08T05-27-07Z"
+    image: "quay.io/minio/minio:RELEASE.2022-11-29T23-40-49Z"
     state: started
     network: host
     command:
