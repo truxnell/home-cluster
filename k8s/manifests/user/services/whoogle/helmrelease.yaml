@@ -35,11 +35,11 @@ spec:
       WHOOGLE_ALT_IG: imginn.com
       WHOOGLE_ALT_RD: libreddit.${EXTERNAL_DOMAIN}
       WHOOGLE_ALT_MD: scribe.${EXTERNAL_DOMAIN}
-      WHOOGLE_ALT_TL: ""
+      WHOOGLE_ALT_TL: ''
       WHOOGLE_ALT_IMG: bibliogram.art
-      WHOOGLE_ALT_IMDB: ""
-      WHOOGLE_ALT_WIKI: ""
-      WHOOGLE_ALT_QUORA: ""
+      WHOOGLE_ALT_IMDB: ''
+      WHOOGLE_ALT_WIKI: ''
+      WHOOGLE_ALT_QUORA: ''
       WHOOGLE_CONFIG_ALTS: 1
       # WHOOGLE_CONFIG_COUNTRY: AU
       # WHOOGLE_CONFIG_GET_ONLY: 1
@@ -47,9 +47,8 @@ spec:
       WHOOGLE_CONFIG_URL: https://search.${EXTERNAL_DOMAIN}/
       WHOOGLE_CONFIG_GET_ONLY: 1
       WHOOGLE_CONFIG_COUNTRY: AU
-      WHOOGLE_CONFIG_THEME: system
       # WHOOGLE_CONFIG_DISABLE: false
-      # WHOOGLE_CONFIG_VIEW_IMAGE: 
+      # WHOOGLE_CONFIG_VIEW_IMAGE:
       # WHOOGLE_CONFIG_NEW_TAB: false
     service:
       main:
@@ -59,12 +58,12 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: "true"
+          external-dns.home.arpa/enabled: 'true'
 
         hosts:
-          - host: &host "search.${EXTERNAL_DOMAIN}"
+          - host: &host 'search.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
