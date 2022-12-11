@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/system-monitoring/prometheus-rules"
+  path: './k8s/manifests/user/system-monitoring/prometheus-rules'
   prune: true
   wait: true
   sourceRef:
@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/system-monitoring/botkube"
+  path: './k8s/manifests/user/system-monitoring/botkube'
   prune: true
   wait: true
   sourceRef:
@@ -34,7 +34,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/system-monitoring/blackbox-exporter"
+  path: './k8s/manifests/user/system-monitoring/blackbox-exporter'
   prune: true
   wait: true
   sourceRef:
@@ -48,7 +48,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/system-monitoring/prometheus-smartctl"
+  path: './k8s/manifests/user/system-monitoring/prometheus-smartctl'
   prune: true
   wait: true
   sourceRef:
@@ -62,7 +62,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/system-monitoring/goldilocks"
+  path: './k8s/manifests/user/system-monitoring/goldilocks'
   prune: true
   wait: true
   sourceRef:
@@ -76,7 +76,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/system-monitoring/vpa"
+  path: './k8s/manifests/user/system-monitoring/vpa'
   prune: true
   wait: true
   sourceRef:
@@ -90,7 +90,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/system-monitoring/hs110-exporter-prusa"
+  path: './k8s/manifests/user/system-monitoring/hs110-exporter-prusa'
   prune: true
   wait: true
   sourceRef:
@@ -104,7 +104,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/system-monitoring/hs110-exporter-rack"
+  path: './k8s/manifests/user/system-monitoring/hs110-exporter-rack'
   prune: true
   wait: true
   sourceRef:
@@ -118,7 +118,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/system-monitoring/grafana"
+  path: './k8s/manifests/user/system-monitoring/grafana'
   prune: true
   wait: true
   sourceRef:
@@ -132,7 +132,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/system-monitoring/speedtest-exporter"
+  path: './k8s/manifests/user/system-monitoring/speedtest-exporter'
   prune: true
   wait: true
   sourceRef:
@@ -146,7 +146,21 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/system-monitoring/kube-cleanup-operator"
+  path: './k8s/manifests/user/system-monitoring/kube-cleanup-operator'
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepositor
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: user-system-monitoring-hs110-exporter-kp115-1
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: './k8s/manifests/user/system-monitoring/hs110-exporter-kp115-1'
   prune: true
   wait: true
   sourceRef:
