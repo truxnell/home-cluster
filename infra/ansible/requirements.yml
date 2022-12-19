@@ -14,7 +14,7 @@ roles:
   - src: geerlingguy.docker
     version: 6.0.2
   - name: semuadmin.octoprint
-    version: v1.0.4
+    version: v1.0.5
   - src: https://github.com/mrlesmithjr/ansible-zfs.git
     scm: git
     name: mrlesmithjr.zfs
