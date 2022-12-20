@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/hajimari"
+  path: './k8s/manifests/user/services/hajimari'
   prune: true
   wait: true
   sourceRef:
@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/theme-park"
+  path: './k8s/manifests/user/services/theme-park'
   prune: true
   wait: true
   sourceRef:
@@ -34,7 +34,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/paperless"
+  path: './k8s/manifests/user/services/paperless'
   prune: true
   wait: true
   sourceRef:
@@ -48,7 +48,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/obsidian-db"
+  path: './k8s/manifests/user/services/obsidian-db'
   prune: true
   wait: true
   sourceRef:
@@ -62,7 +62,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/language-tools"
+  path: './k8s/manifests/user/services/language-tools'
   prune: true
   wait: true
   sourceRef:
@@ -76,7 +76,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/kopia"
+  path: './k8s/manifests/user/services/kopia'
   prune: true
   wait: true
   sourceRef:
@@ -90,7 +90,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/smtp-relay"
+  path: './k8s/manifests/user/services/smtp-relay'
   prune: true
   wait: true
   sourceRef:
@@ -104,7 +104,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/miniflux"
+  path: './k8s/manifests/user/services/miniflux'
   prune: true
   wait: true
   sourceRef:
@@ -118,7 +118,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/excalidraw"
+  path: './k8s/manifests/user/services/excalidraw'
   prune: true
   wait: true
   sourceRef:
@@ -132,7 +132,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/radicale"
+  path: './k8s/manifests/user/services/radicale'
   prune: true
   wait: true
   sourceRef:
@@ -146,7 +146,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/vikunja"
+  path: './k8s/manifests/user/services/vikunja'
   prune: true
   wait: true
   sourceRef:
@@ -160,7 +160,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/red-discord-bot"
+  path: './k8s/manifests/user/services/red-discord-bot'
   prune: true
   wait: true
   sourceRef:
@@ -174,7 +174,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/filebrowser"
+  path: './k8s/manifests/user/services/filebrowser'
   prune: true
   wait: true
   sourceRef:
@@ -188,7 +188,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/whoogle"
+  path: './k8s/manifests/user/services/whoogle'
   prune: true
   wait: true
   sourceRef:
@@ -202,7 +202,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/libreddit"
+  path: './k8s/manifests/user/services/libreddit'
   prune: true
   wait: true
   sourceRef:
@@ -216,7 +216,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/nitter"
+  path: './k8s/manifests/user/services/nitter'
   prune: true
   wait: true
   sourceRef:
@@ -230,7 +230,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/invidious"
+  path: './k8s/manifests/user/services/invidious'
   prune: true
   wait: true
   sourceRef:
@@ -244,7 +244,21 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/services/scribe"
+  path: './k8s/manifests/user/services/scribe'
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: user-services-pleroma-rebased
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: './k8s/manifests/user/services/pleromoa-rebased'
   prune: true
   wait: true
   sourceRef:
