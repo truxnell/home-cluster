@@ -32,7 +32,7 @@ spec:
       tag: latest
 
     env:
-      DOMAIN: &host 'pleroma.${EXTERNAL_DOMAIN}'
+      DOMAIN: &host 'fedi.${WEBSITE_DOMAIN}'
       INSTANCE_NAME: 'NatFlix Fediverse'
       ADMIN_EMAIL: 'admin@trux.dev'
       DB_USER: ${SECRET_PLEROMA_REBASED_DB_USER}
