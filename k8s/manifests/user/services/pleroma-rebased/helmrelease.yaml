@@ -71,7 +71,13 @@ spec:
           matchLabels:
             app.kubernetes.io/name: *app
 
-    # probes:
+    persistence:
+      config:
+        enabled: true
+        existingClaim: filebrowser-config-v1
+        path: /var/lib/plemora/
+
+        # probes:
     #   liveness: &probes
     #     enabled: true
     #     custom: true
