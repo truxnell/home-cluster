@@ -74,7 +74,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: filebrowser-config-v1
+        existingClaim: pleroma-config-v1
         path: /var/lib/pleroma/
 
         # probes:
