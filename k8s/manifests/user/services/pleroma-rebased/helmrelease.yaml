@@ -83,7 +83,7 @@ spec:
       config-exa:
         enabled: true
         type: configMap
-        name: pleroma-rebasedconfig
+        name: pleroma-rebased-config
         subPath: config.exa
         mountPath: /var/lib/pleroma/config.exs
         readOnly: true
