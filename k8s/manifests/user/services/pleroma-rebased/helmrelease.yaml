@@ -72,10 +72,14 @@ spec:
             app.kubernetes.io/name: *app
 
     persistence:
-      config:
+      static:
         enabled: true
         existingClaim: pleroma-config-v1
-        mountPath: /var/lib/pleroma/
+        mountPath: /var/lib/pleroma/static
+      uploads:
+        enabled: true
+        existingClaim: pleroma-images-config-v1
+        mountPath: /var/lib/pleroma/uploads
 
     probes:
       liveness: &probes
