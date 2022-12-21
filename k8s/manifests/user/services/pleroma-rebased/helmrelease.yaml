@@ -45,7 +45,7 @@ spec:
       main:
         ports:
           http:
-            port: &port 4000
+            port: &port 5000
 
     ingress:
       main:
@@ -77,21 +77,21 @@ spec:
         existingClaim: pleroma-config-v1
         path: /var/lib/pleroma/
 
-        # probes:
-    #   liveness: &probes
-    #     enabled: true
-    #     custom: true
-    #     spec:
-    #       httpGet:
-    #         path: /settings
-    #         port: *port
-    #       initialDelaySeconds: 0
-    #       periodSeconds: 10
-    #       timeoutSeconds: 1
-    #       failureThreshold: 3
-    #   readiness: *probes
-    #   startup:
-    #     enabled: false
+    probes:
+      liveness: &probes
+        enabled: true
+        custom: true
+        spec:
+          httpGet:
+            path: /
+            port: *port
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3
+      readiness: *probes
+      startup:
+        enabled: false
 
     resources:
       requests:
