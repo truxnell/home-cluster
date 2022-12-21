@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - ../../../../../global/flux/repositories/git
   - home-cluster.yaml
-  - external-snapshotter.yaml
