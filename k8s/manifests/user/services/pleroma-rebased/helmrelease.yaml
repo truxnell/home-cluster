@@ -80,6 +80,13 @@ spec:
         enabled: true
         existingClaim: pleroma-images-config-v1
         mountPath: /var/lib/pleroma/uploads
+      config_exa:
+        enabled: true
+        type: configMap
+        name: pleroma-rebasedconfig
+        subPath: config.exa
+        mountPath: /var/lib/pleroma/config.exs
+        readOnly: true
 
     podSecurityContext:
       runAsUser: 101

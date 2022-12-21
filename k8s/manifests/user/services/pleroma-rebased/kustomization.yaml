@@ -7,3 +7,11 @@ resources:
   - helmrelease.yaml
 patchesStrategicMerge:
   - patches/postgres.yaml
+configMapGenerator:
+  - name: pleroma-reloaded-config
+    files:
+      - ./config/config.exs
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
