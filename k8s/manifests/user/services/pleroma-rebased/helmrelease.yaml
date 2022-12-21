@@ -80,7 +80,7 @@ spec:
         enabled: true
         existingClaim: pleroma-images-config-v1
         mountPath: /var/lib/pleroma/uploads
-      config_exa:
+      config-exa:
         enabled: true
         type: configMap
         name: pleroma-rebasedconfig
