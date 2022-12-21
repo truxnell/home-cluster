@@ -8,7 +8,7 @@ resources:
 patchesStrategicMerge:
   - patches/postgres.yaml
 configMapGenerator:
-  - name: pleroma-reloaded-config
+  - name: pleroma-rebased-config
     files:
       - ./config/config.exs
 generatorOptions:
