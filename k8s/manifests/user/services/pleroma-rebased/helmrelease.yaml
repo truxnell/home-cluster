@@ -75,7 +75,7 @@ spec:
       config:
         enabled: true
         existingClaim: pleroma-config-v1
-        path: /var/lib/pleroma/
+        mountPath: /var/lib/pleroma/
 
     probes:
       liveness: &probes
