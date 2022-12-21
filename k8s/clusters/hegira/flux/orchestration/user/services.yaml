@@ -258,7 +258,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: './k8s/manifests/user/services/pleromoa-rebased'
+  path: './k8s/manifests/user/services/pleroma-rebased'
   prune: true
   wait: true
   sourceRef:
