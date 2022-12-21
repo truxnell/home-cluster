@@ -142,20 +142,6 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: user-system-monitoring-kube-cleanup-operator
-  namespace: flux-system
-spec:
-  interval: 5m
-  path: './k8s/manifests/user/system-monitoring/kube-cleanup-operator'
-  prune: true
-  wait: true
-  sourceRef:
-    kind: GitRepositor
-    name: home-cluster
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
   name: user-system-monitoring-hs110-exporter-kp115-1
   namespace: flux-system
 spec:
