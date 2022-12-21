@@ -13,13 +13,13 @@ spec:
           - name: POSTGRES_HOST
             value: postgres-rw.databases.svc.cluster.local.
           - name: POSTGRES_DB
-            value: plemora-rebased
+            value: pleroma-rebased
           - name: POSTGRES_SUPER_PASS
             valueFrom:
               secretKeyRef:
                 name: postgres-superuser
                 key: password
           - name: POSTGRES_USER
-            value: ${SECRET_INVIDIOUS_DB_USER}
+            value: ${SECRET_PLEROMA_REBASED_DB_USER}
           - name: POSTGRES_PASS
-            value: ${SECRET_INVIDIOUS_DB_PASSWORD}
+            value: ${SECRET_PLEROMA_REBASED_DB_PASS}
