@@ -61,7 +61,7 @@ spec:
         ingressClassName: 'nginx'
         annotations:
           external-dns.home.arpa/enabled: 'true'
-
+          auth.home.arpa/enabled: 'true'
         hosts:
           - host: &host 'search.${EXTERNAL_DOMAIN}'
             paths:

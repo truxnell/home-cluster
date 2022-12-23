@@ -44,12 +44,12 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: "true"
-
+          external-dns.home.arpa/enabled: 'true'
+          auth.home.arpa/enabled: 'true'
         hosts:
-          - host: &host "libreddit.${EXTERNAL_DOMAIN}"
+          - host: &host 'libreddit.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix

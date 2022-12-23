@@ -40,12 +40,12 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: "true"
-
+          external-dns.home.arpa/enabled: 'true'
+          auth.home.arpa/enabled: 'true'
         hosts:
-          - host: &host "nitter.${EXTERNAL_DOMAIN}"
+          - host: &host 'nitter.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
