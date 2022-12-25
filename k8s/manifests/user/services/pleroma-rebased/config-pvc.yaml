@@ -20,7 +20,7 @@ metadata:
   name: pleroma-images-config-v1
   namespace: services
   labels:
-    app.kubernetes.io/name: &name pleroma
+    app.kubernetes.io/name: &name pleroma-rebased
     app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: 'true'
 spec:
