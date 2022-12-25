@@ -26,7 +26,7 @@ spec:
       repository: kizaing/kavita
       tag: 0.6.1
     env:
-      TZ: "${TZ}"
+      TZ: '${TZ}'
 
     service:
       main:
@@ -37,12 +37,12 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: "true"
-          auth.home.arpa/enabled: "true"
+          external-dns.home.arpa/enabled: 'true'
+          auth.home.arpa/enabled: 'true'
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -64,15 +64,22 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: "george.${INTERNAL_DOMAIN}"
+        server: 'george.${INTERNAL_DOMAIN}'
         path: /tank/
         mountPath: /media
       backups:
         enabled: true
         type: nfs
-        server: "george.${INTERNAL_DOMAIN}"
+        server: 'george.${INTERNAL_DOMAIN}'
         path: /tank/backup/kubernetes/apps/kavita
         mountPath: /kavita/config/backups
+      eint-theme:
+        enabled: true
+        type: configMap
+        name: kavita-eink-css-config
+        subPath: eink.css
+        mountPath: /kavita/config/themes/eink.css
+        readOnly: true
 
     resources:
       requests:

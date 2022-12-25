@@ -4,3 +4,11 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helmrelease.yaml
+configMapGenerator:
+  - name: kavita-eink-css-config
+    files:
+      - ./config/eink.css
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
