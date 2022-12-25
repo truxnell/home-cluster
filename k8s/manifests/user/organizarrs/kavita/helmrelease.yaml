@@ -73,13 +73,6 @@ spec:
         server: 'george.${INTERNAL_DOMAIN}'
         path: /tank/backup/kubernetes/apps/kavita
         mountPath: /kavita/config/backups
-      eink-theme:
-        enabled: true
-        type: configMap
-        name: kavita-eink-css-config
-        subPath: eink.css
-        mountPath: /kavita/config/themes/eink.css
-        readOnly: true
 
     resources:
       requests:
