@@ -27,9 +27,9 @@ spec:
       tag: version-v6.10.0
 
     env:
-      TZ: "${TZ}"
-      PUID: "568"
-      PGID: "1000"
+      TZ: '${TZ}'
+      PUID: '568'
+      PGID: '1000'
 
     service:
       main:
@@ -44,17 +44,25 @@ spec:
             port: 8081
             protocol: TCP
             targetPort: 8081
+      wireless:
+        enabled: true
+        ports:
+          webserver:
+            enabled: true
+            port: 9090
+            protocol: TCP
+            targetPort: 9090
         type: ClusterIP
 
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "book-open-page-variant"
+          hajimari.io/enable: 'true'
+          hajimari.io/icon: 'book-open-page-variant'
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -69,7 +77,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: "george.${INTERNAL_DOMAIN}"
+        server: 'george.${INTERNAL_DOMAIN}'
         path: /tank/
         mountPath: /media
 
