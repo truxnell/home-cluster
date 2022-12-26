@@ -47,7 +47,7 @@ spec:
       wireless:
         enabled: true
         ports:
-          webserver:
+          wireless:
             enabled: true
             port: 9090
             protocol: TCP
