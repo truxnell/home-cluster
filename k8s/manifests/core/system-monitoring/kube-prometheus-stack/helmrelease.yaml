@@ -183,7 +183,7 @@ spec:
             # limits:
             # memory: 4744M
         thanos:
-          image: quay.io/thanos/thanos:v0.29.0
+          image: quay.io/thanos/thanos:v0.30.1
           # renovate: datasource=docker depName=quay.io/thanos/thanos
           version: v0.28.0
           objectStorageConfig:
