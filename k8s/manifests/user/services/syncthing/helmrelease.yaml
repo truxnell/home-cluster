@@ -29,9 +29,6 @@ spec:
       TZ: '${TZ}'
       PUID: '1000'
       PGID: '1000'
-    envFrom:
-      - secretRef:
-          name: *app
 
     service:
       main:
