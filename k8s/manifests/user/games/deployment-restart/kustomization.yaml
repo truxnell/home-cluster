@@ -3,8 +3,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./cronjob-factorio-k2.yaml
-  - ./cronjob-satisfactory.yaml
+  # - ./cronjob-satisfactory.yaml
+  - ./cronjob-factorio-seablock.yaml
   - ./role.yaml
   - ./rolebinding.yaml
   - ./serviceaccount.yaml
-  - ./cronjob-factorio-seablock.yaml
