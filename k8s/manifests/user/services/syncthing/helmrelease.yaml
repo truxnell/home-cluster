@@ -52,9 +52,6 @@ spec:
       main:
         enabled: true
         ingressClassName: 'nginx'
-        annotations:
-          external-dns.home.arpa/enabled: 'true'
-          auth.home.arpa/enabled: 'true'
 
         hosts:
           - host: &host 'syncthing.${EXTERNAL_DOMAIN}'
