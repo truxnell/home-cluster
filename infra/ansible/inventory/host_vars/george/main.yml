@@ -1,5 +1,5 @@
 ---
-ansible_host: "10.8.20.11"
+ansible_host: '10.8.20.11'
 ansible_python_interpreter: /usr/bin/python3
 ansible_user: durandal
 
@@ -13,27 +13,27 @@ zfs_create_pools: true
 zfs_create_filesystems: true
 zfs_monitoring_capacity_threshold: 92
 zfs_pools:
-  - name: "tank"
-    action: "create"
-    atime: "off"
+  - name: 'tank'
+    action: 'create'
+    atime: 'off'
     ashift: 12
     xattr: sa
-    compression: "lz4"
+    compression: 'lz4'
     devices:
-      - "/dev/disk/by-id/scsi-SATA_WDC_WD180EDGZ-11_4ZG0VDDW"
-      - "/dev/disk/by-id/scsi-SATA_WDC_WD180EDGZ-11_4ZG0WM3W"
-    type: "mirror"
-    state: "present"
-  - name: "tank"
-    action: "add"
-    atime: "off"
+      - '/dev/disk/by-id/scsi-SATA_WDC_WD180EDGZ-11_4ZG0VDDW'
+      - '/dev/disk/by-id/scsi-SATA_WDC_WD180EDGZ-11_4ZG0WM3W'
+    type: 'mirror'
+    state: 'present'
+  - name: 'tank'
+    action: 'add'
+    atime: 'off'
     ashift: 12
-    compression: "lz4"
+    compression: 'lz4'
     devices:
-      - "/dev/disk/by-id/scsi-SATA_WDC_WD180EDGZ-11_2MGJ9DGB"
-      - "/dev/disk/by-id/scsi-SATA_WDC_WD180EDGZ-11_4EG1DZ3U"
-    type: "cache"
-    state: "present"
+      - '/dev/disk/by-id/scsi-SATA_WDC_WD180EDGZ-11_2MGJ9DGB'
+      - '/dev/disk/by-id/scsi-SATA_WDC_WD180EDGZ-11_4EG1DZ3U'
+    type: 'cache'
+    state: 'present'
 zfs_filesystems:
   - name: series
     pool: tank
@@ -138,12 +138,19 @@ zfs_filesystems:
     owner: 568
     group: 100
     mountpoint: /tank/comics/
+  - name: syncthing
+    pool: tank
+    state: present
+    recordsize: 1M
+    owner: 568
+    group: 100
+    mountpoint: /tank/syncthing/
 
 zfs_enable_monitoring: true
 zfs_monitoring_scrub_max_age: 8
 zfs_pools_scrub_cron:
   minute: 0
   hour: 2
-  day: "*"
-  month: "28"
-  weekday: "*"
+  day: '*'
+  month: '28'
+  weekday: '*'
