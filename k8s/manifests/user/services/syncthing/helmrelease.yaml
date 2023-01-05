@@ -27,7 +27,7 @@ spec:
       tag: 1.23.0
     env:
       TZ: '${TZ}'
-      PUID: '1000'
+      PUID: '568'
       PGID: '1000'
 
     service:
