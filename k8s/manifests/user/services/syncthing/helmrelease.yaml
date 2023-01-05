@@ -70,4 +70,4 @@ spec:
           nfs:
             server: george.${INTERNAL_DOMAIN}
             path: /tank/syncthing
-        mountPath: /music/localtracks
+        mountPath: /var/syncthing
