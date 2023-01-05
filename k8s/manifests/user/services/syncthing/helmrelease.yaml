@@ -42,7 +42,6 @@ spec:
           discovery:
             enabled: true
             port: 21027
-            protocol: UDP
           listen:
             enabled: true
             port: 22000
