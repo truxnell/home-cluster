@@ -68,6 +68,7 @@ spec:
           - hosts:
               - *host
 
+    persistence:
       config:
         enabled: true
         type: custom
