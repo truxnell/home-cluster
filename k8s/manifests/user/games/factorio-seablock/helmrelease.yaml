@@ -30,19 +30,18 @@ spec:
       nameOverride: *app
 
     env:
-      TZ: "${TZ}"
-      UPDATE_MODS_ON_START: "true"
+      TZ: '${TZ}'
+      UPDATE_MODS_ON_START: 'false'
       PORT: &port 34203
       RCON_PORT: &rcon 27019
-
 
     initContainers:
       copy-configmap:
         image: busybox
         imagePullPolicy: IfNotPresent
         command:
-          - "sh"
-          - "-c"
+          - 'sh'
+          - '-c'
           - |
             mkdir -p /factorio/config
             cp -vL /helmconfig/* /factorio/config/
@@ -58,7 +57,7 @@ spec:
       main:
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
         externalTrafficPolicy: Cluster
-        loadBalancerIP: "${LB_FACTORIO}"
+        loadBalancerIP: '${LB_FACTORIO}'
         annotations:
           metallb.universe.tf/allow-shared-ip: factorio
         ports:
@@ -87,8 +86,8 @@ spec:
         mountPath: /factorio
         existingClaim: factorio-seablock-config-v1
       helmconfig:
-        enabled: "true"
-        type: "secret"
+        enabled: 'true'
+        type: 'secret'
         name: *app
 
     startupProbe:

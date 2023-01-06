@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - ./cronjob-factorio-k2.yaml
   # - ./cronjob-satisfactory.yaml
-  - ./cronjob-factorio-seablock.yaml
   - ./role.yaml
   - ./rolebinding.yaml
   - ./serviceaccount.yaml
