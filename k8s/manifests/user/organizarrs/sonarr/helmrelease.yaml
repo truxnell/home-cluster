@@ -26,12 +26,11 @@ spec:
       repository: ghcr.io/onedr0p/sonarr-develop
       tag: 4.0.0.316@sha256:c83dbf4812337aab8093216d37f4a55a5f3aa15c2fff632db09f1d0c062e5b21
     env:
-      TZ: "${TZ}"
-      PUSHOVER_DEBUG: "false"
-      PUSHOVER_APP_URL: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+      TZ: '${TZ}'
+      PUSHOVER_DEBUG: 'false'
+      PUSHOVER_APP_URL: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
       SONARR__INSTANCE_NAME: Sonarr
-      SONARR__PORT: &port 80
-      SONARR__APPLICATION_URL: "https://{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+      SONARR__APPLICATION_URL: 'https://{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
       SONARR__LOG_LEVEL: info
 
     envFrom:
@@ -42,12 +41,12 @@ spec:
       main:
         ports:
           http:
-            port: *port
+            port: 8989
 
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
@@ -66,7 +65,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
+      fsGroupChangePolicy: 'OnRootMismatch'
       supplementalGroups:
         - 100
 
@@ -77,7 +76,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: &nas "george.${INTERNAL_DOMAIN}"
+        server: &nas 'george.${INTERNAL_DOMAIN}'
         path: /tank/
         mountPath: /media
       scripts:
