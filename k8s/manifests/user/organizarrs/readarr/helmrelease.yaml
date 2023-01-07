@@ -27,9 +27,9 @@ spec:
       tag: 0.1.1.1504@sha256:72ce66bd40db62a2a9918a96bd12d5d8a02914ffcf2d75299416654185b38e1b
 
     env:
-      TZ: "${TIMEZONE}"
+      TZ: '${TIMEZONE}'
       READARR__INSTANCE_NAME: Readarr (Audio)
-      READARR__PORT: &port 80
+
       READARR__LOG_LEVEL: info
 
     envFrom:
@@ -40,19 +40,19 @@ spec:
       main:
         ports:
           http:
-            port: *port
+            port: 8787
 
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |-
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/readarr/plex.css"></head>';
             sub_filter_once on;
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -64,7 +64,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
+      fsGroupChangePolicy: 'OnRootMismatch'
       supplementalGroups:
         - 100
 
@@ -75,7 +75,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: &nas "george.${INTERNAL_DOMAIN}"
+        server: &nas 'george.${INTERNAL_DOMAIN}'
         path: /tank/
         mountPath: /media
       backup:
