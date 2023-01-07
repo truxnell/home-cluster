@@ -27,12 +27,11 @@ spec:
       tag: 4.3.1.6822@sha256:8b3167caff215443e1fd0cdcb417f85dc307faa97a216479df2c4257487c369e
 
     env:
-      TZ: "${TZ}"
-      PUSHOVER_DEBUG: "false"
-      PUSHOVER_APP_URL: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+      TZ: '${TZ}'
+      PUSHOVER_DEBUG: 'false'
+      PUSHOVER_APP_URL: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
       RADARR__INSTANCE_NAME: Radarr
-      RADARR__PORT: &port 80
-      RADARR__APPLICATION_URL: "https://{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+      RADARR__APPLICATION_URL: 'https://{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
       RADARR__LOG_LEVEL: info
 
     envFrom:
@@ -43,14 +42,14 @@ spec:
       main:
         ports:
           http:
-            port: *port
+            port: 7878
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "filmstrip"
+          hajimari.io/enable: 'true'
+          hajimari.io/icon: 'filmstrip'
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/radarr/plex.css"></head>';
@@ -68,7 +67,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
+      fsGroupChangePolicy: 'OnRootMismatch'
       supplementalGroups:
         - 100
 
@@ -79,7 +78,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: &nas "george.${INTERNAL_DOMAIN}"
+        server: &nas 'george.${INTERNAL_DOMAIN}'
         path: /tank/
         mountPath: /media
       scripts:

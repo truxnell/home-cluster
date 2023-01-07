@@ -27,8 +27,8 @@ spec:
       tag: 3.7.1@sha256:e1a805ab246712b2c9a834b88ffefd77aba89b2ffcfdf1a9535333fcb4a60f91
 
     env:
-      TZ: "${TZ}"
-      SABNZBD__PORT: &port 80
+      TZ: '${TZ}'
+
       SABNZBD__HOST_WHITELIST_ENTRIES: >-
         sabnzbd,
         sabnzbd.media,
@@ -45,19 +45,19 @@ spec:
       main:
         ports:
           http:
-            port: *port
+            port: 8080
 
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/sabnzbd/plex.css"></head>';
             sub_filter_once on;
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -69,7 +69,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
+      fsGroupChangePolicy: 'OnRootMismatch'
       supplementalGroups:
         - 100
 
@@ -80,7 +80,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: "george.${INTERNAL_DOMAIN}"
+        server: 'george.${INTERNAL_DOMAIN}'
         path: /tank/
         mountPath: /media
       incomplete:

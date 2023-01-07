@@ -30,8 +30,8 @@ spec:
       tag: 4.5.0@sha256:26fa8645757f9d7e5ab72620d75fd8752c968c6b8810b8935ce770d7d1303fe9
 
     env:
-      TZ: "${TZ}"
-      QBITTORRENT__PORT: &port 80
+      TZ: '${TZ}'
+
       QBITTORRENT__BT_PORT: &port-bt ${SECRET_VPN_FORWARDED_PORT_1}
 
     hostname: qbittorrent
@@ -40,12 +40,12 @@ spec:
       main:
         ports:
           http:
-            port: *port
+            port: 8080
       bittorrent:
         enabled: true
         type: LoadBalancer
         externalIPs:
-          - "${LB_QBITTORRENT}"
+          - '${LB_QBITTORRENT}'
         ports:
           bittorrent:
             enabled: true
@@ -55,12 +55,12 @@ spec:
         externalTrafficPolicy: Local
 
     podAnnotations:
-      setGateway: "true"
+      setGateway: 'true'
 
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_hide_header "x-webkit-csp";
@@ -69,10 +69,10 @@ spec:
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_PUBLIC_DOMAIN}/css/base/qbittorrent/plex.css"></head>';
             sub_filter_once on;
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "cloud-download"
+          hajimari.io/enable: 'true'
+          hajimari.io/icon: 'cloud-download'
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -84,7 +84,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
+      fsGroupChangePolicy: 'OnRootMismatch'
       supplementalGroups:
         - 100
 
@@ -95,7 +95,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: "george.${INTERNAL_DOMAIN}"
+        server: 'george.${INTERNAL_DOMAIN}'
         path: /tank/
         mountPath: /media
 

@@ -26,9 +26,8 @@ spec:
       repository: ghcr.io/onedr0p/prowlarr-nightly
       tag: 0.4.11.2143@sha256:2eafdb19e32172228ee64599d27f5e964613d83bf396e218e3591baba7f5c545
     env:
-      TZ: "${TZ}"
+      TZ: '${TZ}'
       PROWLARR__INSTANCE_NAME: Prowlarr
-      PROWLARR__PORT: &port 80
       PROWLARR__LOG_LEVEL: info
     envFrom:
       - secretRef:
@@ -37,18 +36,18 @@ spec:
       main:
         ports:
           http:
-            port: *port
+            port: 9696
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/prowlarr/plex.css"></head>';
             sub_filter_once on;
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -60,7 +59,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
+      fsGroupChangePolicy: 'OnRootMismatch'
 
     persistence:
       config:
@@ -69,13 +68,13 @@ spec:
       backup:
         enabled: true
         type: nfs
-        server: "george.${EXTERAL_DOMAIN}"
+        server: 'george.${EXTERAL_DOMAIN}'
         path: /tank/backup/kubernetes/apps/prowlarr
         mountPath: /config/Backups
 
     podAnnotations:
       secret.reloader.stakater.com/reload: *app
-      setGateway: "true"
+      setGateway: 'true'
     resources:
       requests:
         cpu: 10m
