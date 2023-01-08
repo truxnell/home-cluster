@@ -4,10 +4,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: satisfactory-data
   namespace: games
-  labels:
-    app.kubernetes.io/name: &name satisfactory
-    app.kubernetes.io/instance: *name
-    snapshot.home.arpa/enabled: "true"
+  # labels:
+  #   app.kubernetes.io/name: &name satisfactory
+  #   app.kubernetes.io/instance: *name
+  #   snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce

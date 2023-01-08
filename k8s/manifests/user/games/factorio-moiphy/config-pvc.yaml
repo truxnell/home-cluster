@@ -4,10 +4,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: factorio-moiphy-config-v1
   namespace: games
-  labels:
-    app.kubernetes.io/name: factorio-moiphy
-    app.kubernetes.io/instance: factorio-moiphy
-    snapshot.home.arpa/enabled: "true"
+  # labels:
+  #   app.kubernetes.io/name: factorio-moiphy
+  #   app.kubernetes.io/instance: factorio-moiphy
+  #   snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce
