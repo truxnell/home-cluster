@@ -29,7 +29,7 @@ spec:
 
     image:
       repository: ghcr.io/auricom/libreddit
-      tag: 0.25.3@sha256:560225cedbcde3075d76e38b22b4314acf5b77ea6c3f04048392d0ee12361259
+      tag: 0.27.0@sha256:0a9d9bf0087fa69395fc8cf109b7f81d511b13541cb64d490ae2d2bb1bbc10d9
 
     env:
       LIBREDDIT_DEFAULT_SHOW_NSFW: true
