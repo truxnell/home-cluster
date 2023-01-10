@@ -65,8 +65,8 @@ spec:
         enabled: true
         type: nfs
         server: 'george.${INTERNAL_DOMAIN}'
-        path: /tank/
-        mountPath: /media
+        path: /tank/downloads/books/complete
+        mountPath: /books
         readOnly: true
 
     resources:
