@@ -39,7 +39,7 @@ spec:
       - --port
       - &port '8080'
       - --name
-      - openbooks
+      - openbooks82937
 
     service:
       main:
