@@ -47,6 +47,14 @@ spec:
           http:
             port: *port
 
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 100
+      fsGroup: 100
+      fsGroupChangePolicy: 'OnRootMismatch'
+      supplementalGroups:
+        - 65539
+
     ingress:
       main:
         enabled: true
