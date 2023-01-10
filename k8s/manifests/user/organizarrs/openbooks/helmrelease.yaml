@@ -73,7 +73,7 @@ spec:
         enabled: true
         type: nfs
         server: 'george.${INTERNAL_DOMAIN}'
-        path: /tank/downloads/books/complete
+        path: /tank/downloads/openbooks/
         mountPath: /books
         readOnly: true
 
