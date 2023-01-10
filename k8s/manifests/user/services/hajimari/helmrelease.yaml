@@ -75,6 +75,11 @@ spec:
     podAnnotations:
       configmap.reloader.stakater.com/reload: 'hajimari-settings'
 
+    persistence:
+      data:
+        enabled: true
+        type: emptyDir
+
     resources:
       requests:
         cpu: 15m
