@@ -27,16 +27,25 @@ spec:
   values:
     image:
       repository: ghcr.io/toboshii/hajimari
-      tag: v0.3.1
+      tag: v2.0.2
 
     controller:
       replicas: 3
       strategy: RollingUpdate
 
     env:
-      TZ: "${TZ}"
+      TZ: '${TZ}'
 
     hajimari:
+      title: NatFlix
+      darkTheme: espresso
+      alwaysTargetBlank: true
+      showGreeting: false
+      showAppGroups: false
+      showAppStatus: true
+      showBookmarkGroups: false
+      showGlobalBookmarks: false
+      showAppUrls: false
       defaultEnable: true
       namespaceSelector:
         matchNames:
@@ -49,78 +58,26 @@ spec:
           - security
           - network-system
 
-      name: "nat"
-      # customApps:
-      #   - name: PiAware
-      #     url: "http://192.168.150.25:8080"
-      #     icon: "airplane"
-
-      groups:
-        - name: Communicate
-          links:
-            - name: Discord
-              url: "https://discord.com"
-            - name: Gmail
-              url: "https://gmail.com"
-            - name: Slack
-              url: "https://slack.com/signin"
-            - name: "Runbox"
-              url: "https://runbox.com/app/login"
-
-        - name: Cloud
-          links:
-            - name: Cloudflare
-              url: "https://dash.cloudflare.com"
-            - name: NextDNS
-              url: "https://my.nextdns.io"
-            - name: Drive
-              url: "https://drive.google.com"
-            - name: UptimeRobot
-              url: "https://uptimerobot.com"
-            - name: OnShape
-              url: "https://cad.onshape.com"
-
-        - name: Git
-          links:
-            - name: Trux Home-Cluster
-              url: https://github.com/Truxnell/home-cluster
-            - name: Trux Home Assistant
-              url: https://github.com/Truxnell/hass-config
-            - name: k@h charts
-              url: https://github.com/k8s-at-home/charts/tree/master/charts
-
-        - name: Media
-          links:
-            - name: Spotify
-              url: "http://browse.spotify.com"
-            - name: Photos
-              url: "https://photos.google.com"
-
-        - name: Reading
-          links:
-            - name: Reddit
-              url: "http://reddit.com"
-
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          prometheus.io/probe: "true"
+          prometheus.io/probe: 'true'
           prometheus.io/protocol: http
 
         hosts:
-          - host: "hajimari.${EXTERNAL_DOMAIN}"
+          - host: 'hajimari.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
 
         tls:
           - hosts:
-              - "hajimari.${EXTERNAL_DOMAIN}"
+              - 'hajimari.${EXTERNAL_DOMAIN}'
 
     podAnnotations:
-      configmap.reloader.stakater.com/reload: "hajimari-settings"
+      configmap.reloader.stakater.com/reload: 'hajimari-settings'
 
     resources:
       requests:
