@@ -53,6 +53,7 @@ spec:
           - media
           - security
           - network-system
+          - services
 
     ingress:
       main:
