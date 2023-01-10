@@ -1,13 +1,13 @@
 ---
 - name: Create default directories
   ansible.builtin.file:
-    path: "{{ item }}"
+    path: '{{ item }}'
     state: directory
-    owner: "{{ ansible_user }}"
+    owner: '{{ ansible_user }}'
     group: users
     mode: 0775
   loop:
-    - "{{ docker_base_dir }}"
+    - '{{ docker_base_dir }}'
   tags:
     - always
 
@@ -38,3 +38,6 @@
 - import_tasks: minio.yml
   tags:
     - minio
+- import_tasks: syncthing.yml
+  tags:
+    - syncthing
