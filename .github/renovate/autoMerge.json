@@ -15,6 +15,9 @@
         "ghcr.io/onedr0p",
         "ghcr.io/bjw-s",
         "ghcr.io/auricom"
+      ],
+      "schedule": [
+        "between 2am and 5am"
       ]
     },
     {
@@ -32,6 +35,9 @@
       "matchPackageNames": [
         "lycheeverse/lychee-action",
         "renovatebot/github-action"
+      ],
+      "schedule": [
+        "between 2am and 5am"
       ]
     },
     {
@@ -62,6 +68,9 @@
         "ghcr.io/onedr0p/sonarr",
         "ghcr.io/onedr0p/plex",
         "renovatebot/github-action"
+      ],
+      "schedule": [
+        "every saturday between 2am and 5am"
       ]
     },
     // Automerge game servers immediately
