@@ -54,6 +54,7 @@ spec:
           - security
           - network-system
           - services
+          - databases
 
     ingress:
       main:
