@@ -5,9 +5,9 @@ metadata:
   name: &app minio
   namespace: network-system
   annotations:
-    nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: '300'
     nginx.ingress.kubernetes.io/proxy-body-size: 5000m
-    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+    nginx.ingress.kubernetes.io/proxy-request-buffering: 'off'
     nginx.ingress.kubernetes.io/configuration-snippet: |
       chunked_transfer_encoding off;
     # hajimari.io/icon: ""
@@ -15,7 +15,7 @@ metadata:
     app.kubernetes.io/name: *app
     app.kubernetes.io/instance: *app
 spec:
-  ingressClassName: "nginx"
+  ingressClassName: 'nginx'
   rules:
     - host: &host minio.${EXTERNAL_DOMAIN}
       http:
@@ -37,9 +37,10 @@ metadata:
   name: &app s3
   namespace: network-system
   annotations:
-    nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
+    probe.home.arpa/enabled: 'false'
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: '300'
     nginx.ingress.kubernetes.io/proxy-body-size: 5000m
-    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+    nginx.ingress.kubernetes.io/proxy-request-buffering: 'off'
     nginx.ingress.kubernetes.io/configuration-snippet: |
       chunked_transfer_encoding off;
     # hajimari.io/icon: ""
@@ -47,7 +48,7 @@ metadata:
     app.kubernetes.io/name: *app
     app.kubernetes.io/instance: *app
 spec:
-  ingressClassName: "nginx"
+  ingressClassName: 'nginx'
   rules:
     - host: &host s3.${EXTERNAL_DOMAIN}
       http:
