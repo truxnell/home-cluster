@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: docker.io/library/couchdb
-      tag: latest@sha256:ae80ecafc17c7ef87bfdb48d69602430d7b9385dc666c073d19817ad0c456583
+      tag: latest@sha256:3f3704ddfb6014435f2611a611efcfe465f04d56bc3d5f92c9955493a3cdb3af
 
     env:
       TZ: "${TZ}"
