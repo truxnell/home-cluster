@@ -29,6 +29,7 @@ spec:
       TZ: '${TZ}'
       PROWLARR__INSTANCE_NAME: Prowlarr
       PROWLARR__LOG_LEVEL: info
+      PROWLARR__AUTHENTICATION_METHOD: External
     envFrom:
       - secretRef:
           name: *app
