@@ -137,12 +137,12 @@ spec:
         - module: http_2xx
           name: uptime-kuma
           url: status.${WEBSITE_DOMAIN}
-        - module: http_401
-          name: tyua-blinds-0
-          url: 10.8.30.140
-        - module: http_401
-          name: tyua-blinds-1
-          url: 10.8.30.141
+        # - module: http_401
+        #   name: tyua-blinds-0
+        #   url: 10.8.30.140
+        # - module: http_401
+        #   name: tyua-blinds-1
+        #   url: 10.8.30.141
 
     resources:
       requests:
