@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/databases/redis"
+  path: './k8s/manifests/user/databases/redis'
   prune: true
   wait: true
   sourceRef:
@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/databases/cloudnative-pg"
+  path: './k8s/manifests/user/databases/cloudnative-pg'
   prune: true
   wait: true
   sourceRef:
@@ -34,7 +34,21 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: "./k8s/manifests/user/databases/postgres-backup"
+  path: './k8s/manifests/user/databases/postgres-backup'
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: user-databases-pgadmin
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: './k8s/manifests/user/databases/pgadmin'
   prune: true
   wait: true
   sourceRef:
