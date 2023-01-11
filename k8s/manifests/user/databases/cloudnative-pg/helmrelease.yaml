@@ -23,7 +23,7 @@ spec:
       retries: 5
   values:
     crds:
-      create: true
+      create: false
     config:
       data:
         INHERITED_ANNOTATIONS: kyverno.io/ignore
