@@ -27,7 +27,7 @@ spec:
       tag: latest@sha256:10f9164bc6c88b2b9ce806b7090a8db5c940564262abfb4b8b3f8801663c27b6
 
     env:
-      TZ: "${TZ}"
+      TZ: '${TZ}'
 
     service:
       main:
@@ -38,12 +38,11 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
-        #          annotations:
-        #            external-dns.home.arpa/enabled: "true"
-        #            auth.home.arpa/enabled: "true"
+        ingressClassName: 'nginx'
+        annotations:
+          probe.home.arpa/enabled: 'false'
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
