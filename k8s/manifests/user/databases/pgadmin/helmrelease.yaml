@@ -58,7 +58,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: pgadmin-config
+        existingClaim: pgadmin-config-v1
         mountPath: '/var/lib/pgadmin'
       server-json:
         enabled: true
