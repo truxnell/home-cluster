@@ -42,41 +42,36 @@
       "k8s/clusters/.+\\.ya?ml$",
     ],
   },
-  regexManagers: [
-    // regexManager to read and process GitHub release artifacts
+  "regexManagers": [
     {
-      fileMatch: ["k8s/clusters/.+\\.ya?ml$", "k8s/global/.+\\.ya?ml$"],
-      matchStrings: [
-        "datasource=(?<datasource>.*?)\n *url: https://github\\.com/(?<depName>.*?)\\.git\n *ref:\n *tag: (?<currentValue>.*)\n",
-        'datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_version: "(?<currentValue>.*)"\n',
-        'datasource=(?<datasource>.*?) depName=(?<depName>.*?)\n.*?_VERSION="(?<currentValue>.*)"\n',
+      "description": ["Process CRD dependencies - Chart and Github Release are the same version"],
+      "fileMatch": ["k8s/.+\\.ya?ml$"],
+      "matchStrings": [
+        "# renovate: registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n",
       ],
-      datasourceTemplate: "github-releases",
-      depNameTemplate: "{{org}}/{{repo}}",
+      "datasourceTemplate": "helm"
     },
-    // Generic Regex Manager
     {
-      fileMatch: ["k8s/clusters/.+\\.ya?ml$", "k8s/global/.+\\.ya?ml$"],
-      matchStrings: [
-        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<currentValue>.*=?)",
+      "description": "Process various dependencies",
+      "fileMatch": [
+        "infra/.+\\.ya?ml$",
+        "k8s/.+\\.ya?ml$"
       ],
-      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
-      registryUrlTemplate: "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}",
+      "matchStrings": [
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n"
+      ],
+      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     },
-    // Generic Docker image Regex manager
     {
-      fileMatch: [
-        "k8s/clusters/.+\\.ya?ml$",
-        "k8s/global/.+\\.ya?ml$",
-        "k8s/talos/.+\\.ya?ml$",
+      "description": "Process raw GitHub URLs",
+      "fileMatch": ["cluster/.+\\.ya?ml$"],
+      "matchStrings": [
+        "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*"
       ],
-      matchStrings: [
-        "# renovate: docker-image( registryUrl=(?<registryUrl>.*?))?( versioning=(?<versioning>.*=?))?\n .*: (?<depName>.*?):(?<currentValue>.*=?)",
-      ],
-      datasourceTemplate: "docker",
-      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}docker{{/if}}",
-      registryUrlTemplate: "{{#if registryUrl}}{{{registryUrl}}}{{else}}{{/if}}",
-    },
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "semver"
+    }
   ],
   packageRules: [
     // Setup datasources
