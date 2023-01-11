@@ -15,7 +15,7 @@ spec:
     - port: http
       scheme: http
       path: /metrics
-      interval: 1m
+      interval: 10m
       scrapeTimeout: 10s
 ---
 apiVersion: monitoring.coreos.com/v1
