@@ -57,6 +57,6 @@ spec:
           volumes:
             - name: config
               configMap:
-                name: recyclarr-configmap
+                name: recyclarr
             - name: shared
               emptyDir: {}
