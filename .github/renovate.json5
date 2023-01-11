@@ -10,6 +10,7 @@
     "docker:enableMajor",
     ":enablePreCommit",
     "github>Truxnell/home-cluster//.github/renovate/commitMessage",
+    "github>Truxnell/home-cluster//.github/renovate/allowedVersions",
     "github>Truxnell/home-cluster//.github/renovate/labels",
     "github>Truxnell/home-cluster//.github/renovate/semanticCommits",
     "github>Truxnell/home-cluster//.github/renovate/autoMerge",

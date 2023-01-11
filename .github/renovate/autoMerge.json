@@ -18,6 +18,23 @@
       ]
     },
     {
+      "description": "Auto merge GitHub Actions",
+      "matchDatasources": [
+        "github-tags"
+      ],
+      "automerge": true,
+      "automergeType": "branch",
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "matchPackageNames": [
+        "lycheeverse/lychee-action",
+        "renovatebot/github-action"
+      ]
+    },
+    {
       "matchDatasources": [
         "docker",
         "github-actions",
@@ -38,9 +55,12 @@
         "ghcr.io/onedr0p/prowlarr-nightly",
         "ghcr.io/onedr0p/qbittorrent",
         "ghcr.io/onedr0p/radarr",
+        "ghcr.io/onedr0p/readarr",
         "ghcr.io/onedr0p/recyclarr",
+        "ghcr.io/onedr0p/lidarr",
         "ghcr.io/onedr0p/sabnzbd",
         "ghcr.io/onedr0p/sonarr",
+        "ghcr.io/onedr0p/plex",
         "renovatebot/github-action"
       ]
     },
@@ -57,7 +77,7 @@
         "patch",
         "digest"
       ],
-      "groupName": "Factorio Servers",
+      "groupName": "Game Servers",
       "labels": [
         "automerge-servers"
       ],
