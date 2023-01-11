@@ -30,22 +30,22 @@ spec:
         secretAccessKey:
           name: postgres-minio
           key: MINIO_SECRET_KEY
-  bootstrap:
-    recovery:
-      source: postgres-v1
-  # externalClusters is needed when recovering from an existing cnpg cluster
-  externalClusters:
-    - name: postgres-v1
-      barmanObjectStore:
-        wal:
-          compression: bzip2
-          maxParallel: 8
-        destinationPath: s3://postgresql/
-        endpointURL: https://s3.${EXTERNAL_DOMAIN}
-        s3Credentials:
-          accessKeyId:
-            name: postgres-minio
-            key: MINIO_ACCESS_KEY
-          secretAccessKey:
-            name: postgres-minio
-            key: MINIO_SECRET_KEY
+  # bootstrap:
+  #   recovery:
+  #     source: postgres-v1
+  # # externalClusters is needed when recovering from an existing cnpg cluster
+  # externalClusters:
+  #   - name: postgres-v1
+  #     barmanObjectStore:
+  #       wal:
+  #         compression: bzip2
+  #         maxParallel: 8
+  #       destinationPath: s3://postgresql/
+  #       endpointURL: https://s3.${EXTERNAL_DOMAIN}
+  #       s3Credentials:
+  #         accessKeyId:
+  #           name: postgres-minio
+  #           key: MINIO_ACCESS_KEY
+  #         secretAccessKey:
+  #           name: postgres-minio
+  #           key: MINIO_SECRET_KEY
