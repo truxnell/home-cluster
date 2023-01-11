@@ -18,7 +18,8 @@
       ],
       "schedule": [
         "between 2am and 5am"
-      ]
+      ],
+      "stabilityDays": 3
     },
     {
       "description": "Auto merge GitHub Actions",
@@ -37,8 +38,9 @@
         "renovatebot/github-action"
       ],
       "schedule": [
-        "between 2am and 5am"
-      ]
+        "before 6am on saturday"
+      ],
+      "stabilityDays": 3
     },
     {
       "matchDatasources": [
@@ -71,7 +73,8 @@
       ],
       "schedule": [
         "every saturday between 2am and 5am"
-      ]
+      ],
+      "stabilityDays": 3
     },
     // Automerge game servers immediately
     {
