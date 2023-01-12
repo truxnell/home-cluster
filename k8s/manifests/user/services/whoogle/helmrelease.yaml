@@ -22,9 +22,9 @@ spec:
     remediation:
       retries: 5
   values:
-    controller:
-      replicas: 3
-      strategy: RollingUpdate
+    # controller:
+    #   replicas: 3
+    #   strategy: RollingUpdate
 
     fullNameOverride: *app
 
