@@ -34,12 +34,12 @@ spec:
       strategy: RollingUpdate
 
     env:
-      TZ: '${TZ}'
+      TZ: "${TZ}"
       ECOWITT2MQTT_MQTT_BROKER: emqx.home-automation
       ECOWITT2MQTT_MQTT_PORT: 1883
       ECOWITT2MQTT_MQTT_TOPIC: ecowitt2mqtt/pws
       ECOWITT2MQTT_PORT: &port 8080
-      ECOWITT2MQTT_HASS_DISCOVERY: 'true'
+      ECOWITT2MQTT_HASS_DISCOVERY: "true"
       ECOWITT2MQTT_OUTPUT_UNIT_SYSTEM: metric # Come on guys nobody want to use freedum units
 
     envFrom:
@@ -55,12 +55,12 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
-          probe.home.arpa/enabled: 'false'
-          hajimari.io/enabled: 'false'
+          probe.home.arpa/enabled: "false"
+          hajimari.io/enable: "false"
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix

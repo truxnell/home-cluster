@@ -5,13 +5,13 @@ metadata:
   name: webhook-receiver
   namespace: flux-system
   annotations:
-    hajimari.io/enabled: 'false'
-    external-dns.home.arpa/enabled: 'true'
-    probe.home.arpa/enabled: 'false'
+    hajimari.io/enable: "false"
+    external-dns.home.arpa/enabled: "true"
+    probe.home.arpa/enabled: "false"
 spec:
-  ingressClassName: 'nginx'
+  ingressClassName: "nginx"
   rules:
-    - host: &host 'flux-receiver.${EXTERNAL_DOMAIN}'
+    - host: &host "flux-receiver.${EXTERNAL_DOMAIN}"
       http:
         paths:
           - path: /hook/
