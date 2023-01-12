@@ -25,7 +25,6 @@ spec:
     - name: postgres
       namespace: databases
   values:
-
     replicas: 3
 
     admin:
@@ -36,18 +35,18 @@ spec:
 
     grafana.ini:
       auth:
-        signout_redirect_url: "https://auth.${EXTERNAL_DOMAIN}/logout"
+        signout_redirect_url: 'https://auth.${EXTERNAL_DOMAIN}/logout'
         oauth_auto_login: false
       auth.generic_oauth:
         enabled: true
         name: Authelia
         client_id: grafana
-        client_secret: "${SECRET_GRAFANA_OAUTH_CLIENT_SECRET}"
-        scopes: "openid profile email groups"
+        client_secret: '${SECRET_GRAFANA_OAUTH_CLIENT_SECRET}'
+        scopes: 'openid profile email groups'
         empty_scopes: false
-        auth_url: "https://auth.${EXTERNAL_DOMAIN}/api/oidc/authorization"
-        token_url: "https://auth.${EXTERNAL_DOMAIN}/api/oidc/token"
-        api_url: "https://auth.${EXTERNAL_DOMAIN}/api/oidc/userinfo"
+        auth_url: 'https://auth.${EXTERNAL_DOMAIN}/api/oidc/authorization'
+        token_url: 'https://auth.${EXTERNAL_DOMAIN}/api/oidc/token'
+        api_url: 'https://auth.${EXTERNAL_DOMAIN}/api/oidc/userinfo'
         login_attribute_path: preferred_username
         groups_attribute_path: groups
         name_attribute_path: name
@@ -69,9 +68,9 @@ spec:
       dashboardproviders.yaml:
         apiVersion: 1
         providers:
-          - name: "default"
+          - name: 'default'
             orgId: 1
-            folder: ""
+            folder: ''
             type: file
             disableDeletion: false
             editable: true
@@ -145,11 +144,12 @@ spec:
 
     ingress:
       enabled: true
-      ingressClassName: "nginx"
-      # annotations:
-      #   external-dns.home.arpa/enabled: "true"
+      ingressClassName: 'nginx'
+      annotations:
+        external-dns.home.arpa/enabled: 'true'
+        hajimari.io/icon: simple-icons:grafana
       hosts:
-        - &host "grafana.${EXTERNAL_DOMAIN}"
+        - &host 'grafana.${EXTERNAL_DOMAIN}'
       tls:
         - hosts:
             - *host

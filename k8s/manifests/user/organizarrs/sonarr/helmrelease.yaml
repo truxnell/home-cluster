@@ -52,6 +52,7 @@ spec:
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/sonarr/plex.css"></head>';
             sub_filter_once on;
+          hajimari.io/icon: mdi:television-classic
         hosts:
           - host: *host
             paths:

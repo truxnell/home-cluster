@@ -53,7 +53,7 @@ spec:
         ingressClassName: 'nginx'
         annotations:
           external-dns.home.arpa/enabled: 'true'
-
+          hajimari.io/icon: simple-icons:pleroma
         hosts:
           - host: *host
             paths:

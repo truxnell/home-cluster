@@ -10,7 +10,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-request-buffering: 'off'
     nginx.ingress.kubernetes.io/configuration-snippet: |
       chunked_transfer_encoding off;
-    # hajimari.io/icon: ""
+    hajimari.io/icon: mdi:pail
   labels:
     app.kubernetes.io/name: *app
     app.kubernetes.io/instance: *app

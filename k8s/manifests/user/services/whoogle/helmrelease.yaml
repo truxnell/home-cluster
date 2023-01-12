@@ -62,6 +62,7 @@ spec:
         annotations:
           external-dns.home.arpa/enabled: 'true'
           auth.home.arpa/enabled: 'true'
+          hajimari.io/icon: simple-icons:google
         hosts:
           - host: &host 'search.${EXTERNAL_DOMAIN}'
             paths:

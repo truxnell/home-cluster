@@ -27,7 +27,7 @@ spec:
       tag: v2.23.0
 
     env:
-      TZ: "${TZ}"
+      TZ: '${TZ}'
     service:
       main:
         ports:
@@ -51,11 +51,12 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          auth.home.arpa/enabled: "true"
+          auth.home.arpa/enabled: 'true'
+          hajimari.io/icon: mdi:folder-play-outline
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -70,7 +71,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: "george.${INTERNAL_DOMAIN}"
+        server: 'george.${INTERNAL_DOMAIN}'
         path: /tank/
         mountPath: /media
       filebrowser:

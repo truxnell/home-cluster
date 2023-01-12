@@ -29,7 +29,7 @@ spec:
       repository: ghcr.io/koenkk/zigbee2mqtt
       tag: latest-dev@sha256:e8d8a2dd8af80efb672c4dc0e7f6216f36d9da3d45b3ce0112efcea4fc11e985
     env:
-      TZ: "${TZ}"
+      TZ: '${TZ}'
       ZIGBEE2MQTT_DATA: /data
     service:
       main:
@@ -39,9 +39,11 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
+        annotations:
+          hajimari.io/icon: mdi:zigbee
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -52,7 +54,7 @@ spec:
       config:
         enabled: true
         existingClaim: zigbee2mqtt-config-v1
-        mountPath: "/data"
+        mountPath: '/data'
     resources:
       requests:
         cpu: 10m

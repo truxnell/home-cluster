@@ -68,8 +68,7 @@ spec:
         enabled: true
         ingressClassName: 'nginx'
         annotations:
-          hajimari.io/enable: 'true'
-          hajimari.io/icon: 'book-open-page-variant'
+          hajimari.io/icon: mdi:bookshelf
         hosts:
           - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:

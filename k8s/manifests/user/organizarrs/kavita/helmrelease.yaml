@@ -41,6 +41,7 @@ spec:
         annotations:
           external-dns.home.arpa/enabled: 'true'
           auth.home.arpa/enabled: 'true'
+          hajimari.io/icon: 'notebook-heart'
         hosts:
           - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:

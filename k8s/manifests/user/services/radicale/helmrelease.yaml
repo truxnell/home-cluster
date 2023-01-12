@@ -34,12 +34,13 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: "true"
+          external-dns.home.arpa/enabled: 'true'
           nginx.ingress.kubernetes.io/proxy-body-size: 4G
+          hajimari.io/icon: mdi:calendar-export-outline
         hosts:
-          - host: &host "radicale.${EXTERNAL_DOMAIN}"
+          - host: &host 'radicale.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
         tls:

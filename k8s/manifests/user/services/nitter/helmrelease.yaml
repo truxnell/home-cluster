@@ -44,6 +44,7 @@ spec:
         annotations:
           external-dns.home.arpa/enabled: 'true'
           auth.home.arpa/enabled: 'true'
+          hajimari.io/icon: 'twitter'
         hosts:
           - host: &host 'nitter.${EXTERNAL_DOMAIN}'
             paths:

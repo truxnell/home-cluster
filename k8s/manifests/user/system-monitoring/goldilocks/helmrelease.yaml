@@ -49,17 +49,16 @@ spec:
 
       ingress:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          hajimari.io/enable: "true"
-          hajimari.io/icon: ruler
+          hajimari.io/icon: mdi:align-vertical-top
 
         hosts:
-          - host: &host "goldilocks.${EXTERNAL_DOMAIN}"
+          - host: &host 'goldilocks.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 type: Prefix
 
         tls:
           - hosts:
-            - *host
+              - *host

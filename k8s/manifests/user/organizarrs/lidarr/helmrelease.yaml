@@ -27,7 +27,7 @@ spec:
       tag: 1.2.7
 
     env:
-      TZ: "${TZ}"
+      TZ: '${TZ}'
       AUTOCONFIG: true
 
     envFrom:
@@ -49,14 +49,15 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/lidarr/plex.css"></head>';
             sub_filter_once on;
+          hajimari.io/icon: mdi:headphones
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -66,9 +67,9 @@ spec:
 
       dmix:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         hosts:
-          - host: &host "dmix.${EXTERNAL_DOMAIN}"
+          - host: &host 'dmix.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -86,7 +87,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: &nas "george.${INTERNAL_DOMAIN}"
+        server: &nas 'george.${INTERNAL_DOMAIN}'
         path: /tank/
         mountPath: /media
       backup:

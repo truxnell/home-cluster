@@ -48,6 +48,7 @@ spec:
         annotations:
           external-dns.home.arpa/enabled: 'true'
           auth.home.arpa/enabled: 'true'
+          hajimari.io/icon: mdi:bookshelf
         hosts:
           - host: &host 'libreddit.${EXTERNAL_DOMAIN}'
             paths:

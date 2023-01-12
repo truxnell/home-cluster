@@ -31,20 +31,20 @@ spec:
       tag: 2.0.41
 
     env:
-      CREATE_ADMIN: "1"
-      DEBUG: "1"
-      LOG_DATE_TIME: "1"
-      METRICS_ALLOWED_NETWORKS: "${NETWORK_K8S_POD_CIDR}"
-      METRICS_COLLECTOR: "1"
+      CREATE_ADMIN: '1'
+      DEBUG: '1'
+      LOG_DATE_TIME: '1'
+      METRICS_ALLOWED_NETWORKS: '${NETWORK_K8S_POD_CIDR}'
+      METRICS_COLLECTOR: '1'
       OAUTH2_CLIENT_ID: miniflux
-      OAUTH2_CLIENT_SECRET: "${SECRET_MINIFLUX_OAUTH_CLIENT_SECRET}"
-      OAUTH2_USER_CREATION: "1"
-      OAUTH2_OIDC_DISCOVERY_ENDPOINT: "https://auth.${EXTERNAL_DOMAIN}"
+      OAUTH2_CLIENT_SECRET: '${SECRET_MINIFLUX_OAUTH_CLIENT_SECRET}'
+      OAUTH2_USER_CREATION: '1'
+      OAUTH2_OIDC_DISCOVERY_ENDPOINT: 'https://auth.${EXTERNAL_DOMAIN}'
       OAUTH2_PROVIDER: oidc
-      OAUTH2_REDIRECT_URL: "https://miniflux.${EXTERNAL_DOMAIN}/oauth2/oidc/callback"
+      OAUTH2_REDIRECT_URL: 'https://miniflux.${EXTERNAL_DOMAIN}/oauth2/oidc/callback'
       POLLING_SCHEDULER: entry_frequency
-      POLLING_FREQUENCY: "15"
-      RUN_MIGRATIONS: "1"
+      POLLING_FREQUENCY: '15'
+      RUN_MIGRATIONS: '1'
 
     envFrom:
       - secretRef:
@@ -59,12 +59,13 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: "true"
-          auth.home.arpa/enabled: "true"
+          external-dns.home.arpa/enabled: 'true'
+          auth.home.arpa/enabled: 'true'
+          hajimari.io/icon: mdi:rss
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix

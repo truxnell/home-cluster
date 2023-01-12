@@ -36,7 +36,7 @@ spec:
       enabled: true
       ingressClassName: 'nginx'
       annotations:
-        hajimari.io/enable: 'false'
+        hajimari.io/icon: mdi:solid
 
       hosts:
         - host: blackbox-exporter.${EXTERNAL_DOMAIN}

@@ -49,6 +49,7 @@ spec:
         annotations:
           external-dns.home.arpa/enabled: 'true'
           probe.home.arpa/enabled: 'false'
+          hajimari.io/icon: mdi:plex
         hosts:
           - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:

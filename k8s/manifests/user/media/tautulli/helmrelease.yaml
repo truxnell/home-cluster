@@ -26,7 +26,7 @@ spec:
       repository: ghcr.io/onedr0p/tautulli
       tag: 2.11.1@sha256:151f4921ba9960969df663a21dada1bd63e46e76ceaaa2194b6b437a2bd66f77
     env:
-      TZ: "${TZ}"
+      TZ: '${TZ}'
     service:
       main:
         ports:
@@ -36,14 +36,15 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/tautulli/plex.css"></head>';
             sub_filter_once on;
+          hajimari.io/icon: mdi:chart-bar
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -55,7 +56,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
+      fsGroupChangePolicy: 'OnRootMismatch'
 
     persistence:
       config:
@@ -64,7 +65,7 @@ spec:
       backup:
         enabled: true
         type: nfs
-        server: &nas "george.${INTERNAL_DOMAIN}"
+        server: &nas 'george.${INTERNAL_DOMAIN}'
         path: /tank/backup/kubernetes/apps/tautulli
 
     resources:

@@ -33,10 +33,10 @@ spec:
       kubeletDirPath: /var/lib/kubelet
       enableCSIHostNetwork: true
       pluginTolerations:
-        - effect: "NoExecute"
-          operator: "Exists"
-        - effect: "NoSchedule"
-          operator: "Exists"
+        - effect: 'NoExecute'
+          operator: 'Exists'
+        - effect: 'NoSchedule'
+          operator: 'Exists'
 
     monitoring:
       enabled: true

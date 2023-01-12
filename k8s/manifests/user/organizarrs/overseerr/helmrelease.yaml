@@ -26,8 +26,8 @@ spec:
       repository: ghcr.io/sct/overseerr
       tag: 1.31.0
     env:
-      TZ: "${TZ}"
-      LOG_LEVEL: "info"
+      TZ: '${TZ}'
+      LOG_LEVEL: 'info'
       PORT: &port 80
     service:
       main:
@@ -37,15 +37,15 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          # external-dns.home.arpa/enabled: "true"
+          hajimari.io/icon: mdi:eye-circle
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/overseerr/nord.css"></head>';
             sub_filter_once on;
         hosts:
-          - host: &host "requests.${EXTERNAL_DOMAIN}"
+          - host: &host 'requests.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
