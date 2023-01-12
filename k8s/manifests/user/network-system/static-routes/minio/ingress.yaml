@@ -38,6 +38,7 @@ metadata:
   namespace: network-system
   annotations:
     probe.home.arpa/enabled: 'false'
+    hajimari.io/enable: 'false'
     nginx.ingress.kubernetes.io/proxy-connect-timeout: '300'
     nginx.ingress.kubernetes.io/proxy-body-size: 5000m
     nginx.ingress.kubernetes.io/proxy-request-buffering: 'off'

@@ -49,6 +49,7 @@ spec:
         ingressClassName: 'nginx'
         annotations:
           probe.home.arpa/enabled: 'false'
+          hajimari.io/icon: simple-icons:adminer
         hosts:
           - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:

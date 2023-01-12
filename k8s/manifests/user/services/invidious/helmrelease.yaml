@@ -37,12 +37,13 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: "true"
+          external-dns.home.arpa/enabled: 'true'
+          hajimari.io/icon: simple-icons:youtube
 
         hosts:
-          - host: &host "invidious.${EXTERNAL_DOMAIN}"
+          - host: &host 'invidious.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix

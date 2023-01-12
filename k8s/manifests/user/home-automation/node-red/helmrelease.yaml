@@ -27,7 +27,7 @@ spec:
       tag: v3.0.2
 
     env:
-      TZ: "${TZ}"
+      TZ: '${TZ}'
 
     service:
       main:
@@ -38,9 +38,11 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
+        annotations:
+          hajimari.io/icon: mdi:sitemap
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -52,13 +54,13 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
+      fsGroupChangePolicy: 'OnRootMismatch'
 
     persistence:
       config:
         enabled: true
         existingClaim: node-red-config-v1
-        mountPath: "/data"
+        mountPath: '/data'
 
     resources:
       requests:
