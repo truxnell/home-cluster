@@ -58,6 +58,7 @@ spec:
         ingressClassName: 'nginx'
         annotations:
           probe.home.arpa/enabled: 'false'
+          hajimari.io/enabled: 'false'
         hosts:
           - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
