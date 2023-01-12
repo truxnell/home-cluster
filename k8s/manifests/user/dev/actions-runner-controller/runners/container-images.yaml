@@ -7,14 +7,15 @@ metadata:
 spec:
   template:
     spec:
-      image: summerwind/actions-runner-dind
-      imagePullPolicy: Always
-      dockerdWithinRunnerContainer: true
+      image: ghcr.io/actions/actions-runner-controller/actions-runner:v2.299.1-ubuntu-20.04
+      dockerdWithinRunnerContainer: false
       ephemeral: true
       repository: Truxnell/container-images
-      securityContext:
-        supplementalGroups:
-          - 65542
+      containers:
+        - name: docker
+          image: docker:23.0.0-beta.1-dind
+      labels:
+        - self-hosted
       volumeMounts:
         - name: cache-volume
           mountPath: /cache
@@ -39,10 +40,10 @@ spec:
   scaleUpTriggers:
     - githubEvent:
         checkRun:
-          types: ["created"]
-          status: "queued"
+          types: ['created']
+          status: 'queued'
       amount: 1
-      duration: "1m"
+      duration: '1m'
   minReplicas: 1
   maxReplicas: 3
   metrics:
