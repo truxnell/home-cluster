@@ -49,6 +49,7 @@ spec:
         annotations:
           external-dns.home.arpa/enabled: 'true'
           probe.home.arpa/enabled: 'false'
+          hajimari.io/icon: 'shield-key'
         hosts:
           - host: &host 'vault.${EXTERNAL_DOMAIN}'
             paths:
