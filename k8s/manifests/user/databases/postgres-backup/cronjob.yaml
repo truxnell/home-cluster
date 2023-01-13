@@ -40,7 +40,7 @@ spec:
                       name: postgres-superuser
                       key: password
                 - name: POSTGRES_DB
-                  value: 'weather_station,vaultwarden,grafana,hass,miniflux,vikunja,pleroma-rebased,paperless'
+                  value: 'weather_station,vaultwarden,grafana,hass,miniflux,vikunja,pleroma-rebased,paperless,invidious'
               volumeMounts:
                 - name: nas-backups
                   mountPath: /backups
