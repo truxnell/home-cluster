@@ -27,3 +27,4 @@ resources:
   - ./stakater-charts.yaml
   - ./vector-charts.yaml
   - ./lwolf-charts.yaml
+  - ./kubernetes-dashboard.yaml
