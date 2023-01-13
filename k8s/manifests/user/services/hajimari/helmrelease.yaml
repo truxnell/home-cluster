@@ -96,8 +96,8 @@ spec:
               url: 'https://whazor.github.io/k8s-at-home-search/'
         - group: Shopping
           bookmarks:
-            - name: eBay
-              url: 'https://ebay.com/'
+            - name: eBay AU
+              url: 'https://ebay.com.au/'
             - name: Gumtree
               url: 'https://www.gumtree.com/'
             - name: FB Marketplace
