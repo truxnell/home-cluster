@@ -40,7 +40,7 @@ spec:
           grpc_listen_port: 9095
 
         memberlist:
-          join_members: ["loki-memberlist"]
+          join_members: ['loki-memberlist']
 
         limits_config:
           retention_period: 14d
@@ -54,7 +54,7 @@ spec:
 
         schema_config:
           configs:
-            - from: "2021-08-01"
+            - from: '2021-08-01'
               store: boltdb-shipper
               object_store: s3
               schema: v11
@@ -117,9 +117,11 @@ spec:
                 topologyKey: kubernetes.io/hostname
       ingress:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
+        annotations:
+          hajimari.io/enable: 'false'
         hosts:
-          - host: &host "loki.${EXTERNAL_DOMAIN}"
+          - host: &host 'loki.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
