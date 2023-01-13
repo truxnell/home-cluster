@@ -66,6 +66,8 @@ spec:
           memory: 273M
         # limits:
         # memory: 326M
+      serviceMonitor:
+        sampleLimit: 0
 
       prometheusConfigReloader:
         resources:
