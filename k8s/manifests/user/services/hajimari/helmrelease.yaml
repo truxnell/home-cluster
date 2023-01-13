@@ -92,6 +92,8 @@ spec:
           bookmarks:
             - name: Truxnell/home-cluster
               url: 'https://github.com/Truxnell/home-cluster'
+            - name: Truxnell/container-images
+              url: 'https://github.com/Truxnell/container-images'
             - name: k8s-at-home-search
               url: 'https://whazor.github.io/k8s-at-home-search/'
         - group: Shopping
