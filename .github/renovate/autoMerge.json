@@ -64,10 +64,12 @@
         "ghcr.io/onedr0p/qbittorrent",
         "ghcr.io/onedr0p/radarr",
         "ghcr.io/onedr0p/readarr",
+        "ghcr.io/onedr0p/readarr-nightly",
         "ghcr.io/onedr0p/recyclarr",
         "ghcr.io/onedr0p/lidarr",
         "ghcr.io/onedr0p/sabnzbd",
         "ghcr.io/onedr0p/sonarr",
+        "ghcr.io/onedr0p/sonarr-develop",
         "ghcr.io/onedr0p/plex",
         "renovatebot/github-action"
       ],
