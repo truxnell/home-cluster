@@ -1,0 +1,55 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app cyberchef
+  namespace: services
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.1
+      interval: 15m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+
+  values:
+    image:
+      repository: docker.io/mpepping/cyberchef
+      tag: v9.55.0
+
+    env:
+      TZ: ${TZ}
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8000
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: 'nginx'
+        annotations:
+          external-dns.home.arpa/enabled: 'true'
+          hajimari.io/enable: 'true'
+          hajimari.io/icon: hammer-wrench
+
+        hosts:
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+            paths:
+              - path: /
+        tls:
+          - hosts:
+              - *host
+
+    # resources:
+    #   requests:
+    #     cpu: 15m
+    #     memory: 79M
+    #   limits:
+    #     memory: 79M
