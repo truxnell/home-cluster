@@ -74,7 +74,8 @@
         "renovatebot/github-action"
       ],
       "schedule": [
-        "after 2am saturday, before 6am saturday"
+        "after 2am every saturday",
+        "before 6am every saturday"
       ],
       "stabilityDays": 3
     },
