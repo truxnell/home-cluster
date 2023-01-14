@@ -73,9 +73,9 @@ spec:
         size: 10Gi
         existingClaim: mealie-data-v1
 
-    resources:
-      requests:
-        cpu: 15m
-        memory: 79M
-      limits:
-        memory: 79M
+    # resources:
+    #   requests:
+    #     cpu: 15m
+    #     memory: 79M
+    #   limits:
+    #     memory: 79M
