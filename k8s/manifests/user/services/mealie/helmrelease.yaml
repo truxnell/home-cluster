@@ -50,7 +50,7 @@ spec:
           - name: SMTP_FROM_NAME
             value: Mealie
           - name: SMTP_FROM_EMAIL
-            value: 'mealie@${EXTERNAL_DOMAIN}'
+            value: 'mealie@${EMAIL_DOMAIN}'
         ports:
           - name: api
             containerPort: 9000
