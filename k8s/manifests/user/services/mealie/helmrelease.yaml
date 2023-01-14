@@ -41,6 +41,16 @@ spec:
     env:
       TZ: ${TZ}
       DB_TYPE: sqlite
+      DEFAULT_EMAIL: admin@${EXTERNAL_DOMAIN}
+      BASE_URL: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+      TOKEN_TIME: 720 # 24 hours * 30 days
+      AUTO_BACKUP_ENABLED: true
+      ALLOW_SIGNUP: false
+      SMTP_HOST: smtp-relay.services.svc.cluster.local
+      SMTP_PORT: 2525
+      SMTP_AUTH_STRATEGY: NONE
+      SMTP_FROM_NAME: Mealie
+      SMTP_FROM_EMAIL: 'mealie@${EXTERNAL_DOMAIN}'
 
     service:
       main:
@@ -58,7 +68,7 @@ spec:
         annotations:
           hajimari.io/icon: game-icons:meal
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: *host
             paths:
               - path: /
         tls:
