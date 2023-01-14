@@ -1,4 +1,6 @@
 {
+
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   // General RenovateBot configuration
   extends: [
     ":enableRenovate",
@@ -18,7 +20,6 @@
   platform: "github",
   username: "trux-bot[bot]",
   repositories: ["Truxnell/home-cluster"],
-  stabilityDays: 3,
   onboarding: false,
   requireConfig: "optional",
   gitAuthor: "Trux-Bot <19149206+trux-bot[bot]@users.noreply.github.com>",
@@ -177,6 +178,11 @@
         "ghcr.io/onedr0p/plex",
         "ghcr.io/onedr0p/qbittorrent",
       ]
+    },
+    {
+      "description": "Three day stability period for npm packages except Renovate",
+      "matchDatasources": ["docker"],
+      "stabilityDays": 7
     },
   ],
 }
