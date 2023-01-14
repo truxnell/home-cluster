@@ -31,6 +31,26 @@ spec:
             value: '9000'
           - name: TZ
             value: ${TZ}
+          - name: DEFAULT_EMAIL
+            value: admin@${EXTERNAL_DOMAIN}
+          - name: BASE_URL
+            value: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - name: TOKEN_TIME
+            value: 720 # 24 hours * 30 days
+          - name: AUTO_BACKUP_ENABLED
+            value: 'true'
+          - name: ALLOW_SIGNUP
+            value: 'false'
+          - name: SMTP_HOST
+            value: smtp-relay.services.svc.cluster.local
+          - name: SMTP_PORT
+            value: 2525
+          - name: SMTP_AUTH_STRATEGY
+            value: NONE
+          - name: SMTP_FROM_NAME
+            value: Mealie
+          - name: SMTP_FROM_EMAIL
+            value: 'mealie@${EXTERNAL_DOMAIN}'
         ports:
           - name: api
             containerPort: 9000
@@ -41,16 +61,6 @@ spec:
     env:
       TZ: ${TZ}
       DB_TYPE: sqlite
-      DEFAULT_EMAIL: admin@${EXTERNAL_DOMAIN}
-      BASE_URL: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
-      TOKEN_TIME: 720 # 24 hours * 30 days
-      AUTO_BACKUP_ENABLED: true
-      ALLOW_SIGNUP: false
-      SMTP_HOST: smtp-relay.services.svc.cluster.local
-      SMTP_PORT: 2525
-      SMTP_AUTH_STRATEGY: NONE
-      SMTP_FROM_NAME: Mealie
-      SMTP_FROM_EMAIL: 'mealie@${EXTERNAL_DOMAIN}'
 
     service:
       main:
