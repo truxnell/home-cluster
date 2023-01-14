@@ -21,22 +21,22 @@ spec:
       repository: docker.io/hkotel/mealie
       tag: frontend-v1.0.0beta-5
 
-      additionalContainers:
-        api:
-          name: mealie-api
-          image: docker.io/hkotel/mealie:api-v1.0.0beta-5
-          imagePullPolicy: IfNotPresent
-          env:
-            - name: API_PORT
-              value: '9000'
-            - name: TZ
-              value: ${TZ}
-          ports:
-            - name: api
-              containerPort: 9000
-          volumeMounts:
-            - name: api-data
-              mountPath: /app/data/
+    additionalContainers:
+      api:
+        name: mealie-api
+        image: docker.io/hkotel/mealie:api-v1.0.0beta-5
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: API_PORT
+            value: '9000'
+          - name: TZ
+            value: ${TZ}
+        ports:
+          - name: api
+            containerPort: 9000
+        volumeMounts:
+          - name: api-data
+            mountPath: /app/data/
 
     env:
       TZ: ${TZ}
