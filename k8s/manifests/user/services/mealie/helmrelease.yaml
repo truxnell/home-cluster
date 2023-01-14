@@ -71,7 +71,7 @@ spec:
         mountPath: /app/data/
         accessMode: ReadWriteOnce
         size: 10Gi
-        existingClaim: mealie-pvc
+        existingClaim: mealie-data-v1
 
     resources:
       requests:
