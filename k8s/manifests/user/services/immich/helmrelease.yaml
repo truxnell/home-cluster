@@ -45,7 +45,7 @@ spec:
           hajimari.io/appName: 'Immich'
           hajimari.io/icon: heroicons:photo
         hosts:
-          - host: &host 'photos.trux.dev'
+          - host: &host 'photos.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
         tls:
@@ -57,7 +57,7 @@ spec:
         enabled: true
         mountPath: /usr/src/app/upload
         type: nfs
-        server: 'george.natallan.com'
+        server: 'george.${INTERNAL_DOMAIN}'
         path: /tank/photos/immich
 
     resources:
