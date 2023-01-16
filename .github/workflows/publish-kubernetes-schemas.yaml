@@ -83,7 +83,7 @@ jobs:
 
       - name: Publish schemas as OCI
         run: |
-          flux push artifact oci://ghcr.io/Truxnell/kubernetes-schemas-oci:latest \
+          flux push artifact oci://ghcr.io/truxnell/kubernetes-schemas-oci:latest \
               --path="/home/runner/.datree/crdSchemas" \
               --source="${{ github.repositoryUrl }}" \
               --revision="main"
@@ -108,5 +108,5 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           labels: |
-            org.opencontainers.image.source="https://github.com/Truxnell/home-cluster"
+            org.opencontainers.image.source="https://github.com/truxnell/home-cluster"
             org.opencontainers.image.authors="Nat Allan <nat@natallan.com>"
