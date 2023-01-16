@@ -176,8 +176,10 @@
       "matchDatasources": ["docker", "github-releases"],
       "versioning": "loose",
       "matchPackageNames": [
-        "ghcr.io/onedr0p/plex",
-        "ghcr.io/onedr0p/qbittorrent",
+        "plex",
+        "qbittorrent",
+        "immich",
+        "changedetection"
       ]
     },
     {
