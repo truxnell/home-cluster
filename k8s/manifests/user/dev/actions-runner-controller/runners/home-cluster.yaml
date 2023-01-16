@@ -2,7 +2,7 @@
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: RunnerDeployment
 metadata:
-  name: runner-container-images
+  name: runner-home-cluster
   namespace: dev
 spec:
   template:
@@ -10,7 +10,7 @@ spec:
       image: ghcr.io/actions/actions-runner-controller/actions-runner:v2.299.1-ubuntu-20.04
       dockerdWithinRunnerContainer: false
       ephemeral: true
-      repository: Truxnell/home-cluster
+      repository: Truxnell/container-images
       containers:
         - name: docker
           image: docker:23.0.0-beta.1-dind
@@ -32,7 +32,7 @@ spec:
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: HorizontalRunnerAutoscaler
 metadata:
-  name: container-images-autoscaler
+  name: home-cluster-autoscaler
   namespace: dev
 spec:
   scaleTargetRef:
@@ -49,4 +49,4 @@ spec:
   metrics:
     - type: TotalNumberOfQueuedAndInProgressWorkflowRuns
       repositoryNames:
-        - Truxnell/home-cluster
+        - Truxnell/container-images

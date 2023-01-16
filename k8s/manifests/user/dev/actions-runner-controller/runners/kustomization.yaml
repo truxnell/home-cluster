@@ -5,3 +5,4 @@ resources:
   - ./pvc.yaml
   # - ./assets.yaml
   - ./container-images.yaml
+  - ./home-cluster.yaml
