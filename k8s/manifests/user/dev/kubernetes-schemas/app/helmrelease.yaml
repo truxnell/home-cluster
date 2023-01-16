@@ -33,7 +33,7 @@ spec:
 
     image:
       repository: ghcr.io/truxnell/kubernetes-schemas-web
-      tag: latest@sha256:1387a4a1394b032a0f7e7d891f757be90c5b01b5e406cdc438820b7d74beaadf
+      tag: latest@sha256:8c1e83b45f75095f5966504eef704cf2a8a4ce5aa16bd2f89f3d7298659bb2ff
 
     service:
       main:
