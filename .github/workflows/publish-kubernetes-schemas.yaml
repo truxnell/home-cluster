@@ -104,7 +104,7 @@ jobs:
           file: /home/runner/.datree/crdSchemas/Dockerfile
           push: true
           tags: |
-            ${{ env.IMAGE_REGISTRY }}/${{ github.repository_owner }}/kubernetes-schemas-web:latest
+            ${{ env.IMAGE_REGISTRY }}/truxnell/kubernetes-schemas-web:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
           labels: |
