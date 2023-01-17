@@ -30,15 +30,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
   postBuild:
     substituteFrom:
       - kind: ConfigMap
-        name: cluster-config
-        optional: false
-      - kind: Secret
-        name: cluster-secrets
+        name: cluster-settings
         optional: false
