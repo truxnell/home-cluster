@@ -28,3 +28,4 @@ resources:
   - ./vector-charts.yaml
   - ./lwolf-charts.yaml
   - ./kubernetes-dashboard.yaml
+  - ./external-secrets.yaml
