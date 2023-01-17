@@ -1,0 +1,63 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cert-manager
+  namespace: cert-manager
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: cert-manager
+      version: v1.11.0
+      sourceRef:
+        kind: HelmRepository
+        name: jetstack-charts
+        namespace: flux-system
+      interval: 5m
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation: # perform remediation when helm install fails
+      retries: 5
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 5
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: kube-prometheus-stack
+      namespace: system-monitoring
+
+  values:
+    installCRDs: true
+
+    webhook:
+      enabled: true
+
+    extraArgs:
+      - --dns01-recursive-nameservers=1.1.1.1:53,9.9.9.9:53
+      - --dns01-recursive-nameservers-only
+      - --enable-certificate-owner-ref
+
+    replicaCount: 1
+
+    podDnsPolicy: 'None'
+    podDnsConfig:
+      nameservers:
+        - '1.1.1.1'
+        - '9.9.9.9'
+    prometheus:
+      enabled: true
+      servicemonitor:
+        enabled: true
+        prometheusInstance: monitoring
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 381M
+      limits:
+        memory: 395M
