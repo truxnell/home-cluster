@@ -6,7 +6,7 @@ metadata:
   name: cluster-apps-flux-monitoring
   namespace: flux-system
   labels:
-    substitution.flux.home.arpa/enabled: "true"
+    substitution.flux.home.arpa/enabled: 'true'
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets
@@ -15,7 +15,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-kubernetes
+    name: home-cluster-kubernetes
   wait: true
   interval: 30m
   retryInterval: 1m
@@ -28,7 +28,7 @@ metadata:
   name: cluster-apps-flux-notifications
   namespace: flux-system
   labels:
-    substitution.flux.home.arpa/enabled: "true"
+    substitution.flux.home.arpa/enabled: 'true'
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets
@@ -37,7 +37,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-kubernetes
+    name: home-cluster-kubernetes
   wait: true
   interval: 30m
   retryInterval: 1m
@@ -50,7 +50,7 @@ metadata:
   name: cluster-apps-flux-webhooks
   namespace: flux-system
   labels:
-    substitution.flux.home.arpa/enabled: "true"
+    substitution.flux.home.arpa/enabled: 'true'
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets
@@ -59,7 +59,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-kubernetes
+    name: home-cluster-kubernetes
   wait: true
   interval: 30m
   retryInterval: 1m

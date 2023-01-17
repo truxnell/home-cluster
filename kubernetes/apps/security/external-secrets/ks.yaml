@@ -8,7 +8,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  path: ./kubernetes/apps/kube-system/external-secrets/app
+  path: ./kubernetes/apps/security/external-secrets/app
   prune: true
   sourceRef:
     kind: GitRepository
