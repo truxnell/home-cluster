@@ -1,0 +1,10 @@
+---
+version: '3'
+
+tasks:
+  create-cluster:
+    desc: Create a local cluster (IP=local ip addr)
+    cmds:
+      - |
+        talosctl cluster create  --kubernetes-version 1.25.0   -p 69:69/udp,8081:8081/tcp,51821:51821/udp   --workers 0   --endpoint ${IP}
+        kubectl taint node talos-default-controlplane-1 node-role.kubernetes.io/control-plane:NoSchedule-

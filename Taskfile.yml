@@ -4,8 +4,6 @@ version: "3"
 vars:
   ANSIBLE_DIR: "{{.ROOT_DIR}}/ansible"
   CLUSTER_DIR: "{{.ROOT_DIR}}/kubernetes"
-  PROJECT_DIR:
-    sh: "git rev-parse --show-toplevel"
 
 env:
   KUBECONFIG: "{{.ANSIBLE_DIR}}/kubernetes/kubeconfig"
@@ -15,6 +13,11 @@ includes:
   es: .taskfiles/ExternalSecrets/Tasks.yml
   fx: .taskfiles/Flux/Tasks.yml
   ku: .taskfiles/Kubernetes/Tasks.yml
+  ko: .taskfiles/Kopia/Tasks.yml
+  pr: .taskfiles/PreCommit/Tasks.yaml
+  re: .taskfiles/Redis/Tasks.yaml
+  ro: .taskfiles/Rook/Tasks.yaml
+  ta: .taskfiles/Talos/Tasks.yml
   vs: .taskfiles/VolSync/Tasks.yml
 
 tasks:
