@@ -2,15 +2,22 @@
 version: "3"
 
 vars:
+  ANSIBLE_DIR: "{{.ROOT_DIR}}/ansible"
+  CLUSTER_DIR: "{{.ROOT_DIR}}/kubernetes"
   PROJECT_DIR:
     sh: "git rev-parse --show-toplevel"
-  CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
 
+env:
+  KUBECONFIG: "{{.ANSIBLE_DIR}}/kubernetes/kubeconfig"
 
 includes:
-  flux: .taskfiles/flux.yml
-  cluster: .taskfiles/cluster.yml
-  format: .taskfiles/format.yml
-  bootstrap: .taskfiles/bootstrap.yml
-  ansible: .taskfiles/ansible.yml
-  snapshot: .taskfiles/snapshot.yaml
+  an: .taskfiles/Ansible/Tasks.yml
+  es: .taskfiles/ExternalSecrets/Tasks.yml
+  fx: .taskfiles/Flux/Tasks.yml
+  ku: .taskfiles/Kubernetes/Tasks.yml
+  vs: .taskfiles/VolSync/Tasks.yml
+
+tasks:
+  default:
+    silent: true
+    cmds: ["task -l"]

@@ -1,8 +1,0 @@
----
-version: "3"
-
-tasks:
-  list-mp3:
-    desc: List filders with MP3 ex. ARTIST=Foo
-    cmds:
-      - find /mnt/hyperion/music/{{.ARTIST}}/ -name "*.mp3" -printf "%h\n" | uniq
