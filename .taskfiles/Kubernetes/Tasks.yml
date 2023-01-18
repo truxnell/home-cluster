@@ -8,6 +8,7 @@ tasks:
       - |
         kubectl apply --server-side --kustomize {{.CLUSTER_DIR}}/bootstrap/crds/
         kubectl apply --server-side --kustomize {{.CLUSTER_DIR}}/bootstrap/flux
+        kubectl apply -f ./flux/vars/cluster-config.yaml
         kubectl apply --server-side --kustomize {{.CLUSTER_DIR}}/flux/config
 
   schemas:
