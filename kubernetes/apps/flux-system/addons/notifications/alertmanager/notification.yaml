@@ -22,20 +22,20 @@ spec:
   eventSeverity: error
   eventSources:
     - kind: GitRepository
-      name: "*"
+      name: '*'
     - kind: HelmRelease
-      name: "*"
+      name: '*'
     - kind: HelmRepository
-      name: "*"
+      name: '*'
     - kind: Kustomization
-      name: "*"
+      name: '*'
     - kind: OCIRepository
-      name: "*"
+      name: '*'
     - kind: Terraform
-      name: "*"
+      name: '*'
   exclusionList:
     - "error.*lookup github\\.com"
     - "error.*lookup raw\\.githubusercontent\\.com"
-    - "dial.*tcp.*timeout"
-    - "waiting.*socket"
+    - 'dial.*tcp.*timeout'
+    - 'waiting.*socket'
   suspend: false
