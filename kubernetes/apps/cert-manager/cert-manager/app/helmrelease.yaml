@@ -27,9 +27,6 @@ spec:
     cleanupOnFail: true
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: kube-prometheus-stack
-      namespace: system-monitoring
 
   values:
     installCRDs: true
