@@ -1,12 +1,12 @@
 ---
-version: "3"
+version: '3'
 
 vars:
-  ANSIBLE_DIR: "{{.ROOT_DIR}}/ansible"
-  CLUSTER_DIR: "{{.ROOT_DIR}}/kubernetes"
+  ANSIBLE_DIR: '{{.ROOT_DIR}}/ansible'
+  CLUSTER_DIR: '{{.ROOT_DIR}}/kubernetes'
 
 env:
-  KUBECONFIG: "{{.ANSIBLE_DIR}}/kubernetes/kubeconfig"
+  KUBECONFIG: '{{.ANSIBLE_DIR}}/kubernetes/kubeconfig'
 
 includes:
   an: .taskfiles/Ansible/Tasks.yml
@@ -14,7 +14,7 @@ includes:
   fx: .taskfiles/Flux/Tasks.yml
   ku: .taskfiles/Kubernetes/Tasks.yml
   ko: .taskfiles/Kopia/Tasks.yml
-  pr: .taskfiles/PreCommit/Tasks.yaml
+  pr: .taskfiles/PreCommit/Tasks.yml
   re: .taskfiles/Redis/Tasks.yaml
   ro: .taskfiles/Rook/Tasks.yaml
   ta: .taskfiles/Talos/Tasks.yml
@@ -23,4 +23,4 @@ includes:
 tasks:
   default:
     silent: true
-    cmds: ["task -l"]
+    cmds: ['task -l']
