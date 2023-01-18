@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomization_v1beta2.json
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomization_v1beta2.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -10,7 +10,6 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets
-    - name: cluster-apps-external-secrets-stores
   path: ./kubernetes/apps/flux-system/addons/monitoring
   prune: true
   sourceRef:
@@ -21,7 +20,7 @@ spec:
   retryInterval: 1m
   timeout: 3m
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomization_v1beta2.json
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomization_v1beta2.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -32,7 +31,6 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets
-    - name: cluster-apps-external-secrets-stores
   path: ./kubernetes/apps/flux-system/addons/notifications
   prune: true
   sourceRef:
@@ -43,7 +41,7 @@ spec:
   retryInterval: 1m
   timeout: 3m
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomization_v1beta2.json
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomization_v1beta2.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -54,7 +52,6 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-external-secrets
-    - name: cluster-apps-external-secrets-stores
   path: ./kubernetes/apps/flux-system/addons/webhooks
   prune: true
   sourceRef:

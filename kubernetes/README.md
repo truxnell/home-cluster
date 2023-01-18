@@ -19,6 +19,14 @@ sops --decrypt ./bootstrap/flux/age-key.sops.yaml | kubectl apply -f -
 kubectl apply -f ./flux/vars/cluster-config.yaml
 ```
 
+### Manually apply Prom CRD'
+
+This helps avoid dependency hell with many startup helmreleases needing prometheus crd's first. When prometheus CRD reconciles it will take over these
+
+```sh
+kubectl apply  -k ./bootstrap/crds/
+```
+
 ### Kick off Flux applying this repository
 
 ```sh
