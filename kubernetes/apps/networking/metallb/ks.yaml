@@ -37,7 +37,7 @@ spec:
     kind: GitRepository
     name: home-cluster-kubernetes
   dependsOn:
-    - name: networking
+    - name: cluster-apps-metallb
   prune: true
   wait: true
   interval: 30m
