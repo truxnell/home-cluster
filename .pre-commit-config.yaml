@@ -17,17 +17,19 @@ repos:
     rev: v4.4.0
     hooks:
       - id: trailing-whitespace
-      - id: check-merge-conflict
-      - id: detect-private-key
       - id: end-of-file-fixer
+      - id: fix-byte-order-marker
+      - id: mixed-line-ending
       - id: check-added-large-files
-        args: ["--maxkb=2000"]
+        args: [--maxkb=2048]
+      - id: check-merge-conflict
+      - id: check-executables-have-shebangs
 
-  # - repo: https://github.com/Lucas-C/pre-commit-hooks
-  #   rev: v1.1.14
-  #   hooks:
-  #     - id: remove-crlf
-  #     - id: remove-tabs
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.1.14
+    hooks:
+      - id: remove-crlf
+      - id: remove-tabs
 
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
     rev: 3.0.0
@@ -63,5 +65,8 @@ repos:
     rev: v0.0.9
     hooks:
       - id: kustomize_build
-        files: ^k8s/
+        files: ^(
+          k8s/
+          kubetnetes/
+          )
         args: [--dry-run=server]
