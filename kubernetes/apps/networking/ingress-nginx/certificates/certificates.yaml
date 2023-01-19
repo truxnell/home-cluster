@@ -2,29 +2,29 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: '${EXTERNAL_DOMAIN/./-}'
-  namespace: network-system
+  name: "${EXTERNAL_DOMAIN/./-}"
+  namespace: networking
 spec:
-  secretName: '${EXTERNAL_DOMAIN/./-}-tls'
+  secretName: "${EXTERNAL_DOMAIN/./-}-tls"
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: '${EXTERNAL_DOMAIN}'
+  commonName: "${EXTERNAL_DOMAIN}"
   dnsNames:
-    - '${EXTERNAL_DOMAIN}'
-    - '*.${EXTERNAL_DOMAIN}'
+    - "${EXTERNAL_DOMAIN}"
+    - "*.${EXTERNAL_DOMAIN}"
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: '${WEBSITE_DOMAIN/./-}'
-  namespace: network-system
+  name: "${WEBSITE_DOMAIN/./-}"
+  namespace: networking
 spec:
-  secretName: '${WEBSITE_DOMAIN/./-}-tls'
+  secretName: "${WEBSITE_DOMAIN/./-}-tls"
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: '${WEBSITE_DOMAIN}'
+  commonName: "${WEBSITE_DOMAIN}"
   dnsNames:
-    - '${WEBSITE_DOMAIN}'
-    - '*.${WEBSITE_DOMAIN}'
+    - "${WEBSITE_DOMAIN}"
+    - "*.${WEBSITE_DOMAIN}"
