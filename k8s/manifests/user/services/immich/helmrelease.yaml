@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: ghcr.io/immich-app/immich-proxy
-      tag: v1.42.0_65-dev
+      tag: 1363
 
     env:
       IMMICH_SERVER_URL: http://localhost:3001
@@ -70,7 +70,7 @@ spec:
     additionalContainers:
       immich-server:
         name: immich-server
-        image: ghcr.io/immich-app/immich-server:v1.42.0_65-dev
+        image: ghcr.io/immich-app/immich-server:1363
         volumeMounts:
           - name: library
             mountPath: /usr/src/app/upload
@@ -110,7 +110,7 @@ spec:
 
       immich-microservices:
         name: immich-microservices
-        image: ghcr.io/immich-app/immich-server:v1.42.0_65-dev
+        image: ghcr.io/immich-app/immich-server:1363
         volumeMounts:
           - name: library
             mountPath: /usr/src/app/upload
@@ -187,7 +187,7 @@ spec:
 
       immich-web:
         name: immich-web
-        image: ghcr.io/immich-app/immich-web:v1.42.0_65-dev
+        image: ghcr.io/immich-app/immich-web:1363
         volumeMounts:
           - name: library
             mountPath: /usr/src/app/upload
@@ -229,7 +229,7 @@ spec:
 
       immich-machinelearning:
         name: immich-machinelearning
-        image: ghcr.io/immich-app/immich-machine-learning:v1.42.0_65-dev
+        image: ghcr.io/immich-app/immich-machine-learning:1363
         volumeMounts:
           - name: library
             mountPath: /usr/src/app/upload
