@@ -1,0 +1,32 @@
+---
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: add-prom-probes
+  annotations:
+    policies.kyverno.io/title: Add Prometheus probe annotations
+    policies.kyverno.io/subject: Ingress
+    policies.kyverno.io/description: >-
+      This policy adds prometheus probes annotations to all ingress
+      except for ingress with `probe.home.arpa/enabled: "false"`.
+spec:
+  mutateExistingOnPolicyUpdate: true
+  generateExistingOnPolicyUpdate: true
+  rules:
+    - name: add-prom-probes
+      match:
+        any:
+          - resources:
+              kinds:
+                - Ingress
+      exclude:
+        any:
+          - resources:
+              annotations:
+                probe.home.arpa/enabled: "false"
+      mutate:
+        patchStrategicMerge:
+          metadata:
+            annotations:
+              +(prometheus.io/probe): "true"
+              +(prometheus.io/module): "http_2xx"
