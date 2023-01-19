@@ -17,7 +17,7 @@ spec:
         dns01:
           cloudflare:
             apiTokenSecretRef:
-              key: API-TOKEN
+              key: API_TOKEN
               name: cloudflare-api-token-secret
             email: acme@${EXTERNAL_DOMAIN}
 ---
@@ -39,6 +39,6 @@ spec:
         dns01:
           cloudflare:
             apiTokenSecretRef:
-              key: API-TOKEN
+              key: API_TOKEN
               name: cloudflare-api-token-secret
             email: acme@${EXTERNAL_DOMAIN}
