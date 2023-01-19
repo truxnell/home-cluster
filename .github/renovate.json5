@@ -87,10 +87,7 @@
       "description": "Use loose versioning for certain dependencies",
       "matchDatasources": ["docker", "github-releases"],
       "versioning": "loose",
-      "matchPackageNames": [
-        "ghcr.io/onedr0p/plex",
-        "ghcr.io/onedr0p/qbittorrent",
-      ]
+      "matchPackagePatterns": ["changedetection", "immich", "plex", "qbittorrent"]
     },
     {
       matchDatasources: ["docker"],
