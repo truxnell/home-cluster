@@ -4,12 +4,11 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: cluster-apps-$APP_NAME
-  namespace: $NAMESPACE
+  namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  interval: 10m
-  path: '.$FULLDIRapp'
+  path: '$FULLDIR/app'
   prune: true
   sourceRef:
     kind: GitRepository
@@ -19,4 +18,6 @@ spec:
       kind: HelmRelease
       name: cluster-apps-$APP_NAME
       namespace: cert-manager
-  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m

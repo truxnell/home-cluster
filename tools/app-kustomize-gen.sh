@@ -36,7 +36,12 @@ do
     echo " Adding $APP_NAME to $FILE"
     if [ ! -f "$APP/ks.yaml" ]; then
 
-      echo "WARN:: $APP_NAME is missing its ks.yaml!"
+      echo "WARN:: $APP_NAME is missing its ks.yaml"
+
+    elif [ -f "$APP/wip" ]; then
+
+      echo "WARN:: $APP_NAME has a wip file, adding commented"
+      echo "  # - ./$APP_NAME/ks.yaml" >>   "$DIR/kustomization.yaml"
 
     else
 
@@ -44,6 +49,13 @@ do
 
     fi
 
+
+    appname=$(basename "$DIR")
+    ns=$(basename $(dirname "$DIR"))
+
+    export FULLDIR="./$K8S_FOLDER/$ns/$APP_NAME"
+    export APP_NAME=$appname
+    envsubst < "$ROOT/templates/ks/ks.yaml" > "$dir/ks.yaml"
 
   # if [ ! -d "$dir/app" ]; then
   #   echo "creating app folder for $dir"

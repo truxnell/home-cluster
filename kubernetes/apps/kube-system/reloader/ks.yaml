@@ -8,7 +8,8 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  path: ./kubernetes/apps/kube-system/reloader/app
+  interval: 10m
+  path: './kubernetes/apps/kube-system/reloader/app'
   prune: true
   sourceRef:
     kind: GitRepository
@@ -16,8 +17,6 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: reloader
-      namespace: kube-system
-  interval: 30m
-  retryInterval: 1m
-  timeout: 3m
+      name: cluster-apps-reloader
+      namespace: cert-manager
+  wait: true
