@@ -3,13 +3,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-cilium
+  name: cluster-apps-descheduler
   namespace: kube-system
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
   interval: 10m
-  path: '.../kubernetes/apps/kube-system/cilium/app'
+  path: '.../kubernetes/apps/kube-system/descheduler/app'
   prune: true
   sourceRef:
     kind: GitRepository
@@ -17,6 +17,6 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: cluster-apps-cilium
+      name: cluster-apps-descheduler
       namespace: cert-manager
   wait: true
