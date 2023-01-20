@@ -24,14 +24,16 @@
     {
       "description": "Auto merge GitHub Actions",
       "matchDatasources": [
-        "github-tags"
+        "github-tags",
+        "github-actions"
       ],
       "automerge": true,
       "automergeType": "branch",
       "requiredStatusChecks": null,
       "matchUpdateTypes": [
         "minor",
-        "patch"
+        "patch",
+        "digest"
       ],
       "matchPackageNames": [
         "lycheeverse/lychee-action",
