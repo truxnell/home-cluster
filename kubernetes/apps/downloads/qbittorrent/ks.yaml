@@ -22,4 +22,4 @@ spec:
       name: qbittorrent-app
       namespace: downloads
   dependsOn:
-    - name: cluster-apps-rook-ceph-app
+    - name: cluster-apps-rook-ceph-cluster

@@ -24,4 +24,4 @@ spec:
   dependsOn:
     - name: cluster-apps-emqx-app
     - name: cluster-apps-cloudnative-pg-app
-    - name: cluster-apps-rook-ceph-app
+    - name: cluster-apps-rook-ceph-cluster

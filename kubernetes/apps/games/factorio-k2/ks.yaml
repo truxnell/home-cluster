@@ -22,4 +22,4 @@ spec:
       name: factorio-k2-app
       namespace: games
   dependsOn:
-    - name: cluster-apps-rook-ceph-app
+    - name: cluster-apps-rook-ceph-cluster

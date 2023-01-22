@@ -22,4 +22,4 @@ spec:
       name: node-red-app
       namespace: home-automation
   dependsOn:
-    - name: cluster-apps-rook-ceph-app
+    - name: cluster-apps-rook-ceph-cluster

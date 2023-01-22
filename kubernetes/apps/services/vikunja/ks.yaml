@@ -23,4 +23,4 @@ spec:
       namespace: services
   dependsOn:
     - name: cluster-apps-cloudnative-pg-app
-    - name: cluster-apps-rook-ceph-app
+    - name: cluster-apps-rook-ceph-cluster

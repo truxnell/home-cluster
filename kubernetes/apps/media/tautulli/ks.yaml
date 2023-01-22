@@ -22,4 +22,4 @@ spec:
       name: tautulli-app
       namespace: media
   dependsOn:
-    - name: cluster-apps-rook-ceph-app
+    - name: cluster-apps-rook-ceph-cluster

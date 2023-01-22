@@ -22,4 +22,4 @@ spec:
       name: red-discord-bot-app
       namespace: services
   dependsOn:
-    - name: cluster-apps-rook-ceph-app
+    - name: cluster-apps-rook-ceph-cluster
