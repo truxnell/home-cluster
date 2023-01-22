@@ -34,6 +34,8 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 3m
+  dependsOn:
+    - name: cluster-apps-external-secret-app
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomization_v1beta2.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2

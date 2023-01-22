@@ -19,7 +19,7 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: cluster-apps-cert-manager
+      name: cluster-apps-cert-manager-app
       namespace: cert-manager
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomization_v1beta2.json
@@ -39,3 +39,6 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 3m
+  dependsOn:
+    - name: cluster-apps-cert-manager-app
+    - name: cluster-apps-external-secret-app
