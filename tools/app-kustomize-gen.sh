@@ -9,121 +9,121 @@ K8S_FOLDER="kubernetes/apps"
 K8S_ROOT="$ROOT/$K8S_FOLDER"
 
 for DIR in $K8S_ROOT/*/; do
-    echo "Processing $DIR"
+	echo "Processing $DIR"
 
-    ns=$(basename "$DIR")
-    export NAMESPACE=$ns
-    if [ ! -f "$DIR/namespace.yaml" ]; then
+	ns=$(basename "$DIR")
+	export NAMESPACE=$ns
+	if [ ! -f "$DIR/namespace.yaml" ]; then
 
-        echo "$DIR missing namespace, creating"
+		echo "$DIR missing namespace, creating"
 
-        ns=$(basename $DIR)
-        export NAMESPACE=$ns
+		ns=$(basename $DIR)
+		export NAMESPACE=$ns
 
-        envsubst <"$ROOT/templates/namespace/namespace.yaml" >"$DIR/namespace.yaml"
+		envsubst <"$ROOT/templates/namespace/namespace.yaml" >"$DIR/namespace.yaml"
 
-    fi
+	fi
 
-    envsubst <"$ROOT/templates/namespace/kustomization.yaml" >"$DIR/kustomization.yaml"
+	envsubst <"$ROOT/templates/namespace/kustomization.yaml" >"$DIR/kustomization.yaml"
 
-    for FILE in $DIR*.yaml; do
+	for FILE in $DIR*.yaml; do
 
-        if [ ! $(basename $FILE) == "kustomization.yaml" ] && [ ! $(basename $FILE) == "namespace.yaml" ]; then
-            echo "  - ./$FILE" >>"$DIR/kustomization.yaml"
-        fi
+		if [ ! $(basename $FILE) == "kustomization.yaml" ] && [ ! $(basename $FILE) == "namespace.yaml" ]; then
+			echo "  - ./$FILE" >>"$DIR/kustomization.yaml"
+		fi
 
-    done
+	done
 
-    for APP in $DIR*/; do
-        APP_NAME=$(basename $APP)
-        rm "$APP/ks.yaml"
-        echo " Adding $APP_NAME to $FILE"
-        if [ -f "$APP/wip" ]; then
+	for APP in $DIR*/; do
+		APP_NAME=$(basename $APP)
+		rm "$APP/ks.yaml"
+		echo " Adding $APP_NAME to $FILE"
+		if [ -f "$APP/wip" ]; then
 
-            echo "WARN:: $APP_NAME has a wip file, adding commented"
-            echo "  # - ./$APP_NAME/ks.yaml # TODO: Disabled by WIP file" >>"$DIR/kustomization.yaml"
+			echo "WARN:: $APP_NAME has a wip file, adding commented"
+			echo "  # - ./$APP_NAME/ks.yaml # TODO: Disabled by WIP file" >>"$DIR/kustomization.yaml"
 
-        else
+		else
 
-            echo "  - ./$APP_NAME/ks.yaml" >>"$DIR/kustomization.yaml"
+			echo "  - ./$APP_NAME/ks.yaml" >>"$DIR/kustomization.yaml"
 
-        fi
+		fi
 
-        # Check all yaml for correct namespace
-        for FILE in $APP*.yaml; do
+		# Check all yaml for correct namespace
+		for FILE in $APP*.yaml; do
 
-            if [[ $(yq '.metadata.namespace') != null ]]; then
-                echo "Ensuring namespace is $NAMESPACE in $FILE"
-                yq -i '.metadata.namespace=strenv(NAMESPACE)' "$FILE"
+			if [[ $(yq '.metadata.namespace') != null ]]; then
+				echo "Ensuring namespace is $NAMESPACE in $FILE"
+				yq -i '.metadata.namespace=strenv(NAMESPACE)' "$FILE"
 
-            fi
+			fi
 
-        done
+		done
 
-        section_num=0
-        for SECTION in $APP*/; do
-            SECTION_NAME=$(basename "$SECTION")
+		section_num=0
+		for SECTION in $APP*/; do
+			SECTION_NAME=$(basename "$SECTION")
 
-            export FULLDIR="$K8S_ROOT/$ns/$APP_NAME/$SECTION_NAME"
-            export RELDIR="./$K8S_FOLDER/$ns/$APP_NAME/$SECTION_NAME"
-            export APP_NAME=$APP_NAME
-            export SECTION_NAME=$SECTION_NAME
+			export FULLDIR="$K8S_ROOT/$ns/$APP_NAME/$SECTION_NAME"
+			export RELDIR="./$K8S_FOLDER/$ns/$APP_NAME/$SECTION_NAME"
+			export APP_NAME=$APP_NAME
+			export SECTION_NAME=$SECTION_NAME
 
-            echo "Adding $SECTION_NAME to $APP_NAME ks.yml"
-            envsubst <"$ROOT/templates/ks/ks.yaml" >>"$APP/ks.yaml"
+			echo "Adding $SECTION_NAME to $APP_NAME ks.yml"
+			envsubst <"$ROOT/templates/ks/ks.yaml" >>"$APP/ks.yaml"
 
-            # If helmrelease present, add HR healthcheck and ensure values are aligned
-            if [ -f "$SECTION/helmrelease.yaml" ]; then
+			# If helmrelease present, add HR healthcheck and ensure values are aligned
+			if [ -f "$SECTION/helmrelease.yaml" ]; then
 
-                envsubst <"$ROOT/templates/ks/hr-add.yaml" >>"$APP/ks.yaml"
-                yq -i '.metadata.namespace=strenv(NAMESPACE)' "$SECTION/helmrelease.yaml"
-                yq -i '.metadata.name=strenv(APP_NAME)+"-"+strenv(SECTION_NAME)' "$SECTION/helmrelease.yaml"
+				envsubst <"$ROOT/templates/ks/hr-add.yaml" >>"$APP/ks.yaml"
+				yq -i '.metadata.namespace=strenv(NAMESPACE)' "$SECTION/helmrelease.yaml"
+				yq -i '.metadata.name=strenv(APP_NAME)+"-"+strenv(SECTION_NAME)' "$SECTION/helmrelease.yaml"
 
-            fi
-            # Check if deps to be added
-            # loop through deps file and add
-            echo "checking for file $FULLDIR/deps"
-            if [ -f "$FULLDIR/deps" ]; then
-                echo "Adding deps to $APP_NAME - $SECTION_NAME, doc id $section_num"
-                while IFS= read -r line; do
-                    echo "adding $line"
-                    yq -i "(select(documentIndex==\"$section_num\")).spec.dependsOn += [{\"name\": \"$line\"}]" "$APP/ks.yaml"
-                done <"$FULLDIR/deps"
-            fi
+			fi
+			# Check if deps to be added
+			# loop through deps file and add
+			echo "checking for file $FULLDIR/deps"
+			if [ -f "$FULLDIR/deps" ]; then
+				echo "Adding deps to $APP_NAME - $SECTION_NAME, doc id $section_num"
+				while IFS= read -r line; do
+					echo "adding $line"
+					yq -i "(select(documentIndex==\"$section_num\")).spec.dependsOn += [{\"name\": \"$line\"}]" "$APP/ks.yaml"
+				done <"$FULLDIR/deps"
+			fi
 
-            # check if there is an externalsecret
-            if [[ -n $(find "$FULLDIR" -type f -name "externalsecret.yaml") ]]; then
-                echo "Externalsecret found - adding to deps"
-                yq -i "(select(documentIndex==\"$section_num\")).spec.dependsOn += [{\"name\": \"$EXT_SECRET_NAME\"}]" "$APP/ks.yaml"
-            fi
+			# check if there is an externalsecret
+			if [[ -n $(find "$FULLDIR" -type f -name "externalsecret.yaml") ]]; then
+				echo "Externalsecret found - adding to deps"
+				yq -i "(select(documentIndex==\"$section_num\")).spec.dependsOn += [{\"name\": \"$EXT_SECRET_NAME\"}]" "$APP/ks.yaml"
+			fi
 
-            # Check all yaml for correct namespace
-            for FILE in $SECTION*.yaml; do
+			# Check all yaml for correct namespace
+			for FILE in $SECTION*.yaml; do
 
-                if [[ $(yq '.metadata.namespace') != null ]]; then
-                    echo "Ensuring namespace is $NAMESPACE in $FILE"
-                    yq -i '.metadata.namespace=strenv(NAMESPACE)' "$FILE"
+				if [[ $(yq '.metadata.namespace' $FILE) != "null" ]]; then
+					echo "Ensuring namespace is $NAMESPACE in $FILE"
+					yq -i '.metadata.namespace=strenv(NAMESPACE)' "$FILE"
 
-                fi
+				fi
 
-            done
-            section_num=$((section_num + 1))
-        done
+			done
+			section_num=$((section_num + 1))
+		done
 
-        # if [ ! -d "$dir/app" ]; then
-        #   echo "creating app folder for $dir"
-        #   mkdir "$dir/app"
-        #   mv $dir/!(app) "$dir/app"
-        #   appname=$(basename "$dir")
-        #   ns=$(basename $(dirname "$dir"))
-        #
-        #   export FULLDIR="$dir"
-        #   export APP_NAME=$appname
-        #   export NAMESPACE=$ns
-        #   envsubst < "$ROOT/templates/ks/ks.yaml" > "$dir/ks.yaml"
-        #
-        #
-        # fi
-    done
+		# if [ ! -d "$dir/app" ]; then
+		#   echo "creating app folder for $dir"
+		#   mkdir "$dir/app"
+		#   mv $dir/!(app) "$dir/app"
+		#   appname=$(basename "$dir")
+		#   ns=$(basename $(dirname "$dir"))
+		#
+		#   export FULLDIR="$dir"
+		#   export APP_NAME=$appname
+		#   export NAMESPACE=$ns
+		#   envsubst < "$ROOT/templates/ks/ks.yaml" > "$dir/ks.yaml"
+		#
+		#
+		# fi
+	done
 
 done
