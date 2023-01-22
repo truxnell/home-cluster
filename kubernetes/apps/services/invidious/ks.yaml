@@ -21,3 +21,5 @@ spec:
       kind: HelmRelease
       name: invidious-app
       namespace: services
+  dependsOn:
+    - name: cluster-apps-cloundnative-pg-app
