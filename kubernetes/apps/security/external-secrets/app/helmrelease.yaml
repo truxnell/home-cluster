@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: cluster-app-external-secrets-app
+  name: external-secrets-app
   namespace: security
 spec:
   interval: 15m
