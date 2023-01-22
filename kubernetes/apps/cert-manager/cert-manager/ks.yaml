@@ -40,5 +40,5 @@ spec:
   retryInterval: 1m
   timeout: 3m
   dependsOn:
-    - name: cluster-apps-cert-manager-app
-    - name: cluster-apps-external-secret-app
+    - name: cert-manager-app
+    - name: external-secret-app

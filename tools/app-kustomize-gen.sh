@@ -2,7 +2,7 @@
 shopt -s extglob
 shopt -s nullglob
 
-EXT_SECRET_NAME="cluster-apps-external-secret-app"
+EXT_SECRET_NAME="external-secret-app"
 
 ROOT=$(git rev-parse --show-toplevel)
 K8S_FOLDER="kubernetes/apps"

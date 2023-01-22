@@ -22,4 +22,4 @@ spec:
       name: weave-gitops-app
       namespace: cert-manager
   dependsOn:
-    - name: cluster-apps-external-secret-app
+    - name: external-secret-app
