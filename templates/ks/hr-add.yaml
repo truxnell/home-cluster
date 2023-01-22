@@ -2,4 +2,4 @@
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: $APP_NAME-$SECTION_NAME
-      namespace: cert-manager
+      namespace: $NAMESPACE
