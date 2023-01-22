@@ -4,5 +4,3 @@ kind: Kustomization
 resources:
   - alertmanager
   - github
-metadata:
-  namespace: flux-system
