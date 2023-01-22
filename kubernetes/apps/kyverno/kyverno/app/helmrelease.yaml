@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: kyverno
+  name: kyverno-app
   namespace: kyverno
 spec:
   interval: 15m
@@ -31,12 +31,10 @@ spec:
   values:
     # TODO: change this to "mode: ha" when the new version gets released
     replicaCount: 3
-
     updateStrategy:
       type: RollingUpdate
       rollingUpdate:
         maxSurge: 1
-
     topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
@@ -44,11 +42,9 @@ spec:
         labelSelector:
           matchLabels:
             app.kubernetes.io/instance: kyverno
-
     extraArgs:
       - --autogenInternals=false
       - --clientRateLimitQPS=30
       - --clientRateLimitBurst=60
-
     serviceMonitor:
       enabled: true

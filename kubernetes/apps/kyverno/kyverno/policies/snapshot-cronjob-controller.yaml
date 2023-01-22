@@ -16,10 +16,10 @@ metadata:
 
       An optional label of "snapshot.home.arpa/ignoreAffinity" may be set on the PVC
       if the pod is guaranteed to not run during the time of this jobs execution
+  namespace: kyverno
 spec:
   generateExistingOnPolicyUpdate: true
   mutateExistingOnPolicyUpdate: true
-
   rules:
     - name: create-snapshot-cronjob
       match:

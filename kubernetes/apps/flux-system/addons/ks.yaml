@@ -3,19 +3,16 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-flux-monitoring
+  name: cluster-apps-addons-monitoring
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  dependsOn:
-    - name: cluster-apps-external-secrets
-  path: ./kubernetes/apps/flux-system/addons/monitoring
+  path: './kubernetes/apps/flux-system/addons/monitoring/'
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
-  wait: true
   interval: 30m
   retryInterval: 1m
   timeout: 3m
@@ -24,19 +21,16 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-flux-notifications
+  name: cluster-apps-addons-notifications
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  dependsOn:
-    - name: cluster-apps-external-secrets
-  path: ./kubernetes/apps/flux-system/addons/notifications
+  path: './kubernetes/apps/flux-system/addons/notifications/'
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
-  wait: true
   interval: 30m
   retryInterval: 1m
   timeout: 3m
@@ -45,19 +39,16 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-flux-webhooks
+  name: cluster-apps-addons-webhooks
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  dependsOn:
-    - name: cluster-apps-external-secrets
-  path: ./kubernetes/apps/flux-system/addons/webhooks
+  path: './kubernetes/apps/flux-system/addons/webhooks/'
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
-  wait: true
   interval: 30m
   retryInterval: 1m
   timeout: 3m

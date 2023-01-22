@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: ingress-nginx
+  name: ingress-nginx-app
   namespace: networking
 spec:
   interval: 5m
@@ -33,17 +33,13 @@ spec:
       extraEnvs:
         - name: TZ
           value: "${TZ}"
-
       service:
         loadBalancerIP: "${LB_NGINX_INGRESS}"
         externalTrafficPolicy: Local
-
       publishService:
         enabled: true
-
       ingressClassResource:
         default: true
-
       config:
         client-header-timeout: 120
         client-body-buffer-size: "100M"
@@ -72,10 +68,8 @@ spec:
             any: true
         prometheusRule:
           enabled: false
-
       extraArgs:
         default-ssl-certificate: "networking/${EXTERNAL_DOMAIN/./-}-tls"
-
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: kubernetes.io/hostname
@@ -83,16 +77,13 @@ spec:
           labelSelector:
             matchLabels:
               app.kubernetes.io/instance: ingress-nginx
-
       tolerations:
         - effect: NoSchedule
           operator: Exists
         - effect: NoExecute
           operator: Exists
-
       podAnnotations:
         configmap.reloader.stakater.com/reload: "cloudflare-proxied-networks"
-
     defaultBackend:
       enabled: true
       image:
@@ -118,14 +109,12 @@ spec:
                       operator: In
                       values: ["default-backend"]
                 topologyKey: kubernetes.io/hostname
-
       resources:
         requests:
           memory: 250Mi
           cpu: 20m
         limits:
           memory: 1000Mi
-
   valuesFrom:
     # Cloudflare Networks
     # https://www.cloudflare.com/ips/

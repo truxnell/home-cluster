@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: node-feature-discovery
+  name: node-feature-discovery-app
   namespace: kube-system
 spec:
   interval: 5m
@@ -32,14 +32,12 @@ spec:
           operator: 'Exists'
         - effect: 'NoSchedule'
           operator: 'Exists'
-
       resources:
         requests:
           cpu: 23m
           memory: 64M
         limits:
           memory: 64M
-
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -49,7 +47,6 @@ spec:
                   - key: 'node-role.kubernetes.io/master'
                     operator: In
                     values: ['']
-
     worker:
       resources:
         requests:
@@ -57,7 +54,6 @@ spec:
           memory: 64M
         limits:
           memory: 64M
-
       config:
         core:
           sources:
@@ -98,7 +94,6 @@ spec:
                 - pciId:
                     class: ['0300']
                     vendor: ['8086']
-
       annotations:
         configmap.reloader.stakater.com/reload: 'nfd-worker-conf'
       tolerations:

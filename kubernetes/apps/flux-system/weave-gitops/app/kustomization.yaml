@@ -5,3 +5,5 @@ namespace: flux-system
 resources:
   - ./helmrelease.yaml
   - ./externalsecret.yaml
+metadata:
+  namespace: flux-system

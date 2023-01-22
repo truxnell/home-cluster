@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: weave-gitops
+  name: weave-gitops-app
   namespace: flux-system
 spec:
   interval: 30m
@@ -17,19 +17,14 @@ spec:
   values:
     podAnnotations:
       secret.reloader.stakater.com/reload: weave-gitops-secrets
-
     logLevel: info
-
     adminUser:
       create: true
       username: &admin_user admin
-
     networkPolicy:
       create: false
-
     metrics:
       enabled: true
-
     rbac:
       create: true
       impersonationResourceNames:
@@ -43,7 +38,6 @@ spec:
             - "get"
             - "list"
             - "patch"
-
     ingress:
       enabled: true
       className: nginx
@@ -55,7 +49,6 @@ spec:
       tls:
         - hosts:
             - *host
-
   valuesFrom:
     - kind: Secret
       name: weave-gitops-secrets

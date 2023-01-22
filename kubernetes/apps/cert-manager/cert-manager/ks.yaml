@@ -3,24 +3,24 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-cert-manager
+  name: cluster-apps-cert-manager-app
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  path: ./kubernetes/apps/cert-manager/cert-manager/app
+  path: './kubernetes/apps/cert-manager/cert-manager/app/'
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: cert-manager
-      namespace: cert-manager
   interval: 30m
   retryInterval: 1m
   timeout: 3m
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: cluster-apps-cert-manager
+      namespace: cert-manager
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomization_v1beta2.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -31,9 +31,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  dependsOn:
-    - name: cluster-apps-cert-manager
-  path: ./kubernetes/apps/cert-manager/cert-manager/issuers
+  path: './kubernetes/apps/cert-manager/cert-manager/issuers/'
   prune: true
   sourceRef:
     kind: GitRepository

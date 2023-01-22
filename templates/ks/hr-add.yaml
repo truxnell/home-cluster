@@ -1,5 +1,5 @@
-healthChecks:
-  - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-    kind: HelmRelease
-    name: cluster-apps-$APP_NAME
-    namespace: cert-manager
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: cluster-apps-$APP_NAME
+      namespace: cert-manager

@@ -1,0 +1,2 @@
+metadata:
+  namespace: kube-system

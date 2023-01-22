@@ -5,3 +5,5 @@ resources:
   - ./remove-cpu-limit.yaml
   - ./snapshot-cronjob-controller.yaml
   - ./sync-postgres-secret.yaml
+metadata:
+  namespace: kyverno

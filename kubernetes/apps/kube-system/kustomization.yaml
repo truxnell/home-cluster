@@ -6,7 +6,7 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  # - ./cilium/ks.yaml
+  # - ./cilium/ks.yaml # TODO: Disabled by WIP file
   - ./descheduler/ks.yaml
   - ./intel-gpu-plugin/ks.yaml
   - ./metrics-server/ks.yaml

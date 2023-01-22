@@ -72,7 +72,7 @@ for DIR in $K8S_ROOT/*/; do
 
                 envsubst <"$ROOT/templates/ks/hr-add.yaml" >>"$APP/ks.yaml"
                 yq -i '.metadata.namespace=strenv(NAMESPACE)' "$SECTION/helmrelease.yaml"
-                yq -i '.metadata.name="cluster-app-"+strenv(APP_NAME)+"-"+strenv(SECTION_NAME)' "$SECTION/helmrelease.yaml"
+                yq -i '.metadata.name=strenv(APP_NAME)+"-"+strenv(SECTION_NAME)' "$SECTION/helmrelease.yaml"
 
             fi
 
@@ -80,7 +80,7 @@ for DIR in $K8S_ROOT/*/; do
             for FILE in $SECTION*.yaml; do
 
                 if [[ $(yq '.metadata.namespace') != null ]]; then
-                    echo "sdfEnsuring namespace is $NAMESPACE in $FILE"
+                    echo "Ensuring namespace is $NAMESPACE in $FILE"
                     yq -i '.metadata.namespace=strenv(NAMESPACE)' "$FILE"
 
                 fi
