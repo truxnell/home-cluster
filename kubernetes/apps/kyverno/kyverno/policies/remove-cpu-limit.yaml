@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/clusterpolicy_v1.json
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
@@ -8,7 +9,6 @@ metadata:
     policies.kyverno.io/subject: Pod
     policies.kyverno.io/description: >-
       This policy deletes CPU limits from all Pods.
-  namespace: kyverno
 spec:
   mutateExistingOnPolicyUpdate: true
   generateExistingOnPolicyUpdate: true
@@ -17,27 +17,36 @@ spec:
       match:
         any:
           - resources:
-              kinds: [Pod]
+              kinds: ['Pod']
       exclude:
         any:
           - resources:
-              kinds: [Pod]
+              namespaces:
+                - calico-system
+                - tigera-operator
+          - resources:
+              kinds: ['Pod']
               selector:
                 matchLabels:
-                  job-name: "*"
+                  job-name: '*'
           - resources:
-              namespaces:
-                - kube-system
+              kinds: ['Pod']
+              selector:
+                matchLabels:
+                  statefulset.kubernetes.io/pod-name: '*'
+          - resources:
+              annotations:
+                kyverno.io/ignore: 'true'
       mutate:
         patchStrategicMerge:
           spec:
             initContainers:
-              - (name): "*"
+              - (name): '*'
                 resources:
                   limits:
                     cpu: null
             containers:
-              - (name): "*"
+              - (name): '*'
                 resources:
                   limits:
                     cpu: null
