@@ -5,3 +5,5 @@ kind: Kustomization
 namespace: kube-system
 resources:
   - ./helmrelease.yaml
+metadata:
+  namespace: security
