@@ -20,6 +20,6 @@ spec:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: weave-gitops-app
-      namespace: cert-manager
+      namespace: flux-system
   dependsOn:
     - name: cluster-apps-external-secrets-app

@@ -20,4 +20,4 @@ spec:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: external-secrets-app
-      namespace: cert-manager
+      namespace: security

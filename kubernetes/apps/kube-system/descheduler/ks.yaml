@@ -20,4 +20,4 @@ spec:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: descheduler-app
-      namespace: cert-manager
+      namespace: kube-system
