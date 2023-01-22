@@ -1,0 +1,16 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  # Pre Flux-Kustomizations
+  - ./namespace.yaml
+  # Flux-Kustomizations
+  - ./deployment-restart/ks.yaml
+  - ./factorio-deathworld/ks.yaml
+  - ./factorio-k2/ks.yaml
+  - ./factorio-moiphy/ks.yaml
+  - ./factorio-ribbonworld/ks.yaml
+  - ./factorio-seablock/ks.yaml
+  - ./foundryvtt/ks.yaml
+  - ./satisfactory/ks.yaml

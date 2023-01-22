@@ -1,0 +1,31 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: &app unifi
+  namespace: network-system
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/proxy-ssl-verify: "off"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "router-wireless"
+    hajimari.io/appName: "unifi"
+  labels:
+    app.kubernetes.io/name: *app
+    app.kubernetes.io/instance: *app
+spec:
+  ingressClassName: "nginx"
+  rules:
+    - host: &host unifi.${EXTERNAL_DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: *app
+                port:
+                  name: https
+  tls:
+    - hosts:
+        - *host

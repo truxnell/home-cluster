@@ -1,0 +1,88 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app readarr-app
+  namespace: organizarrs
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    image:
+      repository: ghcr.io/onedr0p/readarr-nightly
+      tag: 0.1.1.1527@sha256:b4fff21b84ba1778488e80d9fb9f3632694aa7bb8d2a948dcc3b2dc42bc0a57d
+    env:
+      TZ: '${TIMEZONE}'
+      READARR__INSTANCE_NAME: Readarr (Audio)
+      READARR__LOG_LEVEL: info
+    envFrom:
+      - secretRef:
+          name: *app
+    service:
+      main:
+        ports:
+          http:
+            port: 8787
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: 'nginx'
+        annotations:
+          nginx.ingress.kubernetes.io/configuration-snippet: |-
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/readarr/plex.css"></head>';
+            sub_filter_once on;
+          hajimari.io/icon: 'book-open'
+        hosts:
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: 'OnRootMismatch'
+      supplementalGroups:
+        - 100
+    persistence:
+      config:
+        enabled: true
+        existingClaim: readarr-config-v1
+      media:
+        enabled: true
+        type: nfs
+        server: &nas 'george.${INTERNAL_DOMAIN}'
+        path: /tank/
+        mountPath: /media
+      backup:
+        enabled: true
+        type: nfs
+        server: *nas
+        path: /tank/backup/kubernetes/apps/readarr
+        mountPath: /config/Backups
+    podAnnotations:
+      secret.reloader.stakater.com/reload: *app
+    resources:
+      requests:
+        cpu: 10m
+        memory: 1200Mi
+      limits:
+        memory: 2000Mi

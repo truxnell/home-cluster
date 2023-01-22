@@ -1,0 +1,66 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: actions-runner-controller-app
+  namespace: dev
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: actions-runner-controller
+      version: 0.21.1
+      sourceRef:
+        kind: HelmRepository
+        name: actions-runner-controller-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    remediation: # perform remediation when helm install fails
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
+  values:
+    authSecret:
+      create: false
+      name: &auth-secret 'actions-runner-controller-auth'
+    image:
+      repository: summerwind/actions-runner-controller
+    # resources:
+    #   requests:
+    #     memory: 64Mi
+    #   limits:
+    #     memory: 128Mi
+    podAnnotations:
+      secret.reloader.stakater.com/reload: *auth-secret
+    githubWebhookServer:
+      enabled: true
+      syncPeriod: 10m
+      secret:
+        create: false
+        name: &webhook-secret 'actions-runner-controller-webhook'
+      ingress:
+        enabled: true
+        annotations:
+          hajimari.io/enable: 'false'
+          external-dns.home.arpa/enabled: 'true'
+        ingressClassName: 'nginx'
+        hosts:
+          - host: &host 'arc-hook.${EXTERNAL_DOMAIN}'
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+      podAnnotations:
+        secret.reloader.stakater.com/reload: *webhook-secret
+# resources:
+#   requests:
+#     memory: 64Mi
+#   limits:
+#     memory: 96Mi

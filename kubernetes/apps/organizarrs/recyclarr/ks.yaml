@@ -1,0 +1,21 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomization_v1beta2.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cluster-apps-recyclarr-app
+  namespace: flux-system
+  labels:
+    substitution.flux.home.arpa/enabled: 'true'
+spec:
+  path: './kubernetes/apps/organizarrs/recyclarr/app/'
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster-kubernetes
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
+  dependsOn:
+    - name: cluster-apps-sonarr-app
+    - name: cluster-apps-radarr-app

@@ -1,0 +1,80 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: joplin-server-app
+  namespace: services
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: joplin-server
+      version: 5.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    remediation: # perform remediation when helm install fails
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
+  dependsOn:
+    - name: postgres
+      namespace: databases
+  # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/joplin-server/values.yaml
+  values:
+    image:
+      repository: joplin/server
+      tag: latest@sha256:d3dbda0a20a77116ae1f9d19c77be01582cb7907facbd31bbc3027aaca81c77a
+    env:
+      # env-sample: https://github.com/laurent22/joplin/blob/dev/.env-sample
+      # Basic setup
+      TZ: "${TZ}"
+      APP_BASE_URL: https://joplin.${EXTERNAL_DOMAIN}/
+      DB_CLIENT: pg
+      # Posgres setup
+      POSTGRES_PASSWORD: ${SECRET_JOPLIN_PASSWORD}
+      POSTGRES_DATABASE: joplin
+      POSTGRES_USER: ${SECRET_JOPLIN_USER}
+      POSTGRES_PORT: 5432
+      POSTGRES_HOST: ${POSTGRES_ADDRESS}
+      # Mail setup
+      MAILER_ENABLED: 1
+      MAILER_HOST: ${SECRET_SMTP_HOST}
+      MAILER_PORT: ${SECRET_SMTP_PORT}
+      MAILER_SECURE: 1
+      MAILER_AUTH_USER: ${SECRET_SMTP_USERNAME}
+      MAILER_AUTH_PASSWORD: ${SECRET_SMTP_PASSWORD}
+      MAILER_NOREPLY_NAME: Joplin
+      MAILER_NOREPLY_EMAIL: noreply@${EXTERNAL_DOMAIN}
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          external-dns.home.arpa/enabled: "true"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: notebook-multiple
+          hajimari.io/appName: joplin
+          # prometheus.io/probe: "true"
+        hosts:
+          - host: "joplin.${EXTERNAL_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "joplin.${EXTERNAL_DOMAIN}"
+    resources:
+      requests:
+        cpu: 15m
+        memory: 145M
+      limits:
+        cpu: 15m
+        memory: 145M

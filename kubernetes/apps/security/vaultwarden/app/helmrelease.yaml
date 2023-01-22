@@ -1,0 +1,82 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app vaultwarden-app
+  namespace: security
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    image:
+      repository: ghcr.io/k8s-at-home/vaultwarden
+      tag: v1.25.2
+    # controller:
+    #   replicas: 3
+    #   strategy: RollingUpdate
+    envFrom:
+      - secretRef:
+          name: *app
+    service:
+      main:
+        ports:
+          http:
+            port: &port 80
+          websocket:
+            enabled: true
+            port: &websocket-port 3012
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: 'nginx'
+        annotations:
+          external-dns.home.arpa/enabled: 'true'
+          probe.home.arpa/enabled: 'false'
+          hajimari.io/icon: 'shield-key'
+        hosts:
+          - host: &host 'vault.${EXTERNAL_DOMAIN}'
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: *port
+              - path: /notifications/hub/negotiate
+                pathType: Prefix
+                service:
+                  port: *port
+              - path: /notifications/hub
+                pathType: Prefix
+                service:
+                  port: *websocket-port
+        tls:
+          - hosts:
+              - *host
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: 'OnRootMismatch'
+    persistence:
+      config:
+        enabled: true
+        type: emptyDir
+        mountPath: /config
+    resources:
+      requests:
+        cpu: 15m
+        memory: 64M
+      limits:
+        memory: 64M

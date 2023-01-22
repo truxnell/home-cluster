@@ -1,0 +1,60 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: goldilocks-app
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: goldilocks
+      version: 6.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: fairwinds-charts
+        namespace: flux-system
+      interval: 5m
+  timeout: 20m
+  install:
+    createNamespace: true
+    remediation: # perform remediation when helm install fails
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
+  dependsOn:
+    - name: vpa
+      namespace: monitoring
+  values:
+    controller:
+      resources:
+        requests:
+          cpu: 35m
+          memory: 64M
+        limits:
+          cpu: null
+          memory: 128M
+    dashboard:
+      replicaCount: 1
+      resources:
+        requests:
+          cpu: null
+          memory: 64M
+        limits:
+          memory: 64M
+      ingress:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          hajimari.io/icon: mdi:align-vertical-top
+        hosts:
+          - host: &host "goldilocks.${EXTERNAL_DOMAIN}"
+            paths:
+              - path: /
+                type: Prefix
+        tls:
+          - hosts:
+              - *host

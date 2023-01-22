@@ -1,0 +1,87 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app filebrowser-app
+  namespace: services
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    image:
+      repository: docker.io/filebrowser/filebrowser
+      tag: v2.23.0
+    env:
+      TZ: '${TZ}'
+    service:
+      main:
+        ports:
+          http:
+            port: &port 80
+    probes:
+      liveness: &probes
+        enabled: true
+        custom: true
+        spec:
+          httpGet:
+            path: /health
+            port: *port
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3
+      readiness: *probes
+      startup:
+        enabled: false
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: 'nginx'
+        annotations:
+          auth.home.arpa/enabled: 'true'
+          hajimari.io/icon: mdi:folder-play-outline
+        hosts:
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      config:
+        enabled: true
+        existingClaim: filebrowser-config-v1
+      media:
+        enabled: true
+        type: nfs
+        server: 'george.${INTERNAL_DOMAIN}'
+        path: /tank/
+        mountPath: /media
+      filebrowser:
+        enabled: true
+        type: configMap
+        name: filebrowser-config
+        subPath: filebrowser.json
+        mountPath: /.filebrowser.json
+        readOnly: true
+    resources:
+      requests:
+        cpu: 10m
+        memory: 50Mi
+      limits:
+        memory: 500Mi

@@ -21,3 +21,5 @@ spec:
       kind: HelmRelease
       name: intel-gpu-plugin-app
       namespace: kube-system
+  dependsOn:
+    - name: cluster-apps-node-feature-discovery-app

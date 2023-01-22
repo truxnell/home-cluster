@@ -1,0 +1,94 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app factorio-ribbonworld-app
+  namespace: games
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    image:
+      repository: factoriotools/factorio
+      tag: stable@sha256:c339d19d12d01325f357a823acc56d89858c31b97e934722d797a12969b84b03
+    global:
+      nameOverride: *app
+    env:
+      TZ: "${TZ}"
+      PORT: &port 34197
+      RCON_PORT: &rcon 27015
+    initContainers:
+      copy-configmap:
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        command:
+          - "sh"
+          - "-c"
+          - |
+            mkdir -p /factorio/config
+            cp -vL /helmconfig/* /factorio/config/
+        volumeMounts:
+          - name: helmconfig
+            mountPath: /helmconfig/
+          - name: config
+            mountPath: /factorio/
+        securityContext:
+          runAsUser: 0
+    service:
+      main:
+        type: LoadBalancer # Setting Ip external to cluster for easy port forward
+        externalTrafficPolicy: Cluster
+        loadBalancerIP: "${LB_FACTORIO}"
+        annotations:
+          metallb.universe.tf/allow-shared-ip: factorio
+        ports:
+          http:
+            enabled: false
+            primary: false
+          server:
+            enabled: true
+            port: *port
+            protocol: UDP
+          rcon:
+            enabled: true
+            primary: true
+            port: *rcon
+            protocol: TCP
+    # podSecurityContext:
+    #   runAsUser: 568
+    #   runAsGroup: 568
+    #   fsGroup: 568
+    #   fsGroupChangePolicy: "OnRootMismatch"
+    persistence:
+      config:
+        enabled: true
+        mountPath: /factorio
+        existingClaim: factorio-ribbonworld-config-v1
+      helmconfig:
+        enabled: "true"
+        type: "secret"
+        name: *app
+    startupProbe:
+      enabled: true
+      failureThreshold: 30
+      periodSeconds: 10
+    resources:
+      requests:
+        cpu: 15m
+        memory: 1555M
+      limits:
+        memory: 8006M

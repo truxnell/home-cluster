@@ -1,0 +1,12 @@
+{
+  "port": 80,
+  "baseURL": "",
+  "address": "",
+  "log": "stdout",
+  "database": "/config/database.db",
+  "root": "/media",
+  "auth": {
+    "method": "proxy",
+    "header": "Remote-User"
+  }
+}

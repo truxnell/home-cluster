@@ -1,0 +1,180 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: blackbox-exporter-app
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: prometheus-blackbox-exporter
+      version: 7.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    remediation: # perform remediation when helm install fails
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
+  values:
+    fullnameOverride: blackbox-exporter
+    # replicas: 3
+    image:
+      repository: quay.io/prometheus/blackbox-exporter
+    ingress:
+      enabled: true
+      ingressClassName: 'nginx'
+      annotations:
+        hajimari.io/icon: mdi:solid
+      hosts:
+        - host: blackbox-exporter.${EXTERNAL_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - blackbox-exporter.${EXTERNAL_DOMAIN}
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: 'blackbox-exporter'
+    allowIcmp: true
+    securityContext:
+      readOnlyRootFilesystem: true
+      allowPrivilegeEscalation: false
+      capabilities:
+        add: ['NET_RAW']
+    config:
+      modules:
+        http_2xx:
+          prober: http
+          timeout: 5s
+          http:
+            valid_http_versions: ['HTTP/1.1', 'HTTP/2.0']
+            follow_redirects: true
+            preferred_ip_protocol: 'ip4'
+        http_403:
+          prober: http
+          timeout: 5s
+          http:
+            valid_http_versions: ['HTTP/1.1', 'HTTP/2.0']
+            follow_redirects: true
+            preferred_ip_protocol: 'ip4'
+            valid_status_codes: [403]
+        http_401:
+          prober: http
+          timeout: 5s
+          http:
+            valid_http_versions: ['HTTP/1.1', 'HTTP/2.0']
+            follow_redirects: true
+            preferred_ip_protocol: 'ip4'
+            valid_status_codes: [401]
+        http_400:
+          prober: http
+          timeout: 5s
+          http:
+            valid_http_versions: ['HTTP/1.1', 'HTTP/2.0']
+            follow_redirects: true
+            preferred_ip_protocol: 'ip4'
+            valid_status_codes: [400]
+        icmp:
+          prober: icmp
+          timeout: 30s
+          icmp:
+            preferred_ip_protocol: 'ip4'
+    serviceMonitor:
+      enabled: true
+      defaults:
+        labels:
+          release: prometheus
+        interval: 2m
+        scrapeTimeout: 30s
+      # DO NOT USE UNDERSCORES IN NAMES.
+      # K8S EXPECTS IT AS A RFC THINGY COMPLIANT URL
+      targets:
+        - module: icmp
+          name: brewpiless
+          url: ESP_7DE997.${INTERNAL_DOMAIN}
+        - module: icmp
+          name: weatherstation
+          url: ESP-B9C83C.${INTERNAL_DOMAIN}
+        - module: http_2xx
+          name: wled-officedesk
+          url: wled-officedesk.${INTERNAL_DOMAIN}
+        - module: http_2xx
+          name: poe-zigbee-coordinator
+          url: espressif.${INTERNAL_DOMAIN}
+        - module: icmp
+          name: george
+          url: george.${INTERNAL_DOMAIN}
+        - module: http_2xx
+          name: pikvm
+          url: technocore.${INTERNAL_DOMAIN}
+        - module: http_2xx
+          name: prusa-mk3s
+          url: prusa.${INTERNAL_DOMAIN}:5000
+        - module: http_2xx
+          name: uptime-kuma
+          url: status.${WEBSITE_DOMAIN}
+          # - module: http_401
+          #   name: tyua-blinds-0
+          #   url: 10.8.30.140
+          # - module: http_401
+          #   name: tyua-blinds-1
+          #   url: 10.8.30.141
+    resources:
+      requests:
+        cpu: 15m
+        memory: 64M
+      limits:
+        memory: 64M
+    prometheusRule:
+      enabled: true
+      additionalLabels:
+        app: prometheus-operator
+        release: prometheus
+      rules:
+        - alert: BlackboxSslCertificateWillExpireSoon
+          expr: probe_ssl_earliest_cert_expiry - time() < 86400 * 3
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            description: |-
+              The SSL certificate for {{"{{ $labels.target }}"}} will expire in less than 3 days
+        - alert: BlackboxSslCertificateExpired
+          expr: probe_ssl_earliest_cert_expiry - time() <= 0
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            description: |-
+              The SSL certificate for {{"{{ $labels.target }}"}} has expired
+        - alert: BlackboxProbeFailed
+          expr: probe_success == 0
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            description: |-
+              The host {{"{{ $labels.target }}"}} is currently unreachable
+        - alert: SlowResponseTime
+          annotations:
+            message: The response time for {{"{{ $labels.target }}"}} has been greater than 30 seconds for 5 minutes.
+          expr: probe_duration_seconds > 30
+          for: 15m
+          labels:
+            severity: warning
+        - alert: BlackboxProbeHttpFailure
+          expr: probe_http_status_code <= 199 OR probe_http_status_code >= 400
+          for: 5m
+          labels:
+            severity: error
+          annotations:
+            message: The HTTP response for {{"{{ $labels.target }}"}} was not a HTTP status code is not 200-399

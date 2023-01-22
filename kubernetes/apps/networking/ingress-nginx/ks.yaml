@@ -21,6 +21,9 @@ spec:
       kind: HelmRelease
       name: ingress-nginx-app
       namespace: networking
+  dependsOn:
+    - name: cluster-apps-ingress-nginx-certificates
+    - name: cluster-apps-kyverno-app
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomization_v1beta2.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -39,3 +42,5 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 3m
+  dependsOn:
+    - name: cluster-apps-ingress-nginx-certificates

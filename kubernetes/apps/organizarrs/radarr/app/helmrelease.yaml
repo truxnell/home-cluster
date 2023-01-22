@@ -1,0 +1,100 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app radarr-app
+  namespace: organizarrs
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    image:
+      repository: ghcr.io/onedr0p/radarr-develop
+      tag: 4.3.2.6857@sha256:722b5c7a3809841caa711a2339dbe58e6d437c79ef147bdefb2275b422a9b106
+    env:
+      TZ: '${TZ}'
+      PUSHOVER_DEBUG: 'false'
+      PUSHOVER_APP_URL: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+      RADARR__INSTANCE_NAME: Radarr
+      RADARR__APPLICATION_URL: 'https://{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+      RADARR__LOG_LEVEL: info
+    envFrom:
+      - secretRef:
+          name: *app
+    service:
+      main:
+        ports:
+          http:
+            port: 7878
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: 'nginx'
+        annotations:
+          hajimari.io/icon: mdi:filmstrip
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/radarr/plex.css"></head>';
+            sub_filter_once on;
+        hosts:
+          - host: *host
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: 'OnRootMismatch'
+      supplementalGroups:
+        - 100
+    persistence:
+      config:
+        enabled: true
+        existingClaim: radarr-config-v1
+      media:
+        enabled: true
+        type: nfs
+        server: &nas 'george.${INTERNAL_DOMAIN}'
+        path: /tank/
+        mountPath: /media
+      scripts:
+        enabled: true
+        type: configMap
+        name: radarr-pushover
+        subPath: pushover-notify.sh
+        mountPath: /scripts/pushover-notify.sh
+        defaultMode: 0775
+        readOnly: true
+      backup:
+        enabled: true
+        type: nfs
+        server: *nas
+        path: /tank/backup/kubernetes/apps/radarr
+        mountPath: /config/Backups
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: radarr-pushover
+      secret.reloader.stakater.com/reload: *app
+    resources:
+      requests:
+        cpu: 10m
+        memory: 250Mi
+      limits:
+        memory: 2000Mi

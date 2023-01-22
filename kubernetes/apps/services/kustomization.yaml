@@ -6,3 +6,25 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
+  - ./cyberchef/ks.yaml
+  - ./excalidraw/ks.yaml
+  - ./filebrowser/ks.yaml
+  - ./hajimari/ks.yaml
+  - ./immich/ks.yaml
+  - ./invidious/ks.yaml
+  - ./joplin-server/ks.yaml
+  - ./kopia/ks.yaml
+  - ./language-tools/ks.yaml
+  - ./libreddit/ks.yaml
+  - ./mealie/ks.yaml
+  - ./miniflux/ks.yaml
+  - ./nitter/ks.yaml
+  - ./paperless/ks.yaml
+  - ./pleroma-rebased/ks.yaml
+  - ./radicale/ks.yaml
+  - ./red-discord-bot/ks.yaml
+  - ./scribe/ks.yaml
+  - ./smtp-relay/ks.yaml
+  - ./theme-park/ks.yaml
+  - ./vikunja/ks.yaml
+  - ./whoogle/ks.yaml

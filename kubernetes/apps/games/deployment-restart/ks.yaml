@@ -1,0 +1,18 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomization_v1beta2.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cluster-apps-deployment-restart-app
+  namespace: flux-system
+  labels:
+    substitution.flux.home.arpa/enabled: 'true'
+spec:
+  path: './kubernetes/apps/games/deployment-restart/app/'
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster-kubernetes
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m

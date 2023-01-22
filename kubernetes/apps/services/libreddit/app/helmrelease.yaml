@@ -1,0 +1,83 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app libreddit-app
+  namespace: services
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    controller:
+      replicas: 3
+      strategy: RollingUpdate
+    fullNameOverride: *app
+    image:
+      repository: ghcr.io/auricom/libreddit
+      tag: 0.27.1@sha256:0266ec422703c29879da469574e42307ac8182d41db3662c0bd2f8d972f2b94d
+    env:
+      LIBREDDIT_DEFAULT_SHOW_NSFW: true
+      LIBREDDIT_DEFAULT_WIDE: true
+    service:
+      main:
+        ports:
+          http:
+            port: &port 8080
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: 'nginx'
+        annotations:
+          external-dns.home.arpa/enabled: 'true'
+          auth.home.arpa/enabled: 'true'
+          hajimari.io/icon: simple-icons:reddit
+        hosts:
+          - host: &host 'libreddit.${EXTERNAL_DOMAIN}'
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: *app
+    probes:
+      liveness: &probes
+        enabled: true
+        custom: true
+        spec:
+          httpGet:
+            path: /settings
+            port: *port
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3
+      readiness: *probes
+      startup:
+        enabled: false
+    resources:
+      requests:
+        cpu: 5m
+        memory: 50Mi
+      limits:
+        memory: 250Mi

@@ -1,0 +1,112 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app home-assistant-app
+  namespace: home-automation
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  dependsOn:
+    - name: postgres
+      namespace: databases
+    - name: emqx
+      namespace: home-automation
+  values:
+    image:
+      repository: ghcr.io/onedr0p/home-assistant
+      tag: 2023.1.5@sha256:65faf45d0b4ed286d13aad108382df79f122d19f9a378dae51b0ed86427241a9
+    env:
+      TZ: '${TZ}'
+    envFrom:
+      - secretRef:
+          name: *app
+    service:
+      main:
+        ports:
+          http:
+            port: 8123
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: 'nginx'
+        annotations:
+          external-dns.home.arpa/enabled: 'true'
+          hajimari.io/icon: mdi:home-assistant
+        hosts:
+          - host: &host 'hass.${EXTERNAL_DOMAIN}'
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: 'OnRootMismatch'
+    persistence:
+      config:
+        enabled: true
+        existingClaim: home-assistant-config-v1
+    addons:
+      codeserver:
+        enabled: true
+        image:
+          repository: ghcr.io/coder/code-server
+          tag: 4.9.1
+        env:
+          TZ: '${TZ}'
+        workingDir: '/config'
+        args:
+          - --auth
+          - 'none'
+          - --user-data-dir
+          - '/config/.vscode'
+          - --extensions-dir
+          - '/config/.vscode'
+        ingress:
+          enabled: true
+          ingressClassName: 'nginx'
+          annotations:
+            hajimari.io/appName: 'Hass Config'
+            hajimari.io/icon: cib:visual-studio-code
+          hosts:
+            - host: &host 'hass-code.${EXTERNAL_DOMAIN}'
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - hosts:
+                - *host
+        volumeMounts:
+          - name: config
+            mountPath: /config
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
+    resources:
+      requests:
+        cpu: 48m
+        memory: 443M
+      limits:
+        memory: 709M

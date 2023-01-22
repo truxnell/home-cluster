@@ -1,0 +1,65 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app zigbee2mqtt-exporter-app
+  namespace: home-automation
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  dependsOn:
+    - name: emqx
+      namespace: home-automation
+    - name: zigbee2mqtt
+      namespace: home-automation
+  values:
+    image:
+      repository: docker.io/kpetrem/mqtt-exporter
+      tag: latest@sha256:a532bd680552df43d34709ca18dc8c4a1a5931a47754195e90a91f04dc0f30fa
+    env:
+      LOG_LEVEL: DEBUG
+      LOG_MQTT_MESSAGE: "True"
+      MQTT_ADDRESS: emqx.home-automation.svc.cluster.local
+      MQTT_TOPIC: "zigbee2mqtt/#"
+      MQTT_V5_PROTOCOL: "True"
+      MQTT_USERNAME:
+        valueFrom:
+          secretKeyRef:
+            name: emqx-config
+            key: user_1_username
+      MQTT_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: emqx-config
+            key: user_1_password
+      PROMETHEUS_PORT: &port 80
+      PROMETHEUS_PREFIX: zigbee2mqtt_
+      ZIGBEE2MQTT_AVAILABILITY: "True"
+    service:
+      main:
+        ports:
+          http:
+            port: *port
+    podSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+    resources:
+      requests:
+        cpu: 10m
+        memory: 50Mi
+      limits:
+        memory: 200Mi

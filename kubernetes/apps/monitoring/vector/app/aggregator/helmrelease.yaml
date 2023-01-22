@@ -1,0 +1,212 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: vector-aggregator
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: vector
+      version: 0.18.0
+      sourceRef:
+        kind: HelmRepository
+        name: vector-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    createNamespace: true
+    remediation: # perform remediation when helm install fails
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
+  values:
+    role: 'Stateless-Aggregator'
+    podMonitor:
+      enabled: true
+    service:
+      enabled: true
+      type: LoadBalancer
+    customConfig:
+      data_dir: /vector-data-dir
+      api:
+        enabled: false
+      # Sources
+      sources:
+        kubernetes_logs:
+          address: 0.0.0.0:6000
+          type: vector
+          version: '2'
+        journal_logs:
+          type: vector
+          address: 0.0.0.0:6001
+          version: '2'
+        talos_kernel_logs:
+          address: 0.0.0.0:6050
+          type: socket
+          mode: udp
+          max_length: 102400
+          decoding:
+            codec: json
+          host_key: __host
+        talos_service_logs:
+          address: 0.0.0.0:6051
+          type: socket
+          mode: udp
+          max_length: 102400
+          decoding:
+            codec: json
+          host_key: __host
+        udmp_logs:
+          address: 0.0.0.0:6100
+          type: syslog
+          mode: 'udp'
+          max_length: 102_400
+        vector_metrics:
+          type: internal_metrics
+      # Transforms
+      transforms:
+        kubernetes_logs_remap:
+          type: remap
+          inputs:
+            - kubernetes_logs
+          source: |
+            # Standardize 'app' index
+            .custom_app_name = .pod_labels."app.kubernetes.io/name" || .pod_labels.app || .pod_labels."k8s-app" || "unknown"
+        udmp_logs_xform:
+          type: 'remap'
+          inputs:
+            - 'udmp_logs'
+          source: |-
+            .timestamp=null
+        talos_kernel_logs_xform:
+          type: remap
+          inputs:
+            - talos_kernel_logs
+          source: |-
+            .__host = replace!(.__host, "10.8.20.31", "durandal")
+            .__host = replace(.__host, "10.8.20.32", "tycho")
+            .__host = replace(.__host, "10.8.20.33", "leela")
+            .__host = replace(.__host, "10.8.20.40", "xerxes")
+            .__host = replace(.__host, "10.8.20.42", "shodan")
+            .__host = replace(.__host, "10.8.20.44", "icarus")
+        talos_service_logs_xform:
+          type: remap
+          inputs:
+            - talos_service_logs
+          source: |-
+            .__host = replace!(.__host, "10.8.20.31", "durandal")
+            .__host = replace(.__host, "10.8.20.32", "tycho")
+            .__host = replace(.__host, "10.8.20.33", "leela")
+            .__host = replace(.__host, "10.8.20.40", "xerxes")
+            .__host = replace(.__host, "10.8.20.42", "shodan")
+            .__host = replace(.__host, "10.8.20.44", "icarus")
+      # Sinks
+      sinks:
+        loki_journal:
+          type: loki
+          inputs:
+            - journal_logs
+          endpoint: http://loki-gateway:80
+          encoding:
+            codec: json
+          batch:
+            max_bytes: 2049000
+          out_of_order_action: accept
+          remove_label_fields: true
+          remove_timestamp: true
+          labels:
+            hostname: >-
+              {{`{{ host }}`}}
+        loki_kubernetes:
+          type: loki
+          inputs:
+            - kubernetes_logs
+          endpoint: http://loki-gateway:80
+          encoding:
+            codec: json
+          batch:
+            max_bytes: 2049000
+          out_of_order_action: rewrite_timestamp
+          remove_label_fields: true
+          remove_timestamp: true
+          labels:
+            app: >-
+              {{`{{ custom_app_name }}`}}
+            namespace: >-
+              {{`{{ kubernetes.pod_namespace }}`}}
+            hostname: >-
+              {{`{{ kubernetes.pod_node_name }}`}}
+        loki_udmp:
+          type: loki
+          inputs:
+            - udmp_logs_xform
+          endpoint: http://loki-gateway:80
+          batch:
+            max_bytes: 1048576
+          out_of_order_action: rewrite_timestamp
+          remove_label_fields: true
+          remove_timestamp: true
+          encoding:
+            codec: json
+          labels:
+            hostname: udmpro
+            app: >-
+              {{`"{{ appname }}"`}}
+        talos_kernel:
+          type: loki
+          inputs:
+            - talos_kernel_logs_xform
+          endpoint: http://loki-gateway:80
+          encoding:
+            codec: json
+            except_fields:
+              - __host
+          batch:
+            max_bytes: 1048576
+          out_of_order_action: rewrite_timestamp
+          labels:
+            hostname: >-
+              {{`{{ __host }}`}}
+            app: >-
+              {{`{{ facility }}`}}
+        talos_service:
+          type: loki
+          inputs:
+            - talos_service_logs_xform
+          endpoint: http://loki-gateway:80
+          encoding:
+            codec: json
+            except_fields:
+              - __host
+          batch:
+            max_bytes: 524288
+          out_of_order_action: rewrite_timestamp
+          labels:
+            hostname: >-
+              {{`{{ __host }}`}}
+            app: >-
+              {{`{{ "talos-service" }}`}}
+            namespace: 'talos:service'
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: vector-aggregator
+    resources:
+      requests:
+        cpu: 22m
+        memory: 324M
+      limits:
+        memory: 726M
+  postRenderers:
+    - kustomize:
+        patchesJson6902:
+          - target:
+              kind: Service
+              name: vector-aggregator
+            patch:
+              - op: add
+                path: /spec/loadBalancerIP
+                value: ${LB_VECTOR_AGGREGATOR}

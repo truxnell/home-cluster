@@ -6,3 +6,13 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
+  - ./calibre/ks.yaml
+  - ./kavita/ks.yaml
+  - ./lidarr/ks.yaml
+  - ./openbooks/ks.yaml
+  - ./overseerr/ks.yaml
+  - ./prowlarr/ks.yaml
+  - ./radarr/ks.yaml
+  - ./readarr/ks.yaml
+  - ./recyclarr/ks.yaml
+  - ./sonarr/ks.yaml

@@ -1,0 +1,97 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app qbittorrent-app
+  namespace: downloads
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  dependsOn:
+    - name: downloads-gateway
+      namespace: vpn
+  values:
+    image:
+      repository: ghcr.io/onedr0p/qbittorrent
+      tag: 4.5.0@sha256:5ff2064d788100f54770dc5e477f32d41be7e71ee36923a22236053576e39d5d
+    env:
+      TZ: '${TZ}'
+      QBITTORRENT__BT_PORT: &port-bt ${SECRET_VPN_FORWARDED_PORT_1}
+    hostname: qbittorrent
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+      bittorrent:
+        enabled: true
+        type: LoadBalancer
+        externalIPs:
+          - '${LB_QBITTORRENT}'
+        ports:
+          bittorrent:
+            enabled: true
+            port: *port-bt
+            protocol: TCP
+            targetPort: *port-bt
+        externalTrafficPolicy: Local
+    podAnnotations:
+      setGateway: 'true'
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: 'nginx'
+        annotations:
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            proxy_hide_header "x-webkit-csp";
+            proxy_hide_header "content-security-policy";
+            proxy_hide_header "X-Frame-Options";
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_PUBLIC_DOMAIN}/css/base/qbittorrent/plex.css"></head>';
+            sub_filter_once on;
+          hajimari.io/icon: mdi:download
+        hosts:
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: 'OnRootMismatch'
+      supplementalGroups:
+        - 100
+    persistence:
+      config:
+        enabled: true
+        existingClaim: qbittorrent-config-v1
+      media:
+        enabled: true
+        type: nfs
+        server: 'george.${INTERNAL_DOMAIN}'
+        path: /tank/
+        mountPath: /media
+    resources:
+      requests:
+        cpu: 10m
+        memory: 250Mi
+      limits:
+        memory: 6000Mi

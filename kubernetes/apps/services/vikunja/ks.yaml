@@ -1,0 +1,26 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomization_v1beta2.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cluster-apps-vikunja-app
+  namespace: flux-system
+  labels:
+    substitution.flux.home.arpa/enabled: 'true'
+spec:
+  path: './kubernetes/apps/services/vikunja/app/'
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster-kubernetes
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: vikunja-app
+      namespace: services
+  dependsOn:
+    - name: cluster-apps-cloudnative-pg-app
+    - name: cluster-apps-rook-ceph-app

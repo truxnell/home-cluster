@@ -1,0 +1,52 @@
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: runner-home-cluster
+  namespace: dev
+spec:
+  template:
+    spec:
+      image: ghcr.io/actions/actions-runner-controller/actions-runner:v2.299.1-ubuntu-20.04
+      dockerdWithinRunnerContainer: false
+      ephemeral: true
+      repository: Truxnell/container-images
+      containers:
+        - name: docker
+          image: docker:23.0.0-beta.1-dind
+      labels:
+        - self-hosted
+      volumeMounts:
+        - name: cache-volume
+          mountPath: /cache
+      volumes:
+        - name: cache-volume
+          persistentVolumeClaim:
+            claimName: actions-runner-controller-cache
+            # resources:
+            #   requests:
+            #     memory: 256Mi
+            #   limits:
+            #     memory: 384Mi
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: HorizontalRunnerAutoscaler
+metadata:
+  name: home-cluster-autoscaler
+  namespace: dev
+spec:
+  scaleTargetRef:
+    name: runner-container-images
+  scaleUpTriggers:
+    - githubEvent:
+        checkRun:
+          types: ['created']
+          status: 'queued'
+      amount: 1
+      duration: '1m'
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+    - type: TotalNumberOfQueuedAndInProgressWorkflowRuns
+      repositoryNames:
+        - Truxnell/container-images
