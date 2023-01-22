@@ -19,5 +19,5 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: cluster-apps-external-secrets-app
+      name: external-secrets-app
       namespace: cert-manager

@@ -19,7 +19,7 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: cluster-apps-weave-gitops-app
+      name: weave-gitops-app
       namespace: cert-manager
   dependsOn:
     - name: cluster-apps-external-secret-app
