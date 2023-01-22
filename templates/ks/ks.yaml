@@ -8,7 +8,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  path: '$FULLDIR/'
+  path: '$RELDIR/'
   prune: true
   sourceRef:
     kind: GitRepository

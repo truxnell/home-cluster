@@ -1,5 +1,8 @@
 #!/bin/bash
 shopt -s extglob
+shopt -s nullglob
+
+EXT_SECRET_NAME="cluster-apps-external-secret-app"
 
 ROOT=$(git rev-parse --show-toplevel)
 K8S_FOLDER="kubernetes/apps"
@@ -33,6 +36,7 @@ for DIR in $K8S_ROOT/*/; do
 
     for APP in $DIR*/; do
         APP_NAME=$(basename $APP)
+        rm "$APP/ks.yaml"
         echo " Adding $APP_NAME to $FILE"
         if [ -f "$APP/wip" ]; then
 
@@ -41,7 +45,6 @@ for DIR in $K8S_ROOT/*/; do
 
         else
 
-            rm "$APP/ks.yaml"
             echo "  - ./$APP_NAME/ks.yaml" >>"$DIR/kustomization.yaml"
 
         fi
@@ -57,23 +60,41 @@ for DIR in $K8S_ROOT/*/; do
 
         done
 
+        section_num=0
         for SECTION in $APP*/; do
             SECTION_NAME=$(basename "$SECTION")
 
-            export FULLDIR="./$K8S_FOLDER/$ns/$APP_NAME/$SECTION_NAME"
+            export FULLDIR="$K8S_ROOT/$ns/$APP_NAME/$SECTION_NAME"
+            export RELDIR="./$K8S_FOLDER/$ns/$APP_NAME/$SECTION_NAME"
             export APP_NAME=$APP_NAME
             export SECTION_NAME=$SECTION_NAME
 
             echo "Adding $SECTION_NAME to $APP_NAME ks.yml"
             envsubst <"$ROOT/templates/ks/ks.yaml" >>"$APP/ks.yaml"
 
-            #    if helmrelease present, add HR healthcheck and ensure values are aligned
+            # If helmrelease present, add HR healthcheck and ensure values are aligned
             if [ -f "$SECTION/helmrelease.yaml" ]; then
 
                 envsubst <"$ROOT/templates/ks/hr-add.yaml" >>"$APP/ks.yaml"
                 yq -i '.metadata.namespace=strenv(NAMESPACE)' "$SECTION/helmrelease.yaml"
                 yq -i '.metadata.name=strenv(APP_NAME)+"-"+strenv(SECTION_NAME)' "$SECTION/helmrelease.yaml"
 
+            fi
+            # Check if deps to be added
+            # loop through deps file and add
+            echo "checking for file $FULLDIR/deps"
+            if [ -f "$FULLDIR/deps" ]; then
+                echo "Adding deps to $APP_NAME - $SECTION_NAME, doc id $section_num"
+                while IFS= read -r line; do
+                    echo "adding $line"
+                    yq -i "(select(documentIndex==\"$section_num\")).spec.dependsOn += [{\"name\": \"$line\"}]" "$APP/ks.yaml"
+                done <"$FULLDIR/deps"
+            fi
+
+            # check if there is an externalsecret
+            if [[ -n $(find "$FULLDIR" -type f -name "externalsecret.yaml") ]]; then
+                echo "Externalsecret found - adding to deps"
+                yq -i "(select(documentIndex==\"$section_num\")).spec.dependsOn += [{\"name\": \"$EXT_SECRET_NAME\"}]" "$APP/ks.yaml"
             fi
 
             # Check all yaml for correct namespace
@@ -86,6 +107,7 @@ for DIR in $K8S_ROOT/*/; do
                 fi
 
             done
+            section_num=$((section_num + 1))
         done
 
         # if [ ! -d "$dir/app" ]; then
