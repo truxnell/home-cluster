@@ -28,6 +28,7 @@ tests/__pycache__
 # Other files
 kubeconfig
 talosconfig
+kubernetes/schemas
 
 # machineConfigs
 k8s/talos/**/machineConfigs
