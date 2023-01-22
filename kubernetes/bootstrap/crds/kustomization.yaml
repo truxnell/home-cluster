@@ -10,3 +10,13 @@ resources:
   - https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.62.0/example/prometheus-operator-crd/monitoring.coreos.com_prometheusrules.yaml
   - https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.62.0/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml
   - https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.62.0/example/prometheus-operator-crd/monitoring.coreos.com_thanosrulers.yaml
+
+  - https://raw.githubusercontent.com/external-secrets/external-secrets/main/config/crds/bases/external-secrets.io_clusterexternalsecrets.yaml
+  - https://raw.githubusercontent.com/external-secrets/external-secrets/main/config/crds/bases/external-secrets.io_clustersecretstores.yaml
+  - https://raw.githubusercontent.com/external-secrets/external-secrets/main/config/crds/bases/external-secrets.io_externalsecrets.yaml
+  - https://raw.githubusercontent.com/external-secrets/external-secrets/main/config/crds/bases/external-secrets.io_secretstores.yaml
+  - https://raw.githubusercontent.com/external-secrets/external-secrets/main/config/crds/bases/generators.external-secrets.io_acraccesstokens.yaml
+  - https://raw.githubusercontent.com/external-secrets/external-secrets/main/config/crds/bases/generators.external-secrets.io_ecrauthorizationtokens.yaml
+  - https://raw.githubusercontent.com/external-secrets/external-secrets/main/config/crds/bases/generators.external-secrets.io_fakes.yaml
+  - https://raw.githubusercontent.com/external-secrets/external-secrets/main/config/crds/bases/generators.external-secrets.io_gcraccesstokens.yaml
+  - https://raw.githubusercontent.com/external-secrets/external-secrets/main/config/crds/bases/generators.external-secrets.io_passwords.yaml
