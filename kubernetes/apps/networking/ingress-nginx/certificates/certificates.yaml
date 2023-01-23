@@ -7,7 +7,7 @@ metadata:
 spec:
   secretName: '${EXTERNAL_DOMAIN/./-}-tls'
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-production
     kind: ClusterIssuer
   commonName: '${EXTERNAL_DOMAIN}'
   dnsNames:
@@ -22,7 +22,7 @@ metadata:
 spec:
   secretName: '${WEBSITE_DOMAIN/./-}-tls'
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-production
     kind: ClusterIssuer
   commonName: '${WEBSITE_DOMAIN}'
   dnsNames:
