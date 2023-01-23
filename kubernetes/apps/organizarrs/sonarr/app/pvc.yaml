@@ -5,7 +5,7 @@ metadata:
   name: sonarr-config-v1
   namespace: organizarrs
   labels:
-    app.kubernetes.io/name: &name sonarr-app
+    app.kubernetes.io/name: &name sonarr
     app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
 spec:

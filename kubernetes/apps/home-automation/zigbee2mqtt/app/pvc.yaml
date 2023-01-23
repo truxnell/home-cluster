@@ -5,7 +5,7 @@ metadata:
   name: zigbee2mqtt-config-v1
   namespace: home-automation
   labels:
-    app.kubernetes.io/name: &name zigbee2mqtt-app
+    app.kubernetes.io/name: &name zigbee2mqtt
     app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
 spec:

@@ -5,7 +5,7 @@ metadata:
   name: radarr-config-v1
   namespace: organizarrs
   labels:
-    app.kubernetes.io/name: &name radarr-app
+    app.kubernetes.io/name: &name radarr
     app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
 spec:

@@ -5,9 +5,9 @@ metadata:
   name: mealie-data-v1
   namespace: services
   labels:
-    app.kubernetes.io/name: &app mealie-app
+    app.kubernetes.io/name: &app mealie
     app.kubernetes.io/instance: *app
-    snapshot.home.arpa/enabled: "true"
+    snapshot.home.arpa/enabled: 'true'
 spec:
   accessModes:
     - ReadWriteOnce

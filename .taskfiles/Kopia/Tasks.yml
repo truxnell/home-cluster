@@ -2,12 +2,12 @@
 version: '3'
 
 x-preconditions: &preconditions
-  - &has-app
-    sh: kubectl get deploy,sts -A | awk '/{{.APP}}-app\s/{print $1}' | grep .
-    msg: "App '{{.APP}}' not found"
+  # - &has-app
+  #   sh: kubectl get deploy,sts -A | awk '/{{.APP}}\s/{print $1}' | grep .
+  #   msg: "App '{{.APP}}' not found"
   - &has-cronjob
-    sh: kubectl get cronjob -n {{.NAMESPACE}} {{.APP}}-app-snap
-    msg: "CronJob '{{.APP}}-app-snap' in namespace '{{.NAMESPACE}}' not found"
+    sh: kubectl get cronjob -n {{.NAMESPACE}} {{.APP}}-snap
+    msg: "CronJob '{{.APP}}-snap' in namespace '{{.NAMESPACE}}' not found"
   - &has-volume
     sh: kubectl get pvc -n {{.NAMESPACE}} {{.VOLUME}}
     msg: "PersistentVolumeClaim '{{.VOLUME}}' in namespace '{{.NAMESPACE}}' not found"
@@ -17,11 +17,11 @@ x-preconditions: &preconditions
 
 x-vars: &vars
   NAMESPACE:
-    sh: kubectl get deploy,sts -A | awk '/{{.APP}}-app\s/{print $1}'
+    sh: kubectl get deploy,sts -A | awk '/{{.APP}}\s/{print $1}'
   NAME:
-    sh: kubectl get deploy,sts -n {{.NAMESPACE}} | awk '/{{.APP}}-app\s/{print $1}'
+    sh: kubectl get deploy,sts -n {{.NAMESPACE}} | awk '/{{.APP}}\s/{print $1}'
   VOLUME:
-    sh: kubectl get pvc -n {{.NAMESPACE}} --no-headers -l "app.kubernetes.io/name={{.APP}}-app" | awk '{print $1}'
+    sh: kubectl get pvc -n {{.NAMESPACE}} --no-headers -l "app.kubernetes.io/name={{.APP}}" | awk '{print $1}'
   SNAPSHOT: '{{.SNAPSHOT | default "latest"}}'
   TS: '{{now | date "20060102150405"}}'
 

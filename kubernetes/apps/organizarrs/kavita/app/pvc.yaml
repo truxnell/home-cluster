@@ -5,7 +5,7 @@ metadata:
   name: kavita-config-v1
   namespace: organizarrs
   labels:
-    app.kubernetes.io/name: &name kavita-app
+    app.kubernetes.io/name: &name kavita
     app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
 spec:

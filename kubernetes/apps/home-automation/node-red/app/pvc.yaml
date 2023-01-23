@@ -5,7 +5,7 @@ metadata:
   name: node-red-config-v1
   namespace: home-automation
   labels:
-    app.kubernetes.io/name: &name node-red-app
+    app.kubernetes.io/name: &name node-red
     app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
 spec:

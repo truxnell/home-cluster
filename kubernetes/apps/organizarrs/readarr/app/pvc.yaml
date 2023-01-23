@@ -5,7 +5,7 @@ metadata:
   name: readarr-config-v1
   namespace: organizarrs
   labels:
-    app.kubernetes.io/name: &name readarr-app
+    app.kubernetes.io/name: &name readarr
     app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
 spec:

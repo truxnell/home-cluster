@@ -5,7 +5,7 @@ metadata:
   name: foundryvtt-config-v1
   namespace: games
   labels:
-    app.kubernetes.io/name: &name foundryvtt-app
+    app.kubernetes.io/name: &name foundryvtt
     app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
 spec:
