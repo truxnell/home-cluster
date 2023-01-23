@@ -28,6 +28,10 @@ spec:
     replicas: 3
     admin:
       existingSecret: grafana-admin
+    rbac:
+      pspEnabled: false
+    testFramework:
+      enabled: false
     envFromSecrets:
       - name: *app
     grafana.ini:
