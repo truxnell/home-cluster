@@ -44,3 +44,5 @@ spec:
       kind: HelmRelease
       name: rook-ceph-cluster
       namespace: rook-ceph
+  dependsOn:
+    - name: cluster-apps-rook-ceph-app
