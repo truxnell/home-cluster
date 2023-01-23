@@ -72,8 +72,7 @@ spec:
     persistence:
       config:
         enabled: true
-        type: emptyDir
-        mountPath: /config
+        existingClaim: vaultwarden-config-v1
     resources:
       requests:
         cpu: 15m
