@@ -93,7 +93,7 @@ controlPlane:
               enable_unprivileged_ports = true
               enable_unprivileged_icmp = true
           op: create
-          path: /var/cri/conf.d/allow-unpriv-ports.toml
+          path: /etc/cri/conf.d/allow-unpriv-ports.toml
       install:
         extraKernelArgs:
           - talos.logging.kernel=udp://vector.trux.dev:6050/
