@@ -15,7 +15,7 @@ spec:
   superuserSecret:
     name: postgres-superuser
   monitoring:
-    enablePodMonitor: true
+    enablePodMonitor: false
   backup:
     retentionPolicy: 30d
     barmanObjectStore:
