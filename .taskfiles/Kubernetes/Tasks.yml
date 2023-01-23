@@ -7,13 +7,12 @@ tasks:
     cmds:
       - |
         kubectl apply --server-side --kustomize {{.CLUSTER_DIR}}/bootstrap/crds/
-        kubectl apply --server-side --kustomize {{.CLUSTER_DIR}}/bootstrap/flux
+        kubectl apply -n flux-system --server-side --kustomize {{.CLUSTER_DIR}}/bootstrap/flux
         kubectl apply -f {{.CLUSTER_DIR}}/flux/vars/cluster-settings.yaml
         kubectl create secret generic  -n flux-system cluster-secrets --from-env-file <(doppler secrets download -p cluster -c prd --no-file --format docker)
-        kubectl create secret generic -n security \
+        kubectl create secret generic -n flux-system \
             doppler-token-auth-api \
             --from-literal dopplerToken=$(doppler secrets -p doppler -c prd get DOPPLER_PAT --plain)
-        kubectl apply --server-side --kustomize {{.CLUSTER_DIR}}/flux/config
 
   schemas:
     desc: Pull the latest CRD schemas for this cluster
