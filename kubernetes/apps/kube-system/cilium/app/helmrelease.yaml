@@ -32,9 +32,6 @@ spec:
     cleanupOnFail: true
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: kube-prometheus-stack
-      namespace: monitoring
   values:
     cluster:
       name: "${CLUSTER_NAME}"

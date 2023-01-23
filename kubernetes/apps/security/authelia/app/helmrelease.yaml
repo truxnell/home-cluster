@@ -20,13 +20,6 @@ spec:
   upgrade:
     remediation:
       retries: 5
-  dependsOn:
-    - name: postgres
-      namespace: databases
-    - name: glauth
-      namespace: security
-    - name: redis
-      namespace: databases
   values:
     controller:
       replicas: 3

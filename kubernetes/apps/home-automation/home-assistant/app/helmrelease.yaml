@@ -21,11 +21,6 @@ spec:
   upgrade:
     remediation:
       retries: 5
-  dependsOn:
-    - name: postgres
-      namespace: databases
-    - name: emqx
-      namespace: home-automation
   values:
     image:
       repository: ghcr.io/onedr0p/home-assistant

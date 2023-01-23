@@ -21,11 +21,6 @@ spec:
   upgrade:
     remediation:
       retries: 5
-  dependsOn:
-    - name: emqx
-      namespace: home-automation
-    - name: zigbee2mqtt
-      namespace: home-automation
   values:
     image:
       repository: docker.io/kpetrem/mqtt-exporter

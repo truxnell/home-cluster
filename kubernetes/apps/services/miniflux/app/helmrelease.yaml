@@ -20,11 +20,6 @@ spec:
   upgrade:
     remediation:
       retries: 5
-  dependsOn:
-    - name: postgres
-      namespace: databases
-    - name: authelia
-      namespace: security
   values:
     image:
       repository: docker.io/miniflux/miniflux
