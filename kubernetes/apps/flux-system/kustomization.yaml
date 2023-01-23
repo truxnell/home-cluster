@@ -7,4 +7,5 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./addons/ks.yaml
+  - ./external-secrets/ks.yaml
   # - ./weave-gitops/ks.yaml # TODO: Disabled by WIP file

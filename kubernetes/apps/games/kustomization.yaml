@@ -12,5 +12,5 @@ resources:
   - ./factorio-moiphy/ks.yaml
   - ./factorio-ribbonworld/ks.yaml
   - ./factorio-seablock/ks.yaml
-  - ./foundryvtt/ks.yaml
+  # - ./foundryvtt/ks.yaml
   - ./satisfactory/ks.yaml

@@ -8,7 +8,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  path: './kubernetes/apps/security/external-secrets/app/'
+  path: './kubernetes/apps/flux-system/external-secrets/app/'
   prune: true
   sourceRef:
     kind: GitRepository
@@ -20,4 +20,4 @@ spec:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: external-secrets-app
-      namespace: security
+      namespace: flux-system
