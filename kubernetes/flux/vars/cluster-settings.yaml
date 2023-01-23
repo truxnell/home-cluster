@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
   name: cluster-settings
 data:
-  SECRET_CONFIG: prd_dev
+  SECRET_CONFIG: prd
 
   CLUSTER_NAME: hegira
   CLUSTER_ID: '0'
