@@ -1,0 +1,35 @@
+---
+# - name: setup syncthing directory
+#   ansible.builtin.file:
+#     path: /tmp/sync
+#     state: directory
+#     owner: '1000'
+#     group: '1000'
+#     mode: '0600'
+#
+# - name: run syncthing
+#   containers.podman.podman_container:
+#     name: syncthing
+#     image: 'docker.io/syncthing/syncthing:1.23'
+#     state: started
+#     network: host
+#     ports:
+#       - '8384:8384'
+#       - '21027:21027'
+#       - '22000:22000'
+#     env:
+#       TZ: ${TZ}
+#       GUID: '0'
+#       PUID: '0'
+#     volume:
+#       - '/tank/syncthing:/var/syncthing:z'
+#   become: false
+
+- name: enable podman-systemd | syncthing
+  ansible.builtin.systemd:
+    name: ansible-syncthing
+    enabled: true
+    scope: user
+  environment:
+    XDG_RUNTIME_DIR: '/run/user/{{ ansible_user_uid }}'
+  become: false

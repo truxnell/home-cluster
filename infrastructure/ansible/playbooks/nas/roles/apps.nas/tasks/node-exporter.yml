@@ -1,0 +1,29 @@
+---
+- name: run node-exporter
+  containers.podman.podman_container:
+    name: node-exporter
+    image: "quay.io/prometheus/node-exporter:v1.5.0"
+    state: started
+    privileged: true
+    network: host
+    volume:
+      - "/:/rootfs:ro,rslave"
+      - "/sys:/host/sys:ro"
+      - "/proc:/host/proc:ro"
+    command: "--path.procfs=/host/proc --path.rootfs=/rootfs --path.sysfs=/host/sys"
+    generate_systemd:
+      path: "/home/{{ ansible_user }}/.config/systemd/user"
+      restart_policy: always
+      time: 120
+      names: true
+      container_prefix: ansible
+  become: false
+
+- name: enable podman-systemd | node-exporter
+  ansible.builtin.systemd:
+    name: ansible-node-exporter
+    enabled: true
+    scope: user
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_user_uid }}"
+  become: false

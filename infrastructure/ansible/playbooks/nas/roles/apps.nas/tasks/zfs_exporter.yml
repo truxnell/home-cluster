@@ -1,0 +1,24 @@
+---
+- name: run zfs_exporter
+  containers.podman.podman_container:
+    name: zfs_exporter
+    image: "ghcr.io/truxnell/container-images/zfs_exporter:v2.2.5"
+    state: started
+    privileged: true
+    network: host
+    generate_systemd:
+      path: "/home/{{ ansible_user }}/.config/systemd/user"
+      restart_policy: always
+      time: 120
+      names: true
+      container_prefix: ansible
+  become: false
+
+- name: enable podman-systemd | zfs_exporter
+  ansible.builtin.systemd:
+    name: ansible-zfs_exporter
+    enabled: true
+    scope: user
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ ansible_user_uid }}"
+  become: false

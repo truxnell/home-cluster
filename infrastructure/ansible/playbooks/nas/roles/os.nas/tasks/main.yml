@@ -1,0 +1,24 @@
+---
+- import_tasks: locale.yml
+  tags:
+    - locale
+
+- import_tasks: packages.yml
+  tags:
+    - packages
+
+- import_tasks: network.yml
+  tags:
+    - network
+
+- import_tasks: user.yml
+  tags:
+    - user
+
+- import_tasks: filesystem.yml
+  tags:
+    - filesystem
+
+- import_tasks: zfs.yml
+  tags:
+    - zfs

@@ -1,0 +1,11 @@
+---
+- name: zfs
+  ansible.builtin.include_role:
+    role: "mrlesmithjr.zfs"
+
+# Wait to import zfs pool as DAS is slow to boot
+- name: Wait to import zfs on reboot
+  ansible.builtin.cron:
+    name: "wait for DAS before import"
+    special_time: reboot
+    job: "sleep 60 && /sbin/zpool import -a"

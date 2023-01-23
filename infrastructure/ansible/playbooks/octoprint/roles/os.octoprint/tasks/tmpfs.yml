@@ -1,0 +1,32 @@
+---
+- name: Move logs to tmpfs
+  ansible.posix.mount:
+    path: /tmp
+    src: tmpfs
+    fstype: tmpfs
+    opts: defaults,noatime,mode=1777
+    state: mounted
+
+- name: Move logs to tmpfs
+  ansible.posix.mount:
+    path: /var/tmp
+    src: tmpfs
+    fstype: tmpfs
+    opts: defaults,noatime,mode=1777
+    state: mounted
+
+- name: Move logs to tmpfs
+  ansible.posix.mount:
+    path: /var/log
+    src: tmpfs
+    fstype: tmpfs
+    opts: defaults,noatime,mode=1777
+    state: mounted
+
+- name: Move logs to tmpfs
+  ansible.posix.mount:
+    path: /var/spool
+    src: tmpfs
+    fstype: tmpfs
+    opts: defaults,noatime,mode=1777
+    state: mounted

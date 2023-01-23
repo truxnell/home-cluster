@@ -1,0 +1,15 @@
+---
+- hosts: octoprint
+
+  gather_facts: true
+  any_errors_fatal: true
+
+  tags: octoprint
+  remote_user: truxnell
+  become: yes
+
+  tasks:
+    - name: "role: update"
+      ansible.builtin.import_role:
+        name: update.octoprint
+      tags: update

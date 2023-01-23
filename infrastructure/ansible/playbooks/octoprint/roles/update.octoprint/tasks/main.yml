@@ -1,0 +1,24 @@
+---
+- name: Upgrade all system packages
+  ansible.builtin.apt:
+    upgrade: full
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+  register: apt_upgrade
+  retries: 5
+  until: apt_upgrade is success
+
+- name: pip self-update
+  pip:
+    name: pip
+    state: latest
+
+- name: Install octoprint plugins
+  ansible.builtin.pip:
+    name: "{{ python_packages_to_install }}"
+    virtualenv: "/home/{{ octoprint_user }}/Octoprint/venv"
+    virtualenv_command: virtualenv
+    state: latest
+  with_items: python_packages_to_install

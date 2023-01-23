@@ -1,0 +1,7 @@
+---
+- name: reload systemd daemon
+  ansible.builtin.systemd:
+    daemon_reload: yes
+
+- name: update grub
+  command: update-grub

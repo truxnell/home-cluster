@@ -1,0 +1,36 @@
+---
+- hosts: nas
+
+  gather_facts: true
+  any_errors_fatal: true
+
+  tags: nas
+  remote_user: durandal
+  become: yes
+
+  vars:
+    os_timezone: "Australia/Melbourne"
+    os_ssh_authorized_keys:
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMZS9J1ydflZ4iJdJgO8+vnN8nNSlEwyn9tbWU9OcysW nat@nat-laptop-fedora"
+
+  # vars_prompt:
+  #   - name: reset_config
+  #     prompt: Do you want to setup the NAS and potentially overwrite existing setup?  THIS MAY BE DESTRUCTIVE!!! (true/false)?
+  #     default: false
+  #     private: no
+
+  tasks:
+    - name: "Install NAS OS"
+      ansible.builtin.import_role:
+        name: os.nas
+      tags: os
+
+    - name: "Setup rootless"
+      ansible.builtin.import_role:
+        name: rootless
+      tags: rootless
+
+    - name: "Install NAS apps"
+      ansible.builtin.import_role:
+        name: apps.nas
+      tags: apps
