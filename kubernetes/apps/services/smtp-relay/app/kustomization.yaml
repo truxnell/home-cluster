@@ -7,7 +7,7 @@ resources:
   - service-monitor.yaml
 namespace: services
 configMapGenerator:
-  - name: smtp-relay
+  - name: smtp-relay-app
     files:
       - maddy.conf
 generatorOptions:
