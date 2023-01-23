@@ -3,7 +3,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: &app minio
-  namespace: network-system
+  namespace: networking
   annotations:
     nginx.ingress.kubernetes.io/proxy-connect-timeout: '300'
     nginx.ingress.kubernetes.io/proxy-body-size: 5000m
@@ -35,7 +35,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: &app s3
-  namespace: network-system
+  namespace: networking
   annotations:
     probe.home.arpa/enabled: 'false'
     hajimari.io/enable: 'false'
