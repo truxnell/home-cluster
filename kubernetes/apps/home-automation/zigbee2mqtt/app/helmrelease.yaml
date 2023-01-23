@@ -40,7 +40,7 @@ spec:
         annotations:
           hajimari.io/icon: mdi:zigbee
         hosts:
-          - host: &host 'zigbee2mqtt.${EXTERNAL_DOMAIN}'
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix

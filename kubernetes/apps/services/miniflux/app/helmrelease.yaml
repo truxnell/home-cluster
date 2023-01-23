@@ -56,7 +56,7 @@ spec:
           auth.home.arpa/enabled: 'true'
           hajimari.io/icon: mdi:rss
         hosts:
-          - host: &host 'miniflux.${EXTERNAL_DOMAIN}'
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix

@@ -48,7 +48,7 @@ spec:
             sub_filter_once on;
           hajimari.io/icon: 'book-open'
         hosts:
-          - host: &host 'readarr.${EXTERNAL_DOMAIN}'
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix

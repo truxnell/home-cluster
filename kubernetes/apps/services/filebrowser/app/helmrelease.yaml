@@ -55,7 +55,7 @@ spec:
           auth.home.arpa/enabled: 'true'
           hajimari.io/icon: mdi:folder-play-outline
         hosts:
-          - host: &host 'filebrowser .${EXTERNAL_DOMAIN}'
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix

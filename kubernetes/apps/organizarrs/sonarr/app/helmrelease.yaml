@@ -28,9 +28,9 @@ spec:
     env:
       TZ: '${TZ}'
       PUSHOVER_DEBUG: 'false'
-      PUSHOVER_APP_URL: &host 'sonarr.${EXTERNAL_DOMAIN}'
+      PUSHOVER_APP_URL: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
       SONARR__INSTANCE_NAME: Sonarr
-      SONARR__APPLICATION_URL: 'https://sonarr.${EXTERNAL_DOMAIN}'
+      SONARR__APPLICATION_URL: 'https://{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
       SONARR__LOG_LEVEL: info
     envFrom:
       - secretRef:

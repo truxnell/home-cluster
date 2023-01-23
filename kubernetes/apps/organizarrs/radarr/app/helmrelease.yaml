@@ -28,9 +28,9 @@ spec:
     env:
       TZ: '${TZ}'
       PUSHOVER_DEBUG: 'false'
-      PUSHOVER_APP_URL: &host 'radarr.${EXTERNAL_DOMAIN}'
+      PUSHOVER_APP_URL: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
       RADARR__INSTANCE_NAME: Radarr
-      RADARR__APPLICATION_URL: 'https://radarr.${EXTERNAL_DOMAIN}'
+      RADARR__APPLICATION_URL: 'https://{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
       RADARR__LOG_LEVEL: info
     envFrom:
       - secretRef:

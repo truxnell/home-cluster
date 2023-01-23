@@ -53,7 +53,7 @@ spec:
             sub_filter_once on;
           hajimari.io/icon: mdi:headphones
         hosts:
-          - host: &host 'lidarr.${EXTERNAL_DOMAIN}'
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
