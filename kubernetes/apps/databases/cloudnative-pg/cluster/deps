@@ -1,2 +1,3 @@
 cluster-apps-cloudnative-pg-app
 cluster-apps-kyverno-app
+cluster-apps-rook-ceph-cluster

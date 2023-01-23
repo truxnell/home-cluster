@@ -42,3 +42,4 @@ spec:
   dependsOn:
     - name: cluster-apps-cloudnative-pg-app
     - name: cluster-apps-kyverno-app
+    - name: -cluster-apps-rook-ceph-cluster
