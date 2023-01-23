@@ -5,9 +5,9 @@ metadata:
   name: pgadmin-config-v1
   namespace: databases
   labels:
-    app.kubernetes.io/name: &name pgadmin
+    app.kubernetes.io/name: &name pgadmin-app
     app.kubernetes.io/instance: *name
-    snapshot.home.arpa/enabled: 'true'
+    snapshot.home.arpa/enabled: "true"
 spec:
   accessModes:
     - ReadWriteOnce

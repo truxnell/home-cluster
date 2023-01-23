@@ -5,7 +5,7 @@ metadata:
   name: factorio-seablock-config-v1
   namespace: games
   labels:
-    app.kubernetes.io/name: factorio-seablock
+    app.kubernetes.io/name: factorio-seablock-app
     app.kubernetes.io/instance: factorio-seablock
     snapshot.home.arpa/enabled: "true"
 spec:

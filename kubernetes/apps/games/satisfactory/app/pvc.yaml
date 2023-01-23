@@ -5,7 +5,7 @@ metadata:
   name: satisfactory-data
   namespace: games
   # labels:
-  #   app.kubernetes.io/name: &name satisfactory
+  #   app.kubernetes.io/name: &name satisfactory-app
   #   app.kubernetes.io/instance: *name
   #   snapshot.home.arpa/enabled: "true"
 spec:

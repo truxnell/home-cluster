@@ -5,7 +5,7 @@ metadata:
   name: sabnzbd-config-v1
   namespace: downloads
   labels:
-    app.kubernetes.io/name: &name sabnzbd
+    app.kubernetes.io/name: &name sabnzbd-app
     app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
 spec:
