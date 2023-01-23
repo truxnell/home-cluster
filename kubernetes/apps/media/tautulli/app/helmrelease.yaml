@@ -43,7 +43,7 @@ spec:
             sub_filter_once on;
           hajimari.io/icon: mdi:chart-bar
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host 'tautulli.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix

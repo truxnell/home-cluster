@@ -40,7 +40,7 @@ spec:
           probe.home.arpa/enabled: 'false'
           hajimari.io/enable: 'false'
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host 'language-tools.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix

@@ -32,7 +32,7 @@ spec:
           - name: DEFAULT_EMAIL
             value: admin@${EXTERNAL_DOMAIN}
           - name: BASE_URL
-            value: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+            value: &host 'mealie.${EXTERNAL_DOMAIN}'
           - name: TOKEN_TIME
             value: 720 # 24 hours * 30 days
           - name: AUTO_BACKUP_ENABLED

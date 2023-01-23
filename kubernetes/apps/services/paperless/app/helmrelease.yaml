@@ -52,7 +52,7 @@ spec:
           hajimari.io/icon: file-multiple
           nginx.ingress.kubernetes.io/proxy-body-size: 4G
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host 'paperless.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
         tls:
