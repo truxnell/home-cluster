@@ -24,9 +24,6 @@ spec:
       retries: 3
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
-  dependsOn:
-    - name: postgres
-      namespace: databases
   # Values link: https://github.com/k8s-at-home/charts/blob/master/charts/stable/joplin-server/values.yaml
   values:
     image:
@@ -35,7 +32,7 @@ spec:
     env:
       # env-sample: https://github.com/laurent22/joplin/blob/dev/.env-sample
       # Basic setup
-      TZ: "${TZ}"
+      TZ: '${TZ}'
       APP_BASE_URL: https://joplin.${EXTERNAL_DOMAIN}/
       DB_CLIENT: pg
       # Posgres setup
@@ -56,21 +53,21 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: "true"
-          hajimari.io/enable: "true"
+          external-dns.home.arpa/enabled: 'true'
+          hajimari.io/enable: 'true'
           hajimari.io/icon: notebook-multiple
           hajimari.io/appName: joplin
           # prometheus.io/probe: "true"
         hosts:
-          - host: "joplin.${EXTERNAL_DOMAIN}"
+          - host: 'joplin.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "joplin.${EXTERNAL_DOMAIN}"
+              - 'joplin.${EXTERNAL_DOMAIN}'
     resources:
       requests:
         cpu: 15m

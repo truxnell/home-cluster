@@ -21,3 +21,5 @@ spec:
       kind: HelmRelease
       name: joplin-server-app
       namespace: services
+  dependsOn:
+    - name: cluster-apps-cloudnative-pg-app
