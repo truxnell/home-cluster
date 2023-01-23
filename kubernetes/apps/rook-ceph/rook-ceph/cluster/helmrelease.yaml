@@ -25,7 +25,7 @@ spec:
     cleanupOnFail: true
   values:
     toolbox:
-      enabled: false
+      enabled: true
     monitoring:
       enabled: true
       createPrometheusRules: true
