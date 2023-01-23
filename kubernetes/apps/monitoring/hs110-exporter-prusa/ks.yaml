@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-hs110-exporter-prusa-app
+  name: cluster-apps-hs110-exporter-prusa
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: 'true'
@@ -19,5 +19,5 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: hs110-exporter-prusa-app
+      name: hs110-exporter-prusa
       namespace: monitoring

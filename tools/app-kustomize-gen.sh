@@ -2,7 +2,7 @@
 shopt -s extglob
 shopt -s nullglob
 
-EXT_SECRET_NAME="cluster-apps-external-secrets-app"
+EXT_SECRET_NAME="cluster-apps-external-secrets-operator"
 ROOK_CEPH_NAME="cluster-apps-rook-ceph-cluster"
 
 ROOT=$(git rev-parse --show-toplevel)
@@ -67,7 +67,13 @@ for DIR in $K8S_ROOT/*/; do
 
 			export FULLDIR="$K8S_ROOT/$ns/$APP_NAME/$SECTION_NAME"
 			export RELDIR="./$K8S_FOLDER/$ns/$APP_NAME/$SECTION_NAME"
-			export APP_NAME=$APP_NAME
+
+			if [ $SECTION_NAME == "app" ]; then
+				export APP_NAME=$APP_NAME
+			else
+
+				export APP_NAME="$APP_NAME-$SECTION_NAME"
+			fi
 			export SECTION_NAME=$SECTION_NAME
 
 			echo "Adding $SECTION_NAME to $APP_NAME ks.yml"

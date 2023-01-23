@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-satisfactory-app
+  name: cluster-apps-satisfactory
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: 'true'
@@ -19,7 +19,7 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: satisfactory-app
+      name: satisfactory
       namespace: games
   dependsOn:
     - name: cluster-apps-rook-ceph-cluster

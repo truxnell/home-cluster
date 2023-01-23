@@ -21,12 +21,12 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-addons-notifications
+  name: cluster-apps-addons-monitoring-notifications
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  path: './kubernetes/apps/flux-system/addons/notifications/'
+  path: './kubernetes/apps/flux-system/addons-monitoring/notifications/'
   prune: true
   sourceRef:
     kind: GitRepository
@@ -34,19 +34,17 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  dependsOn:
-    - name: cluster-apps-external-secrets-app
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomization_v1beta2.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-addons-webhooks
+  name: cluster-apps-addons-monitoring-notifications-webhooks
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  path: './kubernetes/apps/flux-system/addons/webhooks/'
+  path: './kubernetes/apps/flux-system/addons-monitoring-notifications/webhooks/'
   prune: true
   sourceRef:
     kind: GitRepository

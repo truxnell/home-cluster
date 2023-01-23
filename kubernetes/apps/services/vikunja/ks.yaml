@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-vikunja-app
+  name: cluster-apps-vikunja
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: 'true'
@@ -19,8 +19,8 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: vikunja-app
+      name: vikunja
       namespace: services
   dependsOn:
-    - name: cluster-apps-cloudnative-pg-app
+    - name: cluster-apps-cloudnative-pg
     - name: cluster-apps-rook-ceph-cluster
