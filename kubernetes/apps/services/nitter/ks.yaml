@@ -21,3 +21,5 @@ spec:
       kind: HelmRelease
       name: nitter-app
       namespace: services
+  dependsOn:
+    - name: cluster-apps-redis-app

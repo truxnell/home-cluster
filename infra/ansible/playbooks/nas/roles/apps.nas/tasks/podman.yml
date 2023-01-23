@@ -1,7 +1,0 @@
----
-- name: Install podman
-  ansible.builtin.apt:
-    name: "{{ item }}"
-    update_cache: true
-  loop:
-    - podman

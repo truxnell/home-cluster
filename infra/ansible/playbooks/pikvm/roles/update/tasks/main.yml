@@ -1,6 +1,0 @@
----
-- block:
-    - name: Upgrade system
-      community.general.pacman:
-        update_cache: true
-        upgrade: true
