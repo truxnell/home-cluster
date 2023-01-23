@@ -21,3 +21,5 @@ spec:
       kind: HelmRelease
       name: grafana-app
       namespace: monitoring
+  dependsOn:
+    - name: cluster-apps-cloudnative-pg-app
