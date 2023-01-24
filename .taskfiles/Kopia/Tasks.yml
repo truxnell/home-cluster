@@ -61,6 +61,7 @@ tasks:
       - flux -n {{.NAMESPACE}} resume helmrelease {{.APP}}
       - kubectl -n {{.NAMESPACE}} logs job/{{.APP}}-restore-snap
       - kubectl -n {{.NAMESPACE}} delete job {{.APP}}-restore-snap
+      - kubectl -n {{.NAMESPACE}} scale {{.NAME}} --replicas 1
     vars: *vars
     env:
       APP: '{{.APP}}'

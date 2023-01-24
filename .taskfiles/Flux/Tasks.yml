@@ -52,3 +52,12 @@ tasks:
     cmds:
       - kubectl get hr --all-namespaces | grep False | awk '{print $2, $1}' | xargs -l bash -c 'flux suspend hr $0 -n $1'
       - kubectl get hr --all-namespaces | grep False | awk '{print $2, $1}' | xargs -l bash -c 'flux resume hr $0 -n $1'
+
+  hr-indiv-restart:
+    desc: Restart a particular hr
+    cmds:
+      - echo {{.APP}}
+      - flux -n flux-system suspend helmrelease {{.APP}}
+      - flux -n flux-system resume helmrelease {{.APP}}
+    env:
+      APP: '{{.APP}}'
