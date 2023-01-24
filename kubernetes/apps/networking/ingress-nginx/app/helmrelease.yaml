@@ -64,7 +64,7 @@ spec:
         enabled: true
         serviceMonitor:
           enabled: true
-          namespace: network-system
+          namespace: networking
           namespaceSelector:
             any: true
         prometheusRule:
