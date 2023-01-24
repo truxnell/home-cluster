@@ -20,6 +20,7 @@ resources:
   - ./paperless/ks.yaml
   - ./pleroma-rebased/ks.yaml
   - ./red-discord-bot/ks.yaml
+  - ./radicale/ks.yaml
   - ./scribe/ks.yaml
   - ./smtp-relay/ks.yaml
   - ./theme-park/ks.yaml
