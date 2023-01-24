@@ -5,7 +5,7 @@ metadata:
   name: &app loki
   namespace: monitoring
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
       chart: loki
@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: grafana-charts
         namespace: flux-system
-      interval: 5m
+      interval: 15m
   install:
     createNamespace: true
     remediation: # perform remediation when helm install fails
@@ -34,7 +34,7 @@ spec:
           http_listen_port: 3100
           grpc_listen_port: 9095
         memberlist:
-          join_members: ['loki-memberlist']
+          join_members: ["loki-memberlist"]
         limits_config:
           retention_period: 14d
           enforce_metric_name: false
@@ -46,7 +46,7 @@ spec:
           ingestion_burst_size_mb: 16
         schema_config:
           configs:
-            - from: '2021-08-01'
+            - from: "2021-08-01"
               store: boltdb-shipper
               object_store: s3
               schema: v11
@@ -109,11 +109,11 @@ spec:
                 topologyKey: kubernetes.io/hostname
       ingress:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
-          hajimari.io/enable: 'false'
+          hajimari.io/enable: "false"
         hosts:
-          - host: &host 'loki.${EXTERNAL_DOMAIN}'
+          - host: &host "loki.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix

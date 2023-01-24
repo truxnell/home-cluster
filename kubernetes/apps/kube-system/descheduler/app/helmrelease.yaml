@@ -6,7 +6,7 @@ metadata:
   name: descheduler
   namespace: kube-system
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
       chart: descheduler
@@ -15,7 +15,7 @@ spec:
         kind: HelmRepository
         name: descheduler-charts
         namespace: flux-system
-      interval: 5m
+      interval: 15m
   maxHistory: 3
   install:
     createNamespace: true
@@ -34,7 +34,7 @@ spec:
     leaderElection:
       enabled: true
     podAnnotations:
-      configmap.reloader.stakater.com/reload: 'descheduler'
+      configmap.reloader.stakater.com/reload: "descheduler"
     deschedulerPolicy:
       strategies:
         RemoveDuplicates:

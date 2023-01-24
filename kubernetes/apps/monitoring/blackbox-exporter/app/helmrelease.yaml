@@ -5,7 +5,7 @@ metadata:
   name: blackbox-exporter
   namespace: monitoring
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
       chart: prometheus-blackbox-exporter
@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: prometheus-community-charts
         namespace: flux-system
-      interval: 5m
+      interval: 15m
   install:
     createNamespace: true
     remediation: # perform remediation when helm install fails
@@ -32,7 +32,7 @@ spec:
       repository: quay.io/prometheus/blackbox-exporter
     ingress:
       enabled: true
-      ingressClassName: 'nginx'
+      ingressClassName: "nginx"
       annotations:
         hajimari.io/icon: mdi:solid
       hosts:
@@ -44,51 +44,51 @@ spec:
         - hosts:
             - blackbox-exporter.${EXTERNAL_DOMAIN}
     podAnnotations:
-      configmap.reloader.stakater.com/reload: 'blackbox-exporter'
+      configmap.reloader.stakater.com/reload: "blackbox-exporter"
     allowIcmp: true
     securityContext:
       readOnlyRootFilesystem: true
       allowPrivilegeEscalation: false
       capabilities:
-        add: ['NET_RAW']
+        add: ["NET_RAW"]
     config:
       modules:
         http_2xx:
           prober: http
           timeout: 5s
           http:
-            valid_http_versions: ['HTTP/1.1', 'HTTP/2.0']
+            valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
             follow_redirects: true
-            preferred_ip_protocol: 'ip4'
+            preferred_ip_protocol: "ip4"
         http_403:
           prober: http
           timeout: 5s
           http:
-            valid_http_versions: ['HTTP/1.1', 'HTTP/2.0']
+            valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
             follow_redirects: true
-            preferred_ip_protocol: 'ip4'
+            preferred_ip_protocol: "ip4"
             valid_status_codes: [403]
         http_401:
           prober: http
           timeout: 5s
           http:
-            valid_http_versions: ['HTTP/1.1', 'HTTP/2.0']
+            valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
             follow_redirects: true
-            preferred_ip_protocol: 'ip4'
+            preferred_ip_protocol: "ip4"
             valid_status_codes: [401]
         http_400:
           prober: http
           timeout: 5s
           http:
-            valid_http_versions: ['HTTP/1.1', 'HTTP/2.0']
+            valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
             follow_redirects: true
-            preferred_ip_protocol: 'ip4'
+            preferred_ip_protocol: "ip4"
             valid_status_codes: [400]
         icmp:
           prober: icmp
           timeout: 30s
           icmp:
-            preferred_ip_protocol: 'ip4'
+            preferred_ip_protocol: "ip4"
     serviceMonitor:
       enabled: true
       defaults:

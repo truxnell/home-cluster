@@ -5,12 +5,12 @@ metadata:
   name: weave-gitops
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 15m
   chart:
     spec:
       chart: weave-gitops
       version: 4.0.11
-      interval: 30m
+      interval: 15m
       sourceRef:
         kind: HelmRepository
         name: weave-gitops

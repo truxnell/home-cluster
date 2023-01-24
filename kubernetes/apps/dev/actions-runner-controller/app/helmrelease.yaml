@@ -5,7 +5,7 @@ metadata:
   name: actions-runner-controller
   namespace: dev
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
       chart: actions-runner-controller
@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: actions-runner-controller-charts
         namespace: flux-system
-      interval: 5m
+      interval: 15m
   install:
     createNamespace: true
     remediation: # perform remediation when helm install fails
@@ -27,7 +27,7 @@ spec:
   values:
     authSecret:
       create: false
-      name: &auth-secret 'actions-runner-controller-auth'
+      name: &auth-secret "actions-runner-controller-auth"
     image:
       repository: summerwind/actions-runner-controller
     # resources:
@@ -42,15 +42,15 @@ spec:
       syncPeriod: 10m
       secret:
         create: false
-        name: &webhook-secret 'actions-runner-controller-webhook'
+        name: &webhook-secret "actions-runner-controller-webhook"
       ingress:
         enabled: true
         annotations:
-          hajimari.io/enable: 'false'
-          external-dns.home.arpa/enabled: 'true'
-        ingressClassName: 'nginx'
+          hajimari.io/enable: "false"
+          external-dns.home.arpa/enabled: "true"
+        ingressClassName: "nginx"
         hosts:
-          - host: &host 'arc-hook.${EXTERNAL_DOMAIN}'
+          - host: &host "arc-hook.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix

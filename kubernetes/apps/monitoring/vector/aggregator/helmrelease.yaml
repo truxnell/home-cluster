@@ -5,7 +5,7 @@ metadata:
   name: vector-aggregator
   namespace: monitoring
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
       chart: vector
@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: vector-charts
         namespace: flux-system
-      interval: 5m
+      interval: 15m
   install:
     createNamespace: true
     remediation: # perform remediation when helm install fails
@@ -25,7 +25,7 @@ spec:
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
   values:
-    role: 'Stateless-Aggregator'
+    role: "Stateless-Aggregator"
     podMonitor:
       enabled: true
     service:
@@ -40,11 +40,11 @@ spec:
         kubernetes_logs:
           address: 0.0.0.0:6000
           type: vector
-          version: '2'
+          version: "2"
         journal_logs:
           type: vector
           address: 0.0.0.0:6001
-          version: '2'
+          version: "2"
         talos_kernel_logs:
           address: 0.0.0.0:6050
           type: socket
@@ -64,7 +64,7 @@ spec:
         udmp_logs:
           address: 0.0.0.0:6100
           type: syslog
-          mode: 'udp'
+          mode: "udp"
           max_length: 102_400
         vector_metrics:
           type: internal_metrics
@@ -78,9 +78,9 @@ spec:
             # Standardize 'app' index
             .custom_app_name = .pod_labels."app.kubernetes.io/name" || .pod_labels.app || .pod_labels."k8s-app" || "unknown"
         udmp_logs_xform:
-          type: 'remap'
+          type: "remap"
           inputs:
-            - 'udmp_logs'
+            - "udmp_logs"
           source: |-
             .timestamp=null
         talos_kernel_logs_xform:
@@ -191,7 +191,7 @@ spec:
               {{`{{ __host }}`}}
             app: >-
               {{`{{ "talos-service" }}`}}
-            namespace: 'talos:service'
+            namespace: "talos:service"
     podAnnotations:
       configmap.reloader.stakater.com/reload: vector-aggregator
     resources:
