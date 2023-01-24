@@ -49,3 +49,5 @@ spec:
             name: postgres-minio
             key: MINIO_ACCESS_KEY
           secretAccessKey:
+            name: postgres-minio
+            key: MINIO_SECRET_KEY
