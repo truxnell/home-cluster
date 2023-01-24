@@ -4,6 +4,6 @@ kind: Kustomization
 namespace: games
 resources:
   - pvc.yaml
-  # - helmrelease.yaml
+  - helmrelease.yaml
 metadata:
   namespace: games

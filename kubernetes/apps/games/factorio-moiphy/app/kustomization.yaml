@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: games
 resources:
   - ./pvc.yaml
-  # - ./helmrelease.yaml
+  - ./helmrelease.yaml
   - ./secret.sops.yaml
 metadata:
   namespace: games
