@@ -66,13 +66,14 @@ for DIR in $K8S_ROOT/*/; do
             SECTION_NAME=$(basename "$SECTION")
 
             export FULLDIR="$K8S_ROOT/$ns/$APP_NAME/$SECTION_NAME"
+            export APP_NAME=$APP_NAME
             export RELDIR="./$K8S_FOLDER/$ns/$APP_NAME/$SECTION_NAME"
 
             if [ $SECTION_NAME == "app" ]; then
-                export APP_NAME=$APP_NAME
+                export HELM_NAME=$APP_NAME
             else
 
-                export APP_NAME="$APP_NAME-$SECTION_NAME"
+                export HELM_NAME="$APP_NAME-$SECTION_NAME"
             fi
             export SECTION_NAME=$SECTION_NAME
 
@@ -84,7 +85,7 @@ for DIR in $K8S_ROOT/*/; do
 
                 envsubst <"$ROOT/templates/ks/hr-add.yaml" >>"$APP/ks.yaml"
                 yq -i '.metadata.namespace=strenv(NAMESPACE)' "$SECTION/helmrelease.yaml"
-                yq -i '.metadata.name=strenv(APP_NAME)' "$SECTION/helmrelease.yaml"
+                yq -i '.metadata.name=strenv(HELM_NAME)' "$SECTION/helmrelease.yaml"
 
             fi
             # Check if deps to be added
