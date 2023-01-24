@@ -5,10 +5,8 @@ cd ..
 
 for LINE in $APPS; do
 
-    if [ $LINE != "plex-app-snap" ]; then
-        APP=${LINE%?????????}
-        task ko:restore APP=$APP
+    APP=${LINE%?????}
 
-    fi
+    task ko:restore APP=$APP
 
 done
