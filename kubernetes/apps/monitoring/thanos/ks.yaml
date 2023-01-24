@@ -22,4 +22,4 @@ spec:
       name: thanos
       namespace: monitoring
   dependsOn:
-    - name: cluster-apps-rook-cluster
+    - name: cluster-apps-rook-ceph-cluster
