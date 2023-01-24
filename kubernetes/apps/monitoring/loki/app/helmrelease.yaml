@@ -153,9 +153,6 @@ spec:
         - name: loki-tmp
           mountPath: /tmp/loki-tmp
       extraVolumes:
-        - name: loki-rules
-          configMap:
-            name: loki-alerting-rules
         - name: loki-rules-tmp
           emptyDir: {}
         - name: loki-tmp

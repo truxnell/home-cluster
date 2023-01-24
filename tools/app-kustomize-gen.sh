@@ -115,7 +115,7 @@ for DIR in $K8S_ROOT/*/; do
             # Check all yaml for correct namespace
             for FILE in $SECTION*.yaml; do
 
-                if [[ $(yq '.metadata.namespace' $file) != "null" && $(yq '.metadata.kind' $file) != "Secret" ]]; then
+                if [[ $(yq '.metadata.namespace' $file) != "null" && $(yq '.metadata.kind' $file) != "Secret" && $(yq '.metadata.kind' $file) != "Kustomization" ]]; then
 
                     echo "Ensuring namespace is $NAMESPACE in $FILE"
                     yq -i '.metadata.namespace=strenv(NAMESPACE)' "$FILE"
