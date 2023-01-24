@@ -121,13 +121,11 @@ spec:
           - hosts:
               - *host
 
+    read:
+      replicas: 3
+
     write:
       replicas: 3
-      persistence:
-        size: 10Gi
-        storageClass: ceph-block
-
-    read:
       persistence:
         size: 10Gi
         storageClass: ceph-block
@@ -136,12 +134,13 @@ spec:
       replicas: 3
       extraVolumeMounts:
         - name: rules
-          mountPath: /rules
+          mountPath: /rules/fake
         - name: scratch
           mountPath: /tmp/scratch
       extraVolumes:
         - name: rules
-          emptyDir: {}
+          configMap:
+            name: loki-alerting-rules
         - name: scratch
           emptyDir: {}
       persistence:
