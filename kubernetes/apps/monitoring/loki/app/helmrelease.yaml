@@ -24,7 +24,6 @@ spec:
       retries: 3
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
-  # https://github.com/grafana/loki/blob/main/production/helm/loki/values.yaml
   values:
     loki:
       structuredConfig:
@@ -33,8 +32,10 @@ spec:
           log_level: info
           http_listen_port: 3100
           grpc_listen_port: 9095
+
         memberlist:
           join_members: ['loki-memberlist']
+
         limits_config:
           retention_period: 14d
           enforce_metric_name: false
@@ -44,6 +45,7 @@ spec:
           split_queries_by_interval: 15m
           ingestion_rate_mb: 8
           ingestion_burst_size_mb: 16
+
         schema_config:
           configs:
             - from: '2021-08-01'
@@ -110,8 +112,6 @@ spec:
       ingress:
         enabled: true
         ingressClassName: 'nginx'
-        annotations:
-          hajimari.io/enable: 'false'
         hosts:
           - host: &host 'loki.${EXTERNAL_DOMAIN}'
             paths:
@@ -120,33 +120,50 @@ spec:
         tls:
           - hosts:
               - *host
-
-    read:
-      replicas: 3
-
     write:
       replicas: 3
+      affinity: |
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    {{- include "loki.writeSelectorLabels" . | nindent 12 }}
+                topologyKey: kubernetes.io/hostname
       persistence:
         size: 10Gi
         storageClass: ceph-block
 
-    backend:
+    read:
       replicas: 3
+      affinity: |
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    {{- include "loki.readSelectorLabels" . | nindent 12 }}
+                topologyKey: kubernetes.io/hostname
       extraVolumeMounts:
-        - name: rules
-          mountPath: /rules/
-        - name: scratch
+        - name: loki-rules
+          mountPath: /rules/fake
+        - name: loki-rules-tmp
           mountPath: /tmp/scratch
+        - name: loki-tmp
+          mountPath: /tmp/loki-tmp
       extraVolumes:
-        - name: rules
+        - name: loki-rules
           configMap:
             name: loki-alerting-rules
-        - name: scratch
+        - name: loki-rules-tmp
+          emptyDir: {}
+        - name: loki-tmp
           emptyDir: {}
       persistence:
         size: 10Gi
         storageClass: ceph-block
-
     monitoring:
       serviceMonitor:
         enabled: false
@@ -178,111 +195,112 @@ spec:
       name: loki-secret
       valuesKey: S3_SECRET_KEY
       targetPath: loki.structuredConfig.common.storage.s3.secret_access_key
-# alerting_groups:
-#   #
-#   # SMART Failures
-#   #
-#   - name: smart-failure
-#     rules:
-#       - alert: SmartFailures
-#         expr: |
-#           sum by (hostname) (count_over_time({hostname=~".+"} | json | _SYSTEMD_UNIT = "smartmontools.service" !~ "(?i)previous self-test completed without error" !~ "(?i)Prefailure" |~ "(?i)(error|fail)"[2m])) > 0
-#         for: 2m
-#         labels:
-#           severity: critical
-#           category: logs
-#         annotations:
-#           summary: "SMART has reported failures on host {{ $labels.hostname }}"
-#   #
-#   # zigbee2mqtt
-#   #
-#   - name: zigbee2mqtt
-#     rules:
-#       - alert: ZigbeeUnableToReachMQTT
-#         expr: |
-#           sum(count_over_time({app="zigbee2mqtt"} |~ "(?i)not connected to mqtt server"[2m])) > 0
-#         for: 2m
-#         labels:
-#           severity: critical
-#           category: logs
-#         annotations:
-#           summary: "Zigbee2mqtt is unable to reach MQTT"
-#   #
-#   # zwavejs2mqtt
-#   #
-#   - name: zwavejs2mqtt
-#     rules:
-#       - alert: ZwaveUnableToReachMQTT
-#         expr: |
-#           sum(count_over_time({app="zwavejs2mqtt"} |~ "(?i)error while connecting mqtt"[2m])) > 0
-#         for: 2m
-#         labels:
-#           severity: critical
-#           category: logs
-#         annotations:
-#           summary: "Zwavejs2mqtt is unable to reach MQTT"
-#   #
-#   # frigate
-#   #
-#   - name: frigate
-#     rules:
-#       - alert: FrigateUnableToReachMQTT
-#         expr: |
-#           sum(count_over_time({app="frigate"} |~ "(?i)unable to connect to mqtt server"[2m])) > 0
-#         for: 2m
-#         labels:
-#           severity: critical
-#           category: logs
-#         annotations:
-#           summary: "Frigate is unable to reach MQTT"
-#   #
-#   # *arr
-#   #
-#   - name: arr
-#     rules:
-#       - alert: ArrDatabaseIsLocked
-#         expr: |
-#           sum by (app) (count_over_time({app=~".*arr"} |~ "(?i)database is locked"[2m])) > 0
-#         for: 2m
-#         labels:
-#           severity: critical
-#           category: logs
-#         annotations:
-#           summary: "{{ $labels.app }} is experiencing locked database issues"
-#       - alert: ArrDatabaseIsMalformed
-#         expr: |
-#           sum by (app) (count_over_time({app=~".*arr"} |~ "(?i)database disk image is malformed"[2m])) > 0
-#         for: 2m
-#         labels:
-#           severity: critical
-#           category: logs
-#         annotations:
-#           summary: "{{ $labels.app }} is experiencing malformed database disk image issues"
-#   #
-#   # home-assistant
-#   #
-#   - name: home-assistant
-#     rules:
-#       - alert: HomeAssistantUnableToReachPostgresql
-#         expr: |
-#           sum by (app) (count_over_time({app="home-assistant"} |~ "(?i)error in database connectivity"[2m])) > 0
-#         for: 2m
-#         labels:
-#           severity: critical
-#           category: logs
-#         annotations:
-#           summary: "Home Assistant is unable to connect to postgresql"
-#   #
-#   # node-red
-#   #
-#   - name: node-red
-#     rules:
-#       - alert: NodeRedUnableToReachHomeAssistant
-#         expr: |
-#           sum by (app) (count_over_time({app="node-red"} |~ "(?i)home assistant.*connecting to undefined"[2m])) > 0
-#         for: 2m
-#         labels:
-#           severity: critical
-#           category: logs
-#         annotations:
-#           summary: "Node-Red is unable to connect to Home Assistant"
+
+    # alerting_groups:
+    #   #
+    #   # SMART Failures
+    #   #
+    #   - name: smart-failure
+    #     rules:
+    #       - alert: SmartFailures
+    #         expr: |
+    #           sum by (hostname) (count_over_time({hostname=~".+"} | json | _SYSTEMD_UNIT = "smartmontools.service" !~ "(?i)previous self-test completed without error" !~ "(?i)Prefailure" |~ "(?i)(error|fail)"[2m])) > 0
+    #         for: 2m
+    #         labels:
+    #           severity: critical
+    #           category: logs
+    #         annotations:
+    #           summary: "SMART has reported failures on host {{ $labels.hostname }}"
+    #   #
+    #   # zigbee2mqtt
+    #   #
+    #   - name: zigbee2mqtt
+    #     rules:
+    #       - alert: ZigbeeUnableToReachMQTT
+    #         expr: |
+    #           sum(count_over_time({app="zigbee2mqtt"} |~ "(?i)not connected to mqtt server"[2m])) > 0
+    #         for: 2m
+    #         labels:
+    #           severity: critical
+    #           category: logs
+    #         annotations:
+    #           summary: "Zigbee2mqtt is unable to reach MQTT"
+    #   #
+    #   # zwavejs2mqtt
+    #   #
+    #   - name: zwavejs2mqtt
+    #     rules:
+    #       - alert: ZwaveUnableToReachMQTT
+    #         expr: |
+    #           sum(count_over_time({app="zwavejs2mqtt"} |~ "(?i)error while connecting mqtt"[2m])) > 0
+    #         for: 2m
+    #         labels:
+    #           severity: critical
+    #           category: logs
+    #         annotations:
+    #           summary: "Zwavejs2mqtt is unable to reach MQTT"
+    #   #
+    #   # frigate
+    #   #
+    #   - name: frigate
+    #     rules:
+    #       - alert: FrigateUnableToReachMQTT
+    #         expr: |
+    #           sum(count_over_time({app="frigate"} |~ "(?i)unable to connect to mqtt server"[2m])) > 0
+    #         for: 2m
+    #         labels:
+    #           severity: critical
+    #           category: logs
+    #         annotations:
+    #           summary: "Frigate is unable to reach MQTT"
+    #   #
+    #   # *arr
+    #   #
+    #   - name: arr
+    #     rules:
+    #       - alert: ArrDatabaseIsLocked
+    #         expr: |
+    #           sum by (app) (count_over_time({app=~".*arr"} |~ "(?i)database is locked"[2m])) > 0
+    #         for: 2m
+    #         labels:
+    #           severity: critical
+    #           category: logs
+    #         annotations:
+    #           summary: "{{ $labels.app }} is experiencing locked database issues"
+    #       - alert: ArrDatabaseIsMalformed
+    #         expr: |
+    #           sum by (app) (count_over_time({app=~".*arr"} |~ "(?i)database disk image is malformed"[2m])) > 0
+    #         for: 2m
+    #         labels:
+    #           severity: critical
+    #           category: logs
+    #         annotations:
+    #           summary: "{{ $labels.app }} is experiencing malformed database disk image issues"
+    #   #
+    #   # home-assistant
+    #   #
+    #   - name: home-assistant
+    #     rules:
+    #       - alert: HomeAssistantUnableToReachPostgresql
+    #         expr: |
+    #           sum by (app) (count_over_time({app="home-assistant"} |~ "(?i)error in database connectivity"[2m])) > 0
+    #         for: 2m
+    #         labels:
+    #           severity: critical
+    #           category: logs
+    #         annotations:
+    #           summary: "Home Assistant is unable to connect to postgresql"
+    #   #
+    #   # node-red
+    #   #
+    #   - name: node-red
+    #     rules:
+    #       - alert: NodeRedUnableToReachHomeAssistant
+    #         expr: |
+    #           sum by (app) (count_over_time({app="node-red"} |~ "(?i)home assistant.*connecting to undefined"[2m])) > 0
+    #         for: 2m
+    #         labels:
+    #           severity: critical
+    #           category: logs
+    #         annotations:
+    #           summary: "Node-Red is unable to connect to Home Assistant"tps://github.com/grafana/loki/blob/main/production/helm/loki/values.yaml
