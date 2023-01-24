@@ -5,5 +5,3 @@ resources:
   - ./secret.sops.yaml
   - ./helmrelease.yaml
   - ./networkpolicy.yaml
-metadata:
-  namespace: vpn
