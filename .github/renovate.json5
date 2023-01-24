@@ -32,24 +32,24 @@
   // Set up Renovate Managers
   "helm-values": {
     fileMatch: [
-      "k8s/manifests/.+/helmrelease\\.ya?ml$",
-      "k8s/global/.+/helmrelease\\.ya?ml$",
+      "kubernetes/manifests/.+/helmrelease\\.ya?ml$",
+      "kubernetes/global/.+/helmrelease\\.ya?ml$",
     ],
   },
   kubernetes: {
-    fileMatch: ["k8s/manifests/.+\\.ya?ml$", "k8s/global/.+\\.ya?ml$"],
+    fileMatch: ["kubernetes/manifests/.+\\.ya?ml$", "k8s/global/.+\\.ya?ml$"],
   },
   flux: {
     fileMatch: [
-      "k8s/manifests/.+\\.ya?ml$",
-      "k8s/global/.+\\.ya?ml$",
-      "k8s/clusters/.+\\.ya?ml$",
+      "kubernetes/manifests/.+\\.ya?ml$",
+      "kubernetes/global/.+\\.ya?ml$",
+      "kubernetes/clusters/.+\\.ya?ml$",
     ],
   },
   "regexManagers": [
     {
       "description": ["Process CRD dependencies - Chart and Github Release are the same version"],
-      "fileMatch": ["k8s/.+\\.ya?ml$"],
+      "fileMatch": ["kubernetes/.+\\.ya?ml$"],
       "matchStrings": [
         "# renovate: registryUrl=(?<registryUrl>\\S+) chart=(?<depName>\\S+)\n.*?(?<currentValue>[^-\\s]*)\n",
       ],
@@ -59,7 +59,7 @@
       "description": "Process various dependencies",
       "fileMatch": [
         "infra/.+\\.ya?ml$",
-        "k8s/.+\\.ya?ml$"
+        "kubernetes/.+\\.ya?ml$"
       ],
       "matchStrings": [
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n"
@@ -98,8 +98,8 @@
     {
       matchDatasources: ["docker"],
       matchPackageNames: [
-        "ghcr.io/k8s-at-home/plex",
-        "ghcr.io/k8s-at-home/qbittorrent",
+        "ghcr.io/kubernetes-at-home/plex",
+        "ghcr.io/kubernetes-at-home/qbittorrent",
       ],
       versioning: "loose",
     },
@@ -119,9 +119,9 @@
     {
       matchDatasources: ["docker"],
       matchPackageNames: [
-        "k8s.gcr.io/kube-apiserver",
-        "k8s.gcr.io/kube-controller-manager",
-        "k8s.gcr.io/kube-scheduler",
+        "kubernetes.gcr.io/kube-apiserver",
+        "kubernetes.gcr.io/kube-controller-manager",
+        "kubernetes.gcr.io/kube-scheduler",
         "ghcr.io/siderolabs/kubelet",
       ],
       groupName: "kubernetes",
