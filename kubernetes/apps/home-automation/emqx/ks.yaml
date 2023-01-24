@@ -21,3 +21,5 @@ spec:
       kind: HelmRelease
       name: emqx
       namespace: home-automation
+  dependsOn:
+    - name: cluster-apps-rook-ceph-cluster

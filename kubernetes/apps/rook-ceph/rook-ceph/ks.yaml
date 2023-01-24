@@ -22,7 +22,7 @@ spec:
       name: rook-ceph-cluster
       namespace: rook-ceph
   dependsOn:
-    - name: cluster-apps-rook-ceph
+    - name: cluster-apps-rook-ceph-operator
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomization_v1beta2.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -33,7 +33,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  path: './kubernetes/apps/rook-ceph/rook-ceph/operator/'
+  path: './kubernetes/apps/rook-ceph/rook-ceph-cluster/operator/'
   prune: true
   sourceRef:
     kind: GitRepository
