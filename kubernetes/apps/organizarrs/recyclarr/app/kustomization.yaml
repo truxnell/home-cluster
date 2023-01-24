@@ -13,3 +13,5 @@ generatorOptions:
   disableNameSuffixHash: true
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
+metadata:
+  namespace: organizarrs

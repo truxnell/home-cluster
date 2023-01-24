@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app factorio-k2-app
+  name: &app factorio-k2
   namespace: games
 spec:
   interval: 15m

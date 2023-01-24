@@ -7,3 +7,5 @@ resources:
   - service-monitor.yaml
 patchesStrategicMerge:
   - patches/postgres.yaml
+metadata:
+  namespace: services

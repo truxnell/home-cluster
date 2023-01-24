@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app satisfactory-app
+  name: &app satisfactory
   namespace: games
 spec:
   interval: 15m

@@ -4,3 +4,5 @@ kind: Kustomization
 resources:
   - ./cluster.yaml
   - ./scheduled-backup.yaml
+metadata:
+  namespace: databases

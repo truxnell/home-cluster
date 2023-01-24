@@ -4,3 +4,5 @@ kind: Kustomization
 resources:
   - helmrelease.yaml
   - prometheus.yaml
+metadata:
+  namespace: home-automation

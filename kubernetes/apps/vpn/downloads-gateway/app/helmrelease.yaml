@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: downloads-gateway-app
+  name: downloads-gateway
   namespace: vpn
 spec:
   chart:

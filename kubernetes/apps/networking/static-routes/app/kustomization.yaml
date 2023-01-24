@@ -6,3 +6,5 @@ resources:
   # - brewpiless # FIXME
   # - ./brother-printer
   - ./minio
+metadata:
+  namespace: networking

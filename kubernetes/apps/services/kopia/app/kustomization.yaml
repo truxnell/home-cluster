@@ -12,3 +12,5 @@ configMapGenerator:
       - repository.config
 generatorOptions:
   disableNameSuffixHash: true
+metadata:
+  namespace: services

@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app factorio-seablock-app
+  name: &app factorio-seablock
   namespace: games
 spec:
   interval: 15m

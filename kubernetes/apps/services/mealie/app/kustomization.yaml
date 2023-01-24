@@ -5,3 +5,5 @@ namespace: services
 resources:
   - ./helmrelease.yaml
   - ./pvc.yaml
+metadata:
+  namespace: services

@@ -5,3 +5,5 @@ kind: Kustomization
 namespace: dev
 resources:
   - ./helmrelease.yaml
+metadata:
+  namespace: dev

@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app qbittorrent-app
+  name: &app qbittorrent
   namespace: downloads
 spec:
   interval: 15m

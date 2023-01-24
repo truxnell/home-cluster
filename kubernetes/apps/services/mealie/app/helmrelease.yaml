@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app mealie-app
+  name: &app mealie
   namespace: services
 spec:
   interval: 15m

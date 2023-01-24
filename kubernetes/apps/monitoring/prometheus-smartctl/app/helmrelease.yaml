@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app prometheus-smartctl-app
+  name: &app prometheus-smartctl
   namespace: monitoring
 spec:
   interval: 15m

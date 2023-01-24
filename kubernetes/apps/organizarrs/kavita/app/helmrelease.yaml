@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app kavita-app
+  name: &app kavita
   namespace: organizarrs
 spec:
   interval: 15m

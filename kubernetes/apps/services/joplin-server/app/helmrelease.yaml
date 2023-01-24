@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: joplin-server-app
+  name: joplin-server
   namespace: services
 spec:
   interval: 5m

@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app theme-park-app
+  name: &app theme-park
   namespace: services
 spec:
   interval: 15m

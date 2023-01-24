@@ -6,3 +6,5 @@ resources:
   - ./dashboards
   - ./prometheusrule.yaml
   - ./servicemonitor.yaml
+metadata:
+  namespace: monitoring

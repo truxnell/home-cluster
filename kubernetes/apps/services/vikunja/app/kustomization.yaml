@@ -8,3 +8,5 @@ resources:
   - ./secret.sops.yaml
 patchesStrategicMerge:
   - ./patches/postgres.yaml
+metadata:
+  namespace: services

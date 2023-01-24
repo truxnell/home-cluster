@@ -6,3 +6,5 @@ resources:
   # - ./assets.yaml
   - ./container-images.yaml
   - ./home-cluster.yaml
+metadata:
+  namespace: dev

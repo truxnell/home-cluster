@@ -5,3 +5,5 @@ resources:
   - ./pvc.yaml
   - ./helmrelease.yaml
   - ./secret.sops.yaml
+metadata:
+  namespace: organizarrs

@@ -6,3 +6,5 @@ resources:
   - ./helmrelease.yaml
   - ./secret.sops.yaml
   - ./pvc.yaml
+metadata:
+  namespace: services

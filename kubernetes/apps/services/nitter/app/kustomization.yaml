@@ -10,3 +10,5 @@ configMapGenerator:
       - config/config.ini
 generatorOptions:
   disableNameSuffixHash: true
+metadata:
+  namespace: services

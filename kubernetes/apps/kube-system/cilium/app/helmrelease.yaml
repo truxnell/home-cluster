@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: cilium-app
+  name: cilium
   namespace: kube-system
   annotations:
     meta.helm.sh/release-name: cilium

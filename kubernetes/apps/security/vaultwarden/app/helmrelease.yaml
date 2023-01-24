@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app vaultwarden-app
+  name: &app vaultwarden
   namespace: security
 spec:
   interval: 15m

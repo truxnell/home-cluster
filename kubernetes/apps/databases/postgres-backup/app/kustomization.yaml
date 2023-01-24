@@ -6,3 +6,5 @@ resources:
 commonLabels:
   app.kubernetes.io/name: postgres-backup
   app.kubernetes.io/instance: postgres-backup
+metadata:
+  namespace: databases

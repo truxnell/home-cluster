@@ -84,7 +84,7 @@ for DIR in $K8S_ROOT/*/; do
 
                 envsubst <"$ROOT/templates/ks/hr-add.yaml" >>"$APP/ks.yaml"
                 yq -i '.metadata.namespace=strenv(NAMESPACE)' "$SECTION/helmrelease.yaml"
-                yq -i '.metadata.name=strenv(APP_NAME)+"-"+strenv(SECTION_NAME)' "$SECTION/helmrelease.yaml"
+                yq -i '.metadata.name=strenv(APP_NAME)' "$SECTION/helmrelease.yaml"
 
             fi
             # Check if deps to be added
@@ -114,7 +114,8 @@ for DIR in $K8S_ROOT/*/; do
             # Check all yaml for correct namespace
             for FILE in $SECTION*.yaml; do
 
-                if [[ $(yq '.metadata.namespace' $FILE) != "null" ]]; then
+                if [[ $(yq '.metadata.namespace' $file) != "null" && $(yq '.metadata.kind' $file) != "Secret" ]]; then
+
                     echo "Ensuring namespace is $NAMESPACE in $FILE"
                     yq -i '.metadata.namespace=strenv(NAMESPACE)' "$FILE"
 

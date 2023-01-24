@@ -7,3 +7,5 @@ resources:
   - ./helmrelease.yaml
 patchesStrategicMerge:
   - patches/postgres.yaml
+metadata:
+  namespace: home-automation

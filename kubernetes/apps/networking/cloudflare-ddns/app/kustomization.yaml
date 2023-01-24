@@ -4,3 +4,5 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - secret.sops.yaml
+metadata:
+  namespace: networking

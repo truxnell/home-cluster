@@ -5,3 +5,5 @@ resources:
   - ./secret.sops.yaml
   - ./helmrelease.yaml
   - ./service.yaml
+metadata:
+  namespace: databases

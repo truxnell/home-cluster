@@ -12,3 +12,5 @@ secretGenerator:
       - users.toml=config/users.sops.toml
 generatorOptions:
   disableNameSuffixHash: true
+metadata:
+  namespace: security

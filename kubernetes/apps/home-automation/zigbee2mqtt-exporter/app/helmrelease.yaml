@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app zigbee2mqtt-exporter-app
+  name: &app zigbee2mqtt-exporter
   namespace: home-automation
 spec:
   interval: 15m
