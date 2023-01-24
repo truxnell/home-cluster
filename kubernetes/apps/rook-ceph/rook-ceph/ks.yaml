@@ -33,7 +33,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  path: './kubernetes/apps/rook-ceph/rook-ceph-cluster/operator/'
+  path: './kubernetes/apps/rook-ceph/rook-ceph/operator/'
   prune: true
   sourceRef:
     kind: GitRepository
