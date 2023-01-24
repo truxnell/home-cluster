@@ -29,3 +29,4 @@ resources:
   - ./lwolf-charts.yaml
   - ./kubernetes-dashboard.yaml
   - ./external-secrets.yaml
+  - ./bitnami-charts.yaml
