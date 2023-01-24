@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: grafana-app
+  name: grafana
   namespace: monitoring
 spec:
   values:

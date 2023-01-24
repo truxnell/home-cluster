@@ -5,7 +5,7 @@ namespace: services
 resources:
   - helmrelease.yaml
 configMapGenerator:
-  - name: nitter-app
+  - name: nitter
     files:
       - config/config.ini
 generatorOptions:

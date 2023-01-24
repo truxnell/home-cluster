@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: vikunja-app
+  name: vikunja
   namespace: services
 data:
   config.yml: |
