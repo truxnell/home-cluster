@@ -25,7 +25,7 @@ spec:
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
   values:
-    role: "Agent"
+    role: 'Agent'
     podMonitor:
       enabled: true
     service:
@@ -55,20 +55,20 @@ spec:
           type: vector
           inputs:
             - kubernetes_logs
-          address: "vector-aggregator.monitoring:6000"
-          version: "2"
+          address: 'vector-aggregator.monitoring:6000'
+          version: '2'
         talos_kernel_sink:
           type: vector
           inputs:
             - talos_kernel_logs
-          address: "vector-aggregator.monitoring:6050"
-          version: "2"
+          address: 'vector-aggregator.monitoring:6050'
+          version: '2'
         talos_service_sink:
           type: vector
           inputs:
             - talos_service_logs
-          address: "vector-aggregator.monitoring:6051"
-          version: "2"
+          address: 'vector-aggregator.monitoring:6051'
+          version: '2'
     podAnnotations:
       configmap.reloader.stakater.com/reload: vector-agent
     resources:
