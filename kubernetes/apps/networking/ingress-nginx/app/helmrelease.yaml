@@ -71,7 +71,7 @@ spec:
           enabled: false
 
       extraArgs:
-        default-ssl-certificate: 'network-system/${EXTERNAL_DOMAIN/./-}-tls'
+        default-ssl-certificate: 'networking/${EXTERNAL_DOMAIN/./-}-tls'
 
       topologySpreadConstraints:
         - maxSkew: 1
