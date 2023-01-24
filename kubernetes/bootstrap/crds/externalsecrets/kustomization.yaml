@@ -12,7 +12,7 @@ resources:
   - https://raw.githubusercontent.com/external-secrets/external-secrets/main/config/crds/bases/generators.external-secrets.io_gcraccesstokens.yaml
   - https://raw.githubusercontent.com/external-secrets/external-secrets/main/config/crds/bases/generators.external-secrets.io_passwords.yaml
 commonAnnotations:
-  meta.helm.sh/release-name: external-secrets-app
+  meta.helm.sh/release-name: external-secrets-operator
   meta.helm.sh/release-namespace: flux-system
 commonLabels:
   app.kubernetes.io/managed-by: Helm
