@@ -6,6 +6,7 @@ namespace: flux-system
 resources:
   - ./actions-runner-controller-charts.yaml
   - ./bjw-s-charts.yaml
+  - ./bitnami-charts.yaml
   - ./cilium-charts.yaml
   - ./emqx-charts.yaml
   - ./cloudnative-pg.yaml
