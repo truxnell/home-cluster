@@ -21,3 +21,5 @@ spec:
       kind: HelmRelease
       name: external-secrets-operator
       namespace: flux-system
+  dependsOn:
+    - name: cluster-apps-cert-manager

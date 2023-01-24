@@ -21,3 +21,5 @@ spec:
       kind: HelmRelease
       name: downloads-gateway
       namespace: vpn
+  dependsOn:
+    - name: cluster-apps-cert-manager
