@@ -29,12 +29,20 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    # TODO: change this to "mode: ha" when the new version gets released
     replicaCount: 3
+
     updateStrategy:
       type: RollingUpdate
       rollingUpdate:
         maxSurge: 1
+
+    resources:
+      requests:
+        cpu: 247m
+        memory: 443M
+      limits:
+        memory: 1336M
+
     topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
@@ -42,9 +50,3 @@ spec:
         labelSelector:
           matchLabels:
             app.kubernetes.io/instance: kyverno
-    extraArgs:
-      - --autogenInternals=false
-      - --clientRateLimitQPS=30
-      - --clientRateLimitBurst=60
-    serviceMonitor:
-      enabled: true
