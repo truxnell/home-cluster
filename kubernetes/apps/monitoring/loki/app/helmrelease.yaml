@@ -134,7 +134,7 @@ spec:
       replicas: 3
       extraVolumeMounts:
         - name: rules
-          mountPath: /rules/fake
+          mountPath: /rules/
         - name: scratch
           mountPath: /tmp/scratch
       extraVolumes:
