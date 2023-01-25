@@ -11,6 +11,8 @@
     ":separatePatchReleases",
     "docker:enableMajor",
     ":enablePreCommit",
+    ":automergeDigest",
+    ":automergeBranch",
     "github>Truxnell/home-cluster//.github/renovate/commitMessage",
     "github>Truxnell/home-cluster//.github/renovate/allowedVersions",
     "github>Truxnell/home-cluster//.github/renovate/labels",
@@ -30,22 +32,28 @@
   suppressNotifications: ["prIgnoreNotification"],
   rebaseWhen: "conflicted",
   // Set up Renovate Managers
+  "flux": {
+    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
+  },
   "helm-values": {
-    fileMatch: [
-      "kubernetes/manifests/.+/helmrelease\\.ya?ml$",
-      "kubernetes/global/.+/helmrelease\\.ya?ml$",
-    ],
+    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
   },
-  kubernetes: {
-    fileMatch: ["kubernetes/manifests/.+\\.ya?ml$", "k8s/global/.+\\.ya?ml$"],
+  "kubernetes": {
+    "fileMatch": ["kubernetes/.+\\.ya?ml$"]
   },
-  flux: {
-    fileMatch: [
-      "kubernetes/manifests/.+\\.ya?ml$",
-      "kubernetes/global/.+\\.ya?ml$",
-      "kubernetes/clusters/.+\\.ya?ml$",
-    ],
-  },
+  "regexManagers": [
+    {
+      "description": "Process custom dependencies",
+      "fileMatch": [
+        "ansible/.+\\.ya?ml$",
+        "kubernetes/.+\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n"
+      ],
+      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    }
   "regexManagers": [
     {
       "description": ["Process CRD dependencies - Chart and Github Release are the same version"],
@@ -58,7 +66,7 @@
     {
       "description": "Process various dependencies",
       "fileMatch": [
-        "infra/.+\\.ya?ml$",
+        "infrastructure/.+\\.ya?ml$",
         "kubernetes/.+\\.ya?ml$"
       ],
       "matchStrings": [
