@@ -1,6 +1,7 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: monitoring
 configMapGenerator:
   - name: docker-shit
     files:
@@ -12,5 +13,3 @@ generatorOptions:
     grafana_folder: System
   labels:
     grafana_dashboard: 'true'
-metadata:
-  namespace: monitoring
