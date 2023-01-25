@@ -1,0 +1,18 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pleroma-rebased
+  namespace: services
+spec:
+  values:
+    additionalContainers:
+      git-sync:
+        name: git-sync
+        image: willdockerhub/git-sync:v3.3.0
+        imagePullPolicy: IfNotPresent
+        args:
+          - '--repo=https://gitlab.com/soapbox-pub/soapbox.git'
+          - '--branch=main'
+          - '--root=/var/lib/pleroma/instance/'
+          - '--wait=30'
