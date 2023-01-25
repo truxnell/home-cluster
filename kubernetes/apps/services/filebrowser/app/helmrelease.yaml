@@ -23,7 +23,7 @@ spec:
       retries: 5
   values:
     image:
-      repository: docker.io/filebrowser/filebrowser
+      repository: ghcr.io/onedr0p/filebrowser
       tag: v2.23.0
     env:
       TZ: '${TZ}'
