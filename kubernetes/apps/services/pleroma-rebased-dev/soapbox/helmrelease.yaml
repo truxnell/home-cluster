@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app pleroma-rebased-dev
+  name: &app pleroma-rebased-dev-soapbox
   namespace: services
 spec:
   interval: 15m
@@ -25,21 +25,16 @@ spec:
     # controller:
     #   replicas: 3
     #   strategy: RollingUpdate
-
     fullNameOverride: *app
-
     image:
       repository: registry.gitlab.com/soapbox-pub/rebased
       tag: latest
-
     env: BACKEND_URL="pleroma-rebased-dev.services.:4444"
-
     service:
       main:
         ports:
           http:
             port: &port 4444
-
     ingress:
       main:
         enabled: true
@@ -55,7 +50,6 @@ spec:
         tls:
           - hosts:
               - *host
-
     topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
@@ -63,7 +57,6 @@ spec:
         labelSelector:
           matchLabels:
             app.kubernetes.io/name: *app
-
     probes:
       liveness: &probes
         enabled: true
@@ -79,7 +72,6 @@ spec:
       readiness: *probes
       startup:
         enabled: false
-
     resources:
       requests:
         cpu: 5m

@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app pleroma-rebased-dev
+  name: &app pleroma-rebased-dev-rebased
   namespace: services
 spec:
   interval: 15m
@@ -25,13 +25,10 @@ spec:
     controller:
       replicas: 3
       strategy: RollingUpdate
-
     fullNameOverride: *app
-
     image:
       repository: registry.gitlab.com/soapbox-pub/soapbox
       tag: latest
-
     env:
       DOMAIN: &host 'fedi.${WEBSITE_DOMAIN}'
       INSTANCE_NAME: 'NatFlix Fediverse'
@@ -41,13 +38,11 @@ spec:
       DB_NAME: pleroma-rebased
       DB_HOST: postgres-rw.databases.svc.cluster.local.
       SECRET_KEY_BASE: ${SECRET_PLEROMA_REBASED_KEY}
-
     service:
       main:
         ports:
           http:
             port: &port 5000
-
     persistence:
       static:
         enabled: true
@@ -71,7 +66,6 @@ spec:
       fsGroupChangePolicy: 'OnRootMismatch'
       supplementalGroups:
         - 65534
-
     probes:
       liveness: &probes
         enabled: true
@@ -87,7 +81,6 @@ spec:
       readiness: *probes
       startup:
         enabled: false
-
     resources:
       requests:
         cpu: 5m
