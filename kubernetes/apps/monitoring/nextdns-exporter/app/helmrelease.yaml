@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -22,9 +23,9 @@ spec:
     remediation:
       retries: 5
   values:
-  controller:
-    annotations:
-      reloader.stakater.com/auto: 'true'
+    controller:
+      annotations:
+        reloader.stakater.com/auto: 'true'
     image:
       repository: ghcr.io/raylas/nextdns-exporter
       tag: 0.5.1
