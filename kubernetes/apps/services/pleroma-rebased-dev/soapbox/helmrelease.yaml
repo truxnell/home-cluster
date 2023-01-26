@@ -44,7 +44,7 @@ spec:
           external-dns.home.arpa/enabled: 'true'
           hajimari.io/icon: simple-icons:pleroma
         hosts:
-          - host: &host 'fedi.${WEBSITE_DOMAIN}'
+          - host: &host 'fedi-dev.${WEBSITE_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
