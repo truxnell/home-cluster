@@ -20,6 +20,7 @@ resources:
   - ./nitter/ks.yaml
   - ./paperless/ks.yaml
   - ./pleroma-rebased/ks.yaml
+  - ./pleroma-rebased-dev/ks.yaml
   - ./radicale/ks.yaml
   - ./red-discord-bot/ks.yaml
   - ./scribe/ks.yaml
