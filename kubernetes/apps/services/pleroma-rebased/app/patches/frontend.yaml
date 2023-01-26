@@ -13,7 +13,7 @@ spec:
         imagePullPolicy: IfNotPresent
         args:
           - '--repo=https://gitlab.com/soapbox-pub/soapbox.git'
-          - '--branch=main'
+          - '--branch=v3.1.0'
           - '--root=/static'
           - '--wait=30'
 
