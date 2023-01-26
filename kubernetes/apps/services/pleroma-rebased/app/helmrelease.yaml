@@ -70,6 +70,10 @@ spec:
         enabled: true
         type: emptyDir
         mountPath: /var/lib/pleroma/static
+      static-git:
+        enabled: true
+        type: emptyDir
+        mountPath: /var/lib/pleroma/static-git
       uploads:
         enabled: true
         existingClaim: pleroma-images-config-v1
