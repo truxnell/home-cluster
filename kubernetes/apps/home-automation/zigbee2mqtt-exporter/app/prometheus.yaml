@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/prometheusrule_v1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/prometheusrule_v1.json
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -17,7 +17,7 @@ spec:
       path: /metrics
       interval: 10m
       scrapeTimeout: 10s
-# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/prometheusrule_v1.json
+---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
