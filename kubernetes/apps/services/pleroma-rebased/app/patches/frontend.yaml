@@ -7,14 +7,14 @@ metadata:
 spec:
   values:
     initContainers:
-      soapbox:
-        image: alpine/git
-        command:
-          - git
-          - clone
-          - https://gitlab.com/soapbox-pub/soapbox.git
-          - /static
+      - soapbox:
+          image: alpine/git
+          command:
+            - git
+            - clone
+            - https://gitlab.com/soapbox-pub/soapbox.git
+            - /static
 
-        volumeMounts:
-          - name: static
-            mountPath: /static
+          volumeMounts:
+            - name: static
+              mountPath: /static
