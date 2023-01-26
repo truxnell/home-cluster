@@ -7,7 +7,6 @@ resources:
   - ./helmrelease.yaml
 patchesStrategicMerge:
   - ./patches/postgres.yaml
-  - ./patches/frontend.yaml
 configMapGenerator:
   - name: pleroma-rebased-config
     files:
