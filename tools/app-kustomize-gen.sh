@@ -9,9 +9,10 @@ ROOT=$(git rev-parse --show-toplevel)
 K8S_FOLDER="kubernetes/apps"
 K8S_ROOT="$ROOT/$K8S_FOLDER"
 
-GIT_CHANGED=$(git status --porcelain | grep --color kubernetes/apps/ | cut -c4- | cut -d '/' -f 1,2,3 | uniq)
+DIR_GIT_CHANGED=$(git status --porcelain | grep --color kubernetes/apps/ | cut -c4- | cut -d '/' -f 1,2,3 | uniq)
+APP_GIT_CHANGED=$(git status --porcelain | grep --color kubernetes/apps/ | cut -c4- | cut -d '/' -f 1,2,3,4 | uniq)
 
-for DIR in $GIT_CHANGED; do
+for DIR in $DIR_GIT_CHANGED; do
     echo "Processing $DIR"
 
     ns=$(basename "$DIR")
@@ -29,7 +30,7 @@ for DIR in $GIT_CHANGED; do
 
     envsubst <"$ROOT/templates/namespace/kustomization.yaml" >"$DIR/kustomization.yaml"
 
-    for FILE in $DIR*.yaml; do
+    for FILE in $DIR_GIT_CHANGED*.yaml; do
 
         if [ ! $(basename $FILE) == "kustomization.yaml" ] && [ ! $(basename $FILE) == "namespace.yaml" ]; then
             echo "  - ./$FILE" >>"$DIR/kustomization.yaml"
@@ -37,7 +38,7 @@ for DIR in $GIT_CHANGED; do
 
     done
 
-    for APP in $DIR*/; do
+    for APP in $APP_GIT_CHANGED*/; do
         APP_NAME=$(basename $APP)
         rm "$APP/ks.yaml"
         echo " Adding $APP_NAME to $FILE"
@@ -64,7 +65,7 @@ for DIR in $GIT_CHANGED; do
         done
 
         section_num=0
-        for SECTION in $APP*/; do
+        for SECTION in $APP/*/; do
             SECTION_NAME=$(basename "$SECTION")
 
             export FULLDIR="$K8S_ROOT/$ns/$APP_NAME/$SECTION_NAME"
@@ -79,7 +80,7 @@ for DIR in $GIT_CHANGED; do
             fi
             export SECTION_NAME=$SECTION_NAME
 
-            echo "Adding $SECTION_NAME to $APP_NAME ks.yml"
+            echo "Adding $SECTION_NAME to $APP_NAME ks.yml ($APP_NAME || $SECTION_NAME)"
             envsubst <"$ROOT/templates/ks/ks.yaml" >>"$APP/ks.yaml"
 
             # If helmrelease present, add HR healthcheck and ensure values are aligned
