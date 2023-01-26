@@ -30,3 +30,4 @@ resources:
   - ./kubernetes-dashboard.yaml
   - ./external-secrets.yaml
   - ./bitnami-charts.yaml
+  - ./postfinance.yaml

@@ -9,6 +9,7 @@ resources:
   - ./cilium/ks.yaml
   - ./descheduler/ks.yaml
   - ./intel-gpu-plugin/ks.yaml
+  - ./kubelet-csr-approver/ks.yaml
   - ./metrics-server/ks.yaml
   - ./node-feature-discovery/ks.yaml
   - ./reloader/ks.yaml
