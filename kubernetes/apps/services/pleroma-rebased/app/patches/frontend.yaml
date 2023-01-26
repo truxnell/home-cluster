@@ -7,12 +7,16 @@ metadata:
 spec:
   values:
     additionalContainers:
-      git-sync:
+      frontend:
         name: git-sync
         image: willdockerhub/git-sync:v3.3.0
         imagePullPolicy: IfNotPresent
         args:
           - '--repo=https://gitlab.com/soapbox-pub/soapbox.git'
           - '--branch=main'
-          - '--root=/var/lib/pleroma/static/'
+          - '--root=/static'
           - '--wait=30'
+
+        volumeMounts:
+          - name: static
+            mountPath: /static

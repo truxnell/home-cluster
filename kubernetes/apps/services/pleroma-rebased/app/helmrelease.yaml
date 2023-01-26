@@ -68,8 +68,8 @@ spec:
     persistence:
       static:
         enabled: true
-        existingClaim: pleroma-images-config-v1
-        mountPath: /var/lib/pleroma/static/
+        type: emptyDir
+        mountPath: /var/lib/pleroma/static
       uploads:
         enabled: true
         existingClaim: pleroma-images-config-v1
