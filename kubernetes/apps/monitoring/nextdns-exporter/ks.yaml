@@ -18,8 +18,8 @@ spec:
   timeout: 3m
   dependsOn:
     - name: cluster-apps-external-secrets-operator
-healthChecks:
-  - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-    kind: HelmRelease
-    name: nextdns-exporter
-    namespace: monitoring
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: nextdns-exporter
+      namespace: monitoring
