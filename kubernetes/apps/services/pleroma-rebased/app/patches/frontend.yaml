@@ -9,7 +9,7 @@ spec:
     additionalContainers:
       frontend:
         name: git-sync
-        image: willdockerhub/git-sync:v3.3.0
+        image: k8s.gcr.io/git-sync/git-sync:v3.6.3
         imagePullPolicy: IfNotPresent
         args:
           - '--repo=https://gitlab.com/soapbox-pub/soapbox.git'
