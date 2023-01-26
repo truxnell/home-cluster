@@ -14,5 +14,5 @@ spec:
         args:
           - '--repo=https://gitlab.com/soapbox-pub/soapbox.git'
           - '--branch=main'
-          - '--root=/var/lib/pleroma/instance/'
+          - '--root=/var/lib/pleroma/instance/static/'
           - '--wait=30'
