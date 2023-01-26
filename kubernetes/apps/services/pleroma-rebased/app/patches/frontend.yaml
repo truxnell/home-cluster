@@ -15,7 +15,7 @@ spec:
           - '--repo=https://gitlab.com/soapbox-pub/soapbox.git'
           - '--branch=develop'
           - '--depth=1'
-          - '--root=/static'
+          - '--root=/static/soapbox'
           - '--wait=21600' # 6 hours
 
         volumeMounts:
