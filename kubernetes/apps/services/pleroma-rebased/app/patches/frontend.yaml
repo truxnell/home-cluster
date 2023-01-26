@@ -16,7 +16,6 @@ spec:
           - '--branch=develop'
           - '--depth=1'
           - '--root=/static'
-          - '--dest=/static/link'
           - '--wait=21600' # 6 hours
 
         volumeMounts:
