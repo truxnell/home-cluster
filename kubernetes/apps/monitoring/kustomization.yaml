@@ -22,3 +22,4 @@ resources:
   - ./thanos/ks.yaml
   - ./vector/ks.yaml
   - ./vpa/ks.yaml
+  - ./nextdns-exporter/ks.yaml
