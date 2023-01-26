@@ -7,32 +7,19 @@ metadata:
 spec:
   values:
     initContainers:
-      # init-db:
-      #   image: ghcr.io/onedr0p/postgres-initdb:14.6
-      #   env:
-      #     - name: POSTGRES_HOST
-      #       value: postgres-rw.databases.svc.cluster.local.
-      #     - name: POSTGRES_DB
-      #       value: pleroma-rebased
-      #     - name: POSTGRES_SUPER_PASS
-      #       valueFrom:
-      #         secretKeyRef:
-      #           name: postgres-superuser
-      #           key: password
-      #     - name: POSTGRES_USER
-      #       value: ${SECRET_PLEROMA_REBASED_DB_USER}
-      #     - name: POSTGRES_PASS
-      #       value: ${SECRET_PLEROMA_REBASED_DB_PASS}
-      soapbox:
-        image: alpine/git:v2.30.2
-        command:
-          - 'sh'
-          - '-c'
-          - |
-            git clone --depth 1 "https://gitlab.com/soapbox-pub/soapbox.git" /static
-
-        volumeMounts:
-          - name: static
-            mountPath: /static
-        securityContext:
-          runAsUser: 0
+      init-db:
+        image: ghcr.io/onedr0p/postgres-initdb:14.6
+        env:
+          - name: POSTGRES_HOST
+            value: postgres-rw.databases.svc.cluster.local.
+          - name: POSTGRES_DB
+            value: pleroma-rebased
+          - name: POSTGRES_SUPER_PASS
+            valueFrom:
+              secretKeyRef:
+                name: postgres-superuser
+                key: password
+          - name: POSTGRES_USER
+            value: ${SECRET_PLEROMA_REBASED_DB_USER}
+          - name: POSTGRES_PASS
+            value: ${SECRET_PLEROMA_REBASED_DB_PASS}
