@@ -9,7 +9,9 @@ ROOT=$(git rev-parse --show-toplevel)
 K8S_FOLDER="kubernetes/apps"
 K8S_ROOT="$ROOT/$K8S_FOLDER"
 
-for DIR in $K8S_ROOT/*/; do
+GIT_CHANGED=$(git status --porcelain | grep --color kubernetes/apps/ | cut -c4- | cut -d '/' -f 1,2,3 | uniq)
+
+for DIR in $GIT_CHANGED; do
     echo "Processing $DIR"
 
     ns=$(basename "$DIR")
