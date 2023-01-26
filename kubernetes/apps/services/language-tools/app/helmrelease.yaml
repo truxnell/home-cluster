@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -26,7 +27,7 @@ spec:
       repository: silviof/docker-languagetool
       tag: latest@sha256:10f9164bc6c88b2b9ce806b7090a8db5c940564262abfb4b8b3f8801663c27b6
     env:
-      TZ: '${TZ}'
+      TZ: "${TZ}"
     service:
       main:
         ports:
@@ -35,12 +36,12 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
-          probe.home.arpa/enabled: 'false'
-          hajimari.io/enable: 'false'
+          probe.home.arpa/enabled: "false"
+          hajimari.io/enable: "false"
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix

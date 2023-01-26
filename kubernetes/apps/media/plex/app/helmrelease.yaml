@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -25,25 +26,25 @@ spec:
       repository: ghcr.io/onedr0p/plex
       tag: 1.30.1.6562-915986d62@sha256:50315e766947f766b529d6b3ef50f4aef8cc0f96b6c7d9ec0cc3cdf1bdc428de
     env:
-      TZ: '${TZ}'
+      TZ: "${TZ}"
     service:
       main:
         type: LoadBalancer
         externalTrafficPolicy: Local
-        loadBalancerIP: '${LB_PLEX}'
+        loadBalancerIP: "${LB_PLEX}"
         ports:
           http:
             port: &port 32400
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
-          external-dns.home.arpa/enabled: 'true'
-          probe.home.arpa/enabled: 'false'
+          external-dns.home.arpa/enabled: "true"
+          probe.home.arpa/enabled: "false"
           hajimari.io/icon: mdi:plex
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -54,7 +55,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: 'OnRootMismatch'
+      fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 44
         - 109
@@ -66,7 +67,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: &nas 'george.${INTERNAL_DOMAIN}'
+        server: &nas "george.${INTERNAL_DOMAIN}"
         path: /tank/
         mountPath: /data
       backup:
@@ -86,7 +87,7 @@ spec:
                 - key: feature.node.kubernetes.io/custom-intel-gpu
                   operator: In
                   values:
-                    - 'true'
+                    - "true"
     resources:
       requests:
         gpu.intel.com/i915: 1

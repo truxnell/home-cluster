@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -26,7 +27,7 @@ spec:
       repository: ghcr.io/onedr0p/home-assistant
       tag: 2023.1.5@sha256:65faf45d0b4ed286d13aad108382df79f122d19f9a378dae51b0ed86427241a9
     env:
-      TZ: '${TZ}'
+      TZ: "${TZ}"
     envFrom:
       - secretRef:
           name: *app
@@ -38,12 +39,12 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
-          external-dns.home.arpa/enabled: 'true'
+          external-dns.home.arpa/enabled: "true"
           hajimari.io/icon: mdi:home-assistant
         hosts:
-          - host: &host 'hass.${EXTERNAL_DOMAIN}'
+          - host: &host "hass.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -54,7 +55,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: 'OnRootMismatch'
+      fsGroupChangePolicy: "OnRootMismatch"
     persistence:
       config:
         enabled: true
@@ -66,23 +67,23 @@ spec:
           repository: ghcr.io/coder/code-server
           tag: 4.9.1
         env:
-          TZ: '${TZ}'
-        workingDir: '/config'
+          TZ: "${TZ}"
+        workingDir: "/config"
         args:
           - --auth
-          - 'none'
+          - "none"
           - --user-data-dir
-          - '/config/.vscode'
+          - "/config/.vscode"
           - --extensions-dir
-          - '/config/.vscode'
+          - "/config/.vscode"
         ingress:
           enabled: true
-          ingressClassName: 'nginx'
+          ingressClassName: "nginx"
           annotations:
-            hajimari.io/appName: 'Hass Config'
+            hajimari.io/appName: "Hass Config"
             hajimari.io/icon: cib:visual-studio-code
           hosts:
-            - host: &host 'hass-code.${EXTERNAL_DOMAIN}'
+            - host: &host "hass-code.${EXTERNAL_DOMAIN}"
               paths:
                 - path: /
                   pathType: Prefix

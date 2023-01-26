@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -41,7 +42,7 @@ spec:
           - name: VIKUNJA_SERVICE_TIMEZONE
             value: ${TZ}
           - name: VIKUNJA_DATABASE_TYPE
-            value: 'postgres'
+            value: "postgres"
           - name: VIKUNJA_DATABASE_HOST
             value: postgres-rw.databases.svc.cluster.local.
           - name: VIKUNJA_DATABASE_DATABASE
@@ -53,11 +54,11 @@ spec:
           - name: VIKUNJA_MAILER_FROMEMAIL
             value: tasks@${EMAIL_DOMAIN}
           - name: VIKUNJA_MAILER_ENABLED
-            value: 'true'
+            value: "true"
           - name: VIKUNJA_MAILER_HOST
             value: smtp-relay.services.svc.cluster.local
           - name: VIKUNJA_MAILER_PORT
-            value: '2525'
+            value: "2525"
           - name: &envjwt VIKUNJA_SERVICE_JWT
             valueFrom:
               secretKeyRef:
@@ -94,13 +95,13 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
-          external-dns.home.arpa/enabled: 'true'
-          auth.home.arpa/enabled: 'true'
+          external-dns.home.arpa/enabled: "true"
+          auth.home.arpa/enabled: "true"
           hajimari.io/icon: mdi:format-list-checks
         hosts:
-          - host: &host 'tasks.${EXTERNAL_DOMAIN}'
+          - host: &host "tasks.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -119,15 +120,15 @@ spec:
         enabled: true
         type: custom
         readOnly: true
-        mountPath: '-'
+        mountPath: "-"
         volumeSpec:
           configMap:
             name: vikunja
       caddy-config:
-        enabled: 'true'
+        enabled: "true"
         mountPath: /etc/caddy/Caddyfile
         subPath: Caddyfile
-        type: 'custom'
+        type: "custom"
         volumeSpec:
           configMap:
             name: vikunja

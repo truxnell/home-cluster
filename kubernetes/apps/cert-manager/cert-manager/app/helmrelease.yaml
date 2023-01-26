@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -36,11 +37,11 @@ spec:
       - --dns01-recursive-nameservers-only
       - --enable-certificate-owner-ref
     replicaCount: 1
-    podDnsPolicy: 'None'
+    podDnsPolicy: "None"
     podDnsConfig:
       nameservers:
-        - '1.1.1.1'
-        - '9.9.9.9'
+        - "1.1.1.1"
+        - "9.9.9.9"
     prometheus:
       enabled: true
       servicemonitor:

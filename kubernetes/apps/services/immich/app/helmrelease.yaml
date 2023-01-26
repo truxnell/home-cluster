@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -35,13 +36,13 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
-          nginx.ingress.kubernetes.io/proxy-body-size: '0'
-          hajimari.io/appName: 'Immich'
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          hajimari.io/appName: "Immich"
           hajimari.io/icon: heroicons:photo
         hosts:
-          - host: &host 'photos.${EXTERNAL_DOMAIN}'
+          - host: &host "photos.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
         tls:
@@ -52,7 +53,7 @@ spec:
         enabled: true
         mountPath: /usr/src/app/upload
         type: nfs
-        server: 'george.${INTERNAL_DOMAIN}'
+        server: "george.${INTERNAL_DOMAIN}"
         path: /tank/photos/immich
     resources:
       requests:
@@ -67,12 +68,12 @@ spec:
         volumeMounts:
           - name: library
             mountPath: /usr/src/app/upload
-        command: ['/bin/sh']
+        command: ["/bin/sh"]
         args:
           - ./start-server.sh
         env:
           - name: NODE_ENV
-            value: 'production'
+            value: "production"
           - name: DB_HOSTNAME
             value: postgres-rw.databases.svc.cluster.local
           - name: DB_DATABASE_NAME
@@ -106,12 +107,12 @@ spec:
         volumeMounts:
           - name: library
             mountPath: /usr/src/app/upload
-        command: ['/bin/sh']
+        command: ["/bin/sh"]
         args:
           - ./start-microservices.sh
         env:
           - name: NODE_ENV
-            value: 'production'
+            value: "production"
           - name: DB_HOSTNAME
             value: postgres-rw.databases.svc.cluster.local
           - name: DB_DATABASE_NAME
@@ -144,7 +145,7 @@ spec:
         image: public.ecr.aws/docker/library/redis:7.0.7
         env:
           - name: NODE_ENV
-            value: 'production'
+            value: "production"
           - name: DB_HOSTNAME
             value: postgres-rw.databases.svc.cluster.local
           - name: DB_DATABASE_NAME
@@ -174,7 +175,7 @@ spec:
             value: localhost
           - name: REDIS_REPLICATION_MODE
             value: master
-        command: ['redis-server']
+        command: ["redis-server"]
       immich-web:
         name: immich-web
         image: ghcr.io/immich-app/immich-web:v1.42.0_65-dev
@@ -183,7 +184,7 @@ spec:
             mountPath: /usr/src/app/upload
         env:
           - name: NODE_ENV
-            value: 'production'
+            value: "production"
           - name: DB_HOSTNAME
             value: postgres-rw.databases.svc.cluster.local
           - name: DB_DATABASE_NAME
@@ -213,7 +214,7 @@ spec:
             value: localhost
           - name: PUBLIC_IMMICH_SERVER_URL
             value: http://localhost:3001
-        command: ['/bin/sh']
+        command: ["/bin/sh"]
         args:
           - ./entrypoint.sh
       immich-machinelearning:
@@ -222,10 +223,10 @@ spec:
         volumeMounts:
           - name: library
             mountPath: /usr/src/app/upload
-        command: ['/bin/sh']
+        command: ["/bin/sh"]
         env:
           - name: NODE_ENV
-            value: 'production'
+            value: "production"
           - name: DB_HOSTNAME
             value: postgres-rw.databases.svc.cluster.local
           - name: DB_DATABASE_NAME

@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -26,7 +27,7 @@ spec:
       repository: ghcr.io/onedr0p/readarr-nightly
       tag: 0.1.1.1527@sha256:b4fff21b84ba1778488e80d9fb9f3632694aa7bb8d2a948dcc3b2dc42bc0a57d
     env:
-      TZ: '${TIMEZONE}'
+      TZ: "${TIMEZONE}"
       READARR__INSTANCE_NAME: Readarr (Audio)
       READARR__LOG_LEVEL: info
     envFrom:
@@ -40,15 +41,15 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |-
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/readarr/plex.css"></head>';
             sub_filter_once on;
-          hajimari.io/icon: 'book-open'
+          hajimari.io/icon: "book-open"
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -59,7 +60,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: 'OnRootMismatch'
+      fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 100
     persistence:
@@ -69,7 +70,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: &nas 'george.${INTERNAL_DOMAIN}'
+        server: &nas "george.${INTERNAL_DOMAIN}"
         path: /tank/
         mountPath: /media
       backup:

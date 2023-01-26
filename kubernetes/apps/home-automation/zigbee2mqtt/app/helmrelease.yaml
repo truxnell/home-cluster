@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -26,7 +27,7 @@ spec:
       repository: ghcr.io/koenkk/zigbee2mqtt
       tag: 1.29.2
     env:
-      TZ: '${TZ}'
+      TZ: "${TZ}"
       ZIGBEE2MQTT_DATA: /data
     service:
       main:
@@ -36,11 +37,11 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
           hajimari.io/icon: mdi:zigbee
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -51,7 +52,7 @@ spec:
       config:
         enabled: true
         existingClaim: zigbee2mqtt-config-v1
-        mountPath: '/data'
+        mountPath: "/data"
     resources:
       requests:
         cpu: 10m

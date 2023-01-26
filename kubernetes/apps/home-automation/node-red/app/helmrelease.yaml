@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -26,7 +27,7 @@ spec:
       repository: ghcr.io/k8s-at-home/node-red
       tag: v3.0.2
     env:
-      TZ: '${TZ}'
+      TZ: "${TZ}"
     service:
       main:
         ports:
@@ -35,11 +36,11 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
           hajimari.io/icon: mdi:sitemap
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -50,12 +51,12 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: 'OnRootMismatch'
+      fsGroupChangePolicy: "OnRootMismatch"
     persistence:
       config:
         enabled: true
         existingClaim: node-red-config-v1
-        mountPath: '/data'
+        mountPath: "/data"
     resources:
       requests:
         cpu: 22m

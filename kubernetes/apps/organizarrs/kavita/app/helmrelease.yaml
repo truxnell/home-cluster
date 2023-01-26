@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -26,7 +27,7 @@ spec:
       repository: kizaing/kavita
       tag: 0.6.1
     env:
-      TZ: '${TZ}'
+      TZ: "${TZ}"
     service:
       main:
         ports:
@@ -35,13 +36,13 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
-          external-dns.home.arpa/enabled: 'true'
-          auth.home.arpa/enabled: 'true'
-          hajimari.io/icon: 'notebook-heart'
+          external-dns.home.arpa/enabled: "true"
+          auth.home.arpa/enabled: "true"
+          hajimari.io/icon: "notebook-heart"
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -61,13 +62,13 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: 'george.${INTERNAL_DOMAIN}'
+        server: "george.${INTERNAL_DOMAIN}"
         path: /tank/
         mountPath: /media
       backups:
         enabled: true
         type: nfs
-        server: 'george.${INTERNAL_DOMAIN}'
+        server: "george.${INTERNAL_DOMAIN}"
         path: /tank/backup/kubernetes/apps/kavita
         mountPath: /kavita/config/backups
     resources:

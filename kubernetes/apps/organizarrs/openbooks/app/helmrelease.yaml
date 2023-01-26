@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -26,7 +27,7 @@ spec:
       repository: docker.io/evanbuss/openbooks
       tag: latest@sha256:3b3d34d8b77e8261df1f470e1ca8344c035e316a86667dc7c1ab2e768d6359f1
     env:
-      TZ: '${TZ}'
+      TZ: "${TZ}"
     command:
       - ./openbooks
     args:
@@ -34,7 +35,7 @@ spec:
       - --dir
       - /books
       - --port
-      - &port '8080'
+      - &port "8080"
       - --name
       - openbooks82937
     service:
@@ -46,17 +47,17 @@ spec:
       runAsUser: 568
       runAsGroup: 100
       fsGroup: 100
-      fsGroupChangePolicy: 'OnRootMismatch'
+      fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 65539
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
-          hajimari.io/icon: 'mdi:book-search'
+          hajimari.io/icon: "mdi:book-search"
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -67,7 +68,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: 'george.${INTERNAL_DOMAIN}'
+        server: "george.${INTERNAL_DOMAIN}"
         path: /tank/downloads/openbooks/
         mountPath: /books
         readOnly: true

@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -26,9 +27,9 @@ spec:
       repository: ghcr.io/linuxserver/calibre
       tag: version-v6.11.0
     env:
-      TZ: '${TZ}'
-      PUID: '568'
-      PGID: '1000'
+      TZ: "${TZ}"
+      PUID: "568"
+      PGID: "1000"
     service:
       main:
         ports:
@@ -44,7 +45,7 @@ spec:
             targetPort: 8081
         type: LoadBalancer
         externalTrafficPolicy: Cluster
-        loadBalancerIP: '${LB_CALIBRE}'
+        loadBalancerIP: "${LB_CALIBRE}"
         annotations:
           metallb.universe.tf/allow-shared-ip: *app
       wireless:
@@ -57,17 +58,17 @@ spec:
             targetPort: 9090
         type: LoadBalancer
         externalTrafficPolicy: Cluster
-        loadBalancerIP: '${LB_CALIBRE}'
+        loadBalancerIP: "${LB_CALIBRE}"
         annotations:
           metallb.universe.tf/allow-shared-ip: *app
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
           hajimari.io/icon: mdi:bookshelf
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -81,7 +82,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: 'george.${INTERNAL_DOMAIN}'
+        server: "george.${INTERNAL_DOMAIN}"
         path: /tank/
         mountPath: /media
     resources:

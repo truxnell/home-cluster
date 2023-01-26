@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -24,7 +25,7 @@ spec:
   values:
     image:
       repository: dpage/pgadmin4
-      tag: '6.18'
+      tag: "6.18"
     # controller:
     #   replicas: 3
     #   strategy: RollingUpdate
@@ -39,11 +40,11 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
           hajimari.io/icon: simple-icons:adminer
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -51,12 +52,12 @@ spec:
       runAsUser: 5050
       runAsGroup: 5050
       fsGroup: 5050
-      fsGroupChangePolicy: 'OnRootMismatch'
+      fsGroupChangePolicy: "OnRootMismatch"
     persistence:
       config:
         enabled: true
         existingClaim: pgadmin-config-v1
-        mountPath: '/var/lib/pgadmin'
+        mountPath: "/var/lib/pgadmin"
       server-json:
         enabled: true
         type: configMap

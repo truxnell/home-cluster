@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -26,11 +27,11 @@ spec:
       repository: ghcr.io/onedr0p/radarr-develop
       tag: 4.3.2.6857@sha256:722b5c7a3809841caa711a2339dbe58e6d437c79ef147bdefb2275b422a9b106
     env:
-      TZ: '${TZ}'
-      PUSHOVER_DEBUG: 'false'
-      PUSHOVER_APP_URL: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+      TZ: "${TZ}"
+      PUSHOVER_DEBUG: "false"
+      PUSHOVER_APP_URL: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
       RADARR__INSTANCE_NAME: Radarr
-      RADARR__APPLICATION_URL: 'https://{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+      RADARR__APPLICATION_URL: "https://{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
       RADARR__LOG_LEVEL: info
     envFrom:
       - secretRef:
@@ -43,7 +44,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
           hajimari.io/icon: mdi:filmstrip
           nginx.ingress.kubernetes.io/configuration-snippet: |
@@ -62,7 +63,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: 'OnRootMismatch'
+      fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 100
     persistence:
@@ -72,7 +73,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: &nas 'george.${INTERNAL_DOMAIN}'
+        server: &nas "george.${INTERNAL_DOMAIN}"
         path: /tank/
         mountPath: /media
       scripts:

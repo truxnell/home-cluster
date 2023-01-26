@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -30,13 +31,13 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
-          external-dns.home.arpa/enabled: 'true'
+          external-dns.home.arpa/enabled: "true"
           nginx.ingress.kubernetes.io/proxy-body-size: 4G
           hajimari.io/icon: mdi:calendar-export-outline
         hosts:
-          - host: &host 'radicale.${EXTERNAL_DOMAIN}'
+          - host: &host "radicale.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
         tls:

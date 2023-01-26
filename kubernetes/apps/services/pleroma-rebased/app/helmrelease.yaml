@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -32,9 +33,9 @@ spec:
       tag: latest
 
     env:
-      DOMAIN: &host 'fedi.${WEBSITE_DOMAIN}'
-      INSTANCE_NAME: 'NatFlix Fediverse'
-      ADMIN_EMAIL: 'admin@trux.dev'
+      DOMAIN: &host "fedi.${WEBSITE_DOMAIN}"
+      INSTANCE_NAME: "NatFlix Fediverse"
+      ADMIN_EMAIL: "admin@trux.dev"
       DB_USER: ${SECRET_PLEROMA_REBASED_DB_USER}
       DB_PASS: ${SECRET_PLEROMA_REBASED_DB_PASS}
       DB_NAME: pleroma-rebased
@@ -52,9 +53,9 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
-          external-dns.home.arpa/enabled: 'true'
+          external-dns.home.arpa/enabled: "true"
           hajimari.io/icon: simple-icons:pleroma
         hosts:
           - host: *host
@@ -107,7 +108,7 @@ spec:
       runAsUser: 101
       runAsGroup: 65534
       fsGroup: 65534
-      fsGroupChangePolicy: 'OnRootMismatch'
+      fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 65534
 
