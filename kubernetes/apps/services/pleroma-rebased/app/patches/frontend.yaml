@@ -6,19 +6,17 @@ metadata:
   namespace: services
 spec:
   values:
-    additionalContainers:
-      frontend:
-        name: git-sync
-        image: k8s.gcr.io/git-sync/git-sync:v3.6.3
-        imagePullPolicy: IfNotPresent
-        args:
-          - '--repo=https://gitlab.com/soapbox-pub/soapbox.git'
-          - '--branch=develop'
-          - '--depth=1'
-          - '--root=/static/'
-          - '--link=../static'
-          - '--wait=21600' # 6 hours
+    initContainers:
+      - name: git-config
+        image: alpine/git:v2.30.2
+        command:
+          - 'sh'
+          - '-c'
+          - |
+            git clone --depth 1 "https://gitlab.com/soapbox-pub/soapbox.git" /static
 
         volumeMounts:
           - name: static
             mountPath: /static
+        securityContext:
+          runAsUser: 0
