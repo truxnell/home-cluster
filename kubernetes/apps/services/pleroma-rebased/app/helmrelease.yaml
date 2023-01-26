@@ -79,6 +79,7 @@ spec:
           - '-c'
           - |
             git clone --depth 1 "https://gitlab.com/soapbox-pub/soapbox.git" /static
+
         volumeMounts:
           - name: static
             mountPath: /static
