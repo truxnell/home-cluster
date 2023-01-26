@@ -20,6 +20,4 @@ spec:
 
         volumeMounts:
           - name: static
-            mountPath: /static/link
-          - name: static-git
             mountPath: /static
