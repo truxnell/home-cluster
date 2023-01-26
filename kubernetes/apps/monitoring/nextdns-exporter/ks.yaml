@@ -4,7 +4,7 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: cluster-apps-nextdns-exporter
-  namespace: monitoring
+  namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
