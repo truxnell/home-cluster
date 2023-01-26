@@ -15,12 +15,12 @@ spec:
           - '--repo=https://gitlab.com/soapbox-pub/soapbox.git'
           - '--branch=develop'
           - '--depth=1'
-          - '--root=/static-git'
-          - '--dest=/static'
+          - '--root=/static'
+          - '--dest=/static/link'
           - '--wait=21600' # 6 hours
 
         volumeMounts:
           - name: static
-            mountPath: /static
+            mountPath: /static/link
           - name: static-git
-            mountPath: /static-git
+            mountPath: /static
