@@ -46,6 +46,8 @@ spec:
         ports:
           http:
             port: &port 5000
+          api:
+            port: 4444
 
     ingress:
       main:

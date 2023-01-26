@@ -30,7 +30,7 @@ spec:
       repository: registry.gitlab.com/soapbox-pub/rebased
       tag: latest
     env:
-      BACKEND_URL: 'pleroma-rebased-dev.services.:4444'
+      BACKEND_URL: 'pleroma-rebased.services.:4444'
     service:
       main:
         ports:
