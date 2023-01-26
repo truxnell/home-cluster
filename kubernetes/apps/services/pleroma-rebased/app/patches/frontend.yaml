@@ -16,7 +16,7 @@ spec:
           - '--branch=develop'
           - '--depth=1'
           - '--root=/static-git'
-          - '--link=/static'
+          - '--dest=/static'
           - '--wait=21600' # 6 hours
 
         volumeMounts:
