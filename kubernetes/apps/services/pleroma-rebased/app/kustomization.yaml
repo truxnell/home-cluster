@@ -5,10 +5,6 @@ namespace: services
 resources:
   - ./pvc.yaml
   - ./helmrelease.yaml
-patchesStrategicMerge:
-  - ./patches/postgres.yaml
-
-  - ./patches/frontend.yaml
 configMapGenerator:
   - name: pleroma-rebased-config
     files:

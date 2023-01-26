@@ -70,21 +70,19 @@ spec:
         labelSelector:
           matchLabels:
             app.kubernetes.io/name: *app
-            #
+
     initContainers:
-      - name: git-config
-        image: alpine/git:v2.30.2
+      soapbox:
+        image: alpine/git
         command:
-          - 'sh'
-          - '-c'
-          - |
-            git clone --depth 1 "https://gitlab.com/soapbox-pub/soapbox.git" /static
+          - git
+          - clone
+          - https://gitlab.com/soapbox-pub/soapbox.git
+          - /static
 
         volumeMounts:
           - name: static
             mountPath: /static
-        securityContext:
-          runAsUser: 0
 
     persistence:
       static:
