@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: monitoring
@@ -12,4 +13,4 @@ generatorOptions:
     kustomize.toolkit.fluxcd.io/substitute: disabled
     grafana_folder: System
   labels:
-    grafana_dashboard: 'true'
+    grafana_dashboard: "true"
