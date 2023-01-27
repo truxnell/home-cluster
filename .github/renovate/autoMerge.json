@@ -12,7 +12,7 @@
         "ghcr.io/bjw-s",
         "ghcr.io/auricom"
       ],
-      "schedule": ["between 2am and 5am"],
+      "schedule": ["after 2am on saturday", "before 5am on saturday"],
       "stabilityDays": 3
     },
     {
