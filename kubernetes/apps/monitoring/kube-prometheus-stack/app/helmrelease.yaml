@@ -30,14 +30,47 @@ spec:
     cleanupOnFail: true
   values:
     fullnameOverride: prometheus
+
+    defaultRules:
+      create: true
+      rules:
+        alertmanager: true
+        etcd: true
+        configReloaders: true
+        general: true
+        k8s: true
+        kubeApiserver: true
+        kubeApiserverAvailability: true
+        kubeApiserverSlos: true
+        kubelet: true
+        kubeProxy: false
+        kubePrometheusGeneral: true
+        kubePrometheusNodeRecording: true
+        kubernetesApps: true
+        kubernetesResources: true
+        kubernetesStorage: true
+        kubernetesSystem: true
+        kubeScheduler: false
+        kubeStateMetrics: true
+        network: true
+        node: true
+        nodeExporterAlerting: true
+        nodeExporterRecording: true
+        prometheus: true
+        prometheusOperator: true
+
     coreDns:
       enabled: true
+
     kubeApiServer:
       enabled: true
+
     kubeControllerManager:
       enabled: false # FIXME
+
     kubeEtcd:
       enabled: true
+
     kubelet:
       enabled: true
       serviceMonitor:
@@ -46,12 +79,27 @@ spec:
             sourceLabels:
               - node
             targetLabel: instance
+
     kubeProxy:
       enabled: false # FIXME
+
     kubeScheduler:
       enabled: false # FIXME
-    kubeStateMetrics:
-      enabled: true
+
+    kube-state-metrics:
+      metricLabelsAllowlist:
+        - 'persistentvolumeclaims=[*]'
+      prometheus:
+        monitor:
+          enabled: true
+          relabelings:
+            - action: replace
+              regex: (.*)
+              replacement: $1
+              sourceLabels:
+                - __meta_kubernetes_pod_node_name
+              targetLabel: kubernetes_node
+
     prometheusOperator:
       resources:
         requests:
@@ -68,6 +116,7 @@ spec:
             memory: 24M
             # limits:
             # memory: 32M
+
     grafana:
       enabled: false
       forceDeployDashboards: true
@@ -76,19 +125,7 @@ spec:
           multicluster:
             global:
               enabled: true
-    kube-state-metrics:
-      metricLabelsAllowlist:
-        - "persistentvolumeclaims=[*]"
-      prometheus:
-        monitor:
-          enabled: true
-          relabelings:
-            - action: replace
-              regex: (.*)
-              replacement: $1
-              sourceLabels:
-                - __meta_kubernetes_pod_node_name
-              targetLabel: kubernetes_node
+
     nodeExporter:
       enabled: true
       serviceMonitor:
@@ -99,6 +136,7 @@ spec:
             sourceLabels:
               - __meta_kubernetes_pod_node_name
             targetLabel: kubernetes_node
+
     prometheus-node-exporter:
       fullnameOverride: node-exporter
       extraArgs:
@@ -114,6 +152,7 @@ spec:
               sourceLabels:
                 - __meta_kubernetes_pod_node_name
               targetLabel: kubernetes_node
+
       resources:
         requests:
           cpu: 23m
@@ -121,17 +160,18 @@ spec:
           # limits:
           #   memory: 64M
       tolerations:
-        - effect: "NoExecute"
-          operator: "Exists"
-        - effect: "NoSchedule"
-          operator: "Exists"
+        - effect: 'NoExecute'
+          operator: 'Exists'
+        - effect: 'NoSchedule'
+          operator: 'Exists'
+
     prometheus:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          hajimari.io/appName: "Prometheus"
+          hajimari.io/appName: 'Prometheus'
           hajimari.io/icon: simple-icons:prometheus
         hosts:
           - &host prometheus.${EXTERNAL_DOMAIN}
@@ -149,8 +189,8 @@ spec:
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
-        retentionSize: "8GB"
-        retention: 14d
+        retentionSize: '8GB'
+        retention: 2d
         enableAdminAPI: true
         walCompression: true
         storageSpec:
@@ -182,8 +222,8 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                  - "technocore.${INTERNAL_DOMAIN}:9100"
-                  - "george.${INTERNAL_DOMAIN}:9100"
+                  - 'technocore.${INTERNAL_DOMAIN}:9100'
+                  - 'george.${INTERNAL_DOMAIN}:9100'
           - job_name: minio
             scrape_interval: 1m
             scrape_timeout: 10s
@@ -192,48 +232,48 @@ spec:
             scheme: http
             static_configs:
               - targets:
-                  - "george.${INTERNAL_DOMAIN}:9000"
+                  - 'george.${INTERNAL_DOMAIN}:9000'
           - job_name: smartctl-exporter
             scrape_interval: 10m
             scrape_timeout: 10s
             honor_timestamps: true
             static_configs:
               - targets:
-                  - "george.${INTERNAL_DOMAIN}:9633"
+                  - 'george.${INTERNAL_DOMAIN}:9633'
           - job_name: windows-exporter
             scrape_interval: 1m
             scrape_timeout: 10s
             honor_timestamps: true
             static_configs:
               - targets:
-                  - "10.8.20.222:9182"
+                  - '10.8.20.222:9182'
           - job_name: ts110
             scrape_interval: 1m
             scrape_timeout: 10s
             honor_timestamps: true
             static_configs:
               - targets:
-                  - "hs110-exporter-prusa.monitoring:8110"
-                  - "hs110-exporter-rack.monitoring:8110"
-          - job_name: "octoprint"
+                  - 'hs110-exporter-prusa.monitoring:8110'
+                  - 'hs110-exporter-rack.monitoring:8110'
+          - job_name: 'octoprint'
             scrape_interval: 1m
             scrape_timeout: 10s
-            metrics_path: "/plugin/prometheus_exporter/metrics"
+            metrics_path: '/plugin/prometheus_exporter/metrics'
             params:
-              apikey: ["${SECRET_OCTOPRINT_APIKEY}"]
+              apikey: ['${SECRET_OCTOPRINT_APIKEY}']
             tls_config:
               insecure_skip_verify: true
             static_configs:
               - targets:
-                  - "prusa.${INTERNAL_DOMAIN}:5000"
+                  - 'prusa.${INTERNAL_DOMAIN}:5000'
           - job_name: coredns
             scrape_interval: 1m
             scrape_timeout: 10s
             honor_timestamps: true
             static_configs:
               - targets:
-                  - "10.8.5.2:9153"
-          - job_name: "kubernetes-ingresses-http-2xx"
+                  - '10.8.5.2:9153'
+          - job_name: 'kubernetes-ingresses-http-2xx'
             metrics_path: /probe
             scrape_interval: 2m
             params:
@@ -268,7 +308,7 @@ spec:
                 target_label: kubernetes_namespace
               - source_labels: [__meta_kubernetes_ingress_name]
                 target_label: kubernetes_name
-          - job_name: "kubernetes-ingresses-http403"
+          - job_name: 'kubernetes-ingresses-http403'
             metrics_path: /probe
             scrape_interval: 2m
             params:
@@ -303,7 +343,7 @@ spec:
                 target_label: kubernetes_namespace
               - source_labels: [__meta_kubernetes_ingress_name]
                 target_label: kubernetes_name
-          - job_name: "kubernetes-services-http"
+          - job_name: 'kubernetes-services-http'
             metrics_path: /probe
             scrape_interval: 2m
             params:
@@ -331,7 +371,7 @@ spec:
                 target_label: kubernetes_namespace
               - source_labels: [__meta_kubernetes_service_name]
                 target_label: kubernetes_name
-          - job_name: "kubernetes-services-tcp"
+          - job_name: 'kubernetes-services-tcp'
             metrics_path: /probe
             scrape_interval: 2m
             params:
@@ -359,13 +399,14 @@ spec:
                 target_label: kubernetes_namespace
               - source_labels: [__meta_kubernetes_service_name]
                 target_label: kubernetes_name
+
     alertmanager:
       config:
         global:
           resolve_timeout: 5m
         receivers:
-          - name: "null"
-          - name: "pushover"
+          - name: 'null'
+          - name: 'pushover'
             pushover_configs:
               - user_key: ${SECRET_ALERTMANAGER_PUSHOVER_USER_KEY}
                 token: ${SECRET_ALERTMANAGER_PUSHOVER_TOKEN}
@@ -402,16 +443,16 @@ spec:
                     {{- end }}
                   {{- end }}
         route:
-          group_by: ["alertname", "job"]
+          group_by: ['alertname', 'job']
           group_wait: 30s
           group_interval: 15m
           repeat_interval: 6h
-          receiver: "pushover"
+          receiver: 'pushover'
           routes:
-            - receiver: "null"
+            - receiver: 'null'
               matchers:
                 - alertname =~ "InfoInhibitor|Watchdog"
-            - receiver: "pushover"
+            - receiver: 'pushover'
               matchers:
                 - severity = "critical"
               continue: true
@@ -420,13 +461,13 @@ spec:
               - severity = "critical"
             target_matchers:
               - severity = "warning"
-            equal: ["alertname", "namespace"]
+            equal: ['alertname', 'namespace']
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          hajimari.io/appName: "Alert Manager"
+          hajimari.io/appName: 'Alert Manager'
           hajimari.io/icon: mdi:alert-decagram-outline
         hosts:
           - &host alertmanager.${EXTERNAL_DOMAIN}
@@ -449,6 +490,7 @@ spec:
           memory: 50M
         limits:
           memory: 99M
+
   valuesFrom:
     - kind: Secret
       name: kube-prometheus-stack
