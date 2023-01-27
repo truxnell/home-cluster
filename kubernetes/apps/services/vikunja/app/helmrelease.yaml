@@ -29,7 +29,7 @@ spec:
       pullPolicy: IfNotPresent
     additionalContainers:
       - name: frontend
-        image: vikunja/frontend:0.20.2
+        image: vikunja/frontend:0.20.3
         resources:
           requests:
             cpu: 10m
