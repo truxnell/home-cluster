@@ -2,46 +2,31 @@
   "packageRules": [
     {
       "description": "Auto merge container digests",
-      "matchDatasources": [
-        "docker"
-      ],
+      "matchDatasources": ["docker"],
       "automerge": true,
       "automergeType": "branch",
       "ignoreTests": true,
-      "matchUpdateTypes": [
-        "digest"
-      ],
+      "matchUpdateTypes": ["digest"],
       "matchPackagePattern": [
         "ghcr.io/onedr0p",
         "ghcr.io/bjw-s",
         "ghcr.io/auricom"
       ],
-      "schedule": [
-        "between 2am and 5am"
-      ],
+      "schedule": ["between 2am and 5am"],
       "stabilityDays": 3
     },
     {
       "description": "Auto merge GitHub Actions",
-      "matchDatasources": [
-        "github-tags",
-        "github-actions"
-      ],
+      "matchDatasources": ["github-tags", "github-actions"],
       "automerge": true,
       "automergeType": "branch",
       "requiredStatusChecks": null,
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "digest"
-      ],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
       "matchPackageNames": [
         "lycheeverse/lychee-action",
         "renovatebot/github-action"
       ],
-      "schedule": [
-        "before 6am on saturday"
-      ],
+      "schedule": ["before 6am on saturday"],
       "stabilityDays": 3
     },
     {
@@ -55,10 +40,7 @@
       "automerge": true,
       "automergeType": "branch",
       "requiredStatusChecks": null,
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
+      "matchUpdateTypes": ["minor", "patch"],
       "matchPackageNames": [
         "ghcr.io/onedr0p/jackett",
         "ghcr.io/onedr0p/lidarr",
@@ -75,29 +57,16 @@
         "ghcr.io/onedr0p/plex",
         "renovatebot/github-action"
       ],
-      "schedule": [
-        "after 2am every saturday",
-        "before 6am every saturday"
-      ],
+      "schedule": ["after 2am every saturday", "before 6am every saturday"],
       "stabilityDays": 3
     },
-    // Automerge game servers immediately
     {
-      "matchDatasources": [
-        "docker"
-      ],
+      "matchDatasources": ["docker"],
       "automerge": false,
       "requiredStatusChecks": null,
-      "matchUpdateTypes": [
-        "major",
-        "minor",
-        "patch",
-        "digest"
-      ],
+      "matchUpdateTypes": ["major", "minor", "patch", "digest"],
       "groupName": "Game Servers",
-      "labels": [
-        "automerge-servers"
-      ],
+      "labels": ["automerge-servers"],
       "matchPackageNames": [
         "factoriotools/factorio",
         "wolveix/satisfactory-server"
