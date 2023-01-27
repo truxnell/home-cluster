@@ -26,7 +26,7 @@ spec:
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
   values:
-    role: "Stateless-Aggregator"
+    role: 'Stateless-Aggregator'
     podMonitor:
       enabled: true
     service:
@@ -41,11 +41,11 @@ spec:
         kubernetes_logs:
           address: 0.0.0.0:6000
           type: vector
-          version: "2"
+          version: '2'
         journal_logs:
           type: vector
           address: 0.0.0.0:6001
-          version: "2"
+          version: '2'
         talos_kernel_logs:
           address: 0.0.0.0:6050
           type: socket
@@ -65,7 +65,7 @@ spec:
         udmp_logs:
           address: 0.0.0.0:6100
           type: syslog
-          mode: "udp"
+          mode: 'udp'
           max_length: 102_400
         vector_metrics:
           type: internal_metrics
@@ -79,9 +79,9 @@ spec:
             # Standardize 'app' index
             .custom_app_name = .pod_labels."app.kubernetes.io/name" || .pod_labels.app || .pod_labels."k8s-app" || "unknown"
         udmp_logs_xform:
-          type: "remap"
+          type: 'remap'
           inputs:
-            - "udmp_logs"
+            - 'udmp_logs'
           source: |-
             .timestamp=null
         talos_kernel_logs_xform:
@@ -136,12 +136,13 @@ spec:
           remove_label_fields: true
           remove_timestamp: true
           labels:
-            app: >-
-              {{`{{ custom_app_name }}`}}
-            namespace: >-
-              {{`{{ kubernetes.pod_namespace }}`}}
-            hostname: >-
-              {{`{{ kubernetes.pod_node_name }}`}}
+            k8s_app: '{{ custom_app_name }}'
+            k8s_container: '{{ kubernetes.container_name }}'
+            k8s_filename: '{{ kubernetes.file }}'
+            k8s_instance: '{{ kubernetes.pod_labels."app.kubernetes.io/instance" }}'
+            k8s_namespace: '{{ kubernetes.pod_namespace }}'
+            k8s_node: '{{ kubernetes.pod_node_name }}'
+            k8s_pod: '{{ kubernetes.pod_name }}'
         loki_udmp:
           type: loki
           inputs:
@@ -171,10 +172,8 @@ spec:
             max_bytes: 1048576
           out_of_order_action: rewrite_timestamp
           labels:
-            hostname: >-
-              {{`{{ __host }}`}}
-            app: >-
-              {{`{{ facility }}`}}
+            hostname: '{{ __host }}'
+            service: '{{ facility }}'
         talos_service:
           type: loki
           inputs:
@@ -188,11 +187,10 @@ spec:
             max_bytes: 524288
           out_of_order_action: rewrite_timestamp
           labels:
-            hostname: >-
-              {{`{{ __host }}`}}
-            app: >-
-              {{`{{ "talos-service" }}`}}
-            namespace: "talos:service"
+            hostname: '{{ __host }}'
+            service: 'talos-service'
+            namespace: 'talos:service'
+
     podAnnotations:
       configmap.reloader.stakater.com/reload: vector-aggregator
     resources:
