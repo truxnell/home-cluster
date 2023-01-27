@@ -45,7 +45,7 @@ spec:
           cpu: 15m
           memory: 64M
         limits:
-          memory: 99M
+          memory: 200M
 
     queryFrontend:
       enabled: false
