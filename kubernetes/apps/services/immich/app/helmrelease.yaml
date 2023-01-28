@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/immich-app/immich-proxy
-      tag: v1.42.0_65-dev
+      tag: 1372
     env:
       IMMICH_SERVER_URL: http://localhost:3001
       IMMICH_WEB_URL: http://localhost:3000
