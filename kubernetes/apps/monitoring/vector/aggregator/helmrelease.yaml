@@ -24,11 +24,13 @@ spec:
       retries: 5
   values:
     controller:
+      replicas: 3
       strategy: RollingUpdate
       annotations:
         reloader.stakater.com/auto: 'true'
     image:
-      repository: docker.io/timberio/vector
+      # https://github.com/vectordotdev/vector/issues/6715
+      repository: ghcr.io/onedr0p/vector
       tag: 0.27.0-debian
 
     args: ['--config', '/etc/vector/vector.yaml']
@@ -44,9 +46,9 @@ spec:
           kubernetes-logs:
             enabled: true
             port: 6000
-          vyos-logs:
+          udmp-logs:
             enabled: true
-            port: 6001
+            port: 6100
           journald-logs:
             enabled: true
             port: 6002
@@ -71,3 +73,11 @@ spec:
         enabled: true
         type: emptyDir
         mountPath: /vector-data-dir
+
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: *app
