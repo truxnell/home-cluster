@@ -41,18 +41,6 @@
   },
   "regexManagers": [
     {
-      "description": "Process custom dependencies",
-      "fileMatch": [
-        "ansible/.+\\.ya?ml$",
-        "kubernetes/.+\\.ya?ml$"
-      ],
-      "matchStrings": [
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n"
-      ],
-      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
-      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
-    },
-    {
       "description": ["Process CRD dependencies - Chart and Github Release are the same version"],
       "fileMatch": ["kubernetes/.+\\.ya?ml$"],
       "matchStrings": [
@@ -61,22 +49,25 @@
       "datasourceTemplate": "helm"
     },
     {
-      "description": "Process various dependencies",
+      "description": ["Generic Docker image Regex manager"],
+      "fileMatch": [
+        "infrastructure/.+\\.ya?ml$",
+        "infrastructure/.+\\.tf$"
+      ],
+      "matchStrings": [
+        "# renovate: docker-image( versioning=(?<versioning>.*=?))?\n .*[:|=] \"?(?<depName>.*?):(?<currentValue>[^\"\n]*=?)\"?",
+      ],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    },
+    {
+      "description": ["Raw GitHub URL Regex manager"],
       "fileMatch": [
         "infrastructure/.+\\.ya?ml$",
         "kubernetes/.+\\.ya?ml$"
       ],
       "matchStrings": [
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\n.*?\"(?<currentValue>.*)\"\n"
-      ],
-      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
-      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
-    },
-    {
-      "description": "Process raw GitHub URLs",
-      "fileMatch": ["cluster/.+\\.ya?ml$"],
-      "matchStrings": [
-        "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*"
+        "https:\\/\\/raw.githubusercontent.com\\/(?<depName>[\\w\\d\\-_]+\\/[\\w\\d\\-_]+)\\/(?<currentValue>[\\w\\d\\.\\-_]+)\\/.*",
       ],
       "datasourceTemplate": "github-releases",
       "versioningTemplate": "semver"
