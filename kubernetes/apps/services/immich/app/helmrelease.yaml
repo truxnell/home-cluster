@@ -64,7 +64,7 @@ spec:
     additionalContainers:
       immich-server:
         name: immich-server
-        image: ghcr.io/immich-app/immich-server:v1.42.0_65-dev
+        image: ghcr.io/immich-app/immich-server:v1.43.1
         volumeMounts:
           - name: library
             mountPath: /usr/src/app/upload
@@ -103,7 +103,7 @@ spec:
             value: localhost
       immich-microservices:
         name: immich-microservices
-        image: ghcr.io/immich-app/immich-server:v1.42.0_65-dev
+        image: ghcr.io/immich-app/immich-server:v1.43.1
         volumeMounts:
           - name: library
             mountPath: /usr/src/app/upload
