@@ -15,6 +15,7 @@
     "github>Truxnell/home-cluster//.github/renovate/allowedVersions.json5",
     "github>Truxnell/home-cluster//.github/renovate/labels.json5",
     "github>Truxnell/home-cluster//.github/renovate/groups.json5",
+    "github>Truxnell/home-cluster//.github/renovate/commitMessage.json5",
     "github>Truxnell/home-cluster//.github/renovate/semanticCommits.json5",
     "github>Truxnell/home-cluster//.github/renovate/autoMerge.json5",
   ],

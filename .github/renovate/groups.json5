@@ -1,36 +1,35 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  packageRules: [
+  "packageRules": [
     {
-      description: "1Password Connect images",
-      matchDatasources: ["docker"],
-      matchPackageNames: [
-        "docker.io/1password/connect-sync",
-        "docker.io/1password/connect-api",
-      ],
-      groupName: "1password-connect",
-      additionalBranchPrefix: "",
-      separateMinorPatch: true,
+      "description": "1Password Connect and Sync images",
+      "groupName": "1Password",
+      "matchPackagePatterns": ["1password"],
+      "matchDatasources": ["docker"],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
+      },
+      "separateMinorPatch": true
     },
     {
-      description: "Rook-Ceph image and chart",
-      groupName: "Rook Ceph",
-      matchPackagePatterns: ["rook.ceph"],
-      matchDatasources: ["docker", "helm"],
-      group: { commitMessageTopic: "{{{groupName}}} group" },
-      separateMinorPatch: true,
+      "description": "Immich images",
+      "groupName": "Immich",
+      "matchPackagePatterns": ["immich"],
+      "matchDatasources": ["docker"],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
+      },
+      "separateMinorPatch": true
     },
     {
-      description: "Cilium image and chart",
-      matchDatasources: ["helm", "docker"],
-      matchPackageNames: [
-        "quay.io/cilium/cilium",
-        "quay.io/cilium/operator-generic",
-        "cilium",
-      ],
-      groupName: "cilium",
-      additionalBranchPrefix: "",
-      separateMinorPatch: true,
+      "description": "Rook-Ceph image and chart",
+      "groupName": "Rook-Ceph",
+      "matchPackagePatterns": ["rook.ceph"],
+      "matchDatasources": ["docker", "helm"],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
+      },
+      "separateMinorPatch": true
     },
     {
       "description": "External Snapshotter charts",
@@ -43,22 +42,15 @@
       "separateMinorPatch": true
     },
     {
-      description: "Thanos image and chart - versions do not match",
-      groupName: "Thanos",
-      matchDatasources: ["docker", "github-releases", "helm"],
-      matchPackagePatterns: ["quay.io/thanos/thanos", "thanos"],
-      matchUpdateTypes: ["minor", "patch"],
-      group: { commitMessageTopic: "{{{groupName}}} group" },
-      separateMinorPatch: false,
-    },
-    {
-      description: "Vector image and chart - versions do not match",
-      groupName: "Vector",
-      matchDatasources: ["docker", "github-releases", "helm"],
-      matchPackagePatterns: ["vector"],
-      matchUpdateTypes: ["minor", "patch"],
-      group: { commitMessageTopic: "{{{groupName}}} group" },
-      separateMinorPatch: false,
-    },
-  ],
+      "description": "Thanos image and chart - mismatched versions",
+      "groupName": "Thanos",
+      "matchPackagePatterns": ["thanos"],
+      "matchDatasources": ["docker", "github-releases", "helm"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
+      },
+      "separateMinorPatch": false
+    }
+  ]
 }
