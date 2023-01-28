@@ -25,8 +25,7 @@
     {
       "description": "Auto merge GitHub Actions",
       "matchDatasources": [
-        "github-tags",
-        "github-actions"
+        "github-releases"
       ],
       "automerge": true,
       "automergeType": "branch",
