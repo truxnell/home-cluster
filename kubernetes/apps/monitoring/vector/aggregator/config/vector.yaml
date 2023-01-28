@@ -124,8 +124,7 @@ sinks:
       codec: json
     labels:
       hostname: udmpro
-      app: >-
-        {{`"{{ appname }}"`}}
+      app: '{{ appname }}'
   talos_kernel:
     type: loki
     inputs:
