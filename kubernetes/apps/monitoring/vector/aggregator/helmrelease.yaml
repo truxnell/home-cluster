@@ -51,7 +51,7 @@ spec:
             port: 6100
           journald-logs:
             enabled: true
-            port: 6002
+            port: 6001
           talos-kernel:
             enabled: true
             port: 6050
