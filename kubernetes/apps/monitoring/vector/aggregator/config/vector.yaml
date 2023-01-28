@@ -89,8 +89,7 @@ sinks:
     remove_label_fields: true
     remove_timestamp: true
     labels:
-      hostname: >-
-        {{`{{ host }}`}}
+      hostname: '{{ host }}'
   loki_kubernetes:
     type: loki
     inputs:
