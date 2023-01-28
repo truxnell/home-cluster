@@ -34,7 +34,7 @@ sources:
     address: 0.0.0.0:6100
     type: syslog
     mode: 'udp'
-    max_length: 102_400
+    max_length: 102400
   vector_metrics:
     type: internal_metrics
 # Transforms
