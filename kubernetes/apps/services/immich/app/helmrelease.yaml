@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/immich-app/immich-proxy
-      tag: v1.43.0
+      tag: 1372
     env:
       IMMICH_SERVER_URL: http://localhost:3001
       IMMICH_WEB_URL: http://localhost:3000
@@ -64,7 +64,7 @@ spec:
     additionalContainers:
       immich-server:
         name: immich-server
-        image: ghcr.io/immich-app/immich-server:v1.43.0
+        image: ghcr.io/immich-app/immich-server:1372
         volumeMounts:
           - name: library
             mountPath: /usr/src/app/upload
@@ -103,7 +103,7 @@ spec:
             value: localhost
       immich-microservices:
         name: immich-microservices
-        image: ghcr.io/immich-app/immich-server:v1.43.0
+        image: ghcr.io/immich-app/immich-server:1372
         volumeMounts:
           - name: library
             mountPath: /usr/src/app/upload
@@ -178,7 +178,7 @@ spec:
         command: ["redis-server"]
       immich-web:
         name: immich-web
-        image: ghcr.io/immich-app/immich-web:v1.43.0
+        image: ghcr.io/immich-app/immich-web:1372
         volumeMounts:
           - name: library
             mountPath: /usr/src/app/upload
@@ -219,7 +219,7 @@ spec:
           - ./entrypoint.sh
       immich-machinelearning:
         name: immich-machinelearning
-        image: ghcr.io/immich-app/immich-machine-learning:v1.43.0
+        image: ghcr.io/immich-app/immich-machine-learning:1372
         volumeMounts:
           - name: library
             mountPath: /usr/src/app/upload
