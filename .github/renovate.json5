@@ -12,7 +12,6 @@
     ":enablePreCommit",
     ":automergeDigest",
     ":automergeBranch",
-    "github>Truxnell/home-cluster//.github/renovate/commitMessage",
     "github>Truxnell/home-cluster//.github/renovate/allowedVersions",
     "github>Truxnell/home-cluster//.github/renovate/labels",
     "github>Truxnell/home-cluster//.github/renovate/groups",
