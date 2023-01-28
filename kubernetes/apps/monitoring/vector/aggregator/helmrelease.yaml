@@ -76,6 +76,3 @@ spec:
         enabled: true
         type: emptyDir
         mountPath: /vector-data-dir
-      geoip:
-        enabled: true
-        existingClaim: vector-geoipupdate-config
