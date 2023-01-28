@@ -2,7 +2,14 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: monitoring
 resources:
   - helmrelease.yaml
 metadata:
   namespace: monitoring
+configMapGenerator:
+  - name: vector-aggregator-configmap
+    files:
+      - vector.yaml=./config/vector.yaml
+generatorOptions:
+  disableNameSuffixHash: true
