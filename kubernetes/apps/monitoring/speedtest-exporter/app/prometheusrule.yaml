@@ -26,7 +26,7 @@ spec:
             summary: SpeedTest slow internet download.
           expr: |
             avg_over_time(speedtest_download_bits_per_second{job=~".*speedtest-exporter.*"}[4h])
-              < 900
+              <  50000000
           for: 3h
           labels:
             severity: warning
@@ -36,7 +36,7 @@ spec:
             summary: SpeedTest slow internet upload.
           expr: |
             avg_over_time(speedtest_upload_bits_per_second{job=~".*speedtest-exporter.*"}[4h])
-              < 400
+              < 25000000
           for: 3h
           labels:
             severity: warning
@@ -46,7 +46,7 @@ spec:
             summary: SpeedTest high ping latency.
           expr: |
             avg_over_time(speedtest_ping_latency_milliseconds{job=~".*speedtest-exporter.*"}[4h])
-              > 15
+              > 50
           for: 3h
           labels:
             severity: warning
@@ -56,7 +56,7 @@ spec:
             summary: SpeedTest high jitter latency.
           expr: |
             avg_over_time(speedtest_jitter_latency_milliseconds{job=~".*speedtest-exporter.*"}[4h])
-              > 30
+              > 60
           for: 3h
           labels:
             severity: warning
