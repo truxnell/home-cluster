@@ -5,7 +5,6 @@ kind: Kustomization
 namespace: organizarrs
 resources:
   - ./helmrelease.yaml
-  - ./externalsecret.yaml
 configMapGenerator:
   - name: recyclarr
     files:

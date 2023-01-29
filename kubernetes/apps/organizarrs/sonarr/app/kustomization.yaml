@@ -6,7 +6,7 @@ namespace: organizarrs
 resources:
   - ./pvc.yaml
   - ./helmrelease.yaml
-  - ./secrets.sops.yaml
+  - ./externalsecret.yaml
 configMapGenerator:
   - name: sonarr-pushover
     files:
