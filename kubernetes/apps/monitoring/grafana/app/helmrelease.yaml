@@ -204,8 +204,27 @@ spec:
         pods:
           url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
           datasource: Prometheus
+
     imageRenderer:
       enabled: true
+      replicas: 3
+      networkPolicy:
+        limitIngress: false
+      serviceMonitor:
+        enabled: true
+    persistence:
+      enabled: false
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values: ["grafana"]
+              topologyKey: kubernetes.io/hostname
 
     sidecar:
       datasources:
