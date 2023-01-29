@@ -5,7 +5,7 @@
 # Configuration specific to Sonarr
 sonarr:
   standard:
-    base_url: http://sonarr.organizarrs:80
+    base_url: http://sonarr.organizarrs:8989
     api_key: !env_var SONARR__API_KEY
     delete_old_custom_formats: true
     quality_definition:
@@ -66,7 +66,7 @@ sonarr:
 # Configuration specific to Radarr.
 radarr:
   standard:
-    base_url: http://radarr.organizarrs:80
+    base_url: http://radarr.organizarrs:7878
     api_key: !env_var RADARR__API_KEY
     delete_old_custom_formats: true
     quality_definition:
