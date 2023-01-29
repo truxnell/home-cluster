@@ -9,6 +9,7 @@ metadata:
     kyverno.io/ignore: 'true'
 spec:
   instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:15.1
   primaryUpdateStrategy: unsupervised
   storage:
     size: 20Gi
@@ -35,10 +36,10 @@ spec:
           key: MINIO_SECRET_KEY
   bootstrap:
     recovery:
-      source: postgres-v2
+      source: &prev-cluster postgres-v2
   # externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
-    - name: postgres-v2
+    - name: *prev-cluster
       barmanObjectStore:
         wal:
           compression: bzip2
