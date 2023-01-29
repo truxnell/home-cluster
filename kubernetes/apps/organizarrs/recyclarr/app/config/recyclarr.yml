@@ -6,7 +6,7 @@
 sonarr:
   standard:
     base_url: http://sonarr.organizarrs:80
-    api_key: ${SONARR_APIKEY}
+    api_key: !env_var SONARR__API_KEY
     delete_old_custom_formats: true
     quality_definition:
       type: series
@@ -67,7 +67,7 @@ sonarr:
 radarr:
   standard:
     base_url: http://radarr.organizarrs:80
-    api_key: ${RADARR_APIKEY}
+    api_key: !env_var RADARR__API_KEY
     delete_old_custom_formats: true
     quality_definition:
       type: movie
