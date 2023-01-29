@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: grafana
-      version: 6.50.0
+      version: 6.50.4
       sourceRef:
         kind: HelmRepository
         name: grafana-charts
@@ -23,6 +23,8 @@ spec:
     remediation:
       retries: 5
   values:
+    annotations:
+      configmap.reloader.stakater.com/reload: *app
     replicas: 3
     admin:
       existingSecret: grafana-admin
@@ -302,8 +304,6 @@ spec:
 
     serviceMonitor:
       enabled: true
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: grafana,grafana-admin
     ingress:
       enabled: true
       ingressClassName: 'nginx'
