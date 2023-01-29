@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/recyclarr/recyclarr/master/schemas/config-schema.json
 # For more details on the configuration, see the Configuration Reference on the wiki here:
 # https://github.com/rcdailey/recyclarr/wiki/Configuration-Reference
 
@@ -57,9 +58,13 @@ sonarr:
           - 06d66ab109d4d2eddb2794d21526d140 # Retags
           - 47435ece6b99a0b477caf360e79ba0bb # x265 (HD)
         quality_profiles:
-          - name: Any
+          - name: Any (Non-4k)
             reset_unmatched_scores: true
-          - name: HD
+          - name: HD - 720p/1080p
+            reset_unmatched_scores: true
+          - name: HD-1080p
+            reset_unmatched_scores: true
+          - name: HD-720p
             reset_unmatched_scores: true
           - name: SD
             reset_unmatched_scores: true
@@ -128,22 +133,16 @@ radarr:
           - ae9b7c9ebde1f3bd336a8cbd1ec4c5e5 # No-RlsGroup removed do avoid multiple downloads
           - dc98083864ea246d05a42df0d05f81cc # x265 (720/1080p)
         quality_profiles:
-          - name: HD
-            reset_unmatched_scores: true
-          - name: SD
+          - name: Any (Non-4k)
             reset_unmatched_scores: true
       - trash_ids:
           - 1c7d7b04b15cc53ea61204bebbcc1ee2 # HQ
         quality_profiles:
-          - name: HD
-            score: 0
-          - name: SD
-            score: 0
+          - name: Any (Non-4k)
+            scpre: 0
       - trash_ids:
           - 4b900e171accbfb172729b63323ea8ca # Optional: Multi
           - 923b6abef9b17f937fab56cfcf89e1f1 # Optional: DV (WEBDL) without fallback to HDR, set to manual score 0 or -10000
         quality_profiles:
-          - name: HD
-            score: 0
-          - name: SD
-            score: 0
+          - name: Any (Non-4k)
+            scpre: 0
