@@ -160,6 +160,15 @@ spec:
             allowUiUpdates: true
             options:
               path: /var/lib/grafana/dashboards/thanos
+          - name: 'kubernetes'
+            orgId: 1
+            folder: 'kubernetes'
+            type: file
+            updateIntervalSeconds: 10
+            disableDeletion: false
+            allowUiUpdates: true
+            options:
+              path: /var/lib/grafana/dashboards/kubernetes
     datasources:
       datasources.yaml:
         apiVersion: 1
