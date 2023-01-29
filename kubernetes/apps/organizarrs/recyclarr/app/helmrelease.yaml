@@ -30,9 +30,9 @@ spec:
     args: ['sync']
     envFrom:
       - secretRef:
-          name: radarr-secret
+          name: radarr
       - secretRef:
-          name: sonarr-secret
+          name: sonarr
     service:
       main:
         enabled: false
