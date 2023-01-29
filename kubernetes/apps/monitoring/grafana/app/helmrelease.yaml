@@ -79,6 +79,15 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/default
+          - name: 'data'
+            orgId: 1
+            folder: 'data'
+            type: file
+            updateIntervalSeconds: 10
+            disableDeletion: false
+            allowUiUpdates: true
+            options:
+              path: /var/lib/grafana/dashboards/data
           - name: 'flux'
             orgId: 1
             folder: 'flux'
