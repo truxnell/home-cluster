@@ -14,7 +14,7 @@ spec:
     size: 20Gi
     storageClass: ceph-block
   superuserSecret:
-    name: postgres-superuser
+    name: cloudnative-pg
   monitoring:
     enablePodMonitor: false
   backup:
