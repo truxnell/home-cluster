@@ -80,9 +80,7 @@ radarr:
       - trash_ids:
           - ff5bc9e8ce91d46c997ca3ac6994d6f8 # UHD FraMeSToR (set to 0, 1 or 3200)
         quality_profiles:
-          - name: HD
-            score: 1
-          - name: SD
+          - name: Any (Non-4k)
             score: 1
       - trash_ids:
           - 496f355514737f7d83bf7aa4d24f8169 # TrueHD Atmos
