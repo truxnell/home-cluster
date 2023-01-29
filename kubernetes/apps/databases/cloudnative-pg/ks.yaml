@@ -39,6 +39,11 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 3m
+  healthChecks:
+    - apiVersion: postgresql.cnpg.io/v1
+      kind: Cluster
+      name: postgres
+      namespace: databases
   dependsOn:
     - name: cluster-apps-cloudnative-pg
     - name: cluster-apps-kyverno
