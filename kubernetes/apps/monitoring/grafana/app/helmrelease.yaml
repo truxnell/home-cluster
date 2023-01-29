@@ -71,71 +71,71 @@ spec:
       dashboardproviders.yaml:
         apiVersion: 1
         providers:
-          - name: "default"
+          - name: 'default'
             orgId: 1
-            folder: ""
+            folder: ''
             type: file
             disableDeletion: false
             editable: true
             options:
               path: /var/lib/grafana/dashboards/default
-          - name: "flux"
+          - name: 'flux'
             orgId: 1
-            folder: "flux"
+            folder: 'flux'
             type: file
             updateIntervalSeconds: 10
             disableDeletion: false
             allowUiUpdates: true
             options:
               path: /var/lib/grafana/dashboards/flux
-          - name: "loki"
+          - name: 'loki'
             orgId: 1
-            folder: "loki"
+            folder: 'loki'
             type: file
             updateIntervalSeconds: 10
             disableDeletion: false
             allowUiUpdates: true
             options:
               path: /var/lib/grafana/dashboards/loki
-          - name: "media"
+          - name: 'media'
             orgId: 1
-            folder: "media"
+            folder: 'media'
             type: file
             updateIntervalSeconds: 10
             disableDeletion: false
             allowUiUpdates: true
             options:
               path: /var/lib/grafana/dashboards/media
-          - name: "networking"
+          - name: 'networking'
             orgId: 1
-            folder: "networking"
+            folder: 'networking'
             type: file
             updateIntervalSeconds: 10
             disableDeletion: false
             allowUiUpdates: true
             options:
               path: /var/lib/grafana/dashboards/networking
-          - name: "power"
+          - name: 'power'
             orgId: 1
-            folder: "power"
+            folder: 'power'
             type: file
             updateIntervalSeconds: 10
             disableDeletion: false
             allowUiUpdates: true
             options:
               path: /var/lib/grafana/dashboards/power
-          - name: "storage"
+          - name: 'storage'
             orgId: 1
-            folder: "storage"
+            folder: 'storage'
             type: file
             updateIntervalSeconds: 10
             disableDeletion: false
             allowUiUpdates: true
             options:
               path: /var/lib/grafana/dashboards/storage
-          - name: "thanos"
+          - name: 'thanos'
             orgId: 1
-            folder: "thanos"
+            folder: 'thanos'
             type: file
             updateIntervalSeconds: 10
             disableDeletion: false
@@ -275,16 +275,16 @@ spec:
       enabled: true
 
     sidecar:
-      dashboards:
-        enabled: true
-        searchNamespace: ALL
-        folderAnnotation: grafana_folder
-        provider:
-          allowUiUpdates: true
-          disableDelete: false
       datasources:
         enabled: true
         searchNamespace: ALL
+      dashboards:
+        enabled: true
+        searchNamespace: ALL
+        folderAnnotation: 'grafana_folder'
+        provider:
+          allowUiUpdates: true
+          foldersFromFilesStructure: true
 
     plugins:
       - natel-discrete-panel
