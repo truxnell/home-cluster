@@ -34,18 +34,18 @@ spec:
       - name: *app
     grafana.ini:
       auth:
-        signout_redirect_url: "https://auth.${EXTERNAL_DOMAIN}/logout"
+        signout_redirect_url: 'https://auth.${EXTERNAL_DOMAIN}/logout'
         oauth_auto_login: false
       auth.generic_oauth:
         enabled: true
         name: Authelia
         client_id: grafana
-        client_secret: "${SECRET_GRAFANA_OAUTH_CLIENT_SECRET}"
-        scopes: "openid profile email groups"
+        client_secret: '${SECRET_GRAFANA_OAUTH_CLIENT_SECRET}'
+        scopes: 'openid profile email groups'
         empty_scopes: false
-        auth_url: "https://auth.${EXTERNAL_DOMAIN}/api/oidc/authorization"
-        token_url: "https://auth.${EXTERNAL_DOMAIN}/api/oidc/token"
-        api_url: "https://auth.${EXTERNAL_DOMAIN}/api/oidc/userinfo"
+        auth_url: 'https://auth.${EXTERNAL_DOMAIN}/api/oidc/authorization'
+        token_url: 'https://auth.${EXTERNAL_DOMAIN}/api/oidc/token'
+        api_url: 'https://auth.${EXTERNAL_DOMAIN}/api/oidc/userinfo'
         login_attribute_path: preferred_username
         groups_attribute_path: groups
         name_attribute_path: name
@@ -66,9 +66,9 @@ spec:
       dashboardproviders.yaml:
         apiVersion: 1
         providers:
-          - name: "default"
+          - name: 'default'
             orgId: 1
-            folder: ""
+            folder: ''
             type: file
             disableDeletion: false
             editable: true
@@ -91,26 +91,117 @@ spec:
             access: proxy
             url: http://loki-gateway:80
     dashboards:
-      default:
+      system:
+        1-node-exporter:
+          url: https://grafana.com/api/dashboards/11074/revisions/9/download
+          datasource: Prometheus
+        node-exporter-full:
+          gnetId: 1860
+          revision: 23
+          datasource: Prometheus
+        cert-manager:
+          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
+          datasource: Prometheus
+        traefik:
+          gnetId: 11462
+          revision: 1
+          datasource: Prometheus
+        traefik-ingress:
+          gnetId: 4475
+          revision: 5
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/2842
+        metallb:
+          gnetId: 14127
+          revision: 1
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/7845
         zfs:
           gnetId: 7845
           revision: 4
           datasource: Prometheus
+      data:
+        mysql-overview:
+          gnetId: 7362
+          revision: 5
+          datasource: Prometheus
+        redis:
+          gnetId: 14091
+          revision: 1
+          datasource: Prometheus
+        redis-sentinel:
+          gnetId: 12776
+          revision: 2
+          datasource: Redis
+        # Ref: https://grafana.com/grafana/dashboards/13502
         minio:
           gnetId: 13502
           revision: 10
           datasource: Prometheus
-        node-exporter-full:
-          gnetId: 1860
-          revision: 22
-          datasource: Prometheus
-        persistent-volumes:
-          gnedId: 13646
-          revision: 2
-          datasource: Prometheus
-        blackbox-exporter:
-          gnedId: 13587
+      loki:
+        loki-metrics:
+          gnetId: 13407
           revision: 1
+          datasource: Prometheus
+      unifi:
+        # Ref: https://grafana.com/grafana/dashboards/11315
+        unifi-client-insights:
+          gnetId: 11315
+          revision: 8
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/11311
+        unifi-network-sites:
+          gnetId: 11311
+          revision: 4
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/11314
+        unifi-uap-insights:
+          gnetId: 11314
+          revision: 9
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/11312
+        unifi-usw-insights:
+          gnetId: 11312
+          revision: 8
+          datasource: Prometheus
+      flux:
+        flux-cluster:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/v0.38.3/manifests/monitoring/monitoring-config/dashboards/cluster.json
+          datasource: Prometheus
+        flux-control-plane:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/v0.38.3/manifests/monitoring/monitoring-config/dashboards/control-plane.json
+          datasource: Prometheus
+        flux-logs:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/v0.38.3/manifests/monitoring/monitoring-config/dashboards/logs.json
+          datasource: Prometheus
+      cilium:
+        cilium-dashboard:
+          url: https://raw.githubusercontent.com/cilium/cilium/v1.12.5/examples/kubernetes/addons/prometheus/files/grafana-dashboards/cilium-dashboard.json
+          datasource: Prometheus
+        cilium-operator-dashboard:
+          url: https://raw.githubusercontent.com/cilium/cilium/v1.12.5/examples/kubernetes/addons/prometheus/files/grafana-dashboards/cilium-operator-dashboard.json
+          datasource: Prometheus
+        hubble-dashboard:
+          url: https://raw.githubusercontent.com/cilium/cilium/v1.12.5/examples/kubernetes/addons/prometheus/files/grafana-dashboards/hubble-dashboard.json
+          datasource: Prometheus
+      kubernetes:
+        api-server:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-api-server.json
+          datasource: Prometheus
+        coredns:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-coredns.json
+          datasource: Prometheus
+        global:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-global.json
+          datasource: Prometheus
+        namespaces:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-namespaces.json
+          datasource: Prometheus
+        nodes:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-nodes.json
+          datasource: Prometheus
+        pods:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
           datasource: Prometheus
     sidecar:
       dashboards:
@@ -135,12 +226,12 @@ spec:
       configmap.reloader.stakater.com/reload: grafana,grafana-admin
     ingress:
       enabled: true
-      ingressClassName: "nginx"
+      ingressClassName: 'nginx'
       annotations:
-        external-dns.home.arpa/enabled: "true"
+        external-dns.home.arpa/enabled: 'true'
         hajimari.io/icon: simple-icons:grafana
       hosts:
-        - &host "grafana.${EXTERNAL_DOMAIN}"
+        - &host 'grafana.${EXTERNAL_DOMAIN}'
       tls:
         - hosts:
             - *host

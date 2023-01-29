@@ -122,9 +122,8 @@ spec:
       forceDeployDashboards: true
       sidecar:
         dashboards:
-          multicluster:
-            global:
-              enabled: true
+          annotations:
+            grafana_folder: Prometheus
 
     nodeExporter:
       enabled: true
