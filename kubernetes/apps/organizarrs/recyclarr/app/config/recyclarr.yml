@@ -145,4 +145,4 @@ radarr:
           - 923b6abef9b17f937fab56cfcf89e1f1 # Optional: DV (WEBDL) without fallback to HDR, set to manual score 0 or -10000
         quality_profiles:
           - name: Any (Non-4k)
-            scpre: 0
+            score: 0
