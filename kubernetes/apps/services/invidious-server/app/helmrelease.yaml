@@ -26,7 +26,7 @@ spec:
     fullNameOverride: *app
     image:
       repository: quay.io/invidious/invidious
-      tag: 09942dee6621e7047a63dffcc61b3bbf78cef2c6
+      tag: latest@sha256:865704dc7b0dee818b0f7636a085fcf1736635a7
     service:
       main:
         ports:
@@ -35,12 +35,12 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: "true"
+          external-dns.home.arpa/enabled: 'true'
           hajimari.io/icon: simple-icons:youtube
         hosts:
-          - host: &host "invidious.${EXTERNAL_DOMAIN}"
+          - host: &host 'invidious.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
