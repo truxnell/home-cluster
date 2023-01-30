@@ -7,5 +7,6 @@ resources:
   - ./pvc.yaml
   - ./helmrelease.yaml
   - ./secret.sops.yaml
+  - ./volsync.yaml
 metadata:
   namespace: games
