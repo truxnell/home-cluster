@@ -9,7 +9,7 @@ spec:
   interval: 15m
   chart:
     spec:
-      chart: volsync-charts
+      chart: volsync
       version: 0.5.0
       sourceRef:
         kind: HelmRepository
