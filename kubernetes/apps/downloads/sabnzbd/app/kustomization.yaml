@@ -6,3 +6,4 @@ resources:
   - ./pvc.yaml
   - ./helmrelease.yaml
   - ./externalsecret.yaml
+  - ./volsync.yaml
