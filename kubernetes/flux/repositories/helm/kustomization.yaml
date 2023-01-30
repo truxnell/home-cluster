@@ -31,4 +31,4 @@ resources:
   - ./external-secrets.yaml
   - ./bitnami-charts.yaml
   - ./postfinance.yaml
-  - ./backube.yaml
+  - ./backube-charts.yaml
