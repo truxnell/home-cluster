@@ -22,6 +22,9 @@ spec:
     remediation:
       retries: 5
   values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: 'true'
     image:
       repository: ghcr.io/k8s-at-home/vaultwarden
       tag: v1.25.2
@@ -42,13 +45,13 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: "true"
-          probe.home.arpa/enabled: "false"
-          hajimari.io/icon: "shield-key"
+          external-dns.home.arpa/enabled: 'true'
+          probe.home.arpa/enabled: 'false'
+          hajimari.io/icon: 'shield-key'
         hosts:
-          - host: &host "vault.${EXTERNAL_DOMAIN}"
+          - host: &host 'vault.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -69,7 +72,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
+      fsGroupChangePolicy: 'OnRootMismatch'
     persistence:
       config:
         enabled: true
