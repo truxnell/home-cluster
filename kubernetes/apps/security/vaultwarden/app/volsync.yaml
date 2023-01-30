@@ -3,7 +3,7 @@
 apiVersion: external-secrets.io/v1beta1
 kind: ClusterSecretStore
 metadata:
-  name: &name vautwarden-restic
+  name: &name vaultwarden-restic
   namespace: security
 spec:
   provider:
@@ -21,7 +21,7 @@ spec:
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: &name vautwarden-restic
+  name: &name vaultwarden-restic
   namespace: security
 spec:
   secretStoreRef:
@@ -32,7 +32,7 @@ spec:
     template:
       engineVersion: v2
       data:
-        RESTIC_REPOSITORY: '{{ .REPOSITORY_TEMPLATE }}/vautwarden'
+        RESTIC_REPOSITORY: '{{ .REPOSITORY_TEMPLATE }}/vaultwarden'
         RESTIC_PASSWORD: '{{ .RESTIC_PASSWORD }}'
         AWS_ACCESS_KEY_ID: '{{ .AWS_ACCESS_KEY_ID }}'
         AWS_SECRET_ACCESS_KEY: '{{ .AWS_SECRET_ACCESS_KEY }}'
@@ -45,16 +45,16 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: vautwarden
+  name: vaultwarden
   namespace: security
 spec:
-  sourcePVC: vautwarden-config-v1
+  sourcePVC: vaultwarden-config-v1
   trigger:
     schedule: '0 0 * * *'
   restic:
     copyMethod: Snapshot
     pruneIntervalDays: 10
-    repository: vautwarden-restic
+    repository: vaultwarden-restic
     cacheCapacity: 2Gi
     volumeSnapshotClassName: csi-ceph-blockpool
     storageClassName: ceph-block
