@@ -30,8 +30,6 @@ spec:
           - secretRef:
               name: *app
     controller:
-      replicas: 3
-      strategy: RollingUpdate
       annotations:
         reloader.stakater.com/auto: 'true'
     image:
@@ -90,13 +88,6 @@ spec:
       readiness: *probes
       startup:
         enabled: false
-    topologySpreadConstraints:
-      - maxSkew: 1
-        topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: DoNotSchedule
-        labelSelector:
-          matchLabels:
-            app.kubernetes.io/name: *app
     resources:
       requests:
         cpu: 10m
