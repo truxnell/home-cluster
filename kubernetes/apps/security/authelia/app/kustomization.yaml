@@ -7,6 +7,7 @@ resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
   - ./servicemonitor.yaml
+  - ./prometheusrule.yaml
 patchesStrategicMerge:
   - ./patches/env.yaml
 configMapGenerator:
