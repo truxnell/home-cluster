@@ -32,3 +32,4 @@ resources:
   - ./bitnami-charts.yaml
   - ./postfinance.yaml
   - ./backube-charts.yaml
+  - ./piraeus.yaml
