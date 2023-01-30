@@ -28,7 +28,7 @@ spec:
         imagePullPolicy: IfNotPresent
         envFrom:
           - secretRef:
-              name: authelia-secret
+              name: *app
     controller:
       replicas: 3
       strategy: RollingUpdate
