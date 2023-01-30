@@ -6,6 +6,7 @@ resources:
   - ./pvc.yaml
   - ./secret.sops.yaml
   - ./helmrelease.yaml
+  - ./volsync.yaml
 patchesStrategicMerge:
   - patches/postgres.yaml
 metadata:
