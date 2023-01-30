@@ -85,12 +85,12 @@ spec:
     - targetPath: emqxConfig.EMQX_DASHBOARD__DEFAULT_PASSWORD
       kind: Secret
       name: *app
-      valuesKey: admin_password
+      valuesKey: ADMIN_PASSWORD
     - targetPath: emqxConfig.EMQX_AUTH__USER__1__USERNAME
       kind: Secret
       name: *app
-      valuesKey: user_1_username
+      valuesKey: USER_1_USERNAME
     - targetPath: emqxConfig.EMQX_AUTH__USER__1__PASSWORD
       kind: Secret
       name: *app
-      valuesKey: user_1_password
+      valuesKey: USER_1_PASSWORD
