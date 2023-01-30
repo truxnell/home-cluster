@@ -3,8 +3,8 @@
 apiVersion: external-secrets.io/v1beta1
 kind: ClusterSecretStore
 metadata:
-  name: &name calibre-restic
-  namespace: organizarrs
+  name: &name vautwarden-restic
+  namespace: security
 spec:
   provider:
     doppler:
@@ -21,8 +21,8 @@ spec:
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: &name calibre-restic
-  namespace: organizarrs
+  name: &name vautwarden-restic
+  namespace: security
 spec:
   secretStoreRef:
     kind: ClusterSecretStore
@@ -32,7 +32,7 @@ spec:
     template:
       engineVersion: v2
       data:
-        RESTIC_REPOSITORY: '{{ .REPOSITORY_TEMPLATE }}/calibre'
+        RESTIC_REPOSITORY: '{{ .REPOSITORY_TEMPLATE }}/vautwarden'
         RESTIC_PASSWORD: '{{ .RESTIC_PASSWORD }}'
         AWS_ACCESS_KEY_ID: '{{ .AWS_ACCESS_KEY_ID }}'
         AWS_SECRET_ACCESS_KEY: '{{ .AWS_SECRET_ACCESS_KEY }}'
@@ -45,16 +45,16 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: calibre
-  namespace: organizarrs
+  name: vautwarden
+  namespace: security
 spec:
-  sourcePVC: calibre-config-v1
+  sourcePVC: vautwarden-config-v1
   trigger:
     schedule: '0 0 * * *'
   restic:
     copyMethod: Snapshot
     pruneIntervalDays: 10
-    repository: calibre-restic
+    repository: vautwarden-restic
     cacheCapacity: 2Gi
     volumeSnapshotClassName: csi-ceph-blockpool
     storageClassName: ceph-block
