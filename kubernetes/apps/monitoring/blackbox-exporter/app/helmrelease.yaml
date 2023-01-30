@@ -133,7 +133,7 @@ spec:
           name: wled-officedesk
           url: wled-officedesk.${INTERNAL_DOMAIN}
         - module: http_2xx
-          name: wled-officedesk
+          name: wled-monitor
           url: wled-monitor.${INTERNAL_DOMAIN}
     resources:
       requests:
