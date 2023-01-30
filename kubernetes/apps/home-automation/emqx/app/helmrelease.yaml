@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: emqx
+  name: &app emqx
   namespace: home-automation
 spec:
   interval: 15m
@@ -28,7 +28,7 @@ spec:
     replicaCount: 3
     recreatePods: true
     emqxConfig:
-      EMQX_ALLOW_ANONYMOUS: "false"
+      EMQX_ALLOW_ANONYMOUS: 'false'
       EMQX_AUTH__MNESIA__PASSWORD_HASH: plain
     emqxAclConfig: >
       {allow, {user, "dashboard"}, subscribe, ["$SYS/#"]}. {allow, {ipaddr, "127.0.0.1"}, pubsub, ["$SYS/#", "#"]}. {allow, all, subscribe, ["$SYS/#", {eq, "#"}]}. {allow, all}.
@@ -41,19 +41,19 @@ spec:
 
     service:
       type: LoadBalancer
-      loadBalancerIP: "${LB_EMQX}"
+      loadBalancerIP: '${LB_EMQX}'
       externalTrafficPolicy: Local
     ingress:
       dashboard:
         enabled: true
         ingressClassName: nginx
         annotations:
-          hajimari.io/appName: "EMQX"
+          hajimari.io/appName: 'EMQX'
           hajimari.io/icon: simple-icons:eclipsemosquitto
         path: /
         pathType: Prefix
         hosts:
-          - &host "emqx.${EXTERNAL_DOMAIN}"
+          - &host 'emqx.${EXTERNAL_DOMAIN}'
         tls:
           - hosts:
               - *host
@@ -84,13 +84,13 @@ spec:
   valuesFrom:
     - targetPath: emqxConfig.EMQX_DASHBOARD__DEFAULT_PASSWORD
       kind: Secret
-      name: emqx-config
+      name: *app
       valuesKey: admin_password
     - targetPath: emqxConfig.EMQX_AUTH__USER__1__USERNAME
       kind: Secret
-      name: emqx-config
+      name: *app
       valuesKey: user_1_username
     - targetPath: emqxConfig.EMQX_AUTH__USER__1__PASSWORD
       kind: Secret
-      name: emqx-config
+      name: *app
       valuesKey: user_1_password
