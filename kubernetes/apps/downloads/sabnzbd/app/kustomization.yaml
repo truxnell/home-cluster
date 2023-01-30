@@ -5,6 +5,4 @@ kind: Kustomization
 resources:
   - ./pvc.yaml
   - ./helmrelease.yaml
-  - ./secrets.sops.yaml
-metadata:
-  namespace: downloads
+  - ./externalsecret.yaml
