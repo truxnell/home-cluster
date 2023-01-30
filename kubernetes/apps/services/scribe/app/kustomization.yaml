@@ -5,6 +5,4 @@ kind: Kustomization
 namespace: services
 resources:
   - ./helmrelease.yaml
-  - ./secret.sops.yaml
-metadata:
-  namespace: services
+  - ./externalsecret.yaml
