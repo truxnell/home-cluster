@@ -39,7 +39,7 @@ identity_providers:
     clients:
       - id: grafana
         description: Grafana
-        secret: '${SECRET_GRAFANA_OAUTH_CLIENT_SECRET}'
+        secret: '${GRAFANA_OAUTH_CLIENT_SECRET}'
         public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y
@@ -49,7 +49,7 @@ identity_providers:
         userinfo_signing_algorithm: none
       - id: miniflux
         description: Miniflux
-        secret: '${SECRET_MINIFLUX_OAUTH_CLIENT_SECRET}'
+        secret: '${MINIFLUX_OAUTH_CLIENT_SECRET}'
         public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y
@@ -59,7 +59,7 @@ identity_providers:
         userinfo_signing_algorithm: none
       - id: vikunja
         description: Vikunja
-        secret: '${SECRET_VIKUNJA_OAUTH_CLIENT_SECRET}'
+        secret: '${VIKUNJA_OAUTH_CLIENT_SECRET}'
         public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y
