@@ -5,8 +5,8 @@ kind: Kustomization
 namespace: security
 resources:
   - ./externalsecret.yaml
-  - ./helmrelease.yaml
   - ./servicemonitor.yaml
+  - ./helmrelease.yaml
   - ./prometheusrule.yaml
 patchesStrategicMerge:
   - ./patches/env.yaml
