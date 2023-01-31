@@ -48,7 +48,7 @@ metadata:
   name: radicale
   namespace: services
 spec:
-  sourcePVC: radicale-config-v1
+  sourcePVC: radicale-data
   trigger:
     schedule: '17 0 * * *'
   restic:

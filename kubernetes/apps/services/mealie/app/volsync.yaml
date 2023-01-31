@@ -48,7 +48,7 @@ metadata:
   name: mealie
   namespace: services
 spec:
-  sourcePVC: mealie-config-v1
+  sourcePVC: mealie-data-v1
   trigger:
     schedule: '17 0 * * *'
   restic:

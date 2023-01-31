@@ -48,7 +48,7 @@ metadata:
   name: pleroma-rebased
   namespace: services
 spec:
-  sourcePVC: pleroma-rebased-config-v1
+  sourcePVC: pleroma-images-config-v1
   trigger:
     schedule: '17 0 * * *'
   restic:
