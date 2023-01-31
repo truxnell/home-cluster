@@ -48,7 +48,7 @@ metadata:
   name: satisfactory
   namespace: games
 spec:
-  sourcePVC: satisfactory-config-v1
+  sourcePVC: satisfactory-data
   trigger:
     schedule: '17 0 * * *'
   restic:
