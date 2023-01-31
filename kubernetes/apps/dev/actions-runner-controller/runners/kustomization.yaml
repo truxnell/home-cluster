@@ -6,6 +6,5 @@ resources:
   - ./container-images.yaml
   - ./home-cluster.yaml
   - ./pvc.yaml
-  - ./volsync.yaml
 metadata:
   namespace: dev
