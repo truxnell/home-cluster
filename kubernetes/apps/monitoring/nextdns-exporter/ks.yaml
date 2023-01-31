@@ -3,12 +3,12 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-nextdns-exporter
+  name: cluster-apps-nextdns-exporter-trusted
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  path: './kubernetes/apps/monitoring/nextdns-exporter/app/'
+  path: './kubernetes/apps/monitoring/nextdns-exporter/trusted/'
   prune: true
   sourceRef:
     kind: GitRepository
@@ -21,5 +21,30 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: nextdns-exporter
+      name: nextdns-exporter-trusted
+      namespace: monitoring
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomization_v1beta2.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cluster-apps-nextdns-exporter-kids
+  namespace: flux-system
+  labels:
+    substitution.flux.home.arpa/enabled: 'true'
+spec:
+  path: './kubernetes/apps/monitoring/nextdns-exporter/kids/'
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: home-cluster-kubernetes
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
+  dependsOn:
+    - name: cluster-apps-external-secrets-operator
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: nextdns-exporter-trusted
       namespace: monitoring
