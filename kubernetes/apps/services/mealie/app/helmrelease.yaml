@@ -69,6 +69,11 @@ spec:
           api:
             enabled: true
             port: 9000
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
     ingress:
       main:
         enabled: true
