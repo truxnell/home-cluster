@@ -30,10 +30,10 @@ spec:
 
     image:
       repository: registry.gitlab.com/soapbox-pub/soapbox
-      tag: latest
+      tag: latest@sha256:0f678236b57152b58bb1ed78692a7d03ab35d5e060d89b10f13e771dde7aa340
 
     env:
-      BACKEND_URL: pleroma-rebased.services.:4444
+      BACKEND_URL: pleroma-rebased.services.svc.cluster.local:5000
 
     service:
       main:
@@ -49,7 +49,7 @@ spec:
           external-dns.home.arpa/enabled: 'true'
           hajimari.io/icon: simple-icons:pleroma
         hosts:
-          - host: &host 'fedi-test${EXTERNAL_DOMAIN}'
+          - host: &host 'fedi.${WEBSITE_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix

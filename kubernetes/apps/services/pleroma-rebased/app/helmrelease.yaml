@@ -23,19 +23,16 @@ spec:
     remediation:
       retries: 5
   values:
-    # controller:
-    #   replicas: 3
-    #   strategy: RollingUpdate
     fullNameOverride: *app
 
     image:
       repository: registry.gitlab.com/soapbox-pub/rebased
-      tag: latest
+      tag: latest@sha256:0f678236b57152b58bb1ed78692a7d03ab35d5e060d89b10f13e771dde7aa340
 
     env:
-      DOMAIN: &host "fedi.${WEBSITE_DOMAIN}"
-      INSTANCE_NAME: "NatFlix Fediverse"
-      ADMIN_EMAIL: "admin@trux.dev"
+      DOMAIN: &host 'fedi.${WEBSITE_DOMAIN}'
+      INSTANCE_NAME: 'NatFlix Fediverse'
+      ADMIN_EMAIL: 'admin@trux.dev'
       DB_USER: ${SECRET_PLEROMA_REBASED_DB_USER}
       DB_PASS: ${SECRET_PLEROMA_REBASED_DB_PASS}
       DB_NAME: pleroma-rebased
@@ -47,51 +44,8 @@ spec:
         ports:
           http:
             port: &port 5000
-          api:
-            port: 4444
-
-    ingress:
-      main:
-        enabled: true
-        ingressClassName: "nginx"
-        annotations:
-          external-dns.home.arpa/enabled: "true"
-          hajimari.io/icon: simple-icons:pleroma
-        hosts:
-          - host: *host
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-
-    topologySpreadConstraints:
-      - maxSkew: 1
-        topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: DoNotSchedule
-        labelSelector:
-          matchLabels:
-            app.kubernetes.io/name: *app
-
-    initContainers:
-      soapbox:
-        image: alpine/git
-        command:
-          - git
-          - clone
-          - https://gitlab.com/soapbox-pub/soapbox.git
-          - /static
-
-        volumeMounts:
-          - name: static
-            mountPath: /static
 
     persistence:
-      static:
-        enabled: true
-        type: emptyDir
-        mountPath: /var/lib/pleroma/static
       uploads:
         enabled: true
         existingClaim: pleroma-images-config-v1
@@ -108,7 +62,7 @@ spec:
       runAsUser: 101
       runAsGroup: 65534
       fsGroup: 65534
-      fsGroupChangePolicy: "OnRootMismatch"
+      fsGroupChangePolicy: 'OnRootMismatch'
       supplementalGroups:
         - 65534
 
