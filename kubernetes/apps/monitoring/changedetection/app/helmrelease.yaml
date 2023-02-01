@@ -81,6 +81,7 @@ spec:
     persistence:
       config:
         enabled: true
+        mountPath: /datastore
         existingClaim: changedetection-config-v1
     resources:
       requests:
