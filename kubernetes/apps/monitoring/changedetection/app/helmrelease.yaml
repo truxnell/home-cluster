@@ -83,9 +83,9 @@ spec:
         enabled: true
         mountPath: /datastore
         existingClaim: changedetection-config-v1
-    resources:
-      requests:
-        cpu: 10m
-        memory: 100Mi
-      limits:
-        memory: 250Mi
+    # resources:
+    #   requests:
+    #     cpu: 10m
+    #     memory: 100Mi
+    #   limits:
+    #     memory: 250Mi
