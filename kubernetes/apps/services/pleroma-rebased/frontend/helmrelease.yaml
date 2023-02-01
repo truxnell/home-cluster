@@ -33,7 +33,7 @@ spec:
       tag: latest@sha256:0f678236b57152b58bb1ed78692a7d03ab35d5e060d89b10f13e771dde7aa340
 
     env:
-      BACKEND_URL: pleroma-rebased.services.svc.cluster.local:5000
+      BACKEND_URL: http://pleroma-rebased.services.svc.cluster.local:5000
 
     service:
       main:
