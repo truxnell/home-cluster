@@ -2,8 +2,8 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "list-${rsrc}-${ts}"
-  namespace: "${namespace}"
+  name: 'list-${rsrc}-${ts}'
+  namespace: '${namespace}'
 spec:
   ttlSecondsAfterFinished: 3600
   template:
@@ -13,7 +13,7 @@ spec:
       containers:
         - name: list
           image: docker.io/restic/restic:0.14.0
-          args: ["snapshots"]
+          args: ['snapshots']
           envFrom:
             - secretRef:
-                name: "${rsrc}-restic-secret"
+                name: '${rsrc}-restic'

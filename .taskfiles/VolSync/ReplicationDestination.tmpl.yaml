@@ -2,14 +2,14 @@
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationDestination
 metadata:
-  name: "${rsrc}-${claim}-${ts}"
-  namespace: "${namespace}"
+  name: '${rsrc}-${claim}-${ts}'
+  namespace: '${namespace}'
 spec:
   trigger:
     manual: restore-once
   restic:
-    repository: "${rsrc}-restic-secret"
-    destinationPVC: "${claim}"
+    repository: '${rsrc}-restic'
+    destinationPVC: '${claim}'
     copyMethod: Direct
     storageClassName: ceph-block
     # IMPORTANT NOTE:
