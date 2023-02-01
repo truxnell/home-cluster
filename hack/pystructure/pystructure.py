@@ -89,6 +89,7 @@ if __name__ == "__main__":
     # init runaemal.yaml thingy
     yaml = YAML(typ="rt")
     yaml.indent(mapping=2, sequence=4, offset=2)
+    yaml.explicit_start = True
 
     env = Environment(
         loader=FileSystemLoader(TEMPLATE_DIR), trim_blocks=True, lstrip_blocks=True
