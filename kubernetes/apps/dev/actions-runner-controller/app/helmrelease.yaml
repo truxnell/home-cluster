@@ -28,7 +28,7 @@ spec:
   values:
     authSecret:
       create: false
-      name: &secret 'actions-runner-controller'
+      name: &secret 'action-runner-controller'
     image:
       repository: summerwind/actions-runner-controller
     # resources:
