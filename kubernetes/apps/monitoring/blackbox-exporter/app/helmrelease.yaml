@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: prometheus-blackbox-exporter
-      version: 7.2.0
+      version: 7.4.0
       sourceRef:
         kind: HelmRepository
         name: prometheus-community-charts
@@ -178,10 +178,12 @@ spec:
           for: 15m
           labels:
             severity: warning
-        - alert: BlackboxProbeHttpFailure
-          expr: probe_http_status_code <= 199 OR probe_http_status_code >= 400
-          for: 5m
-          labels:
-            severity: error
-          annotations:
-            message: The HTTP response for {{"{{ $labels.target }}"}} was not a HTTP status code is not 200-399
+        # Not useful for my setup as i have some probes returing other erorr codes (like 401) that is acctually successful
+        # letting the success probe being source of truth
+        # - alert: BlackboxProbeHttpFailure
+        #   expr: probe_http_status_code <= 199 OR probe_http_status_code >= 400
+        #   for: 5m
+        #   labels:
+        #     severity: error
+        #   annotations:
+        #     message: The HTTP response for {{"{{ $labels.target }}"}} was not a HTTP status code is not 200-399

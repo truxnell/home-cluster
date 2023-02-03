@@ -24,10 +24,10 @@ jobs:
             kubectl
 
       - name: Setup Flux
-        uses: fluxcd/flux2/action@a9f53b4f1aef910fab68f790f7bf5b49c9a1677c # v0.38.3
+        uses: fluxcd/flux2/action@978cc0c5b8b85a976edd7e457a09b0f4d1255390 # v0.39.0
 
       - name: Setup Python
-        uses: actions/setup-python@5ccb29d8773c3f3f653e1705f474dfaa8a06a912 # v4.4.0
+        uses: actions/setup-python@d27e3f3d7c64b4bbf8e4abfb9b63b83e846e0435 # v4.5.0
         with:
           python-version: '3.11'
 
@@ -97,7 +97,7 @@ jobs:
           EOF
 
       - name: Publish schemas as web container
-        uses: docker/build-push-action@c56af957549030174b10d6867f20e78cfd7debc5 # v3.2.0
+        uses: docker/build-push-action@1104d471370f9806843c095c1db02b5a90c5f8b6 # v3.3.1
         with:
           context: /home/runner/.datree/crdSchemas
           platforms: linux/amd64,linux/arm64

@@ -26,7 +26,7 @@ repos:
       - id: check-executables-have-shebangs
 
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.1.15
+    rev: v1.4.2
     hooks:
       - id: remove-crlf
       - id: remove-tabs
@@ -51,13 +51,13 @@ repos:
           )$
 
   - repo: https://github.com/sirosen/texthooks
-    rev: 0.4.0
+    rev: 0.5.0
     hooks:
       - id: fix-smartquotes
       - id: fix-ligatures
 
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.15.2
+    rev: v8.15.3
     hooks:
       - id: gitleaks
 
