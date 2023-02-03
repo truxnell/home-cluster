@@ -35,9 +35,5 @@ spec:
                 name: cluster-settings
               - kind: Secret
                 name: cluster-secrets
-      # target:
-      # labelSelector: substitution.flux.home.arpa/enabled=true
       target:
-        kind: Kustomization
-        group: kustomize.toolkit.fluxcd.io
-        version: v1beta2
+        labelSelector: substitution.flux.home.arpa/enabled=true

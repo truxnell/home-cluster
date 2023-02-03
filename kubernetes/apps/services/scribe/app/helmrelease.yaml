@@ -24,6 +24,8 @@ spec:
       retries: 5
   values:
     controller:
+      annotations:
+        reloader.stakater.com/auto: 'true'
       replicas: 3
       strategy: RollingUpdate
     fullNameOverride: *app
@@ -45,13 +47,13 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: "true"
-          auth.home.arpa/enabled: "true"
+          external-dns.home.arpa/enabled: 'true'
+          auth.home.arpa/enabled: 'true'
           hajimari.io/icon: simple-icons:medium
         hosts:
-          - host: &host "scribe.${EXTERNAL_DOMAIN}"
+          - host: &host 'scribe.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix

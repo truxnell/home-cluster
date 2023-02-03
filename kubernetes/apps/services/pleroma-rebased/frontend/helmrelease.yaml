@@ -1,0 +1,89 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app pleroma-rebased-frontend
+  namespace: services
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    controller:
+      replicas: 3
+      strategy: RollingUpdate
+    fullNameOverride: *app
+
+    image:
+      repository: registry.gitlab.com/soapbox-pub/soapbox
+      tag: latest@sha256:0f678236b57152b58bb1ed78692a7d03ab35d5e060d89b10f13e771dde7aa340
+
+    env:
+      BACKEND_URL: http://pleroma-rebased.services.svc.cluster.local:5000
+
+    service:
+      main:
+        ports:
+          http:
+            port: &port 5000
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: 'nginx'
+        annotations:
+          external-dns.home.arpa/enabled: 'true'
+          hajimari.io/icon: simple-icons:pleroma
+        hosts:
+          - host: &host 'fedi.${WEBSITE_DOMAIN}'
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: *app
+
+    probes:
+      liveness: &probes
+        enabled: true
+        custom: true
+        spec:
+          httpGet:
+            path: /
+            port: *port
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3
+      readiness: *probes
+      startup:
+        enabled: false
+
+    resources:
+      requests:
+        cpu: 5m
+        memory: 60Mi
+      limits:
+        memory: 200Mi

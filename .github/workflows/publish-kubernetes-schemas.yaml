@@ -24,7 +24,7 @@ jobs:
             kubectl
 
       - name: Setup Flux
-        uses: fluxcd/flux2/action@f58b82fb4ed53939dc1c9d7e370deab885527368 # v0.38.2
+        uses: fluxcd/flux2/action@978cc0c5b8b85a976edd7e457a09b0f4d1255390 # v0.39.0
 
       - name: Setup Python
         uses: actions/setup-python@5ccb29d8773c3f3f653e1705f474dfaa8a06a912 # v4.4.0
@@ -43,7 +43,7 @@ jobs:
 
       - name: Set up Docker Buildx
         id: buildx
-        uses: docker/setup-buildx-action@8c0edbc76e98fa90f69d9a2c020dcb50019dc325 # v2
+        uses: docker/setup-buildx-action@15c905b16b06416d2086efa066dd8e3a35cc7f98 # v2
         with:
           install: true
           version: latest

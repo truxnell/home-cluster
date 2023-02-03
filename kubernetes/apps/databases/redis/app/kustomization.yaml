@@ -2,7 +2,16 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: databases
 resources:
-  - helmrelease.yaml
-metadata:
-  namespace: databases
+  - ./helmrelease.yaml
+configMapGenerator:
+  - name: redis-dashboard
+    files:
+      - redis-dashboard.json=https://grafana.com/api/dashboards/12776/revisions/2/download
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
+  labels:
+    grafana_dashboard: 'true'

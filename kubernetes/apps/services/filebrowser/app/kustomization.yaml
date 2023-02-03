@@ -6,6 +6,7 @@ namespace: services
 resources:
   - ./pvc.yaml
   - ./helmrelease.yaml
+  - ./volsync.yaml
 configMapGenerator:
   - name: filebrowser-config
     files:

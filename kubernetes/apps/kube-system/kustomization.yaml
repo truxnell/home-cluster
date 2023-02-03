@@ -6,6 +6,7 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
+  - ./snapshot-controller/ks.yaml
   - ./cilium/ks.yaml
   - ./descheduler/ks.yaml
   - ./intel-gpu-plugin/ks.yaml

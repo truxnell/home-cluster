@@ -4,12 +4,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: organizarrs
 resources:
-  - cronjob.yaml
-  - secret.sops.yaml
+  - ./helmrelease.yaml
 configMapGenerator:
   - name: recyclarr
     files:
-      - recyclarr.yml
+      - ./config/recyclarr.yml
 generatorOptions:
   disableNameSuffixHash: true
   annotations:

@@ -2,9 +2,9 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: organizarrs
 resources:
   - ./pvc.yaml
   - ./helmrelease.yaml
-  - ./secret.sops.yaml
-metadata:
-  namespace: organizarrs
+  - ./externalsecret.yaml
+  - ./volsync.yaml

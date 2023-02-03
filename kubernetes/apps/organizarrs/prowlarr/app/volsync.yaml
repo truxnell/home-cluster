@@ -1,0 +1,63 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/clustersecretstore_v1beta1.json
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterSecretStore
+metadata:
+  name: &name prowlarr-restic
+  namespace: organizarrs
+spec:
+  provider:
+    doppler:
+      project: restic-template
+      config: ${SECRET_CONFIG}
+      auth:
+        secretRef:
+          dopplerToken:
+            name: doppler-token-auth-api
+            key: dopplerToken
+            namespace: flux-system
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/externalsecret_v1beta1.json
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: &name prowlarr-restic
+  namespace: organizarrs
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: *name
+  target:
+    name: *name
+    template:
+      engineVersion: v2
+      data:
+        RESTIC_REPOSITORY: '{{ .REPOSITORY_TEMPLATE }}/prowlarr'
+        RESTIC_PASSWORD: '{{ .RESTIC_PASSWORD }}'
+        AWS_ACCESS_KEY_ID: '{{ .AWS_ACCESS_KEY_ID }}'
+        AWS_SECRET_ACCESS_KEY: '{{ .AWS_SECRET_ACCESS_KEY }}'
+  dataFrom:
+    - find:
+        name:
+          regexp: .*
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/replicationsource_v1alpha1.json
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: prowlarr
+  namespace: organizarrs
+spec:
+  sourcePVC: prowlarr-config-v1
+  trigger:
+    schedule: '17 0 * * *'
+  restic:
+    copyMethod: Snapshot
+    pruneIntervalDays: 10
+    repository: prowlarr-restic
+    cacheCapacity: 2Gi
+    volumeSnapshotClassName: csi-ceph-blockpool
+    storageClassName: ceph-block
+    retain:
+      daily: 10
+      within: 3d

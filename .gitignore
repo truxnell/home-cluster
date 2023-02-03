@@ -32,3 +32,6 @@ kubernetes/schemas
 
 # machineConfigs
 k8s/talos/**/machineConfigs
+
+hack/pystructure/venv
+hack/pystructure/pystructure.log

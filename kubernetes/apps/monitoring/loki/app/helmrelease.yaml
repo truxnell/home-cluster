@@ -35,7 +35,7 @@ spec:
           grpc_listen_port: 9095
 
         memberlist:
-          join_members: ["loki-memberlist"]
+          join_members: ['loki-memberlist']
 
         limits_config:
           retention_period: 14d
@@ -49,7 +49,7 @@ spec:
 
         schema_config:
           configs:
-            - from: "2021-08-01"
+            - from: '2021-08-01'
               store: boltdb-shipper
               object_store: s3
               schema: v11
@@ -112,9 +112,9 @@ spec:
                 topologyKey: kubernetes.io/hostname
       ingress:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         hosts:
-          - host: &host "loki.${EXTERNAL_DOMAIN}"
+          - host: &host 'loki.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -166,34 +166,39 @@ spec:
         size: 10Gi
         storageClass: ceph-block
     monitoring:
+      dashboards:
+        enabled: true
+        annotations:
+          kustomize.toolkit.fluxcd.io/substitute: disabled
+        labels:
+          grafana_dashboard: 'true'
+      rules:
+        enabled: true
       serviceMonitor:
         enabled: false
-        metricsInstance:
-          enabled: false
       selfMonitoring:
         enabled: false
-        grafanaAgent:
-          installOperator: false
         lokiCanary:
           enabled: false
+        grafanaAgent:
+          installOperator: false
     test:
       enabled: false
-
   valuesFrom:
     - kind: Secret
-      name: loki-secret
+      name: *app
       valuesKey: S3_BUCKET_NAME
       targetPath: loki.structuredConfig.common.storage.s3.bucketnames
     - kind: Secret
-      name: loki-secret
+      name: *app
       valuesKey: S3_BUCKET_HOST
       targetPath: loki.structuredConfig.common.storage.s3.endpoint
     - kind: Secret
-      name: loki-secret
+      name: *app
       valuesKey: S3_ACCESS_KEY
       targetPath: loki.structuredConfig.common.storage.s3.access_key_id
     - kind: Secret
-      name: loki-secret
+      name: *app
       valuesKey: S3_SECRET_KEY
       targetPath: loki.structuredConfig.common.storage.s3.secret_access_key
 

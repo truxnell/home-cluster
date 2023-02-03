@@ -7,7 +7,7 @@ metadata:
   labels:
     app: *app
 spec:
-  schedule: "30 17 * * *"
+  schedule: '30 17 * * *'
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
@@ -39,9 +39,9 @@ spec:
               volumeMounts:
                 - mountPath: /music
                   name: nas
-          restartPolicy: OnFailure
+          restartPolicy: Never
           volumes:
             - name: nas
               nfs:
-                server: "george.${INTERNAL_DOMAIN}"
+                server: 'george.${INTERNAL_DOMAIN}'
                 path: /tank/music/

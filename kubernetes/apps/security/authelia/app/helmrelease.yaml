@@ -22,9 +22,18 @@ spec:
     remediation:
       retries: 5
   values:
+    initContainers:
+      init-db:
+        image: ghcr.io/onedr0p/postgres-initdb:14.6
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: authelia
     controller:
       replicas: 3
       strategy: RollingUpdate
+      annotations:
+        reloader.stakater.com/auto: 'true'
     image:
       repository: ghcr.io/authelia/authelia
       tag: 4.37.5
@@ -43,9 +52,9 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: "true"
+          external-dns.home.arpa/enabled: 'true'
           nginx.ingress.kubernetes.io/configuration-snippet: |
             add_header Cache-Control "no-store";
             add_header Pragma "no-cache";
@@ -53,7 +62,7 @@ spec:
             add_header X-XSS-Protection "1; mode=block";
           hajimari.io/icon: mdi:shield-account
         hosts:
-          - host: &host "auth.${EXTERNAL_DOMAIN}"
+          - host: &host 'auth.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -64,7 +73,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
+      fsGroupChangePolicy: 'OnRootMismatch'
     persistence:
       config:
         enabled: true

@@ -5,8 +5,9 @@ kind: Kustomization
 namespace: security
 resources:
   - ./helmrelease.yaml
-  - ./secret.sops.yaml
   - ./pvc.yaml
+  - ./externalsecret.yaml
+  - ./volsync.yaml
 patchesStrategicMerge:
   - ./patches/env.yaml
   - ./patches/postgres.yaml

@@ -1,10 +1,12 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/scheduledbackup_v1.json
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
   name: postgres
   namespace: databases
 spec:
-  schedule: "@weekly"
+  schedule: '@weekly'
   immediate: true
   backupOwnerReference: self
   cluster:

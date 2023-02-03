@@ -5,8 +5,9 @@ kind: Kustomization
 namespace: services
 resources:
   - ./helmrelease.yaml
-  - ./secret.sops.yaml
   - ./pvc.yaml
+  - ./secret.sops.yaml
+  - ./volsync.yaml
 commonLabels:
   app.kubernetes.io/name: radicale
   app.kubernetes.io/instance: radicale

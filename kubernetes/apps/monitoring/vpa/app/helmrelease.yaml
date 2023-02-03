@@ -28,6 +28,9 @@ spec:
   timeout: 20m
   values:
     recommender:
+      image:
+        repository: k8s.gcr.io/autoscaling/vpa-recommender
+        tag: 0.12.0
       enabled: true
       requests:
         cpu: 15m

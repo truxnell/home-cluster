@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/cluster_v1.json
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
@@ -8,12 +9,13 @@ metadata:
     kyverno.io/ignore: 'true'
 spec:
   instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:15.1
   primaryUpdateStrategy: unsupervised
   storage:
     size: 20Gi
     storageClass: ceph-block
   superuserSecret:
-    name: postgres-superuser
+    name: cloudnative-pg
   monitoring:
     enablePodMonitor: false
   backup:
@@ -34,10 +36,10 @@ spec:
           key: MINIO_SECRET_KEY
   bootstrap:
     recovery:
-      source: postgres-v2
+      source: &prev-cluster postgres-v2
   # externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
-    - name: postgres-v2
+    - name: *prev-cluster
       barmanObjectStore:
         wal:
           compression: bzip2

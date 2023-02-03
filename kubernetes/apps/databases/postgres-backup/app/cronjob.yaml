@@ -31,12 +31,12 @@ spec:
                 - name: POSTGRES_USER
                   valueFrom:
                     secretKeyRef:
-                      name: postgres-superuser
+                      name: cloudnative-pg
                       key: username
                 - name: POSTGRES_PASSWORD
                   valueFrom:
                     secretKeyRef:
-                      name: postgres-superuser
+                      name: cloudnative-pg
                       key: password
                 - name: POSTGRES_DB
                   value: 'weather_station,vaultwarden,grafana,hass,miniflux,vikunja,pleroma-rebased,paperless,invidious'

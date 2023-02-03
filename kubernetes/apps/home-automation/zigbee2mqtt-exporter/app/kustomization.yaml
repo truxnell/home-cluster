@@ -3,7 +3,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - helmrelease.yaml
-  - prometheus.yaml
+  - ./prometheus.yaml
+  - ./helmrelease.yaml
 metadata:
   namespace: home-automation

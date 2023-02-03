@@ -23,15 +23,18 @@ spec:
     remediation:
       retries: 5
   values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: 'true'
     image:
       repository: ghcr.io/onedr0p/sonarr-develop
       tag: 4.0.0.362@sha256:d4e52af4fa1e0b31a8c7cb1244d31c85a382c7133402e2d5dc904b6852255d0d
     env:
-      TZ: "${TZ}"
-      PUSHOVER_DEBUG: "false"
-      PUSHOVER_APP_URL: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+      TZ: '${TZ}'
+      PUSHOVER_DEBUG: 'false'
+      PUSHOVER_APP_URL: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
       SONARR__INSTANCE_NAME: Sonarr
-      SONARR__APPLICATION_URL: "https://{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+      SONARR__APPLICATION_URL: 'https://{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
       SONARR__LOG_LEVEL: info
     envFrom:
       - secretRef:
@@ -44,7 +47,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
@@ -63,7 +66,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
+      fsGroupChangePolicy: 'OnRootMismatch'
       supplementalGroups:
         - 100
     persistence:
@@ -73,7 +76,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: &nas "george.${INTERNAL_DOMAIN}"
+        server: &nas 'george.${INTERNAL_DOMAIN}'
         path: /tank/
         mountPath: /media
       scripts:
@@ -90,9 +93,6 @@ spec:
         server: *nas
         path: /tank/backup/kubernetes/apps/sonarr
         mountPath: /config/Backups
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: sonarr-pushover
-      secret.reloader.stakater.com/reload: *app
     resources:
       requests:
         cpu: 10m
