@@ -61,7 +61,7 @@ spec:
         memory: 250Mi
       limits:
         memory: 2000Mi
-    additionalContainers:
+    sidecars:
       immich-server:
         name: immich-server
         image: ghcr.io/immich-app/immich-server:v1.44.0

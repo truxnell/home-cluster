@@ -20,26 +20,26 @@ spec:
     image:
       repository: docker.io/hkotel/mealie
       tag: frontend-v1.0.0beta-5
-    additionalContainers:
+    sidecars:
       api:
         name: mealie-api
         image: docker.io/hkotel/mealie:api-v1.0.0beta-5
         imagePullPolicy: IfNotPresent
         env:
           - name: API_PORT
-            value: '9000'
+            value: "9000"
           - name: TZ
             value: ${TZ}
           - name: DEFAULT_EMAIL
             value: admin@${EXTERNAL_DOMAIN}
           - name: BASE_URL
-            value: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+            value: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
           - name: TOKEN_TIME
             value: 720 # 24 hours * 30 days
           - name: AUTO_BACKUP_ENABLED
-            value: 'true'
+            value: "true"
           - name: ALLOW_SIGNUP
-            value: 'false'
+            value: "false"
           - name: SMTP_HOST
             value: smtp-relay.services.svc.cluster.local
           - name: SMTP_PORT
@@ -49,7 +49,7 @@ spec:
           - name: SMTP_FROM_NAME
             value: Mealie
           - name: SMTP_FROM_EMAIL
-            value: 'mealie@${EMAIL_DOMAIN}'
+            value: "mealie@${EMAIL_DOMAIN}"
         ports:
           - name: api
             containerPort: 9000
@@ -77,7 +77,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
           hajimari.io/icon: game-icons:meal
         hosts:
@@ -97,7 +97,7 @@ spec:
       backup:
         enabled: true
         type: nfs
-        server: 'george.${INTERNAL_DOMAIN}'
+        server: "george.${INTERNAL_DOMAIN}"
         path: /tank/backup/kubernetes/apps/mealie
         mountPath: /app/data/backups/
 # resources:
