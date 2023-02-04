@@ -49,4 +49,4 @@ spec:
   metrics:
     - type: TotalNumberOfQueuedAndInProgressWorkflowRuns
       repositoryNames:
-        - Truxnell/home-cluster
+        - Truxnell/container-image
