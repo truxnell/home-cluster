@@ -25,12 +25,12 @@ spec:
   values:
     image:
       repository: factoriotools/factorio
-      tag: stable@sha256:c339d19d12d01325f357a823acc56d89858c31b97e934722d797a12969b84b03
+      tag: stable@sha256:26a15050f15ff7bc8a7d08802a7f9c208808aade2eb481abd8713db49af6991f
     global:
       nameOverride: *app
     env:
-      TZ: "${TZ}"
-      UPDATE_MODS_ON_START: "false"
+      TZ: '${TZ}'
+      UPDATE_MODS_ON_START: 'false'
       PORT: &port 34203
       RCON_PORT: &rcon 27019
     initContainers:
@@ -38,8 +38,8 @@ spec:
         image: busybox
         imagePullPolicy: IfNotPresent
         command:
-          - "sh"
-          - "-c"
+          - 'sh'
+          - '-c'
           - |
             mkdir -p /factorio/config
             cp -vL /helmconfig/* /factorio/config/
@@ -54,7 +54,7 @@ spec:
       main:
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
         externalTrafficPolicy: Cluster
-        loadBalancerIP: "${LB_FACTORIO}"
+        loadBalancerIP: '${LB_FACTORIO}'
         annotations:
           metallb.universe.tf/allow-shared-ip: factorio
         ports:
@@ -81,8 +81,8 @@ spec:
         mountPath: /factorio
         existingClaim: factorio-seablock-config-v1
       helmconfig:
-        enabled: "true"
-        type: "secret"
+        enabled: 'true'
+        type: 'secret'
         name: *app
     startupProbe:
       enabled: true

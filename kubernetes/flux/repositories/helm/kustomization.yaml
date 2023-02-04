@@ -33,3 +33,4 @@ resources:
   - ./postfinance.yaml
   - ./backube-charts.yaml
   - ./piraeus.yaml
+  - ./enix-charts.yaml

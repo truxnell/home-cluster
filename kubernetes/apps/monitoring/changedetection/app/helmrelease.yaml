@@ -33,32 +33,32 @@ spec:
       PLAYWRIGHT_DRIVER_URL: ws://localhost:3000/?stealth=1&--disable-web-security=true&--user-data-dir=~/browserless-cache-123
       PUID: 1000
       PGID: 1000
-    additionalContainers:
+    sidecars:
       browser:
         name: browser
         image: docker.io/browserless/chrome:latest
         imagePullPolicy: Always
         env:
           - name: SCREEN_WIDTH
-            value: '1920'
+            value: "1920"
           - name: SCREEN_HEIGHT
-            value: '1024'
+            value: "1024"
           - name: SCREEN_DEPTH
-            value: '16'
+            value: "16"
           - name: ENABLE_DEBUGGER
-            value: 'false'
+            value: "false"
           - name: PREBOOT_CHROME
-            value: 'true'
+            value: "true"
           - name: CONNECTION_TIMEOUT
-            value: '300000'
+            value: "300000"
           - name: MAX_CONCURRENT_SESSIONS
-            value: '10'
+            value: "10"
           - name: CHROME_REFRESH_TIME
-            value: '600000'
+            value: "600000"
           - name: DEFAULT_BLOCK_ADS
-            value: 'true'
+            value: "true"
           - name: DEFAULT_STEALTH
-            value: 'true'
+            value: "true"
     ingress:
       main:
         enabled: true
@@ -66,7 +66,7 @@ spec:
         annotations:
           hajimari.io/icon: mdi:web-sync
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix

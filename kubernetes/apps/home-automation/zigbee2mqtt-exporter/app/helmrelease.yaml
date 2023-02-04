@@ -28,23 +28,23 @@ spec:
       tag: latest@sha256:9f394d0707090d8964406f1894bb5887f01af76db10fe9ebdf75bd95722ff742
     env:
       LOG_LEVEL: DEBUG
-      LOG_MQTT_MESSAGE: "True"
+      LOG_MQTT_MESSAGE: 'True'
       MQTT_ADDRESS: emqx.home-automation.svc.cluster.local
-      MQTT_TOPIC: "zigbee2mqtt/#"
-      MQTT_V5_PROTOCOL: "True"
+      MQTT_TOPIC: 'zigbee2mqtt/#'
+      MQTT_V5_PROTOCOL: 'True'
       MQTT_USERNAME:
         valueFrom:
           secretKeyRef:
-            name: emqx-config
-            key: user_1_username
+            name: emqx
+            key: USER_1_USERNAME
       MQTT_PASSWORD:
         valueFrom:
           secretKeyRef:
-            name: emqx-config
-            key: user_1_password
+            name: emqx
+            key: USER_1_PASSWORD
       PROMETHEUS_PORT: &port 80
       PROMETHEUS_PREFIX: zigbee2mqtt_
-      ZIGBEE2MQTT_AVAILABILITY: "True"
+      ZIGBEE2MQTT_AVAILABILITY: 'True'
     service:
       main:
         ports:

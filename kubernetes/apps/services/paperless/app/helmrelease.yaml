@@ -84,7 +84,7 @@ spec:
         type: nfs
         server: "george.${INTERNAL_DOMAIN}"
         path: /tank/documents/paperless/export
-    additionalContainers:
+    sidecars:
       redis:
         name: redis
         image: redis:7.0
