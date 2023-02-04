@@ -35,14 +35,14 @@ spec:
       - --dir
       - /books
       - --port
-      - &port 8080
+      - '8080'
       - --name
       - openbooks8675309
     service:
       main:
         ports:
           http:
-            port: *port
+            port: 8080
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 100
