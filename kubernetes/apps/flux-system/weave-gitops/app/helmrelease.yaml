@@ -45,7 +45,7 @@ spec:
         ingressClassName: 'nginx'
         annotations:
           probe.home.arpa/enabled: 'false'
-          hajimari.io/enable: 'false'
+          hajimari.io/icon: mdi:git
         hosts:
           - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
