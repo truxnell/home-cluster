@@ -47,7 +47,7 @@ tasks:
                   "command": [
                     "/bin/bash"
                   ],
-                  "stdin": true, e
+                  "stdin": true,
                   "stdinOnce": true,
                   "tty": true,
                   "volumeMounts": [
