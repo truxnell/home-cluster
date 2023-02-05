@@ -40,17 +40,16 @@ spec:
             - 'list'
             - 'patch'
     ingress:
-      main:
-        enabled: true
-        className: 'nginx'
-        annotations:
-          probe.home.arpa/enabled: 'false'
-        hajimari.io/icon: mdi:sawtooth-wave
-        hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
-            paths:
-              - path: /
-                pathType: Prefix
+      enabled: true
+      className: 'nginx'
+      annotations:
+        probe.home.arpa/enabled: 'false'
+      hajimari.io/icon: mdi:sawtooth-wave
+      hosts:
+        - host: &host 'weave-gitops.${EXTERNAL_DOMAIN}'
+          paths:
+            - path: /
+              pathType: Prefix
       tls:
         - hosts:
             - *host
