@@ -83,7 +83,7 @@ jobs:
 
       - name: Publish schemas as OCI
         run: |
-          flux push artifact oci://ghcr.io/onedr0p/kubernetes-schemas-oci:latest \
+          flux push artifact oci://ghcr.io/truxnell/kubernetes-schemas-oci:latest \
               --path="/home/runner/.datree/crdSchemas" \
               --source="${{ github.repositoryUrl }}" \
               --revision="main"
