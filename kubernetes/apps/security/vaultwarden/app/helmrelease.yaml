@@ -28,7 +28,7 @@ spec:
         imagePullPolicy: IfNotPresent
         envFrom:
           - secretRef:
-              name: authelia
+              name: vaultwarden
     controller:
       annotations:
         reloader.stakater.com/auto: 'true'
