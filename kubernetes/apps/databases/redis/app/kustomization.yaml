@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: databases
 resources:
   - ./helmrelease.yaml
+  - ./configmap.yaml
 configMapGenerator:
   - name: redis-dashboard
     files:
