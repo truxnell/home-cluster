@@ -23,6 +23,9 @@ spec:
     remediation:
       retries: 5
   values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: 'true'
     image:
       repository: factoriotools/factorio
       tag: stable@sha256:26a15050f15ff7bc8a7d08802a7f9c208808aade2eb481abd8713db49af6991f

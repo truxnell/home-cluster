@@ -23,13 +23,16 @@ spec:
     remediation:
       retries: 5
   values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: 'true'
     image:
       repository: factoriotools/factorio
       tag: stable@sha256:26a15050f15ff7bc8a7d08802a7f9c208808aade2eb481abd8713db49af6991f
     global:
       nameOverride: *app
     env:
-      TZ: "${TZ}"
+      TZ: '${TZ}'
       PORT: &port 34197
       RCON_PORT: &rcon 27015
     initContainers:
@@ -37,8 +40,8 @@ spec:
         image: busybox
         imagePullPolicy: IfNotPresent
         command:
-          - "sh"
-          - "-c"
+          - 'sh'
+          - '-c'
           - |
             mkdir -p /factorio/config
             cp -vL /helmconfig/* /factorio/config/
@@ -53,7 +56,7 @@ spec:
       main:
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
         externalTrafficPolicy: Cluster
-        loadBalancerIP: "${LB_FACTORIO}"
+        loadBalancerIP: '${LB_FACTORIO}'
         annotations:
           metallb.universe.tf/allow-shared-ip: factorio
         ports:
@@ -80,8 +83,8 @@ spec:
         mountPath: /factorio
         existingClaim: factorio-ribbonworld-config-v1
       helmconfig:
-        enabled: "true"
-        type: "secret"
+        enabled: 'true'
+        type: 'secret'
         name: *app
     startupProbe:
       enabled: true
