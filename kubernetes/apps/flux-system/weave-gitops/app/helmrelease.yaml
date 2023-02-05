@@ -53,6 +53,6 @@ spec:
                 pathType: Prefix
   valuesFrom:
     - kind: Secret
-      name: weave-gitops-secrets
+      name: *app
       valuesKey: ADMIN_PASSWORDHASH
       targetPath: adminUser.passwordHash
