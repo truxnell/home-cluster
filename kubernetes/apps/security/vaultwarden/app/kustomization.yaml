@@ -8,8 +8,3 @@ resources:
   - ./pvc.yaml
   - ./externalsecret.yaml
   - ./volsync.yaml
-patchesStrategicMerge:
-  - ./patches/env.yaml
-  - ./patches/postgres.yaml
-metadata:
-  namespace: security
