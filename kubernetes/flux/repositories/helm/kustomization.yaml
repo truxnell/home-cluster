@@ -34,3 +34,4 @@ resources:
   - ./backube-charts.yaml
   - ./piraeus.yaml
   - ./enix-charts.yaml
+  - ./weave-gitops.yaml
