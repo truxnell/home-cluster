@@ -35,10 +35,12 @@ jobs:
         run: |
           sudo apt update
           sudo apt-get install -y qemu qemu-user-static
+
       - name: Set up Docker Context for Buildx
         id: buildx-context
         run: |
           docker context create builder
+          docker buildx create builder
 
       - name: Setup Docker Buildx
         id: buildx
