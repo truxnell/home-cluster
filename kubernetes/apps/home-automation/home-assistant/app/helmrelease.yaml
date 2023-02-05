@@ -23,11 +23,18 @@ spec:
     remediation:
       retries: 5
   values:
+    initContainers:
+      init-db:
+        image: ghcr.io/onedr0p/postgres-initdb:14.6
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: authelia
     image:
       repository: ghcr.io/onedr0p/home-assistant
       tag: 2023.2.2@sha256:e76aa476dd1d6394020d319bcd7fbfc8d540bde23a7e763b0927127c7f9b7900
     env:
-      TZ: "${TZ}"
+      TZ: '${TZ}'
     envFrom:
       - secretRef:
           name: *app
@@ -39,12 +46,12 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: "true"
+          external-dns.home.arpa/enabled: 'true'
           hajimari.io/icon: mdi:home-assistant
         hosts:
-          - host: &host "hass.${EXTERNAL_DOMAIN}"
+          - host: &host 'hass.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -55,7 +62,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
+      fsGroupChangePolicy: 'OnRootMismatch'
     persistence:
       config:
         enabled: true
@@ -67,23 +74,23 @@ spec:
           repository: ghcr.io/coder/code-server
           tag: 4.9.1
         env:
-          TZ: "${TZ}"
-        workingDir: "/config"
+          TZ: '${TZ}'
+        workingDir: '/config'
         args:
           - --auth
-          - "none"
+          - 'none'
           - --user-data-dir
-          - "/config/.vscode"
+          - '/config/.vscode'
           - --extensions-dir
-          - "/config/.vscode"
+          - '/config/.vscode'
         ingress:
           enabled: true
-          ingressClassName: "nginx"
+          ingressClassName: 'nginx'
           annotations:
-            hajimari.io/appName: "Hass Config"
+            hajimari.io/appName: 'Hass Config'
             hajimari.io/icon: cib:visual-studio-code
           hosts:
-            - host: &host "hass-code.${EXTERNAL_DOMAIN}"
+            - host: &host 'hass-code.${EXTERNAL_DOMAIN}'
               paths:
                 - path: /
                   pathType: Prefix

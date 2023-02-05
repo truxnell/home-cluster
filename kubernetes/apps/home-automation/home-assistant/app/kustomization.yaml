@@ -5,9 +5,5 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./pvc.yaml
-  - ./secret.sops.yaml
+  - ./externalsecret.yaml
   - ./volsync.yaml
-patchesStrategicMerge:
-  - patches/postgres.yaml
-metadata:
-  namespace: home-automation
