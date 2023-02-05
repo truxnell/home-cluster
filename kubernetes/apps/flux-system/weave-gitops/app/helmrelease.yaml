@@ -42,15 +42,18 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        className: 'nginx'
         annotations:
           probe.home.arpa/enabled: 'false'
-          hajimari.io/icon: mdi:git
+        hajimari.io/icon: mdi:sawtooth-wave
         hosts:
           - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
+      tls:
+        - hosts:
+            - *host
   valuesFrom:
     - kind: Secret
       name: *app
