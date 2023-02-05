@@ -246,6 +246,7 @@ spec:
       - farski-blendstat-panel
       - speakyourcode-button-panel
       - snuids-trafficlights-panel
+      - redis-datasource
 
     serviceMonitor:
       enabled: true
