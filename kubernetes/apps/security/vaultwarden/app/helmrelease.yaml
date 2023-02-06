@@ -38,8 +38,6 @@ spec:
     # controller:
     #   replicas: 3
     #   strategy: RollingUpdate
-    env:
-      HASS_IP: ${LB_HOMEASSISTANT}
     envFrom:
       - secretRef:
           name: *app
