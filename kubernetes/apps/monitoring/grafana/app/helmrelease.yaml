@@ -164,13 +164,13 @@ spec:
           revision: 8
           datasource: Prometheus
         flux-cluster:
-          url: https://raw.githubusercontent.com/fluxcd/flux2/v0.38.3/manifests/monitoring/monitoring-config/dashboards/cluster.json
+          url: https://raw.githubusercontent.com/fluxcd/flux2/v0.39.0/manifests/monitoring/monitoring-config/dashboards/cluster.json
           datasource: Prometheus
         flux-control-plane:
-          url: https://raw.githubusercontent.com/fluxcd/flux2/v0.38.3/manifests/monitoring/monitoring-config/dashboards/control-plane.json
+          url: https://raw.githubusercontent.com/fluxcd/flux2/v0.39.0/manifests/monitoring/monitoring-config/dashboards/control-plane.json
           datasource: Prometheus
         flux-logs:
-          url: https://raw.githubusercontent.com/fluxcd/flux2/v0.38.3/manifests/monitoring/monitoring-config/dashboards/logs.json
+          url: https://raw.githubusercontent.com/fluxcd/flux2/v0.39.0/manifests/monitoring/monitoring-config/dashboards/logs.json
           datasource: Prometheus
         cilium-dashboard:
           url: https://raw.githubusercontent.com/cilium/cilium/v1.12.6/examples/kubernetes/addons/prometheus/files/grafana-dashboards/cilium-dashboard.json
