@@ -30,7 +30,7 @@ spec:
 
     image:
       repository: registry.gitlab.com/soapbox-pub/soapbox
-      tag: latest@sha256:cc5fcf6fded4be022cd76e6108c23b0ba6a2e07880b60a27cf03fcee3b52c7e7
+      tag: latest
 
     env:
       BACKEND_URL: http://pleroma-rebased.services.svc.cluster.local:5000
