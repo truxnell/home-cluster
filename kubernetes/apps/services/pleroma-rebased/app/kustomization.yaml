@@ -6,6 +6,7 @@ resources:
   - ./pvc.yaml
   - ./helmrelease.yaml
   - ./volsync.yaml
+  - ./externalsecret.yaml
 configMapGenerator:
   - name: pleroma-rebased-config
     files:
