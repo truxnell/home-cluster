@@ -29,10 +29,10 @@ spec:
       serverName: postgres-v3
       s3Credentials:
         accessKeyId:
-          name: postgres-minio
+          name: cloudnative-pg
           key: MINIO_ACCESS_KEY
         secretAccessKey:
-          name: postgres-minio
+          name: cloudnative-pg
           key: MINIO_SECRET_KEY
   bootstrap:
     recovery:
@@ -48,8 +48,8 @@ spec:
         endpointURL: https://s3.${EXTERNAL_DOMAIN}
         s3Credentials:
           accessKeyId:
-            name: postgres-minio
+            name: cloudnative-pg
             key: MINIO_ACCESS_KEY
           secretAccessKey:
-            name: postgres-minio
+            name: cloudnative-pg
             key: MINIO_SECRET_KEY
