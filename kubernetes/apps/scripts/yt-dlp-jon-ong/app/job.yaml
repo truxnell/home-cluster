@@ -14,6 +14,7 @@ spec:
         - name: *app
           image: ghcr.io/truxnell/yt-dlp:2023.01.06@sha256:adb4e7b0ce08d0cedb00627b4cc1e26d9e485cdb6c7b22e6d353ecb46ac61137
           imagePullPolicy: IfNotPresent
+          command: ['/usr/local/bin/yt-dlp']
           args:
             - -f
             - ba
