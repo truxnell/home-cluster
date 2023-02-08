@@ -21,7 +21,7 @@ spec:
       repository: ghcr.io/angelnu/pod-gateway
       tag: v1.8.1@sha256:690b6365728fe9012ad4cdfca38334992664596513dca187d1b93d2025205776
     DNS: 172.16.1.1
-    sidecars:
+    additionalContainers:
       gluetun:
         image: qmcgaw/gluetun:v3.32.0@sha256:70e2b9fe66941d6de31419c3207b525293f2e6a92a3788869bb337a17e0e5ec8
         env:
@@ -30,11 +30,11 @@ spec:
           - name: VPN_INTERFACE
             value: wg0
           - name: FIREWALL
-            value: "off"
+            value: 'off'
           - name: DOT
-            value: "off"
+            value: 'off'
           - name: HEALTH_TARGET_ADDRESS
-            value: "1.1.1.1"
+            value: '1.1.1.1'
           - name: HEALTH_VPN_DURATION_INITIAL
             value: 30s
         envFrom:
@@ -67,7 +67,7 @@ spec:
       VPN_BLOCK_OTHER_TRAFFIC: true
       VPN_INTERFACE: wg0
       VPN_LOCAL_CIDRS: 10.0.0.0/8 192.168.0.0/16
-      VPN_TRAFFIC_PORT: "51820"
+      VPN_TRAFFIC_PORT: '51820'
       VXLAN_ID: 43
       VXLAN_IP_NETWORK: 172.16.1
     webhook:
