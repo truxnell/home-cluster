@@ -10,6 +10,6 @@ resources:
   # - ./factorio-deathworld/ks.yaml
   # - ./factorio-k2/ks.yaml
   # - ./factorio-ribbonworld/ks.yaml
-  - ./factorio-seablock/ks.yaml
+  - ./factorio/ks.yaml
   # - ./foundryvtt/ks.yaml # TODO: Disabled by WIP file
   # - ./satisfactory/ks.yaml

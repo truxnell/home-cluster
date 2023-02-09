@@ -8,3 +8,4 @@ resources:
   - ./pvc.yaml
   - ./externalsecret.yaml
   - ./volsync.yaml
+  - ./cronjob.yaml
