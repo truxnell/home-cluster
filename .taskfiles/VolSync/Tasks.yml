@@ -111,10 +111,10 @@ tasks:
     internal: true
     cmds:
       - envsubst < <(cat {{.wipeJobTemplate}}) | kubectl apply -f -
-      - bash {{.waitForJobScript}} wipe-{{.rsrc}}-{{.claim}}-{{.ts}} {{.namespace}}
-      - kubectl -n {{.namespace}} wait job/wipe-{{.rsrc}}-{{.claim}}-{{.ts}} --for condition=complete --timeout=120m
-      - kubectl -n {{.namespace}} logs job/wipe-{{.rsrc}}-{{.claim}}-{{.ts}} --container wipe
-      - kubectl -n {{.namespace}} delete job wipe-{{.rsrc}}-{{.claim}}-{{.ts}}
+      - bash {{.waitForJobScript}} wipe-{{.claim}}-{{.ts}} {{.namespace}}
+      - kubectl -n {{.namespace}} wait job/wipe-{{.claim}}-{{.ts}} --for condition=complete --timeout=120m
+      - kubectl -n {{.namespace}} logs job/wipe-{{.claim}}-{{.ts}} --container wipe
+      - kubectl -n {{.namespace}} delete job wipe-{{.claim}}-{{.ts}}
     env: *task-vars
 
   # Create VolSync replicationdestination CR to restore data
@@ -122,9 +122,9 @@ tasks:
     internal: true
     cmds:
       - envsubst < <(cat {{.destinationTemplate}}) | kubectl apply -f -
-      - bash {{.waitForJobScript}} volsync-dst-{{.rsrc}}-{{.claim}}-{{.ts}} {{.namespace}}
-      - kubectl -n {{.namespace}} wait job/volsync-dst-{{.rsrc}}-{{.claim}}-{{.ts}} --for condition=complete --timeout=120m
-      - kubectl -n {{.namespace}} delete replicationdestination {{.rsrc}}-{{.claim}}-{{.ts}}
+      - bash {{.waitForJobScript}} volsync-dst-{{.claim}}-{{.ts}} {{.namespace}}
+      - kubectl -n {{.namespace}} wait job/volsync-dst-{{.claim}}-{{.ts}} --for condition=complete --timeout=120m
+      - kubectl -n {{.namespace}} delete replicationdestination {{.claim}}-{{.ts}}
     env: *task-vars
 
   # Resume Flux ks and hr

@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 'list-${rsrc}-${ts}'
+  name: 'list-${ts}'
   namespace: '${namespace}'
 spec:
   ttlSecondsAfterFinished: 3600
