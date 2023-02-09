@@ -33,7 +33,7 @@ spec:
       main:
         ports:
           http:
-            port: 8080
+            port: 80
     ingress:
       main:
         enabled: true
@@ -61,4 +61,4 @@ spec:
         cpu: 5m
         memory: 10Mi
       limits:
-        memory: 100Mi
+        memory: 50Mi
