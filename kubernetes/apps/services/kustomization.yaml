@@ -12,7 +12,6 @@ resources:
   - ./hajimari/ks.yaml
   - ./immich/ks.yaml
   - ./invidious-server/ks.yaml
-  - ./kopia/ks.yaml
   - ./language-tools/ks.yaml
   - ./libreddit/ks.yaml
   - ./mealie/ks.yaml
