@@ -5,6 +5,4 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./networkpolicy.yaml
-  - ./secret.sops.yaml
-metadata:
-  namespace: vpn
+  - ./externalsecret.yaml
