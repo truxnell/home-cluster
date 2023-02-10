@@ -29,7 +29,7 @@ spec:
     fullNameOverride: *app
     image:
       repository: ghcr.io/auricom/libreddit
-      tag: 0.29.0@sha256:86c2428c4a778dcc05157a997439489278dbfef8d34d5b0b4b2a4d32a21a6612
+      tag: 0.29.1@sha256:2b57146b93195e8df551a7698c260a6f039d54d21aeac06007d8ed288bd8648d
     env:
       LIBREDDIT_DEFAULT_SHOW_NSFW: true
       LIBREDDIT_DEFAULT_WIDE: true
