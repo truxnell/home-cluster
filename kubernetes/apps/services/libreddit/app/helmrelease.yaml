@@ -41,13 +41,13 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: "true"
-          auth.home.arpa/enabled: "true"
+          external-dns.home.arpa/enabled: 'true'
+          auth.home.arpa/enabled: 'true'
           hajimari.io/icon: simple-icons:reddit
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
@@ -61,6 +61,8 @@ spec:
         labelSelector:
           matchLabels:
             app.kubernetes.io/name: *app
+    podAnnotations:
+      setGateway: 'true'
     probes:
       liveness: &probes
         enabled: true

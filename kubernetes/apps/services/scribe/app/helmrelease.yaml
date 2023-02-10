@@ -60,6 +60,8 @@ spec:
         tls:
           - hosts:
               - *host
+    podAnnotations:
+      setGateway: 'true'
     topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
