@@ -12,7 +12,7 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
-      version: 44.4.1
+      version: 44.4.0
       sourceRef:
         kind: HelmRepository
         name: prometheus-community-charts
@@ -465,10 +465,10 @@ spec:
           hajimari.io/appName: 'Alert Manager'
           hajimari.io/icon: mdi:alert-decagram-outline
         hosts:
-          - &host alertmanager.${EXTERNAL_DOMAIN}
+          - &host-am alertmanager.${EXTERNAL_DOMAIN}
         tls:
           - hosts:
-              - *host
+              - *host-am
       alertmanagerSpec:
         replicas: 3
         podAntiAffinity: hard
@@ -479,16 +479,3 @@ spec:
               resources:
                 requests:
                   storage: 1Gi
-      resources:
-        requests:
-          cpu: 10m
-          memory: 50M
-        limits:
-          memory: 99M
-
-  valuesFrom:
-    - kind: Secret
-      name: kube-prometheus-stack
-      valuesKey: discord-webhook
-      targetPath: alertmanager.config.global.slack_api_url
-      optional: false
