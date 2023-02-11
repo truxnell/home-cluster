@@ -28,7 +28,7 @@ spec:
         reloader.stakater.com/auto: 'true'
     image:
       repository: youegraillot/lidarr-on-steroids
-      tag: 1.2.7
+      tag: 1.2.8
     env:
       TZ: '${TZ}'
       AUTOCONFIG: true
