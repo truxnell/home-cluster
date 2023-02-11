@@ -26,7 +26,7 @@ spec:
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
   values:
-    existingObjstoreSecret: &secret thanos-objstore-secret
+    existingObjstoreSecret: &secret thanos
 
     query:
       enabled: true
