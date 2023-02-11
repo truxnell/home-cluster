@@ -23,11 +23,18 @@ spec:
     remediation:
       retries: 5
   values:
+    extraInitContainers:
+      - name: init-db
+        image: ghcr.io/onedr0p/postgres-initdb:14.6
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: *app
+    replicas: 2
     annotations:
       configmap.reloader.stakater.com/reload: *app
-    replicas: 3
     admin:
-      existingSecret: grafana-admin
+      existingSecret: *app
     rbac:
       pspEnabled: false
     testFramework:
