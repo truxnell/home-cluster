@@ -29,7 +29,7 @@ spec:
         imagePullPolicy: IfNotPresent
         envFrom:
           - secretRef:
-              name: *app
+              name: grafana-secret
     replicas: 2
     annotations:
       configmap.reloader.stakater.com/reload: *app
@@ -40,7 +40,7 @@ spec:
     testFramework:
       enabled: false
     envFromSecrets:
-      - name: *app
+      - name: grafana-secret
     grafana.ini:
       auth:
         signout_redirect_url: 'https://auth.${EXTERNAL_DOMAIN}/logout'
