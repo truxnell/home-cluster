@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: scripts
 resources:
   - ./cronjob.yaml
-  - ./secret.sops.yaml
+  - ./externalsecret.yaml
 configMapGenerator:
   - name: mailbackup
     files:

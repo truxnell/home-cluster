@@ -7,7 +7,7 @@ metadata:
   labels:
     app: mailbackup
 spec:
-  schedule: "30 17 * * *"
+  schedule: '30 17 * * *'
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
@@ -22,7 +22,7 @@ spec:
               image: ghcr.io/k8s-at-home/getmail:v6.18.10@sha256:524c5c17d4a0b5108eaa2d5a0984470e1aef64073f762cc9520e035ddeff7c19
               imagePullPolicy: IfNotPresent
               command:
-                - "/scripts/mailbackup.sh"
+                - '/scripts/mailbackup.sh'
               volumeMounts:
                 - name: mailbackup-script
                   mountPath: /scripts/mailbackup.sh
@@ -40,7 +40,7 @@ spec:
                 defaultMode: 0775
                 sources:
                   - configMap:
-                      name: mailbackup
+                      name: MAILBACKUP
                       items:
                         - key: mailbackup.sh
                           path: mailbackup.sh
@@ -49,5 +49,5 @@ spec:
                 secretName: mailbackup
             - name: mailbackup
               nfs:
-                server: "george.${INTERNAL_DOMAIN}"
+                server: 'george.${INTERNAL_DOMAIN}'
                 path: /tank/backup/mail/
