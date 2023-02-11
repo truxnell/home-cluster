@@ -40,7 +40,7 @@ spec:
                 defaultMode: 0775
                 sources:
                   - configMap:
-                      name: MAILBACKUP
+                      name: mailbackup
                       items:
                         - key: mailbackup.sh
                           path: mailbackup.sh
