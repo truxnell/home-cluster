@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./service-monitor.yaml
-  - ./secret.sops.yaml
+  - ./externalsecret.yaml
 namespace: services
 configMapGenerator:
   - name: smtp-relay
