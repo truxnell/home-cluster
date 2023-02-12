@@ -6,7 +6,7 @@ namespace: services
 resources:
   - ./helmrelease.yaml
   - ./pvc.yaml
-  - ./secret.sops.yaml
+  - ./externalsecret.yaml
   - ./volsync.yaml
 metadata:
   namespace: services
