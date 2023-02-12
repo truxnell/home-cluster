@@ -25,10 +25,6 @@ spec:
         metadata:
           name: not-used
         spec:
-          decryption:
-            provider: sops
-            secretRef:
-              name: sops-age
           postBuild:
             substituteFrom:
               - kind: ConfigMap
@@ -36,4 +32,7 @@ spec:
               - kind: Secret
                 name: cluster-secrets
       target:
-        labelSelector: substitution.flux.home.arpa/enabled=true
+        group: kustomize.toolkit.fluxcd.io
+        version: v1beta2
+        kind: Kustomization
+        labelSelector: substitution.flux.home.arpa/disabled notin (true)
