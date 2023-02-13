@@ -2,7 +2,7 @@
 version: '3'
 
 vars:
-  ANSIBLE_DIR: '{{.ROOT_DIR}}/ansible'
+  ANSIBLE_DIR: '{{.ROOT_DIR}}/infrastructure/ansible'
   CLUSTER_DIR: '{{.ROOT_DIR}}/kubernetes'
   PROJECT_DIR: '{{.ROOT_DIR}}'
 
