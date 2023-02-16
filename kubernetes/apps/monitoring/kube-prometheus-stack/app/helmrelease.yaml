@@ -206,7 +206,7 @@ spec:
           # renovate: datasource=docker depName=quay.io/thanos/thanos
           version: v0.28.0
           objectStorageConfig:
-            name: &secret thanos-objstore-secret
+            name: &secret thanos
             key: objstore.yml
         podAnnotations:
           secret.reloader.stakater.com/reload: *secret
