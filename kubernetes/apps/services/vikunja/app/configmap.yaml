@@ -20,22 +20,22 @@ data:
       # to <frontend-url>/auth/openid/<auth key>. Please make sure to configure the redirect url with your third party
       # auth service accordingly if you're using the default Vikunja frontend.
       # Take a look at the [default config file](https://kolaente.dev/vikunja/api/src/branch/main/config.yml.sample) for more information about how to configure openid authentication.
-      openid:
-        # Enable or disable OpenID Connect authentication
-        enabled: true
-        # The url to redirect clients to. Defaults to the configured frontend url. If you're using Vikunja with the official
-        # frontend, you don't need to change this value.
-        redirecturl: https://tasks.${EXTERNAL_DOMAIN}/auth/openid/
-        # A list of enabled providers
-        providers:
-          # The name of the provider as it will appear in the frontend.
-          - name: authelia
-            # The auth url to send users to if they want to authenticate using OpenID Connect.
-            authurl: https://auth.${EXTERNAL_DOMAIN}
-            # The client ID used to authenticate Vikunja at the OpenID Connect provider.
-            clientid: vikunja
-            # The client secret used to authenticate Vikunja at the OpenID Connect provider.
-            clientsecret: ${VIKUNJA_OAUTH_CLIENT_SECRET}
+      # openid:
+      #   # Enable or disable OpenID Connect authentication
+      #   enabled: true
+      #   # The url to redirect clients to. Defaults to the configured frontend url. If you're using Vikunja with the official
+      #   # frontend, you don't need to change this value.
+      #   redirecturl: https://tasks.${EXTERNAL_DOMAIN}/auth/openid/
+      #   # A list of enabled providers
+      #   providers:
+      #     # The name of the provider as it will appear in the frontend.
+      #     - name: authelia
+      #       # The auth url to send users to if they want to authenticate using OpenID Connect.
+      #       authurl: https://auth.${EXTERNAL_DOMAIN}
+      #       # The client ID used to authenticate Vikunja at the OpenID Connect provider.
+      #       clientid: vikunja
+      #       # The client secret used to authenticate Vikunja at the OpenID Connect provider.
+      #       clientsecret: ${VIKUNJA_OAUTH_CLIENT_SECRET}
   Caddyfile: |-
     {
       admin off
