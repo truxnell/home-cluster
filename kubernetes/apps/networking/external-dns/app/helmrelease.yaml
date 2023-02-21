@@ -33,17 +33,17 @@ spec:
         valueFrom:
           secretKeyRef:
             name: external-dns
-            key: cloudflare_api_token
+            key: API_TOKEN
     extraArgs:
       - --cloudflare-proxied
       - --annotation-filter=external-dns.home.arpa/enabled in (true)
     policy: sync
     sources:
       - ingress
-    txtPrefix: "k8s."
+    txtPrefix: 'k8s.'
     domainFilters:
-      - "${EXTERNAL_DOMAIN}"
-      - "${WEBSITE_DOMAIN}"
+      - '${EXTERNAL_DOMAIN}'
+      - '${WEBSITE_DOMAIN}'
     serviceMonitor:
       enabled: true
     resources:
