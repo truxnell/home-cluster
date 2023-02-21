@@ -33,7 +33,7 @@ spec:
         valueFrom:
           secretKeyRef:
             name: external-dns
-            key: API_TOKEN
+            key: CLOUDFLARE_API_TOKEN
     extraArgs:
       - --cloudflare-proxied
       - --annotation-filter=external-dns.home.arpa/enabled in (true)
