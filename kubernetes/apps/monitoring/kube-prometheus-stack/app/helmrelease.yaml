@@ -194,7 +194,7 @@ spec:
               storageClassName: ceph-block
               resources:
                 requests:
-                  storage: 10Gi
+                  storage: 20Gi
         resources:
           requests:
             cpu: 350m
@@ -261,13 +261,13 @@ spec:
             static_configs:
               - targets:
                   - 'prusa.${INTERNAL_DOMAIN}:5000'
-          - job_name: coredns
-            scrape_interval: 1m
-            scrape_timeout: 10s
-            honor_timestamps: true
-            static_configs:
-              - targets:
-                  - '10.8.5.2:9153'
+          #  - job_name: coredns
+          #    scrape_interval: 1m
+          #    scrape_timeout: 10s
+          #    honor_timestamps: true
+          #    static_configs:
+          #      - targets:
+          #          - '10.8.5.2:9153'
           - job_name: 'kubernetes-ingresses-http-2xx'
             metrics_path: /probe
             scrape_interval: 2m
