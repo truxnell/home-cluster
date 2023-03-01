@@ -142,7 +142,7 @@ spec:
             value: localhost
       immich-redis:
         name: immich-redis
-        image: public.ecr.aws/docker/library/redis:7.0.8
+        image: public.ecr.aws/docker/library/redis:7.0.9
         env:
           - name: NODE_ENV
             value: "production"
