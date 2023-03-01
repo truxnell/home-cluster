@@ -9,47 +9,17 @@ metadata:
     kyverno.io/ignore: 'true'
 spec:
   instances: 3
+
   imageName: ghcr.io/cloudnative-pg/postgresql:15.1
+
   primaryUpdateStrategy: unsupervised
+
   storage:
-    size: 20Gi
+    size: 50Gi
     storageClass: ceph-block
+
   superuserSecret:
     name: cloudnative-pg
+
   monitoring:
     enablePodMonitor: false
-  backup:
-    retentionPolicy: 30d
-    barmanObjectStore:
-      wal:
-        compression: bzip2
-        maxParallel: 8
-      destinationPath: s3://postgresql/
-      endpointURL: https://s3.${EXTERNAL_DOMAIN}
-      serverName: postgres-v4
-      s3Credentials:
-        accessKeyId:
-          name: cloudnative-pg
-          key: MINIO_ACCESS_KEY
-        secretAccessKey:
-          name: cloudnative-pg
-          key: MINIO_SECRET_KEY
-  bootstrap:
-    recovery:
-      source: &prev-cluster postgres-v3
-  # externalClusters is needed when recovering from an existing cnpg cluster
-  externalClusters:
-    - name: *prev-cluster
-      barmanObjectStore:
-        wal:
-          compression: bzip2
-          maxParallel: 8
-        destinationPath: s3://postgresql/
-        endpointURL: https://s3.${EXTERNAL_DOMAIN}
-        s3Credentials:
-          accessKeyId:
-            name: cloudnative-pg
-            key: MINIO_ACCESS_KEY
-          secretAccessKey:
-            name: cloudnative-pg
-            key: MINIO_SECRET_KEY
