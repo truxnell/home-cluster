@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: postgres
+  name: postgres-v4
   namespace: databases
   annotations:
     kyverno.io/ignore: 'true'
@@ -36,7 +36,7 @@ spec:
           key: MINIO_SECRET_KEY
   bootstrap:
     recovery:
-      source: &prev-cluster postgres-v2
+      source: &prev-cluster postgres-v3
   # externalClusters is needed when recovering from an existing cnpg cluster
   externalClusters:
     - name: *prev-cluster
