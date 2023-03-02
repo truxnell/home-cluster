@@ -1,0 +1,14 @@
+---
+version: '3'
+
+tasks:
+  restore:
+    desc: Bootstrap a new cluster
+    cmds:
+      - cmd: doppler run -p cloudnative-pg -c prd  -- dropdb -h {{.POSTGRES_IP}} -U postgres {{ .db }}
+        ignore_error: true
+      - doppler run -p cloudnative-pg -c prd  -- createdb -h {{.POSTGRES_IP}} -U postgres {{ .db }}
+      - doppler run -p cloudnative-pg -c prd  -- psql -h {{.POSTGRES_IP}} -U postgres {{ .db }} < {{ .backup_path }}/{{ .db }}-latest.sql
+    vars:
+      db: '{{ or .db (fail "database `db` is required") }}'
+      backup_path: /mnt/george/backup/kubernetes/apps/postgres/last/
