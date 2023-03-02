@@ -2,8 +2,17 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: default
 resources:
   - ./externalsecret.yaml
-  - ./helmrelease.yaml
-metadata:
-  namespace: services
+  - ./configmap.yaml
+  - ./nfs-pvc.yaml
+  - ./server
+  - ./microservices
+  - ./machine-learning
+  - ./web
+labels:
+  - pairs:
+      app.kubernetes.io/name: immich
+      app.kubernetes.io/instance: immich
+      app.kubernetes.io/part-of: immich
