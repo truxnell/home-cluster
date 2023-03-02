@@ -40,7 +40,7 @@ metadata:
   name: cluster-apps-immich-redis
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/services/immich/app
+  path: ./kubernetes/apps/services/immich/redis
   prune: true
   sourceRef:
     kind: GitRepository
