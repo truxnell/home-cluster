@@ -14,7 +14,6 @@ resources:
   - ./invidious-server/ks.yaml
   - ./language-tools/ks.yaml
   - ./libreddit/ks.yaml
-  - ./mealie/ks.yaml
   - ./miniflux/ks.yaml
   - ./nitter/ks.yaml
   - ./paperless/ks.yaml
