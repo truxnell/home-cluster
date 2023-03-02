@@ -5,6 +5,8 @@ vars:
   ANSIBLE_DIR: '{{.ROOT_DIR}}/infrastructure/ansible'
   CLUSTER_DIR: '{{.ROOT_DIR}}/kubernetes'
   PROJECT_DIR: '{{.ROOT_DIR}}'
+  POSTGRES_IP: '10.8.20.216'
+
 
 env:
   KUBECONFIG: '{{.ANSIBLE_DIR}}/kubernetes/kubeconfig'
@@ -20,6 +22,7 @@ includes:
   ro: .taskfiles/Rook/Tasks.yaml
   ta: .taskfiles/Talos/Tasks.yml
   vs: .taskfiles/VolSync/Tasks.yml
+  pg: .taskfiles/Postgres/Tasks.yml
 
 tasks:
   default:
