@@ -59,7 +59,7 @@ spec:
         enabled: true
         type: secret
         name: *app
-        subPath: users
+        subPath: USERS
         mountPath: /config/users
         readOnly: true
     resources:
