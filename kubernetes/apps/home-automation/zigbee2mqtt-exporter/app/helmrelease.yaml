@@ -25,7 +25,7 @@ spec:
   values:
     image:
       repository: docker.io/kpetrem/mqtt-exporter
-      tag: latest@sha256:9f394d0707090d8964406f1894bb5887f01af76db10fe9ebdf75bd95722ff742
+      tag: latest@sha256:da5cf891c6070f02a69fb15cffe145439b563a61631c041a70f80f7cd702a916
     env:
       LOG_LEVEL: DEBUG
       LOG_MQTT_MESSAGE: 'True'
