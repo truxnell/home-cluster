@@ -35,4 +35,4 @@ resources:
   - ./piraeus.yaml
   - ./enix-charts.yaml
   - ./weave-gitops.yaml
-  - ./postgress-operator-charts.yaml
+  - ./zalando-postgres-operator.yaml

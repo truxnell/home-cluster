@@ -1,0 +1,25 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/cluster_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres
+  namespace: databases
+  annotations:
+    kyverno.io/ignore: 'true'
+spec:
+  instances: 3
+
+  imageName: ghcr.io/cloudnative-pg/postgresql:15.1
+
+  primaryUpdateStrategy: unsupervised
+
+  storage:
+    size: 50Gi
+    storageClass: ceph-block
+
+  superuserSecret:
+    name: cloudnative-pg
+
+  monitoring:
+    enablePodMonitor: false
