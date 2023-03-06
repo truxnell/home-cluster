@@ -1,0 +1,19 @@
+---
+# renovate: datasource=github-releases depName=k3s-io/k3s
+k3s_release_version: "v1.26.1+k3s1"
+k3s_install_hard_links: true
+k3s_become: true
+k3s_registration_address: 10.8.20.11
+k3s_control_node: true
+k3s_server:
+  node-ip: "{{ ansible_host }}"
+  flannel-iface: enx3c8cf8f9c869
+  tls-san:
+    - "{{ k3s_registration_address }}"
+    - helios.natallan.com
+  docker: false
+  disable-network-policy: true
+  disable-cloud-controller: true
+  cluster-cidr: "10.142.0.0/16"
+  service-cidr: "10.143.0.0/16"
+  write-kubeconfig-mode: "0644"

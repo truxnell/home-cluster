@@ -1,5 +1,5 @@
 ---
-version: '3'
+version: "3"
 
 tasks:
   bootstrap:
@@ -13,6 +13,18 @@ tasks:
         kubectl create secret generic -n flux-system \
             doppler-token-auth-api \
             --from-literal dopplerToken=$(doppler secrets -p doppler -c prd get DOPPLER_PAT --plain)
+
+  kubeconfig:
+    desc: Download kubeconfig from a remote k3s master node
+    vars:
+      MASTER_USERNAME: '{{.MASTER_USERNAME | default "nat"}}'
+      MASTER_HOST: '{{.MASTER_HOST | default "10.8.20.11"}}'
+      KUBERNETES_API: '{{.KUBERNETES_API | default "10.8.20.11"}}'
+      KUBE_FILE: '/home/nat/.kube/nas-kubeconfig'
+    cmds:
+      - rsync --verbose --progress --partial --rsync-path="sudo rsync" {{.MASTER_USERNAME}}@{{.MASTER_HOST}}:/etc/rancher/k3s/k3s.yaml "{{ .KUBE_FILE }}"
+      - sed -i 's/127.0.0.1/{{.KUBERNETES_API}}/g' "{{ .KUBE_FILE }}"
+      - chmod go-r "{{ .KUBE_FILE }}"
 
   schemas:
     desc: Pull the latest CRD schemas for this cluster

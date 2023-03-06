@@ -1,0 +1,63 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app node-exporter
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    image:
+      repository: quay.io/prometheus/node-exporter
+      tag: v1.5.0
+
+    args:
+      -  "--path.procfs=/host/proc"
+      -  "--path.rootfs=/rootfs"
+      -  "--path.sysfs=/host/sys"
+      -  "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)"
+
+    env:
+      TZ: "Australia/Melbourne"
+
+    service:
+      main:
+        ports:
+          http:
+            port: 9100
+
+    hostNetwork: true
+
+    podSecurityContext:
+      runAsUser: 0
+      privileged: true
+
+    persistence:
+      proc:
+        enabled: true
+        hostPath: /host/proc
+        readOnly: true
+      sys:
+        enabled: true
+        hostPath: /host/sys
+        readOnly: true
+      rootfs:
+        enabled: true
+        hostPath: /rootfs
+        readOnly: true

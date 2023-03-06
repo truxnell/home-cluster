@@ -19,3 +19,6 @@ roles:
     scm: git
     name: mrlesmithjr.zfs
     version: b80e84d6938eb7730faeffc7ff7d8aa06ad5bef7
+  - name: xanmanning.k3s
+    src: https://github.com/PyratLabs/ansible-role-k3s.git
+    version: v3.3.1
