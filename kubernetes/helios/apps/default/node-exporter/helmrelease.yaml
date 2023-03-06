@@ -51,13 +51,16 @@ spec:
     persistence:
       proc:
         enabled: true
+        type: hostPath
         hostPath: /host/proc
         readOnly: true
       sys:
         enabled: true
+        type: hostPath
         hostPath: /host/sys
         readOnly: true
       rootfs:
         enabled: true
+        type: hostPath
         hostPath: /rootfs
         readOnly: true
