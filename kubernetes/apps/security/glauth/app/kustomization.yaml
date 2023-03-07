@@ -5,5 +5,6 @@ kind: Kustomization
 namespace: security
 resources:
   - ./helmrelease.yaml
+  - ./externalsecret.yaml
 generatorOptions:
   disableNameSuffixHash: true
