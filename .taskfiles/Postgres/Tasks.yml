@@ -3,7 +3,7 @@ version: '3'
 
 tasks:
   restore:
-    desc: Bootstrap a new cluster
+    desc: Restore a db
     cmds:
       - cmd: doppler run -p cloudnative-pg -c prd  -- dropdb -h {{.POSTGRES_IP}} -U postgres {{ .db }}
         ignore_error: true
