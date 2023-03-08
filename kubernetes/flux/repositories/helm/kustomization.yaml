@@ -36,3 +36,4 @@ resources:
   - ./enix-charts.yaml
   - ./weave-gitops.yaml
   - ./zalando-postgres-operator.yaml
+  - ./angelnu-charts.yaml
