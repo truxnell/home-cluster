@@ -17,9 +17,6 @@ spec:
       interval: 5m
   # https://github.com/zalando/postgres-operator/blob/master/charts/postgres-operator/values.yaml
   values:
-    configUsers:
-      # postgres username used for replication between instances
-      replication_username: postgres
     configMajorVersionUpgrade:
       # "off": no upgrade, "manual": manifest triggers action, "full": minimal version violation triggers too
       major_version_upgrade_mode: full
@@ -30,8 +27,8 @@ spec:
       watched_namespace: "*"
       #list of labels that can be inherited from the cluster manifest
       inherited_labels:
-      - application
-      - environment
+        - application
+        - environment
       # Disable PDB since they prevent the drain
       # https://github.com/zalando/postgres-operator/issues/547
       enable_pod_disruption_budget: false
