@@ -5,8 +5,6 @@ kind: Kustomization
 namespace: services
 resources:
   - ./helmrelease.yaml
-patchesStrategicMerge:
-  - patches/postgres.yaml
 configMapGenerator:
   - name: invidious-server
     files:

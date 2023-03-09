@@ -23,6 +23,13 @@ spec:
     remediation:
       retries: 5
   values:
+    initContainers:
+      init-db:
+        image: ghcr.io/onedr0p/postgres-initdb:14.6
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: immich
     fullNameOverride: *app
     image:
       repository: quay.io/invidious/invidious
