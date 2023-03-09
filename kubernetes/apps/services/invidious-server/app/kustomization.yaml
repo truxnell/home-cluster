@@ -5,11 +5,11 @@ kind: Kustomization
 namespace: services
 resources:
   - ./helmrelease.yaml
+  - ./externalsecret.yaml
 configMapGenerator:
   - name: invidious-server
     files:
       - config/config.yml
-      - ./externalsecret.yaml
 generatorOptions:
   disableNameSuffixHash: true
 metadata:
