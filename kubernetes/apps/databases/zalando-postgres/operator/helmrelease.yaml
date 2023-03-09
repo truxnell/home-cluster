@@ -17,14 +17,13 @@ spec:
       interval: 5m
   # https://github.com/zalando/postgres-operator/blob/master/charts/postgres-operator/values.yaml
   values:
-    enable_cross_namespace_secret: true
 
     configMajorVersionUpgrade:
       # "off": no upgrade, "manual": manifest triggers action, "full": minimal version violation triggers too
       major_version_upgrade_mode: full
     configKubernetes:
-      #enable_pod_antiaffinity: true
-      enable_cross_namespace_secret: false
+      enable_pod_antiaffinity: true
+      enable_cross_namespace_secret: true
       #pod_environment_configmap: "postgres-pod-config"
       watched_namespace: "*"
       #list of labels that can be inherited from the cluster manifest
