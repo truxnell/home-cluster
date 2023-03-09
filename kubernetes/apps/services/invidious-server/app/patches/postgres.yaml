@@ -12,7 +12,7 @@ spec:
         image: ghcr.io/onedr0p/postgres-initdb:14.7
         env:
           - name: POSTGRES_HOST
-            value: postgres-rw.databases.svc.cluster.local.
+            value: postgres.databases.svc.cluster.local.
           - name: POSTGRES_DB
             value: invidious
           - name: POSTGRES_SUPER_PASS

@@ -38,7 +38,7 @@ spec:
       PAPERLESS_TASK_WORKERS: 2
       PAPERLESS_TIME_ZONE: '${TZ}'
       PAPERLESS_URL: https://paperless.${EXTERNAL_DOMAIN}
-      PAPERLESS_DBHOST: postgres-rw.databases.svc.cluster.local
+      PAPERLESS_DBHOST: postgres.databases.svc.cluster.local
       PAPERLESS_DBNAME: paperless
       PAPERLESS_TIKA_ENABLED: 1
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://localhost:3000

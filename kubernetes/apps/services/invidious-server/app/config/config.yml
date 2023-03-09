@@ -12,7 +12,7 @@
 # db:
 #   user: ${SECRET_INVIDIOUS_DB_USER}
 #   password: ${SECRET_INVIDIOUS_DB_PASSWORD}
-#   host: postgres-rw.default.svc.cluster.local
+#   host: postgres.default.svc.cluster.local
 #   port: 5432
 #   dbname: invidious
 
