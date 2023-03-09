@@ -50,10 +50,6 @@ spec:
             value: ${TZ}
           - name: VIKUNJA_DATABASE_TYPE
             value: 'postgres'
-          - name: VIKUNJA_DATABASE_DATABASE
-            value: vikunja
-          - name: VIKUNJA_DATABASE_USER
-            value: vikunja
           - name: VIKUNJA_SERVICE_FRONTENDURL
             value: https://tasks.${EXTERNAL_DOMAIN}
           - name: VIKUNJA_MAILER_FROMEMAIL
@@ -79,6 +75,16 @@ spec:
               secretKeyRef:
                 name: *app
                 key: *envdbpass
+          - name: &envdbhost VIKUNJA_DATABASE_HOST
+            valueFrom:
+              secretKeyRef:
+                name: *app
+                key: *envdbhost
+          - name: &envdbdb VIKUNJA_DATABASE_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: *app
+                key: *envdbdb
         resources:
           requests:
             cpu: 15m
