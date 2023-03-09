@@ -9,6 +9,7 @@ configMapGenerator:
   - name: invidious-server
     files:
       - config/config.yml
+      - ./externalsecret.yaml
 generatorOptions:
   disableNameSuffixHash: true
 metadata:
