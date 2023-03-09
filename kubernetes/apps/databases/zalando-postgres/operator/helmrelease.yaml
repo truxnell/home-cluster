@@ -17,6 +17,8 @@ spec:
       interval: 5m
   # https://github.com/zalando/postgres-operator/blob/master/charts/postgres-operator/values.yaml
   values:
+    enable_cross_namespace_secret: true
+
     configMajorVersionUpgrade:
       # "off": no upgrade, "manual": manifest triggers action, "full": minimal version violation triggers too
       major_version_upgrade_mode: full
