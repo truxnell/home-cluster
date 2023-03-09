@@ -5,7 +5,5 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./externalsecret.yaml
-patchesStrategicMerge:
-  - ./patches/postgres.yaml
 metadata:
   namespace: services
