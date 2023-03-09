@@ -2,21 +2,16 @@
 apiVersion: "acid.zalan.do/v1"
 kind: postgresql
 metadata:
-  name: acid-minimal-cluster
+  name: postgres
   namespace: databases
 spec:
   teamId: "acid"
   volume:
-    size: 1Gi
-  numberOfInstances: 2
+    size: 30Gi
+  numberOfInstances: 3
   users:
-    zalando:  # database owner
+    postgres:  # database owner
     - superuser
     - createdb
-    foo_user: []  # role for application foo
-  databases:
-    foo: zalando  # dbname: owner
-  preparedDatabases:
-    bar: {}
   postgresql:
     version: "15"
