@@ -24,4 +24,4 @@ spec:
   dependsOn:
     - name: cluster-apps-glauth
     - name: cluster-apps-redis
-    - name: cluster-apps-cloudnative-pg
+    - name: cluster-apps-zalando-postgres

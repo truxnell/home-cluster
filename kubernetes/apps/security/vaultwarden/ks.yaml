@@ -22,5 +22,5 @@ spec:
       name: vaultwarden
       namespace: security
   dependsOn:
-    - name: cluster-apps-cloudnative-pg
+    - name: cluster-apps-zalando-postgres
     - name: cluster-apps-rook-ceph-cluster

@@ -22,4 +22,4 @@ spec:
       name: paperless
       namespace: services
   dependsOn:
-    - name: cluster-apps-cloudnative-pg
+    - name: cluster-apps-zalando-postgres

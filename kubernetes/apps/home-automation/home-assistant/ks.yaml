@@ -18,5 +18,5 @@ spec:
   timeout: 3m
   dependsOn:
     - name: cluster-apps-emqx
-    - name: cluster-apps-cloudnative-pg
+    - name: cluster-apps-zalando-postgres
     - name: cluster-apps-rook-ceph-cluster

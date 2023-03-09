@@ -22,7 +22,7 @@ spec:
       name: grafana
       namespace: monitoring
   dependsOn:
-    - name: cluster-apps-cloudnative-pg
+    - name: cluster-apps-zalando-postgres
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomization_v1beta2.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2

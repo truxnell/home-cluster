@@ -22,4 +22,4 @@ spec:
       name: invidious-server
       namespace: services
   dependsOn:
-    - name: cluster-apps-cloudnative-pg-cluster
+    - name: cluster-apps-zalando-postgres-cluster
