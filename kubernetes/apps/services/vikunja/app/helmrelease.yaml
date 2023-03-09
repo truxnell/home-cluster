@@ -43,8 +43,6 @@ spec:
             value: ${TZ}
           - name: VIKUNJA_DATABASE_TYPE
             value: 'postgres'
-          - name: VIKUNJA_DATABASE_HOST
-            value: postgres-rw.databases.svc.cluster.local.
           - name: VIKUNJA_DATABASE_DATABASE
             value: vikunja
           - name: VIKUNJA_DATABASE_USER

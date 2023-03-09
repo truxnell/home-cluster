@@ -30,7 +30,7 @@
 ## Accepted values: a postgres:// URI
 ## Default: postgres://kemal:kemal@localhost:5432/invidious
 ##
-database_url: postgres://${SECRET_INVIDIOUS_DB_USER}:${SECRET_INVIDIOUS_DB_PASSWORD}@postgres-rw.databases.svc.cluster.local.:5432/invidious
+database_url: postgres://${SECRET_INVIDIOUS_DB_USER}:${SECRET_INVIDIOUS_DB_PASSWORD}@postgres.databases.svc.cluster.local.:5432/invidious
 
 ##
 ## Enable automatic table integrity check. This will create
