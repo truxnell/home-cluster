@@ -29,7 +29,7 @@ spec:
         imagePullPolicy: IfNotPresent
         envFrom:
           - secretRef:
-              name: immich
+              name: *app
     fullNameOverride: *app
     image:
       repository: quay.io/invidious/invidious
