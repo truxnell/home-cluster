@@ -41,7 +41,7 @@ spec:
   timeout: 3m
   healthChecks:
     - apiVersion: acid.zalan.do/v1
-      kind: postgreql
+      kind: postgresql
       name: postgres
       namespace: databases
   dependsOn:
