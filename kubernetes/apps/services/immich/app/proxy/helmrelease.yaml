@@ -58,15 +58,10 @@ spec:
           hajimari.io/icon: heroicons:photo
           auth.home.arpa/enabled: "true"
         hosts:
-          - host: &host "photoss.${EXTERNAL_DOMAIN}"
+          - host: &host "photos.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
-              - path: /api
-                pathType: Prefix
-                service:
-                  name: immich-server
-                  port: 3001
     topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
