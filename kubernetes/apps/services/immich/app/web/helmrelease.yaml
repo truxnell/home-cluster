@@ -66,9 +66,12 @@ spec:
           - host: &host "photos.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
-        tls:
-          - hosts:
-              - *host
+                pathType: Prefix
+              - path: /api
+                pathType: Prefix
+                service:
+                  name: immich-server
+                  port: 3001
     persistence:
       library:
         enabled: true
