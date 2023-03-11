@@ -113,7 +113,7 @@ spec:
           - name: config
             mountPath: /app/vikunja/config.yml
             subPath: config.yml
-            readOnly: true
+            readOnly: false
     service:
       main:
         ports:
