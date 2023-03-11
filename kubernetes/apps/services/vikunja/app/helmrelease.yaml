@@ -30,6 +30,22 @@ spec:
         envFrom:
           - secretRef:
               name: *app
+      copy-config:
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        command:
+          - 'sh'
+          - '-c'
+          - |
+            mkdir -p /factorio/config
+            cp -vL /helmconfig/* /factorio/config/
+        volumeMounts:
+          - name: helmconfig
+            mountPath: /helmconfig/
+          - name: config
+            mountPath: /factorio/
+        securityContext:
+          runAsUser: 0
     image:
       repository: caddy
       tag: 2.6.4-alpine
@@ -130,7 +146,7 @@ spec:
       config:
         enabled: true
         type: custom
-        readOnly: true
+        readOnly: false
         mountPath: '-'
         volumeSpec:
           configMap:
