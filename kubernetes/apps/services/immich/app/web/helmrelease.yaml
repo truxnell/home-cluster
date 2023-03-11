@@ -61,7 +61,6 @@ spec:
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
           hajimari.io/appName: "Immich"
           hajimari.io/icon: heroicons:photo
-          auth.home.arpa/enabled: "true"
         hosts:
           - host: &host "photos.${EXTERNAL_DOMAIN}"
             paths:
