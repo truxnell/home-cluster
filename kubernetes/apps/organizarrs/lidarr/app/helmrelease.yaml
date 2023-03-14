@@ -68,13 +68,13 @@ spec:
         enabled: true
         ingressClassName: 'nginx'
         hosts:
-          - host: &host 'dmix.${EXTERNAL_DOMAIN}'
+          - host: &hostdmix 'dmix.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - *host
+              - *hostdmix
     persistence:
       config:
         enabled: true
@@ -92,7 +92,7 @@ spec:
         enabled: true
         type: nfs
         server: *nas
-        path: /tank/backup/kubernetes/apps/radarr
+        path: /tank/backup/kubernetes/apps/lidarr
         mountPath: /config/Backups
     resources:
       requests:
