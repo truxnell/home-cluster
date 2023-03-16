@@ -23,4 +23,4 @@ spec:
       namespace: services
   dependsOn:
     - name: cluster-apps-rook-ceph-cluster
-    - name: cluster-apps-zalandos-postgres
+    - name: cluster-apps-zalando-postgres-cluster
