@@ -37,12 +37,12 @@ spec:
         valueFrom:
           secretKeyRef:
             name: *app
-            key: POSTGRES_USERNAME
+            key: POSTGRES_USER
       DB_PASSWORD:
         valueFrom:
           secretKeyRef:
             name: *app
-            key: POSTGRES_PASSWORD
+            key: POSTGRES_PASS
 
     service:
       main:
