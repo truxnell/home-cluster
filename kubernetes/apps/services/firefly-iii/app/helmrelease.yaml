@@ -17,10 +17,6 @@ spec:
         name: bjw-s-charts
         namespace: flux-system
   values:
-    controller:
-      replicas: 3
-      strategy: RollingUpdate
-
     image:
       repository: fireflyiii/core
       tag: version-5.7.15
