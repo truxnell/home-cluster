@@ -25,3 +25,4 @@ resources:
   - ./theme-park/ks.yaml
   - ./vikunja/ks.yaml
   - ./whoogle/ks.yaml
+  - ./firefly-iii/ks.yaml
