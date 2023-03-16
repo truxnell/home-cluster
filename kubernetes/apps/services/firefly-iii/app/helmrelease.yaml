@@ -1,0 +1,78 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app fireflyiii
+  namespace: services
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.3.2
+      interval: 15m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  values:
+    controller:
+      replicas: 3
+      strategy: RollingUpdate
+
+    image:
+      repository: fireflyiii/core
+      tag: version-5.7.15
+
+    env:
+      TZ: ${TZ}
+      APP_URL: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+      TRUSTED_PROXIES: "**" #TODO: Change this
+      DB_CONNECTION: pgsql
+      DB_HOST: postgres.databases.svc.cluster.local
+      DB_PORT: 5432
+      DB_DATABASE: firefly
+      DB_USERNAME:
+        valueFrom:
+          secretKeyRef:
+            name: *app
+            key: POSTGRES_USERNAME
+      DB_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: *app
+            key: POSTGRES_PASSWORD
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: simple-icons:money
+        hosts:
+          - host: *host
+            paths:
+              - path: /
+        tls:
+          - hosts:
+              - *host
+
+persistence:
+      config:
+        enabled: true
+        existingClaim: fireflyiii-config-v1
+        mountPath: /var/www/html/firefly-iii/storage/upload
+# resources:
+#   requests:
+#     cpu: 15m
+#     memory: 79M
+#   limits:
+#     memory: 79M
