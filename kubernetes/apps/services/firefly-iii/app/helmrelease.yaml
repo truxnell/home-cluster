@@ -65,7 +65,7 @@ spec:
           - hosts:
               - *host
 
-persistence:
+    persistence:
       config:
         enabled: true
         existingClaim: fireflyiii-config-v1
