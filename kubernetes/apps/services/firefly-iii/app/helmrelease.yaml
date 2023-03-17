@@ -40,7 +40,11 @@ spec:
       DB_CONNECTION: pgsql
       DB_HOST: postgres.databases.svc.cluster.local
       DB_PORT: 5432
-      DB_DATABASE: firefly
+      DB_USERNAME:
+        valueFrom:
+          secretKeyRef:
+            name: *app
+            key: POSTGRES_DB
       DB_USERNAME:
         valueFrom:
           secretKeyRef:
