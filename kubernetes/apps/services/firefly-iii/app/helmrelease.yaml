@@ -46,6 +46,11 @@ spec:
           secretKeyRef:
             name: *app
             key: POSTGRES_PASS
+      APP_KEY:
+        valueFrom:
+          secretKeyRef:
+            name: *app
+            key: APP_KEY
 
     service:
       main:
@@ -59,7 +64,7 @@ spec:
         ingressClassName: "nginx"
         annotations:
           hajimari.io/enable: "true"
-          hajimari.io/icon: simple-icons:money
+          hajimari.io/icon: "simple-icons:money"
         hosts:
           - host: *host
             paths:
