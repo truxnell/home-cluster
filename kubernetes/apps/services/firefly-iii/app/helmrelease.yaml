@@ -17,6 +17,13 @@ spec:
         name: bjw-s-charts
         namespace: flux-system
   values:
+    initContainers:
+      init-db:
+        image: ghcr.io/onedr0p/postgres-initdb:14.7
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: *app
     image:
       repository: fireflyiii/core
       tag: version-5.7.15
