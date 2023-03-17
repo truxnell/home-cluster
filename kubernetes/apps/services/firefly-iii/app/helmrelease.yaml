@@ -17,6 +17,10 @@ spec:
         name: bjw-s-charts
         namespace: flux-system
   values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: 'true'
+
     initContainers:
       init-db:
         image: ghcr.io/onedr0p/postgres-initdb:14.7
@@ -24,6 +28,7 @@ spec:
         envFrom:
           - secretRef:
               name: *app
+
     image:
       repository: fireflyiii/core
       tag: version-5.7.15
