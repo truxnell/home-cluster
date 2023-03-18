@@ -40,49 +40,49 @@ spec:
           limits:
             memory: "1Gi"
           requests:
-            cpu: "500m"
+            cpu: "50m"
             memory: "512Mi"
         mon:
           limits:
             memory: "2Gi"
           requests:
-            cpu: "1000m"
+            cpu: "50m"
             memory: "1Gi"
         osd:
           limits:
             memory: "4Gi"
           requests:
-            cpu: "1000m"
+            cpu: "50m"
             memory: "4Gi"
         prepareosd:
           limits:
             memory: "900Mi"
           requests:
-            cpu: "500m"
+            cpu: "50m"
             memory: "50Mi"
         mgr-sidecar:
           limits:
             memory: "100Mi"
           requests:
-            cpu: "100m"
+            cpu: "10m"
             memory: "40Mi"
         crashcollector:
           limits:
             memory: "60Mi"
           requests:
-            cpu: "100m"
+            cpu: "3m"
             memory: "60Mi"
         logcollector:
           limits:
             memory: "1Gi"
           requests:
-            cpu: "100m"
+            cpu: "10m"
             memory: "100Mi"
         cleanup:
           limits:
             memory: "1Gi"
           requests:
-            cpu: "500m"
+            cpu: "10m"
             memory: "100Mi"
       crashCollector:
         disable: false

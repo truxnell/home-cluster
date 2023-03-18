@@ -39,21 +39,26 @@ spec:
       strategies:
         RemoveDuplicates:
           enabled: true
+
         RemovePodsViolatingNodeTaints:
           enabled: true
+
         RemovePodsViolatingNodeAffinity:
           enabled: true
           params:
             nodeAffinityType:
               - requiredDuringSchedulingIgnoredDuringExecution
+
         RemovePodsViolatingTopologySpreadConstraint:
           enabled: true
           params:
             includeSoftConstraints: true
+
         RemovePodsViolatingInterPodAntiAffinity:
           enabled: true
           params:
             nodeFit: true
+
         LowNodeUtilization:
           enabled: true
           params:
@@ -66,6 +71,7 @@ spec:
                 cpu: 60
                 memory: 60
                 pods: 35
+
         RemoveFailedPods:
           enabled: true
           params:
@@ -77,9 +83,18 @@ spec:
               excludeOwnerKinds:
                 - Job
               minPodLifetimeSeconds: 3600
+
         RemovePodsHavingTooManyRestarts:
           enabled: true
           params:
             podsHavingTooManyRestarts:
               podRestartThreshold: 100
               includingInitContainers: true
+
+
+    resources:
+      requests:
+        cpu: 5m
+        memory: 64M
+      limits:
+        memory: 64M

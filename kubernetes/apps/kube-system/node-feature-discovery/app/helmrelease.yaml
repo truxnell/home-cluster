@@ -34,7 +34,7 @@ spec:
           operator: "Exists"
       resources:
         requests:
-          cpu: 23m
+          cpu: 5m
           memory: 64M
         limits:
           memory: 64M
@@ -50,7 +50,7 @@ spec:
     worker:
       resources:
         requests:
-          cpu: 15m
+          cpu: 5m
           memory: 64M
         limits:
           memory: 64M

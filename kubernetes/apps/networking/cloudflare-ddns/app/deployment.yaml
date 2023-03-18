@@ -49,8 +49,7 @@ spec:
               value: '300'
           resources:
             requests:
-              cpu: 20m
+              cpu: 1m
               memory: 64Mi
             limits:
-              cpu: 500m
               memory: 128Mi
