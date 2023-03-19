@@ -53,5 +53,5 @@ spec:
       FIREFLY_III_ACCESS_TOKEN:
         valueFrom:
           secretKeyRef:
-            name: firefly-iii-secrets
+            name: firefly-iii
             key: IMPORTER_PAT
