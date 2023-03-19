@@ -49,7 +49,7 @@ spec:
     env:
       TRUSTED_PROXIES: "**"
       FIREFLY_III_URL: "http://fireflyiii.services.svc.cluster.local:8080"
-      VANITY_URL: "https://fireflyiii.${EXTERNAL_DOMAIN}"
+      VANITY_URL: *host
       FIREFLY_III_ACCESS_TOKEN:
         valueFrom:
           secretKeyRef:
