@@ -77,7 +77,7 @@ spec:
         ingressClassName: "nginx"
         annotations:
           hajimari.io/enable: "true"
-          hajimari.io/icon: "cash-icon"
+          hajimari.io/icon: "simple-icons:money"
         hosts:
           - host: *host
             paths:
