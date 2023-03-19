@@ -39,7 +39,7 @@ spec:
                       name: cloudnative-pg
                       key: password
                 - name: POSTGRES_DB
-                  value: 'authelia,weather_station,vaultwarden,grafana,hass,miniflux,vikunja,pleroma-rebased,paperless,invidious,immich'
+                  value: 'authelia,fireflyiii,grafana,hass,immich,invidious,miniflux,paperless,pleroma-rebased,vaultwarden,vikunja,weather_station'
               volumeMounts:
                 - name: nas-backups
                   mountPath: /backups
