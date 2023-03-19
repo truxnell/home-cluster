@@ -17,6 +17,9 @@ spec:
         name: bjw-s-charts
         namespace: flux-system
   values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: 'true'
     global:
       nameOverride: *app
     image:
