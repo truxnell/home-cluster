@@ -33,6 +33,7 @@ spec:
         ingressClassName: "nginx"
         annotations:
           hajimari.io/icon: "foundation:page-export-csv"
+          nginx.ingress.kubernetes.io/proxy-body-size: 4G
         hosts:
           - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
