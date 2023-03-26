@@ -14,12 +14,16 @@ data:
   REDIS_HOSTNAME: immich-redis.services.svc.cluster.local
   REDIS_PORT: "6379"
   REDIS_DBINDEX: "10"
+  TYPESENSE_HOST: immich-typesense.default.svc.cluster.local
+  TYPESENSE_PORT: "8108"
+  TYPESENSE_PROTOCOL: http
+  TYPESENSE_DATA_DIR: /config
   IMMICH_WEB_URL: http://immich-web.services.svc.cluster.local:3000
   IMMICH_SERVER_URL: http://immich-server.services.svc.cluster.local:3001
   IMMICH_MACHINE_LEARNING_URL: http://immich-machine-learning.services.svc.cluster.local:3003
   # Below are deprecated and can only be set in the Immich Admin settings
   # OAUTH_ENABLED: "true"
-  # OAUTH_ISSUER_URL: https://auth.devbu.io/.well-known/openid-configuration
+  # OAUTH_ISSUER_URL: https://auth.trux.dev/.well-known/openid-configuration
   # OAUTH_CLIENT_ID: immich
   # OAUTH_CLIENT_SECRET: "${SECRET_IMMICH_OAUTH_CLIENT_SECRET}"
   # OAUTH_AUTO_REGISTER: "true"
