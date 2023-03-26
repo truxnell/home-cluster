@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: k8s-gateway
+  name: &app k8s-gateway
   namespace: networking
 spec:
   interval: 30m
@@ -73,6 +73,14 @@ spec:
             port: 53
             targetPort: 1053
             protocol: UDP
+
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: *app
 
     persistence:
       config:
