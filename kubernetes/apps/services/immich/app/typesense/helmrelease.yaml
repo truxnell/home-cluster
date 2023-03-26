@@ -58,12 +58,11 @@ spec:
       readiness: *probes
       startup:
         enabled: false
-    volumeClaimTemplates:
-      - name: config
+    persistence:
+      config:
+        enabled: true
+        existingClaim: immich-nfs
         mountPath: /config
-        accessMode: ReadWriteOnce
-        size: 1Gi
-        storageClass: ceph-block
     resources:
       requests:
         cpu: 100m
