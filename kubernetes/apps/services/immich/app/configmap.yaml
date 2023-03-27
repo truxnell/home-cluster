@@ -14,7 +14,7 @@ data:
   REDIS_HOSTNAME: immich-redis.services.svc.cluster.local
   REDIS_PORT: "6379"
   REDIS_DBINDEX: "10"
-  TYPESENSE_HOST: immich-typesense.default.svc.cluster.local
+  TYPESENSE_HOST: immich-typesense.services.svc.cluster.local
   TYPESENSE_PORT: "8108"
   TYPESENSE_PROTOCOL: http
   TYPESENSE_DATA_DIR: /config
