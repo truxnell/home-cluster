@@ -18,7 +18,6 @@ resources:
   - ./loki/ks.yaml
   # - ./prometheus-rules/ks.yaml # TODO: Disabled by WIP file
   - ./prometheus-smartctl/ks.yaml
-  - ./speedtest-exporter/ks.yaml
   - ./thanos/ks.yaml
   - ./vector/ks.yaml
   - ./vpa/ks.yaml
