@@ -106,7 +106,7 @@ transforms:
     inputs:
       - talos_kernel_logs
     source: |-
-      .__host = replace(.__host, "10.8.20.40", "xerxes")
+      .__host, .err = replace(.__host, "10.8.20.40", "xerxes")
       .__host = replace(.__host, "10.8.20.42", "shodan")
       .__host = replace(.__host, "10.8.20.44", "icarus")
   talos_service_logs_xform:
@@ -114,7 +114,7 @@ transforms:
     inputs:
       - talos_service_logs
     source: |-
-      .__host = replace(.__host, "10.8.20.40", "xerxes")
+      .__host, .err = replace(.__host, "10.8.20.40", "xerxes")
       .__host = replace(.__host, "10.8.20.42", "shodan")
       .__host = replace(.__host, "10.8.20.44", "icarus")
 # Sinks
