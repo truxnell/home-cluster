@@ -30,11 +30,10 @@ sources:
     decoding:
       codec: json
     host_key: __host
-  udmp_logs:
-    address: 0.0.0.0:6100
+  vyos_syslog:
+    address: 0.0.0.0:6002
     type: syslog
-    mode: 'udp'
-    max_length: 102400
+    mode: 'tcp'
   vector_metrics:
     type: internal_metrics
 # Transforms
@@ -46,12 +45,57 @@ transforms:
     source: |
       # Standardize 'app' index
       .custom_app_name = .pod_labels."app.kubernetes.io/name" || .pod_labels.app || .pod_labels."k8s-app" || "unknown"
-  udmp_logs_xform:
-    type: 'remap'
+  # [63950.153039] [wan-local-default-D]IN=eth4 OUT= MAC=xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx SRC=xxx.xxx.xxx.xxx DST=xxx.xxx.xxx.xxx LEN=40 TOS=0x00 PREC=0x00 TTL=240 ID=60610 PROTO=TCP SPT=53451 DPT=2002 WINDOW=1024 RES=0x00 SYN URGP=0
+  vyos_firewall_route:
+    type: route
     inputs:
-      - 'udmp_logs'
-    source: |-
-      .timestamp=null
+      - vyos_syslog
+    route:
+      firewall: |
+        .facility == "kern" && match!(.message, r'^\[(.*?)\].(.*)')
+
+  vyos_firewall_remap:
+    type: remap
+    inputs:
+      - vyos_firewall_route.firewall
+    source: |
+      # Parse firewall rule message
+      split_message, split_err = parse_regex(.message, r'^\[.*\].\[(?P<rule>.*?)\](?P<fields>.*)')
+      if split_err != null {
+          abort
+      }
+      # Extract separate fields from message
+      split_message.fields, split_err = strip_whitespace(split_message.fields)
+      if split_err != null {
+          abort
+      }
+      .message, parse_err = parse_key_value(split_message.fields, whitespace: "strict")
+      if parse_err != null {
+          abort
+      }
+      # Add more information about the triggered rule
+      .message.RULE, parse_err = parse_regex(split_message.rule, r'^(?P<from_zone>\w+)-(?P<to_zone>\w+)-(?P<id>\w+)-(?P<action>\w+)$')
+      if parse_err != null {
+          abort
+      }
+
+  vyos_firewall_wan_route:
+    type: route
+    inputs:
+      - vyos_firewall_remap
+    route:
+      from_wan: .message.RULE.from_zone == "wan"
+
+  vyos_firewall_geoip_remap:
+    type: remap
+    inputs:
+      - vyos_firewall_wan_route.from_wan
+    source: |
+      .geoip = get_enrichment_table_record!(
+          "geoip_table", {
+              "ip": .message.SRC
+          }
+      )
   talos_kernel_logs_xform:
     type: remap
     inputs:
@@ -110,21 +154,17 @@ sinks:
       k8s_namespace: '{{ kubernetes.pod_namespace }}'
       k8s_node: '{{ kubernetes.pod_node_name }}'
       k8s_pod: '{{ kubernetes.pod_name }}'
-  loki_udmp:
+  loki_vyos:
     type: loki
     inputs:
-      - udmp_logs_xform
+      - vyos_firewall_wan_route._unmatched
+      - vyos_firewall_geoip_remap
     endpoint: http://loki-gateway:80
-    batch:
-      max_bytes: 1048576
-    out_of_order_action: rewrite_timestamp
-    remove_label_fields: true
-    remove_timestamp: true
     encoding:
       codec: json
+    out_of_order_action: rewrite_timestamp
     labels:
-      hostname: udmpro
-      app: '{{ appname }}'
+      hostname: '{{ host }}'
   talos_kernel:
     type: loki
     inputs:
