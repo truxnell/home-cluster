@@ -86,16 +86,16 @@ transforms:
     route:
       from_wan: .message.RULE.from_zone == "wan"
 
-  vyos_firewall_geoip_remap:
-    type: remap
-    inputs:
-      - vyos_firewall_wan_route.from_wan
-    source: |
-      .geoip = get_enrichment_table_record!(
-          "geoip_table", {
-              "ip": .message.SRC
-          }
-      )
+  # vyos_firewall_geoip_remap:
+  #   type: remap
+  #   inputs:
+  #     - vyos_firewall_wan_route.from_wan
+  #   source: |
+  #     .geoip = get_enrichment_table_record!(
+  #         "geoip_table", {
+  #             "ip": .message.SRC
+  #         }
+  #     )
   talos_kernel_logs_xform:
     type: remap
     inputs:
@@ -158,7 +158,7 @@ sinks:
     type: loki
     inputs:
       - vyos_firewall_wan_route._unmatched
-      - vyos_firewall_geoip_remap
+      # - vyos_firewall_geoip_remap
     endpoint: http://loki-gateway:80
     encoding:
       codec: json
