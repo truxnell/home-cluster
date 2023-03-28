@@ -8,7 +8,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  path: './kubernetes/apps/default/node-exporter/app/'
+  path: './kubernetes/helios/apps/default/node-exporter/app/'
   prune: true
   sourceRef:
     kind: GitRepository
