@@ -167,8 +167,8 @@ spec:
         requests:
           cpu: 23m
           memory: 64M
-          limits:
-            memory: 64M
+        limits:
+          memory: 64M
       tolerations:
         - effect: 'NoExecute'
           operator: 'Exists'
@@ -213,9 +213,9 @@ spec:
         resources:
           requests:
             cpu: 350m
-            memory: 4744M
-            # limits:
-            # memory: 4744M
+            memory: 1500M
+          limits:
+            memory: 2200M
         thanos:
           image: quay.io/thanos/thanos:v0.31.0
           # renovate: datasource=docker depName=quay.io/thanos/thanos
