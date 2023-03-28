@@ -8,6 +8,7 @@ configMapGenerator:
     files:
       - docker-shit.json=dockershit.json
       - speedtest-exporter-dashboard.json
+      - vyos.json
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
