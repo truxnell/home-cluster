@@ -3,12 +3,12 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-node-exporter
+  name: cluster-apps-smartctl
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  path: './kubernetes/apps/default/node-exporter/app/'
+  path: './kubernetes/apps/default/smartctl/app/'
   prune: true
   sourceRef:
     kind: GitRepository
@@ -19,5 +19,5 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: node-exporter
+      name: smartctl
       namespace: default
