@@ -28,10 +28,10 @@ spec:
       tag: v1.5.0
 
     args:
-      -  "--path.procfs=/host/proc"
-      -  "--path.rootfs=/rootfs"
-      -  "--path.sysfs=/host/sys"
-      -  "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)"
+      - "--path.procfs=/host/proc"
+      - "--path.rootfs=/rootfs"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)"
 
     env:
       TZ: "Australia/Melbourne"

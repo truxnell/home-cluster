@@ -12,7 +12,7 @@ spec:
       version: 0.3.1
       sourceRef:
         kind: HelmRepository
-        name: prometheus-community
+        name: prometheus-community-charts
         namespace: flux-system
   maxHistory: 3
   install:
