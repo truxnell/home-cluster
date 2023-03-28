@@ -52,12 +52,14 @@ spec:
       proc:
         enabled: true
         type: hostPath
-        hostPath: /host/proc
+        hostPath: /proc
+        mountPath: /host/proc
         readOnly: true
       sys:
         enabled: true
         type: hostPath
-        hostPath: /host/sys
+        hostPath: /sys
+        mountPath: /host/sys
         readOnly: true
       rootfs:
         enabled: true
