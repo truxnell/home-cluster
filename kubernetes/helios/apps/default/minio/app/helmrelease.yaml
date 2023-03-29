@@ -39,15 +39,6 @@ spec:
           api:
             enabled: true
             port: 9000
-    serviceMonitor:
-      main:
-        enabled: true
-        endpoints:
-          - port: api
-            scheme: http
-            path: /minio/v2/metrics/cluster
-            interval: 1m
-            scrapeTimeout: 10s
     args:
       - server
       - /data
