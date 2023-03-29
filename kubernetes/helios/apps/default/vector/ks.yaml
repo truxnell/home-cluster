@@ -20,6 +20,4 @@ spec:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: vector-agent
-      namespace: monitoring
-  dependsOn:
-    - name: cluster-apps-vector-aggregator
+      namespace: default
