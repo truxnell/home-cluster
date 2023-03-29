@@ -67,7 +67,7 @@ spec:
         cpu: 15m
         memory: 249Mi
       limits:
-        memory: 265Mi
+        memory: 1565Mi
     env:
       PUID: "568"
       PGID: "1000"
