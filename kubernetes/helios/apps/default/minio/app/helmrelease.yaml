@@ -47,6 +47,7 @@ spec:
     persistence:
       config:
         enabled: true
+        type: hostPath
         hostPath: /tank/minio
         mountPath: /data
     env:
