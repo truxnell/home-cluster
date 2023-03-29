@@ -50,6 +50,17 @@ spec:
         type: hostPath
         hostPath: /tank/minio
         mountPath: /data
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: web
+          traefik.ingress.kubernetes.io/router.tls: "false"
+        hosts:
+          - host: &host "minio.trux.dev"
+            paths:
+              - path: /
+                pathType: Prefix
     env:
       MINIO_UPDATE: "off"
       MINIO_BROWSER_REDIRECT_URL: https://minio.trux.dev
