@@ -8,7 +8,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  path: './kubernetes/helios/apps/monitoring/vector/agent/'
+  path: './kubernetes/helios/apps/default/vector/agent/'
   prune: true
   sourceRef:
     kind: GitRepository
