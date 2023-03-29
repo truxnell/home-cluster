@@ -6,3 +6,4 @@ namespace: flux-system
 resources:
   - ./bjw-s-charts.yaml
   - ./prometheus-community-charts.yaml
+  - ./vector-charts.yaml
