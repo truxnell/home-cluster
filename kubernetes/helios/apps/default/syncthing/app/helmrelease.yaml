@@ -45,6 +45,16 @@ spec:
             enabled: true
             port: 22000
             protocol: TCP
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: web
+        hosts:
+          - host: &host "syncthing.trux.dev"
+            paths:
+              - path: /
+                pathType: Prefix
     persistence:
       config:
         enabled: true
