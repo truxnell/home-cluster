@@ -34,8 +34,8 @@ spec:
     env:
       TZ: '${TZ}'
       UPDATE_MODS_ON_START: 'false'
-      PORT: &port 34203
-      RCON_PORT: &rcon 27019
+      PORT: &port 34204
+      RCON_PORT: &rcon 27020
     initContainers:
       copy-configmap:
         image: busybox
