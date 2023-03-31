@@ -7,7 +7,7 @@ metadata:
 rules:
   - apiGroups: ["apps", "extensions"]
     resources: ["deployments"]
-    resourceNames: ["factorio-seablock", "factorio-k2"]
+    resourceNames: ["factorio-seablock", "factorio-k2", "factorio-squareworld"]
     verbs: ["get", "patch", "list", "watch"]
   - apiGroups: ["apps", "extensions"]
     resources: ["deployments"]
