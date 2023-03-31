@@ -75,8 +75,8 @@ spec:
         server: 'george.${INTERNAL_DOMAIN}'
         path: /tank/backup/kubernetes/apps/prowlarr
         mountPath: /config/Backups
-    podAnnotations:
-      setGateway: 'true'
+    # podAnnotations:
+    #   setGateway: 'true'
     resources:
       requests:
         cpu: 10m
