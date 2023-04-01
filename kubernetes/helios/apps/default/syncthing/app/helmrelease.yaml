@@ -56,6 +56,11 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+
+    podSecurityContext:
+      runAsUser: 0
+      privileged: true
+
     persistence:
       config:
         enabled: true
