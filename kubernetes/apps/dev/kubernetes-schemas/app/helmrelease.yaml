@@ -32,7 +32,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/truxnell/kubernetes-schemas-web
-      tag: latest@sha256:8750131dc05897c7c3c1b0ba1414b6c2a272e7f4da12c77950aa6ae4b4823db3
+      tag: latest@sha256:dd442f2531ac3a63f9e8b633cf49e8291bdd47c06a4744baee01ee04f2bcd50b
     service:
       main:
         ports:
