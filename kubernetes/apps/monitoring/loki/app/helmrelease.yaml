@@ -46,8 +46,8 @@ spec:
           reject_old_samples_max_age: 168h
           max_cache_freshness_per_query: 10m
           split_queries_by_interval: 15m
-          ingestion_rate_mb: 16
-          ingestion_burst_size_mb: 32
+          ingestion_rate_mb: 64M
+          ingestion_burst_size_mb: 128M
           shard_streams:
             enabled: true
 
@@ -81,7 +81,7 @@ spec:
             type: local
             local:
               directory: /rules
-          rule_path: /tmp/scratch
+          rule_path: /rules
           ring:
             kvstore:
               store: memberlist
@@ -114,6 +114,10 @@ spec:
     gateway:
       enabled: true
       replicas: 3
+      image:
+        registry: ghcr.io
+        repository: nginxinc/nginx-unprivileged
+        tag: 1.23-alpine
       ingress:
         enabled: true
         ingressClassName: 'nginx'
@@ -137,7 +141,7 @@ spec:
     write:
       replicas: 3
       persistence:
-        size: 10Gi
+        size: 30Gi
         storageClass: ceph-block
       affinity: |
         podAntiAffinity:
@@ -150,7 +154,7 @@ spec:
                 topologyKey: kubernetes.io/hostname
     read:
       persistence:
-        size: 10Gi
+        size: 20Gi
         storageClass: ceph-block
       extraVolumeMounts:
         - name: rules
@@ -180,7 +184,7 @@ spec:
         - name: scratch
           emptyDir: {}
       persistence:
-        size: 10Gi
+        size: 20Gi
         storageClass: ceph-block
       affinity: |
         podAntiAffinity:
