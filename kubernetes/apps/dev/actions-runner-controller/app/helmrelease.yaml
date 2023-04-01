@@ -30,7 +30,7 @@ spec:
       create: false
       name: &secret 'action-runner-controller'
     image:
-      repository: summerwind/actions-runner-controller
+      repository: ghcr.io/actions-runner-controller/actions-runner-controller
     # resources:
     #   requests:
     #     memory: 64Mi
