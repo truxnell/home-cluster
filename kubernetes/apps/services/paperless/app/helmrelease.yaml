@@ -92,7 +92,7 @@ spec:
     sidecars:
       redis:
         name: redis
-        image: redis:7.0
+        image: public.ecr.aws/docker/library/redis:7.0.10
         imagePullPolicy: IfNotPresent
       gotenburg:
         name: gotenburg
@@ -101,7 +101,7 @@ spec:
           - name: DISABLE_GOOGLE_CHROME
             value: '1'
       tika:
-        image: apache/tika:2.5.0
+        image: ghcr.io/paperless-ngx/tika:2.5.0
         name: tika
         imagePullPolicy: Always
 # resources:
