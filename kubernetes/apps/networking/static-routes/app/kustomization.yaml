@@ -5,7 +5,4 @@ kind: Kustomization
 resources:
   # - ./unifi
   # - brewpiless # FIXME
-  # - ./brother-printer
-  - ./minio
-metadata:
-  namespace: networking
+  - ./brother-printer
