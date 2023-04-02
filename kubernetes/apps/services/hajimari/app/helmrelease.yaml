@@ -65,6 +65,12 @@ spec:
         - name: NextDNS
           url: "https://nextdns.com"
           icon: dns
+        - name: Syncthing
+          url: "https://syncthing.trux.dev"
+          icon: sync
+        - name: Minio
+          url: "https://minio.trux.dev"
+          icon: box
       globalBookmarks:
         - group: Dev
           bookmarks:
