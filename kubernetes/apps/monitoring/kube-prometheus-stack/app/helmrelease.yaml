@@ -241,7 +241,7 @@ spec:
             scrape_timeout: 10s
             honor_timestamps: true
             metrics_path: /minio/v2/metrics/cluster
-            scheme: http
+            scheme: https
             static_configs:
               - targets:
                   - 'minio.${EXTERNAL_DOMAIN}'
