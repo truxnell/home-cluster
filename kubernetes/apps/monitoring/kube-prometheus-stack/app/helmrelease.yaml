@@ -244,7 +244,7 @@ spec:
             scheme: http
             static_configs:
               - targets:
-                  - 'george.${INTERNAL_DOMAIN}:9000'
+                  - 'minio.${EXTERNAL_DOMAIN}'
 
           - job_name: speedtest-exporter
             scrape_interval: 60m
