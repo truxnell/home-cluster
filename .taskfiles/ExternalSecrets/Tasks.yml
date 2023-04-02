@@ -18,3 +18,10 @@ tasks:
         {{end}}
     preconditions:
       - kubectl -n {{.namespace}} get es {{.secret}}
+
+
+  secrets-nas:
+    desc: Update NAS secrets
+    cmds:
+      - kubectl create secret generic  -n default minio --from-env-file <(doppler secrets download -p minio -c prd --no-file --format docker)
+      - kubectl create secret generic  -n cert-manager cloudflare-api-token-secret --from-env-file <(doppler secrets download -p cert-manager -c prd --no-file --format docker)
