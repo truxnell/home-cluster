@@ -94,6 +94,6 @@ spec:
       MINIO_PROMETHEUS_JOB_ID: minio
       MINIO_PROMETHEUS_AUTH_TYPE: public
       MINIO_API_CORS_ALLOW_ORIGIN: https://minio.trux.dev,https://s3.trux.dev
-    # envFrom:
-    #   - secretRef:
-    #       name: minio
+    envFrom:
+      - secretRef:
+          name: minio
