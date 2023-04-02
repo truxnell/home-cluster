@@ -6,7 +6,7 @@ metadata:
   namespace: cert-manager
 spec:
   acme:
-    email: acme@${EXTERNAL_DOMAIN}
+    email: acme@$natallan.com
     preferredChain: ''
     privateKeySecretRef:
       name: letsencrypt-staging
@@ -14,13 +14,13 @@ spec:
     solvers:
       - selector:
           dnsZones:
-            - ${EXTERNAL_DOMAIN}
+            - trux.dev
         dns01:
           cloudflare:
             apiTokenSecretRef:
               key: API_TOKEN
               name: cloudflare-api-token-secret
-            email: acme@${EXTERNAL_DOMAIN}
+            email: acme@$natallan.com
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -29,7 +29,7 @@ metadata:
   namespace: cert-manager
 spec:
   acme:
-    email: acme@${EXTERNAL_DOMAIN}
+    email: acme@$natallan.com
     preferredChain: ''
     privateKeySecretRef:
       name: letsencrypt-production
@@ -37,10 +37,10 @@ spec:
     solvers:
       - selector:
           dnsZones:
-            - ${EXTERNAL_DOMAIN}
+            - trux.dev
         dns01:
           cloudflare:
             apiTokenSecretRef:
               key: API_TOKEN
               name: cloudflare-api-token-secret
-            email: acme@${EXTERNAL_DOMAIN}
+            email: acme@$natallan.com
