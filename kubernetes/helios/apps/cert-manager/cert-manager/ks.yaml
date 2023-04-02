@@ -41,4 +41,3 @@ spec:
   timeout: 3m
   dependsOn:
     - name: cluster-apps-cert-manager
-    - name: cluster-apps-external-secrets-operator
