@@ -50,6 +50,7 @@ spec:
         enabled: true
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - host: &host "syncthing.trux.dev"
             paths:

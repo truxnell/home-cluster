@@ -38,7 +38,7 @@ spec:
             port: 9001
           api:
             enabled: true
-            port: 9000
+            port: &api-port 9000
     args:
       - server
       - /data
@@ -54,13 +54,33 @@ spec:
       main:
         enabled: true
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: web
-          traefik.ingress.kubernetes.io/router.tls: "false"
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - host: &host "minio.trux.dev"
             paths:
               - path: /
                 pathType: Prefix
+        tls:
+          - secretName: trux.dev-tls
+            hosts:
+              - *host
+      s3:
+        enabled: true
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          traefik.ingress.kubernetes.io/router.tls: "false"
+        hosts:
+          - host: &host-api "s3.trux.dev"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: *api-port
+        tls:
+          - secretName: trux.dev-tls
+            hosts:
+              - *host-api
     env:
       MINIO_UPDATE: "off"
       MINIO_BROWSER_REDIRECT_URL: https://minio.trux.dev
