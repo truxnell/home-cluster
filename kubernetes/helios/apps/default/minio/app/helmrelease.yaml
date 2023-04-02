@@ -89,9 +89,11 @@ spec:
     env:
       MINIO_UPDATE: "off"
       MINIO_BROWSER_REDIRECT_URL: https://minio.trux.dev
+      MINIO_SERVER_URL: https://s3.trux.dev
       MINIO_PROMETHEUS_URL: https://prometheus.trux.dev
       MINIO_PROMETHEUS_JOB_ID: minio
       MINIO_PROMETHEUS_AUTH_TYPE: public
-    envFrom:
-      - secretRef:
-          name: minio
+      MINIO_API_CORS_ALLOW_ORIGIN: https://minio.trux.dev,https://s3.trux.dev
+    # envFrom:
+    #   - secretRef:
+    #       name: minio
