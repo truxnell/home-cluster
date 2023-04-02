@@ -6,7 +6,7 @@ metadata:
   namespace: cert-manager
 spec:
   acme:
-    email: acme@$natallan.com
+    email: acme@natallan.com
     preferredChain: ''
     privateKeySecretRef:
       name: letsencrypt-staging
@@ -20,7 +20,7 @@ spec:
             apiTokenSecretRef:
               key: API_TOKEN
               name: cloudflare-api-token-secret
-            email: acme@$natallan.com
+            email: acme@natallan.com
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -29,7 +29,7 @@ metadata:
   namespace: cert-manager
 spec:
   acme:
-    email: acme@$natallan.com
+    email: acme@natallan.com
     preferredChain: ''
     privateKeySecretRef:
       name: letsencrypt-production
@@ -43,4 +43,4 @@ spec:
             apiTokenSecretRef:
               key: API_TOKEN
               name: cloudflare-api-token-secret
-            email: acme@$natallan.com
+            email: acme@natallan.com
