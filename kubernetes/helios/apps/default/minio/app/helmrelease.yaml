@@ -44,6 +44,8 @@ spec:
       - /data
       - --console-address
       - :9001
+      - --address
+      - minio.trux.dev
     persistence:
       config:
         enabled: true
