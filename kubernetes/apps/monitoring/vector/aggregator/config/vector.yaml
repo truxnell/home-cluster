@@ -19,6 +19,7 @@ sources:
     type: vector
     address: 0.0.0.0:6001
     version: '2'
+    max_length: 102400
   talos_kernel_logs:
     address: 0.0.0.0:6050
     type: socket
