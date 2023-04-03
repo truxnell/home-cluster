@@ -244,7 +244,7 @@ spec:
             scheme: https
             static_configs:
               - targets:
-                  - 'minio.${EXTERNAL_DOMAIN}'
+                  - 's3.${EXTERNAL_DOMAIN}'
 
           - job_name: speedtest-exporter
             scrape_interval: 60m
