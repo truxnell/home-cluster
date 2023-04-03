@@ -215,7 +215,7 @@ spec:
             cpu: 350m
             memory: 1500M
           limits:
-            memory: 2200M
+            memory: 4500M
         thanos:
           image: quay.io/thanos/thanos:v0.31.0
           # renovate: datasource=docker depName=quay.io/thanos/thanos
