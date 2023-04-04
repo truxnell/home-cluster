@@ -38,6 +38,8 @@ spec:
       TRUSTED_PROXIES: "**"
       FIREFLY_III_URL: "http://fireflyiii.services.svc.cluster.local:8080"
       VANITY_URL: "fireflyiii.${EXTERNAL_DOMAIN}"
+      IMPORT_DIR_ALLOWLIST: "/config"
+      WEB_SERVER: "false"
       FIREFLY_III_ACCESS_TOKEN:
         valueFrom:
           secretKeyRef:
@@ -49,9 +51,6 @@ spec:
         enabled: false
 
     persistence:
-      config:
-        enabled: true
-        existingClaim: series-cleanup-data
 
       settings:
         enabled: true
