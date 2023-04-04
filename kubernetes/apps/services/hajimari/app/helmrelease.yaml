@@ -71,6 +71,9 @@ spec:
         - name: Minio
           url: "https://minio.trux.dev"
           icon: box
+        - name: Prusa
+          url: "https://prusa.natallan.com"
+          icon: box
       globalBookmarks:
         - group: Dev
           bookmarks:
