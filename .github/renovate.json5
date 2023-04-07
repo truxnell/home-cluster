@@ -52,8 +52,8 @@
       "description": ["Generic Docker image Regex manager"],
       "fileMatch": [
         "infrastructure/.+\\.ya?ml$",
-        "infrastructure/.+\\.tf$"
-        "infrastructure/.+\\.toml$",
+        "infrastructure/.+\\.tf$",
+        "infrastructure/.+\\.toml$"
       ],
       "matchStrings": [
         "# renovate: docker-image( versioning=(?<versioning>.*=?))?\n .*[:|=] \"?(?<depName>.*?):(?<currentValue>[^\"\n]*=?)\"?",
