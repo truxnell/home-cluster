@@ -44,9 +44,6 @@ spec:
         tls:
           - hosts:
               - *host
-    dependsOn:
-      - name: fireflyiii
-        namespace: home
     envFrom:
       - secretRef:
           name: fireflyiii
