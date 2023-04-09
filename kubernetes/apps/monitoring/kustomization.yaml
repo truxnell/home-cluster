@@ -23,3 +23,4 @@ resources:
   - ./vpa/ks.yaml
   - ./nextdns-exporter/ks.yaml
   - ./changedetection/ks.yaml
+  - ./snmp-exporter-vyos/ks.yaml
