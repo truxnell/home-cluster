@@ -26,6 +26,7 @@ spec:
         - module:
             - if_mib
           target: 10.8.12.1
+          name: vyos
       path: /snmp
       # interval: 60s
       scrapeTimeout: 10s
