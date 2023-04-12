@@ -23,12 +23,9 @@ spec:
       enabled: true
       namespace: monitoring
       params:
-        enabled: true
-        conf:
-          module:
+        - module:
             - if_mib
-          target:
-            - 10.8.12.1
+          target: 10.8.12.1
       path: /snmp
       # interval: 60s
       scrapeTimeout: 10s
