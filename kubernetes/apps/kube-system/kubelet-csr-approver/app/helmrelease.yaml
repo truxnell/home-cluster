@@ -19,3 +19,4 @@ spec:
   values:
     providerRegex: |
       ^(xerxes|shodan|icarus)$
+    bypassDnsResolution: true
