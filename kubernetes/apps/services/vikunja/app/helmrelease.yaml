@@ -25,7 +25,7 @@ spec:
   values:
     initContainers:
       init-db:
-        image: ghcr.io/onedr0p/postgres-initdb:14.7
+        image: ghcr.io/onedr0p/postgres-initdb:14.7@sha256:4c6a27bc6de60ffaad7ce0f41931a2746a52c1c3b728d8135c0198eb69a93f97
         imagePullPolicy: IfNotPresent
         envFrom:
           - secretRef:
@@ -36,7 +36,7 @@ spec:
       pullPolicy: IfNotPresent
     sidecars:
       frontend:
-        image: vikunja/frontend:0.20.5
+        image: vikunja/frontend:0.20.5@sha256:5aad76d28c5dd8f5f5f4e6d5ba3459138676d37e5f79747f53ce64a52ba78b56
         resources:
           requests:
             cpu: 10m
