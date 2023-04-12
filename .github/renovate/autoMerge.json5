@@ -16,16 +16,6 @@
       stabilityDays: 3,
     },
     {
-      description: 'Auto merge GitHub Actions',
-      matchDatasources: ['github-releases'],
-      automerge: true,
-      automergeType: 'branch',
-      requiredStatusChecks: null,
-      matchUpdateTypes: ['minor', 'patch', 'digest'],
-      schedule: ['before 6am on saturday'],
-      stabilityDays: 3,
-    },
-    {
       matchDatasources: [
         'docker',
         'github-actions',

@@ -1,35 +1,17 @@
 {
-
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    ":enableRenovate",
-    "config:base",
-    ":disableRateLimiting",
-    ":dependencyDashboard",
-    ":semanticCommits",
-    ":separatePatchReleases",
-    "docker:enableMajor",
-    ":enablePreCommit",
-    ":automergeDigest",
-    ":automergeBranch",
-    "github>Truxnell/home-cluster//.github/renovate/allowedVersions.json5",
-    "github>Truxnell/home-cluster//.github/renovate/labels.json5",
-    "github>Truxnell/home-cluster//.github/renovate/groups.json5",
-    "github>Truxnell/home-cluster//.github/renovate/commitMessage.json5",
-    "github>Truxnell/home-cluster//.github/renovate/semanticCommits.json5",
-    "github>Truxnell/home-cluster//.github/renovate/autoMerge.json5",
+    "github>truxnell/renovate-config",
+    "github>truxnell/renovate-config:automerge-github-actions",
+    "github>truxnell/home-cluster//.github/renovate/allowedVersions.json5",
+    "github>truxnell/home-cluster//.github/renovate/autoMerge.json5",
+    "github>truxnell/home-cluster//.github/renovate/disabledDatasources.json5",
+    "github>truxnell/home-cluster//.github/renovate/groups.json5",
   ],
   "platform": "github",
   "username": "trux-bot[bot]",
-  "repositories": ["Truxnell/home-cluster"],
-  "onboarding": false,
-  "requireConfig": "optional",
   "gitAuthor": "Trux-Bot <19149206+trux-bot[bot]@users.noreply.github.com>",
-  "commitBody": "Signed-off-by: Nat Allan <19149206+Truxnell@users.noreply.github.com>",
-  "timezone": "Australia/Melbourne",
-  "dependencyDashboardTitle": "Renovate Dashboard 🤖",
-  "suppressNotifications": ["prIgnoreNotification"],
-  "rebaseWhen": "conflicted",
+  "repositories": ["truxnell/home-cluster"],
   "flux": {
     "fileMatch": ["kubernetes/.+\\.ya?ml$"]
   },
@@ -52,8 +34,7 @@
       "description": ["Generic Docker image Regex manager"],
       "fileMatch": [
         "infrastructure/.+\\.ya?ml$",
-        "infrastructure/.+\\.tf$",
-        "infrastructure/.+\\.toml$"
+        "infrastructure/.+\\.tf$"
       ],
       "matchStrings": [
         "# renovate: docker-image( versioning=(?<versioning>.*=?))?\n .*[:|=] \"?(?<depName>.*?):(?<currentValue>[^\"\n]*=?)\"?",
@@ -75,78 +56,9 @@
     }
   ],
   "packageRules": [
+    // Custom version schemes
     {
-      matchDatasources: ["helm"],
-      ignoreDeprecated: true,
-    },
-    {
-      "description": "Use loose versioning for certain dependencies",
-      "matchDatasources": ["docker", "github-releases"],
-      "versioning": "loose",
-      "matchPackagePatterns": ["changedetection", "immich", "plex", "qbittorrent"]
-    },
-    {
-      matchDatasources: ["docker"],
-      matchPackageNames: ["blakeblackshear/frigate"],
-      versioning: "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$",
-    },
-    {
-      matchDatasources: ["docker"],
-      matchPackageNames: [
-        "ghcr.io/kubernetes-at-home/plex",
-        "ghcr.io/kubernetes-at-home/qbittorrent",
-      ],
-      versioning: "loose",
-    },
-    {
-      matchDatasources: ["docker"],
-      matchPackageNames: ["tomsquest/docker-radicale"],
-      versioning: "pep440",
-    },
-    {
-      matchDatasources: ["helm", "docker"],
-      matchPackagePatterns: ["^rook.ceph"],
-      groupName: "rook-ceph-suite",
-      additionalBranchPrefix: "",
-      separateMinorPatch: true,
-    },
-    {
-      matchDatasources: ["docker"],
-      matchPackageNames: [
-        "kubernetes.gcr.io/kube-apiserver",
-        "kubernetes.gcr.io/kube-controller-manager",
-        "kubernetes.gcr.io/kube-scheduler",
-        "ghcr.io/siderolabs/kubelet",
-      ],
-      groupName: "kubernetes",
-      additionalBranchPrefix: "",
-      separateMinorPatch: true,
-    },
-    {
-      matchDatasources: ["helm", "docker"],
-      matchPackageNames: [
-        "quay.io/cilium/cilium",
-        "quay.io/cilium/operator-generic",
-        "cilium",
-      ],
-      groupName: "cilium",
-      additionalBranchPrefix: "",
-      separateMinorPatch: true,
-    },
-    {
-      matchDatasources: ["docker"],
-      matchPackageNames: [
-        "ghcr.io/linuxserver/calibre",
-        "ghcr.io/linuxserver/calibre-web",
-      ],
-      versioning: "regex:^version-v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$",
-    },
-    {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["blakeblackshear/frigate"],
-      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$"
-    },
-    {
+      "description": "Use custom versioning for Vector",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["docker.io/timberio/vector"],
       "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>.*)$"
@@ -157,21 +69,16 @@
       "versioning": "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z(-(?<compatibility>.*))?$",
       "matchPackageNames": ["quay.io/minio/minio"]
     },
+    // Version strategies
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ghcr.io/onedr0p/plex", "ghcr.io/onedr0p/qbittorrent"],
+      "versioning": "loose"
+    },
     {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["tomsquest/docker-radicale"],
       "versioning": "pep440"
-    },
-    {
-      "description": "Use loose versioning for certain dependencies",
-      "matchDatasources": ["docker", "github-releases"],
-      "versioning": "loose",
-      "matchPackageNames": [
-        "plex",
-        "qbittorrent",
-        "immich",
-        "changedetection"
-      ]
     },
     {
       "description": "Three day stability period for npm packages except Renovate",
