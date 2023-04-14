@@ -35,6 +35,9 @@ spec:
       enable_pod_disruption_budget: false
     # configure resource requests for the Postgres pods
 
+      pod_environment_configmap: zalando-postgres-pod-configmap
+      # pod_environment_secret: zalando-postgres-pod-secrets
+
     configPostgresPodResources:
       # CPU limits for the postgres containers
       default_cpu_limit: "2"
