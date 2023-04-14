@@ -6,15 +6,15 @@ metadata:
   namespace: databases
 spec:
   env:
-  - name: ALLOW_NOSSL
-    value: "true"
+    - name: ALLOW_NOSSL
+      value: "true"
   teamId: "acid"
   volume:
-    size: 30Gi
+    size: 40Gi
   numberOfInstances: 3
   users:
     postgres:  # database owner
-    - superuser
-    - createdb
+      - superuser
+      - createdb
   postgresql:
     version: "15"
