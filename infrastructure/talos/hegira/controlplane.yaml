@@ -19,10 +19,9 @@ machine:
     # Used to provide additional options to the kubelet.
     kubelet:
         # renovate: docker-image
-        image: ghcr.io/siderolabs/kubelet:v1.27.1
+        image: ghcr.io/siderolabs/kubelet:v1.26.3
 
     # # The `image` field is an optional reference to an alternative kubelet image.
-    # image: ghcr.io/talos-systems/kubelet:v1.23.1
 
     # # The `ClusterDNS` field is an optional reference to an alternative kubelet clusterDNS ip list.
     # clusterDNS:
@@ -132,7 +131,7 @@ machine:
     install:
         disk: /dev/sda # The disk used for installations.
         # renovate: docker-image
-        image: ghcr.io/talos-systems/installer:v1.0.4
+        image: ghcr.io/talos-systems/installer:v1.4.0
         bootloader: true # Indicates if a bootloader should be installed.
         wipe: false # Indicates if the installation disk should be wiped at installation time.
 
@@ -316,7 +315,7 @@ cluster:
     # API server specific configuration options.
     apiServer:
         # renovate: docker-image
-        image: registry.k8s.io/kube-apiserver:v1.27.1
+        image: registry.k8s.io/kube-apiserver:v1.26.3
 
         # Extra certificate subject alternative names for the API server's certificate.
         certSANs:
@@ -327,20 +326,17 @@ cluster:
     # Controller manager server specific configuration options.
     controllerManager:
         # renovate: docker-image
-        image: registry.k8s.io/kube-controller-manager:v1.27.1
-    # image: k8s.gcr.io/kube-controller-manager:v1.23.1
+        image: registry.k8s.io/kube-controller-manager:v1.26.3
 
     # Kube-proxy server-specific configuration options
     proxy:
         # renovate: docker-image
         image: registry\.k8s\.io/kube-proxy:v1.23.6 # The container image used in the kube-proxy manifest.
-    # image: k8s.gcr.io/kube-proxy:v1.23.1
 
     # Scheduler server specific configuration options.
     scheduler:
         # renovate: docker-image
-        image: registry.k8s.io/kube-scheduler:v1.27.1
-    # image: k8s.gcr.io/kube-scheduler:v1.23.1
+        image: registry.k8s.io/kube-scheduler:v1.26.3
 
     # Configures cluster member discovery.
     discovery:

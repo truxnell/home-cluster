@@ -19,8 +19,7 @@ machine:
     # Used to provide additional options to the kubelet.
     kubelet:
         # renovate: docker-image
-        image: ghcr.io/siderolabs/kubelet:v1.27.1
-    # image: ghcr.io/talos-systems/kubelet:v1.23.1
+        image: ghcr.io/siderolabs/kubelet:v1.26.3
 
     # # The `ClusterDNS` field is an optional reference to an alternative kubelet clusterDNS ip list.
     # clusterDNS:
@@ -154,7 +153,7 @@ machine:
     install:
         disk: /dev/sda # The disk used for installations.
         # renovate: docker-image
-        image: ghcr.io/talos-systems/installer:v1.0.4
+        image: ghcr.io/talos-systems/installer:v1.4.0
         bootloader: true # Indicates if a bootloader should be installed.
         wipe: false # Indicates if the installation disk should be wiped at installation time.
 
