@@ -1,18 +1,18 @@
 clusterName: hegira
 talosVersion: v1.3.1
 kubernetesVersion: 1.24.9
-endpoint: https://hegira.${domainName}:6443
+endpoint: https://hegira.${DOMAINNAME}:6443
 allowSchedulingOnMasters: true
 cniConfig:
   name: none
 additionalApiServerCertSans:
-  - ${clusterEndpointIP}
+  - ${CLUSTERENDPOINTIP}
 
 additionalMachineCertSans:
-  - ${clusterEndpointIP}
-  - hegira.${domainName}
+  - ${CLUSTERENDPOINTIP}
+  - hegira.${DOMAINNAME}
 nodes:
-  - hostname: xerxes.${domainName}
+  - hostname: xerxes.${DOMAINNAME}
     ipAddress: 10.8.20.40
     controlPlane: true
     installDisk: /dev/sda
@@ -21,7 +21,7 @@ nodes:
       - interface: eth0
         mtu: 0
         dhcp: true
-  - hostname: shodan.${domainName}
+  - hostname: shodan.${DOMAINNAME}
     ipAddress: 10.8.20.42
     controlPlane: true
     installDisk: /dev/nvme0n1
@@ -30,7 +30,7 @@ nodes:
       - interface: eth0
         mtu: 0
         dhcp: true
-  - hostname: icarus.${domainName}
+  - hostname: icarus.${DOMAINNAME}
     ipAddress: 10.8.20.44
     controlPlane: true
     installDisk: /dev/sda
@@ -42,20 +42,20 @@ nodes:
 controlPlane:
   inlinePatch:
     cluster:
-      aescbcEncryptionSecret: ${aescbcEncryptionKey}
+      aescbcEncryptionSecret: ${AESCBCENCRYPTIONKEY}
       aggregatorCA:
-        crt: ${k8sAggregatorCert}
-        key: ${k8sAggregatorCertKey}
+        crt: ${K8SAGGREGATORCERT}
+        key: ${K8SAGGREGATORCERTKEY}
       apiServer:
         admissionControl: []
         certSANs:
-          - ${clusterEndpointIP}
-          - heigra.${domainName}
+          - ${CLUSTERENDPOINTIP}
+          - heigra.${DOMAINNAME}
         extraArgs:
           feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
       ca:
-        crt: ${clusterCert}
-        key: ${clusterCertKey}
+        crt: ${CLUSTERCERT}
+        key: ${CLUSTERCERTKEY}
       controllerManager:
         extraArgs:
           feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
@@ -65,8 +65,8 @@ controlPlane:
             disabled: true
       etcd:
         ca:
-          crt: ${etcdCert}
-          key: ${etcdCertKey}
+          crt: ${ETCDCERT}
+          key: ${ETCDCERTKEY}
       proxy:
         disabled: true
         extraArgs:
@@ -74,17 +74,17 @@ controlPlane:
       scheduler:
         extraArgs:
           feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
-      secret: ${clusterSecret}
+      secret: ${CLUSTERSECRET}
       serviceAccount:
-        key: ${k8sServiceAccountKey}
-      token: ${clusterToken}
+        key: ${K8SSERVICEACCOUNTKEY}
+      token: ${CLUSTERTOKEN}
     machine:
       ca:
-        crt: ${machineCert}
-        key: ${machineCertKey}
+        crt: ${MACHINECERT}
+        key: ${MACHINECERTKEY}
       certSANs:
-        - ${clusterEndpointIP}
-        - hegira.${domainName}
+        - ${CLUSTERENDPOINTIP}
+        - hegira.${DOMAINNAME}
       files:
         - content: |
             [plugins."io.containerd.grpc.v1.cri"]
@@ -107,27 +107,27 @@ controlPlane:
         disabled: false
         servers:
           - time.cloudflare.com
-      token: ${machineToken}
+      token: ${MACHINETOKEN}
 worker:
   inlinePatch:
     cluster:
-      aescbcEncryptionSecret: ${aescbcEncryptionKey}
+      aescbcEncryptionSecret: ${AESCBCENCRYPTIONKEY}
       ca:
-        crt: ${clusterCert}
-        key: ${clusterCertKey}
+        crt: ${CLUSTERCERT}
+        key: ${CLUSTERCERTKEY}
       discovery:
         registries:
           service:
             disabled: true
-      secret: ${clusterSecret}
-      token: ${clusterToken}
+      secret: ${CLUSTERSECRET}
+      token: ${CLUSTERTOKEN}
     machine:
       ca:
-        crt: ${machineCert}
-        key: ${machineCertKey}
+        crt: ${MACHINECERT}
+        key: ${MACHINECERTKEY}
       certSANs:
-        - ${clusterEndpointIP}
-        - heigra.${domainName}
+        - ${CLUSTERENDPOINTIP}
+        - heigra.${DOMAINNAME}
       files:
         - content: |
             [plugins."io.containerd.grpc.v1.cri"]
@@ -153,4 +153,4 @@ worker:
         disabled: false
         servers:
           - time.cloudflare.com
-      token: ${machineToken}
+      token: ${MACHINETOKEN}
