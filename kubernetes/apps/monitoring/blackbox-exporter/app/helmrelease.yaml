@@ -100,24 +100,37 @@ spec:
       # DO NOT USE UNDERSCORES IN NAMES.
       # K8S EXPECTS IT AS A RFC THINGY COMPLIANT URL
       targets:
+        # Fermentation chamber
         - module: icmp
           name: brewpiless
           url: ESP_7DE997.${INTERNAL_DOMAIN}
+
+        # weatherstation
         - module: icmp
           name: weatherstation
           url: weatherstation.${INTERNAL_DOMAIN}
+
+        # Zigbee-poe
         - module: http_2xx
           name: poe-zigbee-coordinator
           url: zigbee-poe.${INTERNAL_DOMAIN}
+
+        # NAS
         - module: icmp
           name: george
           url: george.${INTERNAL_DOMAIN}
+
+        # Pikvm
         - module: http_2xx
           name: pikvm
           url: pikvm.${INTERNAL_DOMAIN}
+
+        # 3d Printer
         - module: http_2xx
           name: prusa-mk3s
           url: prusa.${INTERNAL_DOMAIN}:5000
+
+        # Websites
         - module: http_2xx
           name: uptime-kuma
           url: status.${WEBSITE_DOMAIN}
@@ -128,6 +141,12 @@ spec:
           # - module: http_401
           #   name: tyua-blinds-1
           #   url: 10.8.30.141
+
+        # Wallmount tablets
+        - module: http_401
+          name: fire-tablet-study
+          url: firetablet-study.natallan.com
+
         # WLED
         - module: http_2xx
           name: wled-desk
