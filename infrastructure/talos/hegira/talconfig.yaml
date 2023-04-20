@@ -1,6 +1,6 @@
 clusterName: hegira
-talosVersion: v1.3.1
-kubernetesVersion: 1.24.9
+talosVersion: v1.4.0
+kubernetesVersion: 1.26.3
 endpoint: https://hegira.${DOMAINNAME}:6443
 allowSchedulingOnMasters: true
 cniConfig:
