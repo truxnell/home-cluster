@@ -33,7 +33,7 @@ spec:
       repository: quay.io/prometheus/blackbox-exporter
     ingress:
       enabled: true
-      ingressClassName: 'nginx'
+      className: nginx
       annotations:
         hajimari.io/icon: mdi:solid
       hosts:
