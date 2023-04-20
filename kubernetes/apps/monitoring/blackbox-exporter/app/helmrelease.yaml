@@ -105,16 +105,16 @@ spec:
           url: ESP_7DE997.${INTERNAL_DOMAIN}
         - module: icmp
           name: weatherstation
-          url: ESP-B9C83C.${INTERNAL_DOMAIN}
+          url: weatherstation.${INTERNAL_DOMAIN}
         - module: http_2xx
           name: poe-zigbee-coordinator
-          url: espressif.${INTERNAL_DOMAIN}
+          url: zigbee-poe.${INTERNAL_DOMAIN}
         - module: icmp
           name: george
           url: george.${INTERNAL_DOMAIN}
         - module: http_2xx
           name: pikvm
-          url: technocore.${INTERNAL_DOMAIN}
+          url: pikvm.${INTERNAL_DOMAIN}
         - module: http_2xx
           name: prusa-mk3s
           url: prusa.${INTERNAL_DOMAIN}:5000
@@ -130,8 +130,8 @@ spec:
           #   url: 10.8.30.141
         # WLED
         - module: http_2xx
-          name: wled-officedesk
-          url: wled-officedesk.${INTERNAL_DOMAIN}
+          name: wled-desk
+          url: wled-desk.${INTERNAL_DOMAIN}
         - module: http_2xx
           name: wled-monitor
           url: wled-monitor.${INTERNAL_DOMAIN}
