@@ -1,0 +1,49 @@
+- hosts: storage
+  tasks:
+
+  - name: check latest zfs_exporter
+    uri:
+      url: https://api.github.com/repos/pdf/zfs_exporter/releases/latest
+      return_content: true
+    register: zfs_exporter_latest
+
+  - name: "installing zfs_exporter {{ zfs_exporter_latest.json.tag_name }}"
+    loop: "{{ zfs_exporter_latest.json.assets }}"
+    when: "'linux-amd64.tar.gz' in item.name"
+    unarchive:
+      remote_src: yes
+      src: "{{ item.browser_download_url }}"
+      dest: "/usr/local/bin/"
+      keep_newer: yes
+      extra_opts:
+      - --strip=1
+      - --no-anchored
+      - zfs_exporter
+
+  - name: Set correct ownership and permissions
+    become: yes
+    file:
+      path: /usr/local/bin/zfs_exporter
+      owner: root
+      group: root
+
+  - name: Configure systemd service
+    become: yes
+    template:
+      src: zfs_exporter.service.j2
+      dest: /etc/systemd/system/zfs_exporter.service
+    notify:
+      - Reload systemd
+
+  - name: Start and enable systemd service
+    become: yes
+    service:
+      name: zfs_exporter.service
+      state: started
+      enabled: yes
+
+  handlers:
+    - name: Reload systemd
+      become: yes
+      systemd:
+        daemon_reload: yes
