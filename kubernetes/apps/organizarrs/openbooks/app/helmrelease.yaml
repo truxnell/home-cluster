@@ -68,7 +68,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: 'george.${INTERNAL_DOMAIN}'
+        server: 'helios.${INTERNAL_DOMAIN}'
         path: /tank/downloads/openbooks/
         mountPath: /books
         readOnly: true

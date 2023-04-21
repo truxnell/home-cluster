@@ -62,13 +62,13 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: "george.${INTERNAL_DOMAIN}"
+        server: "helios.${INTERNAL_DOMAIN}"
         path: /tank/
         mountPath: /media
       backups:
         enabled: true
         type: nfs
-        server: "george.${INTERNAL_DOMAIN}"
+        server: "helios.${INTERNAL_DOMAIN}"
         path: /tank/backup/kubernetes/apps/kavita
         mountPath: /kavita/config/backups
     resources:

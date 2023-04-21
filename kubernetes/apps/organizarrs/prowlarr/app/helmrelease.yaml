@@ -72,7 +72,7 @@ spec:
       backup:
         enabled: true
         type: nfs
-        server: 'george.${INTERNAL_DOMAIN}'
+        server: 'helios.${INTERNAL_DOMAIN}'
         path: /tank/backup/kubernetes/apps/prowlarr
         mountPath: /config/Backups
     # podAnnotations:

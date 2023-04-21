@@ -73,7 +73,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: &nas 'george.${INTERNAL_DOMAIN}'
+        server: &nas 'helios.${INTERNAL_DOMAIN}'
         path: /tank/
         mountPath: /media
       backup:

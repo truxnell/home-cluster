@@ -117,8 +117,8 @@ spec:
 
         # NAS
         - module: icmp
-          name: george
-          url: george.${INTERNAL_DOMAIN}
+          name: helios
+          url: helios.${INTERNAL_DOMAIN}
 
         # Pikvm
         - module: http_2xx

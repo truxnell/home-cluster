@@ -51,7 +51,7 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: george.${INTERNAL_DOMAIN}
+            server: helios.${INTERNAL_DOMAIN}
             path: /tank/music
         mountPath: /music/localtracks
         readOnly: false

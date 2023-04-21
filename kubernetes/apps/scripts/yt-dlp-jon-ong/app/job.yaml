@@ -41,5 +41,5 @@ spec:
       volumes:
         - name: nas
           nfs:
-            server: 'george'
+            server: 'helios'
             path: /tank/music/
