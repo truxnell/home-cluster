@@ -57,7 +57,7 @@ spec:
           - name: VIKUNJA_MAILER_ENABLED
             value: 'true'
           - name: VIKUNJA_MAILER_HOST
-            value: smtp-relay.services.svc.cluster.local
+            value: smtp-relay.trux.dev
           - name: VIKUNJA_MAILER_PORT
             value: '2525'
           - name: &envjwt VIKUNJA_SERVICE_JWT
