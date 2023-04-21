@@ -1,0 +1,13 @@
+[Unit]
+Description=ZFS Exporter
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/zfs_exporter
+Restart=always
+User=durandal
+Group=durandal
+
+[Install]
+WantedBy=multi-user.target

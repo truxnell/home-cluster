@@ -22,3 +22,4 @@ resources:
   - ./nextdns-exporter/ks.yaml
   - ./changedetection/ks.yaml
   - ./snmp-exporter-vyos/ks.yaml
+  - ./prometheus-rules/ks.yaml

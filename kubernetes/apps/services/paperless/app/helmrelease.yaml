@@ -69,25 +69,25 @@ spec:
         enabled: true
         mountPath: /usr/src/paperless/data
         type: nfs
-        server: 'george.${INTERNAL_DOMAIN}'
+        server: 'helios.${INTERNAL_DOMAIN}'
         path: /tank/documents/paperless/data
       media:
         enabled: true
         mountPath: /usr/src/paperless/media
         type: nfs
-        server: 'george.${INTERNAL_DOMAIN}'
+        server: 'helios.${INTERNAL_DOMAIN}'
         path: /tank/documents/paperless/media
       consume:
         enabled: true
         mountPath: /usr/src/paperless/consume
         type: nfs
-        server: 'george.${INTERNAL_DOMAIN}'
+        server: 'helios.${INTERNAL_DOMAIN}'
         path: /tank/documents/paperless/consume
       export:
         enabled: true
         mountPath: /usr/src/paperless/export
         type: nfs
-        server: 'george.${INTERNAL_DOMAIN}'
+        server: 'helios.${INTERNAL_DOMAIN}'
         path: /tank/documents/paperless/export
     sidecars:
       redis:

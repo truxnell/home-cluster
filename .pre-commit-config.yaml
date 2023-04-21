@@ -61,18 +61,18 @@ repos:
     hooks:
       - id: gitleaks
 
-  - repo: https://github.com/Truxnell/pre-commit
-    rev: v0.0.9
-    hooks:
-      - id: kustomize_build
-        # files: ^(
-        #   k8s/
-        #   kubetnetes/
-        #   )
-        args: [--dry-run=server]
-
-  - repo: https://github.com/tarioch/flux-check-hook
-    rev: v0.3.0
-    hooks:
-      - id: check-flux-helm-values
-        # exclude: (cluster/apps/home/home-assistant/patches/db-init.yaml)
+  # - repo: https://github.com/Truxnell/pre-commit
+  #   rev: v0.0.9
+  #   hooks:
+  #     - id: kustomize_build
+  #       # files: ^(
+  #       #   k8s/
+  #       #   kubetnetes/
+  #       #   )
+  #       args: [--dry-run=server]
+  #
+  # - repo: https://github.com/tarioch/flux-check-hook
+  #   rev: v0.3.0
+  #   hooks:
+  #     - id: check-flux-helm-values
+  #       # exclude: (cluster/apps/home/home-assistant/patches/db-init.yaml)

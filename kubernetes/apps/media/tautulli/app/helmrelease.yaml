@@ -63,7 +63,7 @@ spec:
       backup:
         enabled: true
         type: nfs
-        server: &nas "george.${INTERNAL_DOMAIN}"
+        server: &nas "helios.${INTERNAL_DOMAIN}"
         path: /tank/backup/kubernetes/apps/tautulli
     resources:
       requests:

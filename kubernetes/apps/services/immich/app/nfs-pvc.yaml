@@ -10,7 +10,7 @@ spec:
   accessModes: ["ReadWriteMany"]
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    server: george.${INTERNAL_DOMAIN}
+    server: helios.${INTERNAL_DOMAIN}
     path: /tank/photos/immich
   # Note: The first two options are strictly for NFSv4.2
   mountOptions: ["nfsvers=4.2", "nconnect=8", "hard", "noatime"]

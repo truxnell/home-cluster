@@ -1,5 +1,5 @@
 ---
-ansible_host: '10.8.20.11'
+ansible_host: 'helios.natallan.com'
 ansible_python_interpreter: /usr/bin/python3
 ansible_user: durandal
 
