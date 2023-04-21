@@ -54,6 +54,7 @@ packages_install:
   - samba
   - smartmontools
   - socat
+  - zfs-test
 packages_remove:
   - apparmor
   - ufw
