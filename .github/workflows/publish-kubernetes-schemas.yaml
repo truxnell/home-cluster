@@ -116,9 +116,9 @@ jobs:
           file: /home/runner/crdSchemas/Dockerfile
           push: true
           tags: |
-            ghcr.io/xunholy/kubernetes-schemas-web:latest
+            ghcr.io/truxnell/kubernetes-schemas-web:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
           labels: |
             org.opencontainers.image.source="https://github.com/${{ github.repository }}"
-            org.opencontainers.image.authors="Michael Fornaro <20387402+xUnholy@users.noreply.github.com>"
+            org.opencontainers.image.authors="Nat Allan <19149206+truxnell@users.noreply.github.com>"
