@@ -1,4 +1,7 @@
 ---
+
+
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/metallb.io/ipaddresspool_v1beta1.json
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:

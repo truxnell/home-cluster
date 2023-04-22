@@ -1,4 +1,7 @@
 ---
+
+
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/actions.summerwind.dev/runnerdeployment_v1alpha1.json
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: RunnerDeployment
 metadata:
@@ -29,6 +32,9 @@ spec:
             #   limits:
             #     memory: 384Mi
 ---
+
+
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/actions.summerwind.dev/horizontalrunnerautoscaler_v1alpha1.json
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: HorizontalRunnerAutoscaler
 metadata:

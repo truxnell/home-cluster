@@ -1,4 +1,7 @@
 ---
+
+
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kubedb.com/redis_v1alpha2.json
 apiVersion: kubedb.com/v1alpha2
 kind: Redis
 metadata:
