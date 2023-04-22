@@ -125,15 +125,6 @@ spec:
             summary: thanos query grpc server error rate (instance {{ $labels.instance }})
             description: "thanos query {{$labels.job}} is failing to handle {{$value | humanize}}% of requests.\n  value = {{ $value }}\n  labels = {{ $labels }}"
 
-        - alert: thanosquerygrpcclienterrorrate
-          expr: (sum by (job) (rate(grpc_client_handled_total{grpc_code!="ok", job=~".*thanos-query.*"}[5m])) / sum by (job) (rate(grpc_client_started_total{job=~".*thanos-query.*"}[5m]))) * 100 > 5
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: thanos query grpc client error rate (instance {{ $labels.instance }})
-            description: "thanos query {{$labels.job}} is failing to send {{$value | humanize}}% of requests.\n  value = {{ $value }}\n  labels = {{ $labels }}"
-
         - alert: thanosqueryhighdnsfailures
           expr: (sum by (job) (rate(thanos_query_store_apis_dns_failures_total{job=~".*thanos-query.*"}[5m])) / sum by (job) (rate(thanos_query_store_apis_dns_lookups_total{job=~".*thanos-query.*"}[5m]))) * 100 > 1
           for: 15m
