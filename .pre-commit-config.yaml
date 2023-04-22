@@ -71,8 +71,8 @@ repos:
   #       #   )
   #       args: [--dry-run=server]
   #
-  # - repo: https://github.com/tarioch/flux-check-hook
-  #   rev: v0.3.0
-  #   hooks:
-  #     - id: check-flux-helm-values
-  #       # exclude: (cluster/apps/home/home-assistant/patches/db-init.yaml)
+  - repo: https://github.com/tarioch/flux-check-hook
+    rev: v0.3.0
+    hooks:
+      - id: check-flux-helm-values
+        # exclude: (cluster/apps/home/home-assistant/patches/db-init.yaml)
