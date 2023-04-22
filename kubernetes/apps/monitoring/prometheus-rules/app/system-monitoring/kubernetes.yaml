@@ -63,15 +63,6 @@ spec:
             summary: Kubernetes container oom killer (instance {{ $labels.instance }})
             description: "Container {{ $labels.container }} in pod {{ $labels.namespace }}/{{ $labels.pod }} has been OOMKilled {{ $value }} times in the last 10 minutes.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-        - alert: KubernetesJobFailed
-          expr: kube_job_status_failed > 0
-          for: 0m
-          labels:
-            severity: warning
-          annotations:
-            summary: Kubernetes Job failed (instance {{ $labels.instance }})
-            description: "Job {{ $labels.namespace }}/{{ $labels.exported_job }} failed to complete\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
         - alert: KubernetesCronjobSuspended
           expr: kube_cronjob_spec_suspend != 0
           for: 0m
