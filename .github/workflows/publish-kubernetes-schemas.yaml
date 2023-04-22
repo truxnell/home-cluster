@@ -54,6 +54,7 @@ jobs:
           KUBECONFIG: ${{ steps.kubeconfig.outputs.filePath }}
         run: |
           unzip -j $GITHUB_WORKSPACE/crd-extractor.zip -d $GITHUB_WORKSPACE
+          kubectl get nodes -o wide
           bash $GITHUB_WORKSPACE/crd-extractor.sh
 
       - name: Publish schemas as OCI
