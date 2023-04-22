@@ -5,7 +5,7 @@ metadata:
   labels:
     prometheus: k8s
     role: alert-rules
-  name: node-exporter-rules
+  name: zfs-exporter-rules
   namespace: monitoring
 spec:
   groups:
