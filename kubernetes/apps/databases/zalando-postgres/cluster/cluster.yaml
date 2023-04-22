@@ -1,4 +1,7 @@
 ---
+
+
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/"acid.zalan.do/postgresql_v1".json
 apiVersion: "acid.zalan.do/v1"
 kind: postgresql
 metadata:

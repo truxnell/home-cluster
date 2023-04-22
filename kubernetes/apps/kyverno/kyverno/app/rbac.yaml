@@ -1,4 +1,7 @@
 ---
+
+
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/rbac.authorization.k8s.io/clusterrolebinding_v1.json
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
