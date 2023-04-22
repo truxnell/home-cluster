@@ -10,6 +10,7 @@ metadata:
   namespace: monitoring
 spec:
   groups:
+    # https://github.com/samber/awesome-prometheus-alerts/blob/master/_data/rules.yml
     - name: zfs-exporter.rules
       rules:
         - alert: HostOutOfMemory
@@ -30,23 +31,21 @@ spec:
             description: Disk is almost full (< 10% left)
         - alert: ZFS pool unhealthy
           expr: 'zfs_pool_health > 0'
-          severity: critical
-          comments: |
-            0: ONLINE
-            1: DEGRADED
-            2: FAULTED
-            3: OFFLINE
-            4: UNAVAIL
-            5: REMOVED
-            6: SUSPENDED
           labels:
             severity: critical
+            comments: |
+              0: ONLINE
+              1: DEGRADED
+              2: FAULTED
+              3: OFFLINE
+              4: UNAVAIL
+              5: REMOVED
+              6: SUSPENDED
           annotations:
             summary: "ZFS pool unhealthy"
             description: ZFS pool state is {{ $value }}. See comments for more information.
         - alert: ZFS collector failed
           expr: 'zfs_scrape_collector_success != 1'
-          severity: warning
           for: 5m
           labels:
             severity: critical
