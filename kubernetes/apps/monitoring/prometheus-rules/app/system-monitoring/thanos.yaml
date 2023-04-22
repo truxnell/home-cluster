@@ -234,7 +234,7 @@ spec:
             description: "Thanos Rule {{$labels.instance}} is failing to queue alerts.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
         - alert: ThanosRuleSenderIsFailingAlerts
-          expr: sum by (job, instance) (rate(thanos_alert_sender_alerts_dropped_total{job=~".*thanos-rule.*"}[5m])) > 0
+          expr: sum by (job, instance) (rate(thanos_alert_sender_alerts_dropped_total{job=~".*thanos-rule.*"}[5m])) > 0.05
           for: 5m
           labels:
             severity: critical
@@ -268,15 +268,6 @@ spec:
           annotations:
             summary: Thanos Rule Rule Evaluation Latency High (instance {{ $labels.instance }})
             description: "Thanos Rule {{$labels.instance}} has higher evaluation latency than interval for {{$labels.rule_group}}.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-        - alert: ThanosRuleGrpcErrorRate
-          expr: (sum by (job, instance) (rate(grpc_server_handled_total{grpc_code=~"Unknown|ResourceExhausted|Internal|Unavailable|DataLoss|DeadlineExceeded", job=~".*thanos-rule.*"}[5m]))/  sum by (job, instance) (rate(grpc_server_started_total{job=~".*thanos-rule.*"}[5m])) * 100 > 5)
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: Thanos Rule Grpc Error Rate (instance {{ $labels.instance }})
-            description: "Thanos Rule {{$labels.job}} is failing to handle {{$value | humanize}}% of requests.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
         - alert: ThanosRuleConfigReloadFailure
           expr: avg by (job, instance) (thanos_rule_config_last_reload_successful{job=~".*thanos-rule.*"}) != 1
@@ -359,15 +350,6 @@ spec:
             summary: Thanos Query Is Down (instance {{ $labels.instance }})
             description: "ThanosQuery has disappeared. Prometheus target for the component cannot be discovered.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-        - alert: ThanosReceiveIsDown
-          expr: absent(up{job=~".*thanos-receive.*"} == 1)
-          for: 5m
-          labels:
-            severity: critical
-          annotations:
-            summary: Thanos Receive Is Down (instance {{ $labels.instance }})
-            description: "ThanosReceive has disappeared. Prometheus target for the component cannot be discovered.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
         - alert: ThanosRuleIsDown
           expr: absent(up{job=~".*thanos-rule.*"} == 1)
           for: 5m
@@ -376,15 +358,6 @@ spec:
           annotations:
             summary: Thanos Rule Is Down (instance {{ $labels.instance }})
             description: "ThanosRule has disappeared. Prometheus target for the component cannot be discovered.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-        - alert: ThanosSidecarIsDown
-          expr: absent(up{job=~".*thanos-sidecar.*"} == 1)
-          for: 5m
-          labels:
-            severity: critical
-          annotations:
-            summary: Thanos Sidecar Is Down (instance {{ $labels.instance }})
-            description: "ThanosSidecar has disappeared. Prometheus target for the component cannot be discovered.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
         - alert: ThanosStoreIsDown
           expr: absent(up{job=~".*thanos-store.*"} == 1)
