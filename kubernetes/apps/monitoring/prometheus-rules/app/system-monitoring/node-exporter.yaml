@@ -50,22 +50,22 @@ spec:
             description: "Host network interfaces are probably sending too much data (> 100 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
         - alert: HostUnusualDiskReadRate
-          expr: sum by (instance) (rate(node_disk_read_bytes_total[2m])) / 1024 / 1024 > 50
+          expr: sum by (instance) (rate(node_disk_read_bytes_total[2m])) / 1024 / 1024 > 85
           for: 5m
           labels:
             severity: warning
           annotations:
             summary: Host unusual disk read rate (instance {{ $labels.instance }})
-            description: "Disk is probably reading too much data (> 50 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+            description: "Disk is probably reading too much data (> 85 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
         - alert: HostUnusualDiskWriteRate
-          expr: sum by (instance) (rate(node_disk_written_bytes_total[2m])) / 1024 / 1024 > 50
+          expr: sum by (instance) (rate(node_disk_written_bytes_total[2m])) / 1024 / 1024 > 85
           for: 2m
           labels:
             severity: warning
           annotations:
             summary: Host unusual disk write rate (instance {{ $labels.instance }})
-            description: "Disk is probably writing too much data (> 50 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+            description: "Disk is probably writing too much data (> 85 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
         # Please add ignored mountpoints in node_exporter parameters like
         # "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|run)($|/)".
