@@ -146,15 +146,6 @@ spec:
             summary: Host CPU is under utilized (instance {{ $labels.instance }})
             description: "CPU load is < 20% for 1 week. Consider reducing the number of CPUs.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-        - alert: HostCpuStealNoisyNeighbor
-          expr: avg by(instance) (rate(node_cpu_seconds_total{mode="steal"}[5m])) * 100 > 10
-          for: 0m
-          labels:
-            severity: warning
-          annotations:
-            summary: Host CPU steal noisy neighbor (instance {{ $labels.instance }})
-            description: "CPU steal is > 10%. A noisy neighbor is killing VM performances or a spot instance may be out of credit.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
         - alert: HostCpuHighIowait
           expr: avg by (instance) (rate(node_cpu_seconds_total{mode="iowait"}[5m])) * 100 > 10
           for: 0m
@@ -177,13 +168,13 @@ spec:
         # Alert threshold depends on nature of application.
         # Please read: https://github.com/samber/awesome-prometheus-alerts/issues/58
         - alert: HostContextSwitching
-          expr: (rate(node_context_switches_total[5m])) / (count without(cpu, mode) (node_cpu_seconds_total{mode="idle"})) > 1000
+          expr: (rate(node_context_switches_total[5m])) / (count without(cpu, mode) (node_cpu_seconds_total{mode="idle"})) > 10000
           for: 0m
           labels:
             severity: warning
           annotations:
             summary: Host context switching (instance {{ $labels.instance }})
-            description: "Context switching is growing on node (> 1000 / s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+            description: "Context switching is growing on node (> 8000 / s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
         - alert: HostSwapIsFillingUp
           expr: (1 - (node_memory_SwapFree_bytes / node_memory_SwapTotal_bytes)) * 100 > 80
