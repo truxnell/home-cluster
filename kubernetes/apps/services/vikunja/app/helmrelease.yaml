@@ -108,8 +108,6 @@ spec:
         enabled: true
         ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: 'true'
-          auth.home.arpa/enabled: 'true'
           hajimari.io/icon: mdi:format-list-checks
         hosts:
           - host: &host 'tasks.${EXTERNAL_DOMAIN}'
