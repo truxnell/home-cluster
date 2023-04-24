@@ -108,7 +108,8 @@ spec:
       enabled: false # FIXME
 
     kubeScheduler:
-      enabled: false # FIXME
+      enabled: true
+      endpoints: *cp
 
     kube-state-metrics:
       metricLabelsAllowlist:
