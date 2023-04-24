@@ -31,41 +31,41 @@ spec:
             description: "The node is under heavy memory pressure. High rate of major page faults\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
 
-        - alert: HostUnusualNetworkThroughputIn
-          expr: sum by (instance) (rate(node_network_receive_bytes_total[2m])) / 1024 / 1024 > 100
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: Host unusual network throughput in (instance {{ $labels.instance }})
-            description: "Host network interfaces are probably receiving too much data (> 100 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-        - alert: HostUnusualNetworkThroughputOut
-          expr: sum by (instance) (rate(node_network_transmit_bytes_total[2m])) / 1024 / 1024 > 100
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: Host unusual network throughput out (instance {{ $labels.instance }})
-            description: "Host network interfaces are probably sending too much data (> 100 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-        - alert: HostUnusualDiskReadRate
-          expr: sum by (instance) (rate(node_disk_read_bytes_total[2m])) / 1024 / 1024 > 85
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: Host unusual disk read rate (instance {{ $labels.instance }})
-            description: "Disk is probably reading too much data (> 85 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-        - alert: HostUnusualDiskWriteRate
-          expr: sum by (instance) (rate(node_disk_written_bytes_total[2m])) / 1024 / 1024 > 85
-          for: 2m
-          labels:
-            severity: warning
-          annotations:
-            summary: Host unusual disk write rate (instance {{ $labels.instance }})
-            description: "Disk is probably writing too much data (> 85 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        # - alert: HostUnusualNetworkThroughputIn
+        #   expr: sum by (instance) (rate(node_network_receive_bytes_total[2m])) / 1024 / 1024 > 100
+        #   for: 5m
+        #   labels:
+        #     severity: warning
+        #   annotations:
+        #     summary: Host unusual network throughput in (instance {{ $labels.instance }})
+        #     description: "Host network interfaces are probably receiving too much data (> 100 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        #
+        # - alert: HostUnusualNetworkThroughputOut
+        #   expr: sum by (instance) (rate(node_network_transmit_bytes_total[2m])) / 1024 / 1024 > 100
+        #   for: 5m
+        #   labels:
+        #     severity: warning
+        #   annotations:
+        #     summary: Host unusual network throughput out (instance {{ $labels.instance }})
+        #     description: "Host network interfaces are probably sending too much data (> 100 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        #
+        # - alert: HostUnusualDiskReadRate
+        #   expr: sum by (instance) (rate(node_disk_read_bytes_total[2m])) / 1024 / 1024 > 85
+        #   for: 5m
+        #   labels:
+        #     severity: warning
+        #   annotations:
+        #     summary: Host unusual disk read rate (instance {{ $labels.instance }})
+        #     description: "Disk is probably reading too much data (> 85 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        #
+        # - alert: HostUnusualDiskWriteRate
+        #   expr: sum by (instance) (rate(node_disk_written_bytes_total[2m])) / 1024 / 1024 > 85
+        #   for: 2m
+        #   labels:
+        #     severity: warning
+        #   annotations:
+        #     summary: Host unusual disk write rate (instance {{ $labels.instance }})
+        #     description: "Disk is probably writing too much data (> 85 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
         # Please add ignored mountpoints in node_exporter parameters like
         # "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|run)($|/)".
@@ -109,72 +109,72 @@ spec:
             summary: Host inodes will fill in 24 hours (instance {{ $labels.instance }})
             description: "Filesystem is predicted to run out of inodes within the next 24 hours at current write rate\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-        - alert: HostUnusualDiskReadLatency
-          expr: rate(node_disk_read_time_seconds_total[1m]) / rate(node_disk_reads_completed_total[1m]) > 0.1 and rate(node_disk_reads_completed_total[1m]) > 0
-          for: 2m
-          labels:
-            severity: warning
-          annotations:
-            summary: Host unusual disk read latency (instance {{ $labels.instance }})
-            description: "Disk latency is growing (read operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-        - alert: HostUnusualDiskWriteLatency
-          expr: rate(node_disk_write_time_seconds_total[1m]) / rate(node_disk_writes_completed_total[1m]) > 0.1 and rate(node_disk_writes_completed_total[1m]) > 0
-          for: 2m
-          labels:
-            severity: warning
-          annotations:
-            summary: Host unusual disk write latency (instance {{ $labels.instance }})
-            description: "Disk latency is growing (write operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        # - alert: HostUnusualDiskReadLatency
+        #   expr: rate(node_disk_read_time_seconds_total[1m]) / rate(node_disk_reads_completed_total[1m]) > 0.1 and rate(node_disk_reads_completed_total[1m]) > 0
+        #   for: 2m
+        #   labels:
+        #     severity: warning
+        #   annotations:
+        #     summary: Host unusual disk read latency (instance {{ $labels.instance }})
+        #     description: "Disk latency is growing (read operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        #
+        # - alert: HostUnusualDiskWriteLatency
+        #   expr: rate(node_disk_write_time_seconds_total[1m]) / rate(node_disk_writes_completed_total[1m]) > 0.1 and rate(node_disk_writes_completed_total[1m]) > 0
+        #   for: 2m
+        #   labels:
+        #     severity: warning
+        #   annotations:
+        #     summary: Host unusual disk write latency (instance {{ $labels.instance }})
+        #     description: "Disk latency is growing (write operations > 100ms)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
         - alert: HostHighCpuLoad
-          expr: sum by (instance) (avg by (mode, instance) (rate(node_cpu_seconds_total{mode!="idle"}[2m]))) > 0.8
-          for: 0m
+          expr: sum by (instance) (avg by (mode, instance) (rate(node_cpu_seconds_total{mode!="idle"}[2m]))) > 0.9
+          for: 30m
           labels:
             severity: warning
           annotations:
             summary: Host high CPU load (instance {{ $labels.instance }})
-            description: "CPU load is > 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+            description: "CPU load is > 90%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
         # You may want to increase the alert manager 'repeat_interval' for this type of alert to daily or weekly
-        - alert: HostCpuIsUnderUtilized
-          expr: 100 - (rate(node_cpu_seconds_total{mode="idle"}[30m]) * 100) < 20
-          for: 1w
-          labels:
-            severity: info
-          annotations:
-            summary: Host CPU is under utilized (instance {{ $labels.instance }})
-            description: "CPU load is < 20% for 1 week. Consider reducing the number of CPUs.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        # - alert: HostCpuIsUnderUtilized
+        #   expr: 100 - (rate(node_cpu_seconds_total{mode="idle"}[30m]) * 100) < 20
+        #   for: 1w
+        #   labels:
+        #     severity: info
+        #   annotations:
+        #     summary: Host CPU is under utilized (instance {{ $labels.instance }})
+        #     description: "CPU load is < 20% for 1 week. Consider reducing the number of CPUs.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-        - alert: HostCpuHighIowait
-          expr: avg by (instance) (rate(node_cpu_seconds_total{mode="iowait"}[5m])) * 100 > 10
-          for: 0m
-          labels:
-            severity: warning
-          annotations:
-            summary: Host CPU high iowait (instance {{ $labels.instance }})
-            description: "CPU iowait > 10%. A high iowait means that you are disk or network bound.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-        - alert: HostUnusualDiskIo
-          expr: rate(node_disk_io_time_seconds_total[1m]) > 0.5
-          for: 5m
-          labels:
-            severity: warning
-          annotations:
-            summary: Host unusual disk IO (instance {{ $labels.instance }})
-            description: "Time spent in IO is too high on {{ $labels.instance }}. Check storage for issues.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        # - alert: HostCpuHighIowait
+        #   expr: avg by (instance) (rate(node_cpu_seconds_total{mode="iowait"}[5m])) * 100 > 10
+        #   for: 0m
+        #   labels:
+        #     severity: warning
+        #   annotations:
+        #     summary: Host CPU high iowait (instance {{ $labels.instance }})
+        #     description: "CPU iowait > 10%. A high iowait means that you are disk or network bound.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        #
+        # - alert: HostUnusualDiskIo
+        #   expr: rate(node_disk_io_time_seconds_total[1m]) > 0.5
+        #   for: 5m
+        #   labels:
+        #     severity: warning
+        #   annotations:
+        #     summary: Host unusual disk IO (instance {{ $labels.instance }})
+        #     description: "Time spent in IO is too high on {{ $labels.instance }}. Check storage for issues.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
         # 1000 context switches is an arbitrary number.
         # Alert threshold depends on nature of application.
         # Please read: https://github.com/samber/awesome-prometheus-alerts/issues/58
-        - alert: HostContextSwitching
-          expr: (rate(node_context_switches_total[5m])) / (count without(cpu, mode) (node_cpu_seconds_total{mode="idle"})) > 10000
-          for: 0m
-          labels:
-            severity: warning
-          annotations:
-            summary: Host context switching (instance {{ $labels.instance }})
-            description: "Context switching is growing on node (> 8000 / s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        # - alert: HostContextSwitching
+        #   expr: (rate(node_context_switches_total[5m])) / (count without(cpu, mode) (node_cpu_seconds_total{mode="idle"})) > 10000
+        #   for: 0m
+        #   labels:
+        #     severity: warning
+        #   annotations:
+        #     summary: Host context switching (instance {{ $labels.instance }})
+        #     description: "Context switching is growing on node (> 8000 / s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
         - alert: HostSwapIsFillingUp
           expr: (1 - (node_memory_SwapFree_bytes / node_memory_SwapTotal_bytes)) * 100 > 80
@@ -212,24 +212,6 @@ spec:
             summary: Host node overtemperature alarm (instance {{ $labels.instance }})
             description: "Physical node temperature alarm triggered\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-        - alert: HostRaidArrayGotInactive
-          expr: node_md_state{state="inactive"} > 0
-          for: 0m
-          labels:
-            severity: critical
-          annotations:
-            summary: Host RAID array got inactive (instance {{ $labels.instance }})
-            description: "RAID array {{ $labels.device }} is in degraded state due to one or more disks failures. Number of spare drives is insufficient to fix issue automatically.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-        - alert: HostRaidDiskFailure
-          expr: node_md_disks{state="failed"} > 0
-          for: 2m
-          labels:
-            severity: warning
-          annotations:
-            summary: Host RAID disk failure (instance {{ $labels.instance }})
-            description: "At least one device in RAID array on {{ $labels.instance }} failed. Array {{ $labels.md_device }} needs attention and possibly a disk swap\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
         - alert: HostOomKillDetected
           expr: increase(node_vmstat_oom_kill[1m]) > 0
           for: 0m
@@ -257,23 +239,23 @@ spec:
             summary: Host Network Transmit Errors (instance {{ $labels.instance }})
             description: "Host {{ $labels.instance }} interface {{ $labels.device }} has encountered {{ printf \"%.0f\" $value }} transmit errors in the last two minutes.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-        - alert: HostNetworkInterfaceSaturated
-          expr: (rate(node_network_receive_bytes_total{device!~"^tap.*|^vnet.*|^veth.*|^tun.*"}[1m]) + rate(node_network_transmit_bytes_total{device!~"^tap.*|^vnet.*|^veth.*|^tun.*"}[1m])) / node_network_speed_bytes{device!~"^tap.*|^vnet.*|^veth.*|^tun.*"} > 0.8 < 10000
-          for: 1m
-          labels:
-            severity: warning
-          annotations:
-            summary: Host Network Interface Saturated (instance {{ $labels.instance }})
-            description: "The network interface \"{{ $labels.device }}\" on \"{{ $labels.instance }}\" is getting overloaded.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        # - alert: HostNetworkInterfaceSaturated
+        #   expr: (rate(node_network_receive_bytes_total{device!~"^tap.*|^vnet.*|^veth.*|^tun.*"}[1m]) + rate(node_network_transmit_bytes_total{device!~"^tap.*|^vnet.*|^veth.*|^tun.*"}[1m])) / node_network_speed_bytes{device!~"^tap.*|^vnet.*|^veth.*|^tun.*"} > 0.8 < 10000
+        #   for: 1m
+        #   labels:
+        #     severity: warning
+        #   annotations:
+        #     summary: Host Network Interface Saturated (instance {{ $labels.instance }})
+        #     description: "The network interface \"{{ $labels.device }}\" on \"{{ $labels.instance }}\" is getting overloaded.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-        - alert: HostNetworkBondDegraded
-          expr: (node_bonding_active - node_bonding_slaves) != 0
-          for: 2m
-          labels:
-            severity: warning
-          annotations:
-            summary: Host Network Bond Degraded (instance {{ $labels.instance }})
-            description: "Bond \"{{ $labels.device }}\" degraded on \"{{ $labels.instance }}\".\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        # - alert: HostNetworkBondDegraded
+        #   expr: (node_bonding_active - node_bonding_slaves) != 0
+        #   for: 2m
+        #   labels:
+        #     severity: warning
+        #   annotations:
+        #     summary: Host Network Bond Degraded (instance {{ $labels.instance }})
+        #     description: "Bond \"{{ $labels.device }}\" degraded on \"{{ $labels.instance }}\".\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
         - alert: HostConntrackLimit
           expr: node_nf_conntrack_entries / node_nf_conntrack_entries_limit > 0.8
