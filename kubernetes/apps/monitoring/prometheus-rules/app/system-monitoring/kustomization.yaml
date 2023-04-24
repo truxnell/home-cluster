@@ -7,3 +7,4 @@ resources:
   - ./thanos.yaml
   - ./zfs-exporter.yaml
   - ./kubernetes.yaml
+  - ./minio.yaml
