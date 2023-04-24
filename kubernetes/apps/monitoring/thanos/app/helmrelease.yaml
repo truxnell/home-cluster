@@ -42,7 +42,7 @@ spec:
         - '__replica__' # must match with kube-prometheus-stack value `.prometheus.prometheusSpec.replicaExternalLabelName`
       resources:
         requests:
-          cpu: 15m
+          cpu: 5m
           memory: 64M
         limits:
           memory: 200M
@@ -54,10 +54,10 @@ spec:
       enabled: true
       resources:
         requests:
-          cpu: 15m
+          cpu: 5m
           memory: 64M
         limits:
-          memory: 83M
+          memory: 120M
 
     compactor:
       enabled: true
@@ -69,10 +69,10 @@ spec:
       retentionResolution1h: 30d
       resources:
         requests:
-          cpu: 15m
-          memory: 204M
+          cpu: 5m
+          memory: 161M
         limits:
-          memory: 270M
+          memory: 161M
       persistence:
         enabled: true
         storageClass: 'ceph-block'
