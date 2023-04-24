@@ -78,10 +78,19 @@ spec:
             action: drop
 
     kubeControllerManager:
-      enabled: false # FIXME
+      enabled: true
+      endpoints: &cp
+        - 10.8.20.40
+        - 10.8.20.42
+        - 10.8.20.44
 
     kubeEtcd:
       enabled: true
+      endpoints: *cp
+      service:
+        enabled: true
+        port: 2381
+        targetPort: 2381
 
     kubelet:
       enabled: true
