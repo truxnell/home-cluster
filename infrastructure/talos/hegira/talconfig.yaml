@@ -67,6 +67,8 @@ controlPlane:
         ca:
           crt: ${ETCDCERT}
           key: ${ETCDCERTKEY}
+        extraArgs:
+          listen-metrics-urls: http://0.0.0.0:2381
       proxy:
         disabled: true
         extraArgs:
