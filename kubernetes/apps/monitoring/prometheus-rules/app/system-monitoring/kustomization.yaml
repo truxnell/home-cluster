@@ -8,3 +8,4 @@ resources:
   - ./zfs-exporter.yaml
   - ./kubernetes.yaml
   - ./minio.yaml
+  - ./speedtest-exporter.yaml
