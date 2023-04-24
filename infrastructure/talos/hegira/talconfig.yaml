@@ -59,6 +59,7 @@ controlPlane:
       controllerManager:
         extraArgs:
           feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
+          bind-address: 0.0.0.0
       discovery:
         registries:
           service:
@@ -73,9 +74,11 @@ controlPlane:
         disabled: true
         extraArgs:
           feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
+          metrics-bind-address: 0.0.0.0:10249
       scheduler:
         extraArgs:
           feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
+          bind-address: 0.0.0.0
       secret: ${CLUSTERSECRET}
       serviceAccount:
         key: ${K8SSERVICEACCOUNTKEY}
