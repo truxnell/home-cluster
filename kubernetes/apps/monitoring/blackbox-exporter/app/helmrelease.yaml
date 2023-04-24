@@ -46,12 +46,20 @@ spec:
             - blackbox-exporter.${EXTERNAL_DOMAIN}
     podAnnotations:
       configmap.reloader.stakater.com/reload: 'blackbox-exporter'
+
     allowIcmp: true
+
     securityContext:
       readOnlyRootFilesystem: true
       allowPrivilegeEscalation: false
       capabilities:
         add: ['NET_RAW']
+
+    podSecurityContext:
+      sysctls:
+        - name: net.ipv4.ping_group_range
+          value: "0 2147483647"
+
     config:
       modules:
         http_2xx:
