@@ -84,6 +84,9 @@ spec:
         - 10.8.20.42
         - 10.8.20.44
 
+    kubeStateMetrics:
+      enabled: true
+
     kubeEtcd:
       enabled: true
       endpoints: *cp
