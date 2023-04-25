@@ -33,8 +33,8 @@ spec:
           - secretRef:
               name: *app
     image:
-      repository: registry.gitlab.com/soapbox-pub/rebased
-      tag: latest
+      repository: ghcr.io/truxnell/rebased-soapbox
+      tag: 2023.04.24
 
     env:
       DOMAIN: &host 'fedi.${WEBSITE_DOMAIN}'
