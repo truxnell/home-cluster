@@ -265,7 +265,7 @@ spec:
               - targets:
                 - 'gateway.${INTERNAL_DOMAIN}:8685'
 
-          - job_name: vnstat
+          - job_name: smtp-relay
             scrape_interval: 1m
             scrape_timeout: 10s
             honor_timestamps: true
