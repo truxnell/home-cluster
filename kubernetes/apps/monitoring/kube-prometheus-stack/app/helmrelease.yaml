@@ -257,6 +257,14 @@ spec:
               - targets:
                   - 'helios.${INTERNAL_DOMAIN}:9134'
 
+          - job_name: vnstat
+            scrape_interval: 1m
+            scrape_timeout: 10s
+            honor_timestamps: true
+            static_configs:
+              - targets:
+                - 'gateway.${INTERNAL_DOMAIN}:8685'
+
           - job_name: minio
             scrape_interval: 1m
             scrape_timeout: 10s
