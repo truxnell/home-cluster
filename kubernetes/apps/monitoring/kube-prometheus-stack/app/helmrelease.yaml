@@ -271,7 +271,7 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                - 'smtp-relay.${INTERNAL_DOMAIN}:979'
+                - 'smtp-relay.${INTERNAL_DOMAIN}:9749'
 
           - job_name: minio
             scrape_interval: 1m
