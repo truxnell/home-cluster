@@ -20,7 +20,7 @@ spec:
           automountServiceAccountToken: false
           containers:
             - name: *app
-              image: ghcr.io/truxnell/yt-dlp:2023.03.04@sha256:71ccfb10a9a41f25789ff9b21a8a688476bdaae8b5613b603868af335c4c601e
+              image: ghcr.io/truxnell/yt-dlp:2023.03.04@sha256:ad2e4f02a92340d0114181fb73fc677872a167d79241cba1e3188fc4e0ee6fa6
               imagePullPolicy: IfNotPresent
               command: ['/usr/local/bin/yt-dlp']
               args:
