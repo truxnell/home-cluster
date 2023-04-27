@@ -52,8 +52,6 @@ spec:
       SMTP_HOST: 'smtp-relay.trux.dev'
       SMTP_PORT: 2525
       SMTP_SECURITY: 'off'
-       mount -args:
-          name: value
 
     envFrom:
       - secretRef:
