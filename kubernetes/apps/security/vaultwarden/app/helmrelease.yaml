@@ -52,6 +52,8 @@ spec:
       SMTP_HOST: 'smtp-relay.trux.dev'
       SMTP_PORT: 2525
       SMTP_SECURITY: 'off'
+       mount -args:
+          name: value
 
     envFrom:
       - secretRef:
@@ -69,7 +71,6 @@ spec:
         enabled: true
         ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: 'true'
           probe.home.arpa/enabled: 'false'
           hajimari.io/icon: 'shield-key'
         hosts:
