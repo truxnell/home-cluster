@@ -55,7 +55,7 @@ spec:
           - name: WIREGUARD_PRIVATE_KEY
             valueFrom:
               secretKeyRef:
-                name: downloads-gateway-vpnconfig
+                name: downloads-gateway
                 key: WIREGUARD_PRIVATE_KEY
         securityContext:
           capabilities:
