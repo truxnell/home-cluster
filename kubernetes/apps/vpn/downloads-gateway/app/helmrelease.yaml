@@ -12,9 +12,9 @@ spec:
       interval: 15m
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: angelnu-charts
         namespace: flux-system
-      version: 5.6.2
+      version: 6.5.0
   interval: 15m
   values:
     image:
