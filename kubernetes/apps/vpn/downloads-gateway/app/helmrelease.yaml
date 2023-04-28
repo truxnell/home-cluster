@@ -43,7 +43,9 @@ spec:
           - name: HEALTH_VPN_DURATION_INITIAL
             value: 30s
           - name: SERVER_COUNTRIES
-            value: Australia
+            value: Singapore
+          - name: SERVER_HOSTNAMES
+            value: sg-sin-wg-001
           - name: WIREGUARD_ADDRESSES
             valueFrom:
               secretKeyRef:
@@ -55,13 +57,6 @@ spec:
                 name: downloads-gateway
                 key: WIREGUARD_PRIVATE_KEY
 
-        volumeMounts:
-          - name: config-json
-            mountPath: /gluetun/servers.json
-            subPath: servers.json
-            readOnly: true
-
-
         securityContext:
           capabilities:
             add:
@@ -70,16 +65,6 @@ spec:
       netshoot:
         enabled: true
 
-    volumes:
-      - name: servers-json
-        projected:
-          defaultMode: 0775
-          sources:
-            - configMap:
-                name: servers-json
-                items:
-                  - key: servers-json
-                    path: servers.json
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: *app
