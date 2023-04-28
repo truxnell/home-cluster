@@ -56,15 +56,10 @@ spec:
                 key: WIREGUARD_PRIVATE_KEY
 
         volumeMounts:
-          - name: mailbackup-script
-            mountPath: /scripts/mailbackup.sh
-            subPath: mailbackup.sh
+          - name: config-json
+            mountPath: /gluetun/servers.json
+            subPath: servers.json
             readOnly: true
-          - name: secrets
-            mountPath: /config
-            readOnly: true
-          - mountPath: /data
-            name: mailbackup
 
 
         securityContext:
