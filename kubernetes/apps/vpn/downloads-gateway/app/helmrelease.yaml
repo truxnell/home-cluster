@@ -21,10 +21,17 @@ spec:
       repository: ghcr.io/angelnu/pod-gateway
       tag: v1.8.1@sha256:690b6365728fe9012ad4cdfca38334992664596513dca187d1b93d2025205776
     DNS: 172.16.1.1
-    additionalContainers:
-      gluetun:
-        image: qmcgaw/gluetun:v3.33.0@sha256:cadc352ebed5988c9fbc750f2759ea703dc7587f969d70342cc5eff05282024b
+    addons:
+      vpn:
+        enabled: true
+        type: gluetun
+        image:
+          # TODO: Replace with ghcr.io/qdm12/gluetun when a versioned tag is available
+          repository: docker.io/qmcgaw/gluetun
+          tag: v3.33.0@sha256:cadc352ebed5988c9fbc750f2759ea703dc7587f969d70342cc5eff05282024b
         env:
+          - name: VPN_SERVICE_PROVIDER
+            value: mullvad
           - name: VPN_TYPE
             value: wireguard
           - name: VPN_INTERFACE
@@ -33,23 +40,35 @@ spec:
             value: 'off'
           - name: DOT
             value: 'off'
-          - name: HEALTH_TARGET_ADDRESS
-            value: '1.1.1.1'
           - name: HEALTH_VPN_DURATION_INITIAL
             value: 30s
-        envFrom:
-          - secretRef:
-              name: *app
+          - name: SERVER_CITIES
+            valueFrom:
+              secretKeyRef:
+                name: downloads-gateway
+                key: SERVER_CITIES
+          - name: WIREGUARD_ADDRESSES
+            valueFrom:
+              secretKeyRef:
+                name: downloads-gateway
+                key: WIREGUARD_ADDRESSES
+          - name: WIREGUARD_ADDRESSES
+            valueFrom:
+              secretKeyRef:
+                name: downloads-gateway
+                key: WIREGUARD_ADDRESSES
         securityContext:
           capabilities:
             add:
               - NET_ADMIN
-    addons:
+
       netshoot:
         enabled: true
+
     podAnnotations:
       configmap.reloader.stakater.com/reload: *app
       secret.reloader.stakater.com/reload: *app
+
     publicPorts:
       - IP: 10
         hostname: qbittorrent
@@ -58,10 +77,12 @@ spec:
             type: udp
           - port: ${SECRET_VPN_FORWARDED_PORT_1}
             type: tcp
+
     routed_namespaces:
       - downloads
       - organizarrs
       - services
+
     settings:
       NOT_ROUTED_TO_GATEWAY_CIDRS: 10.0.0.0/8 192.168.0.0/16
       VPN_BLOCK_OTHER_TRAFFIC: true
@@ -70,10 +91,11 @@ spec:
       VPN_TRAFFIC_PORT: '51820'
       VXLAN_ID: 43
       VXLAN_IP_NETWORK: 172.16.1
+
     webhook:
       gatewayAnnotation: setGateway
       gatewayDefault: false
       gatewayLabel: setGateway
       image:
-        repository: ghcr.io/k8s-at-home/gateway-admision-controller
-        tag: v3.6.0
+        repository: ghcr.io/angelnu/gateway-admision-controller
+        tag: v3.9.0@sha256:4e169da5af107a9c6c784d3e03c89da07fad45f18358ab5b7177662df12d955a
