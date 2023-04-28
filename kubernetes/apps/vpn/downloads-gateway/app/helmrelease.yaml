@@ -52,11 +52,11 @@ spec:
               secretKeyRef:
                 name: downloads-gateway
                 key: WIREGUARD_ADDRESSES
-          - name: WIREGUARD_ADDRESSES
+          - name: WIREGUARD_PRIVATE_KEY
             valueFrom:
               secretKeyRef:
-                name: downloads-gateway
-                key: WIREGUARD_ADDRESSES
+                name: downloads-gateway-vpnconfig
+                key: WIREGUARD_PRIVATE_KEY
         securityContext:
           capabilities:
             add:
