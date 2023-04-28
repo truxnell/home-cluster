@@ -25,7 +25,7 @@ spec:
     restartPolicy: OnFailure
     image:
       repository: ghcr.io/recyclarr/recyclarr
-      tag: edge@sha256:215d44da01a8b442aa9c9d4b8c8222bd0831412638467032b711f5bce48af8c5
+      tag: edge@sha256:2bddb5db2b4c335129206191bc573d9a2ed58c30739caab4a0e134fa6a741ec7
     command: ['/app/recyclarr/recyclarr']
     args: ['sync']
     envFrom:
