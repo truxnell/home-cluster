@@ -54,6 +54,19 @@ spec:
               secretKeyRef:
                 name: downloads-gateway
                 key: WIREGUARD_PRIVATE_KEY
+
+        volumeMounts:
+          - name: mailbackup-script
+            mountPath: /scripts/mailbackup.sh
+            subPath: mailbackup.sh
+            readOnly: true
+          - name: secrets
+            mountPath: /config
+            readOnly: true
+          - mountPath: /data
+            name: mailbackup
+
+
         securityContext:
           capabilities:
             add:
@@ -61,6 +74,17 @@ spec:
 
       netshoot:
         enabled: true
+
+    volumes:
+      - name: servers-json
+        projected:
+          defaultMode: 0775
+          sources:
+            - configMap:
+                name: servers-json
+                items:
+                  - key: servers-json
+                    path: servers.json
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: *app
