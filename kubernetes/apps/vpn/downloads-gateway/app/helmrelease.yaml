@@ -42,6 +42,11 @@ spec:
             value: 'off'
           - name: HEALTH_VPN_DURATION_INITIAL
             value: 30s
+          - name: SERVER_HOSTNAMES
+            valueFrom:
+              secretKeyRef:
+                name: downloads-gateway
+                key: SERVER_HOSTNAMES
           - name: SERVER_CITIES
             valueFrom:
               secretKeyRef:
