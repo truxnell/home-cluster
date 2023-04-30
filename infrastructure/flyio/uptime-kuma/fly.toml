@@ -1,45 +1,44 @@
-# fly.toml file generated for uptime-kuma on 2022-10-04T20:27:40+11:00
+# fly.toml app configuration file generated for voltaicforge-kuma on 2023-04-30T16:06:55+10:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
 app = "voltaicforge-kuma"
+primary_region = "syd"
 kill_signal = "SIGINT"
-kill_timeout = 5
-processes = []
+kill_timeout = "5s"
+
+[experimental]
+  auto_rollback = true
 
 [build]
   image = "louislam/uptime-kuma:1.21.2"
 
-[env]
-
-[experimental]
-  allowed_public_ports = []
-  auto_rollback = true
+[[mounts]]
+  source = "kuma_data_machines"
+  destination = "/app/data"
+  processes = ["app"]
 
 [[services]]
-  http_checks = []
+  protocol = "tcp"
   internal_port = 3001
   processes = ["app"]
-  protocol = "tcp"
-  script_checks = []
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+    force_https = true
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
   [services.concurrency]
+    type = "connections"
     hard_limit = 25
     soft_limit = 20
-    type = "connections"
-
-  [[services.ports]]
-    force_https = true
-    handlers = ["http"]
-    port = 80
-
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
 
   [[services.tcp_checks]]
-    grace_period = "1s"
     interval = "15s"
-    restart_limit = 0
     timeout = "2s"
-
-[mounts]
-  source="kuma_data"
-  destination="/app/data"
+    grace_period = "1s"
+    restart_limit = 0
