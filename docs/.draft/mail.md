@@ -1,4 +1,3 @@
-Added ~all to spf
 Changed DMARC to reject
 
 # Sources
