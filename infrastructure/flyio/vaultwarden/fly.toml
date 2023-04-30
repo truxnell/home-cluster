@@ -1,0 +1,55 @@
+# fly.toml app configuration file generated for voltaicforge-vaultwarden on 2023-04-30T18:09:13+10:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "voltaicforge-vaultwarden"
+primary_region = "syd"
+kill_signal = "SIGINT"
+kill_timeout = "5s"
+
+[experimental]
+  auto_rollback = true
+
+[build]
+  image = "vaultwarden/server:1.28.1@sha256:04691aaf1d8531ccb796de620841c030ecfd45613388a2e6a6a9434dc5d14d9d"
+
+[env]
+  DATABASE_URL = "data/db.sqlite3"
+  DOMAIN = "https://voltaicforge-vaultwarden.fly.dev"
+  PASSWORD_ITERATIONS = "2000000"
+  PRIMARY_REGION = "syd"
+  SIGNUPS_ALLOWED = "true"
+  SMTP_FROM_NAME = "Vault"
+  SMTP_SECURITY = "off"
+  SMTP_SSL = "true"
+  TZ = "Australia/Melbourne"
+
+[[mounts]]
+  source = "vw_data_machines"
+  destination = "/data"
+  processes = ["app"]
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 80
+  processes = ["app"]
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+    force_https = true
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20
+
+  [[services.tcp_checks]]
+    interval = "15s"
+    timeout = "2s"
+    grace_period = "1s"
+    restart_limit = 0
