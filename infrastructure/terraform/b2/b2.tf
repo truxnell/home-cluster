@@ -6,9 +6,15 @@ resource "b2_bucket" "trux-restic-backup-C893E3" {
 
 }
 
+resource "b2_bucket" "trux-volsync-backup-A73B8D" {
+
+  bucket_name = "trux-volsync-backup-A73B8D"
+  bucket_type = "allPrivate"
+
+}
+
 resource "b2_application_key" "nas-restic" {
   key_name  = "nas-restic"
-  bucket_id = b2_bucket.trux-restic-backup-C893E3.id
   capabilities = [
     "deleteFiles",
     "listAllBucketNames",
@@ -25,13 +31,13 @@ resource "b2_application_key" "nas-restic" {
 resource "doppler_secret" "b2-app-key-id" {
   project = "tf-b2"
   config = "prd"
-  name = "B2_APP_KEY_ID"
+  name = "B2_APPLICATION_KEY_ID"
   value = b2_application_key.nas-restic.application_key_id
 }
 
 resource "doppler_secret" "b2-app-key" {
   project = "tf-b2"
   config = "prd"
-  name = "B2_APP_KEY"
+  name = "B2_APPLICATION_KEY"
   value = b2_application_key.nas-restic.application_key
 }
