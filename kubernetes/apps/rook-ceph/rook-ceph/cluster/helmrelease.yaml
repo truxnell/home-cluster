@@ -32,8 +32,9 @@ spec:
       createPrometheusRules: true
     configOverride: |
       [global]
-      bdev`_enable_discard = true
+      bdev_enable_discard = true
       bdev_async_discard = true
+      osd_class_update_on_start = false
     cephClusterSpec:
       resources:
         mgr:
