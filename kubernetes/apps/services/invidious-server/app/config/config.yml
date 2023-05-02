@@ -288,7 +288,7 @@ https_only: false
 ## Accepted values: an array of strings
 ## Default: [""]
 ##
-#admins: [""]
+admins: ["truxnell"]
 
 # -----------------------------
 #  Background jobs
@@ -306,7 +306,7 @@ https_only: false
 ## Accepted values: a positive integer
 ## Default: 1
 ##
-channel_threads: 1
+channel_threads: 2
 
 ##
 ## Time interval between two executions of the job that crawls
