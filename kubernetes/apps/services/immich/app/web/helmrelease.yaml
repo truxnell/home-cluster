@@ -58,7 +58,6 @@ spec:
         annotations:
           probe.home.arpa/enabled: "false"
           external-dns.home.arpa/enabled: "true"
-          auth.home.arpa/enabled: 'true'
           nginx.ingress.kubernetes.io/configuration-snippet: |
             rewrite /api/(.*) /$1 break;
           nignx.ingress.kubernetes.io/force-ssl-redirect: "true"
