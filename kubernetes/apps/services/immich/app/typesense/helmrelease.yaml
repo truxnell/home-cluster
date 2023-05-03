@@ -28,6 +28,9 @@ spec:
     keepHistory: false
   values:
     controller:
+      type: statefulset
+      replicas: 1
+      strategy: RollingUpdate
       annotations:
         reloader.stakater.com/auto: "true"
     image:
@@ -58,11 +61,12 @@ spec:
       readiness: *probes
       startup:
         enabled: false
-    persistence:
-      config:
-        enabled: true
-        existingClaim: immich-nfs
+    volumeClaimTemplates:
+      - name: config
         mountPath: /config
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        storageClass: ceph-block
     resources:
       requests:
         cpu: 100m
