@@ -1,0 +1,54 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app kopia-photos-to-b2
+  namespace: default
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.4.0
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  values:
+    controller:
+      type: cronjob
+      cronjob:
+        schedule: '@daily'
+        ttlSecondsAfterFinished: 86400
+    restartPolicy: OnFailure
+    image:
+      repository: ghcr.io/onedr0p/kopia
+      tag: 0.12.1@sha256:88106e6bb642ee4cb58b61a335ff55992ee2c03493f1aec804422774cf7cf063
+    command:
+      - /bin/bash
+      - -c
+      - |-
+        printf "\e[1;32m%-6s\e[m\n" "[2/8] Connect to repo ..."          && (kopia repo connect b2 --bucket=$KOPIA_REPO --prefix=$KOPIA_PREFIX/ --password=$KOPIA_PASSWORD --override-hostname=cluster --override-username=root || (echo "Creating Repo" && kopia repo create b2 --bucket=$KOPIA_REPO --prefix=$KOPIA_PREFIX/ --password=$KOPIA_PASSWORD --override-hostname=cluster --override-username=root))
+        printf "\e[1;32m%-6s\e[m\n" "[3/8] Set policies ..."             && kopia policy set b2://$KOPIA_REPO/$KOPIA_PREFIX/ --compression=zstd --keep-latest 14 --keep-hourly 0 --keep-daily 7 --keep-weekly 2 --keep-monthly 0 --keep-annual 0
+        printf "\e[1;32m%-6s\e[m\n" "[05/10] Snapshot $KOPIA_PREFIX ..." && kopia snap create /data/
+        printf "\e[1;32m%-6s\e[m\n" "[5/8] List snapshots ..."           && kopia snap list
+        printf "\e[1;32m%-6s\e[m\n" "[6/8] Show stats ..."               && kopia content stats
+        printf "\e[1;32m%-6s\e[m\n" "[7/8] Show maintenance info ..."    && kopia maintenance info
+        printf "\e[1;32m%-6s\e[m\n" "[8/8] Disconnect from repo ..."     && kopia repo disconnect
+
+    env:
+      KOPIA_PREFIX: immich
+    envFrom:
+      - secretRef:
+          name: kopia-to-b2
+    service:
+      main:
+        enabled: false
+    persistence:
+      data:
+        enabled: true
+        type: hostPath
+        hostPath: /tank/photos/immich
+        mountPath: /data
