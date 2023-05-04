@@ -36,7 +36,8 @@ I use this repo in conjuction with:
 - [https://github.com/truxnell/vyos-config](https://github.com/Truxnell/home-udmp-utils). This is my vyos router configuration repo, also setup in a gitops manner. Many thanks to bjw-s []https://github.com/bjw-s](https://github.com/bjw-s) for the inspiration for this setup.
 
 ## Stargazers
-<iframe style="width:100%;height:auto;min-width:600px;min-height:400px;" src="https://star-history.com/embed?secret=Z2hwX1JuMDBDV2RyRDZGQUpMU1JnYlNCZUlJOUJZeUU4VzNmZkE0Mw==#truxnell/home-cluster&Date" frameBorder="0"></iframe>
+
+[![Star History Chart](https://api.star-history.com/svg?repos=truxnell/home-cluster&type=Date)](https://star-history.com/#truxnell/home-cluster&Date)
 
 ## License
 
