@@ -80,7 +80,6 @@ spec:
     kubeControllerManager:
       enabled: true
       endpoints: &cp
-        - 10.8.20.11
         - 10.8.20.40
         - 10.8.20.42
         - 10.8.20.44
