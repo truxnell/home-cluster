@@ -49,4 +49,4 @@ spec:
         cpu: 10m
         memory: 10Mi
       limits:
-        memory: 100Mi
+        memory: 150Mi
