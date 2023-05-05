@@ -90,15 +90,6 @@ spec:
             summary: Kubernetes Volume out of disk space (instance {{ $labels.instance }})
             description: "Volume is almost full (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-        - alert: KubernetesVolumeFullInFourDays
-          expr: predict_linear(kubelet_volume_stats_available_bytes[6h], 4 * 24 * 3600) < 0
-          for: 0m
-          labels:
-            severity: critical
-          annotations:
-            summary: Kubernetes Volume full in four days (instance {{ $labels.instance }})
-            description: "{{ $labels.namespace }}/{{ $labels.persistentvolumeclaim }} is expected to fill up within four days. Currently {{ $value | humanize }}% is available.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
         - alert: KubernetesPersistentvolumeError
           expr: kube_persistentvolume_status_phase{phase=~"Failed|Pending", job="kube-state-metrics"} > 0
           for: 0m
