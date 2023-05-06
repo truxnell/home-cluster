@@ -1,0 +1,8 @@
+endpoints:
+  - name: website                 # Name of your endpoint, can be anything
+    url: "https://twin.sh/health"
+    interval: 5m                  # Duration to wait between every status check (default: 60s)
+    conditions:
+      - "[STATUS] == 200"         # Status must be 200
+      - "[BODY].status == UP"     # The json path "$.status" must be equal to UP
+      - "[RESPONSE_TIME] < 300"   # Response time must be under 300ms
