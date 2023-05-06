@@ -39,8 +39,6 @@ spec:
         enabled: true
         ingressClassName: 'nginx'
         annotations:
-          external-dns.home.arpa/enabled: 'true'
-
           hajimari.io/icon: mdi:draw-pen
         hosts:
           - host: &host 'draw.${EXTERNAL_DOMAIN}'
