@@ -298,6 +298,7 @@ spec:
             static_configs:
               - targets:
                   - 'helios.${INTERNAL_DOMAIN}:9633'
+                  - 'gateway.${INTERNAL_DOMAIN}:9633'
 
           - job_name: windows-exporter
             scrape_interval: 1m
