@@ -9,3 +9,4 @@ resources:
   - ./kubernetes.yaml
   - ./minio.yaml
   - ./speedtest-exporter.yaml
+  - ./maddy.yaml
