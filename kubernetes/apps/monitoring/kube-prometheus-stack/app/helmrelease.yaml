@@ -245,7 +245,7 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                  - 'gateway.${INTERNAL_DOMAIN}:9100'
+                  - 'gateway.${INTERNAL_DOMAIN}:9882'
 
           - job_name: node-exporter
             scrape_interval: 1m
