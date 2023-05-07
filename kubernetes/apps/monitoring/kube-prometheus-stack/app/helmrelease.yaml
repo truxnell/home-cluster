@@ -469,6 +469,10 @@ spec:
         global:
           resolve_timeout: 5m
         receivers:
+          - name: heartbeat
+            webhook_configs:
+              - url: "https://status.${WEBSITE_DOMAIN}.com/api/push/${SECRET_AM_HEARTBEAT_TOKEN}?status=up&msg=OK&ping="
+                send_resolved: true
           - name: 'null'
           - name: 'pushover'
             pushover_configs:
@@ -477,33 +481,26 @@ spec:
                 send_resolved: true
                 html: true
                 priority: |-
-                  {{ if eq .Status "firing" }}1{{ else }}-1{{ end }}
-                url_title: View in Alert Manager
+                  {{ if eq .Status "firing" }}1{{ else }}0{{ end }}
                 title: |-
-                  [{{ .Status | toUpper -}}
-                  {{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{- end -}}
-                  ] {{ .CommonLabels.alertname }}
+                   {{ .CommonLabels.alertname }} [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}]
                 message: |-
                   {{- range .Alerts }}
-                    {{- if ne .Labels.severity "" }}
-                      <b>Severity:</b> <i>{{ .Labels.severity }}</i>
-                    {{- else }}
-                      <b>Severity:</b> <i>N/A</i>
-                    {{- end }}
                     {{- if ne .Annotations.description "" }}
-                      <b>Description:</b> <i>{{ .Annotations.description }}</i>
+                      {{ .Annotations.description }}
                     {{- else if ne .Annotations.summary "" }}
-                      <b>Summary:</b> <i>{{ .Annotations.summary }}</i>
+                      {{ .Annotations.summary }}
                     {{- else if ne .Annotations.message "" }}
-                      <b>Message:</b> <i>{{ .Annotations.message }}</i>
+                      {{ .Annotations.message }}
                     {{- else }}
-                      <b>Description:</b> <i>N/A</i>
+                      Alert description not available
                     {{- end }}
                     {{- if gt (len .Labels.SortedPairs) 0 }}
-                      <b>Details:</b>
+                      <small>
                       {{- range .Labels.SortedPairs }}
-                        • <b>{{ .Name }}:</b> <i>{{ .Value }}</i>
+                        <b>{{ .Name }}:</b> {{ .Value }}
                       {{- end }}
+                      </small>
                     {{- end }}
                   {{- end }}
         route:
@@ -513,9 +510,15 @@ spec:
           repeat_interval: 6h
           receiver: 'pushover'
           routes:
+            - receiver: heartbeat
+              group_wait: 0s
+              group_interval: 2m
+              repeat_interval: 2m
+              matchers:
+                - alertname =~ "Watchdog"
             - receiver: 'null'
               matchers:
-                - alertname =~ "InfoInhibitor|Watchdog"
+                - alertname =~ "InfoInhibitor"
             - receiver: 'pushover'
               matchers:
                 - severity = "critical"
