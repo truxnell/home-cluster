@@ -479,7 +479,7 @@ spec:
         receivers:
           - name: heartbeat
             webhook_configs:
-              - url: "https://status.${WEBSITE_DOMAIN}.com/api/push/${SECRET_AM_HEARTBEAT_TOKEN}?status=up&msg=OK"
+              - url: "https://status.${WEBSITE_DOMAIN}/api/push/${SECRET_AM_HEARTBEAT_TOKEN}?status=up&msg=OK"
                 send_resolved: true
           - name: 'null'
           - name: 'pushover'
