@@ -477,12 +477,6 @@ spec:
         global:
           resolve_timeout: 5m
         receivers:
-          - name: heartbeat
-            webhook_configs:
-              - url: "https://status.${WEBSITE_DOMAIN}/api/push/${SECRET_AM_HEARTBEAT_TOKEN}"
-                send_resolved: true
-                http_config:
-                  method: GET
           - name: 'null'
           - name: 'pushover'
             pushover_configs:
@@ -520,15 +514,9 @@ spec:
           repeat_interval: 24h
           receiver: 'pushover'
           routes:
-            - receiver: heartbeat
-              group_wait: 0s
-              group_interval: 2m
-              repeat_interval: 2m
-              matchers:
-                - alertname =~ "Watchdog"
             - receiver: 'null'
               matchers:
-                - alertname =~ "InfoInhibitor"
+                - alertname =~ "InfoInhibitor|Watchdog"
             - receiver: 'pushover'
               matchers:
                 - severity = "critical"
