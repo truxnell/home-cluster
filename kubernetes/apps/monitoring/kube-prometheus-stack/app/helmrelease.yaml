@@ -481,6 +481,8 @@ spec:
             webhook_configs:
               - url: "https://status.${WEBSITE_DOMAIN}/api/push/${SECRET_AM_HEARTBEAT_TOKEN}"
                 send_resolved: true
+                http_config:
+                  method: POST
           - name: 'null'
           - name: 'pushover'
             pushover_configs:
