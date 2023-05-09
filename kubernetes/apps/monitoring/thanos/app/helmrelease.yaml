@@ -31,7 +31,7 @@ spec:
     objstoreConfig:
       type: s3
       config:
-        insecure: true
+        insecure: false
 
     query:
       enabled: true
@@ -51,7 +51,7 @@ spec:
       enabled: true
       ingress:
         enabled: true
-        hostname: "thanos.bjw-s.dev"
+        hostname: "thanos.${EXTERNAL_DOMAIN}"
         ingressClassName: "nginx"
         tls: true
 
