@@ -45,7 +45,7 @@ spec:
         ports:
           dmix:
             enabled: true
-            port: 6595
+            port: &portdmix 6595
     ingress:
       main:
         enabled: true
@@ -73,7 +73,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  port: dmix
+                  port: *portdmix
         tls:
           - hosts:
               - *hostdmix
