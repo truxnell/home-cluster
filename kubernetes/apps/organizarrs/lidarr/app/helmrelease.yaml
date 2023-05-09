@@ -40,12 +40,12 @@ spec:
         ports:
           http:
             port: 8686
-      dmix:
-        enabled: true
-        ports:
           dmix:
             enabled: true
-            port: &portdmix 6595
+            ports:
+              dmix:
+                enabled: true
+                port: &portdmix 6595
     ingress:
       main:
         enabled: true
@@ -64,19 +64,19 @@ spec:
         tls:
           - hosts:
               - *host
-      dmix:
-        enabled: true
-        ingressClassName: 'nginx'
-        hosts:
-          - host: &hostdmix 'dmix.${EXTERNAL_DOMAIN}'
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  port: *portdmix
-        tls:
-          - hosts:
-              - *hostdmix
+        dmix:
+          enabled: true
+          ingressclassname: 'nginx'
+          hosts:
+            - host: &hostdmix 'dmix.${external_domain}'
+              paths:
+                - path: /
+                  pathtype: prefix
+                  service:
+                    port: *portdmix
+          tls:
+            - hosts:
+                - *hostdmix
     persistence:
       config:
         enabled: true
