@@ -72,6 +72,8 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  port: dmix
         tls:
           - hosts:
               - *hostdmix
