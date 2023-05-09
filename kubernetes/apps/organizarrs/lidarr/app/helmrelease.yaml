@@ -64,19 +64,19 @@ spec:
         tls:
           - hosts:
               - *host
-        dmix:
-          enabled: true
-          ingressclassname: 'nginx'
-          hosts:
-            - host: &hostdmix 'dmix.${external_domain}'
-              paths:
-                - path: /
-                  pathtype: prefix
-                  service:
-                    port: *portdmix
-          tls:
-            - hosts:
-                - *hostdmix
+      dmix:
+        enabled: true
+        ingressclassname: 'nginx'
+        hosts:
+          - host: &hostdmix 'dmix.${external_domain}'
+            paths:
+              - path: /
+                pathtype: prefix
+                service:
+                  port: *portdmix
+        tls:
+          - hosts:
+              - *hostdmix
     persistence:
       config:
         enabled: true
