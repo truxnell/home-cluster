@@ -42,10 +42,7 @@ spec:
             port: 8686
           dmix:
             enabled: true
-            ports:
-              dmix:
-                enabled: true
-                port: &portdmix 6595
+            port: &portdmix 6595
     ingress:
       main:
         enabled: true
@@ -68,7 +65,7 @@ spec:
         enabled: true
         ingressclassname: 'nginx'
         hosts:
-          - host: &hostdmix 'dmix.${external_domain}'
+          - host: &hostdmix 'dmix.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
                 pathtype: prefix
