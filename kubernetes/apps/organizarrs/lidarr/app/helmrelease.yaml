@@ -68,7 +68,7 @@ spec:
           - host: &hostdmix 'dmix.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
-                pathType: prefix
+                pathType: Prefix
                 service:
                   port: *portdmix
         tls:
