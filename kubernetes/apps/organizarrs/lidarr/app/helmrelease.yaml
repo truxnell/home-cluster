@@ -63,7 +63,7 @@ spec:
               - *host
       dmix:
         enabled: true
-        ingressclassname: 'nginx'
+        ingressClassName: 'nginx'
         hosts:
           - host: &hostdmix 'dmix.${EXTERNAL_DOMAIN}'
             paths:
