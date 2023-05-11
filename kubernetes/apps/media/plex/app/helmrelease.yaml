@@ -88,6 +88,13 @@ spec:
                   operator: In
                   values:
                     - "true"
+        preferredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: kubernetes.io/hostname
+                  operator: In
+                  values:
+                    - icarus
     resources:
       requests:
         gpu.intel.com/i915: 1
@@ -95,4 +102,5 @@ spec:
         memory: 2000Mi
       limits:
         gpu.intel.com/i915: 1
+        cpu: 2000m
         memory: 10000Mi
