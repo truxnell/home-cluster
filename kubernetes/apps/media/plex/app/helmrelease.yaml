@@ -82,12 +82,13 @@ spec:
     affinity:
       nodeAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
+          - weight: 1
+            preference:
+              matchExpressions:
                 - key: kubernetes.io/hostname
                   operator: In
                   values:
-                    - "icarus"
+                    - icarus
     resources:
       requests:
         gpu.intel.com/i915: 1
