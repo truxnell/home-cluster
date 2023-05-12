@@ -33,7 +33,7 @@ spec:
           - { name: GEOIPUPDATE_VERBOSE, value: "true" }
         envFrom:
           - secretRef:
-              name: vector-aggregator-secret
+              name: vector-geoipupdate
         volumeMounts:
           - { name: geoip, mountPath: /usr/share/GeoIP }
     controller:
