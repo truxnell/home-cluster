@@ -25,7 +25,7 @@ spec:
   values:
     initContainers:
       01-init-geoip:
-        image: ghcr.io/maxmind/geoipupdate:v5.1.0
+        image: ghcr.io/maxmind/geoipupdate:v5.1.0@sha256:e7ab311bbffab2b341565ea9512259be844f0e5dda038ea903e44ca88b05a144
         imagePullPolicy: IfNotPresent
         env:
           - { name: GEOIPUPDATE_EDITION_IDS, value: GeoLite2-City }
