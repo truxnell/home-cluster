@@ -67,8 +67,7 @@ spec:
         path: /tank/backup/kubernetes/apps/tautulli
     resources:
       requests:
-        cpu: 15m
+        cpu: 5m
         memory: 324M
       limits:
-        cpu: 34m
-        memory: 491M
+        memory: 550M
