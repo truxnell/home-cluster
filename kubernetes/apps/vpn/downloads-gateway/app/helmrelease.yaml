@@ -74,9 +74,9 @@ spec:
       - IP: 10
         hostname: qbittorrent
         ports:
-          - port: ${SECRET_VPN_FORWARDED_PORT_1}
+          - port: 56956
             type: udp
-          - port: ${SECRET_VPN_FORWARDED_PORT_1}
+          - port: 56956
             type: tcp
 
     routed_namespaces:
