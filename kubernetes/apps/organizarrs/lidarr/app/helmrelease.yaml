@@ -40,12 +40,9 @@ spec:
         ports:
           http:
             port: 8686
-      dmix:
-        enabled: true
-        ports:
           dmix:
             enabled: true
-            port: 6595
+            port: &portdmix 6595
     ingress:
       main:
         enabled: true
@@ -72,6 +69,8 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  port: *portdmix
         tls:
           - hosts:
               - *hostdmix
