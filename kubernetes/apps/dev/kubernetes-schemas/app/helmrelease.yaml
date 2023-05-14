@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.4.0
+      version: 1.5.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -32,7 +32,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/truxnell/kubernetes-schemas-web
-      tag: latest@sha256:e9fa146d5937d2eaac74e76235e9f952e29a69ca8c5b9f1a0f853af27432b327
+      tag: latest@sha256:562468e78b5c8955b2b6b22d42142fbeab1cbab914063d064860e7301a40ba8d
     service:
       main:
         ports:

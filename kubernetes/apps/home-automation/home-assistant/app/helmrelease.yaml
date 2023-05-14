@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.4.0
+      version: 1.5.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -25,14 +25,14 @@ spec:
   values:
     initContainers:
       init-db:
-        image: ghcr.io/onedr0p/postgres-initdb:14.7@sha256:0f218a74ad4323e843ce18c97805f32ae5ab514df751acc8caa030d6f2f038d5
+        image: ghcr.io/onedr0p/postgres-initdb:14.8@sha256:d9512db71f25c905cf44a9b336800fbfa1dde48a1aadfbf4f64888ef0a0c2d66
         imagePullPolicy: IfNotPresent
         envFrom:
           - secretRef:
               name: *app
     image:
       repository: ghcr.io/onedr0p/home-assistant
-      tag: 2023.5.2@sha256:9eab343d3eddca0ed699b6be103c692cf4c3cce509b358e717d77d122e0601e0
+      tag: 2023.5.2@sha256:1dbc2bad3e974fe4c912f4ce602c2b418d791cc8525c2aa5fed5a7a289053df7
     env:
       TZ: '${TZ}'
       HASS_IP: ${LB_HOMEASSISTANT}

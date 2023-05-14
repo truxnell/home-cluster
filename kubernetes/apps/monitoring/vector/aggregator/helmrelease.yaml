@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.4.0
+      version: 1.5.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -23,6 +23,19 @@ spec:
     remediation:
       retries: 5
   values:
+    initContainers:
+      01-init-geoip:
+        image: ghcr.io/maxmind/geoipupdate:v5.1.1@sha256:21f3505e3ac624da5842b30c6c4e05df5ff340f4cb09d428185a9f27ad4fd5c2
+        imagePullPolicy: IfNotPresent
+        env:
+          - { name: GEOIPUPDATE_EDITION_IDS, value: GeoLite2-City }
+          - { name: GEOIPUPDATE_FREQUENCY, value: "0" }
+          - { name: GEOIPUPDATE_VERBOSE, value: "true" }
+        envFrom:
+          - secretRef:
+              name: vector-geoipupdate
+        volumeMounts:
+          - { name: geoip, mountPath: /usr/share/GeoIP }
     controller:
       replicas: 3
       strategy: RollingUpdate
@@ -75,7 +88,8 @@ spec:
         mountPath: /vector-data-dir
       geoip:
         enabled: true
-        existingClaim: vector-geoipupdate-config
+        type: emptyDir
+        mountPath: /usr/share/GeoIP
 
     topologySpreadConstraints:
       - maxSkew: 1
