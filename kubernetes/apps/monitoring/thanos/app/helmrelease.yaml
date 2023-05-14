@@ -17,84 +17,89 @@ spec:
         namespace: flux-system
       interval: 15m
   install:
+    timeout: 20m
     createNamespace: true
     remediation: # perform remediation when helm install fails
       retries: 3
   upgrade:
+    timeout: 20m
     remediation: # perform remediation when helm upgrade fails
       retries: 3
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
   values:
-    existingObjstoreSecret: &secret thanos
+    objstoreConfig:
+      type: s3
+      config:
+        insecure: false
 
     query:
       enabled: true
       dnsDiscovery:
-        sidecarsService: prometheus-thanos-discovery
+        sidecarsService: kube-prometheus-stack-thanos-discovery
         sidecarsNamespace: monitoring
-      ingress:
-        enabled: true
-        hostname: 'thanos-${CLUSTER_NAME}.${EXTERNAL_DOMAIN}'
-        ingressClassName: 'nginx'
-        tls: true
       replicaLabels:
-        - '__replica__' # must match with kube-prometheus-stack value `.prometheus.prometheusSpec.replicaExternalLabelName`
+        - "__replica__" # must match with kube-prometheus-stack value `.prometheus.prometheusSpec.replicaExternalLabelName`
       resources:
         requests:
-          cpu: 5m
+          cpu: 15m
           memory: 64M
-        limits:
-          memory: 200M
+        # limits:
+        #   memory: 99M
 
     queryFrontend:
-      enabled: false
+      enabled: true
+      ingress:
+        enabled: true
+        hostname: "thanos.${EXTERNAL_DOMAIN}"
+        ingressClassName: "nginx"
+        tls: true
 
     bucketweb:
       enabled: true
       resources:
         requests:
-          cpu: 5m
+          cpu: 15m
           memory: 64M
-        limits:
-          memory: 120M
+        # limits:
+        #   memory: 64M
 
     compactor:
       enabled: true
       extraFlags:
-        - '--compact.concurrency'
-        - '4'
+        - "--compact.concurrency"
+        - "4"
       retentionResolutionRaw: 14d
       retentionResolution5m: 14d
       retentionResolution1h: 30d
       resources:
         requests:
-          cpu: 5m
-          memory: 161M
-        limits:
-          memory: 500M
+          cpu: 15m
+          memory: 204M
+        # limits:
+        #   memory: 270M
       persistence:
         enabled: true
-        storageClass: 'ceph-block'
-        size: 50Gi
+        storageClass: "ceph-block"
+        size: 15Gi
 
     storegateway:
       enabled: true
       resources:
         requests:
           cpu: 23m
-          memory: 272M
-        limits:
-          memory: 536M
+          memory: 204M
+        # limits:
+        #   memory: 226M
       persistence:
         enabled: true
-        storageClass: 'ceph-block'
-        size: 20Gi
+        storageClass: "ceph-block"
+        size: 1Gi
 
     ruler:
       enabled: true
       alertmanagers:
-        - http://kube-prometheus-stack-alertmanager.monitoring:9093
+        - http://alertmanager.monitoring.svc.cluster.local:9093
       clusterName: cluster-0 # must match with kube-prometheus-stack value `.prometheus.prometheusSpec.externalLabels.cluster`
       config: |-
         groups:
@@ -106,8 +111,8 @@ spec:
         enabled: true
       persistence:
         enabled: true
-        storageClass: 'ceph-block'
-        size: 20Gi
+        storageClass: "ceph-block"
+        size: 512Mi
       resources:
         requests:
           cpu: 23m
@@ -119,3 +124,21 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
+
+  valuesFrom:
+    - kind: Secret
+      name: thanos
+      valuesKey: S3_BUCKET_NAME
+      targetPath: objstoreConfig.config.bucket
+    - kind: Secret
+      name: thanos
+      valuesKey: S3_BUCKET_HOST
+      targetPath: objstoreConfig.config.endpoint
+    - kind: Secret
+      name: thanos
+      valuesKey: S3_ACCESS_KEY
+      targetPath: objstoreConfig.config.access_key
+    - kind: Secret
+      name: thanos
+      valuesKey: S3_SECRET_KEY
+      targetPath: objstoreConfig.config.secret_key

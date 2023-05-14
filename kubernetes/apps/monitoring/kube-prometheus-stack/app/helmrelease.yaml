@@ -234,7 +234,7 @@ spec:
           # renovate: datasource=docker depName=quay.io/thanos/thanos
           version: v0.31.0
           objectStorageConfig:
-            name: &secret thanos
+            name: &secret thanos-objstore-secret
             key: objstore.yml
         podAnnotations:
           secret.reloader.stakater.com/reload: *secret
@@ -477,10 +477,6 @@ spec:
         global:
           resolve_timeout: 5m
         receivers:
-          - name: heartbeat
-            webhook_configs:
-              - url: "https://status.${WEBSITE_DOMAIN}.com/api/push/${SECRET_AM_HEARTBEAT_TOKEN}?status=up&msg=OK"
-                send_resolved: true
           - name: 'null'
           - name: 'pushover'
             pushover_configs:
@@ -518,15 +514,9 @@ spec:
           repeat_interval: 24h
           receiver: 'pushover'
           routes:
-            - receiver: heartbeat
-              group_wait: 0s
-              group_interval: 2m
-              repeat_interval: 2m
-              matchers:
-                - alertname =~ "Watchdog"
             - receiver: 'null'
               matchers:
-                - alertname =~ "InfoInhibitor"
+                - alertname =~ "InfoInhibitor|Watchdog"
             - receiver: 'pushover'
               matchers:
                 - severity = "critical"
