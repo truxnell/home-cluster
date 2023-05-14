@@ -63,12 +63,12 @@ spec:
               - *host
       dmix:
         enabled: true
-        ingressclassname: 'nginx'
+        ingressClassName: 'nginx'
         hosts:
           - host: &hostdmix 'dmix.${EXTERNAL_DOMAIN}'
             paths:
               - path: /
-                pathtype: prefix
+                pathType: Prefix
                 service:
                   port: *portdmix
         tls:
