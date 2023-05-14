@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - ./helmrelease.yaml
+  - ./externalsecret.yaml
 metadata:
   namespace: monitoring
 configMapGenerator:
