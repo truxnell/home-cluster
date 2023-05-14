@@ -1,5 +1,5 @@
 #!/usr/bin/env zx
-$.verbose = false
+$.verbose = true
 
 /**
  * * helmReleaseDiff.mjs
