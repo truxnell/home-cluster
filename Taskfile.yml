@@ -1,15 +1,14 @@
 ---
-version: '3'
+version: "3"
 
 vars:
-  ANSIBLE_DIR: '{{.ROOT_DIR}}/infrastructure/ansible'
-  CLUSTER_DIR: '{{.ROOT_DIR}}/kubernetes'
-  PROJECT_DIR: '{{.ROOT_DIR}}'
-  POSTGRES_IP: '10.8.20.216'
-
+  ANSIBLE_DIR: "{{.ROOT_DIR}}/infrastructure/ansible"
+  CLUSTER_DIR: "{{.ROOT_DIR}}/kubernetes"
+  PROJECT_DIR: "{{.ROOT_DIR}}"
+  POSTGRES_IP: "10.8.20.216"
 
 env:
-  KUBECONFIG: '{{.ANSIBLE_DIR}}/kubernetes/kubeconfig'
+  KUBECONFIG: "{{.ANSIBLE_DIR}}/kubernetes/kubeconfig"
 
 includes:
   an: .taskfiles/Ansible/Tasks.yml
@@ -23,8 +22,9 @@ includes:
   ta: .taskfiles/Talos/Tasks.yml
   vs: .taskfiles/VolSync/Tasks.yml
   pg: .taskfiles/Postgres/Tasks.yml
+  gt: .taskfiles/Git/Tasks.yml
 
 tasks:
   default:
     silent: true
-    cmds: ['task -l']
+    cmds: ["task -l"]

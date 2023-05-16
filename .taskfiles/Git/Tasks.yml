@@ -1,0 +1,19 @@
+---
+version: "3"
+
+tasks:
+  pr-patch:
+    desc: Sync Flux GitRepositories
+    cmds:
+      - |
+        for pr in $(gh pr list -l 'type/patch' -A app/trux-bot | cut -f 1); do gh pr merge -r $pr; done;
+  pr-minor:
+    desc: Sync Flux GitRepositories
+    cmds:
+      - |
+        for pr in $(gh pr list -l 'type/minor' -A app/trux-bot | cut -f 1); do gh pr merge -r $pr; done;
+  pr-minor-patch:
+    desc: Sync Flux GitRepositories
+    cmds:
+      - task: pr-minor
+      - task: pr-patch
