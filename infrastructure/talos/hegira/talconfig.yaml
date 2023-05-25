@@ -1,6 +1,6 @@
 clusterName: hegira
-talosVersion: v1.4.0
-kubernetesVersion: 1.26.3
+talosVersion: v1.4.4
+kubernetesVersion: 1.26.4
 endpoint: https://hegira.${DOMAINNAME}:6443
 allowSchedulingOnMasters: true
 cniConfig:
@@ -103,7 +103,7 @@ controlPlane:
       kubelet:
         extraArgs:
           feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
-          rotate-server-certificates: 'true'
+          rotate-server-certificates: "true"
       logging:
         destinations:
           - endpoint: udp://vector.trux.dev:6051/
@@ -146,14 +146,14 @@ worker:
       kubelet:
         extraArgs:
           feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
-          rotate-server-certificates: 'true'
+          rotate-server-certificates: "true"
       logging:
         destinations:
           - endpoint: udp://vector.trux.dev:6051/
             format: json_lines
       sysctls:
-        fs.inotify.max_user_instances: '8192'
-        fs.inotify.max_user_watches: '1048576'
+        fs.inotify.max_user_instances: "8192"
+        fs.inotify.max_user_watches: "1048576"
       time:
         disabled: false
         servers:
