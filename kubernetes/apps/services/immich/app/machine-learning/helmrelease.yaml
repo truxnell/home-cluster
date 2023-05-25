@@ -53,6 +53,14 @@ spec:
         enabled: true
         existingClaim: immich-nfs
         mountPath: /usr/src/app/upload
+    # this is necessary for the downloads to complete
+    startupProbe:
+      enabled: true
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 30
+      successThreshold: 1
     topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
@@ -63,4 +71,4 @@ spec:
     resources:
       requests:
         cpu: 5m
-        memory: 800M
+        memory: 250Mi
