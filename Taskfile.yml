@@ -7,9 +7,6 @@ vars:
   PROJECT_DIR: "{{.ROOT_DIR}}"
   POSTGRES_IP: "10.8.20.216"
 
-env:
-  KUBECONFIG: "{{.ANSIBLE_DIR}}/kubernetes/kubeconfig"
-
 includes:
   an: .taskfiles/Ansible/Tasks.yml
   es: .taskfiles/ExternalSecrets/Tasks.yml
