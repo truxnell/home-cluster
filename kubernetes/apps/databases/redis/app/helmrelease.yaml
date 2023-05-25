@@ -23,8 +23,12 @@ spec:
     remediation:
       retries: 5
   values:
-    global:
-      storageClass: ceph-block
+    master:
+      persistence:
+        enabled: false
+    replica:
+      persistence:
+        enabled: false
     auth:
       enabled: false
       sentinel: false
