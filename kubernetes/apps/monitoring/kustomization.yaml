@@ -15,11 +15,10 @@ resources:
   - ./kube-prometheus-stack/ks.yaml
   - ./kubernetes-dashboard/ks.yaml
   - ./loki/ks.yaml
-  # - ./prometheus-rules/ks.yaml # TODO: Disabled by WIP file
   - ./prometheus-smartctl/ks.yaml
   - ./thanos/ks.yaml
   - ./vector/ks.yaml
   - ./nextdns-exporter/ks.yaml
   - ./changedetection/ks.yaml
-  - ./snmp-exporter-vyos/ks.yaml
+  # - ./snmp-exporter-vyos/ks.yaml
   - ./prometheus-rules/ks.yaml
