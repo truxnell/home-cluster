@@ -38,7 +38,7 @@ spec:
               name: *app
     image:
       repository: ghcr.io/truxnell/rebased-soapbox
-      tag: 2023.05.27@sha256:dc43ed86085decc82cd896e0a92cdccc186e56f2eada46c8935b129d392ad324
+      tag: 2023.05.28@sha256:e2bd879f23d14d42905233222d5bb3ce31c1c6192242b59ce57052a7a3feb20e
 
     env:
       DOMAIN: &host 'fedi.${WEBSITE_DOMAIN}'
