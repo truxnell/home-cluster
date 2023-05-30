@@ -34,7 +34,7 @@ spec:
     replicas: 3
 
     annotations:
-      configmap.reloader.stakater.com/reload: *app
+      configmap.reloader.stakater.com/reload: grafana-secret
     # admin:
     #   existingSecret: *app
     rbac:
