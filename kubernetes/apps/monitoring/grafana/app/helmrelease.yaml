@@ -224,6 +224,10 @@ spec:
           gnetId: 12776
           revision: 2
           datasource: Redis
+        postgresql:
+          gnetId: 9628
+          revision: 7
+          datasource: Prometheus
       flux:
         flux-cluster:
           url: https://raw.githubusercontent.com/fluxcd/flux2/v0.41.2/manifests/monitoring/monitoring-config/dashboards/cluster.json
