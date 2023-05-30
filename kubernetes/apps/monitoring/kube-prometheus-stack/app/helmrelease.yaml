@@ -116,7 +116,7 @@ spec:
 
     kube-state-metrics:
       metricLabelsAllowlist:
-        - 'persistentvolumeclaims=[*]'
+        - "persistentvolumeclaims=[*]"
       prometheus:
         monitor:
           enabled: true
@@ -183,18 +183,18 @@ spec:
         limits:
           memory: 64M
       tolerations:
-        - effect: 'NoExecute'
-          operator: 'Exists'
-        - effect: 'NoSchedule'
-          operator: 'Exists'
+        - effect: "NoExecute"
+          operator: "Exists"
+        - effect: "NoSchedule"
+          operator: "Exists"
 
     prometheus:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
-          hajimari.io/appName: 'Prometheus'
+          hajimari.io/appName: "Prometheus"
           hajimari.io/icon: simple-icons:prometheus
         hosts:
           - &host prometheus.${EXTERNAL_DOMAIN}
@@ -212,7 +212,7 @@ spec:
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
-        retentionSize: '8GB'
+        retentionSize: "8GB"
         retention: 2d
         enableAdminAPI: true
         walCompression: true
@@ -245,7 +245,7 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                  - 'gateway.${INTERNAL_DOMAIN}:9882'
+                  - "gateway.${INTERNAL_DOMAIN}:9882"
 
           - job_name: node-exporter
             scrape_interval: 1m
@@ -253,9 +253,9 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                  - 'technocore.${INTERNAL_DOMAIN}:9100'
-                  - 'gateway.${INTERNAL_DOMAIN}:9100'
-                  - 'helios.${INTERNAL_DOMAIN}:9100'
+                  - "technocore.${INTERNAL_DOMAIN}:9100"
+                  - "gateway.${INTERNAL_DOMAIN}:9100"
+                  - "helios.${INTERNAL_DOMAIN}:9100"
 
           - job_name: zfs-exporter
             scrape_interval: 1m
@@ -263,7 +263,7 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                  - 'helios.${INTERNAL_DOMAIN}:9134'
+                  - "helios.${INTERNAL_DOMAIN}:9134"
 
           - job_name: vnstat
             scrape_interval: 1m
@@ -271,7 +271,7 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                - 'gateway.${INTERNAL_DOMAIN}:8685'
+                  - "gateway.${INTERNAL_DOMAIN}:8685"
 
           - job_name: smtp-relay
             scrape_interval: 1m
@@ -279,7 +279,7 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                - 'smtp-relay.${INTERNAL_DOMAIN}:9749'
+                  - "smtp-relay.${INTERNAL_DOMAIN}:9749"
 
           - job_name: minio
             scrape_interval: 1m
@@ -289,7 +289,7 @@ spec:
             scheme: https
             static_configs:
               - targets:
-                  - 's3.${EXTERNAL_DOMAIN}'
+                  - "s3.${EXTERNAL_DOMAIN}"
 
           - job_name: speedtest-exporter
             scrape_interval: 60m
@@ -297,7 +297,7 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                  - 'gateway.${INTERNAL_DOMAIN}:9798'
+                  - "gateway.${INTERNAL_DOMAIN}:9798"
 
           - job_name: smartctl-exporter
             scrape_interval: 10m
@@ -305,8 +305,8 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                  - 'helios.${INTERNAL_DOMAIN}:9633'
-                  - 'gateway.${INTERNAL_DOMAIN}:9633'
+                  - "helios.${INTERNAL_DOMAIN}:9633"
+                  - "gateway.${INTERNAL_DOMAIN}:9633"
 
           - job_name: windows-exporter
             scrape_interval: 1m
@@ -314,7 +314,7 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                  - '10.8.20.222:9182'
+                  - "10.8.20.222:9182"
 
           - job_name: ts110
             scrape_interval: 1m
@@ -322,20 +322,20 @@ spec:
             honor_timestamps: true
             static_configs:
               - targets:
-                  - 'hs110-exporter-prusa.monitoring:8110'
-                  - 'hs110-exporter-rack.monitoring:8110'
+                  - "hs110-exporter-prusa.monitoring:8110"
+                  - "hs110-exporter-rack.monitoring:8110"
 
-          - job_name: 'octoprint'
+          - job_name: "octoprint"
             scrape_interval: 1m
             scrape_timeout: 10s
-            metrics_path: '/plugin/prometheus_exporter/metrics'
+            metrics_path: "/plugin/prometheus_exporter/metrics"
             params:
-              apikey: ['${SECRET_OCTOPRINT_APIKEY}']
+              apikey: ["${SECRET_OCTOPRINT_APIKEY}"]
             tls_config:
               insecure_skip_verify: true
             static_configs:
               - targets:
-                  - 'prusa.${INTERNAL_DOMAIN}:5000'
+                  - "prusa.${INTERNAL_DOMAIN}:5000"
 
           #  - job_name: coredns
           #    scrape_interval: 1m
@@ -344,141 +344,15 @@ spec:
           #    static_configs:
           #      - targets:
           #          - '10.8.5.2:9153'
-                #
-          - job_name: 'kubernetes-ingresses-http-2xx'
-            metrics_path: /probe
-            scrape_interval: 2m
-            params:
-              module: [http_2xx]
-            kubernetes_sd_configs:
-              - role: ingress
-            relabel_configs:
-              - source_labels:
-                  [__meta_kubernetes_ingress_annotation_prometheus_io_probe]
-                action: keep
-                regex: true
-              - source_labels:
-                  [__meta_kubernetes_ingress_annotation_prometheus_io_module]
-                action: keep
-                regex: http_2xx
-              - source_labels:
-                  [
-                    __meta_kubernetes_ingress_scheme,
-                    __address__,
-                    __meta_kubernetes_ingress_path,
-                  ]
-                regex: (.+);(.+);(.+)
-                replacement: $${1}://$${2}$${3}
-                target_label: __param_target
-              - target_label: __address__
-                replacement: blackbox-exporter:9115
-              - source_labels: [__param_target]
-                target_label: instance
-              - action: labelmap
-                regex: __meta_kubernetes_ingress_label_(.+)
-              - source_labels: [__meta_kubernetes_namespace]
-                target_label: kubernetes_namespace
-              - source_labels: [__meta_kubernetes_ingress_name]
-                target_label: kubernetes_name
-          - job_name: 'kubernetes-ingresses-http403'
-            metrics_path: /probe
-            scrape_interval: 2m
-            params:
-              module: [http_403]
-            kubernetes_sd_configs:
-              - role: ingress
-            relabel_configs:
-              - source_labels:
-                  [__meta_kubernetes_ingress_annotation_prometheus_io_probe]
-                action: keep
-                regex: true
-              - source_labels:
-                  [__meta_kubernetes_ingress_annotation_prometheus_io_module]
-                action: keep
-                regex: http_403
-              - source_labels:
-                  [
-                    __meta_kubernetes_ingress_scheme,
-                    __address__,
-                    __meta_kubernetes_ingress_path,
-                  ]
-                regex: (.+);(.+);(.+)
-                replacement: $${1}://$${2}$${3}
-                target_label: __param_target
-              - target_label: __address__
-                replacement: blackbox-exporter:9115
-              - source_labels: [__param_target]
-                target_label: instance
-              - action: labelmap
-                regex: __meta_kubernetes_ingress_label_(.+)
-              - source_labels: [__meta_kubernetes_namespace]
-                target_label: kubernetes_namespace
-              - source_labels: [__meta_kubernetes_ingress_name]
-                target_label: kubernetes_name
-          - job_name: 'kubernetes-services-http'
-            metrics_path: /probe
-            scrape_interval: 2m
-            params:
-              module: [http_2xx]
-            kubernetes_sd_configs:
-              - role: service
-            relabel_configs:
-              - source_labels:
-                  [__meta_kubernetes_service_annotation_prometheus_io_probe]
-                action: keep
-                regex: true
-              - source_labels:
-                  [__meta_kubernetes_service_annotation_prometheus_io_protocol]
-                action: keep
-                regex: http
-              - source_labels: [__address__]
-                target_label: __param_target
-              - target_label: __address__
-                replacement: blackbox-exporter:9115
-              - source_labels: [__param_target]
-                target_label: instance
-              - action: labelmap
-                regex: __meta_kubernetes_service_label_(.+)
-              - source_labels: [__meta_kubernetes_namespace]
-                target_label: kubernetes_namespace
-              - source_labels: [__meta_kubernetes_service_name]
-                target_label: kubernetes_name
-          - job_name: 'kubernetes-services-tcp'
-            metrics_path: /probe
-            scrape_interval: 2m
-            params:
-              module: [tcp_connect]
-            kubernetes_sd_configs:
-              - role: service
-            relabel_configs:
-              - source_labels:
-                  [__meta_kubernetes_service_annotation_prometheus_io_probe]
-                action: keep
-                regex: true
-              - source_labels:
-                  [__meta_kubernetes_service_annotation_prometheus_io_protocol]
-                action: keep
-                regex: tcp
-              - source_labels: [__address__]
-                target_label: __param_target
-              - target_label: __address__
-                replacement: blackbox-exporter:9115
-              - source_labels: [__param_target]
-                target_label: instance
-              - action: labelmap
-                regex: __meta_kubernetes_service_label_(.+)
-              - source_labels: [__meta_kubernetes_namespace]
-                target_label: kubernetes_namespace
-              - source_labels: [__meta_kubernetes_service_name]
-                target_label: kubernetes_name
+          #
 
     alertmanager:
       config:
         global:
           resolve_timeout: 5m
         receivers:
-          - name: 'null'
-          - name: 'pushover'
+          - name: "null"
+          - name: "pushover"
             pushover_configs:
               - user_key: ${SECRET_ALERTMANAGER_PUSHOVER_USER_KEY}
                 token: ${SECRET_ALERTMANAGER_PUSHOVER_TOKEN}
@@ -487,7 +361,7 @@ spec:
                 priority: |-
                   {{ if eq .Status "firing" }}1{{ else }}0{{ end }}
                 title: |-
-                   {{ .CommonLabels.alertname }} [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}]
+                  {{ .CommonLabels.alertname }} [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}]
                 message: |-
                   {{- range .Alerts }}
                     {{- if ne .Annotations.description "" }}
@@ -508,16 +382,16 @@ spec:
                     {{- end }}
                   {{- end }}
         route:
-          group_by: ['alertname', 'job']
+          group_by: ["alertname", "job"]
           group_wait: 1m
           group_interval: 10m
           repeat_interval: 24h
-          receiver: 'pushover'
+          receiver: "pushover"
           routes:
-            - receiver: 'null'
+            - receiver: "null"
               matchers:
                 - alertname =~ "InfoInhibitor|Watchdog"
-            - receiver: 'pushover'
+            - receiver: "pushover"
               matchers:
                 - severity = "critical"
               continue: true
@@ -526,13 +400,13 @@ spec:
               - severity = "critical"
             target_matchers:
               - severity = "warning"
-            equal: ['alertname', 'namespace']
+            equal: ["alertname", "namespace"]
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
-          hajimari.io/appName: 'Alert Manager'
+          hajimari.io/appName: "Alert Manager"
           hajimari.io/icon: mdi:alert-decagram-outline
         hosts:
           - &host-am alertmanager.${EXTERNAL_DOMAIN}
