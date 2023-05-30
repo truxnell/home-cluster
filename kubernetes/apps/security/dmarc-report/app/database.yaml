@@ -1,0 +1,19 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: dmarc-report-db
+  namespace: selfhosted
+spec:
+  database: dmarc-report
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: dmarc-report-user
+  namespace: selfhosted
+spec:
+  role: dmarc-report
+  database: dmarc-report-db
+  secretName: database
+  privileges: OWNER
