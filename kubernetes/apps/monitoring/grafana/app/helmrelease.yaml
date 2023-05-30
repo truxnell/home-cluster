@@ -68,18 +68,15 @@ spec:
 
     grafana.ini:
       auth:
-        signout_redirect_url: "https://auth.${EXTERNAL_DOMAIN}/logout"
-        oauth_auto_login: false
+        # signout_redirect_url: https://auth.${SECRET_DOMAIN_NAME}/logout
+        oauth_auto_login: true
       auth.generic_oauth:
         enabled: true
         name: Authelia
+        icon: signin
         client_id: grafana
-        client_secret: "${SECRET_GRAFANA_OAUTH_CLIENT_SECRET}"
         scopes: "openid profile email groups"
         empty_scopes: false
-        auth_url: "https://auth.${EXTERNAL_DOMAIN}/api/oidc/authorization"
-        token_url: "https://auth.${EXTERNAL_DOMAIN}/api/oidc/token"
-        api_url: "https://auth.${EXTERNAL_DOMAIN}/api/oidc/userinfo"
         login_attribute_path: preferred_username
         groups_attribute_path: groups
         name_attribute_path: name
@@ -90,12 +87,10 @@ spec:
         org_id: 1
       auth.basic:
         enabled: false
-        # disable_login_form: false
       auth.anonymous:
-        enabled: true
-        org_name: HomeOps
+        enabled: false
         org_id: 1
-        org_role: Viewe
+        org_role: Viewer
 
     dashboardProviders:
       dashboardproviders.yaml:
