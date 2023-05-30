@@ -1,6 +1,4 @@
 ---
-
-
 # yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -20,7 +18,6 @@ spec:
       interval: 5m
   # https://github.com/zalando/postgres-operator/blob/master/charts/postgres-operator/values.yaml
   values:
-
     configMajorVersionUpgrade:
       # "off": no upgrade, "manual": manifest triggers action, "full": minimal version violation triggers too
       major_version_upgrade_mode: full
@@ -36,10 +33,10 @@ spec:
       # Disable PDB since they prevent the drain
       # https://github.com/zalando/postgres-operator/issues/547
       enable_pod_disruption_budget: false
-    # configure resource requests for the Postgres pods
+      # configure resource requests for the Postgres pods
 
       pod_environment_configmap: zalando-postgres-pod-configmap
-      pod_environment_secret: zalando-postgres-pod-secrets
+      # pod_environment_secret: zalando-postgres-pod-secrets
 
     configPostgresPodResources:
       # CPU limits for the postgres containers
