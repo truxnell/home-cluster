@@ -18,15 +18,6 @@ spec:
             summary: Postgresql down (instance {{ $labels.instance }})
             description: "Postgresql instance is down\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-        - alert: PostgresqlRestarted
-          expr: time() - pg_postmaster_start_time_seconds < 60
-          for: 0m
-          labels:
-            severity: critical
-          annotations:
-            summary: Postgresql restarted (instance {{ $labels.instance }})
-            description: "Postgresql restarted\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
         - alert: PostgresqlExporterError
           expr: pg_exporter_last_scrape_error > 0
           for: 0m
@@ -35,24 +26,6 @@ spec:
           annotations:
             summary: Postgresql exporter error (instance {{ $labels.instance }})
             description: "Postgresql exporter is showing errors. A query may be buggy in query.yaml\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-        - alert: PostgresqlTableNotAutoVacuumed
-          expr: (pg_stat_user_tables_last_autovacuum > 0) and (time() - pg_stat_user_tables_last_autovacuum) > 60 * 60 * 24 * 10
-          for: 0m
-          labels:
-            severity: warning
-          annotations:
-            summary: Postgresql table not auto vacuumed (instance {{ $labels.instance }})
-            description: "Table {{ $labels.relname }} has not been auto vacuumed for 10 days\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
-        - alert: PostgresqlTableNotAutoAnalyzed
-          expr: (pg_stat_user_tables_last_autoanalyze > 0) and (time() - pg_stat_user_tables_last_autoanalyze) > 24 * 60 * 60 * 10
-          for: 0m
-          labels:
-            severity: warning
-          annotations:
-            summary: Postgresql table not auto analyzed (instance {{ $labels.instance }})
-            description: "Table {{ $labels.relname }} has not been auto analyzed for 10 days\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
         - alert: PostgresqlTooManyConnections
           expr: sum by (datname) (pg_stat_activity_count{datname!~"template.*|postgres"}) > pg_settings_max_connections * 0.8
@@ -126,7 +99,6 @@ spec:
             summary: Postgresql too many dead tuples (instance {{ $labels.instance }})
             description: "PostgreSQL dead tuples is too large\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-
         - alert: PostgresqlSslCompressionActive
           expr: sum(pg_stat_ssl_compression) > 0
           for: 0m
@@ -164,3 +136,59 @@ spec:
           annotations:
             summary: Postgresql bloat table high (> 80%) (instance {{ $labels.instance }})
             description: "The table {{ $labels.relname }} is bloated. You should execute `VACUUM {{ $labels.relname }};`\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/monitoring.coreos.com/prometheusrule_v1.json
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: patroni-rules
+  namespace: monitoring
+spec:
+  groups:
+    - name: patroni.rules
+      rules:
+        - alert: PostgresqlPatroniClusterLocked
+          expr: patroni_cluster_unlocked!=0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: Patroni Cluster Locked
+            description: "The postgresl cluster patroni is locked.  Please check the logs for more information"
+
+        - alert: PostgresqlPatroniPaused
+          expr: patroni_cluster_paused!=0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: Patroni Cluster Paused
+            description: "The postgresl cluster patroni is paused.  Please check the logs for more information"
+
+        - alert: PostgresqlPatroniMasterIncorrect
+          expr: patroni_master!=1
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: Patroni Master missing or too many
+            description: "The number of patroni masters are either missing or more than 1"
+
+        - alert: PostgresqlPatroniMasterIncorrect
+          expr: patroni_master!=1
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: Patroni Master missing or too many
+            description: "The number of patroni masters are either missing or more than 1"
+
+        - alert: PostgresqlPatroniPendingRestart
+          expr: patroni_pending_restart>0
+          for: 1h
+          labels:
+            severity: critical
+          annotations:
+            summary: Patroni is pending a restart
+            description: "Patroni has been in pending restart state for > 1h"

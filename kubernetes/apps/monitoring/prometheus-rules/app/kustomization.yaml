@@ -5,7 +5,6 @@ kind: Kustomization
 resources:
   - ./services
   - ./system-monitoring
-  - ./databases
   - ./networking
   - ./kube-system/
 metadata:
