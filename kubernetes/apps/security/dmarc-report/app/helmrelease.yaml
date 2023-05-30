@@ -1,0 +1,88 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.zinn.ca/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app dmarc-report
+  namespace: security
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+      interval: 15m
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    initContainers:
+      init-db:
+        image: ghcr.io/onedr0p/postgres-init:14.8
+        envFrom:
+          - secretRef:
+              name: *app
+    controller:
+      type: statefulset
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: ghcr.io/szinn/dmarc-report
+      tag: 1.4.1@sha256:3bdb6549f9f577ec75034a415d13beb77fec9e296428d1a1e88c955be4f20592
+      pullPolicy: IfNotPresent
+    env:
+      TZ: ${CONFIG_TIMEZONE}
+      REPORT_DB_TYPE: "pgsql"
+      REPORT_DB_HOST: &dbhost postgres-rw.dbms
+      REPORT_DB_PORT: "5432"
+      REPORT_DB_NAME: &dbname "dmarc"
+      REPORT_DB_USER: &dbuser "dmarc"
+      REPORT_DB_PASS: &dbpass "{{ .POSTGRES_PASS }}"
+      PARSER_IMAP_SERVER: "{{ .EMAIL_SMTP_HOST }}"
+      PARSER_IMAP_PORT: "143"
+      PARSER_IMAP_USER: "{{ .PARSER_IMAP_USER }}"
+      PARSER_IMAP_PASS: "{{ .PARSER_IMAP_PASS }}"
+      PARSER_IMAP_READ_FOLDER: "Inbox"
+      PARSER_IMAP_MOVE_FOLDER: "processed"
+      PARSER_IMAP_MOVE_FOLDER_ERR: "error"
+      # Postgres Init
+      INIT_POSTGRES_DBNAME: *dbname
+      INIT_POSTGRES_HOST: *dbhost
+      INIT_POSTGRES_USER: *dbuser
+      INIT_POSTGRES_PASS: *dbpass
+      INIT_POSTGRES_SUPER_USER: "{{ .POSTGRES_SUPER_USER }}"
+      INIT_POSTGRES_SUPER_PASS: "{{ .POSTGRES_SUPER_PASS }}"
+    envFrom:
+      - secretRef:
+          name: *app
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          ingress.home.arpa/type: "internal"
+        hosts:
+          - host: "{{ .Release.Name }}.${SECRET_DOMAIN_NAME}"
+            paths:
+              - path: /
+                pathType: Prefix
+    volumeClaimTemplates:
+      - name: config
+        mountPath: /config
+        accessMode: ReadWriteOnce
+        size: 5Gi
+        storageClass: ceph-block

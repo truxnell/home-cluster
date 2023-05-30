@@ -6,6 +6,7 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
+  - ./ext-postgres-operator/ks.yaml
   - ./pgadmin/ks.yaml
   - ./postgres-backup/ks.yaml
   - ./redis/ks.yaml
