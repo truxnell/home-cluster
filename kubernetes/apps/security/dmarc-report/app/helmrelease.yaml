@@ -41,26 +41,32 @@ spec:
       pullPolicy: IfNotPresent
     env:
       TZ: ${CONFIG_TIMEZONE}
-      REPORT_DB_TYPE: "pgsql"
-      REPORT_DB_HOST: &dbhost postgres-rw.dbms
-      REPORT_DB_PORT: "5432"
-      REPORT_DB_NAME: &dbname "dmarc"
-      REPORT_DB_USER: &dbuser "dmarc"
-      REPORT_DB_PASS: &dbpass "{{ .POSTGRES_PASS }}"
-      PARSER_IMAP_SERVER: "{{ .EMAIL_SMTP_HOST }}"
-      PARSER_IMAP_PORT: "143"
-      PARSER_IMAP_USER: "{{ .PARSER_IMAP_USER }}"
-      PARSER_IMAP_PASS: "{{ .PARSER_IMAP_PASS }}"
-      PARSER_IMAP_READ_FOLDER: "Inbox"
+      PARSER_IMAP_READ_FOLDER: "INBOX.admin"
       PARSER_IMAP_MOVE_FOLDER: "processed"
       PARSER_IMAP_MOVE_FOLDER_ERR: "error"
-      # Postgres Init
-      INIT_POSTGRES_DBNAME: *dbname
-      INIT_POSTGRES_HOST: *dbhost
-      INIT_POSTGRES_USER: *dbuser
-      INIT_POSTGRES_PASS: *dbpass
-      INIT_POSTGRES_SUPER_USER: "{{ .POSTGRES_SUPER_USER }}"
-      INIT_POSTGRES_SUPER_PASS: "{{ .POSTGRES_SUPER_PASS }}"
+      REPORT_DB_TYPE: "pgsql"
+      REPORT_DB_PORT: "5432"
+      REPORT_DB_HOST:
+        valueFrom:
+          secretKeyRef:
+            name: database-dmarc-report-user
+            key: HOST
+      REPORT_DB_NAME:
+        valueFrom:
+          secretKeyRef:
+            name: database-dmarc-report-user
+            key: DATABASE_NAME
+      REPORT_DB_USER:
+        valueFrom:
+          secretKeyRef:
+            name: database-dmarc-report-user
+            key: ROLE
+      REPORT_DB_PASS:
+        valueFrom:
+          secretKeyRef:
+            name: database-dmarc-report-user
+            key: PASSWORD
+
     envFrom:
       - secretRef:
           name: *app
