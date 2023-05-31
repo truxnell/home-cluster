@@ -18,12 +18,10 @@ spec:
       interval: 15m
   maxHistory: 3
   install:
-    timeout: 20m
     createNamespace: true
     remediation:
       retries: 3
   upgrade:
-    timeout: 20m
     remediation: # perform remediation when helm upgrade fails
       retries: 3
       remediateLastFailure: true # remediate the last failure, when no retries remain
@@ -86,13 +84,6 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
-    startupProbe:
-      enabled: true
-      initialDelaySeconds: 300
-      periodSeconds: 60
-      timeoutSeconds: 5
-      failureThreshold: 30
-      successThreshold: 1
     volumeClaimTemplates:
       - name: config
         mountPath: /config
