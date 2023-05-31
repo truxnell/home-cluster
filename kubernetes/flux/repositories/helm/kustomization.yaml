@@ -38,3 +38,4 @@ resources:
   - ./weave-gitops.yaml
   - ./zalando-postgres-operator.yaml
   - ./angelnu-charts.yaml
+  - ./windmill.yaml
