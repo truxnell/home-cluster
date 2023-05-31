@@ -39,7 +39,7 @@ spec:
       pullPolicy: IfNotPresent
     env:
       TZ: ${CONFIG_TIMEZONE}
-      PARSER_IMAP_READ_FOLDER: "INBOX.admin"
+      PARSER_IMAP_READ_FOLDER: "dmarc_reports"
       PARSER_IMAP_MOVE_FOLDER: "dmarc_processed"
       PARSER_IMAP_MOVE_FOLDER_ERR: "dmarc_error"
       PARSER_IMAP_SSL: 1
