@@ -82,6 +82,13 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+    startupProbe:
+      enabled: true
+      initialDelaySeconds: 300
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 30
+      successThreshold: 1
     volumeClaimTemplates:
       - name: config
         mountPath: /config
