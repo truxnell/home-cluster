@@ -39,6 +39,7 @@ spec:
       PARSER_IMAP_MOVE_FOLDER: "dmarc_processed"
       PARSER_IMAP_MOVE_FOLDER_ERR: "dmarc_error"
       PARSER_IMAP_SSL: 1
+      PARSER_IMAP_TLS: 0
       REPORT_DB_TYPE: "pgsql"
       REPORT_DB_PORT: "5432"
       REPORT_DB_HOST:
