@@ -38,6 +38,7 @@ spec:
       PARSER_IMAP_READ_FOLDER: "INBOX.admin"
       PARSER_IMAP_MOVE_FOLDER: "dmarc_processed"
       PARSER_IMAP_MOVE_FOLDER_ERR: "dmarc_error"
+      PARSER_IMAP_SSL: 1
       REPORT_DB_TYPE: "pgsql"
       REPORT_DB_PORT: "5432"
       REPORT_DB_HOST:
