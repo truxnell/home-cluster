@@ -3,17 +3,6 @@ apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
   name: windmill-db
-  namespace: selfhosted
+  namespace: home-automation
 spec:
   database: windmill
----
-apiVersion: db.movetokube.com/v1alpha1
-kind: PostgresUser
-metadata:
-  name: windmill-user
-  namespace: selfhosted
-spec:
-  role: windmill
-  database: windmill-db
-  secretName: database
-  privileges: OWNER
