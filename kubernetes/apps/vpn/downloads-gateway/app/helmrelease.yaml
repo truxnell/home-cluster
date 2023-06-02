@@ -28,7 +28,7 @@ spec:
         image:
           # TODO: Replace with ghcr.io/qdm12/gluetun when a versioned tag is available
           repository: docker.io/qmcgaw/gluetun
-          tag: v3.34.2@sha256:8d069c84730a5bd3af513a2019548c824e45d8b2c43d5d25ecdd29d707d9cb2d
+          tag: v3.34.3@sha256:3b4d498939ef1f9ceac9049a73598acfcda25a9e58010fcd991afed32cd16eac
         env:
           - name: VPN_SERVICE_PROVIDER
             value: mullvad
