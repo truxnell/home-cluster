@@ -36,7 +36,7 @@ spec:
     sidecars:
       browser:
         name: browser
-        image: docker.io/browserless/chrome:latest@sha256:5272d93ad15a3e793bf727c1230d6b7efca618cf47dad667b2b6c6389639aaba
+        image: docker.io/browserless/chrome:latest@sha256:8962e84c83efaab8229a7d1d255d07b274a12d4a8055d8bec408f42591a4bb40
         imagePullPolicy: Always
         env:
           - name: SCREEN_WIDTH
