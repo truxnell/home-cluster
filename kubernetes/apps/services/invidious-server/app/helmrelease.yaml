@@ -36,7 +36,7 @@ spec:
     fullNameOverride: *app
     image:
       repository: quay.io/invidious/invidious
-      tag: latest@sha256:4e45062b9876049d6ce59b429c3c3d42cf29337d15ebaf955e2c92eb7b8de961
+      tag: latest@sha256:d8d40148965610cd0442fba66e8e5e2b9b50558feceb4fbe303acdbada31bd69
     service:
       main:
         ports:
