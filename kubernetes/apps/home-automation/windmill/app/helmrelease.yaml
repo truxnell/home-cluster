@@ -23,10 +23,24 @@ spec:
     remediation:
       retries: 5
   values:
-    postgres:
+    postgresql:
       enabled: false
 
     windmill:
       databaseUrlSecretName: windmill
       baseProtocol: https
-      baseDomain: windmill.trux.dev
+      baseDomain: &host "windmill.trux.dev"
+
+    ingress:
+      enabled: true
+      className: "nginx"
+      annotations:
+        hajimari.io/icon: mdi:wind-power
+      hosts:
+        - host: *host
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - *host
