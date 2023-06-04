@@ -13,4 +13,3 @@ resources:
   - ./factorio/ks.yaml
   # - ./foundryvtt/ks.yaml # TODO: Disabled by WIP file
   # - ./satisfactory/ks.yaml
-  - ./epic-freegames-node/ks.yaml
