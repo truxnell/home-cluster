@@ -9,9 +9,9 @@ data:
   LOCAL_DOMAIN: truxnell.net
   WEB_DOMAIN: fedi.truxnell.net
   SINGLE_USER_MODE: "true"
-  REDIS_HOST: mastodon-redis.services.cluster.svc.local
+  REDIS_HOST: mastodon-redis.services.svc.cluster.local
   REDIS_PORT: "6379"
-  SMTP_SERVER: smtp-relay.trux.devices
+  SMTP_SERVER: smtp-relay.trux.dev
   SMTP_PORT: "2525"
   SMTP_FROM_ADDRESS: mastodon.truxnell.net
   SMTP_DOMAIN: truxnell.net
