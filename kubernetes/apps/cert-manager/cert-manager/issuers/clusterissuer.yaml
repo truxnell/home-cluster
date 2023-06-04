@@ -1,6 +1,4 @@
 ---
-
-
 # yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/cert-manager.io/clusterissuer_v1.json
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -10,7 +8,7 @@ metadata:
 spec:
   acme:
     email: acme@${EXTERNAL_DOMAIN}
-    preferredChain: ''
+    preferredChain: ""
     privateKeySecretRef:
       name: letsencrypt-staging
     server: https://acme-staging-v02.api.letsencrypt.org/directory
@@ -18,6 +16,7 @@ spec:
       - selector:
           dnsZones:
             - ${EXTERNAL_DOMAIN}
+            - truxnell.net
         dns01:
           cloudflare:
             apiTokenSecretRef:
@@ -25,8 +24,6 @@ spec:
               name: cloudflare-api-token-secret
             email: acme@${EXTERNAL_DOMAIN}
 ---
-
-
 # yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/cert-manager.io/clusterissuer_v1.json
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -36,7 +33,7 @@ metadata:
 spec:
   acme:
     email: acme@${EXTERNAL_DOMAIN}
-    preferredChain: ''
+    preferredChain: ""
     privateKeySecretRef:
       name: letsencrypt-production
     server: https://acme-v02.api.letsencrypt.org/directory
@@ -44,6 +41,7 @@ spec:
       - selector:
           dnsZones:
             - ${EXTERNAL_DOMAIN}
+            - truxnell.net
         dns01:
           cloudflare:
             apiTokenSecretRef:
