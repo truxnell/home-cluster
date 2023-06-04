@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: services
 resources:
   - ./database.yaml
+  - ./configmap.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: mastodon
