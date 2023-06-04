@@ -40,10 +40,11 @@ spec:
     policy: sync
     sources:
       - ingress
-    txtPrefix: 'k8s.'
+    txtPrefix: "k8s."
     domainFilters:
-      - '${EXTERNAL_DOMAIN}'
-      - '${WEBSITE_DOMAIN}'
+      - "${EXTERNAL_DOMAIN}"
+      - "${WEBSITE_DOMAIN}"
+      - truxnell.net
     serviceMonitor:
       enabled: true
     resources:
