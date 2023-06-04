@@ -8,7 +8,7 @@ data:
   DB_PORT: "5432"
   LOCAL_DOMAIN: truxnell.net
   WEB_DOMAIN: fedi.truxnell.net
-  SINGLE_USER_MODE: true
+  SINGLE_USER_MODE: "true"
   REDIS_HOST: mastodon-redis.services.cluster.svc.local
   REDIS_PORT: "6379"
   SMTP_SERVER: smtp-relay.trux.devices
