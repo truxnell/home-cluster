@@ -10,9 +10,8 @@ data:
   ENABLE_MAPBOX: "false"
   LOG_LEVEL: log
   NODE_ENV: "production"
-  # REDIS_HOSTNAME: immich-redis.services.svc.cluster.local
-  REDIS_HOSTNAME: immich-redis.services.svc.cluster.local
-  REDIS_PORT: "6379"
+  REDIS_URL: ioredis://eyJkYiI6MTUsInNlbnRpbmVscyI6W3siaG9zdCI6InJlZGlzLW5vZGUtMC5yZWRpcy1oZWFkbGVzcy5kYXRhYmFzZS5zdmMuY2x1c3Rlci5sb2NhbCIsInBvcnQiOjI2Mzc5fSx7Imhvc3QiOiJyZWRpcy1ub2RlLTEucmVkaXMtaGVhZGxlc3MuZGF0YWJhc2Uuc3ZjLmNsdXN0ZXIubG9jYWwiLCJwb3J0IjoyNjM3OX0seyJob3N0IjoicmVkaXMtbm9kZS0yLnJlZGlzLWhlYWRsZXNzLmRhdGFiYXNlLnN2Yy5jbHVzdGVyLmxvY2FsIiwicG9ydCI6MjYzNzl9XSwibmFtZSI6InJlZGlzLW1hc3RlciJ9
+ 
   TYPESENSE_HOST: immich-typesense.services.svc.cluster.local
   TYPESENSE_PORT: "8108"
   TYPESENSE_PROTOCOL: http
