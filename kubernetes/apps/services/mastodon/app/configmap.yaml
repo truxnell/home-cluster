@@ -5,13 +5,13 @@ metadata:
   name: mastodon-configmap
   namespace: services
 data:
-  DB_PORT: 5432
+  DB_PORT: "5432"
   LOCAL_DOMAIN: truxnell.net
   WEB_DOMAIN: fedi.truxnell.net
   SINGLE_USER_MODE: true
   REDIS_HOST: mastodon-redis.services.cluster.svc.local
-  REDIS_PORT: 6379
+  REDIS_PORT: "6379"
   SMTP_SERVER: smtp-relay.trux.devices
-  SMTP_PORT: 2525
+  SMTP_PORT: "2525"
   SMTP_FROM_ADDRESS: mastodon.truxnell.net
   SMTP_DOMAIN: truxnell.net
