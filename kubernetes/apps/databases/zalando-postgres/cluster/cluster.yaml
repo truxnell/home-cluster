@@ -20,4 +20,4 @@ spec:
   postgresql:
     version: "15"
     parameters: # Expert section
-      max_connections: "25"
+      max_connections: "200"
