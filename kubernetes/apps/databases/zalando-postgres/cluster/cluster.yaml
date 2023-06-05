@@ -1,6 +1,4 @@
 ---
-
-
 # yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/"acid.zalan.do/postgresql_v1".json
 apiVersion: "acid.zalan.do/v1"
 kind: postgresql
@@ -16,8 +14,10 @@ spec:
     size: 40Gi
   numberOfInstances: 3
   users:
-    postgres:  # database owner
+    postgres: # database owner
       - superuser
       - createdb
   postgresql:
     version: "15"
+    parameters: # Expert section
+      max_connections: "25"
