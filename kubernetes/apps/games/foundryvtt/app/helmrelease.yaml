@@ -29,7 +29,7 @@ spec:
   values:
     image:
       repository: felddy/foundryvtt
-      tag: 11.299.0
+      tag: 11.300.0
     env:
       TZ: ${TZ}
       SECRET_FOUNDRY_USERNAME: ${SECRET_FOUNDRY_USERNAME}
