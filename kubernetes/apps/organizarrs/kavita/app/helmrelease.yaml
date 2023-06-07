@@ -25,7 +25,7 @@ spec:
   values:
     image:
       repository: kizaing/kavita
-      tag: 0.7.2
+      tag: 0.7.3
     env:
       TZ: "${TZ}"
     service:
