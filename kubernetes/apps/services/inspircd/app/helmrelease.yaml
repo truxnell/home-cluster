@@ -37,8 +37,6 @@ spec:
         type: LoadBalancer
         externalTrafficPolicy: Local
         loadBalancerIP: "${LB_INSPIRCD}"
-        annotations:
-          external-dns.home.arpa/enabled: "true"
         ports:
           http:
             enabled: false
