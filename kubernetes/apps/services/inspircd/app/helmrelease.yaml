@@ -28,9 +28,6 @@ spec:
       tag: 3.16.0@sha256:fb1c64278bf1bd74acbee221b51a4c464763d4baabf1587702093ecc4580860c
     env:
       TZ: "Australia/Melbourne"
-    envFrom:
-      - secretRef:
-          name: *app
     service:
       main:
         enabled: true
