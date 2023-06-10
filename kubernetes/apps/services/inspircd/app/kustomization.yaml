@@ -5,8 +5,6 @@ kind: Kustomization
 metadata:
   namespace: services
 resources:
-  - ./externalsecret.yaml
-  - ./servicemonitor.yaml
   - ./helmrelease.yaml
 configMapGenerator:
   - name: inspircd
