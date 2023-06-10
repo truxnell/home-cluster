@@ -26,6 +26,7 @@ spec:
     controller:
       annotations:
         reloader.stakater.com/auto: "true"
+
     initContainers:
       init-db:
         image: ghcr.io/onedr0p/postgres-initdb:14.8@sha256:d9512db71f25c905cf44a9b336800fbfa1dde48a1aadfbf4f64888ef0a0c2d66
@@ -34,6 +35,7 @@ spec:
           - secretRef:
               name: *app
     fullNameOverride: *app
+
     image:
       repository: quay.io/invidious/invidious
       tag: latest@sha256:0aa266e2b35200b45ed49d708dfc67938465b7fd21648444feb9b324833cfa6a
@@ -42,6 +44,11 @@ spec:
         ports:
           http:
             port: &port 3000
+
+    envFrom:
+      - secretRef:
+          name: *app
+
     ingress:
       main:
         enabled: true
@@ -58,6 +65,7 @@ spec:
         tls:
           - hosts:
               - *host
+
     topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
@@ -65,6 +73,7 @@ spec:
         labelSelector:
           matchLabels:
             app.kubernetes.io/name: *app
+
     persistence:
       config:
         enabled: true
@@ -73,8 +82,10 @@ spec:
         subPath: config.yml
         mountPath: /invidious/config/config.yml
         readOnly: false
+
     podAnnotations:
       secret.reloader.stakater.com/reload: *app
+
     resources:
       requests:
         cpu: 5m
