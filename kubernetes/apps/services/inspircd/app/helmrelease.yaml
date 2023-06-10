@@ -25,7 +25,7 @@ spec:
   values:
     image:
       repository: docker.io/inspircd/inspircd-docker
-      tag: 3.16.0@sha256:fb1c64278bf1bd74acbee221b51a4c464763d4baabf1587702093ecc4580860c
+      tag: 3.16.0@sha256:00ac5a435a211b540b3a0feb149e1f243ca014e36712aa75997fb9dccfd6d06a
     env:
       TZ: "Australia/Melbourne"
     service:
