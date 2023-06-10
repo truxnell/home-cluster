@@ -25,3 +25,4 @@ resources:
   - ./vikunja/ks.yaml
   - ./whoogle/ks.yaml
   - ./firefly-iii/ks.yaml
+  - ./inspircd/ks.yaml
