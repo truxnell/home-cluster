@@ -15,12 +15,12 @@ spec:
 apiVersion: externaldns.k8s.io/v1alpha1
 kind: DNSEndpoint
 metadata:
-  name: cloudflared-tunnel-truxnell-net
+  name: cloudflared-tunnel-website-domain
   namespace: networking
   annotations:
-    external-dns.alpha.kubernetes.io/target: ingress.truxnell.net
+    external-dns.alpha.kubernetes.io/target: ingress.${WEBSITE_DOMAIN}
 spec:
   endpoints:
-    - dnsName: ingress.truxnell.net
+    - dnsName: ingress.${WEBSITE_DOMAIN}
       recordType: CNAME
       targets: ["${SECRET_TUNNEL_ID}.cfargotunnel.com"]

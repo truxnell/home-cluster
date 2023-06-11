@@ -41,8 +41,8 @@ spec:
       tag: 2023.06.07@sha256:3e1aaf6e3d1f9a82cd5bb79b7d66d1ba953fe773c46af5dfafa423e2bbee530e
 
     env:
-      DOMAIN: &host "fedi.truxnell.net"
-      INSTANCE_NAME: "NatFlix Fediverse"
+      DOMAIN: &host 'fedi.${WEBSITE_DOMAIN}'
+      INSTANCE_NAME: 'NatFlix Fediverse'
 
     envFrom:
       - secretRef:
@@ -70,9 +70,9 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: 'nginx'
         annotations:
-          external-dns.alpha.kubernetes.io/target: ingress.truxnell.net
+          external-dns.alpha.kubernetes.io/target: ipv4.${WEBSITE_DOMAIN}
           hajimari.io/icon: simple-icons:pleroma
         hosts:
           - host: *host
@@ -82,13 +82,12 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: truxnell-net-wildcard
 
     podSecurityContext:
       runAsUser: 101
       runAsGroup: 65534
       fsGroup: 65534
-      fsGroupChangePolicy: "OnRootMismatch"
+      fsGroupChangePolicy: 'OnRootMismatch'
       supplementalGroups:
         - 65534
 
