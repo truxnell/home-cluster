@@ -10,6 +10,6 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: truxnell.net
+  commonName: irc.truxnell.net
   dnsNames:
     - "irc.truxnell.net"
