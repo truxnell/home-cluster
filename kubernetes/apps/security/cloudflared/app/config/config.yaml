@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cloudflared-configmap
+  name: cloudflared
   namespace: networking
 data:
   config.yaml: |
