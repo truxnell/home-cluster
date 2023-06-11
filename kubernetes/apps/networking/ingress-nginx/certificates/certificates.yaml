@@ -26,7 +26,7 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "${EXTERNAL_DOMAIN}"
+  commonName: "truxnell-net"
   dnsNames:
     - "truxnell.net"
     - "*.truxnell.net"
