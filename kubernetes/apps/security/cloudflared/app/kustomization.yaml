@@ -6,6 +6,7 @@ namespace: security
 resources:
   - ./helmrelease.yaml
   - ./externalsecret.yaml
+  - ./dnsendpoint.yaml
 configMapGenerator:
   - name: cloudflared
     files:
