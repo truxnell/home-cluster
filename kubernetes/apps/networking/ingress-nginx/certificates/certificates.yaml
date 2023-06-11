@@ -19,14 +19,14 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: "truxnell-net-wildcard"
+  name: "${WEBSITE_DOMAIN/./-}"
   namespace: networking
 spec:
-  secretName: "truxnell-net-wildcard"
+  secretName: "${WEBSITE_DOMAIN/./-}-tls"
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "truxnell-net"
+  commonName: "${WEBSITE_DOMAIN}"
   dnsNames:
-    - "truxnell.net"
-    - "*.truxnell.net"
+    - "${WEBSITE_DOMAIN}"
+    - "*.${WEBSITE_DOMAIN}"
