@@ -5,7 +5,7 @@ metadata:
   name: cloudflared-tunnel-external-domain
   namespace: networking
   annotations:
-    external-dns.alpha.kubernetes.io/enabled: "true"
+    external-dns.home.arpa/enabled: "true"
 spec:
   endpoints:
     - dnsName: ingress.${EXTERNAL_DOMAIN}
