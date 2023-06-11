@@ -40,8 +40,7 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          external-dns.home.arpa/enabled: "true"
-          probe.home.arpa/enabled: "false"
+          external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
           hajimari.io/icon: mdi:plex
         hosts:
           - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"

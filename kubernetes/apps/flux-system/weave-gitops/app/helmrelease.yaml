@@ -43,8 +43,7 @@ spec:
       enabled: true
       className: 'nginx'
       annotations:
-        probe.home.arpa/enabled: 'false'
-      hajimari.io/icon: mdi:sawtooth-wave
+        hajimari.io/icon: mdi:sawtooth-wave
       hosts:
         - host: &host 'weave-gitops.${EXTERNAL_DOMAIN}'
           paths:

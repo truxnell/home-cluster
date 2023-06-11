@@ -38,7 +38,6 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          hajimari.io/enable: "true"
           hajimari.io/icon: television-classic
           hajimari.io/appName: dizquetv
         hosts:

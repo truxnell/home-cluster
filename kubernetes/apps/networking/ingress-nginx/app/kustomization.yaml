@@ -6,7 +6,6 @@ namespace: networking
 resources:
   - ./dashboard
   - ./helmrelease.yaml
-  - ./add-prom-probes.yaml
   - ./prometheusrule.yaml
 configMapGenerator:
   - name: cloudflare-proxied-networks

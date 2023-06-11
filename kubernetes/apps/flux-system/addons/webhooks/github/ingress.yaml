@@ -9,8 +9,7 @@ metadata:
   namespace: flux-system
   annotations:
     hajimari.io/enable: "false"
-    external-dns.home.arpa/enabled: "true"
-    probe.home.arpa/enabled: "false"
+    external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
 spec:
   ingressClassName: "nginx"
   rules:
