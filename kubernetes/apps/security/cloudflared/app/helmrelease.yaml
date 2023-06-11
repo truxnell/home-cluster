@@ -100,14 +100,14 @@ spec:
       config:
         enabled: true
         type: configMap
-        name: cloudflared-configmap
+        name: *app
         subPath: config.yaml
         mountPath: /etc/cloudflared/config/config.yaml
         readOnly: true
       creds:
         enabled: true
         type: secret
-        name: cloudflared-secret
+        name: *app
         subPath: CREDENTIALS_JSON
         mountPath: /etc/cloudflared/creds/credentials.json
         readOnly: true
