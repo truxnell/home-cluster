@@ -8,7 +8,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: "./kubernetes/apps/security/cloudflared/app/"
+  path: "./kubernetes/apps/networking/cloudflared/app/"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -20,4 +20,4 @@ spec:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: cloudflared
-      namespace: security
+      namespace: networking
