@@ -16,7 +16,7 @@ spec:
       - selector:
           dnsZones:
             - ${EXTERNAL_DOMAIN}
-            - truxnell.net
+            - voltaicforge.com
         dns01:
           cloudflare:
             apiTokenSecretRef:
@@ -41,7 +41,7 @@ spec:
       - selector:
           dnsZones:
             - ${EXTERNAL_DOMAIN}
-            - truxnell.net
+            - voltaicforge.com
         dns01:
           cloudflare:
             apiTokenSecretRef:
