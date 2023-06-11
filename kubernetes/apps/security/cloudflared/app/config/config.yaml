@@ -1,18 +1,19 @@
 ---
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: cloudflared
-  namespace: networking
-data:
-  config.yaml: |
-    ingress:
-      - hostname: "${EXTERNAL_DOMAIN}"
-        service: https://ingress-nginx-controller.networking.svc.cluster.local:443
-        originRequest:
-          originServerName: ingress.${EXTERNAL_DOMAIN}
-      - hostname: "*.${EXTERNAL_DOMAIN}"
-        service: https://ingress-nginx-controller.networking.svc.cluster.local:443
-        originRequest:
-          originServerName: ingress.${EXTERNAL_DOMAIN}
-      - service: http_status:404
+ingress:
+  - hostname: "${EXTERNAL_DOMAIN}"
+    service: https://ingress-nginx-controller.networking.svc.cluster.local:443
+    originRequest:
+      originServerName: ingress.${EXTERNAL_DOMAIN}
+  - hostname: "*.${EXTERNAL_DOMAIN}"
+    service: https://ingress-nginx-controller.networking.svc.cluster.local:443
+    originRequest:
+      originServerName: ingress.${EXTERNAL_DOMAIN}
+  - hostname: "${WEBSITE_DOMAIN}"
+    service: https://ingress-nginx-controller.networking.svc.cluster.local:443
+    originRequest:
+      originServerName: ingress.${WEBSITE_DOMAIN}
+  - hostname: "*.${WEBSITE_DOMAIN}"
+    service: https://ingress-nginx-controller.networking.svc.cluster.local:443
+    originRequest:
+      originServerName: ingress.${WEBSITE_DOMAIN}
+  - service: http_status:404
