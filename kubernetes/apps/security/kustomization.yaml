@@ -9,4 +9,3 @@ resources:
   - ./authelia/ks.yaml
   - ./glauth/ks.yaml
   - ./dmarc-report/ks.yaml
-  - ./cloudflared/ks.yaml

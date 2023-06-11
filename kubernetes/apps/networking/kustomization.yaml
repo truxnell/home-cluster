@@ -11,3 +11,4 @@ resources:
   - ./metallb/ks.yaml
   - ./static-routes/ks.yaml
   - ./k8s-gateway/ks.yaml
+  - ./cloudflared/ks.yaml
