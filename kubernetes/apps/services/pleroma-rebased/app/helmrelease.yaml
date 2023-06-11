@@ -72,7 +72,7 @@ spec:
         enabled: true
         ingressClassName: 'nginx'
         annotations:
-          external-dns.alpha.kubernetes.io/target: ingress.${WEBSITE_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: ipv4.${WEBSITE_DOMAIN}
           hajimari.io/icon: simple-icons:pleroma
         hosts:
           - host: *host
