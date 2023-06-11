@@ -60,7 +60,7 @@ spec:
           - databases
       customApps:
         - name: Uptime
-          url: "http://status.${WEBSITE_DOMAIN}"
+          url: "http://status.voltaicforge.com"
           icon: thermostat-box
         - name: NextDNS
           url: "https://nextdns.com"

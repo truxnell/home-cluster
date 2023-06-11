@@ -141,7 +141,7 @@ spec:
         # Websites
         - module: http_2xx
           name: uptime-kuma
-          url: status.${WEBSITE_DOMAIN}
+          url: status.voltaicforge.com
         # Blinds
         - module: http_401
           name: tyua-blinds-0

@@ -18,9 +18,9 @@ metadata:
   name: cloudflared-tunnel-website-domain
   namespace: networking
   annotations:
-    external-dns.alpha.kubernetes.io/target: ingress.${WEBSITE_DOMAIN}
+    external-dns.alpha.kubernetes.io/target: ingress.voltaicforge.com
 spec:
   endpoints:
-    - dnsName: ingress.${WEBSITE_DOMAIN}
+    - dnsName: ingress.voltaicforge.com
       recordType: CNAME
       targets: ["${SECRET_TUNNEL_ID}.cfargotunnel.com"]

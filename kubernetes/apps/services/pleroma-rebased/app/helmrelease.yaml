@@ -41,7 +41,7 @@ spec:
       tag: 2023.06.07@sha256:3e1aaf6e3d1f9a82cd5bb79b7d66d1ba953fe773c46af5dfafa423e2bbee530e
 
     env:
-      DOMAIN: &host 'fedi.${WEBSITE_DOMAIN}'
+      DOMAIN: &host 'fedi.voltaicforge.com'
       INSTANCE_NAME: 'NatFlix Fediverse'
 
     envFrom:
@@ -72,7 +72,7 @@ spec:
         enabled: true
         ingressClassName: 'nginx'
         annotations:
-          external-dns.alpha.kubernetes.io/target: ipv4.${WEBSITE_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: ipv4.voltaicforge.com
           hajimari.io/icon: simple-icons:pleroma
         hosts:
           - host: *host

@@ -46,7 +46,7 @@ spec:
     txtPrefix: "k8s."
     domainFilters:
       - "${EXTERNAL_DOMAIN}"
-      - "${WEBSITE_DOMAIN}"
+      - "voltaicforge.com"
       - truxnell.net
     serviceMonitor:
       enabled: true
