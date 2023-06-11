@@ -28,5 +28,4 @@ spec:
     kind: ClusterIssuer
   commonName: truxnell.net
   dnsNames:
-    - "truxnell.net"
     - "*.truxnell.net"
