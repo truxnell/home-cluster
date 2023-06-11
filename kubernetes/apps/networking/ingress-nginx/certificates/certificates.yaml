@@ -14,3 +14,19 @@ spec:
   dnsNames:
     - "${EXTERNAL_DOMAIN}"
     - "*.${EXTERNAL_DOMAIN}"
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/cert-manager.io/certificate_v1.json
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: "truxnell-net-wildcard"
+  namespace: networking
+spec:
+  secretName: "truxnell-net-wildcard"
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "${EXTERNAL_DOMAIN}"
+  dnsNames:
+    - "truxnell.net"
+    - "*.truxnell.net"

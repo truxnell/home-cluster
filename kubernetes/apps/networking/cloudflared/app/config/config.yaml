@@ -8,12 +8,12 @@ ingress:
     service: https://ingress-nginx-controller.networking.svc.cluster.local:443
     originRequest:
       originServerName: ingress.${EXTERNAL_DOMAIN}
-  - hostname: "${WEBSITE_DOMAIN}"
+  - hostname: "truxnell.net"
     service: https://ingress-nginx-controller.networking.svc.cluster.local:443
     originRequest:
-      originServerName: ingress.${WEBSITE_DOMAIN}
-  - hostname: "*.${WEBSITE_DOMAIN}"
+      originServerName: ingress.truxnell.net
+  - hostname: "*.truxnell.net"
     service: https://ingress-nginx-controller.networking.svc.cluster.local:443
     originRequest:
-      originServerName: ingress.${WEBSITE_DOMAIN}
+      originServerName: ingress.truxnell.net
   - service: http_status:404
