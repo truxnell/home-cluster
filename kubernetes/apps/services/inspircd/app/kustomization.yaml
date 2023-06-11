@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: services
 resources:
   - ./helmrelease.yaml
+  - ./certificates.yaml
 configMapGenerator:
   - name: inspircd
     files:

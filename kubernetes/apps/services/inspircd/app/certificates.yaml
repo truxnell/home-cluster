@@ -3,14 +3,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: "${EXTERNAL_DOMAIN/./-}"
+  name: irc-truxnell-net
   namespace: networking
 spec:
-  secretName: "${EXTERNAL_DOMAIN/./-}-tls"
+  secretName: irc-truxnell-net-tls
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "${EXTERNAL_DOMAIN}"
+  commonName: truxnell.net
   dnsNames:
-    - "${EXTERNAL_DOMAIN}"
-    - "*.${EXTERNAL_DOMAIN}"
+    - "irc.truxnell.net"

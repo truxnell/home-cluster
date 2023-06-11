@@ -87,14 +87,14 @@ spec:
       tls-fullchain:
         enabled: true
         type: secret
-        name: truxnell-net-tls
+        name: irc-truxnell-net-tls
         subPath: tls.crt
         mountPath: /inspircd/tls/tls.crt
         readOnly: true
       tls-privkey:
         enabled: true
         type: secret
-        name: truxnell-net-tls
+        name: irc-truxnell-net-tls
         subPath: tls.key
         mountPath: /inspircd/tls/tls.key
         readOnly: true
