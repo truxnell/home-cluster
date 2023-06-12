@@ -3,13 +3,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: irc-truxnell-net
+  name: irc-voltaicforge.com
   namespace: networking
 spec:
-  secretName: irc-truxnell-net-tls
+  secretName: irc-voltaicforge.com-tls
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: irc.truxnell.net
+  commonName: irc.voltaicforge.com
   dnsNames:
-    - "irc.truxnell.net"
+    - "irc.voltaicforge.com"

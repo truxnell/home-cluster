@@ -1,9 +1,9 @@
-Welcome to truxnell.net IRC server!
+Welcome to voltaicforge.com IRC server!
 The IRC network for freedom from centralised media
 
 This server kindly self-hosted by truxnell
 
 Website: voltaicforge.com
-IRC: irc.truxnell.net
+IRC: irc.voltaicforge.com
 Fediverse: @truxnell@voltaicforge.com
-email: admin@truxnell.net
+email: admin@voltaicforge.com
