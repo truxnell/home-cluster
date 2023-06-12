@@ -72,6 +72,7 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
           external-dns.alpha.kubernetes.io/target: ingress.voltaicforge.com
           hajimari.io/icon: simple-icons:pleroma
         hosts:
