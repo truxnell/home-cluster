@@ -2,8 +2,8 @@
 apiVersion: externaldns.k8s.io/v1alpha1
 kind: DNSEndpoint
 metadata:
-  name: cloudflared-tunnel-website-domain
-  namespace: networking
+  name: irc-voltaicforge-com
+  namespace: services
   annotations:
     external-dns.alpha.kubernetes.io/target: irc.voltaicforge.com
 spec:
