@@ -106,3 +106,12 @@ spec:
       enabled: false
     securityContext:
       privileged: true
+    ingressController:
+      enabled: true
+      loadbalancerMode: shared
+      service:
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: "cilium-hegira.${INTERNAL_DOMAIN}"
+          "io.cilium/lb-ipam-ips": "${LB_CILIUM}"
+        labels:
+          cilium: "true"
