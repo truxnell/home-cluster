@@ -1,7 +1,4 @@
-Welcome to voltaicforge.com IRC server!
-The IRC network for freedom from centralised media
-
-This server kindly self-hosted by truxnell
+A Node on the Containerised Networked IRC provided by voltaicforge.com
 
 Website: voltaicforge.com
 IRC: irc.voltaicforge.com
