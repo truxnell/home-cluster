@@ -1,23 +1,18 @@
 ---
+originRequest:
+  connectTimeout: 30s
+warp-routing:
+  enabled: false
+
 ingress:
-  - hostname: "${EXTERNAL_DOMAIN}"
-    service: https://ingress-nginx-controller.networking.svc.cluster.local:443
-    originRequest:
-      originServerName: ingress.${EXTERNAL_DOMAIN}
   - hostname: "*.${EXTERNAL_DOMAIN}"
     service: https://ingress-nginx-controller.networking.svc.cluster.local:443
     originRequest:
       originServerName: ingress.${EXTERNAL_DOMAIN}
-  - hostname: "voltaicforge.com"
-    service: https://ingress-nginx-controller.networking.svc.cluster.local:443
-    originRequest:
-      originServerName: ingress.voltaicforge.com
+
   - hostname: "*.voltaicforge.com"
     service: https://ingress-nginx-controller.networking.svc.cluster.local:443
     originRequest:
       originServerName: ingress.voltaicforge.com
-  - hostname: "irc.voltaicforge.com"
-    service: https://inspircd.services.svc.cluster.local:6697
-    originRequest:
-      originServerName: irc.voltaicforge.com
+ 
   - service: http_status:404
