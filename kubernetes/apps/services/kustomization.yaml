@@ -26,3 +26,4 @@ resources:
   - ./whoogle/ks.yaml
   - ./firefly-iii/ks.yaml
   - ./inspircd/ks.yaml
+  - ./thelounge/ks.yaml
