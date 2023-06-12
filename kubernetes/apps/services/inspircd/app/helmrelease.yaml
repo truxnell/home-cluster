@@ -63,13 +63,13 @@ spec:
         subPath: server.conf
         mountPath: /inspircd/conf/server.conf
         readOnly: true
-      # config-links:
-      #   enabled: true
-      #   type: configMap
-      #   name: *app
-      #   subPath: links.conf
-      #   mountPath: /inspircd/conf/links.conf
-      #   readOnly: true
+      config-links:
+        enabled: true
+        type: configMap
+        name: *app
+        subPath: links.conf
+        mountPath: /inspircd/conf/links.conf
+        readOnly: true
       config-opers:
         enabled: true
         type: configMap
