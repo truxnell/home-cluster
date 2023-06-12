@@ -1,8 +1,6 @@
 ---
 originRequest:
-  connectTimeout: 30s
-warp-routing:
-  enabled: false
+  noTLSVerify: true
 
 ingress:
   - hostname: "*.${EXTERNAL_DOMAIN}"
