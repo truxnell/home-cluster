@@ -6,6 +6,7 @@ namespace: services
 resources:
   - ./helmrelease.yaml
   - ./certificates.yaml
+  - ./dnsendpoint.yaml
 configMapGenerator:
   - name: inspircd
     files:
