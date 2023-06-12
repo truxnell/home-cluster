@@ -56,7 +56,6 @@ spec:
       config:
         enabled: true
         existingClaim: thelounge-config-v1
-        mountPath: /config
     resources:
       requests:
         cpu: 10m
