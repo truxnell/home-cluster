@@ -10,4 +10,4 @@ spec:
   endpoints:
     - dnsName: irc.voltaicforge.com
       recordType: CNAME
-      targets: ["ipv4.voltaicforge.com"]
+      targets: ["games.trux.dev"]
