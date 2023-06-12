@@ -4,6 +4,7 @@ originRequest:
 warp-routing:
   enabled: false
 
+
 ingress:
   - hostname: "*.${EXTERNAL_DOMAIN}"
     service: https://https://cilium-ingress.kube-system.svc.cluster.local.
