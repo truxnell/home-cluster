@@ -72,7 +72,7 @@ spec:
         enabled: true
         ingressClassName: "nginx"
         annotations:
-          external-dns.alpha.kubernetes.io/target: ipv4.voltaicforge.com
+          external-dns.alpha.kubernetes.io/target: ingress.voltaicforge.com
           hajimari.io/icon: simple-icons:pleroma
         hosts:
           - host: *host
