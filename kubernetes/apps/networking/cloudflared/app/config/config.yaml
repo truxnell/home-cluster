@@ -1,6 +1,4 @@
 ---
-originRequest:
-  noTLSVerify: true
 
 ingress:
   - hostname: "*.${EXTERNAL_DOMAIN}"
