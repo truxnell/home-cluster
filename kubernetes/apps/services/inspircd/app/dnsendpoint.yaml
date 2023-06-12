@@ -6,6 +6,7 @@ metadata:
   namespace: services
   annotations:
     external-dns.alpha.kubernetes.io/target: irc.voltaicforge.com
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
 spec:
   endpoints:
     - dnsName: irc.voltaicforge.com
