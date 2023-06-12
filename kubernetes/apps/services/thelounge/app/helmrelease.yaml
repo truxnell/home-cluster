@@ -38,16 +38,18 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          external-dns.alpha.kubernetes.io/target: ingress.voltaicforge.com
           hajimari.io/icon: mdi:forum
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host "tl.${WEBSITE_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
               - *host
+            secretName: thelounge.tls
     # podSecurityContext:
     #   runAsUser: 568
     #   runAsGroup: 568
