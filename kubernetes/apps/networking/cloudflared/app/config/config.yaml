@@ -7,9 +7,7 @@ ingress:
     service: https://ingress-nginx-controller.networking.svc.cluster.local.
     originRequest:
       originServerName: ingress.${EXTERNAL_DOMAIN}
-  - hostname: "irc.voltaicforge.com"
-    service: tcp://inspircd.services.svc.cluster.local:6697
-  - hostname: "fedi.voltaicforge.com"
+  - hostname: "*.voltaicforge.com"
     service: https://ingress-nginx-controller.networking.svc.cluster.local.
     originRequest:
       originServerName: ingress.voltaicforge.com
