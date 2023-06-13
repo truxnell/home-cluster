@@ -1,4 +1,7 @@
 ---
+originRequest: # Top-level configuration
+  noTLSVerify: true
+
 ingress:
   - hostname: "*.${EXTERNAL_DOMAIN}"
     service: https://ingress-nginx-controller.networking.svc.cluster.local.
