@@ -5,7 +5,8 @@ ingress:
     originRequest:
       originServerName: ingress.${EXTERNAL_DOMAIN}
   - hostname: "irc.voltaicforge.com"
-    service: tcp://inspircd.services.svc.cluster.local:6697
+    # service: tcp://inspircd.services.svc.cluster.local:6697
+    service: hello_world
     originRequest:
       originServerName: ingress.voltaicforge.com
   - hostname: "*.voltaicforge.com"
