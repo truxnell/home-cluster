@@ -5,10 +5,12 @@ ingress:
     service: https://ingress-nginx-controller.networking.svc.cluster.local.
     originRequest:
       originServerName: ingress.${EXTERNAL_DOMAIN}
-
+  - hostname: "irc.voltaicforge.com"
+    service: https://inspircd.services.svc.cluster.local:7001
+    originRequest:
+      originServerName: ingress.voltaicforge.com
   - hostname: "*.voltaicforge.com"
     service: https://ingress-nginx-controller.networking.svc.cluster.local.
     originRequest:
       originServerName: ingress.voltaicforge.com
- 
   - service: http_status:404
