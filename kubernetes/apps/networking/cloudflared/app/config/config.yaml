@@ -7,7 +7,7 @@ ingress:
   - hostname: "irc.voltaicforge.com"
     service: https://inspircd.services.svc.cluster.local:6997
     originRequest:
-      originServerName: ingress.voltaicforge.com
+      originServerName: irc.voltaicforge.com
   - hostname: "*.voltaicforge.com"
     service: https://ingress-nginx-controller.networking.svc.cluster.local.
     originRequest:
