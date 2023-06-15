@@ -25,15 +25,19 @@
 
 This repository is my homelab cluster, using tools such as [Flux2](https://github.com/fluxcd/flux2) define the infrastructure as code.
 
-Feel free to open a [Github issue](https://github.com/Truxnell/home-cluster/issues/new) if you have any questions!
+Feel free to open a [GitHub issue](https://github.com/Truxnell/home-cluster/issues/new) if you have any questions!
 
 **Fledgling documentation available at [https://k8s.voltaicforge.com](https://k8s.voltaicforge.com)**
 
+## Donations
+
+If what's in this repository has helped you and would like to donate, consider donating to [onedrop](https://github.com/onedr0p) or [bjw-s](https://github.com/bjw-s) as this repo would not exist without their contributions.
+
 ## Sister repos
 
-I use this repo in conjuction with:
+I use this repo in conjunction with:
 
-- [https://github.com/truxnell/vyos-config](https://github.com/Truxnell/home-udmp-utils). This is my vyos router configuration repo, also setup in a gitops manner. Many thanks to bjw-s []https://github.com/bjw-s](https://github.com/bjw-s) for the inspiration for this setup.
+- [https://github.com/truxnell/vyos-config](https://github.com/Truxnell/home-udmp-utils). This is my vyos router configuration repo, also setup in a gitops manner. Many thanks to bjw-s [https://github.com/bjw-s](https://github.com/bjw-s) for the inspiration for this setup.
 
 ## Stargazers
 
