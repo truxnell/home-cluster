@@ -25,7 +25,7 @@ spec:
     restartPolicy: OnFailure
     image:
       repository: ghcr.io/onedr0p/kopia
-      tag: 0.13.0@sha256:dda0c5516c096692da649282dc3da42855dcf4de6814f127f2b201882dca20de
+      tag: 0.13.0@sha256:ee6608635237c9ddf3ec5b456122cb60f0195c5cad84b06e945498f2338bff59
     command:
       - /bin/bash
       - -c
