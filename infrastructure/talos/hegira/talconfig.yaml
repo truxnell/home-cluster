@@ -104,6 +104,8 @@ controlPlane:
         extraArgs:
           feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
           rotate-server-certificates: "true"
+        extraConfig:
+          maxPods: 300
       logging:
         destinations:
           - endpoint: udp://vector.trux.dev:6051/
