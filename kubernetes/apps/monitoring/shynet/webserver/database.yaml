@@ -1,0 +1,8 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: shynet-db
+  namespace: monitoring
+spec:
+  database: shynet
