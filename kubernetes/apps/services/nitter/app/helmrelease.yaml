@@ -23,9 +23,6 @@ spec:
     remediation:
       retries: 5
   values:
-    controller:
-      replicas: 3
-      strategy: RollingUpdate
     fullNameOverride: *app
     image:
       repository: docker.io/zedeus/nitter
@@ -38,13 +35,13 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
           external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
-          auth.home.arpa/enabled: 'true'
-          hajimari.io/icon: 'twitter'
+          auth.home.arpa/enabled: "true"
+          hajimari.io/icon: "twitter"
         hosts:
-          - host: &host 'nitter.${EXTERNAL_DOMAIN}'
+          - host: &host "nitter.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
