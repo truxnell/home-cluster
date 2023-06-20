@@ -54,6 +54,9 @@ spec:
     envFrom:
       - secretRef:
           name: shynet
+    service:
+      main:
+        enabled: false
     topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
