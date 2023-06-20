@@ -49,7 +49,7 @@ spec:
           secretKeyRef:
             name: database-shynet-user
             key: ROLE
-      DB_PASS:
+      DB_PASSWORD:
         valueFrom:
           secretKeyRef:
             name: database-shynet-user
