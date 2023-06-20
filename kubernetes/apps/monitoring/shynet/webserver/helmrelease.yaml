@@ -51,7 +51,7 @@ spec:
             key: PASSWORD
     envFrom:
       - secretRef:
-          name: *app
+          name: shynet
     service:
       main:
         ports:

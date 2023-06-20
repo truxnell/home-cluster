@@ -53,7 +53,7 @@ spec:
             key: PASSWORD
     envFrom:
       - secretRef:
-          name: *app
+          name: shynet
     topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: kubernetes.io/hostname
