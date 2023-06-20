@@ -1,0 +1,69 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app shynet-celeryworker
+  namespace: monitoring
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    fullNameOverride: *app
+    image:
+      repository: milesmcc/shynet
+      tag: latest@sha256:3f6cf7ee1e4f4365a0ec0946716c47169ce560d852dfadc6b55160ab90404824
+    command:
+      - ./celeryworker.sh
+    env:
+      TIMEZONE: "${TZ}"
+      DB_HOST:
+        valueFrom:
+          secretKeyRef:
+            name: database-shynet-user
+            key: HOST
+      DB_NAME:
+        valueFrom:
+          secretKeyRef:
+            name: database-shynet-user
+            key: DATABASE_NAME
+      DB_USER:
+        valueFrom:
+          secretKeyRef:
+            name: database-shynet-user
+            key: ROLE
+      DB_PASS:
+        valueFrom:
+          secretKeyRef:
+            name: database-shynet-user
+            key: PASSWORD
+    envFrom:
+      - secretRef:
+          name: *app
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: *app
+    resources:
+      requests:
+        cpu: 5m
+        memory: 50Mi
+      limits:
+        memory: 250Mi
