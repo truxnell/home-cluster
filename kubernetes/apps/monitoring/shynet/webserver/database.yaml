@@ -6,3 +6,14 @@ metadata:
   namespace: monitoring
 spec:
   database: shynet
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: shynet-user
+  namespace: security
+spec:
+  role: shynet
+  database: shynet-db
+  secretName: database
+  privileges: OWNER

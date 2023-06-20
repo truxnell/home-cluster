@@ -29,6 +29,26 @@ spec:
       tag: latest@sha256:3f6cf7ee1e4f4365a0ec0946716c47169ce560d852dfadc6b55160ab90404824
     env:
       TIMEZONE: "${TZ}"
+      DB_HOST:
+        valueFrom:
+          secretKeyRef:
+            name: database-shynet-user
+            key: HOST
+      DB_NAME:
+        valueFrom:
+          secretKeyRef:
+            name: database-shynet-user
+            key: DATABASE_NAME
+      DB_USER:
+        valueFrom:
+          secretKeyRef:
+            name: database-shynet-user
+            key: ROLE
+      DB_PASS:
+        valueFrom:
+          secretKeyRef:
+            name: database-shynet-user
+            key: PASSWORD
     envFrom:
       - secretRef:
           name: *app
