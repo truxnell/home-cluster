@@ -64,8 +64,12 @@ spec:
       main:
         enabled: true
         ingressClassName: "nginx"
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          external-dns.alpha.kubernetes.io/target: ingress.voltaicforge.com
+          # hajimari.io/icon: simple-icons:pleroma
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host "metrics.${WEBSITE_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
