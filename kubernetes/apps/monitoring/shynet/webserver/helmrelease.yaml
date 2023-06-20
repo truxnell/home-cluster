@@ -23,6 +23,9 @@ spec:
     remediation:
       retries: 5
   values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
     fullNameOverride: *app
     image:
       repository: milesmcc/shynet
