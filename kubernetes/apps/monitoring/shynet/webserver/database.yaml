@@ -14,6 +14,6 @@ metadata:
   namespace: security
 spec:
   role: shynet
-  database: shynet-db
+  database: shynet
   secretName: database
   privileges: OWNER
