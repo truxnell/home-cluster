@@ -8,7 +8,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: "./kubernetes/apps/monitoring/shynet-webserver/app/"
+  path: "./kubernetes/apps/monitoring/shynet-webserver"
   prune: true
   sourceRef:
     kind: GitRepository
