@@ -12,3 +12,4 @@ resources:
   - ./static-routes/ks.yaml
   - ./k8s-gateway/ks.yaml
   - ./cloudflared/ks.yaml
+  - ./echo-server/ks.yaml
