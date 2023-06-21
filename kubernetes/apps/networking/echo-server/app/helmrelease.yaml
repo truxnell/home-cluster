@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app cloudflared
+  name: &app echo-server
   namespace: networking
 spec:
   interval: 15m
@@ -57,7 +57,7 @@ spec:
           external-dns.alpha.kubernetes.io/target: ingress.${WEBSITE_DOMAIN}
           hajimari.io/icon: mdi:video-input-antenna
         hosts:
-          - host: &host "{{ .Release_Name }}.{WEBSITE_DOMAIN}"
+          - host: &host "{{ .Release_Name }}.${WEBSITE_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
