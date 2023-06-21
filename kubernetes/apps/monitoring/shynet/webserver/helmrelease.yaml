@@ -77,6 +77,7 @@ spec:
             proxy_set_header X-Forwarded-Proto $scheme;
             proxy_set_header X-Forwarded-Protocol $scheme;
             proxy_set_header X-Url-Scheme $scheme;
+            proxy_set_header CF-Connecting-IP $CF-Connecting-IP;
         hosts:
           - host: &host "shynet.${WEBSITE_DOMAIN}"
             paths:
