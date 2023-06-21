@@ -31,7 +31,7 @@ spec:
     fullNameOverride: *app
     image:
       repository: milesmcc/shynet
-      tag: latest@sha256:3f6cf7ee1e4f4365a0ec0946716c47169ce560d852dfadc6b55160ab90404824
+      tag: edge
     env:
       TIMEZONE: "${TZ}"
       DB_HOST:
