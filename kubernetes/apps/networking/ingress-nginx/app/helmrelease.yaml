@@ -67,7 +67,7 @@ spec:
         proxy-body-size: 0
         proxy-buffer-size: 16k
         ssl-protocols: "TLSv1.3 TLSv1.2"
-        use-forwarded-headers: "true"
+        # use-forwarded-headers: "true"
         # The below X-Clacks-Overehead is a do-nothing header
         # That is simply a memoriam for Sir Terry Pratchett
         # Ref: https://xclacksoverhead.org/home/about
