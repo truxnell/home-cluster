@@ -3,12 +3,12 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-unami
+  name: cluster-apps-umami
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: "./kubernetes/apps/monitoring/unami/app/"
+  path: "./kubernetes/apps/monitoring/umami/app/"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -19,5 +19,5 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: unami-webserver
+      name: umami-webserver
       namespace: monitoring

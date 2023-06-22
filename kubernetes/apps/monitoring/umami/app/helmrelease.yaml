@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app unami
+  name: &app umami
   namespace: monitoring
 spec:
   interval: 15m
@@ -39,7 +39,7 @@ spec:
       DATABASE_URL:
         valueFrom:
           secretKeyRef:
-            name: database-unami-user
+            name: database-umami-user
             key: POSTGRES_URL
 
     envFrom:
@@ -68,7 +68,7 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: unami.tls
+            secretName: umami.tls
 
     resources:
       requests:

@@ -2,18 +2,18 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
-  name: unami-db
+  name: umami-db
   namespace: monitoring
 spec:
-  database: unami
+  database: umami
 ---
 apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
-  name: unami-user
+  name: umami-user
   namespace: monitoring
 spec:
-  role: unami
-  database: unami-db
+  role: umami
+  database: umami-db
   secretName: database
   privileges: OWNER
