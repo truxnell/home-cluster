@@ -79,6 +79,9 @@ extra:
   # https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-footer/#remove-generator
   generator: false
 
+extra_javascript:
+  - "js/sha.js"
+
 # https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-footer/#copyright-notice
 copyright: Copyright &copy; 2022 Nat Allan
 
