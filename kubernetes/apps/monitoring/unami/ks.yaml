@@ -8,7 +8,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: "./kubernetes/apps/monitoring/unami/webserver/"
+  path: "./kubernetes/apps/monitoring/unami/app/"
   prune: true
   sourceRef:
     kind: GitRepository
