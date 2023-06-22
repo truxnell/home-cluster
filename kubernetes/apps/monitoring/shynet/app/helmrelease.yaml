@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app shynet-webserver
+  name: &app unami
   namespace: monitoring
 spec:
   interval: 15m
@@ -24,44 +24,34 @@ spec:
       retries: 5
   values:
     controller:
-      replicas: 3
-      strategy: RollingUpdate
       annotations:
         reloader.stakater.com/auto: "true"
+
     fullNameOverride: *app
+
     image:
-      repository: milesmcc/shynet
-      tag: edge
+      repository: ghcr.io/umami-software/umami
+      tag: postgresql-latest
+
     env:
       TIMEZONE: "${TZ}"
-      DB_HOST:
+      DATABASE_TYPE: postgresql
+      DATABASE_URL:
         valueFrom:
           secretKeyRef:
-            name: database-shynet-user
-            key: HOST
-      DB_NAME:
-        valueFrom:
-          secretKeyRef:
-            name: database-shynet-user
-            key: DATABASE_NAME
-      DB_USER:
-        valueFrom:
-          secretKeyRef:
-            name: database-shynet-user
-            key: ROLE
-      DB_PASSWORD:
-        valueFrom:
-          secretKeyRef:
-            name: database-shynet-user
-            key: PASSWORD
+            name: database-unami-user
+            key: POSTGRES_URL
+
     envFrom:
       - secretRef:
-          name: shynet
+          name: *app
+
     service:
       main:
         ports:
           http:
             port: &port 8080
+
     ingress:
       main:
         enabled: true
@@ -71,21 +61,15 @@ spec:
           external-dns.alpha.kubernetes.io/target: ingress.voltaicforge.com
           # hajimari.io/icon: simple-icons:pleroma
         hosts:
-          - host: &host "shynet.${WEBSITE_DOMAIN}"
+          - host: &host "sha.${WEBSITE_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
               - *host
-            secretName: shynet.tls
-    topologySpreadConstraints:
-      - maxSkew: 1
-        topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: DoNotSchedule
-        labelSelector:
-          matchLabels:
-            app.kubernetes.io/name: *app
+            secretName: unami.tls
+
     resources:
       requests:
         cpu: 5m

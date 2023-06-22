@@ -2,18 +2,18 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
-  name: shynet-db
+  name: unami-db
   namespace: monitoring
 spec:
-  database: shynet
+  database: unami
 ---
 apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
-  name: shynet-user
+  name: unami-user
   namespace: monitoring
 spec:
-  role: shynet
-  database: shynet-db
+  role: unami
+  database: unami-db
   secretName: database
   privileges: OWNER
