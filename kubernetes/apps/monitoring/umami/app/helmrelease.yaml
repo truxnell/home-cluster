@@ -41,6 +41,7 @@ spec:
           secretKeyRef:
             name: database-umami-user
             key: POSTGRES_URL
+      DISABLE_TELEMETRY: "true"
 
     envFrom:
       - secretRef:
