@@ -5,3 +5,4 @@ kind: Kustomization
 namespace: databases
 resources:
   - ./helmrelease.yaml
+  - ./pvc.yaml
