@@ -16,12 +16,16 @@ spec:
         name: bjw-s-charts
         namespace: flux-system
   install:
+    timeout: 20m
     createNamespace: true
-    remediation:
-      retries: 5
+    remediation: # perform remediation when helm install fails
+      retries: 3
   upgrade:
-    remediation:
-      retries: 5
+    timeout: 20m
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
   values:
     global:
       nameOverride: *app
