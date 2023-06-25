@@ -33,6 +33,8 @@ spec:
       repository: redis
       tag: 7.0.11-alpine
     controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
       type: statefulset
     service:
       main:
