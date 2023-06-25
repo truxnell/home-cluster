@@ -6,3 +6,4 @@ namespace: databases
 resources:
   - ./helmrelease.yaml
   - ./pvc.yaml
+  - ./configmap.yaml
