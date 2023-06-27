@@ -62,7 +62,7 @@ spec:
     configGeneral:
       sidecars:
         - name: "exporter"
-          image: "quay.io/prometheuscommunity/postgres-exporter:v0.12.0@sha256:f34d50a64a4d558ad118ffc73be45a359ac8f30b8daba4b241458bcb9f94e254"
+          image: "quay.io/prometheuscommunity/postgres-exporter:v0.13.1@sha256:0ab5066545c514437f23d7174b3f50abb964d6e9e58b87cd15bed6199421be40"
           ports:
             - name: exporter
               containerPort: 9187
