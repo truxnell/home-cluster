@@ -18,7 +18,7 @@ jobs:
           private_key: "${{ secrets.TRUXNELL_APP_PRIVATE_KEY }}"
 
       - name: Get Latest Release
-        uses: InsonusK/get-latest-release@v1.0.1
+        uses: InsonusK/get-latest-release@v1.1.0
         id: last_release
         with:
           myToken: ${{ github.token }}
