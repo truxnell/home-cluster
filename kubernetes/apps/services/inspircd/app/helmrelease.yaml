@@ -89,14 +89,14 @@ spec:
         type: secret
         name: irc-voltaicforge-com-tls
         subPath: tls.crt
-        mountPath: /inspircd/tls/tls.crt
+        mountPath: /inspircd/ssl/tls.crt
         readOnly: true
       tls-privkey:
         enabled: true
         type: secret
         name: irc-voltaicforge-com-tls
         subPath: tls.key
-        mountPath: /inspircd/tls/tls.key
+        mountPath: /inspircd/ssl/tls.key
         readOnly: true
 
     resources:
