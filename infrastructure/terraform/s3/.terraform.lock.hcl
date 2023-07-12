@@ -2,21 +2,21 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/aminueza/minio" {
-  version     = "1.15.2"
-  constraints = "1.15.2"
+  version     = "1.16.0"
+  constraints = "1.16.0"
   hashes = [
-    "h1:1alViRfCvjn9Ptti9PK7UT5mdR60Q5GVhCiN6hK8Bac=",
-    "h1:36isfbDsGjoSUB5dNY8Fnjbx0TfTb3A4LNwd0DOk4o4=",
-    "h1:9zuxquV6qEV2BlGell9QlrvCOG+PALgRGt1DEW0o2q8=",
-    "h1:J2r8p31IJRiO5svh5Yz5O9FZcj76M7MZlxagW8ZLqRk=",
-    "h1:K7l6sBWlUocYp5IiWOJphPjYS7tTC+sjZBC6pSJ0Wgw=",
-    "h1:QNqoJY7COCEYfZcbFnz/Tvausl2cYOdgkGserQHfTig=",
-    "h1:VBSBCAe2nmZvBgVqivMaYqja+4qio+fcxZZONtbmuVs=",
-    "h1:rmRrgjrP7FJ8HAWtO8aX24HWIHPdPoizM2IJiVAJbZ8=",
-    "h1:tALRxtQFMtMDtdOH+28svYhrS0rw44alNwgKUSxkXBk=",
-    "h1:tEMrlA87DGzBqGNcXeRCNT2iCMx+l3oIqsqgVFAJF0A=",
-    "h1:wkURZzuKeuwckR71FLZXQFsfbyFyYC7zcVEy6t2G9UI=",
-    "h1:zdfszkFMibKQyplqrV8CgZHGQYMpLk5Bspc6+bB/74w=",
+    "h1:+hFIzLG/JOqxN/UnleWbqAMa2LF/9AFqMJFs6W7p8yQ=",
+    "h1:GVxxEbLlbxpl1MKAI/iGld+o3kS0Ro/o2RgDwuQC4f4=",
+    "h1:JMuVGAeH5hy2tKUyc3UKxKZiZUkN1RY8q/TSPyeYsuM=",
+    "h1:MCjPCTqWzN1fvimqWJSS9m/YITSN48r5KP3Dh8uI0+Y=",
+    "h1:OnW7iAhV8WnoWqs33LgJqh8Nz50lUwuRWq2GGu0ExgE=",
+    "h1:aqOgvS29Zu+lA3LBSb3qQD/YWzDs1QsfAuj+zS6Lq4w=",
+    "h1:c73ppG29axIqe1eTxzx4acnHebTH6Bu8eZT4BTyIasQ=",
+    "h1:d35nlTGaDoivgEAZYNzA+iDtBn8QEZBWbXDEZVOF3d8=",
+    "h1:lO/9FeTh9SFXC1G1kucRBTr2aQ+eF1/0LeYjXt3E9Gw=",
+    "h1:pNvp5GQ3RmvOso4dUSr0R48QKxKBUQSuKUBHvtxKaKs=",
+    "h1:sQX3ys4ORzHxA62sPcNyTUmarlLaXwoDe9AAtcZsDno=",
+    "h1:yZtL1qzpihs+4BQVQvatQ7go7jXbEStDeiPZ/FvdLIw=",
   ]
 }
 
