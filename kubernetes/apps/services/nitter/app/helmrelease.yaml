@@ -26,7 +26,7 @@ spec:
     fullNameOverride: *app
     image:
       repository: docker.io/zedeus/nitter
-      tag: latest@sha256:d5ab72cf643a0741caeb11f857292e2f430ba297c76e5305fc575e5d8ef7654a
+      tag: latest@sha256:7868bbe38bb7bf7b0ff05a34a368eef4e323db0eb6da7d465dfd7528433d7c47
     service:
       main:
         ports:
