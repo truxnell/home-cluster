@@ -52,3 +52,5 @@ spec:
       installCRDs: false
     nginx:
       enabled: false
+  metrics-server:
+    enabled: false
