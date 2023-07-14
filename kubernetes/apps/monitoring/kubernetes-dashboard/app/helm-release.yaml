@@ -50,3 +50,5 @@ spec:
       enabled: false
     cert-manager:
       installCRDs: false
+    nginx:
+      enabled: false
