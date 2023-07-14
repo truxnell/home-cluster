@@ -25,12 +25,12 @@ spec:
   values:
     controller:
       annotations:
-        reloader.stakater.com/auto: 'true'
+        reloader.stakater.com/auto: "true"
     image:
       repository: youegraillot/lidarr-on-steroids
-      tag: 1.3.0@sha256:720f66060a2faafd3b85b0bf1f1f3fb20ed473e135e5d18919fe7643360d9966
+      tag: 1.2.8
     env:
-      TZ: '${TZ}'
+      TZ: "${TZ}"
       AUTOCONFIG: true
     envFrom:
       - secretRef:
@@ -46,7 +46,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
@@ -54,7 +54,7 @@ spec:
             sub_filter_once on;
           hajimari.io/icon: mdi:headphones
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -63,9 +63,9 @@ spec:
               - *host
       dmix:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "nginx"
         hosts:
-          - host: &hostdmix 'dmix.${EXTERNAL_DOMAIN}'
+          - host: &hostdmix "dmix.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -84,7 +84,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: &nas 'helios.${INTERNAL_DOMAIN}'
+        server: &nas "helios.${INTERNAL_DOMAIN}"
         path: /tank/
         mountPath: /media
       backup:
