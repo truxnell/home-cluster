@@ -29,24 +29,69 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    replicaCount: 3
+    crds:
+      install: true
 
     updateStrategy:
       type: RollingUpdate
       rollingUpdate:
         maxSurge: 1
 
-    resources:
-      requests:
-        cpu: 247m
-        memory: 443M
-      limits:
-        memory: 1336M
+    grafana:
+      enabled: true
+      annotations:
+        grafana_folder: Kyverno
 
-    topologySpreadConstraints:
-      - maxSkew: 1
-        topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: DoNotSchedule
-        labelSelector:
-          matchLabels:
-            app.kubernetes.io/instance: kyverno
+    backgroundController:
+      serviceMonitor:
+        enabled: true
+
+      rbac:
+        clusterRole:
+          extraResources:
+            - apiGroups:
+                - ""
+              resources:
+                - pods
+              verbs:
+                - create
+                - update
+                - patch
+                - delete
+                - get
+                - list
+
+    cleanupController:
+      serviceMonitor:
+        enabled: true
+
+    reportsController:
+      serviceMonitor:
+        enabled: true
+
+    admissionController:
+      replicas: 3
+
+      rbac:
+        clusterRole:
+          extraResources:
+            - apiGroups:
+                - ""
+              resources:
+                - pods
+              verbs:
+                - create
+                - update
+                - delete
+
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/instance: kyverno
+              app.kubernetes.io/component: kyverno
+
+      serviceMonitor:
+        enabled: true
