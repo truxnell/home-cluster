@@ -6,7 +6,6 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./blackbox-exporter/ks.yaml
   - ./grafana/ks.yaml
   - ./hs110-exporter-kp115-1/ks.yaml
   - ./hs110-exporter-prusa/ks.yaml

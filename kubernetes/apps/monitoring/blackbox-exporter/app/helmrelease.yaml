@@ -121,25 +121,11 @@ spec:
           name: poe-zigbee-coordinator
           url: zigbee-poe.${INTERNAL_DOMAIN}
 
-        # NAS
-        - module: icmp
-          name: helios
-          url: helios.${INTERNAL_DOMAIN}
-
-        # Pikvm
-        - module: http_2xx
-          name: pikvm
-          url: pikvm.${INTERNAL_DOMAIN}
-
         # 3d Printer
         - module: http_2xx
           name: prusa-mk3s
           url: prusa.${INTERNAL_DOMAIN}:5000
 
-        # Websites
-        - module: http_2xx
-          name: uptime-kuma
-          url: status.voltaicforge.com
         # Blinds
         - module: http_401
           name: tyua-blinds-0
