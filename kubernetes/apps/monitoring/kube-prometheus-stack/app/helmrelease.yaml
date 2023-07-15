@@ -211,6 +211,8 @@ spec:
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
+        externalLabels:
+          cluster: cluster-0
         probeSelectorNilUsesHelmValues: false
         retentionSize: "8GB"
         retention: 2d
@@ -330,7 +332,7 @@ spec:
             metrics_path: "/plugin/prometheus_exporter/metrics"
             params:
               apikey: ["${SECRET_OCTOPRINT_APIKEY}"]
-            tls_config:
+            tls_confbelsig:
               insecure_skip_verify: true
             static_configs:
               - targets:
