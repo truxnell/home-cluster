@@ -84,7 +84,7 @@ spec:
       persistence:
         enabled: true
         storageClass: "ceph-block"
-        size: 60Gi
+        size: 100Gi
 
     storegateway:
       enabled: true
