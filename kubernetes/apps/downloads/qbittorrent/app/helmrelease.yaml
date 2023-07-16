@@ -47,8 +47,8 @@ spec:
             protocol: TCP
             targetPort: *port-bt
         externalTrafficPolicy: Local
-    podAnnotations:
-      setGateway: "true"
+    # podAnnotations:
+    #   setGateway: "true"
     ingress:
       main:
         enabled: true
