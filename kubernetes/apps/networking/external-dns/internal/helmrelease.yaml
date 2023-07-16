@@ -25,7 +25,7 @@ spec:
   values:
     interval: 2m
     # logLevel: debug
-    provider: cloudflare
+    provider: rfc2136
     env:
       - name: EXTERNAL_DNS_RFC2136_HOST
         value: "10.5.0.13"
