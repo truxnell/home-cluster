@@ -56,15 +56,3 @@ spec:
         cpu: 25m
       limits:
         memory: 250Mi
-
-  postRenderers:
-    - kustomize:
-        patches:
-          - target:
-              version: v1
-              kind: Deployment
-              name: *app
-            patch: |
-              - op: add
-                path: /spec/template/spec/enableServiceLinks
-                value: false
