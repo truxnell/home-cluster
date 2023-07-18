@@ -46,6 +46,7 @@ spec:
     txtPrefix: "k8s."
     domainFilters:
       - "${EXTERNAL_DOMAIN}"
+      - "${WEBSITE_DOMAIN}"
     serviceMonitor:
       enabled: true
     podAnnotations:
