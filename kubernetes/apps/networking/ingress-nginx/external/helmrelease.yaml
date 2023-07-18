@@ -33,7 +33,7 @@ spec:
           value: "${TZ}"
 
       service:
-        loadBalancerIP: "${LB_NGINX_INGRESS}"
+        loadBalancerIP: "${LB_NGINX_INGRESS_EXT}"
         annotations:
           external-dns.alpha.kubernetes.io/hostname: "ingress-ext.${EXTERNAL_DOMAIN}"
         externalTrafficPolicy: Local
