@@ -48,8 +48,8 @@ spec:
         enabled: true
         annotations:
           hajimari.io/enable: 'false'
-          external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
-        ingressClassName: 'nginx'
+          external-dns.alpha.kubernetes.io/target: ingress-ext.${EXTERNAL_DOMAIN}
+        ingressClassName: 'external-nginx'
         hosts:
           - host: &host 'arc-hook.${EXTERNAL_DOMAIN}'
             paths:

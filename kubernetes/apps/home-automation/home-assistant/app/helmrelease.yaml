@@ -34,7 +34,7 @@ spec:
       repository: ghcr.io/onedr0p/home-assistant
       tag: 2023.7.2@sha256:d6627e982c70dc963b4e15f223f56efb33d4b353c6ad9927b6f5be0c45f94a3b
     env:
-      TZ: '${TZ}'
+      TZ: "${TZ}"
       HASS_IP: ${LB_HOMEASSISTANT}
     envFrom:
       - secretRef:
@@ -47,12 +47,12 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "external-nginx"
         annotations:
-          external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: ingress-ext.${EXTERNAL_DOMAIN}
           hajimari.io/icon: mdi:home-assistant
         hosts:
-          - host: &host 'hass.${EXTERNAL_DOMAIN}'
+          - host: &host "hass.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -63,7 +63,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: 'OnRootMismatch'
+      fsGroupChangePolicy: "OnRootMismatch"
     persistence:
       config:
         enabled: true
@@ -75,29 +75,29 @@ spec:
           repository: ghcr.io/coder/code-server
           tag: 4.14.1
         env:
-          TZ: '${TZ}'
-        workingDir: '/config'
+          TZ: "${TZ}"
+        workingDir: "/config"
         args:
           - --auth
-          - 'none'
+          - "none"
           - --user-data-dir
-          - '/config/.vscode'
+          - "/config/.vscode"
           - --extensions-dir
-          - '/config/.vscode'
+          - "/config/.vscode"
         ingress:
           enabled: true
-          ingressClassName: 'nginx'
+          ingressClassName: "internal-nginx"
           annotations:
-            hajimari.io/appName: 'Hass Config'
+            hajimari.io/appName: "Hass Config"
             hajimari.io/icon: cib:visual-studio-code
           hosts:
-            - host: &host 'hass-code.${EXTERNAL_DOMAIN}'
+            - host: &hostcd "hass-code.${EXTERNAL_DOMAIN}"
               paths:
                 - path: /
                   pathType: Prefix
           tls:
             - hosts:
-                - *host
+                - *hostcd
         volumeMounts:
           - name: config
             mountPath: /config

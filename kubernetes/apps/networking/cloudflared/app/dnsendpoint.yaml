@@ -4,11 +4,9 @@ kind: DNSEndpoint
 metadata:
   name: cloudflared-tunnel-external-domain
   namespace: networking
-  annotations:
-    external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
 spec:
   endpoints:
-    - dnsName: ingress.${EXTERNAL_DOMAIN}
+    - dnsName: ingress-ext.${EXTERNAL_DOMAIN}
       recordType: CNAME
       targets: ["${SECRET_TUNNEL_ID}.cfargotunnel.com"]
 ---
@@ -17,10 +15,8 @@ kind: DNSEndpoint
 metadata:
   name: cloudflared-tunnel-website-domain
   namespace: networking
-  annotations:
-    external-dns.alpha.kubernetes.io/target: ingress.voltaicforge.com
 spec:
   endpoints:
-    - dnsName: ingress.voltaicforge.com
+    - dnsName: ingress-ext.${WEBSITE_DOMAIN}
       recordType: CNAME
       targets: ["${SECRET_TUNNEL_ID}.cfargotunnel.com"]

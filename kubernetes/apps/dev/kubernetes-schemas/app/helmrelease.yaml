@@ -41,9 +41,8 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: "internal-nginx"
         annotations:
-          # external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
           hajimari.io/icon: mdi:code-json
         hosts:
           - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'

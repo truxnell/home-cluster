@@ -362,7 +362,7 @@ spec:
       enabled: true
     ingress:
       enabled: true
-      ingressClassName: "nginx"
+      ingressClassName: "internal-nginx"
       annotations:
         hajimari.io/icon: simple-icons:grafana
       hosts:

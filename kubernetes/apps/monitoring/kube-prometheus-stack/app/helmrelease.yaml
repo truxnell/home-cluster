@@ -192,7 +192,7 @@ spec:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "nginx"
+        ingressClassName: "internal-nginx"
         annotations:
           hajimari.io/appName: "Prometheus"
           hajimari.io/icon: simple-icons:prometheus
@@ -405,7 +405,7 @@ spec:
       ingress:
         enabled: true
         pathType: Prefix
-        ingressClassName: "nginx"
+        ingressClassName: "internal-nginx"
         annotations:
           hajimari.io/appName: "Alert Manager"
           hajimari.io/icon: mdi:alert-decagram-outline

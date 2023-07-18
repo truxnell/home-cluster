@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: ingress-nginx
+  name: &app ingress-nginx-internal
   namespace: networking
 spec:
   interval: 15m
@@ -34,12 +34,15 @@ spec:
 
       service:
         loadBalancerIP: "${LB_NGINX_INGRESS}"
+        annotations:
+          external-dns.alpha.kubernetes.io/hostname: "ingress-int.${EXTERNAL_DOMAIN}"
         externalTrafficPolicy: Local
 
       publishService:
         enabled: true
 
       ingressClassResource:
+        name: internal-nginx
         default: true
 
       config:
@@ -94,26 +97,9 @@ spec:
             matchLabels:
               app.kubernetes.io/instance: ingress-nginx
 
-      tolerations:
-        - effect: NoSchedule
-          operator: Exists
-        - effect: NoExecute
-          operator: Exists
-
-      podAnnotations:
-        configmap.reloader.stakater.com/reload: "cloudflare-proxied-networks"
-
       resources:
         requests:
           memory: 250Mi
           cpu: 20m
         limits:
           memory: 1000Mi
-
-  valuesFrom:
-    # Cloudflare Networks
-    # https://www.cloudflare.com/ips/
-    - kind: ConfigMap
-      name: cloudflare-proxied-networks
-      valuesKey: cloudflare-proxied-networks.txt
-      targetPath: controller.config.proxy-real-ip-cidr

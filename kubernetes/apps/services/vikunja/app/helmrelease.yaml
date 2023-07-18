@@ -106,7 +106,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: "internal-nginx"
         annotations:
           hajimari.io/icon: mdi:format-list-checks
         hosts:

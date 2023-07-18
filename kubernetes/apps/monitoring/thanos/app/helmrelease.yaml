@@ -54,7 +54,7 @@ spec:
       ingress:
         enabled: true
         hostname: "thanos.${EXTERNAL_DOMAIN}"
-        ingressClassName: "nginx"
+        ingressClassName: "internal-nginx"
         tls: true
 
     bucketweb:

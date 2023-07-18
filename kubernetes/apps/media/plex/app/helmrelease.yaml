@@ -38,9 +38,9 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: "external-nginx"
         annotations:
-          external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: ingress-ext.${EXTERNAL_DOMAIN}
           hajimari.io/icon: mdi:plex
         hosts:
           - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"

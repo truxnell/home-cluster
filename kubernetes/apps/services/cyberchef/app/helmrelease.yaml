@@ -33,7 +33,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: "internal-nginx"
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/icon: hammer-wrench

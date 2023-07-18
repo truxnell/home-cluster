@@ -40,7 +40,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: "internal-nginx"
         annotations:
           hajimari.io/icon: simple-icons:adminer
         hosts:

@@ -15,7 +15,7 @@ metadata:
     app.kubernetes.io/name: *app
     app.kubernetes.io/instance: *app
 spec:
-  ingressClassName: "nginx"
+  ingressClassName: "internal-nginx"
   rules:
     - host: &host "printer.${EXTERNAL_DOMAIN}"
       http:

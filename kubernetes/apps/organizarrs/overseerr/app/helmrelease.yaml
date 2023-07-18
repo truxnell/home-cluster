@@ -38,7 +38,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: "internal-nginx"
         annotations:
           hajimari.io/icon: mdi:eye-circle
           nginx.ingress.kubernetes.io/configuration-snippet: |

@@ -31,9 +31,9 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: "external-nginx"
         annotations:
-          external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: ingress-ext.${EXTERNAL_DOMAIN}
           nginx.ingress.kubernetes.io/proxy-body-size: 4G
           hajimari.io/icon: mdi:calendar-export-outline
         hosts:

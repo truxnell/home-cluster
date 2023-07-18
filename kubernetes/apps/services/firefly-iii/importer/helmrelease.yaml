@@ -33,7 +33,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: "internal-nginx"
         annotations:
           hajimari.io/icon: "foundation:page-export-csv"
           nginx.ingress.kubernetes.io/proxy-body-size: 4G

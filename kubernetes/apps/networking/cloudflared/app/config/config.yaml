@@ -4,11 +4,11 @@ originRequest: # Top-level configuration
 
 ingress:
   - hostname: "*.${EXTERNAL_DOMAIN}"
-    service: https://ingress-nginx-controller.networking.svc.cluster.local.
+    service: https://ingress-nginx-external-controller.networking.svc.cluster.local.
     originRequest:
-      originServerName: ingress.${EXTERNAL_DOMAIN}
+      originServerName: ingress-ext.${EXTERNAL_DOMAIN}
   - hostname: "*.voltaicforge.com"
-    service: https://ingress-nginx-controller.networking.svc.cluster.local.
+    service: https://ingress-nginx-external-controller.networking.svc.cluster.local.
     originRequest:
-      originServerName: ingress.voltaicforge.com
+      originServerName: ingress-ext.${WEBSITE_DOMAIN}
   - service: http_status:404

@@ -51,9 +51,8 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        ingressClassName: "internal-nginx"
         annotations:
-          auth.home.arpa/enabled: "true"
           hajimari.io/icon: mdi:folder-play-outline
         hosts:
           - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"

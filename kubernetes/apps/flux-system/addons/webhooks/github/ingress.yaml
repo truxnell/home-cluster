@@ -9,9 +9,9 @@ metadata:
   namespace: flux-system
   annotations:
     hajimari.io/enable: "false"
-    external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
+    external-dns.alpha.kubernetes.io/target: ingress-ext.${EXTERNAL_DOMAIN}
 spec:
-  ingressClassName: "nginx"
+  ingressClassName: "external-nginx"
   rules:
     - host: &host "flux-receiver.${EXTERNAL_DOMAIN}"
       http:

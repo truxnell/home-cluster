@@ -107,7 +107,7 @@ spec:
               - name: "/dev/disk/by-id/nvme-KINGSTON_SNVS1000G_50026B7684F12095"
     ingress:
       dashboard:
-        ingressClassName: "nginx"
+        ingressClassName: "internal-nginx"
         annotations:
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
           hajimari.io/appName: "Rook"

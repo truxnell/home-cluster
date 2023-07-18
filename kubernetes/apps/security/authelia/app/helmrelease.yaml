@@ -52,9 +52,9 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'nginx'
+        ingressClassName: 'external-nginx'
         annotations:
-          external-dns.alpha.kubernetes.io/target: ingress.${EXTERNAL_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: ingress-ext.${EXTERNAL_DOMAIN}
           nginx.ingress.kubernetes.io/configuration-snippet: |
             add_header Cache-Control "no-store";
             add_header Pragma "no-cache";

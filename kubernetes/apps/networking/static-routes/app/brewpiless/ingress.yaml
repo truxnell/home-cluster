@@ -1,6 +1,4 @@
 ---
-
-
 # yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/networking.k8s.io/ingress_v1.json
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -15,10 +13,10 @@ metadata:
     hajimari.io/appName: "brewpi"
 
 spec:
-  ingressClassName: "nginx"
+  ingressClassName: "internal-nginx"
   tls:
     - hosts:
-      - "brewpi.${EXTERNAL_DOMAIN}"
+        - "brewpi.${EXTERNAL_DOMAIN}"
 
   rules:
     - host: brewpi.${EXTERNAL_DOMAIN}
