@@ -23,7 +23,7 @@ spec:
     remediation:
       retries: 5
   dependsOn:
-    - name: ingress-nginx
+    - name: ingress-nginx-external
       namespace: networking
   values:
     controller:
