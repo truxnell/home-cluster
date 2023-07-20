@@ -39,3 +39,4 @@ resources:
   - ./zalando-postgres-operator.yaml
   - ./angelnu-charts.yaml
   - ./windmill.yaml
+  - ./victoriametrics-charts.yaml
