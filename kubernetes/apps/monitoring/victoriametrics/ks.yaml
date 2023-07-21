@@ -3,12 +3,12 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-vector-agent
+  name: cluster-apps-victoriametrics-operator
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: "./kubernetes/apps/monitoring/vector/agent/"
+  path: "./kubernetes/apps/monitoring/victoriametrics/operator/"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -19,7 +19,5 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: vector-agent
+      name: victoriametrics-operator
       namespace: monitoring
-  dependsOn:
-    - name: cluster-apps-vector-aggregator
