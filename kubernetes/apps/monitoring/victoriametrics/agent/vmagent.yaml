@@ -1,0 +1,26 @@
+---
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMAgent
+metadata:
+  name: hegira
+  namespace: monitoring
+spec:
+  remoteWrite:
+    - url: "http://vminsert-vmcluster-hegira:8480/insert/0/prometheus"
+  selectAllByDefault: true
+  replicaCount: 1
+  serviceScrapeNamespaceSelector: {}
+  podScrapeNamespaceSelector: {}
+  podScrapeSelector: {}
+  serviceScrapeSelector: {}
+  nodeScrapeSelector: {}
+  nodeScrapeNamespaceSelector: {}
+  staticScrapeSelector: {}
+  staticScrapeNamespaceSelector: {}
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "400Mi"
+    limits:
+      cpu: "300m"
+      memory: "2Gi"
