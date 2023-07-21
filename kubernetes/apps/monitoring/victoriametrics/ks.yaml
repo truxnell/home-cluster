@@ -40,9 +40,9 @@ spec:
   retryInterval: 1m
   timeout: 3m
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: victoriametrics-cluster
+    - apiVersion: operator.victoriametrics.com/v1beta1
+      kind: VMCluster
+      name: vmcluster-hegira
       namespace: monitoring
   dependsOn:
     - name: cluster-apps-victoriametrics-operator
@@ -65,9 +65,9 @@ spec:
   retryInterval: 1m
   timeout: 3m
   healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: victoriametrics-agent
+    - apiVersion: operator.victoriametrics.com/v1beta1
+      kind: VMAgent
+      name: vmcluster-agent
       namespace: monitoring
   dependsOn:
     - name: cluster-apps-victoriametrics-cluster
