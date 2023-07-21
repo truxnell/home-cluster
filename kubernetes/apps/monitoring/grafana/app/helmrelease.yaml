@@ -175,7 +175,7 @@ spec:
           - name: VictoriaMetrics
             type: prometheus
             access: proxy
-            url: http://vmselect-vmcluster-hegira:8481/
+            url: http://vmselect-vmcluster-hegira:8481/select/0/prometheus
             isDefault: false
           - name: Prometheus
             type: prometheus
