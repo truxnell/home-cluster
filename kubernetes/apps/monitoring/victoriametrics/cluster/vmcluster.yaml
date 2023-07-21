@@ -11,6 +11,9 @@ spec:
   vminsert:
     replicaCount: 2
   vmselect:
+    image:
+      repository: victoriametrics/vmselect
+      tag: v1.91.3-cluster
     replicaCount: 2
     cacheMountPath: "/select-cache"
     storage:
@@ -24,6 +27,10 @@ spec:
       limits:
         memory: "300Mi"
   vmstorage:
+    image:
+      repository: victoriametrics/vmstorage
+      tag: v1.91.3-cluster
+    retentionPeriod: 12
     replicaCount: 2
     storageDataPath: "/vm-data"
     storage:
