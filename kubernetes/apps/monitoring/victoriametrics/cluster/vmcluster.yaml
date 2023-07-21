@@ -9,12 +9,12 @@ spec:
   retentionPeriod: 2
   replicationFactor: 2
   vminsert:
-    replicaCount: 2
+    replicaCount: 3
   vmselect:
     image:
       repository: victoriametrics/vmselect
       tag: v1.91.3-cluster
-    replicaCount: 2
+    replicaCount: 3
     cacheMountPath: "/select-cache"
     storage:
       volumeClaimTemplate:
@@ -30,7 +30,7 @@ spec:
     image:
       repository: victoriametrics/vmstorage
       tag: v1.91.3-cluster
-    replicaCount: 2
+    replicaCount: 3
     storageDataPath: "/vm-data"
     storage:
       volumeClaimTemplate:
