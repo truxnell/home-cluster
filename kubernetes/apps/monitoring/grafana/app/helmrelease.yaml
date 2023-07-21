@@ -172,6 +172,11 @@ spec:
           - name: Alertmanager
             orgId: 1
         datasources:
+          - name: VictoriaMetrics
+            type: prometheus
+            access: proxy
+            url: http://vmselect-vmcluster-hegira:8481/
+            isDefault: false
           - name: Prometheus
             type: prometheus
             access: proxy
