@@ -6,7 +6,7 @@ metadata:
   namespace: monitoring
 spec:
   clusterVersion: "v1.90.0-cluster"
-  retentionPeriod: "1"
+  retentionPeriod: 2
   replicationFactor: 2
   vminsert:
     replicaCount: 2
@@ -19,7 +19,7 @@ spec:
     storage:
       volumeClaimTemplate:
         spec:
-          storageClassName: ceph-block
+          storageClassName: local-hostpath
           resources:
             requests:
               storage: 5Gi
@@ -30,13 +30,12 @@ spec:
     image:
       repository: victoriametrics/vmstorage
       tag: v1.91.3-cluster
-    retentionPeriod: 12
     replicaCount: 2
     storageDataPath: "/vm-data"
     storage:
       volumeClaimTemplate:
         spec:
-          storageClassName: ceph-block
+          storageClassName: local-hostpath
           resources:
             requests:
               storage: 20Gi
