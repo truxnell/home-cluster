@@ -7,7 +7,7 @@ metadata:
 spec:
   clusterVersion: "v1.90.0-cluster"
   retentionPeriod: "2"
-  replicationFactor: 2
+  replicationFactor: 3
   vminsert:
     replicaCount: 3
   vmselect:
@@ -22,7 +22,7 @@ spec:
           storageClassName: local-hostpath
           resources:
             requests:
-              storage: 5Gi
+              storage: 10Gi
     resources:
       limits:
         memory: "300Mi"
@@ -38,7 +38,7 @@ spec:
           storageClassName: local-hostpath
           resources:
             requests:
-              storage: 20Gi
+              storage: 10Gi
     resources:
       limits:
         memory: "500Mi"
