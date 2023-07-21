@@ -60,7 +60,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-agent-kubernetes
+    name: home-cluster-kubernetes
   interval: 30m
   retryInterval: 1m
   timeout: 3m
