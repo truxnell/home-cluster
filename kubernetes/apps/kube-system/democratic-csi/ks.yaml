@@ -8,7 +8,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: "./kubernetes/apps/kube-system/democratic-cis/local-path/"
+  path: "./kubernetes/apps/kube-system/democratic-csi/local-path/"
   prune: true
   sourceRef:
     kind: GitRepository
