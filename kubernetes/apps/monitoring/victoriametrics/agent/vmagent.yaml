@@ -5,6 +5,10 @@ metadata:
   name: vmagent-hegira
   namespace: monitoring
 spec:
+  image:
+    repository: victoriametrics/vmagent
+    tag: "victoriametrics/vmagent:v1.91.0"
+    pullPolicy: IfNotPresent
   remoteWrite:
     - url: "http://vminsert-vmcluster-hegira:8480/insert/0/prometheus"
   selectAllByDefault: true
