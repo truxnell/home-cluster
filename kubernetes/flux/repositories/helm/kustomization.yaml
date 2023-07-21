@@ -40,3 +40,4 @@ resources:
   - ./angelnu-charts.yaml
   - ./windmill.yaml
   - ./victoriametrics-charts.yaml
+  - ./democratic-csi.yaml
