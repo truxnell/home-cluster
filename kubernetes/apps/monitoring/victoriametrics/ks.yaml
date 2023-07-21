@@ -45,4 +45,29 @@ spec:
       name: victoriametrics-cluster
       namespace: monitoring
   dependsOn:
-    - name: cluster-apps-vector-aggregator
+    - name: cluster-apps-victoriametrics-operator
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomize.toolkit.fluxcd.io/kustomization_v1beta2.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: cluster-apps-victoriametrics-agent
+  namespace: flux-system
+  labels:
+    substitution.flux.home.arpa/enabled: "true"
+spec:
+  path: "./kubernetes/apps/monitoring/victoriametrics/agent/"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: home-agent-kubernetes
+  interval: 30m
+  retryInterval: 1m
+  timeout: 3m
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: victoriametrics-agent
+      namespace: monitoring
+  dependsOn:
+    - name: cluster-apps-victoriametrics-cluster
