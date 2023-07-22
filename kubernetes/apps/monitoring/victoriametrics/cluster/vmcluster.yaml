@@ -13,7 +13,7 @@ spec:
     replicaCount: 3
     affinity:
       podAntiAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
+        preferedDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
                 - key: "app.kubernetes.io/name"
@@ -37,7 +37,7 @@ spec:
               storage: 10Gi
     affinity:
       podAntiAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
+        preferedDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
                 - key: "app.kubernetes.io/name"
@@ -64,7 +64,7 @@ spec:
               storage: 10Gi
     affinity:
       podAntiAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
+        preferedDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
                 - key: "app.kubernetes.io/name"
