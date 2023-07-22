@@ -183,7 +183,7 @@ spec:
           - name: VictoriaMetrics
             type: victoriametrics
             access: proxy
-            url: http://vmselect-vmcluster-hegira:8481/select/0/prometheus
+            url: http://vmselect-victoria-metrics:8481/select/0/prometheus
             isDefault: true
           # - name: thanos
           #   type: thanos
