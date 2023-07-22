@@ -94,6 +94,9 @@ spec:
       enabled: false
 
     alertmanager:
+      image:
+        repository: quay.io/prometheus/alertmanager
+        tag: main@sha256:ad55e223144bbcc7b94cdae80f94f0251e953d95d7ac93c1d28eafd240f90d46
       enabled: true
       config:
         global:
