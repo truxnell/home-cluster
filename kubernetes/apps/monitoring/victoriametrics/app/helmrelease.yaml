@@ -162,6 +162,10 @@ spec:
         port: 10259
         targetPort: 10259
 
+      spec:
+        endpoints:
+          - port: http-metrics
+            insecureSkipVerify: true
     kubeEtcd:
       enabled: true
       endpoints: *cp
