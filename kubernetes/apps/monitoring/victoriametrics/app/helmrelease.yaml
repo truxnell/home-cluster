@@ -159,9 +159,13 @@ spec:
                 url_title: View in Alertmanager
                 user_key: "${SECRET_ALERTMANAGER_PUSHOVER_USER_KEY}"
       spec:
-        image:
-          repository: quay.io/prometheus/alertmanager
-          tag: main@sha256:ad55e223144bbcc7b94cdae80f94f0251e953d95d7ac93c1d28eafd240f90d46
+        securityContext:
+          runAsGroup: 2000
+          runAsNonRoot: true
+          runAsUser: 1000
+          fsGroup: 2000
+          seccompProfile:
+            type: RuntimeDefault
         # replicaCount: 3
         storage:
           volumeClaimTemplate:
