@@ -94,9 +94,6 @@ spec:
       enabled: false
 
     alertmanager:
-      image:
-        repository: quay.io/prometheus/alertmanager
-        tag: main@sha256:ad55e223144bbcc7b94cdae80f94f0251e953d95d7ac93c1d28eafd240f90d46
       enabled: true
       config:
         global:
@@ -162,8 +159,10 @@ spec:
                 url_title: View in Alertmanager
                 user_key: "${SECRET_ALERTMANAGER_PUSHOVER_USER_KEY}"
       spec:
-        replicaCount: 3
-        configSecret: alertmanager-secret
+        image:
+          repository: quay.io/prometheus/alertmanager
+          tag: main@sha256:ad55e223144bbcc7b94cdae80f94f0251e953d95d7ac93c1d28eafd240f90d46
+        # replicaCount: 3
         storage:
           volumeClaimTemplate:
             spec:
