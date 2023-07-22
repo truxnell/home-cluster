@@ -98,13 +98,13 @@ spec:
       spec:
         replicaCount: 3
         configSecret: alertmanager-secret
-      #   storage:
-      #     volumeClaimTemplate:
-      #       spec:
-      #         storageClassName: local-hostpath
-      #         resources:
-      #           requests:
-      #             storage: 2Gi
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: ceph-block
+              resources:
+                requests:
+                  storage: 50Mi
       ingress:
         enabled: true
         ingressClassName: internal-nginx
