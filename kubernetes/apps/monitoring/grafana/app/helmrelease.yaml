@@ -23,16 +23,6 @@ spec:
     remediation:
       retries: 5
   values:
-    extraInitContainers:
-      - name: init-db
-        image: ghcr.io/onedr0p/postgres-initdb:14.8@sha256:0141cf427c47f2d534711a3f9e8c5f9008bc6b585463ccd9288cf0f027e20deb
-        imagePullPolicy: IfNotPresent
-        envFrom:
-          - secretRef:
-              name: grafana-secret
-
-    replicas: 3
-
     annotations:
       configmap.reloader.stakater.com/reload: grafana-secret
     # admin:
@@ -49,10 +39,6 @@ spec:
       GF_AUTH_GENERIC_OAUTH_CLIENT_ID: grafana
       GF_AUTH_GENERIC_OAUTH_TOKEN_URL: https://auth.${EXTERNAL_DOMAIN}/api/oidc/token
       GF_ANALYTICS_CHECK_FOR_UPDATES: false
-      GF_DATABASE_HOST: postgres.databases.svc.cluster.local:5432
-      GF_DATABASE_NAME: grafana
-      GF_DATABASE_SSL_MODE: disable
-      GF_DATABASE_TYPE: postgres
       GF_DATE_FORMATS_FULL_DATE: "MMM Do, YYYY hh:mm:ss a"
       GF_EXPLORE_ENABLED: true
       GF_GRAFANA_NET_URL: https://grafana.net
@@ -336,26 +322,8 @@ spec:
           revision: 5
           datasource: victoriametrics
 
-    imageRenderer:
-      enabled: false
-      # replicas: 3
-      # networkPolicy:
-      #   limitIngress: false
-      # serviceMonitor:
-      #   enabled: true
     persistence:
       enabled: false
-    affinity:
-      podAntiAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                  - key: app.kubernetes.io/name
-                    operator: In
-                    values: ["grafana"]
-              topologyKey: kubernetes.io/hostname
 
     sidecar:
       datasources:
@@ -376,16 +344,9 @@ spec:
     plugins:
       - natel-discrete-panel
       - pr0ps-trackmap-panel
-      - vonage-status-panel
       - grafana-piechart-panel
-      - grafana-polystat-panel
-      - grafana-worldmap-panel
+      - vonage-status-panel
       - grafana-clock-panel
-      - grafana-singlestat-panel
-      - mxswat-separator-panel
-      - farski-blendstat-panel
-      - speakyourcode-button-panel
-      - snuids-trafficlights-panel
       - redis-datasource
 
     serviceMonitor:
