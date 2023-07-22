@@ -155,8 +155,8 @@ spec:
         - 10.8.20.44
       service:
         enabled: true
-        port: 10252
-        targetPort: 10252
+        port: 10259
+        targetPort: 10259
       spec:
         endpoints:
           - port: http-metrics
