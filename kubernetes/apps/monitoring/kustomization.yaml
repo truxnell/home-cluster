@@ -16,7 +16,7 @@ resources:
   # - ./loki/ks.yaml
   - ./prometheus-smartctl/ks.yaml
   # - ./thanos/ks.yaml
-  - ./vector/ks.yaml
+  # - ./vector/ks.yaml
   - ./nextdns-exporter/ks.yaml
   - ./changedetection/ks.yaml
   # - ./snmp-exporter-vyos/ks.yaml
