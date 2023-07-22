@@ -170,9 +170,9 @@ spec:
           - name: Alertmanager
             orgId: 1
         datasources:
-          - name: Prometheus
+          - name: Prometheus # Not naming 'VictoriaMetrics' as a lot of grafs are sadly hard-coded to 'Prometeus'
             type: prometheus
-            url: http://vmselect-victoria-metrics.monitoring.svc:8481/select/0/prometheus
+            url: http://vmselect-victoria-metrics.monitoring.svc:8481/select/0/prometheus # Note the prefix /select/0/
             access: proxy
             isDefault: true
 

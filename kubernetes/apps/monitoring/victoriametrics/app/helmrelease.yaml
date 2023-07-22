@@ -271,7 +271,7 @@ spec:
       enabled: true
 
     prometheus-node-exporter:
-      enabled: true
+      enabled: false
 
     grafana:
       enabled: false
