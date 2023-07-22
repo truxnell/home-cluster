@@ -41,7 +41,7 @@ spec:
           storage:
             volumeClaimTemplate:
               spec:
-                storageClassName: local-path
+                storageClassName: local-hostpath
                 resources:
                   requests:
                     storage: 10Gi
@@ -52,7 +52,7 @@ spec:
           storage:
             volumeClaimTemplate:
               spec:
-                storageClassName: local-path
+                storageClassName: local-hostpath
                 resources:
                   requests:
                     storage: 2Gi
@@ -88,7 +88,7 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: local-path
+              storageClassName: local-hostpath
               resources:
                 requests:
                   storage: 2Gi
