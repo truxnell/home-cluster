@@ -161,10 +161,6 @@ spec:
         enabled: true
         port: 10259
         targetPort: 10259
-      spec:
-        endpoints:
-          tlsConfig:
-            insecureSkipverify: true
 
     kubeEtcd:
       enabled: true
