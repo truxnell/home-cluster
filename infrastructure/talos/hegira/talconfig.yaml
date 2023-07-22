@@ -78,7 +78,7 @@ controlPlane:
       scheduler:
         extraArgs:
           feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
-          bind-address: 0.0.0.0
+          bind-address: 0.0.0.0:10251
       secret: ${CLUSTERSECRET}
       serviceAccount:
         key: ${K8SSERVICEACCOUNTKEY}
