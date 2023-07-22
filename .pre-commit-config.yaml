@@ -39,17 +39,6 @@ repos:
         args: [--severity=error]
         additional_dependencies: []
 
-  - repo: https://github.com/k8s-at-home/sops-pre-commit
-    rev: v2.1.1
-    hooks:
-      - id: forbid-secrets
-        exclude: |
-          (?x)^(
-              k8s/manifests/user/kasten-io/k10/config/blueprints/secret.yaml|
-              k8s/manifests/user/home-automation/mosquitto/secret.yaml|
-              k8s/manifests/user/vpn/downloads-gateway/secret.yaml
-          )$
-
   - repo: https://github.com/sirosen/texthooks
     rev: 0.5.0
     hooks:
@@ -60,19 +49,3 @@ repos:
     rev: v8.17.0
     hooks:
       - id: gitleaks
-
-  # - repo: https://github.com/Truxnell/pre-commit
-  #   rev: v0.0.9
-  #   hooks:
-  #     - id: kustomize_build
-  #       # files: ^(
-  #       #   k8s/
-  #       #   kubetnetes/
-  #       #   )
-  #       args: [--dry-run=server]
-  #
-  - repo: https://github.com/tarioch/flux-check-hook
-    rev: v0.3.0
-    hooks:
-      - id: check-flux-helm-values
-        # exclude: (cluster/apps/home/home-assistant/patches/db-init.yaml)
