@@ -176,6 +176,7 @@ spec:
     grafana:
       enabled: false
       forceDeployDashboards: true
+      forceDeployDatasource: true
       sidecar:
         datasources:
           enabled: false

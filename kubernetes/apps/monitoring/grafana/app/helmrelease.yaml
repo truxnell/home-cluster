@@ -161,16 +161,20 @@ spec:
         apiVersion: 1
         # list of datasources that should be deleted from the database
         deleteDatasources:
+          - name: VictoriaMetrics
+            orgId: 1
+          - name: Prometheus
+            orgId: 1
           - name: Loki
             orgId: 1
           - name: Alertmanager
             orgId: 1
-        datasources:
-          - name: VictoriaMetrics
-            type: victoriametrics
-            access: proxy
-            url: http://vmselect-victoria-metrics:8481/select/0/prometheus
-            isDefault: true
+          # datasources:
+          #   - name: VictoriaMetrics
+          #     type: victoriametrics
+          #     access: proxy
+          #     url: http://vmselect-victoria-metrics:8481/select/0/prometheus
+          #     isDefault: true
           # - name: thanos
           #   type: thanos
           #   access: proxy
@@ -348,6 +352,7 @@ spec:
       - vonage-status-panel
       - grafana-clock-panel
       - redis-datasource
+      - victoriametrics-datasource
 
     serviceMonitor:
       enabled: true
