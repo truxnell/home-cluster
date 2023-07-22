@@ -175,4 +175,3 @@ spec:
       enabled: true
     grafana:
       enabled: false
-      forceDeployDatasource: true

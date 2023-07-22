@@ -169,34 +169,16 @@ spec:
             orgId: 1
           - name: Alertmanager
             orgId: 1
-          # datasources:
-          #   - name: VictoriaMetrics
-          #     type: victoriametrics
-          #     access: proxy
-          #     url: http://vmselect-victoria-metrics:8481/select/0/prometheus
-          #     isDefault: true
-          # - name: thanos
-          #   type: thanos
-          #   access: proxy
-          #   url: http://thanos-query.monitoring.svc.cluster.local:9090/
-          #   isDefault: false
-          # - name: Loki
-          #   type: loki
-          #   access: proxy
-          #   url: http://loki-gateway.monitoring.svc.cluster.local
-          #   version: 1
-          #   isDefault: false
-          #   jsonData:
-          #     maxLines: 100
-          # - name: Alertmanager
-          #   type: alertmanager
-          #   access: proxy
-          #   url: http://prometheus-alertmanager.monitoring.svc.cluster.local:9093
-          #   jsonData:
-          #     implementation: prometheus
+        datasources:
+          - name: VictoriaMetrics
+            type: prometheus
+            url: http://vmselect-victoria-metrics.monitoring.svc:8481/select/0/prometheus
+            access: proxy
+            isDefault: true
           - name: Redis
             type: redis-datasource
             access: proxy
+            isdefault: false
             url: redis://redis-node-0.redis-headless.dbms.svc.cluster.local:26379,redis://redis-node-1.redis-headless.dbms.svc.cluster.local:26379,redis://redis-node-2.redis-headless.dbms.svc.cluster.local:26379
             jsonData:
               client: sentinel
