@@ -11,11 +11,11 @@ resources:
   - ./hs110-exporter-prusa/ks.yaml
   - ./hs110-exporter-rack/ks.yaml
   - ./kube-cleanup-operator/ks.yaml
-  - ./kube-prometheus-stack/ks.yaml
+  # - ./kube-prometheus-stack/ks.yaml
   - ./kubernetes-dashboard/ks.yaml
-  - ./loki/ks.yaml
+  # - ./loki/ks.yaml
   - ./prometheus-smartctl/ks.yaml
-  - ./thanos/ks.yaml
+  # - ./thanos/ks.yaml
   - ./vector/ks.yaml
   - ./nextdns-exporter/ks.yaml
   - ./changedetection/ks.yaml
