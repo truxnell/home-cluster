@@ -211,18 +211,18 @@ spec:
       cilium:
         cilium-dashboard:
           url: https://raw.githubusercontent.com/cilium/cilium/v1.13.4/examples/kubernetes/addons/prometheus/files/grafana-dashboards/cilium-dashboard.json
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         cilium-operator-dashboard:
           url: https://raw.githubusercontent.com/cilium/cilium/v1.13.4/examples/kubernetes/addons/prometheus/files/grafana-dashboards/cilium-operator-dashboard.json
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         hubble-dashboard:
           url: https://raw.githubusercontent.com/cilium/cilium/v1.13.4/examples/kubernetes/addons/prometheus/files/grafana-dashboards/hubble-dashboard.json
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
       data:
         redis:
           gnetId: 14091
           revision: 1
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         redis-sentinel:
           gnetId: 12776
           revision: 2
@@ -230,41 +230,41 @@ spec:
         postgresql:
           gnetId: 9628
           revision: 7
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
       flux:
         flux-cluster:
           url: https://raw.githubusercontent.com/fluxcd/flux2/v0.41.2/manifests/monitoring/monitoring-config/dashboards/cluster.json
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         flux-control-plane:
           url: https://raw.githubusercontent.com/fluxcd/flux2/v0.41.2/manifests/monitoring/monitoring-config/dashboards/control-plane.json
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         flux-logs:
           url: https://raw.githubusercontent.com/fluxcd/flux2/v0.41.2/manifests/monitoring/monitoring-config/dashboards/logs.json
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
       kubernetes:
         api-server:
           url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-api-server.json
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         coredns:
           url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-coredns.json
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         global:
           url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-global.json
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         namespaces:
           url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-namespaces.json
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         nodes:
           url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-nodes.json
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         pods:
           url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
       loki:
         loki-metrics:
           gnetId: 13407
           revision: 1
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
       system:
         speedtest-exporter-hub:
           gnetId: 13665
@@ -274,57 +274,57 @@ spec:
               value: victoriametrics
         1-node-exporter:
           url: https://grafana.com/api/dashboards/11074/revisions/9/download
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         node-exporter-full:
           gnetId: 1860
           revision: 30
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         external-secrets:
           url: https://raw.githubusercontent.com/external-secrets/external-secrets/main/docs/snippets/dashboard.json
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         # Ref: https://grafana.com/grafana/dashboards/7845
         zfs:
           gnetId: 7845
           revision: 4
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
       unifi:
         # Ref: https://grafana.com/grafana/dashboards/11315
         unifi-client-insights:
           gnetId: 11315
           revision: 9
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         # Ref: https://grafana.com/grafana/dashboards/11311
         unifi-network-sites:
           gnetId: 11311
           revision: 5
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         # Ref: https://grafana.com/grafana/dashboards/11314
         unifi-uap-insights:
           gnetId: 11314
           revision: 10
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         # Ref: https://grafana.com/grafana/dashboards/11312
         unifi-usw-insights:
           gnetId: 11312
           revision: 9
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
       victoriametrics:
         vmcluster:
           gnetId: 11176
           revision: 30
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         vmoperator:
           gnetId: 17869
           revision: 1
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         vmagent:
           gnetId: 12683
           revision: 11
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
         vmalert:
           gnetId: 14950
           revision: 5
-          datasource: victoriametrics
+          datasource: VictoriaMetrics
 
     persistence:
       enabled: false
