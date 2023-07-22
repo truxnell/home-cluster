@@ -320,8 +320,20 @@ spec:
           datasource: victoriametrics
       victoriametrics:
         vmcluster:
-          gnedId: 11176
+          gnetId: 11176
           revision: 30
+          datasource: victoriametrics
+        vmoperator:
+          gnetId: 17869
+          revision: 1
+          datasource: victoriametrics
+        vmagent:
+          gnetId: 12683
+          revision: 11
+          datasource: victoriametrics
+        vmalert:
+          gnetId: 14950
+          revision: 5
           datasource: victoriametrics
 
     imageRenderer:
