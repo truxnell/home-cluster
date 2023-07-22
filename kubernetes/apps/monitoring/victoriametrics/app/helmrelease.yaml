@@ -82,9 +82,9 @@ spec:
       enabled: false
     alertmanager:
       enabled: true
-      # spec:
-      #   replicaCount: 3
-      #   configSecret: alertmanager-secret
+      spec:
+        replicaCount: 3
+        configSecret: alertmanager-secret
       #   storage:
       #     volumeClaimTemplate:
       #       spec:
