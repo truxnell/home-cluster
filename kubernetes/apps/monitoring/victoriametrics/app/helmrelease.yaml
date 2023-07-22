@@ -172,12 +172,9 @@ spec:
       endpoints: *cp
       service:
         enabled: true
-        port: 10251
-        targetPort: 10251
+        port: 10259
+        targetPort: 10259
       spec:
-        endpoints:
-          - port: http-metrics
-            scheme: http
         metricRelabelConfigs:
           # Remove duplicate labels provided by k3s
           - sourceLabels: ["__name__"]
