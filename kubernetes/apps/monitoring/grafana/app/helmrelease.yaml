@@ -352,7 +352,6 @@ spec:
       - vonage-status-panel
       - grafana-clock-panel
       - redis-datasource
-      - victoriametrics-datasource
 
     serviceMonitor:
       enabled: true
