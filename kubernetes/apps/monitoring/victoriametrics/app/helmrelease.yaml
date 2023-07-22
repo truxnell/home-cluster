@@ -155,17 +155,18 @@ spec:
             scheme: http
 
     kubeScheduler:
-      enabled: true
-      endpoints: *cp
-      service:
-        enabled: true
-        port: 10259
-        targetPort: 10259
+      enabled: false
+      # endpoints: *cp
+      # service:
+      #   enabled: true
+      #   port: 10259
+      #   targetPort: 10259
+      #
+      # spec:
+      #   endpoints:
+      #     - port: http-metrics
+      #       insecureSkipVerify: true
 
-      spec:
-        endpoints:
-          - port: http-metrics
-            insecureSkipVerify: true
     kubeEtcd:
       enabled: true
       endpoints: *cp
