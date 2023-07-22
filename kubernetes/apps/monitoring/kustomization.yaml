@@ -23,3 +23,4 @@ resources:
   - ./prometheus-rules/ks.yaml
   - ./umami/ks.yaml
   - ./victoriametrics/ks.yaml
+  - ./node-exporter/ks.yaml
