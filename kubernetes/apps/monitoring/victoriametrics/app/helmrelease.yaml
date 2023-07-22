@@ -82,16 +82,16 @@ spec:
       enabled: false
     alertmanager:
       enabled: true
-      spec:
-        replicaCount: 3
-        configSecret: alertmanager-secret
-        storage:
-          volumeClaimTemplate:
-            spec:
-              storageClassName: local-hostpath
-              resources:
-                requests:
-                  storage: 2Gi
+      # spec:
+      #   replicaCount: 3
+      #   configSecret: alertmanager-secret
+      #   storage:
+      #     volumeClaimTemplate:
+      #       spec:
+      #         storageClassName: local-hostpath
+      #         resources:
+      #           requests:
+      #             storage: 2Gi
       ingress:
         enabled: true
         ingressClassName: internal-nginx
