@@ -8,8 +8,20 @@ spec:
   clusterVersion: "v1.90.0-cluster"
   retentionPeriod: "2"
   replicationFactor: 3
+
   vminsert:
     replicaCount: 3
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: "app.kubernetes.io/name"
+                  operator: In
+                  values:
+                    - "vminsert"
+            topologyKey: "kubernetes.io/hostname"
+
   vmselect:
     image:
       repository: victoriametrics/vmselect
@@ -23,9 +35,20 @@ spec:
           resources:
             requests:
               storage: 10Gi
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: "app.kubernetes.io/name"
+                  operator: In
+                  values:
+                    - "vmselect"
+            topologyKey: "kubernetes.io/hostname"
     resources:
       limits:
         memory: "300Mi"
+
   vmstorage:
     image:
       repository: victoriametrics/vmstorage
@@ -39,6 +62,16 @@ spec:
           resources:
             requests:
               storage: 10Gi
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: "app.kubernetes.io/name"
+                  operator: In
+                  values:
+                    - "vmstorage"
+            topologyKey: "kubernetes.io/hostname"
     resources:
       limits:
         memory: "500Mi"
