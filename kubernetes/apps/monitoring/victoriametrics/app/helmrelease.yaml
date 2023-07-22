@@ -70,6 +70,10 @@ spec:
               - *hostalert
     vmagent:
       enabled: true
+      spec:
+        additionalScrapeConfigs:
+          name: vm-additional-scrape-configs
+          key: prometheus-additional.yaml
       ingress:
         enabled: true
         ingressClassName: internal-nginx
