@@ -175,19 +175,6 @@ spec:
             url: http://vmselect-victoria-metrics.monitoring.svc:8481/select/0/prometheus
             access: proxy
             isDefault: true
-          - name: Redis
-            type: redis-datasource
-            access: proxy
-            isdefault: false
-            url: redis://redis-node-0.redis-headless.dbms.svc.cluster.local:26379,redis://redis-node-1.redis-headless.dbms.svc.cluster.local:26379,redis://redis-node-2.redis-headless.dbms.svc.cluster.local:26379
-            jsonData:
-              client: sentinel
-              sentinelName: redis-master
-              poolSize: 5
-              timeout: 10
-              pingInterval: 0
-              pipelineWindow: 0
-            editable: true
 
     dashboards:
       cilium:
@@ -201,14 +188,6 @@ spec:
           url: https://raw.githubusercontent.com/cilium/cilium/v1.13.4/examples/kubernetes/addons/prometheus/files/grafana-dashboards/hubble-dashboard.json
           datasource: VictoriaMetrics
       data:
-        redis:
-          gnetId: 14091
-          revision: 1
-          datasource: VictoriaMetrics
-        redis-sentinel:
-          gnetId: 12776
-          revision: 2
-          datasource: Redis
         postgresql:
           gnetId: 9628
           revision: 7
