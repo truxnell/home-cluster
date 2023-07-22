@@ -17,9 +17,6 @@ spec:
         name: bjw-s-charts
         namespace: flux-system
   values:
-    controller:
-      replicas: 3
-      strategy: RollingUpdate
     image:
       repository: docker.io/mpepping/cyberchef
       tag: v10.5.2@sha256:6e4958d1b7902fc7a0f30e13f87dc8961d7346207fefdb4b6825dd26fb6a92c1
