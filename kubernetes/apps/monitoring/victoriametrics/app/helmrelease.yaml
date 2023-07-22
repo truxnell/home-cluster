@@ -116,7 +116,7 @@ spec:
         kubeStateMetrics: true
         network: true
         node: true
-        nodeExporterAlerting: true
+        nodeExporterAlerting: false
         nodeExporterRecording: true
         prometheus: true
         prometheusOperator: true
