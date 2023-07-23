@@ -54,15 +54,6 @@ spec:
           cacheMountPath: /select-cache
           extraArgs: {}
 
-          ingress:
-            enabled: true
-            ingressClassName: internal-nginx
-            hosts:
-              - &hostselect vmselect.${EXTERNAL_DOMAIN}
-            tls:
-              - hosts:
-                  - *hostselect
-
           storage:
             volumeClaimTemplate:
               spec:
@@ -73,6 +64,33 @@ spec:
 
         vminsert:
           replicaCount: 3
+    ingress:
+      storage:
+        enabled: true
+        ingressClassName: internal-nginx
+        hosts:
+          - &hoststorage vmstorage.${EXTERNAL_DOMAIN}
+        tls:
+          - hosts:
+              - *hoststorage
+
+      select:
+        enabled: true
+        ingressClassName: internal-nginx
+        hosts:
+          - &hostselect vmselect.${EXTERNAL_DOMAIN}
+        tls:
+          - hosts:
+              - *hostselect
+
+      insert:
+        enabled: true
+        ingressClassName: internal-nginx
+        hosts:
+          - &hostinsert vminsert.${EXTERNAL_DOMAIN}
+        tls:
+          - hosts:
+              - *hostinsert
 
     vmalert:
       enabled: true
