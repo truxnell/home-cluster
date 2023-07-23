@@ -44,7 +44,7 @@ spec:
           replicaCount: 3
           # required for HA vmagents
           extraArgs:
-            "dedup.minScrapeInterval": "30s"
+            dedup.minScrapeInterval: 60s
           storage:
             volumeClaimTemplate:
               spec:
@@ -56,7 +56,8 @@ spec:
         vmselect:
           replicaCount: 3
           cacheMountPath: /select-cache
-          extraArgs: {}
+          extraArgs:
+            dedup.minScrapeInterval: 60s # should be equal to VMAgent's scrapeInterval (default 30s)
 
           storage:
             volumeClaimTemplate:
@@ -122,6 +123,7 @@ spec:
       enabled: true
       replicaCount: 3
       spec:
+        scrapeInterval: "60s"
         additionalScrapeConfigs:
           name: vm-additional-scrape-configs
           key: prometheus-additional.yaml
