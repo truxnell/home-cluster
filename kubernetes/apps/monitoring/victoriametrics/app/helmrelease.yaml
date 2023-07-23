@@ -107,7 +107,6 @@ spec:
     vmalert:
       enabled: true
       spec:
-        externalURL: https://vmalert.${EXTERNAL_DOMAIN}
         notifiers:
           - selector:
               namespaceSelector:
