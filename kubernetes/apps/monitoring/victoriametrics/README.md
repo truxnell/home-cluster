@@ -8,6 +8,11 @@ It is more lightweight and space efficient with metrics, and is very snappy when
 Some posts:
 https://medium.com/israeli-tech-radar/all-at-once-monster-multi-site-monitoring-platform-with-victoriametrics-ebed75c3c5e
 
+# ToDO
+
+- Work out how to make Alertmanager link to correct externalURL for VMALert
+- Work out how to setup kubescheduler scrapes with Talos
+
 # Components
 
 ## VMOperator
