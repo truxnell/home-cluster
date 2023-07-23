@@ -43,7 +43,8 @@ spec:
         vmstorage:
           replicaCount: 3
           # required for HA vmagents
-          extraArgs: "dedup.minScrapeInterval: 30s"
+          extraArgs:
+            "dedup.minScrapeInterval": "30s"
           storage:
             volumeClaimTemplate:
               spec:
