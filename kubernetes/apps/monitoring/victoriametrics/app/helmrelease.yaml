@@ -233,7 +233,7 @@ spec:
           fsGroup: 2000
           seccompProfile:
             type: RuntimeDefault
-        # replicaCount: 3
+        replicaCount: 3
         storage:
           volumeClaimTemplate:
             spec:
