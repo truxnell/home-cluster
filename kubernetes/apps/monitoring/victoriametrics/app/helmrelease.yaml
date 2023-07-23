@@ -36,7 +36,7 @@ spec:
     vmcluster:
       enabled: true
       spec:
-        retentionPeriod: "1" # this is months unless a character prefix is added (1d, 1w, etc)
+        retentionPeriod: "2" # this is months unless a character prefix is added (1d, 1w, etc)
         replicationFactor: 3
         vmstorage:
           replicaCount: 3
@@ -219,7 +219,7 @@ spec:
           - hosts:
               - *hostam
       spec:
-        externalURL: https://alertmanager.{EXTERNAL_DOMAIN}
+        externalURL: https://alertmanager.${EXTERNAL_DOMAIN}
 
         securityContext:
           runAsGroup: 2000
