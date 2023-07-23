@@ -106,7 +106,7 @@ spec:
 
       spec:
         # requred to persist alert state
-        remoteWrite: &remote vminsert-victoria-metrics.monitoring:8480
+        remoteWrite: &remote "vminsert-victoria-metrics.monitoring:8480"
         remoteRead: *remote
 
     vmagent:
