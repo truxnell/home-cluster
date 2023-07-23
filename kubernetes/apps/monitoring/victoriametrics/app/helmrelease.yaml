@@ -104,10 +104,10 @@ spec:
           - hosts:
               - *hostalert
 
-      spec:
-        # requred to persist alert state
-        remoteWrite: &remote "vminsert-victoria-metrics.monitoring:8480"
-        remoteRead: *remote
+      # spec:
+      #   # requred to persist alert state
+      #   remoteWrite: &remote "vminsert-victoria-metrics.monitoring:8480"
+      #   remoteRead: *remote
 
     vmagent:
       enabled: true
