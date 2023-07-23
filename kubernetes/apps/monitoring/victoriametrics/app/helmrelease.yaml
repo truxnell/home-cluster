@@ -235,6 +235,8 @@ spec:
           - hosts:
               - *hostam
 
+      externalURL: *hostalert # Required to fix alertamnager dashboard urls - note its vmalert not alertmanager url
+
     kubelet:
       enabled: true
       spec:
