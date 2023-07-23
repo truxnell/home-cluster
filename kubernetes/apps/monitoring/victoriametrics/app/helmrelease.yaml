@@ -219,7 +219,7 @@ spec:
           - hosts:
               - *hostam
       spec:
-        externalURL: *hostalert # Required to fix alertamnager dashboard urls - note its vmalert not alertmanager url
+        externalURL: https://alertmanager.{EXTERNAL_DOMAIN}
 
         securityContext:
           runAsGroup: 2000
