@@ -37,10 +37,13 @@ spec:
       enabled: true
       spec:
         retentionPeriod: "2" # this is months unless a character prefix is added (1d, 1w, etc)
+        extraArgs:
+          dedup.minScrapeInterval: 60s
         replicationFactor: 3
         vmstorage:
           replicaCount: 3
-
+          # required for HA vmagents
+          extraArgs: "dedup.minScrapeInterval: 30s"
           storage:
             volumeClaimTemplate:
               spec:
@@ -116,6 +119,7 @@ spec:
 
     vmagent:
       enabled: true
+      replicaCount: 3
       spec:
         additionalScrapeConfigs:
           name: vm-additional-scrape-configs
