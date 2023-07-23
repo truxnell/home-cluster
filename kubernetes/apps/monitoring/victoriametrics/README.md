@@ -90,3 +90,21 @@ Key points:
 - Called the VictoriaMetrics datasource 'Prometheus' as it was easier than trying to get all my graphs to change datasource (some seem to be a bit too hardcoded)
 - VM Datasource needs `/select/0/promethus` appended to the URL
 - Added VictoriaMetrics dashboards to my setup manually - there isn't currenly a `forceDeployDashboards` like prom-kube-stack
+
+# Screenshots
+
+# VMAgent
+
+!(./vmagent.png)
+
+# VMUI
+
+!(./vmui.png)
+
+!(./vmui2.png)
+
+!(./vmui3.png)
+
+# VMAlert
+
+!(./vmalert.png)
