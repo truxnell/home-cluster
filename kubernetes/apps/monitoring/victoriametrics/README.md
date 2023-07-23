@@ -95,16 +95,16 @@ Key points:
 
 # VMAgent
 
-!(./vmagent.png)
+![VMAgent Screenshot](./vmagent.png)
 
 # VMUI
 
-!(./vmui.png)
+![VMUI Screenshot](./vmui.png)
 
-!(./vmui2.png)
+![VMUI Screenshot 2](./vmui2.png)
 
-!(./vmui3.png)
+![VMUI Screenshot 3](./vmui3.png)
 
 # VMAlert
 
-!(./vmalert.png)
+![VMAlert Screenshot](./vmalert.png)
