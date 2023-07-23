@@ -199,7 +199,12 @@ spec:
       spec:
         externalURL: https://alertmanager.${EXTERNAL_DOMAIN}
         replicaCount: 3
+        # Import Alertmanager config from a existing secret
+        # this can be configured directly in chart but it can
+        #   be a bit unweildy to manage
         configSecret: alertmanager-secret
+        # I needed this for talos using local-hostpath - YMMV
+        #
         securityContext:
           runAsGroup: 2000
           runAsNonRoot: true
@@ -207,6 +212,7 @@ spec:
           fsGroup: 2000
           seccompProfile:
             type: RuntimeDefault
+
         storage:
           volumeClaimTemplate:
             spec:
