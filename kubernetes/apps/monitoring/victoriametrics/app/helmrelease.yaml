@@ -40,6 +40,7 @@ spec:
         replicationFactor: 3
         vmstorage:
           replicaCount: 3
+
           storage:
             volumeClaimTemplate:
               spec:
@@ -47,10 +48,21 @@ spec:
                 resources:
                   requests:
                     storage: 10Gi
+
         vmselect:
           replicaCount: 3
           cacheMountPath: /select-cache
           extraArgs: {}
+
+          ingress:
+            enabled: true
+            ingressClassName: internal-nginx
+            hosts:
+              - &hostselect vmselect.${EXTERNAL_DOMAIN}
+            tls:
+              - hosts:
+                  - *hostselect
+
           storage:
             volumeClaimTemplate:
               spec:
@@ -58,6 +70,7 @@ spec:
                 resources:
                   requests:
                     storage: 2Gi
+
         vminsert:
           replicaCount: 3
 
@@ -78,6 +91,7 @@ spec:
         additionalScrapeConfigs:
           name: vm-additional-scrape-configs
           key: prometheus-additional.yaml
+
       ingress:
         enabled: true
         ingressClassName: internal-nginx
