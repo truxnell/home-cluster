@@ -192,6 +192,11 @@ spec:
           gnetId: 9628
           revision: 7
           datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/5342-ceph-pools/
+        ceph-pools:
+          gnetId: 5342
+          revision: 9
+          datasource: Prometheus
       flux:
         flux-cluster:
           url: https://raw.githubusercontent.com/fluxcd/flux2/v2.0.1/manifests/monitoring/monitoring-config/dashboards/cluster.json
