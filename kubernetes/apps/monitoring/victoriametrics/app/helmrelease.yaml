@@ -129,30 +129,29 @@ spec:
     defaultRules:
       create: true
       rules:
-        alertmanager: true
         etcd: true
-        configReloaders: true
         general: true
         k8s: true
         kubeApiserver: true
         kubeApiserverAvailability: true
+        kubeApiserverBurnrate: true
+        kubeApiserverHistogram: true
         kubeApiserverSlos: true
         kubelet: true
-        kubeProxy: false
         kubePrometheusGeneral: true
         kubePrometheusNodeRecording: true
         kubernetesApps: true
         kubernetesResources: true
         kubernetesStorage: true
         kubernetesSystem: true
-        kubeScheduler: false
+        kubeScheduler: true
         kubeStateMetrics: true
         network: true
         node: true
-        nodeExporterAlerting: false
-        nodeExporterRecording: true
-        prometheus: true
-        prometheusOperator: true
+        vmagent: true
+        vmsingle: true
+        vmhealth: true
+        alertmanager: true
 
     alertmanager:
       enabled: true
@@ -210,7 +209,18 @@ spec:
             target_matchers:
               - severity = "warning"
             equal: ["alertname", "namespace"]
+
+      ingress:
+        enabled: true
+        ingressClassName: internal-nginx
+        hosts:
+          - &hostam alertmanager.${EXTERNAL_DOMAIN}
+        tls:
+          - hosts:
+              - *hostam
       spec:
+        externalURL: *hostalert # Required to fix alertamnager dashboard urls - note its vmalert not alertmanager url
+
         securityContext:
           runAsGroup: 2000
           runAsNonRoot: true
@@ -226,16 +236,6 @@ spec:
               resources:
                 requests:
                   storage: 50Mi
-      ingress:
-        enabled: true
-        ingressClassName: internal-nginx
-        hosts:
-          - &hostam alertmanager.${EXTERNAL_DOMAIN}
-        tls:
-          - hosts:
-              - *hostam
-
-      externalURL: *hostalert # Required to fix alertamnager dashboard urls - note its vmalert not alertmanager url
 
     kubelet:
       enabled: true
