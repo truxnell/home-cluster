@@ -37,7 +37,8 @@ spec:
       enabled: true
       spec:
         retentionPeriod: "2" # this is months unless a character prefix is added (1d, 1w, etc)
-        extraArgs: "dedup.minScrapeInterval: 60s"
+        extraArgs:
+          dedup.minScrapeInterval: "60s"
         replicationFactor: 3
         vmstorage:
           replicaCount: 3
