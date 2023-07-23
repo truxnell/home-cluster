@@ -67,7 +67,11 @@ This is still where you work with/get notifications from/silence.
 _Stateless_ (Optional)
 Our beloved Grafana. Queries VMSelect as needed if selected as a datasource.
 
-# Differences to Prometheus/Loki/Thanos
+# Differences to Prometheus/Thanos/Alertmanager
+
+Well, for me I never managed to get Thanos to dedupe properly and this worked out of the box so... ¯\_(ツ)\_/¯
+Short version is that it does appear in my cluster to be lighter and much faster than the traditional stack.
+I have also removed using S3 from my setup, and it appears very space efficient.
 
 # Setup
 
@@ -93,11 +97,11 @@ Key points:
 
 # Screenshots
 
-# VMAgent
+## VMAgent
 
 ![VMAgent Screenshot](./vmagent.png)
 
-# VMUI
+## VMUI
 
 ![VMUI Screenshot](./vmui.png)
 
@@ -105,6 +109,6 @@ Key points:
 
 ![VMUI Screenshot 3](./vmui3.png)
 
-# VMAlert
+## VMAlert
 
 ![VMAlert Screenshot](./vmalert.png)
