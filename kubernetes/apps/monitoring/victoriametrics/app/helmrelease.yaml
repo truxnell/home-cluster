@@ -64,6 +64,8 @@ spec:
 
         vminsert:
           replicaCount: 3
+          extraArgs:
+            maxLabelsPerTimeseries: "90"
 
       ingress:
         storage:
@@ -95,6 +97,14 @@ spec:
 
     vmalert:
       enabled: true
+      spec:
+        notifiers:
+          - selector:
+              namespaceSelector:
+                matchNames: ["monitoring"]
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: victoria-metrics-k8s-stack
       ingress:
         enabled: true
         ingressClassName: internal-nginx
@@ -103,11 +113,6 @@ spec:
         tls:
           - hosts:
               - *hostalert
-
-      # spec:
-      #   # requred to persist alert state
-      #   remoteWrite: &remote "vminsert-victoria-metrics.monitoring:8480"
-      #   remoteRead: *remote
 
     vmagent:
       enabled: true
@@ -160,60 +165,6 @@ spec:
 
     alertmanager:
       enabled: true
-      config:
-        global:
-          resolve_timeout: 5m
-        receivers:
-          - name: "null"
-          - name: "pushover"
-            pushover_configs:
-              - user_key: ${SECRET_ALERTMANAGER_PUSHOVER_USER_KEY}
-                token: ${SECRET_ALERTMANAGER_PUSHOVER_TOKEN}
-                send_resolved: true
-                html: true
-                priority: |-
-                  {{ if eq .Status "firing" }}1{{ else }}0{{ end }}
-                title: |-
-                  {{ .CommonLabels.alertname }} [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}]
-                message: |-
-                  {{- range .Alerts }}
-                    {{- if ne .Annotations.description "" }}
-                      {{ .Annotations.description }}
-                    {{- else if ne .Annotations.summary "" }}
-                      {{ .Annotations.summary }}
-                    {{- else if ne .Annotations.message "" }}
-                      {{ .Annotations.message }}
-                    {{- else }}
-                      Alert description not available
-                    {{- end }}
-                    {{- if gt (len .Labels.SortedPairs) 0 }}
-                      <small>
-                      {{- range .Labels.SortedPairs }}
-                        <b>{{ .Name }}:</b> {{ .Value }}
-                      {{- end }}
-                      </small>
-                    {{- end }}
-                  {{- end }}
-        route:
-          group_by: ["alertname", "job"]
-          group_wait: 1m
-          group_interval: 10m
-          repeat_interval: 24h
-          receiver: "pushover"
-          routes:
-            - receiver: "null"
-              matchers:
-                - alertname =~ "InfoInhibitor|Watchdog"
-            - receiver: "pushover"
-              matchers:
-                - severity = "critical"
-              continue: true
-        inhibit_rules:
-          - source_matchers:
-              - severity = "critical"
-            target_matchers:
-              - severity = "warning"
-            equal: ["alertname", "namespace"]
 
       ingress:
         enabled: true
@@ -225,7 +176,8 @@ spec:
               - *hostam
       spec:
         externalURL: https://alertmanager.${EXTERNAL_DOMAIN}
-
+        replicaCount: 3
+        configSecret: alertmanager-secret
         securityContext:
           runAsGroup: 2000
           runAsNonRoot: true
@@ -233,7 +185,6 @@ spec:
           fsGroup: 2000
           seccompProfile:
             type: RuntimeDefault
-        replicaCount: 3
         storage:
           volumeClaimTemplate:
             spec:
