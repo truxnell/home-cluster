@@ -6,7 +6,6 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./cyberchef/ks.yaml
   - ./excalidraw/ks.yaml
   - ./filebrowser/ks.yaml
   - ./hajimari/ks.yaml
