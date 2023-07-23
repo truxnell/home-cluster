@@ -28,23 +28,27 @@ spec:
   values:
     fullnameOverride: victoria-metrics
 
+    # VM Operator deployment
     victoria-metrics-operator:
       enabled: true
       operator:
         disable_prometheus_converter: false
 
+    # Main VM Cluster in HA mode.
     vmcluster:
       enabled: true
       spec:
+        # Duration to keep metrics
         retentionPeriod: "2" # this is months unless a character prefix is added (1d, 1w, etc)
         extraArgs:
-          dedup.minScrapeInterval: "60s"
+          dedup.minScrapeInterval: "60s" # Only needed for HA
         replicationFactor: 3
+        # Storage backend
         vmstorage:
-          replicaCount: 3
+          replicaCount: 3 # HA
           # required for HA vmagents
           extraArgs:
-            dedup.minScrapeInterval: 60s
+            dedup.minScrapeInterval: 60s # Only needed for HA
           storage:
             volumeClaimTemplate:
               spec:
@@ -52,9 +56,9 @@ spec:
                 resources:
                   requests:
                     storage: 10Gi
-
+        # Query backend
         vmselect:
-          replicaCount: 3
+          replicaCount: 3 # HA
           cacheMountPath: /select-cache
           extraArgs:
             dedup.minScrapeInterval: 60s # should be equal to VMAgent's scrapeInterval (default 30s)
@@ -66,11 +70,11 @@ spec:
                 resources:
                   requests:
                     storage: 2Gi
-
+        # Data ingestion backend
         vminsert:
-          replicaCount: 3
+          replicaCount: 3 # HA
           extraArgs:
-            maxLabelsPerTimeseries: "90"
+            maxLabelsPerTimeseries: "90" # More needed if you are scraping a LOT of stuff and having issues
 
       ingress:
         storage:
@@ -99,10 +103,11 @@ spec:
           tls:
             - hosts:
                 - *hostinsert
-
+    # VM Alerting (however, this just watches & passes alerts to prom-alertmanager below...)
     vmalert:
       enabled: true
       spec:
+        externalURL: https://vmalert.${EXTERNAL_DOMAIN}
         notifiers:
           - selector:
               namespaceSelector:
@@ -119,6 +124,7 @@ spec:
           - hosts:
               - *hostalert
 
+    # VM Data scraping
     vmagent:
       enabled: true
       spec:
@@ -136,13 +142,18 @@ spec:
         tls:
           - hosts:
               - *hostagent
-
+    # Single-binary vm cluster alternative (liteweight, non-HA)
     vmsingle:
       enabled: false
 
+    # Extra slack templates
     monzoTemplate:
       enabled: false
 
+    # Prepared sets of default rules
+    # Adjust to what scraping functions you have enabled
+    # i.e. if you dont have kubeapisever setup & enabled, disable
+    #   the kubeApiserver rules below
     defaultRules:
       create: true
       rules:
@@ -170,6 +181,10 @@ spec:
         vmhealth: true
         alertmanager: true
 
+    # Prometheus alertmanager spinup
+    # Wait, why are we using vmalert AND prometheus alertmanager???
+    # VMalert isnt fully featured and VM acknowledge its a favourite
+    # for example,
     alertmanager:
       enabled: true
 
@@ -200,6 +215,7 @@ spec:
                 requests:
                   storage: 50Mi
 
+    # Add Kubelet scrape
     kubelet:
       enabled: true
       spec:
@@ -213,6 +229,7 @@ spec:
             source_labels: ["__name__"]
             regex: (rest_client_request_duration_seconds_bucket|rest_client_request_duration_seconds_sum|rest_client_request_duration_seconds_count)
 
+    # Add Kubeapi scrape
     kubeApiServer:
       enabled: true
       spec:
@@ -225,6 +242,7 @@ spec:
             regex: (apiserver_response_sizes_bucket|apiserver_watch_events_sizes_bucket)
             action: drop
 
+    # Add kubeControllerManager scrape
     kubeControllerManager:
       enabled: false
       endpoints: &cp
@@ -240,6 +258,7 @@ spec:
           - port: http-metrics
             scheme: http
 
+    # Add kubeScheduler scrape
     kubeScheduler:
       enabled: false
       # endpoints: *cp
@@ -253,6 +272,7 @@ spec:
       #     - port: http-metrics
       #       insecureSkipVerify: true
 
+    # Add kubeEtcd scrape
     kubeEtcd:
       enabled: true
       endpoints: *cp
@@ -265,11 +285,20 @@ spec:
           - port: http-metrics
             scheme: http
 
+    # Enable deployment of kube state metrics contianers
+    # I chose to deploy these seperately and manage it myself
+    #   insetad of trusting the stack chart
     kube-state-metrics:
       enabled: false
 
+    # Enable deployment of prom-note-exporter contianers
+    # I chose to deploy these seperately and manage it myself
+    #   insetad of trusting the stack chart
     prometheus-node-exporter:
       enabled: false
 
+    # Enable deployment of grafana
+    # I chose to deploy this seperately and manage it myself
+    #   insetad of trusting the stack chart
     grafana:
       enabled: false
