@@ -22,9 +22,9 @@ spec:
       monitor:
         enabled: true
 
-    resources:
-      requests:
-        cpu: 23m
-        memory: 128M
-      limits:
-        memory: 256M
+    # resources:
+    #   requests:
+    #     cpu: 23m
+    #     memory: 128M
+    #   limits:
+    #     memory: 256M
