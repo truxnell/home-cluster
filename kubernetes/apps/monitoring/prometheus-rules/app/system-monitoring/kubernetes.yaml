@@ -54,15 +54,6 @@ spec:
             summary: Kubernetes out of capacity (instance {{ $labels.instance }})
             description: "{{ $labels.node }} is out of capacity\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
 
-        - alert: KubernetesContainerOomKiller
-          expr: (kube_pod_container_status_restarts_total - kube_pod_container_status_restarts_total offset 10m >= 1) and ignoring (reason) min_over_time(kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}[10m]) == 1
-          for: 0m
-          labels:
-            severity: warning
-          annotations:
-            summary: Kubernetes container oom killer (instance {{ $labels.instance }})
-            description: "Container {{ $labels.container }} in pod {{ $labels.namespace }}/{{ $labels.pod }} has been OOMKilled {{ $value }} times in the last 10 minutes.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
-
         - alert: KubernetesCronjobSuspended
           expr: kube_cronjob_spec_suspend != 0
           for: 0m
