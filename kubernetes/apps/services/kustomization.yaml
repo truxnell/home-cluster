@@ -7,7 +7,6 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./excalidraw/ks.yaml
-  - ./filebrowser/ks.yaml
   - ./hajimari/ks.yaml
   - ./immich/ks.yaml
   - ./invidious-server/ks.yaml
