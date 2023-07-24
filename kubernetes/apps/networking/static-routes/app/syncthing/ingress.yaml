@@ -3,7 +3,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: &app syncthing
-  namespace: network-system
+  namespace: network
   annotations:
     hajimari.io/enable: "true"
     hajimari.io/icon: "arcticons:syncthing"
