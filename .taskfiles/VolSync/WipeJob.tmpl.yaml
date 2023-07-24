@@ -1,12 +1,9 @@
 ---
-
-
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/batch/job_v1.json
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 'wipe-${claim}-${ts}'
-  namespace: '${namespace}'
+  name: "wipe-${rsrc}-${claim}-${ts}"
+  namespace: "${namespace}"
 spec:
   ttlSecondsAfterFinished: 3600
   template:
@@ -16,7 +13,7 @@ spec:
       containers:
         - name: wipe
           image: ghcr.io/onedr0p/alpine:3.17.0@sha256:8e1eb13c3ca5c038f3bf22a5fe9e354867f97f98a78027c44b7c76fce81fa61d
-          command: ['/bin/bash', '-c', 'cd /config; find . -delete']
+          command: ["/bin/bash", "-c", "cd /config; find . -delete"]
           volumeMounts:
             - name: config
               mountPath: /config
@@ -25,4 +22,4 @@ spec:
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: '${claim}'
+            claimName: "${claim}"
