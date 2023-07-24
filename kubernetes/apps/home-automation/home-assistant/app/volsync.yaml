@@ -50,7 +50,7 @@ metadata:
 spec:
   sourcePVC: home-assistant-config-v1
   trigger:
-    schedule: "17 0 * * *"
+    schedule: "9 0 * * *"
   restic:
     copyMethod: Snapshot
     pruneIntervalDays: 10
