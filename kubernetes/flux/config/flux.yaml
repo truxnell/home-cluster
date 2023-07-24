@@ -1,5 +1,4 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/source.toolkit.fluxcd.io/ocirepository_v1beta2.json
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: OCIRepository
 metadata:
@@ -11,7 +10,6 @@ spec:
   ref:
     tag: v2.0.1@sha256:0940e22b35d960c2cfb1e1b7190de4f478c1dcc885f7b2db1dcfec209731d535
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomize.toolkit.fluxcd.io/kustomization_v1beta2.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:

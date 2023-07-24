@@ -1,7 +1,6 @@
 ---
 
 
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/source.toolkit.fluxcd.io/helmrepository_v1beta1.json
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:

@@ -1,7 +1,6 @@
 ---
 
 
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/notification.toolkit.fluxcd.io/receiver_v1beta1.json
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Receiver
 metadata:

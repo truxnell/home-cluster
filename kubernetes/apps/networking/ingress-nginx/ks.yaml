@@ -1,5 +1,4 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomize.toolkit.fluxcd.io/kustomization_v1beta2.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -24,7 +23,6 @@ spec:
   dependsOn:
     - name: cluster-apps-ingress-nginx-certificates
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomize.toolkit.fluxcd.io/kustomization_v1beta2.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -49,7 +47,6 @@ spec:
   dependsOn:
     - name: cluster-apps-ingress-nginx-certificates
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/kustomize.toolkit.fluxcd.io/kustomization_v1beta2.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:

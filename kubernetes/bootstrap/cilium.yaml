@@ -164,7 +164,6 @@ data:
 # Source: cilium/templates/cilium-agent/clusterrole.yaml
 
 
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/rbac.authorization.k8s.io/clusterrole_v1.json
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -272,7 +271,6 @@ rules:
 # Source: cilium/templates/cilium-operator/clusterrole.yaml
 
 
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/rbac.authorization.k8s.io/clusterrole_v1.json
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -381,7 +379,6 @@ rules:
 # Source: cilium/templates/cilium-agent/clusterrolebinding.yaml
 
 
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/rbac.authorization.k8s.io/clusterrolebinding_v1.json
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -403,7 +400,6 @@ subjects:
 # Source: cilium/templates/cilium-operator/clusterrolebinding.yaml
 
 
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/rbac.authorization.k8s.io/clusterrolebinding_v1.json
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -425,7 +421,6 @@ subjects:
 # Source: cilium/templates/cilium-agent/daemonset.yaml
 
 
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/apps/daemonset_v1.json
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -719,7 +714,6 @@ spec:
 # Source: cilium/templates/cilium-operator/deployment.yaml
 
 
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/apps/deployment_v1.json
 apiVersion: apps/v1
 kind: Deployment
 metadata:

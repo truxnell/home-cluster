@@ -3,7 +3,6 @@
 # replace the namespace, and volumes
 
 
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/batch/job_v1.json
 apiVersion: batch/v1
 kind: Job
 metadata:

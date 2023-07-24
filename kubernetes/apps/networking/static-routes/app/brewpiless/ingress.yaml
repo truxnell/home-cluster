@@ -1,5 +1,4 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/networking.k8s.io/ingress_v1.json
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:

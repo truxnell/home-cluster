@@ -1,7 +1,6 @@
 ---
 
 
-# yaml-language-server: $schema=https://kubernetes-schemas.trux.dev/cert-manager.io/certificate_v1.json
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
