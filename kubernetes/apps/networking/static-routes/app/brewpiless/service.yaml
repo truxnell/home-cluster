@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: &app brewpiless
-  namespace: network
+  namespace: networking
   labels:
     app.kubernetes.io/name: *app
     app.kubernetes.io/instance: *app
