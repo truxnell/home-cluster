@@ -2,19 +2,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: &app printer
+  name: &app syncthing
   namespace: network-system
   annotations:
     hajimari.io/enable: "true"
-    hajimari.io/icon: "monitor-share"
-    hajimari.io/appName: "printer"
+    hajimari.io/icon: "arcticons:syncthing"
   labels:
     app.kubernetes.io/name: *app
     app.kubernetes.io/instance: *app
 spec:
   ingressClassName: "internal-nginx"
   rules:
-    - host: &host "printer.${EXTERNAL_DOMAIN}"
+    - host: &host "syncthing.${EXTERNAL_DOMAIN}"
       http:
         paths:
           - path: /
