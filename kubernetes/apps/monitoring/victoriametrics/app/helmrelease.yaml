@@ -75,7 +75,12 @@ spec:
           replicaCount: 3 # HA
           extraArgs:
             maxLabelsPerTimeseries: "90" # More needed if you are scraping a LOT of stuff and having issues
-
+          resources:
+            requests:
+              cpu: 105m
+              memory: 1000Mi
+            limits:
+              memory: 3500Mi
       ingress:
         storage:
           enabled: true
