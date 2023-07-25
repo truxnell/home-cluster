@@ -62,7 +62,7 @@ spec:
           cacheMountPath: /select-cache
           extraArgs:
             dedup.minScrapeInterval: 60s # should be equal to VMAgent's scrapeInterval (default 30s)
-
+            vmalert.proxyURL: "http://vmalert.${EXTERNAL_DOMAIN}"
           storage:
             volumeClaimTemplate:
               spec:
