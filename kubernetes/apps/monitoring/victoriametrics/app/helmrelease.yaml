@@ -112,6 +112,7 @@ spec:
     vmalert:
       enabled: true
       spec:
+        evaluationInterval: "60s"
         notifiers:
           - selector:
               namespaceSelector:
