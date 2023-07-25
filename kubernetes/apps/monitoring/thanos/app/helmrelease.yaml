@@ -34,7 +34,7 @@ spec:
 
     query:
       enabled: true
-      replicaCount: 3
+      replicaCount: 2
       dnsDiscovery:
         sidecarsService: prometheus-thanos-discovery
         sidecarsNamespace: monitoring
@@ -49,7 +49,7 @@ spec:
 
     queryFrontend:
       enabled: true
-      replicaCount: 3
+      replicaCount: 2
       ingress:
         enabled: true
         hostname: "thanos.${EXTERNAL_DOMAIN}"
@@ -58,7 +58,7 @@ spec:
 
     bucketweb:
       enabled: true
-      replicaCount: 3
+      replicaCount: 2
       resources:
         requests:
           cpu: 15m
@@ -87,7 +87,7 @@ spec:
 
     storegateway:
       enabled: true
-      replicaCount: 3
+      replicaCount: 2
       resources:
         requests:
           cpu: 23m
@@ -101,7 +101,7 @@ spec:
 
     ruler:
       enabled: true
-      replicaCount: 3
+      replicaCount: 2
       replicaLabel: __replica__
       extraFlags: ["--web.prefix-header=X-Forwarded-Prefix"]
       alertmanagers:
