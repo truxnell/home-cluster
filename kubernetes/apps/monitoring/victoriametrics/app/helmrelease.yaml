@@ -32,8 +32,8 @@ spec:
     victoria-metrics-operator:
       enabled: true
       operator:
-        disable_prometheus_converter: false
-
+        disable_prometheus_converter: false # Ensure we keep enabled the converter to sync prom rules to VM rules
+        enable_converter_ownership: true # Required to allow VM to remove VM rules it imports if a prometheus rule is deleted
     # Main VM Cluster in HA mode.
     vmcluster:
       enabled: true
