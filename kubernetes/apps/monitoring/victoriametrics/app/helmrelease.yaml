@@ -45,7 +45,7 @@ spec:
         replicationFactor: 3
         # Storage backend
         vmstorage:
-          replicaCount: 3 # HA
+          replicaCount: 2 # HA
           # required for HA vmagents
           extraArgs:
             dedup.minScrapeInterval: 60s # Only needed for HA
@@ -58,7 +58,7 @@ spec:
                     storage: 10Gi
         # Query backend
         vmselect:
-          replicaCount: 3 # HA
+          replicaCount: 2 # HA
           cacheMountPath: /select-cache
           extraArgs:
             dedup.minScrapeInterval: "60s" # should be equal to VMAgent's scrapeInterval (default 30s)
@@ -73,7 +73,7 @@ spec:
                     storage: 2Gi
         # Data ingestion backend
         vminsert:
-          replicaCount: 3 # HA
+          replicaCount: 2 # HA
           extraArgs:
             maxLabelsPerTimeseries: "90" # More needed if you are scraping a LOT of stuff and having issues
           resources:
@@ -134,7 +134,7 @@ spec:
     vmagent:
       enabled: true
       spec:
-        replicaCount: 3
+        replicaCount: 2
         scrapeInterval: "60s"
         additionalScrapeConfigs:
           name: vm-additional-scrape-configs
@@ -204,7 +204,7 @@ spec:
               - *hostam
       spec:
         externalURL: https://alertmanager.${EXTERNAL_DOMAIN}
-        replicaCount: 3
+        replicaCount: 2
         # Import Alertmanager config from a existing secret
         # this can be configured directly in chart but it can
         #   be a bit unweildy to manage
