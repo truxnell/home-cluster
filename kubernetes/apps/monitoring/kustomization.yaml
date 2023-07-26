@@ -23,4 +23,4 @@ resources:
   - ./umami/ks.yaml
   - ./node-exporter/ks.yaml
   - ./kube-state-metrics/ks.yaml
-  - ./victoriametrics/ks.yaml
+  # - ./victoriametrics/ks.yaml
