@@ -21,6 +21,5 @@ resources:
   # - ./snmp-exporter-vyos/ks.yaml
   - ./prometheus-rules/ks.yaml
   - ./umami/ks.yaml
-  - ./victoriametrics/ks.yaml
   - ./node-exporter/ks.yaml
   - ./kube-state-metrics/ks.yaml

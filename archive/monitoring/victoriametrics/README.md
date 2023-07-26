@@ -1,5 +1,17 @@
 # VictoriaMetrics stack
 
+# Deprecated
+
+Sadly, I have deprecated this experiemnt on the deeper understanging of HA VMCluster (sepcifically VMAgent)
+
+When running in HA mode, Prometheus will spread scrape targets between live replicas, resulting in a distributed, shared effort to scrape targets. This is my desired mode.
+
+VM's method of providing HA is to ask _all_ of its VM agent replicas to scrape all targets for metrics. These are all passed to the cluster, which then dedupes them resulting in one metric entry.
+If a portion of vmagents go down it just means that less duplicate scrapes occur.
+
+Until running VM, I hadn't considered this approach breaks things in my homelab, namely my speedtest-exporter pod on my router. I endedup with multiple speedtests being run concurrently and sending wacky metrics back, that took some debugging.
+Due to this, VM is sadly not for my lab.
+
 # Intro
 
 VictoriaMetrics is a (somewhat) drop-in replacement to the ubiquitous Prometheus/Thanos/Alertmanager stack.
