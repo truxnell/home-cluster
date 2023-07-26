@@ -112,6 +112,7 @@ spec:
     # VM Alerting (however, this just watches & passes alerts to prom-alertmanager below...)
     vmalert:
       enabled: true
+      replicaCount: 2 # HA
       spec:
         evaluationInterval: "60s"
         notifiers:
