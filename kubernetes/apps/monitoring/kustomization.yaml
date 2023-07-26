@@ -12,7 +12,7 @@ resources:
   - ./kube-cleanup-operator/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
   - ./kubernetes-dashboard/ks.yaml
-  # - ./loki/ks.yaml
+  - ./loki/ks.yaml
   - ./prometheus-smartctl/ks.yaml
   # - ./thanos/ks.yaml
   # - ./vector/ks.yaml

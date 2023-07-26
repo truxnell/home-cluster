@@ -26,125 +26,104 @@ spec:
       retries: 3
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
+  dependsOn:
+    - name: local-path-provisioner
+      namespace: kube-system
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   values:
+    image:
+      registry: quay.io
+      repository: thanos/thanos
+      tag: v0.31.0
     objstoreConfig:
       type: s3
       config:
-        insecure: false
-
-    query:
-      enabled: true
-      replicaCount: 2
-      dnsDiscovery:
-        sidecarsService: prometheus-thanos-discovery
-        sidecarsNamespace: monitoring
-      replicaLabels:
-        - "__replica__" # must match with kube-prometheus-stack value `.prometheus.prometheusSpec.replicaExternalLabelName`
-      resources:
-        requests:
-          cpu: 15m
-          memory: 64M
-        # limits:
-        #   memory: 99M
-
+        insecure: true
     queryFrontend:
       enabled: true
-      replicaCount: 2
+      replicaCount: 3
       ingress:
         enabled: true
-        hostname: "thanos.${EXTERNAL_DOMAIN}"
-        ingressClassName: "internal-nginx"
+        ingressClassName: internal
+        hostname: &host thanos-query-frontend.${EXTERNAL_DOMAIN}
         tls: true
-
+        extraTls:
+          - hosts:
+              - *host
+    query:
+      enabled: true
+      replicaCount: 3
+      replicaLabel: ["__replica__"]
+      dnsDiscovery:
+        sidecarsService: kube-prometheus-stack-thanos-discovery
+        sidecarsNamespace: monitoring
     bucketweb:
       enabled: true
-      replicaCount: 2
-      resources:
-        requests:
-          cpu: 15m
-          memory: 64M
-        # limits:
-        #   memory: 64M
-
+      replicaCount: 3
     compactor:
       enabled: true
       extraFlags:
-        - "--compact.concurrency"
-        - "2"
-      retentionResolutionRaw: 14d
-      retentionResolution5m: 14d
-      retentionResolution1h: 30d
-      resources:
-        requests:
-          cpu: 15m
-          memory: 204M
-        # limits:
-        #   memory: 270M
+        - --compact.concurrency=4
+        - --delete-delay=30m
+      retentionResolutionRaw: 30d
+      retentionResolution5m: 60d
+      retentionResolution1h: 90d
       persistence:
         enabled: true
-        storageClass: "ceph-block"
-        size: 100Gi
-
+        storageClass: local-hostpath
+        size: 10Gi
     storegateway:
       enabled: true
-      replicaCount: 2
-      resources:
-        requests:
-          cpu: 23m
-          memory: 204M
-        # limits:
-        #   memory: 226M
+      replicaCount: 3
       persistence:
         enabled: true
-        storageClass: "ceph-block"
-        size: 1Gi
-
+        storageClass: local-hostpath
+        size: 10Gi
     ruler:
       enabled: true
-      replicaCount: 2
+      replicaCount: 3
       replicaLabel: __replica__
-      extraFlags: ["--web.prefix-header=X-Forwarded-Prefix"]
       alertmanagers:
-        - http://prometheus-alertmanager.monitoring.svc.cluster.local:9093
-      clusterName: cluster-0 # must match with kube-prometheus-stack value `.prometheus.prometheusSpec.externalLabels.cluster`
+        ["http://alertmanager-operated.monitoring.svc.cluster.local:9093"]
+      extraFlags: ["--web.prefix-header=X-Forwarded-Prefix"]
       config: |-
         groups:
-          - name: "PrometheusWatcher"
+          - name: PrometheusWatcher
             rules:
-              - alert: "PrometheusDown"
+              - alert: PrometheusDown
+                annotations:
+                  summary: A Prometheus has disappeared from Prometheus target discovery
                 expr: absent(up{job="kube-prometheus-stack-prometheus"})
-      dnsDiscovery:
-        enabled: true
+                for: 5m
+                labels:
+                  severity: critical
       persistence:
         enabled: true
-        storageClass: "ceph-block"
-        size: 512Mi
-      resources:
-        requests:
-          cpu: 23m
-          memory: 94M
-        limits:
-          memory: 113M
-
+        storageClass: local-hostpath
+        size: 10Gi
     metrics:
       enabled: true
       serviceMonitor:
         enabled: true
-
   valuesFrom:
-    - kind: Secret
-      name: thanos
-      valuesKey: S3_BUCKET_NAME
-      targetPath: objstoreConfig.config.bucket
-    - kind: Secret
-      name: thanos
-      valuesKey: S3_BUCKET_HOST
-      targetPath: objstoreConfig.config.endpoint
-    - kind: Secret
-      name: thanos
-      valuesKey: S3_ACCESS_KEY
-      targetPath: objstoreConfig.config.access_key
-    - kind: Secret
-      name: thanos
-      valuesKey: S3_SECRET_KEY
-      targetPath: objstoreConfig.config.secret_key
+    - targetPath: objstoreConfig.config.bucket
+      kind: ConfigMap
+      name: thanos-bucket
+      valuesKey: BUCKET_NAME
+    - targetPath: objstoreConfig.config.endpoint
+      kind: ConfigMap
+      name: thanos-bucket
+      valuesKey: BUCKET_HOST
+    - targetPath: objstoreConfig.config.region
+      kind: ConfigMap
+      name: thanos-bucket
+      valuesKey: BUCKET_REGION
+    - targetPath: objstoreConfig.config.access_key
+      kind: Secret
+      name: thanos-bucket
+      valuesKey: AWS_ACCESS_KEY_ID
+    - targetPath: objstoreConfig.config.secret_key
+      kind: Secret
+      name: thanos-bucket
+      valuesKey: AWS_SECRET_ACCESS_KEY
