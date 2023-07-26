@@ -5,9 +5,9 @@ metadata:
   name: cluster-apps-kube-prometheus-stack
   namespace: flux-system
   labels:
-    substitution.flux.home.arpa/enabled: 'true'
+    substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: './kubernetes/apps/monitoring/kube-prometheus-stack/app/'
+  path: "./kubernetes/apps/monitoring/kube-prometheus-stack/app/"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -20,5 +20,3 @@ spec:
       kind: HelmRelease
       name: kube-prometheus-stack
       namespace: monitoring
-  dependsOn:
-    - name: cluster-apps-thanos
