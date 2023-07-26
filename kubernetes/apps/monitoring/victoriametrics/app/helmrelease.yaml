@@ -64,7 +64,7 @@ spec:
           extraArgs:
             dedup.minScrapeInterval: "60s" # should be equal to VMAgent's scrapeInterval (default 30s)
             search.minStalenessInterval: "5m"
-            search.maxConcurrentRequests: 6
+            search.maxConcurrentRequests: "6"
             vmalert.proxyURL: "http://vmalert.${EXTERNAL_DOMAIN}"
           storage:
             volumeClaimTemplate:
