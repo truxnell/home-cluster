@@ -333,8 +333,6 @@ spec:
     ingress:
       enabled: true
       ingressClassName: internal-nginx
-      annotations:
-        external-dns.alpha.kubernetes.io/target: external.${EXTERNAL_DOMAIN}
       hosts:
         - &host grafana.${EXTERNAL_DOMAIN}
       tls:
