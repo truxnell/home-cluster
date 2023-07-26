@@ -1,0 +1,44 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/monitoring.coreos.com/scrapeconfig_v1alpha1.json
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: vyos-gatus
+  namespace: monitoring
+spec:
+  staticConfigs:
+    - targets: ["gatus.${EXTERNAL_DOMAIN}"]
+  metricsPath: /metrics
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/monitoring.coreos.com/scrapeconfig_v1alpha1.json
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: vyos-podman-exporter
+  namespace: monitoring
+spec:
+  staticConfigs:
+    - targets: ["gateway.${INTERNAL_DOMAIN}:9882"]
+  metricsPath: /metrics
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/monitoring.coreos.com/scrapeconfig_v1alpha1.json
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: vyos-smtp-relay
+  namespace: monitoring
+spec:
+  staticConfigs:
+    - targets: ["10.5.0.11:8080"]
+  metricsPath: /metrics
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/monitoring.coreos.com/scrapeconfig_v1alpha1.json
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: vyos-vnstat
+  namespace: monitoring
+spec:
+  staticConfigs:
+    - targets: ["gateway.${INTERNAL_DOMAIN}:8685"]
+  metricsPath: /metrics
