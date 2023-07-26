@@ -328,7 +328,7 @@ spec:
       enabled: true
     ingress:
       enabled: true
-      ingressClassName: external
+      ingressClassName: internal-nginx
       annotations:
         external-dns.alpha.kubernetes.io/target: external.${EXTERNAL_DOMAIN}
       hosts:
