@@ -138,7 +138,7 @@ spec:
     vmagent:
       enabled: true
       spec:
-        replicaCount: 2
+        replicaCount: 0
         shardCount: 2
         scrapeInterval: "60s"
         additionalScrapeConfigs:
