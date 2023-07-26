@@ -138,7 +138,7 @@ spec:
     vmagent:
       enabled: true
       spec:
-        replicaCount: 2
+        replicaCount: 1
         scrapeInterval: "60s"
         additionalScrapeConfigs:
           name: vm-additional-scrape-configs
