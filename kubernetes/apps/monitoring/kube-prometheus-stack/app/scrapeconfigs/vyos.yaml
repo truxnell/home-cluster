@@ -42,15 +42,3 @@ spec:
   staticConfigs:
     - targets: ["gateway.${INTERNAL_DOMAIN}:8685"]
   metricsPath: /metrics
----
-apiVersion: monitoring.coreos.com/v1alpha1
-kind: ScrapeConfig
-metadata:
-  name: vyos-speedtest
-  namespace: monitoring
-spec:
-  scrape_interval: 60m
-  scrape_timeout: 60s
-  staticConfigs:
-    - targets: ["gateway.${INTERNAL_DOMAIN}:9798"]
-  metricsPath: /metrics

@@ -169,6 +169,14 @@ spec:
               resources:
                 requests:
                   storage: 20Gi
+        additionalScrapeConfigs:
+          - job_name: speedtest-exporter
+            scrape_interval: 60m
+            scrape_timeout: 60s
+            honor_timestamps: true
+            static_configs:
+              - targets:
+                  - "gateway.${INTERNAL_DOMAIN}:9798"
     grafana:
       enabled: false
       forceDeployDashboards: true
