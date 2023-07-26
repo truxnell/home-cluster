@@ -22,7 +22,7 @@ Specs for CRD's etc can be found https://docs.victoriametrics.com/operator/api.h
 
 ## VMAgent
 
-_Stateless_
+_Stateless_ (Optional)
 A 'tiny but brave agent' that scrapes sources for metrics and sends them to VMInsert for ingestion via remote_write.
 Has a UI where you can view configured targets and their status
 Landing page looks bare but has some links to the expected targets/discovery/relabel debug/
@@ -66,6 +66,34 @@ Has a UI to view raw alerts triggered like Prometheus does.
 _Stateful_ (Optional)
 Our beloved Prometheus Alertmanager. Takes alerts from VMAlert and does the needful.
 This is still where you work with/get notifications from/silence.
+
+## node-exporter
+
+_Stateless_
+
+Exports metrics of a node, ex:
+
+- System (CPU/RAM/Disk/Network)
+- Filesystem
+- Process
+- Harware (temps)
+- Time
+
+You can enable this in the VM stack chart, but I have deployed seperately to reduce dependance on the VM maintainers to keep their helm templates for it up to 2023-07-26
+
+## kube-state-metrics
+
+_Stateless_
+
+Exports kube API metrics of the kubernetes resources of a node, ex:
+
+- Pod metrics
+- Node metrics (NodeReady, Conditions, etc - different to node-exporters metrics)
+- Namespace metrics
+- Deployment/Replicaset/Statefulset/Daemonset
+- CronJobs/Jobs
+
+You can enable this in the VM stack chart, but I have deployed seperately to reduce dependance on the VM maintainers to keep their helm templates for it up to 2023-07-26
 
 ## Grafana
 
