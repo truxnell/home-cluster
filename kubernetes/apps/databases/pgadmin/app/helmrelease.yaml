@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: dpage/pgadmin4
-      tag: "7.4"
+      tag: "7.5@sha256:37946e4f3e7b806bed1bd3f322ccb0ba39129c0055394822eb853ff395ec9b7d"
     # controller:
     #   replicas: 3
     #   strategy: RollingUpdate
