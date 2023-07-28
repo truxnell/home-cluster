@@ -14,3 +14,4 @@ resources:
   - ./node-feature-discovery/ks.yaml
   - ./reloader/ks.yaml
   - ./democratic-csi/ks.yaml
+  - ./k8s-ycl/ks.yaml
