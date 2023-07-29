@@ -35,7 +35,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/immich-app/immich-web
-      tag: v1.69.0@sha256:2f9479f577efce69494c9f54c74793599821dd14393075bfb215153186a1e3d8
+      tag: v1.71.0@sha256:e13fb6c45f0e15b7fffed28772b5cbb627fdd07bbef4e7029acac1b3bdd29168
 
     command: /bin/sh
     args:
