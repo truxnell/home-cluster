@@ -8,7 +8,7 @@ metadata:
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
     external-dns.alpha.kubernetes.io/target: "${SECRET_TUNNEL_ID}.cfargotunnel.com"
 spec:
-  ingressClassName: nginx
+  ingressclassname: internal-nginx
   rules:
     - host: &host "ingress.voltaicforge.com"
       http:
@@ -34,7 +34,7 @@ metadata:
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
     external-dns.alpha.kubernetes.io/target: "${SECRET_TUNNEL_ID}.cfargotunnel.com"
 spec:
-  ingressClassName: nginx
+  ingressclassname: internal-nginx
   rules:
     - host: &host "ingress.${EXTERNAL_DOMAIN}"
       http:

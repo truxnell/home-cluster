@@ -61,7 +61,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        ingressclassname: internal-nginx
         annotations:
           hajimari.io/icon: mdi:web-sync
         hosts:

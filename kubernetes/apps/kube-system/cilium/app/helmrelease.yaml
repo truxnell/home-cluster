@@ -89,7 +89,7 @@ spec:
         rollOutPods: true
         ingress:
           enabled: true
-          className: "nginx"
+          className: "internal-nginx"
           annotations:
             hajimari.io/enable: "true"
             hajimari.io/appName: hubble

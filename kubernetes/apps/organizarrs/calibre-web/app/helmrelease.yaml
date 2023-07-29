@@ -42,7 +42,7 @@ spec:
       main:
         enabled: true
         annotations:
-        ingressClassName: nginx
+        ingressclassname: internal-nginx
         hosts:
           - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:

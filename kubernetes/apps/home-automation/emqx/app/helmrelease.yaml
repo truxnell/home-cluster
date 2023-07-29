@@ -37,7 +37,7 @@ spec:
     ingress:
       dashboard:
         enabled: true
-        ingressClassName: nginx
+        ingressClassName: internal-nginx
         annotations:
           hajimari.io/appName: "EMQX"
           hajimari.io/icon: simple-icons:eclipsemosquitto
