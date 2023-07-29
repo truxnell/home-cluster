@@ -5,13 +5,10 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./snapshot-controller/ks.yaml
   - ./cilium/ks.yaml
   - ./descheduler/ks.yaml
   - ./intel-gpu-plugin/ks.yaml
-  - ./kubelet-csr-approver/ks.yaml
   - ./metrics-server/ks.yaml
   - ./node-feature-discovery/ks.yaml
   - ./reloader/ks.yaml
   - ./democratic-csi/ks.yaml
-  - ./k8s-ycl/ks.yaml
