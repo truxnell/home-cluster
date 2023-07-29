@@ -26,7 +26,6 @@ spec:
       repository: ghcr.io/onedr0p/qbittorrent
       tag: 4.5.4@sha256:f0a74313d750bc437ba2ad34f3412de5ab9a978f3f5b74227a1bda69271fef3e
     env:
-      TZ: "${TZ}"
       QBITTORRENT__BT_PORT: &port-bt 56956
     hostname: qbittorrent
     service:

@@ -28,8 +28,6 @@ spec:
     image:
       repository: ghcr.io/raylas/nextdns-exporter
       tag: 0.5.1
-    env:
-      TZ: '${TZ}'
     envFrom:
       - secretRef:
           name: *app

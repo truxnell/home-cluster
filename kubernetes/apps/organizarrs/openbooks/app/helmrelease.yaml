@@ -25,8 +25,6 @@ spec:
     image:
       repository: docker.io/evanbuss/openbooks
       tag: latest@sha256:3b3d34d8b77e8261df1f470e1ca8344c035e316a86667dc7c1ab2e768d6359f1
-    env:
-      TZ: '${TZ}'
     command:
       - ./openbooks
     args:

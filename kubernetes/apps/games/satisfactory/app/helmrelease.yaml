@@ -26,7 +26,6 @@ spec:
       repository: wolveix/satisfactory-server
       tag: v1.5.2
     env:
-      TZ: "${TZ}"
       DATA_FOLDER: "config"
     service:
       main:

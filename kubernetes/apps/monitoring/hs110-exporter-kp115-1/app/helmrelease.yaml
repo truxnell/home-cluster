@@ -26,7 +26,6 @@ spec:
       repository: sdelrio/hs110-exporter
       tag: v1.0.0
     env:
-      TZ: "${TZ}"
       HS110IP: "10.8.30.132"
       FREQUENCY: 60
       LISTENPORT: 8110

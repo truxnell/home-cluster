@@ -29,7 +29,6 @@ spec:
       repository: ghcr.io/onedr0p/radarr-develop
       tag: 4.7.2.7686@sha256:4d60d9dd92593fa2c8bf404d06548b1877ed86d63fa622e5e706c07b7a382e4a
     env:
-      TZ: '${TZ}'
       PUSHOVER_DEBUG: 'false'
       PUSHOVER_APP_URL: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
       RADARR__INSTANCE_NAME: Radarr

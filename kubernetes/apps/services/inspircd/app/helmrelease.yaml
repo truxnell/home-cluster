@@ -28,8 +28,6 @@ spec:
     image:
       repository: docker.io/inspircd/inspircd-docker
       tag: 3.16.1@sha256:db5e50f3838a4cd7ba343cd177254dfcfc3d1e74552fa10d582a3db7fa9519c8
-    env:
-      TZ: "Australia/Melbourne"
     service:
       main:
         enabled: true

@@ -32,8 +32,6 @@ spec:
       - "--path.sysfs=/host/sys"
       - "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)"
 
-    env:
-      TZ: "Australia/Melbourne"
 
     service:
       main:

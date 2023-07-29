@@ -28,8 +28,6 @@ spec:
     controller:
       replicas: 3
       strategy: RollingUpdate
-    env:
-      TZ: "${TZ}"
     service:
       main:
         ports:

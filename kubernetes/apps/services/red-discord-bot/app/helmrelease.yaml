@@ -32,7 +32,6 @@ spec:
       tag: core-audio
       pullPolicy: Always
     env:
-      TZ: ${TZ}
       PUID: 568
       PGID: 1000
       PREFIX: "?"

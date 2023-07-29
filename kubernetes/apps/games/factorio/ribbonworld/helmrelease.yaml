@@ -31,7 +31,6 @@ spec:
     global:
       nameOverride: *app
     env:
-      TZ: '${TZ}'
       PORT: &port 34197
       RCON_PORT: &rcon 27015
     initContainers:

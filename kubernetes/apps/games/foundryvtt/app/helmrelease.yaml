@@ -30,7 +30,6 @@ spec:
       repository: felddy/foundryvtt
       tag: 11.306.0@sha256:89dd034815ac685aeae8e4f3ead3ad0c462be5d025206902830fc9817dd25bd6
     env:
-      TZ: ${TZ}
       SECRET_FOUNDRY_USERNAME: ${SECRET_FOUNDRY_USERNAME}
       FOUNDRY_PASSWORD: ${FOUNDRY_PASSWORD}
     persistence:

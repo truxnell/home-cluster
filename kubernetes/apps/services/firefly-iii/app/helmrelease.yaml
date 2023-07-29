@@ -33,7 +33,6 @@ spec:
       tag: version-6.0.5
 
     env:
-      TZ: ${TZ}
       APP_URL: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
       TRUSTED_PROXIES: "**" #TODO: Change this
       DB_CONNECTION: pgsql

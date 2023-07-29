@@ -25,8 +25,6 @@ spec:
     image:
       repository: ghcr.io/onedr0p/filebrowser
       tag: v2.23.0
-    env:
-      TZ: "${TZ}"
     service:
       main:
         ports:

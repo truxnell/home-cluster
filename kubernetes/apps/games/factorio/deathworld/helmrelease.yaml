@@ -31,7 +31,6 @@ spec:
     global:
       nameOverride: *app
     env:
-      TZ: '${TZ}'
       UPDATE_MODS_ON_START: 'true'
       PORT: &port 34200
       RCON_PORT: &rcon 27016

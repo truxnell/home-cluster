@@ -29,7 +29,6 @@ spec:
       replicas: 3
       strategy: RollingUpdate
     env:
-      TZ: '${TZ}'
       ECOWITT2MQTT_MQTT_BROKER: emqx.home-automation
       ECOWITT2MQTT_MQTT_PORT: 1883
       ECOWITT2MQTT_MQTT_TOPIC: ecowitt2mqtt/pws

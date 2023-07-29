@@ -27,7 +27,6 @@ data:
   WORKER03_HOSTNAME: 10.8.20.44
   WORKER03_DRIVE: nvme0n1
 
-  TZ: Australia/Melbourne
 
   # Ip Range: 10.8.20.x/24
   LB_RANGE: "10.8.20.200-10.8.20.250"

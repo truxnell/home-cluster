@@ -29,7 +29,6 @@ spec:
       repository: youegraillot/lidarr-on-steroids
       tag: 1.2.8
     env:
-      TZ: "${TZ}"
       AUTOCONFIG: true
     envFrom:
       - secretRef:
