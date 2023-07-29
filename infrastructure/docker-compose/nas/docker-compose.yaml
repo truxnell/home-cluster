@@ -29,3 +29,14 @@ services:
     environment:
       - PGID=1000
       - PUID=568
+
+  sabnzbd:
+    image: ghcr.io/onedr0p/sabnzbd:4.0.3
+    container_name: sabnzbd
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - /tank/downloads/sabnzbd:/media/
+    environment:
+      - SABNZBD__HOST_WHITELIST_ENTRIES=sabnzbd, helios.natallan.com
