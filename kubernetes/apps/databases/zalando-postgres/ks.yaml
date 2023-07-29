@@ -5,9 +5,9 @@ metadata:
   name: cluster-apps-zalando-postgres
   namespace: flux-system
   labels:
-    substitution.flux.home.arpa/enabled: 'true'
+    substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: './kubernetes/apps/databases/zalando-postgres/operator/'
+  path: "./kubernetes/apps/databases/zalando-postgres/operator/"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -27,9 +27,9 @@ metadata:
   name: cluster-apps-zalando-postgres-cluster
   namespace: flux-system
   labels:
-    substitution.flux.home.arpa/enabled: 'true'
+    substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: './kubernetes/apps/databases/zalando-postgres/cluster/'
+  path: "./kubernetes/apps/databases/zalando-postgres/cluster/"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -44,5 +44,4 @@ spec:
       namespace: databases
   dependsOn:
     - name: cluster-apps-zalando-postgres
-    - name: cluster-apps-kyverno
     - name: cluster-apps-rook-ceph-cluster
