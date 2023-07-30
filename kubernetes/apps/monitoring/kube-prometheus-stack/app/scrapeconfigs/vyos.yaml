@@ -1,5 +1,4 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/monitoring.coreos.com/scrapeconfig_v1alpha1.json
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
@@ -10,7 +9,6 @@ spec:
     - targets: ["gatus.${EXTERNAL_DOMAIN}"]
   metricsPath: /metrics
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/monitoring.coreos.com/scrapeconfig_v1alpha1.json
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
@@ -21,7 +19,6 @@ spec:
     - targets: ["gateway.${INTERNAL_DOMAIN}:9882"]
   metricsPath: /metrics
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/monitoring.coreos.com/scrapeconfig_v1alpha1.json
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
@@ -32,7 +29,6 @@ spec:
     - targets: ["10.5.0.11:8080"]
   metricsPath: /metrics
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/monitoring.coreos.com/scrapeconfig_v1alpha1.json
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ScrapeConfig
 metadata:
@@ -41,4 +37,14 @@ metadata:
 spec:
   staticConfigs:
     - targets: ["gateway.${INTERNAL_DOMAIN}:8685"]
+  metricsPath: /metrics
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: vyos-node-exporter
+  namespace: monitoring
+spec:
+  staticConfigs:
+    - targets: ["gateway.${INTERNAL_DOMAIN}:9100"]
   metricsPath: /metrics

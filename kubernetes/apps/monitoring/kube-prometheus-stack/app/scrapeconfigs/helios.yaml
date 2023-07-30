@@ -1,0 +1,10 @@
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: helios-node-exporter
+  namespace: monitoring
+spec:
+  staticConfigs:
+    - targets: ["synchrona.${INTERNAL_DOMAIN}:9100"]
+  metricsPath: /metrics
