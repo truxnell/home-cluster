@@ -182,12 +182,12 @@ spec:
           metadataPool:
             failureDomain: host
             replicated:
-              size: 6
+              size: 3
           dataPool:
             failureDomain: host
             erasureCoded:
-              dataChunks: 4
-              codingChunks: 2
+              dataChunks: 2
+              codingChunks: 1
           preservePoolsOnDelete: true
           gateway:
             port: 80
@@ -197,7 +197,7 @@ spec:
                 memory: 1Gi
               limits:
                 memory: 2Gi
-            instances: 2
+            instances: 1
           healthCheck:
             bucket:
               interval: 60s
