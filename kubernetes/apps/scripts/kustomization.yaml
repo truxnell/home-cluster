@@ -7,4 +7,4 @@ resources:
   # Flux-Kustomizations
   - ./mailbackup/ks.yaml
   - ./yt-dlp-jon-ong/ks.yaml
-  - ./volsync-to-b2/ks.yaml
+  # - ./volsync-to-b2/ks.yaml
