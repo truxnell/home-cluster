@@ -46,19 +46,19 @@ spec:
         image: vikunja/api:0.21.0@sha256:e541ef5599d08f50a24e8de1fd8136f9d0a7ef514916fac6d6bf8ac6c7c16712
         env:
           - name: VIKUNJA_SERVICE_TIMEZONE
-            value: ${TZ}
+            value: "Australia/Melbourne"
           - name: VIKUNJA_DATABASE_TYPE
-            value: 'postgres'
+            value: "postgres"
           - name: VIKUNJA_SERVICE_FRONTENDURL
             value: https://tasks.${EXTERNAL_DOMAIN}
           - name: VIKUNJA_MAILER_FROMEMAIL
             value: tasks@${EMAIL_DOMAIN}
           - name: VIKUNJA_MAILER_ENABLED
-            value: 'true'
+            value: "true"
           - name: VIKUNJA_MAILER_HOST
             value: smtp-relay.trux.dev
           - name: VIKUNJA_MAILER_PORT
-            value: '2525'
+            value: "2525"
           - name: &envjwt VIKUNJA_SERVICE_JWT
             valueFrom:
               secretKeyRef:
@@ -109,7 +109,7 @@ spec:
         annotations:
           hajimari.io/icon: mdi:format-list-checks
         hosts:
-          - host: &host 'tasks.${EXTERNAL_DOMAIN}'
+          - host: &host "tasks.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -128,15 +128,15 @@ spec:
         enabled: true
         type: custom
         readOnly: true
-        mountPath: '-'
+        mountPath: "-"
         volumeSpec:
           configMap:
             name: vikunja
       caddy-config:
-        enabled: 'true'
+        enabled: "true"
         mountPath: /etc/caddy/Caddyfile
         subPath: Caddyfile
-        type: 'custom'
+        type: "custom"
         volumeSpec:
           configMap:
             name: vikunja

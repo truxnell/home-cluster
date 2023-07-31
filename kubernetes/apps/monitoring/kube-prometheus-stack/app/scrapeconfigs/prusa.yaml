@@ -1,14 +1,14 @@
----
-apiVersion: monitoring.coreos.com/v1alpha1
-kind: ScrapeConfig
-metadata:
-  name: prusa-node-exporter
-  namespace: monitoring
-spec:
-  staticConfigs:
-    - targets: ["prusa.${INTERNAL_DOMAIN}:9100"]
-  metricsPath: "/plugin/prometheus_exporter/metrics"
-  params:
-    apikey: ["${SECRET_OCTOPRINT_APIKEY}"]
-  tlsConfig:
-    insecure_skip_verify: true
+# ---
+# apiVersion: monitoring.coreos.com/v1alpha1
+# kind: ScrapeConfig
+# metadata:
+#   name: prusa-node-exporter
+#   namespace: monitoring
+# spec:
+#   staticConfigs:
+#     - targets: ["prusa.${INTERNAL_DOMAIN}:9100"]
+#   metricsPath: "/plugin/prometheus_exporter/metrics"
+#   params:
+#     apikey: ["${SECRET_OCTOPRINT_APIKEY}"]
+#   tlsConfig:
+#     insecure_skip_verify: true
