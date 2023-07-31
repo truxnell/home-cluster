@@ -29,13 +29,13 @@ spec:
     env:
       COMPOSE_PROJECT_NAME: paperless
       PAPERLESS_OCR_LANGUAGE: eng
-      PAPERLESS_CONSUMER_POLLING: '60'
-      PAPERLESS_CONSUMER_RECURSIVE: 'true'
-      PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: 'true'
+      PAPERLESS_CONSUMER_POLLING: "60"
+      PAPERLESS_CONSUMER_RECURSIVE: "true"
+      PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: "true"
       PAPERLESS_PORT: &port 8000
       PAPERLESS_REDIS: redis://localhost:6379
       PAPERLESS_TASK_WORKERS: 2
-      PAPERLESS_TIME_ZONE: '${TZ}'
+      PAPERLESS_TIME_ZONE: "Australia/Melbourne"
       PAPERLESS_URL: https://paperless.${EXTERNAL_DOMAIN}
       PAPERLESS_TIKA_ENABLED: 1
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://localhost:3000
@@ -57,7 +57,7 @@ spec:
           hajimari.io/icon: file-multiple
           nginx.ingress.kubernetes.io/proxy-body-size: 4G
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
         tls:
@@ -68,25 +68,25 @@ spec:
         enabled: true
         mountPath: /usr/src/paperless/data
         type: nfs
-        server: 'helios.${INTERNAL_DOMAIN}'
+        server: "helios.${INTERNAL_DOMAIN}"
         path: /tank/documents/paperless/data
       media:
         enabled: true
         mountPath: /usr/src/paperless/media
         type: nfs
-        server: 'helios.${INTERNAL_DOMAIN}'
+        server: "helios.${INTERNAL_DOMAIN}"
         path: /tank/documents/paperless/media
       consume:
         enabled: true
         mountPath: /usr/src/paperless/consume
         type: nfs
-        server: 'helios.${INTERNAL_DOMAIN}'
+        server: "helios.${INTERNAL_DOMAIN}"
         path: /tank/documents/paperless/consume
       export:
         enabled: true
         mountPath: /usr/src/paperless/export
         type: nfs
-        server: 'helios.${INTERNAL_DOMAIN}'
+        server: "helios.${INTERNAL_DOMAIN}"
         path: /tank/documents/paperless/export
     sidecars:
       redis:
@@ -98,7 +98,7 @@ spec:
         image: thecodingmachine/gotenberg:7.9.1@sha256:a4bfa7a2b6d3ee95fbc8a28050d36bfe2992b10e85ec51de86f23417c6b4fbbb
         env:
           - name: DISABLE_GOOGLE_CHROME
-            value: '1'
+            value: "1"
       tika:
         image: ghcr.io/paperless-ngx/tika:2.8.0-full@sha256:01f6f7b1801530e28822064562a73bbc55fdc204f6d13f17e307a6849bb3771b
         name: tika
