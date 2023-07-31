@@ -177,6 +177,19 @@ spec:
             static_configs:
               - targets:
                   - "gateway.${INTERNAL_DOMAIN}:9798"
+
+          - job_name: "octoprint"
+            scrape_interval: 1m
+            scrape_timeout: 10s
+            metrics_path: "/plugin/prometheus_exporter/metrics"
+            params:
+              apikey: ["${SECRET_OCTOPRINT_APIKEY}"]
+            tls_config:
+              insecure_skip_verify: true
+            static_configs:
+              - targets:
+                  - "prusa.${INTERNAL_DOMAIN}:5000"
+
     grafana:
       enabled: false
       forceDeployDashboards: true

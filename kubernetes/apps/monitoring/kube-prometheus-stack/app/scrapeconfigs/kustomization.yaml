@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - ./vyos.yaml
-  - ./pikvm.yaml
+  # - ./pikvm.yaml
   - ./durandal.yaml
   - ./prusa.yaml
   - ./synchrona.yaml
