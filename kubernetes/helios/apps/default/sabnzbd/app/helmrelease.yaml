@@ -39,12 +39,12 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "internal-nginx"
+        ingressClassName: "traefik"
         annotations:
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.trux.dev/css/base/sabnzbd/plex.css"></head>';
-            sub_filter_once on;
+          # nginx.ingress.kubernetes.io/configuration-snippet: |
+          #   proxy_set_header Accept-Encoding "";
+          #   sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.trux.dev/css/base/sabnzbd/plex.css"></head>';
+          #   sub_filter_once on;
           hajimari.io/icon: mdi:download
         hosts:
           - host: &host "{{ .Release.Name }}.trux.dev"
