@@ -69,7 +69,7 @@ spec:
       media:
         enabled: true
         type: hostPath
-        path: /tank/
+        hostPath: /tank/
         mountPath: /media
       incomplete:
         enabled: true
