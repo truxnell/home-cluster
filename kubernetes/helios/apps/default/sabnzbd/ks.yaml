@@ -5,9 +5,9 @@ metadata:
   name: cluster-apps-sabnzbd
   namespace: flux-system
   labels:
-    substitution.flux.home.arpa/enabled: 'true'
+    substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: './kubernetes/apps/downloads/sabnzbd/app/'
+  path: "./kubernetes/apps/downloads/sabnzbd/app/"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -20,5 +20,3 @@ spec:
       kind: HelmRelease
       name: sabnzbd
       namespace: downloads
-  dependsOn:
-    - name: cluster-apps-rook-ceph-cluster
