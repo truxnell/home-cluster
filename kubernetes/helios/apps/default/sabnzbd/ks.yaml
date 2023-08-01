@@ -7,7 +7,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: "./kubernetes/apps/downloads/sabnzbd/app/"
+  path: "./kubernetes/helios/apps/downloads/sabnzbd/app/"
   prune: true
   sourceRef:
     kind: GitRepository
