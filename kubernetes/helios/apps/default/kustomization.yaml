@@ -9,3 +9,4 @@ resources:
   # - ./minio/ks.yaml
   # - ./vector/ks.yaml
   - ./kopia-photos-to-b2/ks.yaml
+  - ./sabnzbd/ks.yaml
