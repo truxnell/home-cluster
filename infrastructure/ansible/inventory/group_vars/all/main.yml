@@ -1,0 +1,8 @@
+---
+timezone: "Australia/Melbourne"
+
+ssh_authorized_keys:
+  - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMZS9J1ydflZ4iJdJgO8+vnN8nNSlEwyn9tbWU9OcysW nat@nat-laptop-fedora"
+
+vector_aggregator_addr: "10.8.20.220"
+vector_aggregator_port: "6001"

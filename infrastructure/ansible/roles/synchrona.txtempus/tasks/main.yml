@@ -1,0 +1,51 @@
+---
+- name: Install git, build-essential, cmake
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - git
+    - build-essential
+    - cmake
+
+- name: Check if txtempus repository is already cloned
+  stat:
+    path: /opt/txtempus
+  register: txtempus_repo
+
+- name: Clone or update txtempus repository
+  git:
+    repo: https://github.com/hzeller/txtempus.git
+    dest: /opt/txtempus
+    update: yes
+  when: txtempus_repo.stat.exists
+
+- name: Clone txtempus repository
+  git:
+    repo: https://github.com/hzeller/txtempus.git
+    dest: /opt/txtempus
+    version: master
+  when: not txtempus_repo.stat.exists
+
+- name: Build txtempus
+  become: yes
+  command: >
+    cmake . -DPLATFORM=rpi
+  args:
+    chdir: /opt/txtempus
+
+- name: Install txtempus
+  become: yes
+  command: >
+    make install
+  args:
+    chdir: /opt/txtempus
+
+- name: Setup cronjob for txtempus
+  cron:
+    name: Run txtempus
+    minute: "57"
+    hour: "2,4"
+    job: "/usr/bin/txtempus -s JJY60 -r 23"
+    user: root

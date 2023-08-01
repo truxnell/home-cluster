@@ -1,0 +1,29 @@
+kvmd:
+  msd:
+    type: disabled
+  gpio:
+    drivers:
+      reboot:
+        type: cmd
+        cmd: [/usr/bin/sudo, reboot]
+      restart_service:
+        type: cmd
+        cmd: [/usr/bin/sudo, systemctl, restart, kvmd]
+    scheme:
+      reboot_button:
+        driver: reboot
+        pin: 0
+        mode: output
+        switch: false
+      restart_service_button:
+        driver: restart_service
+        pin: 0
+        mode: output
+        switch: false
+    view:
+      table:
+        - [
+            "#PiKVM",
+            "pikvm_led|green",
+            "restart_service_button|confirm|Service",
+          ]
