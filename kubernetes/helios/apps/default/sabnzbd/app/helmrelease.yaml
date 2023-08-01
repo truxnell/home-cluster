@@ -27,7 +27,7 @@ spec:
       tag: 4.0.3@sha256:aff676e3c234f7a4493c75813e296c347c02b6e5374acd1858f8244ea44f2b4a
     env:
       SABNZBD__HOST_WHITELIST_ENTRIES: >-
-        sabnzbd, sabnzbd.default, sabnzbd.default.svc, sabnzbd.default.svc.cluster, sabnzbd.default.svc.cluster.local, sabnzbd.${EXTERNAL_DOMAIN}
+        sabnzbd, sabnzbd.default, sabnzbd.default.svc, sabnzbd.default.svc.cluster, sabnzbd.default.svc.cluster.local, sabnzbd.trux.dev
     envFrom:
       - secretRef:
           name: *app
@@ -43,11 +43,11 @@ spec:
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/sabnzbd/plex.css"></head>';
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.trux.dev/css/base/sabnzbd/plex.css"></head>';
             sub_filter_once on;
           hajimari.io/icon: mdi:download
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.trux.dev"
             paths:
               - path: /
                 pathType: Prefix
