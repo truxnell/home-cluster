@@ -78,6 +78,7 @@ spec:
         enabled: true
         type: hostPath
         hostPath: /tank/backup/k8s_apps/qbittorrent/
+        mountPath: /config
       media:
         enabled: true
         type: hostPath
