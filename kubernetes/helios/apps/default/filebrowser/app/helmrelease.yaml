@@ -52,7 +52,7 @@ spec:
         annotations:
           hajimari.io/icon: mdi:folder-play-outline
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host "{{ .Release.Name }}.trux.dev"
             paths:
               - path: /
                 pathType: Prefix

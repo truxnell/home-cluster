@@ -37,7 +37,7 @@ spec:
         enabled: true
         type: LoadBalancer
         externalIPs:
-          - "${LB_QBITTORRENT}"
+          - *port-bt
         ports:
           bittorrent:
             enabled: true
