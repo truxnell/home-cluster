@@ -1,11 +1,9 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: services
+namespace: default
 resources:
-  - ./pvc.yaml
   - ./helmrelease.yaml
-  - ./volsync.yaml
 configMapGenerator:
   - name: filebrowser-config
     files:
@@ -15,4 +13,4 @@ generatorOptions:
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
 metadata:
-  namespace: services
+  namespace: default
