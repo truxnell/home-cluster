@@ -1,5 +1,5 @@
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: cluster-apps-ingress-nginx-external
@@ -23,7 +23,7 @@ spec:
   dependsOn:
     - name: cluster-apps-ingress-nginx-certificates
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: cluster-apps-ingress-nginx-internal
@@ -47,7 +47,7 @@ spec:
   dependsOn:
     - name: cluster-apps-ingress-nginx-certificates
 ---
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: cluster-apps-ingress-nginx-certificates
