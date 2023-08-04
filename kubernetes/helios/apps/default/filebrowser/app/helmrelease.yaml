@@ -23,8 +23,8 @@ spec:
       retries: 5
   values:
     image:
-      repository: ghcr.io/onedr0p/filebrowser
-      tag: v2.23.0
+      repository: docker.io/filebrowser/filebrowser
+      tag: latest
     service:
       main:
         ports:
@@ -70,13 +70,6 @@ spec:
         type: hostPath
         hostPath: /tank/
         mountPath: /media
-      filebrowser:
-        enabled: true
-        type: configMap
-        name: filebrowser-config
-        subPath: filebrowser.json
-        mountPath: /config/.filebrowser.json
-        readOnly: true
     resources:
       requests:
         cpu: 10m
