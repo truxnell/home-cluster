@@ -5,9 +5,9 @@ metadata:
   name: cluster-apps-filebrowser
   namespace: flux-system
   labels:
-    substitution.flux.home.arpa/enabled: 'true'
+    substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: './kubernetes/apps/services/filebrowser/app/'
+  path: "./kubernetes/apps/helios/default/filebrowser/app/"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -19,6 +19,6 @@ spec:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
       name: filebrowser
-      namespace: services
+      namespace: default
   dependsOn:
     - name: cluster-apps-rook-ceph-cluster

@@ -11,3 +11,4 @@ resources:
   - ./kopia-photos-to-b2/ks.yaml
   - ./sabnzbd/ks.yaml
   - ./qbittorrent/ks.yaml
+  - ./filebrowser/ks.yaml

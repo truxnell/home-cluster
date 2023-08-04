@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: &app filebrowser
-  namespace: services
+  namespace: default
 spec:
   interval: 15m
   chart:
@@ -48,7 +48,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "internal-nginx"
+        ingressClassName: "traefik"
         annotations:
           hajimari.io/icon: mdi:folder-play-outline
         hosts:
@@ -62,12 +62,13 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: filebrowser-config-v1
+        type: hostPath
+        hostPath: /tank/backup/k8s_apps/filebrowser/
+        mountPath: /config
       media:
         enabled: true
-        type: nfs
-        server: "helios.${INTERNAL_DOMAIN}"
-        path: /tank/
+        type: hostPath
+        hostPath: /tank/
         mountPath: /media
       filebrowser:
         enabled: true
