@@ -65,11 +65,11 @@ spec:
         type: hostPath
         hostPath: /tank/backup/k8s_apps/filebrowser/
         mountPath: /config
-      media:
+      srv:
         enabled: true
         type: hostPath
         hostPath: /tank/
-        mountPath: /media
+        mountPath: /srv
     resources:
       requests:
         cpu: 10m
