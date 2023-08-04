@@ -70,7 +70,7 @@ spec:
       media:
         enabled: true
         type: hostPath
-        hostPath: /tank/
+        hostPath: /tank/natflix/
         mountPath: /media
       incomplete:
         enabled: true
