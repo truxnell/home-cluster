@@ -32,7 +32,7 @@ spec:
       - --dir
       - /books
       - --port
-      - '8080'
+      - "8080"
       - --name
       - openbooks8675309
     service:
@@ -44,7 +44,7 @@ spec:
       runAsUser: 568
       runAsGroup: 100
       fsGroup: 100
-      fsGroupChangePolicy: 'OnRootMismatch'
+      fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 65539
     ingress:
@@ -52,9 +52,9 @@ spec:
         enabled: true
         ingressClassName: "internal-nginx"
         annotations:
-          hajimari.io/icon: 'mdi:book-search'
+          hajimari.io/icon: "mdi:book-search"
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -65,8 +65,8 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: 'helios.${INTERNAL_DOMAIN}'
-        path: /tank/downloads/openbooks/
+        server: "helios.${INTERNAL_DOMAIN}"
+        path: /tank/natflix/downloads/openbooks/
         mountPath: /books
         readOnly: true
     resources:
