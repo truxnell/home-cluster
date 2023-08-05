@@ -65,7 +65,7 @@ spec:
         enabled: true
         type: nfs
         server: &nas "helios.${INTERNAL_DOMAIN}"
-        path: /tank/
+        path: /tank/natflix/
         mountPath: /data
       backup:
         enabled: true
