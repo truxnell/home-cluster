@@ -12,7 +12,7 @@ resources:
   - ./openbooks/ks.yaml
   - ./overseerr/ks.yaml
   - ./prowlarr/ks.yaml
-  - ./radarr/ks.yaml
-  - ./readarr/ks.yaml
+  # - ./radarr/ks.yaml
+  # - ./readarr/ks.yaml
   - ./recyclarr/ks.yaml
-  - ./sonarr/ks.yaml
+  # - ./sonarr/ks.yaml
