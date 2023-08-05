@@ -13,3 +13,6 @@ resources:
   - ./qbittorrent/ks.yaml
   - ./filebrowser/ks.yaml
   - ./lidarr/ks.yaml
+  - ./sonarr/ks.yaml
+  - ./radarr/ks.yaml
+  - ./readarr/ks.yaml

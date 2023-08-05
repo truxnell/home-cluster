@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app radarr
+  name: &app readarr
   namespace: default
 spec:
   interval: 15m
@@ -26,14 +26,11 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: ghcr.io/onedr0p/radarr-develop
-      tag: 4.7.3.7731@sha256:89017fc5c2d56ba7e927196aec956907d6a704161a84255ae68bfec13a2bbea3
+      repository: ghcr.io/onedr0p/readarr-nightly
+      tag: 0.3.0.2081@sha256:72d3c7d58627f5fe506f9826035a11b4b98acd56e13919bfbdb8a0cfcd5808de
     env:
-      PUSHOVER_DEBUG: "false"
-      PUSHOVER_APP_URL: &host "{{ .Release.Name }}.trux.dev"
-      RADARR__INSTANCE_NAME: Radarr
-      RADARR__APPLICATION_URL: "https://{{ .Release.Name }}.trux.dev"
-      RADARR__LOG_LEVEL: info
+      READARR__INSTANCE_NAME: Readarr (Audio)
+      READARR__LOG_LEVEL: info
     envFrom:
       - secretRef:
           name: *app
@@ -41,19 +38,19 @@ spec:
       main:
         ports:
           http:
-            port: 7878
+            port: 8787
     ingress:
       main:
         enabled: true
         ingressClassName: "traefik"
         annotations:
-          hajimari.io/icon: mdi:filmstrip
-          # nginx.ingress.kubernetes.io/configuration-snippet: |
+          # nginx.ingress.kubernetes.io/configuration-snippet: |-
           #   proxy_set_header Accept-Encoding "";
-          #   sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.trux.dev/css/base/radarr/plex.css"></head>';
+          #   sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.trux.dev}/css/base/readarr/plex.css"></head>';
           #   sub_filter_once on;
+          hajimari.io/icon: "book-open"
         hosts:
-          - host: *host
+          - host: &host "{{ .Release.Name }}.trux.dev}"
             paths:
               - path: /
                 pathType: Prefix
@@ -71,24 +68,16 @@ spec:
       config:
         enabled: true
         type: hostPath
-        hostPath: /tank/backup/k8s_apps/radarr/
+        hostPath: /tank/backup/k8s_apps/readarr/
         mountPath: /config
       media:
         enabled: true
         type: hostPath
         hostPath: /tank/natflix/
         mountPath: /media
-      scripts:
-        enabled: true
-        type: configMap
-        name: radarr-pushover
-        subPath: pushover-notify.sh
-        mountPath: /scripts/pushover-notify.sh
-        defaultMode: 0775
-        readOnly: true
     resources:
       requests:
         cpu: 10m
-        memory: 250Mi
+        memory: 1200Mi
       limits:
         memory: 2000Mi

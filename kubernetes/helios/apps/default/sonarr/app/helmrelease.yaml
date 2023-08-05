@@ -70,12 +70,13 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: sonarr-config-v1
+        type: hostPath
+        hostPath: /tank/backup/k8s_apps/sonarr/
+        mountPath: /config
       media:
         enabled: true
-        type: nfs
-        server: &nas "helios.${INTERNAL_DOMAIN}"
-        path: /tank/
+        type: hostPath
+        hostPath: /tank/natflix/
         mountPath: /media
       scripts:
         enabled: true
@@ -85,12 +86,6 @@ spec:
         mountPath: /scripts/pushover-notify.sh
         defaultMode: 0775
         readOnly: true
-      backup:
-        enabled: true
-        type: nfs
-        server: *nas
-        path: /tank/backup/kubernetes/apps/sonarr
-        mountPath: /config/Backups
     resources:
       requests:
         cpu: 10m
