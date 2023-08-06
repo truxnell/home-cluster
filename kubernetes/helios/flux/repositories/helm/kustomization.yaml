@@ -7,3 +7,4 @@ resources:
   - ./prometheus-community-charts.yaml
   - ./vector-charts.yaml
   - ./jetstack-charts.yaml
+  - ./ingress-nginx-charts.yaml
