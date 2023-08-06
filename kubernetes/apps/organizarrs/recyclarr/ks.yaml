@@ -5,9 +5,9 @@ metadata:
   name: cluster-apps-recyclarr
   namespace: flux-system
   labels:
-    substitution.flux.home.arpa/enabled: 'true'
+    substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: './kubernetes/apps/organizarrs/recyclarr/app/'
+  path: "./kubernetes/apps/organizarrs/recyclarr/app/"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -21,6 +21,4 @@ spec:
       name: recyclarr
       namespace: organizarrs
   dependsOn:
-    - name: cluster-apps-sonarr
-    - name: cluster-apps-radarr
     - name: cluster-apps-external-secrets-operator
