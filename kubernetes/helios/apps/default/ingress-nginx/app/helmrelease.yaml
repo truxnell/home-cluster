@@ -77,7 +77,7 @@ spec:
       metrics:
         enabled: true
         serviceMonitor:
-          enabled: true
+          enabled: false
           namespace: default
           namespaceSelector:
             any: true
