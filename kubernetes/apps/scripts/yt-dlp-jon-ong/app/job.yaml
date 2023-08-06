@@ -1,6 +1,4 @@
 ---
-
-
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -44,4 +42,4 @@ spec:
         - name: nas
           nfs:
             server: 'helios'
-            path: /tank/music/
+            path: /tank/natflix/music/

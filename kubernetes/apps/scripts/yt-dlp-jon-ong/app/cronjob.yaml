@@ -1,6 +1,4 @@
 ---
-
-
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -48,4 +46,4 @@ spec:
             - name: nas
               nfs:
                 server: 'helios.${INTERNAL_DOMAIN}'
-                path: /tank/music/
+                path: /tank/natflix/music/
