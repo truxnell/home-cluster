@@ -29,7 +29,7 @@ spec:
       replicaCount: 2
       extraEnvs:
         - name: TZ
-          value: "${TZ}"
+          value: "Australia/Melbourne"
 
       service:
         type: NodePort
