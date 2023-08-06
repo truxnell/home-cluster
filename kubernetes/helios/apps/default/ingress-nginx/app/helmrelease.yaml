@@ -33,8 +33,9 @@ spec:
 
       service:
         type: NodePort
-        port: 443
-        nodePort: 443
+        nodePorts:
+          http: 80
+          https: 443
 
       publishService:
         enabled: true
