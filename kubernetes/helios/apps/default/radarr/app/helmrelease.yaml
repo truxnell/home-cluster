@@ -45,7 +45,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: internal-nginx
+        ingressClassName: traefik
         annotations:
           hajimari.io/icon: mdi:filmstrip
           nginx.ingress.kubernetes.io/configuration-snippet: |
