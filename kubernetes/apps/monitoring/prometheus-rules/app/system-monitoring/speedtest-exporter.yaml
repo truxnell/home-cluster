@@ -24,7 +24,7 @@ spec:
           expr: |
             avg_over_time(speedtest_download_bits_per_second{job=~".*speedtest-exporter.*"}[4h])
               < 380000000
-          for: 125m
+          for: 725m
           labels:
             severity: warning
         - alert: SpeedtestSlowInternetUpload
@@ -34,7 +34,7 @@ spec:
           expr: |
             avg_over_time(speedtest_upload_bits_per_second{job=~".*speedtest-exporter.*"}[4h])
               < 48000000
-          for: 125m
+          for: 725m
           labels:
             severity: warning
         - alert: SpeedtestHighPingLatency
@@ -44,7 +44,7 @@ spec:
           expr: |
             avg_over_time(speedtest_ping_latency_milliseconds{job=~".*speedtest-exporter.*"}[4h])
               > 5
-          for: 125m
+          for: 725m
           labels:
             severity: warning
         - alert: SpeedtestHighJitterLatency
@@ -54,6 +54,6 @@ spec:
           expr: |
             avg_over_time(speedtest_jitter_latency_milliseconds{job=~".*speedtest-exporter.*"}[4h])
               > 1
-          for: 125m
+          for: 725m
           labels:
             severity: warning
