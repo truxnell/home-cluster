@@ -42,7 +42,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "traefik"
+        ingressClassName: internal-nginx
         annotations:
           # nginx.ingress.kubernetes.io/configuration-snippet: |-
           #   proxy_set_header Accept-Encoding "";
