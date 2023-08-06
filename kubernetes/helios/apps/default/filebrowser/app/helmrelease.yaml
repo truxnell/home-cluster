@@ -48,7 +48,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: internal-nginx
+        ingressClassName: traefik
         annotations:
           hajimari.io/icon: mdi:folder-play-outline
         hosts:

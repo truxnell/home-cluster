@@ -47,7 +47,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: internal-nginx
+        ingressClassName: traefik
         hosts:
           - host: &host "syncthing.trux.dev"
             paths:
