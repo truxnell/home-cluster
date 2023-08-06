@@ -46,6 +46,6 @@
   cron:
     name: Run txtempus
     minute: "57"
-    hour: "2,4"
+    hour: "1,3"
     job: "/usr/bin/txtempus -s JJY60 -r 23"
     user: root
