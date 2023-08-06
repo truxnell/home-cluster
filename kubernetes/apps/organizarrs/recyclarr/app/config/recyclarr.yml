@@ -1,13 +1,11 @@
 ---
-
-
 # For more details on the configuration, see the Configuration Reference on the wiki here:
 # https://github.com/rcdailey/recyclarr/wiki/Configuration-Reference
 
 # Configuration specific to Sonarr
 sonarr:
   standard:
-    base_url: http://sonarr.organizarrs:8989
+    base_url: https://sonarr.trux.dev
     api_key: !env_var SONARR__API_KEY
     delete_old_custom_formats: true
     quality_definition:
@@ -72,7 +70,7 @@ sonarr:
 # Configuration specific to Radarr.
 radarr:
   standard:
-    base_url: http://radarr.organizarrs:7878
+    base_url: https://radarr.trux.dev
     api_key: !env_var RADARR__API_KEY
     delete_old_custom_formats: true
     quality_definition:
