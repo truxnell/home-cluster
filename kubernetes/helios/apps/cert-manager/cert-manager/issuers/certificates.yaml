@@ -1,17 +1,15 @@
 ---
-
-
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: 'trux.dev'
+  name: "trux.dev"
   namespace: default
 spec:
-  secretName: 'trux.dev-tls'
+  secretName: "trux.dev-tls"
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: 'trux.dev'
+  commonName: "trux.dev"
   dnsNames:
-    - 'trux.dev'
-    - '*.trux.dev'
+    - "trux.dev"
+    - "*.trux.dev"

@@ -16,3 +16,4 @@ resources:
   - ./sonarr/ks.yaml
   - ./radarr/ks.yaml
   - ./readarr/ks.yaml
+  - ./ingress-nginx/ks.yaml
