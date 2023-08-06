@@ -34,17 +34,9 @@ spec:
           http:
             port: 8080
       bittorrent:
-        enabled: true
-        type: LoadBalancer
-        externalIPs:
-          - *port-bt
-        ports:
-          bittorrent:
-            enabled: true
-            port: *port-bt
-            protocol: TCP
-            targetPort: *port-bt
-        externalTrafficPolicy: Local
+        type: NodePort
+        port: *port-bt
+        nodePort: *port-bt
     ingress:
       main:
         enabled: true
