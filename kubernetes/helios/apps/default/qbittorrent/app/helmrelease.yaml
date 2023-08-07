@@ -38,7 +38,7 @@ spec:
         type: NodePort
         ports:
           bittorrent:
-            protocol: tcp
+            protocol: TCP
             port: *port-bt
             nodePort: *port-bt
     ingress:
