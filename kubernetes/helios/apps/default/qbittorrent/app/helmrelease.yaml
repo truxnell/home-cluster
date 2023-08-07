@@ -34,9 +34,11 @@ spec:
           http:
             port: 8080
       bittorrent:
+        enabled: true
+        type: NodePort
         ports:
           bittorrent:
-            type: NodePort
+            protocol: tcp
             port: *port-bt
             nodePort: *port-bt
     ingress:
