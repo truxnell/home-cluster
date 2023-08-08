@@ -3,7 +3,7 @@ apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
   name: autobrr-db
-  namespace: monitoring
+  namespace: downloads
 spec:
   database: autobrr
 ---
@@ -11,7 +11,7 @@ apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
   name: autobrr-user
-  namespace: monitoring
+  namespace: downloads
 spec:
   role: autobrr
   database: autobrr-db
