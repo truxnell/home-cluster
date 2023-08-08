@@ -1,0 +1,107 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: autobrr
+  namespace: downloads
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: volsync
+      namespace: volsync
+  values:
+    controller:
+      type: statefulset
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: ghcr.io/autobrr/autobrr
+      tag: v1.28.0
+    env:
+      AUTOBRR__CHECKFORUPDATES: "false"
+      AUTOBRR__HOST: 0.0.0.0
+      AUTOBRR__PORT: &port 80
+      AUTOBRR__LOGLEVEL: TRACE
+      AUTOBRR__DATABASETYPE: postgres
+      AUTOBRR__POSTGRESDATABASE:
+        valueFrom:
+          secretKeyRef:
+            name: database-autobrr-user
+            key: DATABASE_NAME
+      AUTOBRR__POSTGRESHOST:
+        valueFrom:
+          secretKeyRef:
+            name: database-autobrr-user
+            key: HOST
+      AUTOBRR__POSTGRESUSER:
+        valueFrom:
+          secretKeyRef:
+            name: database-autobrr-user
+            key: LOGIN
+      AUTOBRR__POSTGRESPASS:
+        valueFrom:
+          secretKeyRef:
+            name: database-autobrr-user
+            key: PASSWORD
+      AUTOBRR__POSTGRESPORT: "5432"
+    envFrom: &envFrom
+      - secretRef:
+          name: autobrr
+    service:
+      main:
+        ports:
+          http:
+            port: *port
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: internal-nginx
+        hosts:
+          - host: &host "{{ .Release.Name }}.trux.dev"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: OnRootMismatch
+    persistence:
+      config:
+        enabled: true
+        type: emptyDir
+      config-file:
+        enabled: true
+        type: configMap
+        name: autobrr-configmap
+        subPath: config.toml
+        mountPath: /config/config.toml
+        readOnly: true
+    resources:
+      requests:
+        memory: 250Mi
+        cpu: 10m
+      limits:
+        memory: 500Mi
