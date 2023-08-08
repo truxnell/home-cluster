@@ -15,10 +15,10 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: autobrr
-      namespace: downloads
+  # healthChecks:
+  #   - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+  #     kind: HelmRelease
+  #     name: autobrr
+  #     namespace: downloads
   dependsOn:
     - name: cluster-apps-zalando-postgres
