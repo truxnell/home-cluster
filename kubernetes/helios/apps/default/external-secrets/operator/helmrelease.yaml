@@ -27,8 +27,6 @@ spec:
     keepHistory: false
   values:
     installCRDs: true
-    replicaCount: 2
-    leaderElect: true
     serviceMonitor:
       enabled: false
     webhook:
