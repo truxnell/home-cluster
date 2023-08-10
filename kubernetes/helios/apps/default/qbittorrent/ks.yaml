@@ -29,7 +29,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: "./kubernetes/helios/apps/default/qbittorrent/tagging/"g
+  path: "./kubernetes/helios/apps/default/qbittorrent/tagging/"
   prune: true
   sourceRef:
     kind: GitRepository
