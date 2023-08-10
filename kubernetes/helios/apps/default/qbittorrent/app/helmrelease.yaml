@@ -80,6 +80,21 @@ spec:
         type: hostPath
         hostPath: /tank/natflix/
         mountPath: /media
+      scripts:
+        enabled: true
+        type: configMap
+        name: qbittorrent-scripts
+        mountPath: /scripts/xseed.sh
+        subPath: xseed.sh
+        defaultMode: 0775
+        readOnly: true
+      xseed:
+        enabled: true
+        type: secret
+        name: cross-seed-secret
+        mountPath: /config/config.js
+        subPath: config.js
+        readOnly: true
     resources:
       requests:
         cpu: 10m
