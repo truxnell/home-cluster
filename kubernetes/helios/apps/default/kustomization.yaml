@@ -16,4 +16,4 @@ resources:
   - ./sonarr/ks.yaml
   - ./radarr/ks.yaml
   - ./readarr/ks.yaml
-  - ./externalsecret.yaml
+  - ./external-secrets.yaml
