@@ -33,7 +33,7 @@ spec:
       enabled: true
     webhook:
       serviceMonitor:
-        enabled: true
+        enabled: false
     certController:
       serviceMonitor:
-        enabled: true
+        enabled: false
