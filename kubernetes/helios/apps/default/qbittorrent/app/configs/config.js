@@ -8,17 +8,17 @@ module.exports = {
   qbittorrentUrl: "http://localhost:8080",
 
   torznab: [
-    "http://prowlarr.media.svc.cluster.local:9696/3/api?apikey={{ .PROWLARR_APIKEY }}", // ipt
-    "http://prowlarr.media.svc.cluster.local:9696/4/api?apikey={{ .PROWLARR_APIKEY }}", // tl
-    "http://prowlarr.media.svc.cluster.local:9696/5/api?apikey={{ .PROWLARR_APIKEY }}", // hdt
-    "http://prowlarr.media.svc.cluster.local:9696/6/api?apikey={{ .PROWLARR_APIKEY }}", // ts
-    "http://prowlarr.media.svc.cluster.local:9696/7/api?apikey={{ .PROWLARR_APIKEY }}", // mtv
-    "http://prowlarr.media.svc.cluster.local:9696/8/api?apikey={{ .PROWLARR_APIKEY }}", // uhd
-    "http://prowlarr.media.svc.cluster.local:9696/11/api?apikey={{ .PROWLARR_APIKEY }}", // fl
-    "http://prowlarr.media.svc.cluster.local:9696/15/api?apikey={{ .PROWLARR_APIKEY }}", // st
-    "http://prowlarr.media.svc.cluster.local:9696/16/api?apikey={{ .PROWLARR_APIKEY }}", // blu
-    "http://prowlarr.media.svc.cluster.local:9696/17/api?apikey={{ .PROWLARR_APIKEY }}", // ptp
-    "http://prowlarr.media.svc.cluster.local:9696/42/api?apikey={{ .PROWLARR_APIKEY }}", // btn
+    "http://prowlarr.media.svc.cluster.local:9696/3/api?apikey={{ .PROWLAR__API_KEY }}", // ipt
+    "http://prowlarr.media.svc.cluster.local:9696/4/api?apikey={{ .PROWLAR__API_KEY }}", // tl
+    "http://prowlarr.media.svc.cluster.local:9696/5/api?apikey={{ .PROWLAR__API_KEY }}", // hdt
+    "http://prowlarr.media.svc.cluster.local:9696/6/api?apikey={{ .PROWLAR__API_KEY }}", // ts
+    "http://prowlarr.media.svc.cluster.local:9696/7/api?apikey={{ .PROWLAR__API_KEY }}", // mtv
+    "http://prowlarr.media.svc.cluster.local:9696/8/api?apikey={{ .PROWLAR__API_KEY }}", // uhd
+    "http://prowlarr.media.svc.cluster.local:9696/11/api?apikey={{ .PROWLAR__API_KEY }}", // fl
+    "http://prowlarr.media.svc.cluster.local:9696/15/api?apikey={{ .PROWLAR__API_KEY }}", // st
+    "http://prowlarr.media.svc.cluster.local:9696/16/api?apikey={{ .PROWLAR__API_KEY }}", // blu
+    "http://prowlarr.media.svc.cluster.local:9696/17/api?apikey={{ .PROWLAR__API_KEY }}", // ptp
+    "http://prowlarr.media.svc.cluster.local:9696/42/api?apikey={{ .PROWLAR__API_KEY }}", // btn
   ],
 
   action: "inject",
