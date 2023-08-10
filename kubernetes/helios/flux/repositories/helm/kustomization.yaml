@@ -8,3 +8,4 @@ resources:
   - ./vector-charts.yaml
   - ./jetstack-charts.yaml
   - ./ingress-nginx-charts.yaml
+  - ./external-secrets.yaml
