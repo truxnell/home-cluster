@@ -39,8 +39,8 @@ spec:
         ports:
           xseed:
             protocol: TCP
-            port: 2468
-            nodePort: *port-bt
+            port: &port-xseed 2468
+            nodePort: *port-xseed
       bittorrent:
         enabled: true
         type: NodePort
