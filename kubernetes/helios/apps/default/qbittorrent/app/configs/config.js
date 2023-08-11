@@ -16,7 +16,7 @@ module.exports = {
     // "http://prowlarr.trux.dev/8/api?apikey={{ .PROWLARR__API_KEY }}", // uhd
     "http://prowlarr.trux.dev/19/api?apikey={{ .PROWLARR__API_KEY }}", // fl
     // "http://prowlarr.trux.dev/15/api?apikey={{ .PROWLARR__API_KEY }}", // st
-    // "http://prowlarr.trux.dev/16/api?apikey={{ .PROWLARR__API_KEY }}", // blu
+    "http://prowlarr.trux.dev/24/api?apikey={{ .PROWLARR__API_KEY }}", // blu
     // "http://prowlarr.trux.dev/17/api?apikey={{ .PROWLARR__API_KEY }}", // ptp
     // "http://prowlarr.trux.dev/42/api?apikey={{ .PROWLARR__API_KEY }}", // btn
   ],
@@ -33,11 +33,7 @@ module.exports = {
 
   // I have sonarr, radarr, and prowlarr categories set in qBittorrent
   // The save paths for them are set to the following:
-  dataDirs: [
-    "/media/downloads/qbittorrent/sonarr",
-    "/media/downloads/qbittorrent/radarr",
-    "/media/downloads/qbittorrent/prowlarr",
-  ],
+  dataDirs: ["/media/downloads/qbittorrent/downloads/"],
 
   outputDir: "/config/xseeds",
   torrentDir: "/config/qBittorrent/BT_backup",
