@@ -42,6 +42,7 @@ spec:
       - --unregistered
       - --added-on
       - --last-activity
+      - --trackers
       - --tracker-down
       - -s
       - qbittorrent.default.svc.cluster.local
