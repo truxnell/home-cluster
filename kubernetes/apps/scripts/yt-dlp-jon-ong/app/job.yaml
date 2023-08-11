@@ -12,7 +12,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: *app
-          image: ghcr.io/truxnell/yt-dlp:2023.07.06@sha256:588c7b2b681e8bd6128441d4a11d9359397dbd91cfb7c432d0c62ec5e447de1b
+          image: ghcr.io/truxnell/yt-dlp:2023.07.06@sha256:a946c8ce9cc60297ffa64900f2ea3a2ed3a46d72a41c0f5d14e5fbbd5270830d
           imagePullPolicy: IfNotPresent
           command: ['/usr/local/bin/yt-dlp']
           args:
