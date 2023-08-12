@@ -47,7 +47,7 @@ spec:
       OAUTH2_PROVIDER: oidc
       OAUTH2_REDIRECT_URL: "https://miniflux.${EXTERNAL_DOMAIN}/oauth2/oidc/callback"
       POLLING_SCHEDULER: round_robin
-      POLLING_FREQUENCY: "15"
+      POLLING_FREQUENCY: "60"
       RUN_MIGRATIONS: "1"
     envFrom:
       - secretRef:
