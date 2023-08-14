@@ -73,7 +73,7 @@ spec:
         hosts:
           - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
-              - path: /foo/*
+              - path: /[0-9][0-9]?/api/
                 pathType: Prefix
         tls:
           - hosts:
