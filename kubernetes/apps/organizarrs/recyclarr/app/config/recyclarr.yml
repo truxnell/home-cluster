@@ -163,7 +163,7 @@ radarr:
           - 1c1a4c5e823891c75bc50380a6866f73 # DTS
 
         quality_profiles:
-          - name: Remux-1080p
+          - name: Any (Non-4k)
 
       # Audio Advanced #2
 
@@ -175,7 +175,7 @@ radarr:
           - c2998bd0d90ed5621d8df281e839436e # DD
 
         quality_profiles:
-          - name: Remux-1080p
+          - name: Any (Non-4k)
 
       # HDR Formats
 
@@ -191,7 +191,7 @@ radarr:
           - 08d6d8834ad9ec87b1dc7ec8148e7a1f # PQ
           - 9364dd386c9b4a1100dde8264690add7 # HLG
         quality_profiles:
-          - name: Remux-1080p
+          - name: Any (Non-4k)
 
       # Movie Versions
 
@@ -207,7 +207,7 @@ radarr:
           - 09d9dd29a0fc958f9796e65c2a8864b4 # Open Matte
 
         quality_profiles:
-          - name: Remux-1080p
+          - name: Any (Non-4k)
 
       # Unwanted
 
@@ -218,7 +218,7 @@ radarr:
           - dc98083864ea246d05a42df0d05f81cc # x265 (HD)
 
         quality_profiles:
-          - name: Remux-1080p
+          - name: Any (Non-4k)
 
       # HQ Release Groups
 
@@ -235,7 +235,7 @@ radarr:
           - af94e0fe497124d1f9ce732069ec8c3b # WEB Tier 03
 
         quality_profiles:
-          - name: Remux-1080p
+          - name: Any (Non-4k)
 
       # Streaming Services
 
@@ -253,7 +253,7 @@ radarr:
           - cc5e51a9e85a6296ceefe097a77f12f4 # BCORE
 
         quality_profiles:
-          - name: Remux-1080p
+          - name: Any (Non-4k)
 
       # Misc
 
@@ -262,7 +262,7 @@ radarr:
           - ae43b294509409a6a13919dedd4764c4 # Repack2
 
         quality_profiles:
-          - name: Remux-1080p
+          - name: Any (Non-4k)
 
       # Optional
 
@@ -277,4 +277,4 @@ radarr:
           - 839bea857ed2c0a8e084f3cbdbd65ecb # x265 (no HDR/DV)
 
         quality_profiles:
-          - name: Remux-1080p
+          - name: Any (Non-4k)
