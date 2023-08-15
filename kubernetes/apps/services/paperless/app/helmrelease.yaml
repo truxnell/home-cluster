@@ -25,7 +25,7 @@ spec:
               name: *app
     image:
       repository: ghcr.io/paperless-ngx/paperless-ngx
-      tag: 1.16.5
+      tag: 1.17.1@sha256:1a603fdb40f22f7145e2ffd3f47e5442fae1e0a99a73584d4453591215f55a99
     env:
       COMPOSE_PROJECT_NAME: paperless
       PAPERLESS_OCR_LANGUAGE: eng
