@@ -2,8 +2,8 @@
 apiVersion: external-secrets.io/v1beta1
 kind: ClusterSecretStore
 metadata:
-  name: &name plex-media-manager-restic
-  namespace: media
+  name: &name plex-meta-manager-restic
+  namespace: meta
 spec:
   provider:
     doppler:
@@ -19,8 +19,8 @@ spec:
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: &name plex-media-manager-restic
-  namespace: media
+  name: &name plex-meta-manager-restic
+  namespace: meta
 spec:
   secretStoreRef:
     kind: ClusterSecretStore
@@ -30,7 +30,7 @@ spec:
     template:
       engineVersion: v2
       data:
-        RESTIC_REPOSITORY: "{{ .REPOSITORY_TEMPLATE }}/plex-media-manager"
+        RESTIC_REPOSITORY: "{{ .REPOSITORY_TEMPLATE }}/plex-meta-manager"
         RESTIC_PASSWORD: "{{ .RESTIC_PASSWORD }}"
         AWS_ACCESS_KEY_ID: "{{ .AWS_ACCESS_KEY_ID }}"
         AWS_SECRET_ACCESS_KEY: "{{ .AWS_SECRET_ACCESS_KEY }}"
@@ -42,16 +42,16 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: plex-media-manager
-  namespace: media
+  name: plex-meta-manager
+  namespace: meta
 spec:
-  sourcePVC: plex-media-manager-config-v1
+  sourcePVC: plex-meta-manager-config-v1
   trigger:
     schedule: "9 0 * * *"
   restic:
     copyMethod: Snapshot
     pruneIntervalDays: 10
-    repository: plex-media-manager-restic
+    repository: plex-meta-manager-restic
     cacheCapacity: 5Gi
     volumeSnapshotClassName: csi-ceph-blockpool
     storageClassName: ceph-block

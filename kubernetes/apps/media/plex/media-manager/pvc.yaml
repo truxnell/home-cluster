@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: plex-media-manager-config-v1
-  namespace: media
+  name: plex-meta-manager-config-v1
+  namespace: meta
   labels:
-    app.kubernetes.io/name: &name plex-media-manager
+    app.kubernetes.io/name: &name plex-meta-manager
     app.kubernetes.io/instance: *name
     snapshot.home.arpa/enabled: "true"
 spec:
