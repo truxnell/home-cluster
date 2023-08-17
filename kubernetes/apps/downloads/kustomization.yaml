@@ -8,3 +8,4 @@ resources:
   # - ./qbittorrent/ks.yaml
   # - ./sabnzbd/ks.yaml
   - ./autobrr/ks.yaml
+  - ./omegabrr/ks.yaml

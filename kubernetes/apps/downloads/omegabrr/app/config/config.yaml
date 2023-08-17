@@ -1,0 +1,58 @@
+---
+server:
+  host: 0.0.0.0
+  port: 80
+  apiToken: {{ .OMEGABRR_APIKEY }}
+
+schedule: "0 */8 * * *"
+
+clients:
+  autobrr:
+    host: http://autobrr.default.svc.cluster.local
+    apikey: {{ .AUTOBRR_APIKEY }}
+  # arr:
+  #   - name: radarr
+  #     type: radarr
+  #     host: http://radarr.organizarrs.svc.cluster.local
+  #     apikey: {{ .RADARR__API_KEY }}
+  #     filters:
+  #       - 1 # movies
+  #
+  #   - name: sonarr
+  #     type: sonarr
+  #     host: http://sonarr.organizarrs.svc.cluster.local
+  #     apikey: {{ .SONARR__API_KEY }}
+  #     filters:
+  #       - 2 # shows
+  #     excludeAlternateTitles: true
+  #
+lists:
+  # - name: Latest TV Shows
+  #   type: mdblist
+  #   url: https://mdblist.com/lists/garycrawfordgc/latest-tv-shows/json
+  #   filters:
+  #     - 1 # Change me
+  #
+  # - name: Anticipated TV
+  #   type: trakt
+  #   url: https://api.autobrr.com/lists/trakt/anticipated-tv
+  #   filters:
+  #     - 22 # Change me
+  #
+  # - name: Upcoming Movies
+  #   type: trakt
+  #   url: https://api.autobrr.com/lists/trakt/upcoming-movies
+  #   filters:
+  #     - 21 # Change me
+  #
+  # - name: Upcoming Bluray
+  #   type: trakt
+  #   url: https://api.autobrr.com/lists/trakt/upcoming-bluray
+  #   filters:
+  #     - 24 # Change me
+  #
+  - name: Popular TV
+    type: trakt
+    url: https://api.autobrr.com/lists/trakt/popular-tv
+    filters:
+      - 11
