@@ -8,7 +8,7 @@ schedule: "0 */8 * * *"
 
 clients:
   autobrr:
-    host: http://autobrr.default.svc.cluster.local
+    host: http://autobrr.downloads.svc.cluster.local
     apikey: {{ .AUTOBRR_APIKEY }}
   # arr:
   #   - name: radarr
