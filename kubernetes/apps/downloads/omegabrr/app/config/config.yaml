@@ -13,14 +13,14 @@ clients:
   arr:
     - name: radarr
       type: radarr
-      host: http://radarr.organizarrs.svc.cluster.local
+      host: http://radarr.${EXTERNAL_DOMAIN}
       apikey: {{ .RADARR__API_KEY }}
       filters:
         - 6 # movies
 
     - name: sonarr
       type: sonarr
-      host: http://sonarr.organizarrs.svc.cluster.local
+      host: http://sonarr.${EXTERNAL_DOMAIN}
       apikey: {{ .SONARR__API_KEY }}
       filters:
         - 5 # shows
