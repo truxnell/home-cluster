@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: qbittorrent-exporter
-  namespace: monitoring
+  namespace: default
 spec:
   interval: 30m
   chart:
@@ -29,22 +29,13 @@ spec:
       repository: ghcr.io/esanchezm/prometheus-qbittorrent-exporter
       tag: latest@sha256:4c019f0c9c8f06a119e2a32b8b338843a782045dce94fa0bef9a94b5f80450f8
     env:
-      QBITTORRENT_HOST: qbittorrent.${EXTERNAL_DOMAIN}
-      QBITTORRENT_PORT: 443
+      QBITTORRENT_HOST: qbittorrent.default.svc.cluster.local
+      QBITTORRENT_PORT: 8080
     service:
       main:
         ports:
           http:
             port: 8000
-    serviceMonitor:
-      main:
-        enabled: true
-        endpoints:
-          - port: http
-            scheme: http
-            path: /metrics
-            interval: 30s
-            scrapeTimeout: 30s
     resources:
       requests:
         cpu: 10m

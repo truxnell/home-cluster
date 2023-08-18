@@ -17,3 +17,4 @@ resources:
   - ./radarr/ks.yaml
   - ./readarr/ks.yaml
   - ./external-secrets/ks.yaml
+  - ./qbittorrent-exporter/ks.yaml
