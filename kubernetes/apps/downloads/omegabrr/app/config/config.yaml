@@ -56,3 +56,15 @@ lists:
     url: https://api.autobrr.com/lists/trakt/popular-tv
     filters:
       - 16
+
+  - name: New Albums
+    type: metacritic
+    url: https://api.autobrr.com/lists/metacritic/new-albums
+    filters:
+      - 17 # Change me
+
+  - name: Upcoming Albums
+    type: metacritic
+    url: https://api.autobrr.com/lists/metacritic/upcoming-albums
+    filters:
+      - 18 # Change me
