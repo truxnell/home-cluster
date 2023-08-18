@@ -31,27 +31,28 @@ lists:
     type: mdblist
     url: https://mdblist.com/lists/garycrawfordgc/latest-tv-shows/json
     filters:
-      - 11 # Change me
+      - 12 # Change me
 
   - name: Anticipated TV
     type: trakt
     url: https://api.autobrr.com/lists/trakt/anticipated-tv
-    filters: 11 # Change me
+    filters:
+      - 13 # Change me
 
   - name: Upcoming Movies
     type: trakt
     url: https://api.autobrr.com/lists/trakt/upcoming-movies
     filters:
-      - 11 # Change me
+      - 14 # Change me
 
   - name: Upcoming Bluray
     type: trakt
     url: https://api.autobrr.com/lists/trakt/upcoming-bluray
     filters:
-      - 11 # Change me
+      - 15 # Change me
   #
   - name: Popular TV
     type: trakt
     url: https://api.autobrr.com/lists/trakt/popular-tv
     filters:
-      - 11
+      - 16
