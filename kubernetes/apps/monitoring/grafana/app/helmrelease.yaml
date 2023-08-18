@@ -171,6 +171,9 @@ spec:
               implementation: prometheus
     dashboards:
       default:
+        qbittorrent-exporter:
+          url: https://raw.githubusercontent.com/esanchezm/prometheus-qbittorrent-exporter/master/grafana/dashboard.json
+          datasource: Prometheus
         cloudflared:
           gnetId: 17457 # https://grafana.com/grafana/dashboards/17457?tab=revisions
           revision: 6
