@@ -2,7 +2,7 @@
 apiVersion: external-secrets.io/v1beta1
 kind: ClusterSecretStore
 metadata:
-  name: &name factorio-seablock-restic
+  name: &name factorio-freight-forwarding-restic
   namespace: games
 spec:
   provider:
@@ -19,7 +19,7 @@ spec:
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: &name factorio-seablock-restic
+  name: &name factorio-freight-forwarding-restic
   namespace: games
 spec:
   secretStoreRef:
@@ -30,7 +30,7 @@ spec:
     template:
       engineVersion: v2
       data:
-        RESTIC_REPOSITORY: "{{ .REPOSITORY_TEMPLATE }}/factorio-seablock"
+        RESTIC_REPOSITORY: "{{ .REPOSITORY_TEMPLATE }}/factorio-freight-forwarding"
         RESTIC_PASSWORD: "{{ .RESTIC_PASSWORD }}"
         AWS_ACCESS_KEY_ID: "{{ .AWS_ACCESS_KEY_ID }}"
         AWS_SECRET_ACCESS_KEY: "{{ .AWS_SECRET_ACCESS_KEY }}"
@@ -42,16 +42,16 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
-  name: factorio-seablock
+  name: factorio-freight-forwarding
   namespace: games
 spec:
-  sourcePVC: factorio-seablock-config-v1
+  sourcePVC: factorio-freight-forwarding-config-v1
   trigger:
     schedule: "9 0 * * *"
   restic:
     copyMethod: Snapshot
     pruneIntervalDays: 10
-    repository: factorio-seablock-restic
+    repository: factorio-freight-forwarding-restic
     cacheCapacity: 2Gi
     volumeSnapshotClassName: csi-ceph-blockpool
     storageClassName: ceph-block
