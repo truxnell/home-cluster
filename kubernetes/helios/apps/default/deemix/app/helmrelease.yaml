@@ -1,0 +1,63 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app deemix
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    image:
+      repository: registry.gitlab.com/bockiii/deemix-docker
+      tag: latest@sha256:d325660d833c30c8bbb5cf0caa75135b42a2f69b82f2269fd5bea91a04c449e6
+    service:
+      main:
+        ports:
+          http:
+            port: &port 6595
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: traefik
+        annotations:
+          hajimari.io/icon: mdi:folder-play-outline
+        hosts:
+          - host: &host "{{ .Release.Name }}.trux.dev"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      downloads:
+        enabled: true
+        type: hostPath
+        hostPath: /tank/natflix/downloads/deemix/
+        mountPath: /downloads
+      config:
+        enabled: true
+        type: hostPath
+        hostPath: /tank/backups/k8s_apps/deemix/
+        mountPath: /config
+    resources:
+      requests:
+        cpu: 10m
+        memory: 50Mi
+      limits:
+        memory: 500Mi
