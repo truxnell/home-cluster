@@ -44,6 +44,8 @@ spec:
         tls:
           - hosts:
               - *host
+    env:
+      DEEMIX_SINGLE_USER: "true"
     persistence:
       downloads:
         enabled: true
