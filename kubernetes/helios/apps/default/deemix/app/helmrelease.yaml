@@ -47,11 +47,11 @@ spec:
     env:
       DEEMIX_SINGLE_USER: "true"
     persistence:
-      downloads:
+      media:
         enabled: true
         type: hostPath
-        hostPath: /tank/natflix/downloads/deemix/
-        mountPath: /downloads
+        hostPath: /tank/natflix/
+        mountPath: /media
       config:
         enabled: true
         type: hostPath
