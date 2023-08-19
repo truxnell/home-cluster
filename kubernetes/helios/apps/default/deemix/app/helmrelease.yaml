@@ -55,7 +55,7 @@ spec:
       config:
         enabled: true
         type: hostPath
-        hostPath: /tank/backups/k8s_apps/deemix/
+        hostPath: /tank/backup/k8s_apps/deemix/
         mountPath: /config
     resources:
       requests:
