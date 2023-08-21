@@ -43,7 +43,7 @@ spec:
     image:
       # https://github.com/vectordotdev/vector/issues/6715
       repository: ghcr.io/onedr0p/vector
-      tag: 0.32.0-debian@sha256:0c781c9082612e99f99da2357dd51b379e38f854a82a1ef9d84c65b83a3c9f77
+      tag: 0.32.1-debian@sha256:3da36899112841b8e4b7905be2e478b079c8d3f51437d032ad257461cdb7bbf2
 
     args: ['--config', '/etc/vector/vector.yaml']
 
