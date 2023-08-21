@@ -26,6 +26,13 @@ clients:
         - 5 # shows
       excludeAlternateTitles: true
 
+    - name: lidarr
+      type: lidarr
+      host: http://lidarr.${EXTERNAL_DOMAIN}
+      apikey: {{ .LIDARR__API_KEY }}
+      filters:
+        - 5 # shows
+
 lists:
   - name: Latest TV Shows
     type: mdblist
