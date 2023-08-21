@@ -4,4 +4,5 @@
     name:
       - fish
       - htop
+      - speedtest
     state: present
