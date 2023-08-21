@@ -17,6 +17,7 @@ module.exports = {
     "http://prowlarr.trux.dev/19/api?apikey={{ .PROWLARR__API_KEY }}", // fl
     "http://prowlarr.trux.dev/30/api?apikey={{ .PROWLARR__API_KEY }}", // st
     "http://prowlarr.trux.dev/24/api?apikey={{ .PROWLARR__API_KEY }}", // blu
+    "http://prowlarr.trux.dev/28/api?apikey={{ .PROWLARR__API_KEY }}", // hds
     // "http://prowlarr.trux.dev/17/api?apikey={{ .PROWLARR__API_KEY }}", // ptp
     // "http://prowlarr.trux.dev/42/api?apikey={{ .PROWLARR__API_KEY }}", // btn
   ],
