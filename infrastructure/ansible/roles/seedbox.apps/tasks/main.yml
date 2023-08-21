@@ -1,0 +1,4 @@
+---
+# Manage applications
+- ansible.builtin.import_role:
+    name: linux.node_exporter

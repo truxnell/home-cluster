@@ -1,0 +1,4 @@
+---
+# renovate: datasource=github-releases depName=l3uddz/tqm
+tqm_version: "v1.5.0"
+tqm_repo: "l3uddz/tqm"

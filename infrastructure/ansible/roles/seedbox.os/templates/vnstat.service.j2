@@ -1,0 +1,14 @@
+[Unit]
+Description=vnstat
+
+[Service]
+TimeoutStartSec=0
+User=qbit
+ExecStart=/usr/bin/vnstat
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Restart=on-failure
+RestartSec=5s

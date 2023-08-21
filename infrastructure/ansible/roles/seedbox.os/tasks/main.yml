@@ -1,0 +1,36 @@
+---
+# Install node-exporter
+- ansible.builtin.import_role:
+    name: linux.node_exporter
+
+# Setup os
+- import_tasks: os.yml
+  tags: os
+
+# Setup os
+- import_tasks: sysctl.yml
+  tags: sysctl
+
+# Setup firewall ufw
+- import_tasks: ufw.yml
+  tags: ufw
+
+# Install vnstat
+- import_tasks: vnstat.yml
+  tags: vnstat
+
+# Install apps
+- import_tasks: apps.yml
+  tags: apps
+
+  # Install cross-seed
+- import_tasks: crossseed.yml
+  tags: cross-seed
+
+# Install tqm
+- import_tasks: tqm.yml
+  tags: tqm
+
+# Install qBittorrent
+- import_tasks: qbittorrent.yml
+  tags: qbittorrent

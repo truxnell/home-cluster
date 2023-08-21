@@ -1,0 +1,28 @@
+---
+- hosts:
+    - seedbox
+  gather_facts: false
+  any_errors_fatal: true
+
+  pre_tasks:
+    - name: Gathering facts
+      ansible.builtin.gather_facts:
+      become: true
+      tags:
+        - always
+  tasks:
+    - block:
+        - name: "role: linux.common.os"
+          ansible.builtin.import_role:
+            name: linux.common.os
+          tags:
+            - common
+            - os
+
+        - name: "role: seedbox.os"
+          ansible.builtin.import_role:
+            name: seedbox.os
+
+        - name: "role: seedbox.apps"
+          ansible.builtin.import_role:
+            name: seedbox.apps

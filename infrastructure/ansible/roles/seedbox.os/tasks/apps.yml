@@ -1,0 +1,7 @@
+---
+- name: Install APT packages
+  apt:
+    name:
+      - fish
+      - htop
+    state: present

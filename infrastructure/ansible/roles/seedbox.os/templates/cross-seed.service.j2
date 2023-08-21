@@ -1,0 +1,14 @@
+[Unit]
+Description=cross-seed
+
+[Service]
+TimeoutStartSec=0
+User=qbit
+ExecStart=/usr/bin/cross-seed daemon
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Restart=on-failure
+RestartSec=5s

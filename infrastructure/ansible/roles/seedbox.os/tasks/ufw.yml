@@ -1,0 +1,55 @@
+- name: Allow specific IP on port 22
+  ufw:
+    rule: allow
+    port: 22
+    from_ip: "{{ whitelist_ip }}"
+
+- name: Deny all on port 22
+  ufw:
+    rule: deny
+    port: 22
+
+- name: Allow specific IP on port 32443
+  ufw:
+    rule: allow
+    port: 32443
+    from_ip: "{{ whitelist_ip }}"
+
+- name: Deny all on port 32433
+  ufw:
+    rule: deny
+    port: 32433
+
+- name: Allow traffic to torrents 56738
+  ufw:
+    rule: allow
+    port: 56738
+
+- name: Allow specific IP on port 2468
+  ufw:
+    rule: allow
+    port: 2468
+    from_ip: "{{ whitelist_ip }}"
+
+- name: Deny all on port 22
+  ufw:
+    rule: deny
+    port: 2468
+
+- name: Allow specific IP on port node-exporter
+  ufw:
+    rule: allow
+    port: 9100
+    from_ip: "{{ whitelist_ip }}"
+
+- name: Deny all on node-exporter
+  ufw:
+    rule: deny
+    port: 9100
+
+- name: Make sure ufw is running
+  ansible.builtin.systemd:
+    daemon_reload: true
+    enabled: true
+    state: started
+    name: ufw.service

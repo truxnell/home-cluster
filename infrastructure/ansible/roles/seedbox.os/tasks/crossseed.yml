@@ -1,0 +1,48 @@
+---
+- name: Download node installer
+  ansible.builtin.get_url:
+    url: https://deb.nodesource.com/setup_lts.x
+    dest: /tmp/node-installer.sh
+    mode: 755
+
+- name: Execute the node-installer.sh
+  shell: /tmp/node-installer.sh
+
+- name: Remove the zsh-installer.sh
+  file:
+    path: /tmp/node-installer.sh
+    state: absent
+
+- name: Upgrade all packages on Debian/Ubuntu machines
+  become: true
+  when:
+    - ansible_os_family == 'Debian'
+
+  ansible.builtin.apt:
+    upgrade: yes
+    force_apt_get: yes
+- name: Install APT packages
+  apt:
+    name:
+      - nodejs
+    state: present
+
+- name: Install cross-seed package globally
+  npm:
+    name: cross-seed
+    global: yes
+
+- name: Create cross-seed config
+  ansible.builtin.template:
+    src: cross-seed.config.j2
+    dest: /home/qbit/.cross-seed/config.js
+    mode: "0644"
+    owner: qbit
+    group: qbit
+
+- name: Make sure cross-seed is running
+  ansible.builtin.systemd:
+    daemon_reload: true
+    enabled: true
+    state: started
+    name: cross-seed.service

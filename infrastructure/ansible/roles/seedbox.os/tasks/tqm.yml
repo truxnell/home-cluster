@@ -1,0 +1,34 @@
+---
+- name: Download tqm binary
+  ansible.builtin.get_url:
+    url: "https://github.com/{{ tqm_repo}}/releases/download/{{ tqm_version }}/tqm_{{ tqm_version}}_linux_amd64"
+    dest: "/usr/local/bin/tqm"
+    mode: "0755" # Set appropriate permissions for the downloaded file
+
+- name: Create tqm config
+  ansible.builtin.template:
+    src: tqm.config.yaml.j2
+    dest: /home/qbit/.config/tqm/config.yaml
+    mode: "0644"
+    owner: qbit
+
+- name: Add tqm clean cron job
+  ansible.builtin.cron:
+    name: "tqm clean qbt"
+    user: qbit
+    minute: 0
+    job: "tqm clean qbt"
+
+- name: Add tqm relabel cron job
+  ansible.builtin.cron:
+    name: "tqm relabel qbt"
+    user: qbit
+    minute: 10
+    job: "tqm relabel qbt"
+
+- name: Add tqm orphan cron job
+  ansible.builtin.cron:
+    name: "tqm orphan qbt"
+    user: qbit
+    minute: 20
+    job: "tqm orphan qbt"

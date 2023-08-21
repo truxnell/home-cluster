@@ -1,0 +1,25 @@
+---
+- name: Ensure SSL path exists
+  ansible.builtin.file:
+    path: /home/qbit/.config/qbittorrent/ssl
+    state: directory
+    mode: "0755"
+
+- name: Ensure cert.pem and key.pem files exist
+  ansible.builtin.file:
+    path: /home/qbit/.config/qbittorrent/ssl/{{ item }}
+    state: touch
+    mode: "0644"
+  loop:
+    - cert.pem
+    - key.pem
+  become: yes
+
+- name: Install acme.sh certificate for qbittorrent
+  ansible.builtin.command: >-
+    ./acme.sh --install-cert \
+    -d {{ certificate['common_name'] }} \
+    --cert-file /home/qbit/.config/qbittorrent/ssl/cert.pem  \
+    --key-file /home/qbit/.config/qbittorrent/ssl/key.pem
+  args:
+    chdir: ~/.acme.sh

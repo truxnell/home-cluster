@@ -1,0 +1,18 @@
+---
+# Handlers section
+- name: Restart procps service
+  ansible.builtin.service:
+    name: procps.service
+    state: restarted
+
+# Handlers section
+- name: Restart cross-seed service
+  ansible.builtin.service:
+    name: cross-seed.service
+    state: restarted
+
+# Handlers section
+- name: Restart qBittorrent service
+  ansible.builtin.service:
+    name: qBittorrent.service
+    state: restarted

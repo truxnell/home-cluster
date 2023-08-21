@@ -1,0 +1,20 @@
+---
+- name: Install vnstat-nox
+  apt:
+    name:
+      - vnstat
+    state: present
+
+- name: Create vnstat systemd file
+  become: true
+  ansible.builtin.template:
+    src: vnstat.service.j2
+    dest: /etc/systemd/system/vnstat.service
+    mode: 0644
+
+- name: Make sure vnstat is running
+  ansible.builtin.systemd:
+    daemon_reload: true
+    enabled: true
+    state: started
+    name: vnstat.service
