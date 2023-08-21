@@ -65,6 +65,7 @@
       /root/.acme.sh/acme.sh --renew
       -d {{ certificate['common_name'] }}
       --renew-hook "cat /root/.acme.sh/{{ certificate['common_name'] }}/fullchain.cer /root/.acme.sh/{{ certificate['common_name'] }}/{{ certificate['common_name'] }}.key >/etc/ssl/snakeoil.pem"
+
 - name: Ensure SSL path exists
   ansible.builtin.file:
     path: /home/qbit/.config/qbittorrent/ssl

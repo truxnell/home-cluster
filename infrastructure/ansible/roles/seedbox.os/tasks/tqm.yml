@@ -5,11 +5,17 @@
     dest: "/usr/local/bin/tqm"
     mode: "0755" # Set appropriate permissions for the downloaded file
 
+- name: Ensure cross-seed path exists
+  ansible.builtin.file:
+    path: /home/qbit/.config/tqm/
+    state: directory
+    mode: "0755"
+
 - name: Create tqm config
   ansible.builtin.template:
     src: tqm.config.yaml.j2
     dest: /home/qbit/.config/tqm/config.yaml
-    mode: "0644"
+    mode: "0755"
     owner: qbit
 
 - name: Add tqm clean cron job

@@ -32,13 +32,28 @@
     name: cross-seed
     global: yes
 
+- name: Ensure cross-seed path exists
+  ansible.builtin.file:
+    path: /home/qbit/.cross-seed
+    state: directory
+    mode: "0755"
+    owner: qbit
+    group: qbit
+
 - name: Create cross-seed config
   ansible.builtin.template:
     src: cross-seed.config.j2
     dest: /home/qbit/.cross-seed/config.js
-    mode: "0644"
+    mode: "0755"
     owner: qbit
     group: qbit
+
+- name: Create cross-seed systemd file
+  become: true
+  ansible.builtin.template:
+    src: cross-seed.service.j2
+    dest: /etc/systemd/system/cross-seed.service
+    mode: 0644
 
 - name: Make sure cross-seed is running
   ansible.builtin.systemd:

@@ -5,7 +5,5 @@
     src: sysctl.conf.j2
     dest: /etc/sysctl.d/99-sysctl.conf
     mode: "0644"
-    owner: qbit
-    group: qbit
   notify:
     - Restart procps service

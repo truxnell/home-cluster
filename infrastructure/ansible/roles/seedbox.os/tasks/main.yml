@@ -7,6 +7,10 @@
 - import_tasks: os.yml
   tags: os
 
+# Setup qbit user
+- import_tasks: user.yml
+  tags: user
+
 # Setup os
 - import_tasks: sysctl.yml
   tags: sysctl
@@ -24,7 +28,7 @@
   tags: apps
 
   # Install cross-seed
-- import_tasks: crossseed.yml
+- import_tasks: cross-seed.yml
   tags: cross-seed
 
 # Install tqm

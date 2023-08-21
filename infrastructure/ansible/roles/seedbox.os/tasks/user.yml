@@ -16,31 +16,3 @@
     path: /etc/ssh/sshd_config
     regexp: "^#?AuthenticationMethods"
     line: "AuthenticationMethods publickey"
-
-- name: Allow SSH from a specific IP
-  command: ufw allow from {{ ssh_allowed_ips }} to any port 22
-  become: true
-
-- name: Deny all other SSH traffic
-  command: ufw deny 22
-  become: true
-
-- name: Allow qbit webui from a specific IP
-  command: ufw allow from {{ ssh_allowed_ips }} to any port 32443
-  become: true
-
-- name: Deny all other qbit webui traffic
-  command: ufw deny 32433
-  become: true
-
-- name: Allow cross-seed traffic
-  command: ufw allow from {{ ssh_allowed_ips }} to any port 2468
-  become: true
-
-- name: Deny cross-seed traffic
-  command: ufw deny 2468
-  become: true
-
-- name: Enable UFW with rules
-  command: ufw --force enable
-  become: true
