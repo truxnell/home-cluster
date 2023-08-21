@@ -19,20 +19,22 @@
   when: not acme_installed.stat.exists
 
 - name: Install acme.sh
+  become: yes
   ansible.builtin.command: >-
-    ./acme.sh --install -m {{ cloudflare['email'] }} \
-    --set-default-ca --server letsencrypt
+    ./acme.sh --install -m {{ cloudflare['email'] }}
   args:
     chdir: /tmp/acme.sh/
     creates: "~/.acme.sh/acme.sh"
   when: not acme_installed.stat.exists
 
 - name: Upgrade acme.sh
+  become: yes
   ansible.builtin.command: /root/.acme.sh/acme.sh --upgrade
   register: upgrade_result
   changed_when: upgrade_result.rc == 0 and "Upgrade success" not in upgrade_result.stdout
 
 - name: Issue certificate
+  become: yes
   ansible.builtin.command: >-
     /root/.acme.sh/acme.sh --issue --dns dns_cf
     -d {{ certificate['common_name'] }}
@@ -45,18 +47,21 @@
   failed_when: issue_result.rc != 0 and "Domains not changed" not in issue_result.stdout
 
 - name: Create cloudflare email environment variable in crontab
+  become: yes
   ansible.builtin.cron:
     name: CF_Account_ID
     env: true
     job: "{{ cloudflare['account_id'] }}"
 
 - name: Create cloudflare apikey environment variable in crontab
+  become: yes
   ansible.builtin.cron:
     name: CF_Token
     env: true
     job: "{{ cloudflare['api_token'] }}"
 
 - name: Create certificate renewal job in crontab
+  become: yes
   ansible.builtin.cron:
     name: "renew cronjob"
     minute: 0
@@ -68,25 +73,29 @@
 
 - name: Ensure SSL path exists
   ansible.builtin.file:
-    path: /home/qbit/.config/qbittorrent/ssl
+    path: /home/qbit/.config/qBittorrent/ssl
     state: directory
+    owner: qbit
     mode: "0755"
 
 - name: Ensure cert.pem and key.pem files exist
   ansible.builtin.file:
-    path: /home/qbit/.config/qbittorrent/ssl/{{ item }}
+    path: /home/qbit/.config/qBittorrent/ssl/{{ item }}
     state: touch
+    owner: qbit
     mode: "0644"
   loop:
     - cert.pem
     - key.pem
   become: yes
+  notify: Restart qBittorrent service
 
-- name: Install acme.sh certificate for qbittorrent
+- name: Install acme.sh certificate for qBittorrent
+  become: yes
   ansible.builtin.command: >-
     ./acme.sh --install-cert \
     -d {{ certificate['common_name'] }} \
-    --fullchain-file /home/qbit/.config/qbittorrent/ssl/cert.pem  \
-    --key-file /home/qbit/.config/qbittorrent/ssl/key.pem
+    --fullchain-file /home/qbit/.config/qBittorrent/ssl/cert.pem  \
+    --key-file /home/qbit/.config/qBittorrent/ssl/key.pem
   args:
     chdir: ~/.acme.sh

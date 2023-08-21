@@ -47,9 +47,5 @@
     rule: deny
     port: 9100
 
-- name: Make sure ufw is running
-  ansible.builtin.systemd:
-    daemon_reload: true
-    enabled: true
-    state: started
-    name: ufw.service
+- name: Enable UFW
+  ansible.builtin.command: ufw enable

@@ -54,6 +54,7 @@
     src: cross-seed.service.j2
     dest: /etc/systemd/system/cross-seed.service
     mode: 0644
+  notify: Restart cross-seed service
 
 - name: Make sure cross-seed is running
   ansible.builtin.systemd:
