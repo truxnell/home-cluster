@@ -88,6 +88,11 @@ spec:
         type: hostPath
         hostPath: /tank/natflix/
         mountPath: /media
+      tmp:
+        enabled: true
+        type: hostPath
+        hostPath: /mnt/tmp
+        mountPath: /tmp
       scripts:
         enabled: true
         type: configMap
