@@ -50,7 +50,7 @@ spec:
         volumeSpec:
           nfs:
             server: helios.${INTERNAL_DOMAIN}
-            path: /tank/music
+            path: /tank/natflix/music
         mountPath: /music/localtracks
         readOnly: false
       config:
