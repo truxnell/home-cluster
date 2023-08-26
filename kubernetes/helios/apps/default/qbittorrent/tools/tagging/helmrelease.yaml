@@ -35,7 +35,7 @@ spec:
         schedule: "@hourly"
     image:
       repository: ghcr.io/buroa/qbittools
-      tag: v0.2.0@sha256:c77b4e263ff9da9a5054d9f1720f934e68ab202e00891da230b63c4c8c8e5d42
+      tag: v0.8.2@sha256:2e7deab288c1cfe5c88dfb76647697e3e66ab54f6eea55156f7e0c148e1bb687
     args:
       - tagging
       - --not-working
