@@ -12,6 +12,20 @@
     dest: /etc/systemd/system/qBittorrent.service
     mode: 0644
 
+- name: Ensure finished path exists
+  ansible.builtin.file:
+    path: /home/qbit/Downloads/finished
+    state: directory
+    owner: qbit
+    mode: "0755"
+
+- name: Ensure xseed path exists
+  ansible.builtin.file:
+    path: /home/qbit/Downloads/xseed/
+    state: directory
+    owner: qbit
+    mode: "0755"
+
 - name: Enable & restart qBittorrent
   become: true
   ansible.builtin.systemd:

@@ -8,9 +8,9 @@
 - import_tasks: os.yml
   tags: os
 
-# Setup qbit user
-- import_tasks: user.yml
-  tags: user
+# # Setup qbit user
+# - import_tasks: user.yml
+#   tags: user
 
 # Install tqm
 - import_tasks: acme.yml
@@ -24,10 +24,9 @@
 - import_tasks: ufw.yml
   tags: ufw
 
-# Install vnstat
-- import_tasks: vnstat.yml
-  tags: vnstat
-
+# # Install vnstat
+# - import_tasks: vnstat.yml
+#   tags: vnstat
 # Install apps
 - import_tasks: apps.yml
   tags: apps
@@ -39,7 +38,6 @@
 # Install tqm
 - import_tasks: tqm.yml
   tags: tqm
-
-# Install qBittorrent
-- import_tasks: qbittorrent.yml
-  tags: qbittorrent
+# # Install qBittorrent
+# - import_tasks: qbittorrent.yml
+#   tags: qbittorrent

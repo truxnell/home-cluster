@@ -9,10 +9,21 @@
     rule: deny
     port: 22
 
-- name: Allow specific IP on port 32443
+- name: Allow specific IP on port 10748
   ufw:
     rule: allow
-    port: 32443
+    port: 10748
+    from_ip: "{{ whitelist_ip }}"
+
+- name: Deny all on port 22
+  ufw:
+    rule: deny
+    port: 10748
+
+- name: Allow specific IP on port 443
+  ufw:
+    rule: allow
+    port: 443
     from_ip: "{{ whitelist_ip }}"
 
 - name: Deny all on port 32433

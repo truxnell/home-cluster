@@ -23,6 +23,7 @@ filters:
 
       # permaseed / un-sorted (unless torrent has been deleted)
       - Label startsWith "permaseed-" && !IsUnregistered()
+      - Label startsWith "activity:24h"
     remove:
       # general
       - IsUnregistered()
