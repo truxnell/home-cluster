@@ -13,7 +13,6 @@ sonarr:
       type: series
     custom_formats:
       # Audio Advanced #1
-
       - trash_ids:
           - 0d7824bb924701997f874e7ff7d4844a # TrueHD ATMOS
           - 9d00418ba386a083fbf4d58235fc37ef # DTS X
@@ -25,23 +24,14 @@ sonarr:
           - c1a25cd67b5d2e08287c957b1eb903ec # DTS-ES
           - 5964f2a8b3be407d083498e4459d05d0 # DTS
 
-        quality_profiles:
-          - name: Any (Non-4k)
-
-      # Audio Advanced #2
-
-      - trash_ids:
+          # Audio Advanced #2
           - 851bd64e04c9374c51102be3dd9ae4cc # FLAC
           - 30f70576671ca933adbdcfc736a69718 # PCM
           - cfa5fbd8f02a86fc55d8d223d06a5e1f # DTS-HD HRA
           - a50b8a0c62274a7c38b09a9619ba9d86 # AAC
           - dbe00161b08a25ac6154c55f95e6318d # DD
-        quality_profiles:
-          - name: Any (Non-4k)
 
-      # HDR Formats
-
-      - trash_ids:
+          # HDR Formats
           - 7878c33f1963fefb3d6c8657d46c2f0a # DV HDR10
           - 6d0d8de7b57e35518ac0308b0ddf404e # DV
           - 1f733af03141f068a540eec352589a89 # DV HLG
@@ -53,41 +43,22 @@ sonarr:
           - 2a7e3be05d3861d6df7171ec74cad727 # PQ
           - 17e889ce13117940092308f48b48b45b # HLG
 
-        quality_profiles:
-          - name: Any (Non-4k)
-
-      # Series Versions
-
-      - trash_ids:
+          # Series Versions
           - 3a4127d8aa781b44120d907f2cd62627 # Hybrid
           - b735f09d3c025cbb7d75a5d38325b73b # Remaster
 
-        quality_profiles:
-          - name: Any (Non-4k)
-
-      # Unwanted
-
-      - trash_ids:
+          # Unwanted
           - 85c61753df5da1fb2aab6f2a47426b09 # BR-DISK
           - 9c11cd3f07101cdba90a2d81cf0e56b4 # LQ
           - 47435ece6b99a0b477caf360e79ba0bb # x265 (HD)
-        quality_profiles:
-          - name: Any (Non-4k)
 
-      # HQ Source Groups
-
-      - trash_ids:
+          # HQ Source Groups
           - e6258996055b9fbab7e9cb2f75819294 # WEB Tier 01
           - 58790d4e2fdcd9733aa7ae68ba2bb503 # WEB Tier 02
           - d84935abd3f8556dcd51d4f27e22d0a6 # WEB Tier 03
           - d0c516558625b04b363fa6c5c2c7cfd4 # WEB Scene
 
-        quality_profiles:
-          - name: Any (Non-4k)
-
-      # Streaming Services
-
-      - trash_ids:
+          # Streaming Services
           - d660701077794679fd59e8bdf4ce3a29 # AMZN
           - f67c9ca88f463a48346062e8ad07713f # ATVP
           - 36b72f59f4ea20aad9316f475f2d9fbb # DCU
@@ -108,22 +79,13 @@ sonarr:
           - 0455d6519a550dbf648c97b56e7231d2 # SALTO
           - b0d6195c23ae254932da00512db7e8a8 # RTBF
 
-        quality_profiles:
-          - name: Any (Non-4k)
-
-      # Misc
-
-      - trash_ids:
+          # Misc
           - ec8fa7296b64e8cd390a1600981f3923 # Repack/Proper
           - eb3d5cc0a2be0db205fb823640db6a3c # Repack v2
           - 44e7c4de10ae50265753082e5dc76047 # Repack v3
+          - 3bc5f395426614e155e585a2f056cdf1 # Season packs
 
-        quality_profiles:
-          - name: Any (Non-4k)
-
-      # Optional
-
-      - trash_ids:
+          # Optional
           - 32b367365729d530ca1c124a0b180c64 # Bad Dual Groups
           - 9b27ab6498ec0f31a3353992e19434ca # DV (WEBDL)
           - 0dad0a507451acddd754fe6dc3a7f5e7 # HDR10+ Boost
@@ -131,6 +93,34 @@ sonarr:
           - e1a997ddb54e3ecbfe06341ad323c458 # Obfuscated
           - 06d66ab109d4d2eddb2794d21526d140 # Retags
           - 9b64dff695c2115facf1b6ea59c9bd07 # x265 (no HDR/DV)
+
+          # Anime
+          - 949c16fe0a8147f50ba82cc2df9411c9 # Anime BD Teir 1 (Top Seadex)
+          - ed7f1e315e000aef424a58517fa48727 # Anime BD Teir 2 (Sedex)
+          - 096e406c92baa713da4a72d88030b815 # Anime BD Teir 3 (Sedex)
+          - 30feba9da3030c5ed1e0f7d610bcadc4 # Anime BD Teir 4 (Seadex)
+          - 545a76b14ddc349b8b185a6344e28b04 # Anime BD Teir 5 (remuxes)
+          - 25d2afecab632b1582eaf03b63055f72 # Anime BD Teir 6 (fansubs)
+          - e0014372773c8f0e1bef8824f00c7dc4 # Anime Web Teir 1
+          - 19180499de5ef2b84b6ec59aae444696 # Anime web teir 2 (fansubs)
+          - c27f2ae6a4e82373b0f1da094e2489ad # Anime web teir 3 (official subs)
+          - 4fd5528a3a8024e6b49f9c67053ea5f3 # Anime web teir 4 (official subs)
+          - 29c2a13d091144f63307e4a8ce963a39 # Anime web teir 5 (fansubs)
+          - dc262f88d74c651b12e9d90b39f6c753 # Anime web teir 6 (fansubs)
+          - 3e0b26604165f463f3e8e192261e7284 # Crunchroll
+          - 4c67ff059210182b59cdd41697b8cb08 # BiliBili
+          - 7dd31f3dee6d2ef8eeaa156e23c3857e # B-Global
+          - 1284d18e693de8efe0fe7d6b3e0b9170 # Funimation
+          - 570b03b3145a25011bf073274a407259 # Hidive
+          - 44a8ee6403071dd7b8a3a8dd3fe8cb20 # VRV
+          - d54cd2bf1326287275b56bccedb72ee2 # ADN
+          - e5e6405d439dcd1af90962538acd4fe0 # WKN
+          - 418f50b10f1907201b6cfdf881f467b7 # Dual Audio
+
+          - 9c14d194486c4014d422adc64092d794 # Dubs only
+
+        quality_profiles:
+          - name: Any (Non-4k)
 
 # Configuration specific to Radarr.
 radarr:
