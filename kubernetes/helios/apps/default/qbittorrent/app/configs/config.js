@@ -8,18 +8,21 @@ module.exports = {
   qbittorrentUrl: "http://localhost:8080",
 
   torznab: [
-    "http://prowlarr.trux.dev/18/api?apikey={{ .PROWLARR__API_KEY }}", // ipt
-    "http://prowlarr.trux.dev/17/api?apikey={{ .PROWLARR__API_KEY }}", // tl
-    "http://prowlarr.trux.dev/27/api?apikey={{ .PROWLARR__API_KEY }}", // hdt
-    // "http://prowlarr.trux.dev/6/api?apikey={{ .PROWLARR__API_KEY }}", // ts
-    // "http://prowlarr.trux.dev/7/api?apikey={{ .PROWLARR__API_KEY }}", // mtv
-    // "http://prowlarr.trux.dev/8/api?apikey={{ .PROWLARR__API_KEY }}", // uhd
-    "http://prowlarr.trux.dev/19/api?apikey={{ .PROWLARR__API_KEY }}", // fl
-    "http://prowlarr.trux.dev/30/api?apikey={{ .PROWLARR__API_KEY }}", // st
-    "http://prowlarr.trux.dev/24/api?apikey={{ .PROWLARR__API_KEY }}", // blu
-    "http://prowlarr.trux.dev/28/api?apikey={{ .PROWLARR__API_KEY }}", // hds
-    // "http://prowlarr.trux.dev/17/api?apikey={{ .PROWLARR__API_KEY }}", // ptp
-    // "http://prowlarr.trux.dev/42/api?apikey={{ .PROWLARR__API_KEY }}", // btn
+    "https://prowlarr.${EXTERNAL_DOMAIN}/18/api?apikey={{ prowlarr_api_key }}", // ipt
+    "https://prowlarr.${EXTERNAL_DOMAIN}/17/api?apikey={{ prowlarr_api_key }}", // tl
+    "https://prowlarr.${EXTERNAL_DOMAIN}/27/api?apikey={{ prowlarr_api_key }}", // hdt
+    // "https://prowlarr.${EXTERNAL_DOMAIN}/6/api?apikey={{ prowlarr_api_key}}", // ts
+    // "https://prowlarr.${EXTERNAL_DOMAIN}/7/api?apikey={{ prowlarr_api_key }}", // mtv
+    // "https://prowlarr.${EXTERNAL_DOMAIN}/8/api?apikey={{ prowlarr_api_key }}", // uhd
+    "https://prowlarr.${EXTERNAL_DOMAIN}/19/api?apikey={{ prowlarr_api_key }}", // fl
+    "https://prowlarr.${EXTERNAL_DOMAIN}/30/api?apikey={{ prowlarr_api_key }}", // st
+    "https://prowlarr.${EXTERNAL_DOMAIN}/24/api?apikey={{ prowlarr_api_key }}", // blu
+    "https://prowlarr.${EXTERNAL_DOMAIN}/28/api?apikey={{ prowlarr_api_key }}", // hds
+    // "https://prowlarr.${EXTERNAL_DOMAIN}/17/api?apikey={{ prowlarr_api_key }}", // ptp
+    // "https://prowlarr.${EXTERNAL_DOMAIN}/42/api?apikey={{ prowlarr_api_key }}", // btn
+    "https://prowlarr.${EXTERNAL_DOMAIN}/28/api?apikey={{ prowlarr_api_key }}", // hds
+    "https://prowlarr.${EXTERNAL_DOMAIN}/33/api?apikey={{ prowlarr_api_key }}", // sbs
+    "https://prowlarr.${EXTERNAL_DOMAIN}/34/api?apikey={{ prowlarr_api_key }}", // sbs
   ],
 
   action: "inject",
