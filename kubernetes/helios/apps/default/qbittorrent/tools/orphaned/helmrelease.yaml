@@ -29,6 +29,10 @@ spec:
     - name: qbittorrent
       namespace: default
   values:
+    controller:
+      type: cronjob
+      cronjob:
+        schedule: "0 3 * * *"
     image:
       repository: ghcr.io/buroa/qbittools
       tag: v0.8.3
