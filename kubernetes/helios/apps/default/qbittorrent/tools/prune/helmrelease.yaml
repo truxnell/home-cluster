@@ -39,26 +39,26 @@ spec:
       tag: v0.8.3
     args:
       - prune
-        - --exclude-category
-        - prowlarr
-        - --exclude-category
-        - permaseed
-        - --include-tag
-        - expired
-        - --include-tag
-        - added:30d
-        - --exclude-tag
-        - site:beyond-hd
-        - --exclude-tag
-        - site:broadcasthenet
-        - --exclude-tag
-        - site:passthepopcorn
-        - --exclude-tag
-        - site:uhdbits
-        - -s
-        - qbittorrent.default.svc.cluster.local
-        - -p
-        - "8080"
+      - --exclude-category
+      - prowlarr
+      - --exclude-category
+      - permaseed
+      - --include-tag
+      - expired
+      - --include-tag
+      - added:30d
+      - --exclude-tag
+      - site:beyond-hd
+      - --exclude-tag
+      - site:broadcasthenet
+      - --exclude-tag
+      - site:passthepopcorn
+      - --exclude-tag
+      - site:uhdbits
+      - -s
+      - qbittorrent.default.svc.cluster.local
+      - -p
+      - "8080"
     service:
       main:
         enabled: false
