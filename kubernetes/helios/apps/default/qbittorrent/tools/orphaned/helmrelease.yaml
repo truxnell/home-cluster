@@ -51,6 +51,12 @@ spec:
     service:
       main:
         enabled: false
+    persistence:
+      media:
+        enabled: true
+        type: hostPath
+        hostPath: /tank/natflix/
+        mountPath: /media
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
