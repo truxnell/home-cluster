@@ -43,10 +43,14 @@ spec:
       - prowlarr
       - --exclude-category
       - permaseed
+      - --exclude-tag
+      - activity:24h
+      - --exclude-tag
+      - site:redacted
+      - --exclude-tag
+      - site:orpheus
       - --include-tag
       - expired
-      - --include-tag
-      - added:30d
       - --exclude-tag
       - site:beyond-hd
       - --exclude-tag
