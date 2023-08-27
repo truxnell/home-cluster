@@ -22,7 +22,7 @@ module.exports = {
     // "https://prowlarr.${EXTERNAL_DOMAIN}/42/api?apikey={{ prowlarr_api_key }}", // btn
     "https://prowlarr.${EXTERNAL_DOMAIN}/28/api?apikey={{ prowlarr_api_key }}", // hds
     "https://prowlarr.${EXTERNAL_DOMAIN}/33/api?apikey={{ prowlarr_api_key }}", // sbs
-    "https://prowlarr.${EXTERNAL_DOMAIN}/34/api?apikey={{ prowlarr_api_key }}", // sbs
+    "https://prowlarr.${EXTERNAL_DOMAIN}/34/api?apikey={{ prowlarr_api_key }}", // phd
   ],
 
   action: "inject",

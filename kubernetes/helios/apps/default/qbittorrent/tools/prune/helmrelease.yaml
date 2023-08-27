@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: qbittorrent-reannounce
+  name: qbittorrent-prune
   namespace: default
 spec:
   interval: 30m
@@ -33,11 +33,27 @@ spec:
       repository: ghcr.io/buroa/qbittools
       tag: v0.8.2@sha256:2e7deab288c1cfe5c88dfb76647697e3e66ab54f6eea55156f7e0c148e1bb687
     args:
-      - reannounce
-      - -s
-      - qbittorrent.default.svc.cluster.local
-      - -p
-      - "8080"
+      - prune
+        - --exclude-category
+        - prowlarr
+        - --exclude-category
+        - permaseed
+        - --include-tag
+        - expired
+        - --include-tag
+        - added:30d
+        - --exclude-tag
+        - site:beyond-hd
+        - --exclude-tag
+        - site:broadcasthenet
+        - --exclude-tag
+        - site:passthepopcorn
+        - --exclude-tag
+        - site:uhdbits
+        - -s
+        - qbittorrent.default.svc.cluster.local
+        - -p
+        - "8080"
     service:
       main:
         enabled: false
