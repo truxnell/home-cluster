@@ -38,12 +38,12 @@ spec:
       tag: v0.8.3
     args:
       - tagging
-      - --not-working
-      - --unregistered
       - --added-on
+      - --expired
       - --last-activity
-      - --trackers
-      - --tracker-down
+      - --not-working
+      - --sites
+      - --unregistered
       - -s
       - qbittorrent.default.svc.cluster.local
       - -p
