@@ -44,6 +44,7 @@ spec:
       - "*/prowlarr/*"
       - --exclude-pattern
       - "*/permaseed/*"
+      - --dry-run
       - -s
       - qbittorrent.default.svc.cluster.local
       - -p
