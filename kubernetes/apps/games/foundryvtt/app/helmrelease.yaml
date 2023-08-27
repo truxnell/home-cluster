@@ -28,7 +28,7 @@ spec:
   values:
     image:
       repository: felddy/foundryvtt
-      tag: 11.307.0@sha256:5273106a0e35e434020e7fe408102377a7c1d2930bb2a049240ae928206931b4
+      tag: 11.308.0@sha256:12eba9bd7ac34989f8977a62bf041208e0ba752f04f34f74d0cbfe9d1f1da585
     env:
       SECRET_FOUNDRY_USERNAME: ${SECRET_FOUNDRY_USERNAME}
       FOUNDRY_PASSWORD: ${FOUNDRY_PASSWORD}
