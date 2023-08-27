@@ -34,7 +34,9 @@ spec:
       cronjob:
         schedule: "0 2 * * *"
       repository: ghcr.io/buroa/qbittools
-      tag: v0.8.2@sha256:2e7deab288c1cfe5c88dfb76647697e3e66ab54f6eea55156f7e0c148e1bb687
+    image:
+      repository: ghcr.io/buroa/qbittools
+      tag: v0.8.3
     args:
       - prune
         - --exclude-category
