@@ -32,7 +32,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: docker.io/cloudflare/cloudflared
-      tag: 2023.7.3@sha256:1278c07596b20154931dbf09c26ea8006276ed5444496c5892705fc3accb3cca
+      tag: 2023.8.1@sha256:41d92f563f1ae7248014791fe67d67e0ea1558ad070160b26e43d8ee262a2daf
     env:
       NO_AUTOUPDATE: "true"
       TUNNEL_CRED_FILE: /etc/cloudflared/creds/credentials.json
