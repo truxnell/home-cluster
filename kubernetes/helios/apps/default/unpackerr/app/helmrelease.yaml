@@ -55,7 +55,9 @@ spec:
     persistence:
       media:
         enabled: true
-        existingClaim: media
+        type: hostPath
+        hostPath: /tank/natflix/
+        mountPath: /media
     resources:
       requests:
         memory: 2048Mi
