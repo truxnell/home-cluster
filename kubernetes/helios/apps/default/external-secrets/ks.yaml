@@ -5,9 +5,9 @@ metadata:
   name: cluster-apps-external-secrets-operator
   namespace: flux-system
   labels:
-    substitution.flux.home.arpa/enabled: 'true'
+    substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: './kubernetes/helios/apps/default/external-secrets/operator/'
+  path: "./kubernetes/helios/apps/default/external-secrets/operator/"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -15,10 +15,5 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: external-secrets-operator
-      namespace: default
   dependsOn:
     - name: cluster-apps-cert-manager
