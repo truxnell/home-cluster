@@ -59,6 +59,8 @@ spec:
       - site:passthepopcorn
       - --exclude-tag
       - site:uhdbits
+      - --exclude-tag
+      - site:anthelion
       - -s
       - qbittorrent.default.svc.cluster.local
       - -p
