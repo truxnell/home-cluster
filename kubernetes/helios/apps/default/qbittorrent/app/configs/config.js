@@ -42,7 +42,6 @@ module.exports = {
     "/media/downloads/qbittorrent/complete/prowlarr/",
     "/media/downloads/qbittorrent/complete/radarr/",
     "/media/downloads/qbittorrent/complete/sonarr/",
-    "/media/downloads/qbittorrent/complete/downloads/",
   ],
 
   outputDir: "/config/xseeds",
