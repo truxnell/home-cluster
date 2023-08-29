@@ -37,7 +37,7 @@ spec:
       UN_RADARR_0_PATHS_0: /media/natflix/downloads/qbittorrent/complete/radarr
     envFrom:
       - secretRef:
-          name: unpackerr-secret
+          name: *app
     service:
       main:
         ports:
