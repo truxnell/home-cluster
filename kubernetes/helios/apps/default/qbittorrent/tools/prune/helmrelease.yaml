@@ -41,7 +41,7 @@ spec:
       - prune
       - --exclude-category
       - prowlarr
-      - --exclude-category
+      - --exclude-tag
       - permaseed
       - --exclude-tag
       - activity:24h
