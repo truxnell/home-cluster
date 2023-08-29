@@ -19,3 +19,4 @@ resources:
   - ./external-secrets/ks.yaml
   - ./qbittorrent-exporter/ks.yaml
   - ./deemix/ks.yaml
+  - ./unpackerr/ks.yaml
