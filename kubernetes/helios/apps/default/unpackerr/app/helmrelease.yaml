@@ -45,7 +45,7 @@ spec:
             port: 5656
     serviceMonitor:
       main:
-        enabled: true
+        enabled: false
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
