@@ -20,58 +20,11 @@ filters:
       # Permaseed trackers
       - TrackerName contains "flacsfor.me"
       - TrackerName contains "myanonamouse.net"
+      - TrackerName contains "anthelion.me"
 
       # permaseed / un-sorted (unless torrent has been deleted)
-      - Label startsWith "permaseed-" && !IsUnregistered()
       - Label startsWith "activity:24h"
     remove:
       # general
       - IsUnregistered()
-
-      # fl
-      - TrackerName contains "filelist.io" && (Ratio > 1.01 || SeedingDays >= 2.01)
-
-      # blu
-      - TrackerName contains "blutopia.cc" && SeedingDays >= 7.01
-
-      # hdt
-      - TrackerName contains "hdts-announce.ru" && Ratio >=1.0
-
-      # avistaz
-      - TrackerName contains "avistaz.to" && (Ratio > 1.01 || SeedingDays >= 21.0)
-
-      # neb
-      - TrackerName contains "nebulance.io" && SeedingDays >= 6.0
-
-      #
-      - TrackerName contains "bttracker.tv" && (Ratio > 1.01 || SeedingDays >= 21.0)
-
-      # UHD
-      - TrackerName contains "uhdbits.org" && (Ratio > 1.01 || SeedingDays >= 3.0)
-
-      # *az
-      - TrackerName contains "privatehd.to" && (Ratio > 1.01 || SeedingDays >= 15.0 || (TotalBytes < 5368709120 && SeedingDays >= 4.0) || (TotalBytes < 21474836480 && SeedingDays >= 5.0) || (TotalBytes < 37580963840 && SeedingDays >= 6.0) || (TotalBytes < 48318382080 && SeedingDays >= 7.0) || (TotalBytes < 96636764160 && SeedingDays >= 10.0) || (TotalBytes < 161061273600 && SeedingDays >= 12.0) || (TotalBytes < 268435456000 && SeedingDays >= 14.0))
-      - TrackerName contains "avistaz.to" && (Ratio > 1.01 || SeedingDays >= 15.0 || (TotalBytes < 5368709120 && SeedingDays >= 4.0) || (TotalBytes < 21474836480 && SeedingDays >= 5.0) || (TotalBytes < 37580963840 && SeedingDays >= 6.0) || (TotalBytes < 48318382080 && SeedingDays >= 7.0) || (TotalBytes < 96636764160 && SeedingDays >= 10.0) || (TotalBytes < 161061273600 && SeedingDays >= 12.0) || (TotalBytes < 268435456000 && SeedingDays >= 14.0))
-      - TrackerName contains "cinemaz.to" && (Ratio > 1.01 || SeedingDays >= 15.0 || (TotalBytes < 5368709120 && SeedingDays >= 4.0) || (TotalBytes < 21474836480 && SeedingDays >= 5.0) || (TotalBytes < 37580963840 && SeedingDays >= 6.0) || (TotalBytes < 48318382080 && SeedingDays >= 7.0) || (TotalBytes < 96636764160 && SeedingDays >= 10.0) || (TotalBytes < 161061273600 && SeedingDays >= 12.0) || (TotalBytes < 268435456000 && SeedingDays >= 14.0))
-      - TrackerName contains "eroticaz.to" && (Ratio > 1.01 || SeedingDays >= 15.0 || (TotalBytes < 5368709120 && SeedingDays >= 4.0) || (TotalBytes < 21474836480 && SeedingDays >= 5.0) || (TotalBytes < 37580963840 && SeedingDays >= 6.0) || (TotalBytes < 48318382080 && SeedingDays >= 7.0) || (TotalBytes < 96636764160 && SeedingDays >= 10.0) || (TotalBytes < 161061273600 && SeedingDays >= 12.0) || (TotalBytes < 268435456000 && SeedingDays >= 14.0))
-      - TrackerName contains "animetorrents.me" && (Ratio > 1.01 || SeedingDays >= 15.0 || (TotalBytes < 5368709120 && SeedingDays >= 4.0) || (TotalBytes < 21474836480 && SeedingDays >= 5.0) || (TotalBytes < 37580963840 && SeedingDays >= 6.0) || (TotalBytes < 48318382080 && SeedingDays >= 7.0) || (TotalBytes < 96636764160 && SeedingDays >= 10.0) || (TotalBytes < 161061273600 && SeedingDays >= 12.0) || (TotalBytes < 268435456000 && SeedingDays >= 14.0))
-
-
-      # BHD
-      - TrackerName contains "beyond-hd.me" && SeedingDays >= 120.0
-
-      # IPT
-      - TrackerName contains "stackoverflow.tech" && (Ratio > 1.01 || SeedingDays >= 15.0)
-      - TrackerName contains "bgp.technology" && (Ratio > 1.01 || SeedingDays >= 15.0)
-      - TrackerName contains "empirehost.me" && (Ratio > 1.01 || SeedingDays >= 15.0)
-
-      # PT
-      - TrackerName contains "passthepopcorn.me" && SeedingDays >= 60.0
-
-      # MTV
-      - TrackerName contains "morethantv.net" && (Ratio > 1.01 || SeedingDays >= 8.0)
-      - TrackerName contains "morethantv.me" && (Ratio > 1.01 || SeedingDays >= 8.0)
-
-      # HDS
-      - TrackerName contains "filelist.io" && (Ratio > 1.01 || SeedingDays >= 2.01)
-      - TrackerName contains "flro.org" && (Ratio > 1.01 || SeedingDays >= 2.01)
+      - Label startswith "expired"
