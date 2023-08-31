@@ -24,6 +24,7 @@ module.exports = {
     "https://prowlarr.trux.dev/33/api?apikey={{ .PROWLARR__API_KEY }}", // sbs
     "https://prowlarr.trux.dev/34/api?apikey={{ .PROWLARR__API_KEY }}", // phd
     "https://prowlarr.trux.dev/39/api?apikey={{ .PROWLARR__API_KEY }}", // ath
+    "https://prowlarr.trux.dev/41/api?apikey={{ .PROWLARR__API_KEY }}", // ath
   ],
 
   action: "inject",
