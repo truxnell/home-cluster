@@ -5,7 +5,7 @@
 
 module.exports = {
   delay: 30,
-  qbittorrentUrl: "https://localhost:10974",
+  qbittorrentUrl: "http://localhost:10974",
 
   torznab: [
     "https://prowlarr.{{ external_domain }}/18/api?apikey={{ prowlarr_api_key }}", // ipt
@@ -25,6 +25,7 @@ module.exports = {
     "https://prowlarr.{{ external_domain }}/34/api?apikey={{ prowlarr_api_key }}", // phd
     "https://prowlarr.{{ external_domain }}/39/api?apikey={{ prowlarr_api_key }}", // ant
     "https://prowlarr.{{ external_domain }}/41/api?apikey={{ prowlarr_api_key }}", // rtt
+    "https://prowlarr.{{ external_domain }}/42/api?apikey={{ prowlarr_api_key }}", // stc
   ],
 
   action: "inject",
@@ -39,6 +40,6 @@ module.exports = {
 
   dataDirs: ["/home/qbit/torrents/qbittorrent/finished/"],
 
-  outputDir: "/home/qbit/torrents/qbittorrent/xseeds",
-  torrentDir: "/home/qbit/torrents/qbittorrent/finished",
+  outputDir: "/config/xseeds",
+  torrentDir: "/config/qBittorrent/BT_backup",
 };
