@@ -26,6 +26,8 @@ module.exports = {
     "https://prowlarr.{{ external_domain }}/39/api?apikey={{ prowlarr_api_key }}", // ant
     "https://prowlarr.{{ external_domain }}/41/api?apikey={{ prowlarr_api_key }}", // rtt
     "https://prowlarr.{{ external_domain }}/42/api?apikey={{ prowlarr_api_key }}", // stc
+    "https://prowlarr.{{ external_domain }}/42/api?apikey={{ prowlarr_api_key }}", // stc
+    "https://prowlarr.{{ external_domain }}/43/api?apikey={{ prowlarr_api_key }}", // ath
   ],
 
   action: "inject",
@@ -41,5 +43,5 @@ module.exports = {
   dataDirs: ["/home/qbit/torrents/qbittorrent/finished/"],
 
   outputDir: "/config/xseeds",
-  torrentDir: "/config/qBittorrent/BT_backup",
+  torrentDir: "/home/qbit/torrents/qbittorrent/BT_backup",
 };
