@@ -61,6 +61,8 @@ spec:
       - site:uhdbits
       - --exclude-tag
       - site:anthelion
+      - --exclude-tag
+      - site:nebulance
       - -s
       - qbittorrent.default.svc.cluster.local
       - -p
