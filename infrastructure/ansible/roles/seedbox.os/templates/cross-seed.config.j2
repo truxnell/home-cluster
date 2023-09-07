@@ -4,7 +4,7 @@
 // External program on finished: /scripts/xseed.sh "%F"
 
 module.exports = {
-  delay: 30,
+  delay: 20,
   qbittorrentUrl: "http://localhost:10974",
 
   torznab: [
@@ -48,10 +48,10 @@ module.exports = {
   includeEpisodes: true,
   includeNonVideos: true,
   duplicateCategories: true,
-
   matchMode: "safe",
   skipRecheck: true,
-  linkType: "symlink",
+  linkType: "hardlink",
+
   linkDir: "/home/qbit/torrents/qbittorrent/xseeds",
 
   dataDirs: ["/home/qbit/torrents/qbittorrent/finished/"],

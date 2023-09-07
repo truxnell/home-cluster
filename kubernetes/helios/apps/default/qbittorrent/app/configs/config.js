@@ -4,7 +4,7 @@
 // External program on finished: /scripts/xseed.sh "%F"
 
 module.exports = {
-  delay: 30,
+  delay: 20,
   qbittorrentUrl: "http://localhost:8080",
 
   torznab: [
@@ -34,10 +34,10 @@ module.exports = {
   includeEpisodes: true,
   includeNonVideos: true,
   duplicateCategories: true,
-
   matchMode: "safe",
   skipRecheck: true,
-  linkType: "symlink",
+  linkType: "hardlink",
+
   linkDir: "/media/downloads/qbittorrent/complete/xseeds",
 
   // I have sonarr, radarr, and prowlarr categories set in qBittorrent
