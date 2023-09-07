@@ -78,7 +78,7 @@ spec:
       media:
         enabled: true
         type: hostPath
-        hostPath: /mnt/tmp
+        hostPath: /tank/natflix/downloads/music/
         mountPath: /media
     resources:
       requests:
