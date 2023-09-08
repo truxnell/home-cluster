@@ -27,7 +27,7 @@ spec:
         reloader.stakater.com/auto: 'true'
     image:
       repository: factoriotools/factorio
-      tag: stable@sha256:9db2dbecba6008fc742e379e85c2e48d305d3edfe754c7328f7ad4294bc94ee5
+      tag: stable@sha256:9b6b7a03be7366cae8fee0afd36953ad58814b404df8e59c63091b1ebbd07ab4
     global:
       nameOverride: *app
     env:
