@@ -34,7 +34,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: docker.io/typesense/typesense
-      tag: 0.25.0@sha256:f6b9c639662e8f76a4e8e30b70398b21af265bdf821f43a2cce4b9023efda21c
+      tag: 0.25.1@sha256:035ccfbc3fd8fb9085ea205fdcb62de63eaefdbebd710e88e57f978a30f2090d
     envFrom:
       - secretRef:
           name: immich
