@@ -24,7 +24,7 @@ spec:
     restartPolicy: OnFailure
     image:
       repository: ghcr.io/truxnell/b2
-      tag: 3.9.0@sha256:5c6381b71655649817e59cb836a4a3e6d9202d46a2443e72aeee88e548c97a64
+      tag: 3.10.0@sha256:8ab6b00216c28ba9328c3c0f488503ebfa42e19dd2075a4020a81980c3886d72
     command: ['b2']
     args: ['sync','/data','b2://trux-volsync-backup-A73B8D/','--keepDays','7','--replaceNewer']
     envFrom:
