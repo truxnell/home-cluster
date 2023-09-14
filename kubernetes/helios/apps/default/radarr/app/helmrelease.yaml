@@ -60,7 +60,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: tls.radarr
+          - secretName: tls.readarr
             hosts:
               - *host
     podSecurityContext:
