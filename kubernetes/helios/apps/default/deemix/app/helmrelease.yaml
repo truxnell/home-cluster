@@ -35,6 +35,8 @@ spec:
         enabled: true
         ingressClassName: traefik
         annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          cert-manager.io/cluster-issuer: letsencrypt-production
           hajimari.io/icon: mdi:folder-play-outline
         hosts:
           - host: &host "{{ .Release.Name }}.trux.dev"
@@ -42,7 +44,8 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - hosts:
+          - secretName: trux.dev-tls
+            hosts:
               - *host
     env:
       DEEMIX_SINGLE_USER: "true"

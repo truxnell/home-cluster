@@ -47,6 +47,8 @@ spec:
         enabled: true
         ingressClassName: traefik
         annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          cert-manager.io/cluster-issuer: letsencrypt-production
           hajimari.io/icon: mdi:filmstrip
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_set_header Accept-Encoding "";
@@ -58,7 +60,8 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - hosts:
+          - secretName: trux.dev-tls
+            hosts:
               - *host
     podSecurityContext:
       runAsUser: 568
