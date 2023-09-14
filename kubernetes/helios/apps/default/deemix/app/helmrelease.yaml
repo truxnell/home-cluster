@@ -44,7 +44,8 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: trux.dev-tls
+          - secretName:
+            - trux.dev-tls
             hosts:
               - *host
     env:
