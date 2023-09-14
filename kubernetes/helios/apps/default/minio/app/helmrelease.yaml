@@ -66,8 +66,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName:
-            - trux.dev-tls
+          - secretName: trux.dev-tls
             hosts:
               - *host
       s3:
@@ -83,8 +82,7 @@ spec:
                 service:
                   port: *api-port
         tls:
-          - secretName:
-            - trux.dev-tls
+          - secretName: trux.dev-tls
             hosts:
               - *host-api
     env:
