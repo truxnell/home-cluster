@@ -70,7 +70,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: trux.dev-tls
+          - secretName: tls.qbit
             hosts:
               - *host
     podSecurityContext:

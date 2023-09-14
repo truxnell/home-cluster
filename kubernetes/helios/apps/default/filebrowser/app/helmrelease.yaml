@@ -59,7 +59,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: trux.dev-tls
+          - secretName: tls.filebrowser
             hosts:
               - *host
     persistence:

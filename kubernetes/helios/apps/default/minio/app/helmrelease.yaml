@@ -82,7 +82,7 @@ spec:
                 service:
                   port: *api-port
         tls:
-          - secretName: trux.dev-tls
+          - secretName: tls.minio
             hosts:
               - *host-api
     env:
