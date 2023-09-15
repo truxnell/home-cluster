@@ -27,7 +27,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/sonarr-develop
-      tag: 4.0.0.665@sha256:8020f2130e1277f9ec5d12d9417d315ee23d58cfa62ac15d3d649d6986316e86
+      tag: 4.0.0.671@sha256:2a3eae5853ea3119da098c314111e6d2cff700cd3e517150a76377c34cbf4f70
     env:
       PUSHOVER_DEBUG: "false"
       PUSHOVER_APP_URL: &host "{{ .Release.Name }}.trux.dev"
