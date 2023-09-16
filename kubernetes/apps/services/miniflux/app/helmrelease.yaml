@@ -34,7 +34,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/miniflux/miniflux
-      tag: 2.0.46@sha256:0625952a7e45ff8824936d71eeaca57205c12b758d5b47e27fe11df98bebfcff
+      tag: 2.0.48@sha256:1aa8755118cf2865ee72521d87b8645080361fb75421314facb3766c0b0c07a3
     env:
       CREATE_ADMIN: "1"
       DEBUG: "1"
