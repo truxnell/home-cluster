@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   # - brewpiless # FIXME
   # - ./brother-printer
-  - ./syncthing
+  # - ./syncthing
