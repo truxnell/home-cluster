@@ -43,7 +43,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "external-nginx"
+        ingressClassName: "internal-nginx"
         annotations:
           external-dns.alpha.kubernetes.io/target: ingress-ext.${EXTERNAL_DOMAIN}
           nginx.ingress.kubernetes.io/auth-method: GET

@@ -42,10 +42,8 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: traefik
+        ingressClassName: "internal-nginx"
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          cert-manager.io/cluster-issuer: letsencrypt-production
           nginx.ingress.kubernetes.io/configuration-snippet: |-
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.trux.dev/css/base/readarr/plex.css"></head>';
@@ -57,8 +55,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: tls.readarr
-            hosts:
+          - hosts:
               - *host
     podSecurityContext:
       runAsUser: 568
