@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: &app readarr
-  namespace: default
+  namespace: organizarrs
 spec:
   interval: 15m
   chart:
@@ -70,14 +70,20 @@ spec:
     persistence:
       config:
         enabled: true
-        type: hostPath
-        hostPath: /tank/backup/k8s_apps/readarr/
-        mountPath: /config
+        existingClaim: readarr-config-v1
+      backup:
+        enabled: true
+        type: nfs
+        server: "helios.${INTERNAL_DOMAIN}"
+        path: /tank/backup/kubernetes/apps/prowlarr
+        mountPath: /config/Backups
       media:
         enabled: true
-        type: hostPath
-        hostPath: /tank/natflix/
-        mountPath: /media
+        type: nfs
+        server: "helios.${INTERNAL_DOMAIN}"
+        path: /tank/natflix/books/
+        mountPath: /books
+        readOnly: true
     resources:
       requests:
         cpu: 10m
