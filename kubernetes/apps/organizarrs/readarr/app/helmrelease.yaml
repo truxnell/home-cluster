@@ -80,7 +80,6 @@ spec:
         server: "helios.${INTERNAL_DOMAIN}"
         path: /tank/natflix/books/
         mountPath: /books
-        readOnly: true
     resources:
       requests:
         cpu: 10m
