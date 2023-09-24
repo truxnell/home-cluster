@@ -17,7 +17,7 @@ spec:
           automountServiceAccountToken: false
           containers:
             - name: *app
-              image: ghcr.io/truxnell/yt-dlp:2023.07.06@sha256:0077d9f256cd009ca351f6dad912107341cd620d1b265500ada3ae9340e862dc
+              image: ghcr.io/truxnell/yt-dlp:2023.09.24@sha256:56178aa367f4e44b7ec51fb8da3d03a608680dbd87d653d5f2866ff31ccffe4e
               imagePullPolicy: IfNotPresent
               command: ['/wrapper.sh']
               args:
