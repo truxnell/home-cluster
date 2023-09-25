@@ -26,7 +26,7 @@ spec:
       nameOverride: *app
     image:
       repository: quay.io/minio/minio
-      tag: RELEASE.2023-09-07T02-05-02Z@sha256:7e697b900f60d68e9edd2e8fc0dccd158e98938d924298612c5bbd294f2a1e65
+      tag: RELEASE.2023-09-23T03-47-50Z@sha256:3653713353a271df41fa7fafc80ea125fed56bda270d8f29280077b7f9b4c7bb
     controller:
       annotations:
         reloader.stakater.com/auto: "true"
