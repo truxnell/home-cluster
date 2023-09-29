@@ -45,6 +45,7 @@ spec:
         default: true
 
       config:
+        allowSnippetAnnotations: "true"
         client-header-timeout: 120
         client-body-buffer-size: "100M"
         client-body-timeout: 120
