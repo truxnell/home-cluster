@@ -78,7 +78,7 @@ spec:
         enabled: true
         type: nfs
         server: "helios.${INTERNAL_DOMAIN}"
-        path: /tank/natflix/
+        path: /tank/
         mountPath: /media
     resources:
       requests:
