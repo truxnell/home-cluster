@@ -36,7 +36,7 @@ spec:
       repository: ghcr.io/buroa/qbittools
     image:
       repository: ghcr.io/buroa/qbittools
-      tag: v0.9.4@sha256:0a9f334de521606b36e96d314361712a6f120612ed6d99e7677e9a9d09c1218d
+      tag: v0.9.5@sha256:9f23effa85ce39a1e7acef313f88fdb7e9438700fb8c6227d7b085321dfb7409
     args:
       - prune
       - --exclude-category
