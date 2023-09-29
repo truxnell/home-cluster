@@ -62,7 +62,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: tls.readarr
+          - secretName: tls.readarr1
             hosts:
               - *host
     podSecurityContext:
