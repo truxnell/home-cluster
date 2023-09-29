@@ -31,6 +31,7 @@ spec:
         - name: TZ
           value: "${TZ}"
 
+      allowSnippetAnnotations: "true"
       service:
         loadBalancerIP: "${LB_NGINX_INGRESS_INT}"
         annotations:
@@ -45,7 +46,6 @@ spec:
         default: true
 
       config:
-        allowSnippetAnnotations: "true"
         client-header-timeout: 120
         client-body-buffer-size: "100M"
         client-body-timeout: 120
