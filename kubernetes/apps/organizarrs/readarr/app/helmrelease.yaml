@@ -78,8 +78,8 @@ spec:
         enabled: true
         type: nfs
         server: "helios.${INTERNAL_DOMAIN}"
-        path: /tank/natflix/books/
-        mountPath: /books
+        path: /tank/natflix/
+        mountPath: /media
     resources:
       requests:
         cpu: 10m
