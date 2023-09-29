@@ -81,7 +81,7 @@ spec:
       media:
         enabled: true
         type: hostPath
-        hostPath: /mnt/tmp
+        hostPath: /tank/tmp
         mountPath: /media
     resources:
       requests:
