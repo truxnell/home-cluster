@@ -59,7 +59,7 @@ spec:
         enabled: true
         type: nfs
         server: "helios.${INTERNAL_DOMAIN}"
-        path: /tank/books/
+        path: /tank/
         mountPath: /media
 
     resources:
