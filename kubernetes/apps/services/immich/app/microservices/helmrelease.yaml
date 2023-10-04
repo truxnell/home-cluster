@@ -37,7 +37,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/immich-app/immich-server
-      tag: v1.79.1@sha256:38c3c0a8fd67aa04ee580b3a20d4a6dd7cd84df3f5387eadebc0a61ba0751518
+      tag: v1.81.1@sha256:6941e59187afd16f4703362f410245ca5e19cdab79c97a7d69224163e020c0a2
     command: /bin/sh
     args:
       - ./start-microservices.sh
