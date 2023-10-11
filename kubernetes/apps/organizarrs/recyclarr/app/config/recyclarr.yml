@@ -116,6 +116,9 @@ sonarr:
 
           - 9c14d194486c4014d422adc64092d794 # Dubs only
 
+        quality_profiles:
+          - name: Any (Non-4k)
+
 # Configuration specific to Radarr.
 radarr:
   radarr_main:
@@ -212,3 +215,6 @@ radarr:
           - 7357cf5161efbf8c4d5d0c30b4815ee2 # Obfuscated
           - 5c44f52a8714fdd79bb4d98e2673be1f # Retags
           - 839bea857ed2c0a8e084f3cbdbd65ecb # x265 (no HDR/DV)
+
+        quality_profiles:
+          - name: Any (Non-4k)
