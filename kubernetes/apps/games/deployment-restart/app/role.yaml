@@ -1,6 +1,4 @@
 ---
-
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -9,7 +7,13 @@ metadata:
 rules:
   - apiGroups: ["apps", "extensions"]
     resources: ["deployments"]
-    resourceNames: ["factorio-seablock", "factorio-k2", "factorio-squareworld"]
+    resourceNames:
+      [
+        "factorio-seablock",
+        "factorio-k2",
+        "factorio-squareworld",
+        "factorio-freight-forwarding",
+      ]
     verbs: ["get", "patch", "list", "watch"]
   - apiGroups: ["apps", "extensions"]
     resources: ["deployments"]
