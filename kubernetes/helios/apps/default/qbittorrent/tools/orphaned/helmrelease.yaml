@@ -42,7 +42,6 @@ spec:
       - "*_unpackerred"
       - --exclude-pattern
       - "*/prowlarr/*"
-      - --dry-run
       - -s
       - qbittorrent.default.svc.cluster.local
       - -p
