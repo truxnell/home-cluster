@@ -7,10 +7,18 @@ sonarr:
   standard:
     base_url: https://sonarr.trux.dev
     api_key: !env_var SONARR__API_KEY
+
     delete_old_custom_formats: true
     replace_existing_custom_formats: true
+
     quality_definition:
       type: series
+
+    quality_profiles:
+      - name: Any (Non-4k)
+        reset_unmatched_scores:
+          enabled: true
+
     custom_formats:
       # Audio Advanced #1
       - trash_ids:
@@ -109,10 +117,6 @@ sonarr:
 
           - 9c14d194486c4014d422adc64092d794 # Dubs only
 
-        quality_profiles:
-          - name: Any (Non-4k)
-        reset_unmatched_scores:
-          enabled: true
 # Configuration specific to Radarr.
 radarr:
   standard:
