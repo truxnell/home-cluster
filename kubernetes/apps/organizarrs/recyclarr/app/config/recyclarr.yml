@@ -81,7 +81,6 @@ sonarr:
           - eb3d5cc0a2be0db205fb823640db6a3c # Repack v2
           - 44e7c4de10ae50265753082e5dc76047 # Repack v3
           - 3bc5f395426614e155e585a2f056cdf1 # Season packs
-          - 0d91270a7255a1e388fa85e959f359d8 # Freeleech
 
           # Optional
           - 32b367365729d530ca1c124a0b180c64 # Bad Dual Groups
