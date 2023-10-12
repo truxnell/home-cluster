@@ -31,7 +31,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/autobrr/omegabrr
-      tag: v1.9.0
+      tag: v1.10.0@sha256:a42438af912da55df81db517868f38ea1167d65334a26dfb04564d2b147ac352
     env:
       PUID: 568
       PGID: 568
