@@ -31,7 +31,7 @@ spec:
               name: *app
     image:
       repository: caddy
-      tag: 2.7.4-alpine@sha256:11ae052d9015105757d19caf86dc51fc14403841f2b65e93fe320f4d0e197385
+      tag: 2.7.5-alpine@sha256:841fbf8813b069e5b6765ec6d71f08227dabb7f24cad9f8b54eaa836b3a3abc5
       pullPolicy: IfNotPresent
     sidecars:
       frontend:
