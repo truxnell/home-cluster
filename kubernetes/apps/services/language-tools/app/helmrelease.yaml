@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: silviof/docker-languagetool
-      tag: latest@sha256:10f9164bc6c88b2b9ce806b7090a8db5c940564262abfb4b8b3f8801663c27b6
+      tag: latest@sha256:17fea40a390299b78a038e92289323038a6fb5008febfcceb5e308ad25fb8069
     service:
       main:
         ports:
