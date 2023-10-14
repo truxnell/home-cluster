@@ -104,31 +104,9 @@ spec:
         subPath: xseed.sh
         defaultMode: 0775
         readOnly: true
-      xseed:
-        enabled: true
-        type: secret
-        name: cross-seed-secret
-        mountPath: /config/config.js
-        subPath: config.js
-        readOnly: true
     resources:
       requests:
         cpu: 10m
         memory: 250Mi
       limits:
         memory: 6000Mi
-    sidecars:
-      xseed:
-        image: ghcr.io/cross-seed/cross-seed:5.5.4@sha256:cecc854fc906cdaf471feab507fd860dff62049da9fb32e83250c887b5da8c42
-        imagePullPolicy: IfNotPresent
-        args:
-          - daemon
-        volumeMounts:
-          - name: config
-            mountPath: /config
-          - name: xseed
-            mountPath: /config/config.js
-            subPath: config.js
-            readOnly: true
-          - name: media
-            mountPath: /media
