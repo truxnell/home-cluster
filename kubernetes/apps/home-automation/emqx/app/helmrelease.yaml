@@ -52,8 +52,8 @@ spec:
       enabled: false
     persistence:
       enabled: true
-      storageClass: ceph-block
-      size: 100Mi
+      storageClassName: local-path
+      size: 250Mi
     affinity:
       podAntiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
