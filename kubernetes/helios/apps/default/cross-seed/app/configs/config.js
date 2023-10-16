@@ -10,7 +10,8 @@ module.exports = {
   torznab: [
     // "https://prowlarr.trux.dev/18/api?apikey={{ .PROWLARR__API_KEY }}", // ipt
     "https://prowlarr.trux.dev/17/api?apikey={{ .PROWLARR__API_KEY }}", // tl
-    "https://prowlarr.trux.dev/19/api?apikey={{ .PROWLARR__API_KEY }}", // fl
+    // "https://prowlarr.trux.dev/19/api?apikey={{ .PROWLARR__API_KEY }}", // fl
+    "https://prowlarr.trux.dev/53/api?apikey={{ .PROWLARR__API_KEY }}", // sa
     "https://prowlarr.trux.dev/30/api?apikey={{ .PROWLARR__API_KEY }}", // st
     "https://prowlarr.trux.dev/28/api?apikey={{ .PROWLARR__API_KEY }}", // hds
     "https://prowlarr.trux.dev/41/api?apikey={{ .PROWLARR__API_KEY }}", // rtt
