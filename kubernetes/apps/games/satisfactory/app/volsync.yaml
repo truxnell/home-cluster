@@ -54,7 +54,7 @@ spec:
     repository: satisfactory-restic
     cacheCapacity: 2Gi
     volumeSnapshotClassName: csi-ceph-blockpool
-    storageClassName: ceph-block
+    storageClassName: local-hostpath
     retain:
       daily: 10
       within: 3d

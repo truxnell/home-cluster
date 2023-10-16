@@ -54,7 +54,7 @@ spec:
     repository: calibre-restic
     cacheCapacity: 2Gi
     volumeSnapshotClassName: csi-ceph-blockpool
-    storageClassName: ceph-block
+    storageClassName: local-hostpath
     moverSecurityContext:
       runAsUser: 568
       runAsGroup: 568
