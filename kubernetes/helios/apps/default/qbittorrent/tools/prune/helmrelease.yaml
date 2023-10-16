@@ -39,8 +39,8 @@ spec:
       tag: v0.10.0@sha256:e700311562f88ca358c91e793494ce75ac5e355de45f3149ff03242170fd302c
     args:
       - prune
-      - --exclude-category
-      - prowlarr
+      - --include-tag
+      - expired
       - --exclude-tag
       - permaseed
       - --exclude-tag
@@ -49,20 +49,12 @@ spec:
       - site:redacted
       - --exclude-tag
       - site:orpheus
-      - --include-tag
-      - expired
       - --exclude-tag
       - site:beyond-hd
       - --exclude-tag
       - site:broadcasthenet
       - --exclude-tag
       - site:passthepopcorn
-      - --exclude-tag
-      - site:uhdbits
-      - --exclude-tag
-      - site:anthelion
-      - --exclude-tag
-      - site:nebulance
       - -s
       - qbittorrent.default.svc.cluster.local
       - -p
