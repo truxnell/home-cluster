@@ -5,9 +5,9 @@ metadata:
   name: cluster-apps-reloader
   namespace: flux-system
   labels:
-    substitution.flux.home.arpa/enabled: 'true'
+    substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: './kubernetes/apps/kube-system/reloader/app/'
+  path: "./kubernetes/helios/apps/kube-system/reloader/app/"
   prune: true
   sourceRef:
     kind: GitRepository

@@ -8,18 +8,10 @@ module.exports = {
   qbittorrentUrl: "http://qbittorrent.default.svc.cluster.local:8080",
 
   torznab: [
-    "https://prowlarr.trux.dev/53/api?apikey={{ .PROWLARR__API_KEY }}", // sa
-    "https://prowlarr.trux.dev/30/api?apikey={{ .PROWLARR__API_KEY }}", // st
-    "https://prowlarr.trux.dev/28/api?apikey={{ .PROWLARR__API_KEY }}", // hds
-    "https://prowlarr.trux.dev/41/api?apikey={{ .PROWLARR__API_KEY }}", // rtt
-
     "https://prowlarr.trux.dev/27/api?apikey={{ .PROWLARR__API_KEY }}", // hdt
     "https://prowlarr.trux.dev/40/api?apikey={{ .PROWLARR__API_KEY }}", // uhd
     "https://prowlarr.trux.dev/24/api?apikey={{ .PROWLARR__API_KEY }}", // blu
     "https://prowlarr.trux.dev/43/api?apikey={{ .PROWLARR__API_KEY }}", // ath
-
-    "https://prowlarr.trux.dev/33/api?apikey={{ .PROWLARR__API_KEY }}", // sbs
-    "https://prowlarr.trux.dev/46/api?apikey={{ .PROWLARR__API_KEY }}", // dcc
 
     "https://prowlarr.trux.dev/34/api?apikey={{ .PROWLARR__API_KEY }}", // phd
     "https://prowlarr.trux.dev/35/api?apikey={{ .PROWLARR__API_KEY }}", // cz
