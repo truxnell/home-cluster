@@ -36,7 +36,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/immich-app/immich-machine-learning
-      tag: v1.81.1@sha256:57d43ec959f5b1fcc80e7ca4d27cbc1758701ab5af01399a99eb111393dce912
+      tag: v1.82.0@sha256:f58f14cb9874e6947a8f8499fc95400a544043288b40db39b80675af91982d40
     envFrom:
       - secretRef:
           name: immich
