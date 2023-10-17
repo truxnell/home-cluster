@@ -9,3 +9,4 @@ resources:
   - ./jetstack-charts.yaml
   - ./ingress-nginx-charts.yaml
   - ./external-secrets.yaml
+  - ./stakater-charts.yaml
