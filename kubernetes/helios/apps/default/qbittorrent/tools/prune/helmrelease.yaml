@@ -43,6 +43,8 @@ spec:
       - expired
       - --exclude-tag
       - permaseed
+      - --exclude-category
+      - uploads
       - --exclude-tag
       - activity:24h
       - --exclude-tag
