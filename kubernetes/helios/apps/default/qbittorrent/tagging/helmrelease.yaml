@@ -44,6 +44,7 @@ spec:
       - --last-activity
       - --trackers
       - --tracker-down
+      - --expired
       - -s
       - qbittorrent.default.svc.cluster.local
       - -p
