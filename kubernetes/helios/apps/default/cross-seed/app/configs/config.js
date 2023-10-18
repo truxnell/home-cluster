@@ -8,18 +8,32 @@ module.exports = {
   qbittorrentUrl: "http://qbittorrent.default.svc.cluster.local:8080",
 
   torznab: [
-    "https://prowlarr.trux.dev/15/api?apikey={{ .PROWLARR__API_KEY }}", // fl
+    // "https://prowlarr.trux.dev/18/api?apikey={{ .PROWLARR__API_KEY }}", // ipt
+    "https://prowlarr.trux.dev/17/api?apikey={{ .PROWLARR__API_KEY }}", // tl
+    "https://prowlarr.trux.dev/19/api?apikey={{ .PROWLARR__API_KEY }}", // fl
+    "https://prowlarr.trux.dev/30/api?apikey={{ .PROWLARR__API_KEY }}", // st
+    "https://prowlarr.trux.dev/28/api?apikey={{ .PROWLARR__API_KEY }}", // hds
+    "https://prowlarr.trux.dev/41/api?apikey={{ .PROWLARR__API_KEY }}", // rtt
+    "https://prowlarr.trux.dev/48/api?apikey={{ .PROWLARR__API_KEY }}", // ar
+
     "https://prowlarr.trux.dev/27/api?apikey={{ .PROWLARR__API_KEY }}", // hdt
     "https://prowlarr.trux.dev/40/api?apikey={{ .PROWLARR__API_KEY }}", // uhd
     "https://prowlarr.trux.dev/24/api?apikey={{ .PROWLARR__API_KEY }}", // blu
     "https://prowlarr.trux.dev/43/api?apikey={{ .PROWLARR__API_KEY }}", // ath
 
+    "https://prowlarr.trux.dev/33/api?apikey={{ .PROWLARR__API_KEY }}", // sbs
+    "https://prowlarr.trux.dev/46/api?apikey={{ .PROWLARR__API_KEY }}", // dcc
+
     "https://prowlarr.trux.dev/34/api?apikey={{ .PROWLARR__API_KEY }}", // phd
     "https://prowlarr.trux.dev/35/api?apikey={{ .PROWLARR__API_KEY }}", // cz
     "https://prowlarr.trux.dev/36/api?apikey={{ .PROWLARR__API_KEY }}", // az
+    "https://prowlarr.trux.dev/32/api?apikey={{ .PROWLARR__API_KEY }}", // at
 
     "https://prowlarr.trux.dev/39/api?apikey={{ .PROWLARR__API_KEY }}", // ant
     "https://prowlarr.trux.dev/45/api?apikey={{ .PROWLARR__API_KEY }}", // nbl
+
+    "https://prowlarr.trux.dev/47/api?apikey={{ .PROWLARR__API_KEY }}", // crt
+    "https://prowlarr.trux.dev/51/api?apikey={{ .PROWLARR__API_KEY }}", // otw
   ],
 
   action: "inject",
