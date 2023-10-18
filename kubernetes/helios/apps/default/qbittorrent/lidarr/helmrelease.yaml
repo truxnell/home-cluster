@@ -83,6 +83,9 @@ spec:
         type: hostPath
         hostPath: /tank/natflix/downloads/music/
         mountPath: /media
+    probes:
+      startup:
+        enabled: false
     resources:
       requests:
         cpu: 10m
