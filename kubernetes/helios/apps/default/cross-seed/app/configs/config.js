@@ -8,6 +8,7 @@ module.exports = {
   qbittorrentUrl: "http://qbittorrent.default.svc.cluster.local:8080",
 
   torznab: [
+    "https://prowlarr.trux.dev/15/api?apikey={{ .PROWLARR__API_KEY }}", // fl
     "https://prowlarr.trux.dev/27/api?apikey={{ .PROWLARR__API_KEY }}", // hdt
     "https://prowlarr.trux.dev/40/api?apikey={{ .PROWLARR__API_KEY }}", // uhd
     "https://prowlarr.trux.dev/24/api?apikey={{ .PROWLARR__API_KEY }}", // blu
