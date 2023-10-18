@@ -29,8 +29,9 @@ spec:
       repository: ghcr.io/onedr0p/unpackerr
       tag: 0.12.0@sha256:8bbf35be449b89041f07fc069812f79b4eadf56e1c7c7720935fe166016376ef
     env:
+      UN_ACTIVITY: "true"
       UN_INTERVAL: 1m
-      UN_WEBSERVER_METRICS: true
+      UN_WEBSERVER_METRICS: "true"
       UN_SONARR_0_URL: http://sonarr.default.svc.cluster.local:8989
       UN_SONARR_0_PATHS_0: /media/natflix/downloads/qbittorrent/complete/sonarr
       UN_RADARR_0_URL: http://radarr.default.svc.cluster.local:7878
