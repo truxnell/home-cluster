@@ -19,14 +19,14 @@ spec:
     controller:
       type: cronjob
       cronjob:
-        schedule: '@daily'
+        schedule: "@daily"
         ttlSecondsAfterFinished: 86400
     restartPolicy: OnFailure
     image:
       repository: ghcr.io/recyclarr/recyclarr
-      tag: edge@sha256:e4c6aea8342d3913910c25da79cc5673f7956656729f69c7f4e808376f5607ca
-    command: ['/app/recyclarr/recyclarr']
-    args: ['sync']
+      tag: 6.0.1
+    command: ["/app/recyclarr/recyclarr"]
+    args: ["sync"]
     envFrom:
       - secretRef:
           name: radarr
