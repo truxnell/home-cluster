@@ -47,23 +47,6 @@ spec:
       - secretRef:
           name: *app
 
-    initContainers:
-      copy-configmap:
-        image: busybox@sha256:3fbc632167424a6d997e74f52b878d7cc478225cffac6bc977eedfe51c7f4e79
-        imagePullPolicy: IfNotPresent
-        command:
-          - "sh"
-          - "-c"
-          - |
-            mkdir -p /var/lib/pleroma/
-            cp -vL /configmap/* /var/lib/pleroma/config.exs
-            chown 420 /var/lib/pleroma/config.exs
-        volumeMounts:
-          - name: config-exa
-            mountPath: /configmap/
-        securityContext:
-          runAsUser: 0
-
     service:
       main:
         ports:
