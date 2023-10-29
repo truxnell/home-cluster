@@ -5,12 +5,13 @@ kind: HelmRelease
 metadata:
   name: qbittorrent-reannounce
   namespace: default
+
 spec:
   interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.3
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -29,25 +30,36 @@ spec:
     - name: qbittorrent
       namespace: default
   values:
-    image:
-      repository: ghcr.io/buroa/qbittools
-      tag: v0.10.0@sha256:e700311562f88ca358c91e793494ce75ac5e355de45f3149ff03242170fd302c
-    args:
-      - reannounce
-      - --process-seeding
-      - -s
-      - qbittorrent.default.svc.cluster.local
-      - -p
-      - "8080"
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/buroa/qbtools
+              tag: v0.10.0
+
+            args:
+              [
+                "reannounce",
+                "--process-seeding",
+                "--server",
+                "qbittorrent.default.svc.cluster.local",
+                "--port",
+                "80",
+              ]
+
+            resources:
+              requests:
+                cpu: 5m
+                memory: 64M
+              limits:
+                memory: 128M
+
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+
     service:
       main:
         enabled: false
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-    resources:
-      requests:
-        memory: 250Mi
-        cpu: 25m
-      limits:
-        memory: 500Mi
