@@ -7,7 +7,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: "./kubernetes/helios/apps/monitoring/smartctl/app/"
+  path: "./kubernetes/helios/apps/monitoring/smartctl-exporter/app/"
   prune: true
   sourceRef:
     kind: GitRepository
