@@ -97,7 +97,8 @@
     "pyload",
     "sonarr",
     "rook",
-    "z2m"
+    "z2m",
+    "snapshot-controller"
   ],
   "discord.enabled": true,
 
