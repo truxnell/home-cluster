@@ -50,7 +50,7 @@ spec:
                 "--server",
                 "qbittorrent.default.svc.cluster.local",
                 "--port",
-                "80",
+                "8080",
               ]
             resources:
               requests:
