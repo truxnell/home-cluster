@@ -54,7 +54,8 @@ spec:
     repository: plex-restic
     cacheCapacity: 5Gi
     volumeSnapshotClassName: csi-ceph-blockpool
-    storageClassName: local-hostpath
+    storageClassName: csi-block
+    cacheStorageClassName: local-hostpath
     moverSecurityContext:
       runAsUser: 568
       runAsGroup: 568

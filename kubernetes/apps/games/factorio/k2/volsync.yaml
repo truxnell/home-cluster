@@ -54,7 +54,8 @@ spec:
     repository: factorio-k2-restic
     cacheCapacity: 2Gi
     volumeSnapshotClassName: csi-ceph-blockpool
-    storageClassName: local-hostpath
+    storageClassName: csi-block
+    cacheStorageClassName: local-hostpath
     retain:
       daily: 10
       within: 3d

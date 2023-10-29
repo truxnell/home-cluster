@@ -53,7 +53,8 @@ spec:
           storage:
             volumeClaimTemplate:
               spec:
-                storageClassName: local-hostpath
+                storageClassName: csi-block
+    cacheStorageClassName: local-hostpath
                 resources:
                   requests:
                     storage: 10Gi
@@ -69,7 +70,8 @@ spec:
           storage:
             volumeClaimTemplate:
               spec:
-                storageClassName: local-hostpath
+                storageClassName: csi-block
+    cacheStorageClassName: local-hostpath
                 resources:
                   requests:
                     storage: 2Gi
@@ -226,7 +228,8 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: local-hostpath
+              storageClassName: csi-block
+    cacheStorageClassName: local-hostpath
               resources:
                 requests:
                   storage: 50Mi
