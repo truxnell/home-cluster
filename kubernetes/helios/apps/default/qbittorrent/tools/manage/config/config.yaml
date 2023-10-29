@@ -68,6 +68,10 @@ trackers:
     urls: ["nebulance.io"]
     required_seed_ratio: 0
     required_seed_days: 5.1
+  - name: oldtoonsworld
+    urls: ["oldtoons.world"]
+    required_seed_ratio: 1.01
+    required_seed_days: 2.1
   - name: orpheus
     urls: ["home.opsfet.ch"]
     required_seed_ratio: 0
@@ -88,10 +92,18 @@ trackers:
     urls: ["flacsfor.me"]
     required_seed_ratio: 0
     required_seed_days: 0
+  - name: revolutiontt
+    urls: ["revolutiontt.me"]
+    required_seed_ratio: 1.05
+    required_seed_days: 0
   - name: scenetime
     urls: ["scenetime.com"]
     required_seed_ratio: 0
     required_seed_days: 3.1
+  - name: speedapp
+    urls: ["speedapp.io", "speedappio.org", "speedapp.to"]
+    required_seed_ratio: 1.01
+    required_seed_days: 2.1
   - name: torrentday
     urls: ["jumbohostpro.eu", "td-peers.com"]
     required_seed_ratio: 1.01
