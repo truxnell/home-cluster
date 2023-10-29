@@ -54,7 +54,7 @@ spec:
     repository: foundryvtt-restic
     cacheCapacity: 2Gi
     volumeSnapshotClassName: csi-ceph-blockpool
-    storageClassName: csi-block
+    storageClassName: ceph-block
     cacheStorageClassName: local-hostpath
     retain:
       daily: 10

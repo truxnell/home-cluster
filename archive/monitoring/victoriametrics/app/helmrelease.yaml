@@ -53,7 +53,7 @@ spec:
           storage:
             volumeClaimTemplate:
               spec:
-                storageClassName: csi-block
+                storageClassName: ceph-block
     cacheStorageClassName: local-hostpath
                 resources:
                   requests:
@@ -70,7 +70,7 @@ spec:
           storage:
             volumeClaimTemplate:
               spec:
-                storageClassName: csi-block
+                storageClassName: ceph-block
     cacheStorageClassName: local-hostpath
                 resources:
                   requests:
@@ -228,7 +228,7 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: csi-block
+              storageClassName: ceph-block
     cacheStorageClassName: local-hostpath
               resources:
                 requests:
