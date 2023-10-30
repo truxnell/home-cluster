@@ -18,4 +18,3 @@ resources:
   - ./deemix/ks.yaml
   - ./unpackerr/ks.yaml
   - ./cross-seed/ks.yaml
-  - ./reloader/ks.yaml
