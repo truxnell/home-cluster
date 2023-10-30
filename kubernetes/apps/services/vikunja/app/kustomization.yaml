@@ -7,5 +7,3 @@ resources:
   - ./pvc.yaml
   - ./externalsecret.yaml
   - ./volsync.yaml
-metadata:
-  namespace: services

@@ -4,5 +4,3 @@ kind: Kustomization
 resources:
   - ./ip-address-pool.yaml
   - ./l2-advertisment.yaml
-metadata:
-  namespace: networking

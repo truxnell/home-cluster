@@ -10,5 +10,3 @@ configMapGenerator:
       - cloudflare-proxied-networks.txt
 generatorOptions:
   disableNameSuffixHash: true
-metadata:
-  namespace: networking

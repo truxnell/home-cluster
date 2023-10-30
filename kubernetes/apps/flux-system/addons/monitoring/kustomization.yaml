@@ -21,5 +21,3 @@ generatorOptions:
     kustomize.toolkit.fluxcd.io/substitute: disabled
   labels:
     grafana_dashboard: 'true'
-metadata:
-  namespace: flux-system

@@ -4,5 +4,3 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./externalsecret.yaml
-metadata:
-  namespace: home-automation

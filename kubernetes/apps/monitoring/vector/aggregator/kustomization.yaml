@@ -5,8 +5,6 @@ namespace: monitoring
 resources:
   - ./helmrelease.yaml
   - ./externalsecret.yaml
-metadata:
-  namespace: monitoring
 configMapGenerator:
   - name: vector-aggregator-configmap
     files:

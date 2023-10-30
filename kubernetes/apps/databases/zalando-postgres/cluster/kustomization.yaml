@@ -6,5 +6,3 @@ resources:
   - ./service.yaml
   - ./externalsecret.yaml
   - ./podmonitor.yaml
-metadata:
-  namespace: databases

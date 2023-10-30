@@ -6,5 +6,3 @@ resources:
   - ./system-monitoring
   - ./networking
   - ./kube-system/
-metadata:
-  namespace: monitoring

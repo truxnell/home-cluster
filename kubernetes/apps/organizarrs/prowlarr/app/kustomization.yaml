@@ -6,5 +6,3 @@ resources:
   - ./helmrelease.yaml
   - ./externalsecret.yaml
   - ./volsync.yaml
-metadata:
-  namespace: organizarrs

@@ -4,5 +4,3 @@ kind: Kustomization
 resources:
   - ./clusterissuer.yaml
   - ./certificates.yaml
-metadata:
-  namespace: cert-manager

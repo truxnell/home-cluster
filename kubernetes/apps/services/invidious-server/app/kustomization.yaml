@@ -11,5 +11,3 @@ configMapGenerator:
       - config/config.yml
 generatorOptions:
   disableNameSuffixHash: true
-metadata:
-  namespace: services
