@@ -85,7 +85,9 @@ spec:
         mountPath: /media
     probes:
       startup:
-        enabled: false
+        spec:
+          initialDelaySeconds: 60
+          failureThreshold: 160
     resources:
       requests:
         cpu: 10m
