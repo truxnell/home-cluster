@@ -17,4 +17,3 @@ resources:
   - ./qbittorrent-exporter/ks.yaml
   - ./deemix/ks.yaml
   - ./unpackerr/ks.yaml
-  - ./cross-seed/ks.yaml

@@ -34,34 +34,20 @@ spec:
     env:
       TZ: America/New_York
     args: ["daemon"]
+
     service:
       main:
         ports:
           http:
             port: 2468
+
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
       fsGroupChangePolicy: OnRootMismatch
       supplementalGroups: [10000]
-    ingress:
-      main:
-        enabled: true
-        ingressClassName: traefik
-        annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          hajimari.io/enabled: false
-        hosts:
-          - host: &host "{{ .Release.Name }}.trux.dev"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - secretName: tls.cross-seed
-            hosts:
-              - *host
+
     persistence:
       config:
         enabled: true
@@ -80,6 +66,7 @@ spec:
         type: hostPath
         hostPath: /tank/natflix/
         mountPath: /media
+
     resources:
       requests:
         cpu: 10m
