@@ -86,6 +86,7 @@ spec:
             subPath: config.js
             readOnly: true
       media:
-        existingClaim: media
-        globalMounts:
-          - path: /media
+        enabled: true
+        type: hostPath
+        hostPath: /tank/natflix/
+        hostPathType: Directory
