@@ -78,6 +78,8 @@ spec:
         type: hostPath
         hostPath: /tank/backup/k8s_apps/qbittorrent/
         hostPathType: Directory
+        globalMounts:
+          - path: /config
       config-file:
         type: secret
         name: cross-seed-secret
@@ -90,3 +92,5 @@ spec:
         type: hostPath
         hostPath: /tank/natflix/
         hostPathType: Directory
+        globalMounts:
+          - path: /media
