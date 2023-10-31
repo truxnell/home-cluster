@@ -64,9 +64,10 @@ spec:
         enabled: true
         type: secret
         name: cross-seed-secret
-        mountPath: /config/config.js
         subPath: config.js
         readOnly: true
+        globalMounts:
+          mountPath: /config/config.js
       media:
         existingClaim: media
         globalMounts:
