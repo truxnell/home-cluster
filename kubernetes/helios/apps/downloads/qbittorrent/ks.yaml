@@ -7,7 +7,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: "./kubernetes/helios/apps/default/qbittorrent/app/"
+  path: "./kubernetes/helios/apps/downloads/qbittorrent/app/"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -15,6 +15,7 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 3m
+  wait: false
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -24,7 +25,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: "./kubernetes/helios/apps/default/qbittorrent/readarr/"
+  path: "./kubernetes/helios/apps/downloads/qbittorrent/readarr/"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -32,6 +33,7 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 3m
+  wait: false
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -41,7 +43,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: "./kubernetes/helios/apps/default/qbittorrent/lidarr/"
+  path: "./kubernetes/helios/apps/downloads/qbittorrent/lidarr/"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -49,6 +51,7 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 3m
+  wait: false
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -58,7 +61,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: "./kubernetes/helios/apps/default/qbittorrent/tools/"
+  path: "./kubernetes/helios/apps/downloads/qbittorrent/tools/"
   prune: true
   sourceRef:
     kind: GitRepository
@@ -66,3 +69,4 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 3m
+  wait: false

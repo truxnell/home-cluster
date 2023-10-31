@@ -5,10 +5,9 @@ kind: Kustomization
 namespace: downloads
 resources:
   - ./helmrelease.yaml
-  - ./externalsecret.yaml
 configMapGenerator:
-  - name: omegabrr-config-tpl
+  - name: qbittorrent-tools-configmap
     files:
-      - ./config/config.yaml
-generatorOptions:
-  disableNameSuffixHash: true
+      - config.yaml=./config/config.yaml
+configurations:
+  - ./patches/kustomizeconfig.yaml

@@ -2,8 +2,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app qbittorrent-readarr
-  namespace: default
+  name: &app qbittorrent
+  namespace: downloads
 spec:
   interval: 15m
   chart:
@@ -26,13 +26,21 @@ spec:
       repository: ghcr.io/onedr0p/qbittorrent
       tag: 4.5.5@sha256:f4a1a5eece13beed61e579172d2a54b1fc2e7ff2bbdbd7ef22a4d9f6fc36e198
     env:
-      QBITTORRENT__BT_PORT: &port-bt 32190
+      QBITTORRENT__BT_PORT: &port-bt 32189
     hostname: qbittorrent
     service:
       main:
         ports:
           http:
             port: 8080
+      xseed:
+        enabled: true
+        type: NodePort
+        ports:
+          xseed:
+            protocol: TCP
+            port: 2468
+            nodePort: 32468
       bittorrent:
         enabled: true
         type: NodePort
@@ -62,7 +70,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: tls.readarr1
+          - secretName: tls.qbit
             hosts:
               - *host
     podSecurityContext:
@@ -72,22 +80,33 @@ spec:
       fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 100
+    probes:
+      startup:
+        enabled: false
     persistence:
       config:
         enabled: true
         type: hostPath
-        hostPath: /tank/backup/k8s_apps/qbittorrent-readarr/
+        hostPath: /tank/backup/k8s_apps/qbittorrent/
         mountPath: /config
       media:
         enabled: true
         type: hostPath
-        hostPath: /tank/
+        hostPath: /tank/natflix/
         mountPath: /media
-    probes:
-      startup:
-        spec:
-          initialDelaySeconds: 60
-          failureThreshold: 160
+      tmp:
+        enabled: true
+        type: hostPath
+        hostPath: /mnt/tmp
+        mountPath: /tmp
+      scripts:
+        enabled: true
+        type: configMap
+        name: qbittorrent-scripts
+        mountPath: /scripts/xseed.sh
+        subPath: xseed.sh
+        defaultMode: 0775
+        readOnly: true
     resources:
       requests:
         cpu: 10m
