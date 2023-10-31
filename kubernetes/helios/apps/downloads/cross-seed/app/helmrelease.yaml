@@ -55,11 +55,29 @@ spec:
         ports:
           http:
             port: 2468
-
+    ingress:
+      main:
+        enabled: true
+        className: traefik
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          cert-manager.io/cluster-issuer: letsencrypt-production
+        hosts:
+          - host: &host cross-seed.trux.dev
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
     persistence:
       config:
         enabled: true
-        existingClaim: cross-seed-config-v1
+        type: hostPath
+        hostPath: /tank/natflix/backup/kubernetes/apps/qbittorrent/
+        hostPathType: Directory
       config-file:
         type: secret
         name: cross-seed-secret

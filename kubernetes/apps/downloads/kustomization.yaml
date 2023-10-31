@@ -9,4 +9,3 @@ resources:
   # - ./sabnzbd/ks.yaml
   - ./media-pvc.yaml
   - ./autobrr/ks.yaml
-  - ./cross-seed/ks.yaml

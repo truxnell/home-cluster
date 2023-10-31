@@ -7,3 +7,4 @@ resources:
   # Flux-Kustomizations
   - ./sabnzbd/ks.yaml
   - ./qbittorrent/ks.yaml
+  - ./cross-seed/ks.yaml
