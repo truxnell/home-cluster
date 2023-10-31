@@ -48,7 +48,7 @@ spec:
                 "--sites",
                 "--unregistered",
                 "--server",
-                "qbittorrent.default.svc.cluster.local",
+                "qbittorrent.downloads.svc.cluster.local",
                 "--port",
                 "8080",
                 "--config",
@@ -73,7 +73,7 @@ spec:
                 "unregistered",
                 # "--dry-run",
                 "--server",
-                "qbittorrent.default.svc.cluster.local",
+                "qbittorrent.downloads.svc.cluster.local",
                 "--port",
                 "8080",
               ]
@@ -93,7 +93,7 @@ spec:
                 "activity:24h",
                 # "--dry-run",
                 "--server",
-                "qbittorrent.default.svc.cluster.local",
+                "qbittorrent.downloads.svc.cluster.local",
                 "--port",
                 "8080",
               ]

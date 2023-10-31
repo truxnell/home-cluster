@@ -46,7 +46,7 @@ spec:
                 "*/manual/*",
                 # "--dry-run",
                 "--server",
-                "qbittorrent.default.svc.cluster.local",
+                "qbittorrent.downloads.svc.cluster.local",
                 "--port",
                 "8080",
               ]
