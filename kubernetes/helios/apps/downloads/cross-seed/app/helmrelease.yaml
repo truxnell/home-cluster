@@ -76,7 +76,7 @@ spec:
       config:
         enabled: true
         type: hostPath
-        hostPath: /tank/natflix/backup/kubernetes/apps/qbittorrent/
+        hostPath: /tank/backup/k8s_apps/qbittorrent/
         hostPathType: Directory
       config-file:
         type: secret
