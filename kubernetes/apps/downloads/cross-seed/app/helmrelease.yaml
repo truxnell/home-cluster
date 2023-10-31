@@ -59,9 +59,7 @@ spec:
     persistence:
       config:
         enabled: true
-        type: hostPath
-        hostPath: /tank/backup/k8s_apps/qbittorrent/
-        mountPath: /config
+        existingClaim: cross-seed-config-v1
       config-file:
         enabled: true
         type: secret

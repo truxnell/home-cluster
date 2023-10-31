@@ -5,6 +5,7 @@ namespace: default
 resources:
   - ./helmrelease.yaml
   - ./externalsecret.yaml
+  - ./pvc.yaml
 configMapGenerator:
   - name: cross-seed-config-tpl
     files:
