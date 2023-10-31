@@ -3,14 +3,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: autobrr
-  namespace: downloads
+  name: &app autobrr
+  namespace: default
 spec:
   interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.3
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -25,52 +25,80 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: volsync
-      namespace: volsync
   values:
-    controller:
-      type: statefulset
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/autobrr/autobrr
-      tag: v1.32.0@sha256:5a40f0924ef3ce59358a6c079ae54a1f0160d50ec3edebea5dade93841825bf6
-    env:
-      AUTOBRR__CHECKFORUPDATES: "false"
-      AUTOBRR__HOST: 0.0.0.0
-      AUTOBRR__PORT: &port 80
-      AUTOBRR__LOGLEVEL: TRACE
-      AUTOBRR__DATABASETYPE: postgres
-      AUTOBRR__POSTGRESDATABASE:
-        valueFrom:
-          secretKeyRef:
-            name: database-autobrr-user
-            key: DATABASE_NAME
-      AUTOBRR__POSTGRESHOST:
-        valueFrom:
-          secretKeyRef:
-            name: database-autobrr-user
-            key: HOST
-      AUTOBRR__POSTGRESUSER:
-        valueFrom:
-          secretKeyRef:
-            name: database-autobrr-user
-            key: LOGIN
-      AUTOBRR__POSTGRESPASS:
-        valueFrom:
-          secretKeyRef:
-            name: database-autobrr-user
-            key: PASSWORD
-      AUTOBRR__POSTGRESPORT: "5432"
-    envFrom: &envFrom
-      - secretRef:
-          name: autobrr
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/autobrr/autobrr
+              tag: v1.32.0
+            env:
+              AUTOBRR__CHECKFORUPDATES: "false"
+              AUTOBRR__HOST: 0.0.0.0
+              AUTOBRR__PORT: &port 80
+              AUTOBRR__LOGLEVEL: TRACE
+              AUTOBRR__DATABASETYPE: postgres
+              AUTOBRR__POSTGRESDATABASE:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-autobrr-user
+                    key: DATABASE_NAME
+              AUTOBRR__POSTGRESHOST:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-autobrr-user
+                    key: HOST
+              AUTOBRR__POSTGRESUSER:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-autobrr-user
+                    key: LOGIN
+              AUTOBRR__POSTGRESPASS:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-autobrr-user
+                    key: PASSWORD
+              AUTOBRR__POSTGRESPORT: "5432"
+            envFrom: &envFrom
+              - secretRef:
+                  name: autobrr
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/healthz/liveness
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+            resources:
+              requests:
+                memory: 128Mi
+                cpu: 10m
+              limits:
+                memory: 256Mi
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+
     service:
       main:
         ports:
           http:
             port: *port
+
     ingress:
       main:
         enabled: true
@@ -83,11 +111,7 @@ spec:
         tls:
           - hosts:
               - *host
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: OnRootMismatch
+
     persistence:
       config:
         enabled: true
@@ -99,9 +123,3 @@ spec:
         subPath: config.toml
         mountPath: /config/config.toml
         readOnly: true
-    resources:
-      requests:
-        memory: 250Mi
-        cpu: 10m
-      limits:
-        memory: 500Mi
