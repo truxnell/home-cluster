@@ -4,7 +4,6 @@ kind: HelmRelease
 metadata:
   name: qbittorrent-reannounce
   namespace: downloads
-
 spec:
   interval: 30m
   chart:
