@@ -47,7 +47,7 @@ metadata:
 spec:
   sourcePVC: redis-data-redis-0
   trigger:
-    schedule: "9 0 * * *"
+    schedule: "4 0 * * *"
   restic:
     copyMethod: Snapshot
     pruneIntervalDays: 10
