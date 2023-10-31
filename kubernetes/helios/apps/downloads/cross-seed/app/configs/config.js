@@ -5,7 +5,7 @@
 
 module.exports = {
   delay: 20,
-  qbittorrentUrl: "http://qbittorrent.${EXTERNAL_DOMAIN}",
+  qbittorrentUrl: "qbittorrent.downloads.svc.cluster.local:8080",
 
   torznab: [
     // "https://prowlarr.trux.dev/18/api?apikey={{ .PROWLARR__API_KEY }}", // ipt
