@@ -118,9 +118,9 @@ spec:
         enabled: true
         type: emptyDir
       config-file:
-        enabled: true
         type: configMap
         name: autobrr-configmap
-        subPath: config.toml
-        mountPath: /config/config.toml
-        readOnly: true
+        globalMounts:
+          - path: /config/config.toml
+            subPath: config.toml
+            readOnly: true
