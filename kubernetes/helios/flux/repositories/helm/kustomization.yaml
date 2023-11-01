@@ -9,3 +9,4 @@ resources:
   - ./ingress-nginx-charts.yaml
   - ./external-secrets.yaml
   - ./stakater-charts.yaml
+  - ./external-dns-charts.yaml
