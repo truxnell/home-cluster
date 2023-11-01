@@ -33,14 +33,6 @@ spec:
         ports:
           http:
             port: 8080
-      xseed:
-        enabled: true
-        type: NodePort
-        ports:
-          xseed:
-            protocol: TCP
-            port: 2468
-            nodePort: 32468
       bittorrent:
         enabled: true
         type: NodePort
