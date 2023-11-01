@@ -23,6 +23,7 @@ module.exports = {
 
     "https://prowlarr.trux.dev/33/api?apikey={{ .PROWLARR__API_KEY }}", // sbs
     "https://prowlarr.trux.dev/46/api?apikey={{ .PROWLARR__API_KEY }}", // dcc
+    "https://prowlarr.trux.dev/53/api?apikey={{ .PROWLARR__API_KEY }}", // spd
 
     "https://prowlarr.trux.dev/34/api?apikey={{ .PROWLARR__API_KEY }}", // phd
     "https://prowlarr.trux.dev/35/api?apikey={{ .PROWLARR__API_KEY }}", // cz
