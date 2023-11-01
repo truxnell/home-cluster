@@ -54,7 +54,7 @@ spec:
       main:
         type: NodePort
         ports:
-          main:
+          http:
             protocol: TCP
             port: 2468
             nodePort: 32468
