@@ -205,7 +205,6 @@ radarr:
           # Misc
           - e7718d7a3ce595f289bfee26adc178f5 # Repack/Proper
           - ae43b294509409a6a13919dedd4764c4 # Repack2
-          - 0d91270a7255a1e388fa85e959f359d8 # Freeleech
 
           # Optional
           - b6832f586342ef70d9c128d40c07b872 # Bad Dual Groups
