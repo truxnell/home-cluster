@@ -7,7 +7,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: "./kubernetes/apps/networking/external-dns/internal/"
+  path: "./kubernetes/helios/apps/networking/external-dns/internal/"
   prune: true
   sourceRef:
     kind: GitRepository
