@@ -93,6 +93,20 @@ spec:
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
 
+    ingress:
+      main:
+        enabled: true
+        className: "internal-nginx"
+        hosts:
+          - host: &host "{{ .Release.Name }}.trux.dev"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
     service:
       main:
         ports:
