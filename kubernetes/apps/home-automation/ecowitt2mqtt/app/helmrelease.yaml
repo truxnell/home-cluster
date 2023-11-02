@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: ghcr.io/bachya/ecowitt2mqtt
-      tag: latest@sha256:53245ec0d400fda9f7dfbf1388e02b21fd66b2750e55748436568e9d2469f1c5
+      tag: latest@sha256:6b444767e678726a0765b637aed5b96a61807e3b7964f6e8080331636d16561d
     controller:
       replicas: 3
       strategy: RollingUpdate
