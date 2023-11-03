@@ -33,7 +33,7 @@ spec:
           main:
             image:
               repository: ghcr.io/cross-seed/cross-seed
-              tag: 5.5.4
+              tag: 5.6.0@sha256:6e6532d874dcc0ee745a0492c433606f6224719519976e56b4f1860036cd1637
             env:
               TZ: ${TZ}
             args: ["daemon"]
