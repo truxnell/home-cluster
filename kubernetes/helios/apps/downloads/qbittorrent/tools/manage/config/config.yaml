@@ -34,8 +34,8 @@ trackers:
     required_seed_days: 0
   - name: digitalcoreclub
     urls: ["digitalcore.club"]
-    required_seed_ratio: 0
-    required_seed_days: 0
+    required_seed_ratio: 1.01
+    required_seed_days: 5.01
   - name: filelist
     urls: ["filelist.io", "flro.org"]
     required_seed_ratio: 1.01
@@ -62,8 +62,8 @@ trackers:
     required_seed_days: 0
   - name: milkie
     urls: ["milkie.cc"]
-    required_seed_ratio: 1.01
-    required_seed_days: 7.1
+    required_seed_ratio: 0
+    required_seed_days: 0
   - name: morethantv
     urls: ["morethantv.me"]
     required_seed_ratio: 1.01
@@ -114,6 +114,10 @@ trackers:
     required_seed_days: 3.1
   - name: speedapp
     urls: ["speedapp.io", "speedappio.org", "speedapp.to"]
+    required_seed_ratio: 1.01
+    required_seed_days: 2.1
+  - name: superbits
+    urls: ["superbits.org", "sptracker.cc", "superbits.org"]
     required_seed_ratio: 1.01
     required_seed_days: 2.1
   - name: torrentday
