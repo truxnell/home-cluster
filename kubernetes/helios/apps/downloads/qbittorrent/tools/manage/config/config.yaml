@@ -28,6 +28,14 @@ trackers:
     urls: ["landof.tv"]
     required_seed_ratio: 1.01
     required_seed_days: 5.1
+  - name: cathoderaytube
+    urls: ["cathode-ray.tube"]
+    required_seed_ratio: 0
+    required_seed_days: 0
+  - name: digitalcoreclub
+    urls: ["digitalcore.club"]
+    required_seed_ratio: 0
+    required_seed_days: 0
   - name: filelist
     urls: ["filelist.io", "flro.org"]
     required_seed_ratio: 1.01
@@ -52,6 +60,10 @@ trackers:
     urls: ["kraytracker.com"]
     required_seed_ratio: 0
     required_seed_days: 0
+  - name: milkie
+    urls: ["milkie.cc"]
+    required_seed_ratio: 1.01
+    required_seed_days: 7.1
   - name: morethantv
     urls: ["morethantv.me"]
     required_seed_ratio: 1.01

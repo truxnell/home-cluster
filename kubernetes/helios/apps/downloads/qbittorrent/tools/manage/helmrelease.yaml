@@ -91,6 +91,10 @@ spec:
                 "expired", # defined in config.yaml
                 "--exclude-tag",
                 "activity:24h",
+                "--exclude-tag",
+                "permaseed",
+                "--exclude-tag",
+                "site:nebulance",
                 # "--dry-run",
                 "--server",
                 "qbittorrent.downloads.svc.cluster.local",
