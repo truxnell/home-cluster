@@ -7,16 +7,16 @@ metadata:
 spec:
   # Duration to keep metrics
   retentionPeriod: "2" # this is months unless a character prefix is added (1d, 1w, etc)
-  extraArgs:
-    dedup.minScrapeInterval: "60s" # Only needed for HA
+  # extraArgs:
+  #   dedup.minScrapeInterval: "60s" # Only needed for HA
   replicationFactor: 3
   # Storage backend
   vmstorage:
     replicaCount: 3 # HA - but prefer 3 as i have 3 nodes & using local-hostpath
     # required for HA vmagents
-    # extraArgs:
-    #   dedup.minScrapeInterval: 60s # Only needed for HA
-    #   search.maxConcurrentRequests: "6"
+    extraArgs:
+      dedup.minScrapeInterval: 60s # Only needed for HA
+      search.maxConcurrentRequests: "6"
     storage:
       volumeClaimTemplate:
         spec:
