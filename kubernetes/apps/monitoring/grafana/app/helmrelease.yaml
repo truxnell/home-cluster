@@ -82,61 +82,21 @@ spec:
         apiVersion: 1
         providers:
           - name: default
-            orgId: 1
-            folder: ""
-            type: file
             disableDeletion: false
             editable: true
+            folder: ""
             options:
               path: /var/lib/grafana/dashboards/default
-          - name: ceph
             orgId: 1
-            folder: Ceph
             type: file
+          - name: node-exporter
             disableDeletion: false
             editable: true
+            folder: "node-exporter"
             options:
-              path: /var/lib/grafana/dashboards/ceph
-          - name: flux
+              path: /var/lib/grafana/dashboards/node-exporter
             orgId: 1
-            folder: Flux
             type: file
-            disableDeletion: false
-            editable: true
-            options:
-              path: /var/lib/grafana/dashboards/flux
-          - name: kubernetes
-            orgId: 1
-            folder: Kubernetes
-            type: file
-            disableDeletion: false
-            editable: true
-            options:
-              path: /var/lib/grafana/dashboards/kubernetes
-          - name: nginx
-            orgId: 1
-            folder: Nginx
-            type: file
-            disableDeletion: false
-            editable: true
-            options:
-              path: /var/lib/grafana/dashboards/nginx
-          - name: thanos
-            orgId: 1
-            folder: Thanos
-            type: file
-            disableDeletion: false
-            editable: true
-            options:
-              path: /var/lib/grafana/dashboards/thanos
-          - name: unifi
-            orgId: 1
-            folder: Unifi
-            type: file
-            disableDeletion: false
-            editable: true
-            options:
-              path: /var/lib/grafana/dashboards/unifi
     datasources:
       datasources.yaml:
         apiVersion: 1
