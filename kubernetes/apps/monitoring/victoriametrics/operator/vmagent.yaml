@@ -5,20 +5,5 @@ metadata:
   name: vmagent
   namespace: monitoring
 spec:
-  replicaCount: 2 # HA
-  evaluationInterval: "60s"
-  notifiers:
-    - selector:
-        namespaceSelector:
-          matchNames: ["monitoring"]
-        labelSelector:
-          matchLabels:
-            app.kubernetes.io/name: victoria-metrics-k8s-stack
-  ingress:
-    enabled: true
-    ingressClassName: internal-nginx
-    hosts:
-      - &hostalert vmalert.${EXTERNAL_DOMAIN}
-    tls:
-      - hosts:
-          - *hostalert
+  replicaCount: 1
+  shardCount: 2
