@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://victoriametrics.github.io/helm-charts/
       chart: victoria-metrics-operator
-      version: 0.18.0
+      version: 0.27.4
       sourceRef:
         kind: HelmRepository
         name: victoriametrics-charts
