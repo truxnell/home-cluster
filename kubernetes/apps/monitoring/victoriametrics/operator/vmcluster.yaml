@@ -16,7 +16,7 @@ spec:
     # required for HA vmagents
     extraArgs:
       dedup.minScrapeInterval: 60s # Only needed for HA
-      search.maxConcurrentRequests: "6"
+      # search.maxConcurrentRequests: "6"
     storage:
       volumeClaimTemplate:
         spec:
