@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./vmcluster.yaml
-  # - ./vmagent.yaml
+  - ./vmagent.yaml
