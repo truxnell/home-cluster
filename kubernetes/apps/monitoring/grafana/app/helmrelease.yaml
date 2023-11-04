@@ -149,8 +149,8 @@ spec:
             type: prometheus
             uid: prometheus
             access: proxy
-            url: http://thanos-query-frontend.monitoring.svc.cluster.local:9090
-            # url: http://vmselect-victoria-metrics.monitoring.svc.cluster.local:8481/select/0/prometheus
+            # url: http://thanos-query-frontend.monitoring.svc.cluster.local:9090
+            url: http://vmselect-victoria-metrics.monitoring.svc.cluster.local:8481/select/0/prometheus
             jsonData:
               prometheusType: Thanos # Prometheus for victoria-metrics
             isDefault: true
@@ -171,145 +171,20 @@ spec:
               implementation: prometheus
     dashboards:
       default:
-        qbittorrent-exporter:
-          url: https://raw.githubusercontent.com/esanchezm/prometheus-qbittorrent-exporter/master/grafana/dashboard.json
-          datasource: Prometheus
-        cloudflared:
-          gnetId: 17457 # https://grafana.com/grafana/dashboards/17457?tab=revisions
-          revision: 6
-          datasource:
-            - { name: DS_PROMETHEUS, value: Prometheus }
-        external-dns:
-          gnetId: 15038 # https://grafana.com/grafana/dashboards/15038?tab=revisions
-          revision: 1
-          datasource: Prometheus
-        speedtest-exporter:
-          gnetId: 14336
-          revision: 2
-          datasource: Prometheus
-        minio:
-          gnetId: 13502 # https://grafana.com/grafana/dashboards/13502?tab=revisions
-          revision: 23
-          datasource:
-            - { name: DS_PROMETHEUS, value: Prometheus }
-        node-exporter-full:
-          gnetId: 1860 # https://grafana.com/grafana/dashboards/1860?tab=revisions
-          revision: 31
-          datasource: Prometheus
-        redis:
-          gnetId: 763 # https://grafana.com/grafana/dashboards/763?tab=revisions
-          revision: 5
-          datasource: Prometheus
-        zfs:
-          gnetId: 7845 # https://grafana.com/grafana/dashboards/7845?tab=revisions
+        speedtest-exporter-hub:
+          gnetId: 13665
           revision: 4
+          datasource:
+            - name: "DS_PROMETHEUS"
+              value: Prometheus
+
+      node-exporter:
+        # Ref: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
+        node-exporter:
+          gnetId: 1860
+          revision: 29
           datasource: Prometheus
-        cloudnative-pg:
-          url: https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/grafana-dashboard.json
-          datasource: Prometheus
-        cert-manager:
-          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
-          datasource: Prometheus
-        external-secrets:
-          url: https://raw.githubusercontent.com/external-secrets/external-secrets/main/docs/snippets/dashboard.json
-          datasource: Prometheus
-        miniflux:
-          url: https://raw.githubusercontent.com/miniflux/v2/main/contrib/grafana/dashboard.json
-          datasource: Prometheus
-      ceph:
-        ceph-cluster:
-          gnetId: 2842 # https://grafana.com/grafana/dashboards/2842?tab=revisions
-          revision: 17
-          datasource: Prometheus
-        ceph-osd:
-          gnetId: 5336 # https://grafana.com/grafana/dashboards/5336?tab=revisions
-          revision: 9
-          datasource: Prometheus
-        ceph-pools:
-          gnetId: 5342 # https://grafana.com/grafana/dashboards/5342?tab=revisions
-          revision: 9
-          datasource: Prometheus
-      flux:
-        flux-cluster:
-          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/cluster.json
-          datasource: Prometheus
-        flux-control-plane:
-          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/control-plane.json
-          datasource: Prometheus
-        flux-logs:
-          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/logs.json
-          datasource: Prometheus
-      kubernetes:
-        kubernetes-api-server:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-api-server.json
-          datasource: Prometheus
-        kubernetes-coredns:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-coredns.json
-          datasource: Prometheus
-        kubernetes-global:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-global.json
-          datasource: Prometheus
-        kubernetes-namespaces:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-namespaces.json
-          datasource: Prometheus
-        kubernetes-nodes:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-nodes.json
-          datasource: Prometheus
-        kubernetes-pods:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
-          datasource: Prometheus
-      nginx:
-        nginx:
-          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
-          datasource: Prometheus
-        nginx-request-handling-performance:
-          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/request-handling-performance.json
-          datasource: Prometheus
-      thanos:
-        thanos-bucket-replicate:
-          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/bucket-replicate.json
-          datasource: Prometheus
-        thanos-compact:
-          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/compact.json
-          datasource: Prometheus
-        thanos-overview:
-          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/overview.json
-          datasource: Prometheus
-        thanos-query:
-          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/query.json
-          datasource: Prometheus
-        thanos-query-frontend:
-          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/query-frontend.json
-          datasource: Prometheus
-        thanos-receieve:
-          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/receive.json
-          datasource: Prometheus
-        thanos-rule:
-          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/rule.json
-          datasource: Prometheus
-        thanos-sidecar:
-          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/sidecar.json
-          datasource: Prometheus
-        thanos-store:
-          url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/thanos/dashboards/store.json
-          datasource: Prometheus
-      unifi:
-        unifi-insights:
-          gnetId: 11315 # https://grafana.com/grafana/dashboards/11315?tab=revisions
-          revision: 9
-          datasource: Prometheus
-        unifi-network-sites:
-          gnetId: 11311 # https://grafana.com/grafana/dashboards/11311?tab=revisions
-          revision: 5
-          datasource: Prometheus
-        unifi-uap:
-          gnetId: 11314 # https://grafana.com/grafana/dashboards/11314?tab=revisions
-          revision: 10
-          datasource: Prometheus
-        unifi-usw:
-          gnetId: 11312 # https://grafana.com/grafana/dashboards/11312?tab=revisions
-          revision: 9
-          datasource: Prometheus
+
     sidecar:
       dashboards:
         enabled: true
