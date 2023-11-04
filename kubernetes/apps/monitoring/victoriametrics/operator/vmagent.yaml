@@ -7,3 +7,21 @@ metadata:
 spec:
   replicaCount: 1
   shardCount: 2
+  selectAllByDefault: true
+  serviceScrapeNamespaceSelector: {}
+  podScrapeNamespaceSelector: {}
+  podScrapeSelector: {}
+  serviceScrapeSelector: {}
+  nodeScrapeSelector: {}
+  nodeScrapeNamespaceSelector: {}
+  staticScrapeSelector: {}
+  staticScrapeNamespaceSelector: {}
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "400Mi"
+    limits:
+      cpu: "300m"
+      memory: "2Gi"
+  remoteWrite:
+    - url: "http://vminsert-vmcluster:8480/insert/0/prometheus"
