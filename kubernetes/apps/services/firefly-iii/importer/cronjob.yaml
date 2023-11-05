@@ -1,6 +1,4 @@
 ---
-
-
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -24,7 +22,6 @@ spec:
       cronjob:
         schedule: "0 17 * * *"
         ttlSecondsAfterFinished: 86400
-
 
     restartPolicy: OnFailure
 
@@ -53,7 +50,6 @@ spec:
         enabled: false
 
     persistence:
-
       import:
         enabled: true
         type: secret
