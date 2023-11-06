@@ -1,0 +1,19 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: atuin-db
+  namespace: monitoring
+spec:
+  database: atuin
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: atuin-user
+  namespace: monitoring
+spec:
+  role: atuin
+  database: atuin-db
+  secretName: database
+  privileges: OWNER

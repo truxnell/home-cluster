@@ -24,3 +24,4 @@ resources:
   - ./firefly-iii/ks.yaml
   - ./inspircd/ks.yaml
   - ./thelounge/ks.yaml
+  - ./atuin/ks.yaml
