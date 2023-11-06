@@ -16,3 +16,6 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 3m
+  dependsOn:
+    - name: cluster-apps-ext-postgres-operator
+    - name: cluster-apps-zalando-postgres-cluster
