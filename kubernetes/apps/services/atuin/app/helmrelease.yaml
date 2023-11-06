@@ -49,8 +49,8 @@ spec:
               ATUIN_DB_URI:
                 valueFrom:
                   secretKeyRef:
-                    name: atuin-pguser-atuin
-                    key: uri
+                    name: database-atuin-user
+                    key: POSTGRES_URL
                     optional: false
               ATUIN_HOST: 0.0.0.0
               ATUIN_PORT: &port 8888
@@ -73,7 +73,7 @@ spec:
         enabled: true
         className: "internal-nginx"
         hosts:
-          - host: &host "{{ .Release.Name }}.bjw-s.dev"
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_URL}"
             paths:
               - path: /
                 service:
