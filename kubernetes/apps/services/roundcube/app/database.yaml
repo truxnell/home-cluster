@@ -1,0 +1,19 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: roundcube-db
+  namespace: services
+spec:
+  database: roundcube
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: roundcube-user
+  namespace: services
+spec:
+  role: roundcube
+  database: roundcube-db
+  secretName: database
+  privileges: OWNER
