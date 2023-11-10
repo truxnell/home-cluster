@@ -25,3 +25,4 @@ resources:
   - ./inspircd/ks.yaml
   - ./thelounge/ks.yaml
   - ./atuin/ks.yaml
+  - ./roundcube/ks.yaml
