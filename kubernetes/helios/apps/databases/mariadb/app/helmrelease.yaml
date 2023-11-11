@@ -27,6 +27,7 @@ spec:
       tag: 11.1.2
     service:
       main:
+        type: LoadBalancer
         ports:
           http:
             port: &port 3306
