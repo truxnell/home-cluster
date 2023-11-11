@@ -44,8 +44,7 @@ spec:
               tag: 1.6.5-apache
             env:
               ROUNDCUBEMAIL_SKIN: elastic
-              ROUNDCUBEMAIL_DB_TYPE: pgsql
-              ROUNDCUBEMAIL_DB_DNSW:
+              ROUNDCUBEMAIL_DB_DSNW:
                 valueFrom:
                   secretKeyRef:
                     name: database-roundcube-user
