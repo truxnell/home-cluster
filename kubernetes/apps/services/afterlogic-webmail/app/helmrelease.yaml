@@ -1,0 +1,90 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: afterlogic-webmail
+  namespace: services
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.0.3
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+
+  values:
+    controllers:
+      main:
+        strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        pod:
+          enableServiceLinks: false
+
+        containers:
+          main:
+            image:
+              repository: afterlogic-webmail/roundcubemail
+              tag: 1.6.5-apache
+            env:
+              afterlogic-webmailMAIL_SKIN: elastic
+              afterlogic-webmailMAIL_DEFAULT_HOST: ssl://mail.runbox.com
+              afterlogic-webmailMAIL_DEFAULT_PORT: 993
+              afterlogic-webmailMAIL_SMTP_SERVER: tls://mail.runbox.com
+              afterlogic-webmailMAIL_SMTP_PORT: 587
+              afterlogic-webmailMAIL_UPLOAD_MAX_FILESIZE: 50M
+              afterlogic-webmailMAIL_DB_DSNW:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-afterlogic-webmail-user
+                    key: POSTGRES_URL
+                    optional: false
+
+            # resources:
+            #   requests:
+            #     cpu: 10m
+            #     memory: 128Mi
+            #   limits:
+            #     memory: 512Mi
+
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+
+    ingress:
+      main:
+        enabled: true
+        className: "internal-nginx"
+        hosts:
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
+
+    # persistence:
+    #   config:
+    #     enabled: true
+    #     type: emptyDir

@@ -26,3 +26,4 @@ resources:
   - ./thelounge/ks.yaml
   - ./atuin/ks.yaml
   - ./roundcube/ks.yaml
+  - ./afterlogic-webmail/ks.yaml
