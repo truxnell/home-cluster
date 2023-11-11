@@ -29,7 +29,7 @@ spec:
       main:
         ports:
           http:
-            port: &port 6595
+            port: &port 3306
     env:
       MYSQL_ROOT_PASSWORD: test
       MYSQL_DATABASE: afterlogic
