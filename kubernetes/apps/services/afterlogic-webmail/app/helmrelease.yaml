@@ -83,5 +83,5 @@ spec:
         enabled: true
         existingClaim: afterlogic-webmail-config-v1
         globalMounts:
-          - path: /media
+          - path: /var/www/html/data/
             retain: true
