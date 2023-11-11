@@ -35,35 +35,35 @@ spec:
       MYSQL_DATABASE: afterlogic
       MYSQL_USER: afterlogic
       MYSQL_PASSWORD: moartest
-      probes:
-        liveness:
-          enabled: false
-          custom: true
-          spec:
-            exec:
-              command:
-                - /bin/bash
-                - /scripts/check.sh
-            failureThreshold: 3
-            initialDelaySeconds: 120
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-        readiness:
-          enabled: false
-          custom: true
-          spec:
-            exec:
-              command:
-                - /bin/bash
-                - /scripts/check.sh
-            failureThreshold: 3
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 1
-        startup:
-          enabled: false
+    probes:
+      liveness:
+        enabled: false
+        custom: true
+        spec:
+          exec:
+            command:
+              - /bin/bash
+              - /scripts/check.sh
+          failureThreshold: 3
+          initialDelaySeconds: 120
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+      readiness:
+        enabled: false
+        custom: true
+        spec:
+          exec:
+            command:
+              - /bin/bash
+              - /scripts/check.sh
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+      startup:
+        enabled: false
     persistence:
       database:
         enabled: true
