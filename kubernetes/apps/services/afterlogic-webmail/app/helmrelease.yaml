@@ -93,7 +93,7 @@ spec:
         defaultMode: 0775
         globalMounts:
           - path: /var/www/html/data/settings/config.json
-            subPath: settings.json
+            subPath: config.json
             readOnly: true
       # media:
       #   enabled: true
