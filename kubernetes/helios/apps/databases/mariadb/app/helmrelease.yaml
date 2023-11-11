@@ -35,17 +35,41 @@ spec:
       MYSQL_DATABASE: afterlogic
       MYSQL_USER: afterlogic
       MYSQL_PASSWORD: moartest
+      probes:
+        liveness:
+          enabled: false
+          custom: true
+          spec:
+            exec:
+              command:
+                - /bin/bash
+                - /scripts/check.sh
+            failureThreshold: 3
+            initialDelaySeconds: 120
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+        readiness:
+          enabled: false
+          custom: true
+          spec:
+            exec:
+              command:
+                - /bin/bash
+                - /scripts/check.sh
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+        startup:
+          enabled: false
     persistence:
-      media:
+      database:
         enabled: true
         type: hostPath
-        hostPath: /tank/natflix/
-        mountPath: /media
-      config:
-        enabled: true
-        type: hostPath
-        hostPath: /tank/backup/k8s_apps/deemix/
-        mountPath: /config
+        hostPath: /tank/backup/k8s_apps/mariadb/
+        mountPath: /var/lib/mysql
     resources:
       requests:
         cpu: 10m
