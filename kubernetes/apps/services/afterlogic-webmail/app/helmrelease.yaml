@@ -40,7 +40,7 @@ spec:
         containers:
           main:
             image:
-              repository: afterlogic/docker-webmail
+              repository: afterlogic/docker-webmail-lite
               tag: latest
             env:
               # afterlogic-webmailMAIL_DB_DSNW:
