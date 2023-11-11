@@ -44,8 +44,8 @@ spec:
               tag: 1.6.5-apache
             env:
               ROUNDCUBEMAIL_SKIN: elastic
-              ROUNDCUBEMAIL_IMAP_SERVER: ssl://mail.runbox.com
-              ROUNDCUBEMAIL_IMAP_PORT: 993
+              ROUNDCUBEMAIL_DEFAULT_SERVER: ssl://mail.runbox.com
+              ROUNDCUBEMAIL_DEFAULT_PORT: 993
               ROUNDCUBEMAIL_SMTP_SERVER: tls://mail.runbox.com
               ROUNDCUBEMAIL_SMTP_PORT: 587
               ROUNDCUBEMAIL_UPLOAD_MAX_FILESIZE: 50M
