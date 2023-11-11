@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: atuin
+  name: roundcube
   namespace: services
 spec:
   interval: 30m
@@ -40,33 +40,30 @@ spec:
         containers:
           main:
             image:
-              repository: ghcr.io/atuinsh/atuin
-              tag: 17.0.1
-            args:
-              - server
-              - start
+              repository: roundcube/roundcubemail
+              tag: 1.6.5-apache
             env:
-              ATUIN_DB_URI:
+              ROUNDCUBEMAIL_SKIN: elastic
+              ROUNDCUBEMAIL_DB_TYPE: pgsql
+              ROUNDCUBEMAIL_DB_DNSW:
                 valueFrom:
                   secretKeyRef:
-                    name: database-atuin-user
+                    name: database-roundcube-user
                     key: POSTGRES_URL
                     optional: false
-              ATUIN_HOST: 0.0.0.0
-              ATUIN_PORT: &port 8888
-              ATUIN_OPEN_REGISTRATION: "false"
-            resources:
-              requests:
-                cpu: 10m
-                memory: 128Mi
-              limits:
-                memory: 512Mi
+
+            # resources:
+            #   requests:
+            #     cpu: 10m
+            #     memory: 128Mi
+            #   limits:
+            #     memory: 512Mi
 
     service:
       main:
         ports:
           http:
-            port: *port
+            port: 80
 
     ingress:
       main:
@@ -83,7 +80,7 @@ spec:
           - hosts:
               - *host
 
-    persistence:
-      config:
-        enabled: true
-        type: emptyDir
+    # persistence:
+    #   config:
+    #     enabled: true
+    #     type: emptyDir
