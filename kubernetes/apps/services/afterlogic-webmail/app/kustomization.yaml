@@ -10,6 +10,7 @@ configMapGenerator:
   - name: afterlogic-configmap
     files:
       - ./config/afterlogic.php
+      - ./config/config.json
 generatorOptions:
   disableNameSuffixHash: true
   annotations:

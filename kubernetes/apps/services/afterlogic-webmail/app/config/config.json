@@ -1,0 +1,201 @@
+{
+  "LicenseKey": ["", "string", null, "License key is supplied here"],
+  "AdminLogin": ["superadmin", "string", null, "Administrative login"],
+  "AdminPassword": [
+    "",
+    "string",
+    null,
+    "Administrative password (empty by default)"
+  ],
+  "AdminLanguage": ["English", "string", null, "Admin interface language"],
+  "DBType": [
+    "MySQL",
+    "spec",
+    "Aurora\\System\\Enums\\DbType",
+    "Database engine used. Currently, only MySQL is supported"
+  ],
+  "DBPrefix": ["au_", "string", null, "Prefix used for database tables names"],
+  "DBHost": [
+    "helios.natallan.com:3306",
+    "string",
+    null,
+    "Denotes hostname or socket path used for connecting to SQL database"
+  ],
+  "DBName": [
+    "afterlogic",
+    "string",
+    null,
+    "The name of database in SQL server used"
+  ],
+  "DBLogin": ["afterlogic", "string", null, "Login for SQL user"],
+  "DBPassword": ["moartest", "string", null, "Password to access SQL database"],
+  "UseSlaveConnection": [
+    false,
+    "bool",
+    null,
+    "Set of parameters for separate read/write access to the database. If set to true, the first set of credentials will be used to write to the database while Slave credentials - to read from it"
+  ],
+  "DBSlaveHost": [
+    "127.0.0.1",
+    "string",
+    null,
+    "Slave database hostname or socket path"
+  ],
+  "DBSlaveName": ["", "string", null, "Slave database name"],
+  "DBSlaveLogin": ["root", "string", null, "Slave database login"],
+  "DBSlavePassword": ["", "string", null, "Slave database password"],
+  "DBUseExplain": [false, "bool", null, "Use EXPLAIN in SQL queries"],
+  "DBUseExplainExtended": [false, "bool", null, "Use Extended EXPLAIN"],
+  "DBLogQueryParams": [
+    false,
+    "bool",
+    null,
+    "If enabled, parameters values will be recorded in the logs"
+  ],
+  "DBDebugBacktraceLimit": [
+    false,
+    "bool",
+    null,
+    "This parameter can be used to limit the number of stack frames returned"
+  ],
+  "EnableLogging": [false, "bool", null, "Activates debug logging"],
+  "EnableEventLogging": [
+    false,
+    "bool",
+    null,
+    "Activates user activity logging"
+  ],
+  "LoggingLevel": [
+    "Full",
+    "spec",
+    "Aurora\\System\\Enums\\LogLevel",
+    "For debug logs, verbosity level can be set to Full, Warning or Error"
+  ],
+  "LogFileName": [
+    "log-{Y-m-d}.txt",
+    "string",
+    null,
+    "Denotes log filename pattern"
+  ],
+  "LogCustomFullPath": [
+    "",
+    "string",
+    null,
+    "Allows for overriding log files location"
+  ],
+  "LogPostView": [
+    false,
+    "bool",
+    null,
+    "Determines whether to log full POST data or just key names"
+  ],
+  "EnableMultiChannel": [false, "bool", null, "Reserved for future use"],
+  "EnableMultiTenant": [false, "bool", null, "Enables multi tenant support"],
+  "TenantGlobalCapa": ["", "string", null, "Reserved for future use"],
+  "AllowThumbnail": [
+    true,
+    "bool",
+    null,
+    "If disabled, image thumbnails will not be generated"
+  ],
+  "ThumbnailMaxFileSizeMb": [
+    5,
+    "int",
+    null,
+    "Denotes a max filesize of images thumbnails are generated for, in Mbytes"
+  ],
+  "CacheCtrl": [
+    true,
+    "bool",
+    null,
+    "If true, content of mail message opened in a new browser tab will be retrieved from cache"
+  ],
+  "CacheLangs": [true, "bool", null, "Enables caching language files"],
+  "CacheTemplates": [true, "bool", null, "Enables caching template files"],
+  "DisplayServerErrorInformation": [
+    true,
+    "bool",
+    null,
+    "If enabled, error messages will include texts returned from the server"
+  ],
+  "EnableImap4PlainAuth": [false, "bool", null, "Reserved for future use"],
+  "RedirectToHttps": [
+    false,
+    "bool",
+    null,
+    "If enabled, users will automatically be redirected from HTTP to HTTPS"
+  ],
+  "SocketConnectTimeoutSeconds": [
+    20,
+    "int",
+    null,
+    "Socket connection timeout limit, in seconds"
+  ],
+  "SocketGetTimeoutSeconds": [
+    20,
+    "int",
+    null,
+    "Socket stream access timeout, in seconds"
+  ],
+  "SocketVerifySsl": [false, "bool", null, "Enables SSL certificate checks"],
+  "UseAppMinJs": [
+    true,
+    "bool",
+    null,
+    "Enables loading minified JS files (default behavior)"
+  ],
+  "XFrameOptions": [
+    "SAMEORIGIN",
+    "string",
+    null,
+    "If set to SAMEORIGIN, disallows embedding product interface into IFrame to prevent from clickjacking attacks"
+  ],
+  "RemoveOldLogs": [
+    true,
+    "bool",
+    null,
+    "If enabled, logs older than RemoveOldLogsDays days are automatically removed"
+  ],
+  "RemoveOldLogsDays": [
+    2,
+    "int",
+    null,
+    "Value for use with RemoveOldLogs setting"
+  ],
+  "LogStackTrace": [
+    false,
+    "bool",
+    null,
+    "If enabled, logs will contain full stack trace of exceptions; disabled by default to prevent logs from containing sensitive data"
+  ],
+  "ExpireUserSessionsBeforeTimestamp": [
+    0,
+    "int",
+    null,
+    "If set, all user sessions prior to this timestamp will be considered expired"
+  ],
+  "PasswordMinLength": [
+    0,
+    "int",
+    null,
+    "Used by password change modules, if set to non-zero, denotes minimal length of new password"
+  ],
+  "PasswordMustBeComplex": [
+    false,
+    "bool",
+    null,
+    "Used by password change modules, if set to true, new password has to include at least one digit and at least one non-alphanumeric character"
+  ],
+  "StoreAuthTokenInDB": [
+    false,
+    "bool",
+    null,
+    "If enabled, authentication tokens will be stored in the database and can be revoked"
+  ],
+  "AuthTokenExpirationLifetimeDays": [
+    0,
+    "int",
+    null,
+    "If set to non-zero value, means auth tokens will expire after this number of days. 0 means the feature is disabled."
+  ]
+}

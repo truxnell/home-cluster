@@ -79,13 +79,21 @@ spec:
               - *host
 
     persistence:
-      config:
+      config-afterlogic-php:
         type: configMap
         name: afterlogic-configmap
         defaultMode: 0775
         globalMounts:
           - path: /var/www/html/afterlogic.php
             subPath: afterlogic.php
+            readOnly: true
+      config-settings-json:
+        type: configMap
+        name: afterlogic-configmap
+        defaultMode: 0775
+        globalMounts:
+          - path: /var/www/html/data/settings/config.json
+            subPath: settings.json
             readOnly: true
       # media:
       #   enabled: true
