@@ -40,21 +40,15 @@ spec:
         containers:
           main:
             image:
-              repository: afterlogic-webmail/roundcubemail
-              tag: 1.6.5-apache
+              repository: afterlogic/docker-webmail-pro
+              tag: latest
             env:
-              afterlogic-webmailMAIL_SKIN: elastic
-              afterlogic-webmailMAIL_DEFAULT_HOST: ssl://mail.runbox.com
-              afterlogic-webmailMAIL_DEFAULT_PORT: 993
-              afterlogic-webmailMAIL_SMTP_SERVER: tls://mail.runbox.com
-              afterlogic-webmailMAIL_SMTP_PORT: 587
-              afterlogic-webmailMAIL_UPLOAD_MAX_FILESIZE: 50M
-              afterlogic-webmailMAIL_DB_DSNW:
-                valueFrom:
-                  secretKeyRef:
-                    name: database-afterlogic-webmail-user
-                    key: POSTGRES_URL
-                    optional: false
+              # afterlogic-webmailMAIL_DB_DSNW:
+              #   valueFrom:
+              #     secretKeyRef:
+              #       name: database-afterlogic-webmail-user
+              #       key: POSTGRES_URL
+              #       optional: false
 
             # resources:
             #   requests:
