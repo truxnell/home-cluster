@@ -44,6 +44,9 @@ spec:
               tag: 1.6.5-apache
             env:
               ROUNDCUBEMAIL_SKIN: elastic
+              ROUNDCUBEMAIL_IMAP_HOST: ssl://mail.runbox.com:993
+              ROUNDCUBEMAIL_SMTP: tls://mail.runbox.com:587
+              ROUNDCUBEMAIL_UPLOAD_MAX_FILESIZE: 50M
               ROUNDCUBEMAIL_DB_DSNW:
                 valueFrom:
                   secretKeyRef:
