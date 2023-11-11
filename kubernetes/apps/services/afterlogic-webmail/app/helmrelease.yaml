@@ -78,7 +78,10 @@ spec:
           - hosts:
               - *host
 
-    # persistence:
-    #   config:
-    #     enabled: true
-    #     type: emptyDir
+    persistence:
+      media:
+        enabled: true
+        existingClaim: afterlogic-webmail-config-v1
+        globalMounts:
+          - path: /media
+            retain: true
