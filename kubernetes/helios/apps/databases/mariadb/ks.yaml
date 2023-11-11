@@ -7,7 +7,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: "./kubernetes/helios/apps/databases/mariadb/app/"
+  path: "./kubernetes/helios/apps/databases/mariadb/"
   prune: true
   sourceRef:
     kind: GitRepository
