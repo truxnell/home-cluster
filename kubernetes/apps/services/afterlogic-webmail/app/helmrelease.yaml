@@ -79,9 +79,17 @@ spec:
               - *host
 
     persistence:
-      media:
-        enabled: true
-        existingClaim: afterlogic-webmail-config-v1
+      config:
+        type: configMap
+        name: afterlogic-configmap
+        defaultMode: 0775
         globalMounts:
-          - path: /var/www/html/data/
-            retain: true
+          - path: /var/www/html/afterlogic.php
+            subPath: afterlogic.php
+            readOnly: true
+      # media:
+      #   enabled: true
+      #   existingClaim: afterlogic-webmail-config-v1
+      #   globalMounts:
+      #     - path: /var/www/html/data/
+      #       retain: true
