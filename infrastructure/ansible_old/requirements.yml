@@ -10,7 +10,7 @@ collections:
     version: 1.6.6
 roles:
   - src: geerlingguy.pip
-    version: 2.2.0
+    version: 3.0.1
   - src: geerlingguy.docker
     version: 7.0.1
   - name: semuadmin.octoprint
