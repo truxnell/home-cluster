@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: ghcr.io/flaresolverr/flaresolverr
-      tag: v3.3.7@sha256:9c9bfd7a0b509779d4a955ee206b42a9084227d2d3c75cdb3bf1363d29e1923a
+      tag: v3.3.10@sha256:1f7b2f31d423382c14c7f8fb69795f05bcfa6f508cfac32763d3fede5d07c7da
 
     service:
       main:
