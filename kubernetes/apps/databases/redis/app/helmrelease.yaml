@@ -30,7 +30,7 @@ spec:
       nameOverride: *app
     image:
       repository: redis
-      tag: 7.2.3-alpine@sha256:5482672695b73780afeddb2ee84d58f393f16f34718d76b246c76afe27465d4c
+      tag: 7.2.3-alpine@sha256:d22559cc2ad62015bfdba23f342f8abfafdbaa4c02abbe0753103b7190c1d9cb
     controller:
       annotations:
         reloader.stakater.com/auto: "true"
