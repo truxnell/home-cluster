@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: ghcr.io/esanchezm/prometheus-qbittorrent-exporter
-      tag: latest@sha256:cfa76498397d9d1555114f20402deab28c5783442eeb6ea108c7660892d2be79
+      tag: latest@sha256:ef6e28d8e89ba003af1a631c1e021cdb2ff086805187c099d96ab72ccfe24312
     env:
       QBITTORRENT_HOST: qbittorrent.downloads.svc.cluster.local
       QBITTORRENT_PORT: 8080
