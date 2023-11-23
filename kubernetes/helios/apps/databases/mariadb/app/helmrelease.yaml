@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: mariadb
-      tag: 11.1.2
+      tag: 11.2.2@sha256:c222be005ac3f8183dd3c7d1930aebbc4cd8d05d42ba92578174b7a77123efa8
     service:
       main:
         type: LoadBalancer
