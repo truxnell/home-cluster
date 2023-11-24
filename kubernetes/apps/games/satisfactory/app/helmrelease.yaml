@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: wolveix/satisfactory-server
-      tag: v1.5.5@sha256:d11aa182cf270463c3f75e22425522e78dceff24de9e4794cae2591eeaada8ca
+      tag: v1.5.6@sha256:09d0e94a60c40000ae6f45a530c3e37b0f7bebcf454e2fe83b9e2ee8ca6d2fc3
     env:
       DATA_FOLDER: "config"
     service:
