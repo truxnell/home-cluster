@@ -95,7 +95,7 @@ spec:
         imagePullPolicy: IfNotPresent
       gotenburg:
         name: gotenburg
-        image: thecodingmachine/gotenberg:7.9.2@sha256:7af0d333fbcc81914496f1d7c630fed1016692e0ad836686c2a988a72169716b
+        image: thecodingmachine/gotenberg:7.10.1@sha256:56c18cbba479ae7412670d6c45cdff29c2e28ba3ff800688a408dc9aa6ca4320
         env:
           - name: DISABLE_GOOGLE_CHROME
             value: "1"
