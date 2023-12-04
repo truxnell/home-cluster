@@ -44,12 +44,10 @@ spec:
               tag: 3.2.1
             env:
               MALOJA_DATA_DIRECTORY: /config
-              MALOJA_FORCE_PASSWORD:
-                valueFrom:
-                  secretKeyRef:
-                    name: *app
-                    key: MALOJA_FORCE_PASSWORD
-                    optional: false
+
+            envFrom:
+              - secretRef:
+                  name: *app
 
             # resources:
             #   requests:
