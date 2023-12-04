@@ -40,8 +40,8 @@ spec:
         containers:
           main:
             image:
-              repository: ghcr.io/foxxmd/multi-scrobbler:latest
-              tag: 3.2.1
+              repository: ghcr.io/foxxmd/multi-scrobbler
+              tag: 0.6.2
             env:
               MALOJA_URL: maloja.services.svc.cluster.local:42010
 
