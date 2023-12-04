@@ -27,3 +27,4 @@ resources:
   - ./roundcube/ks.yaml
   - ./afterlogic-webmail/ks.yaml
   - ./maloja/ks.yaml
+  - ./multi-scrobbler/ks.yaml
