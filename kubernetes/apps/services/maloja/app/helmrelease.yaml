@@ -43,6 +43,7 @@ spec:
               repository: krateng/maloja
               tag: 3.2.1
             env:
+              MALOJA_DATA_DIRECTORY: /config
               MALOJA_FORCE_PASSWORD:
                 valueFrom:
                   secretKeyRef:
