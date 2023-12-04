@@ -47,7 +47,7 @@ spec:
                 valueFrom:
                   secretKeyRef:
                     name: *app
-                    key: POSTGRES_URL
+                    key: MALOJA_FORCE_PASSWORD
                     optional: false
 
             # resources:
