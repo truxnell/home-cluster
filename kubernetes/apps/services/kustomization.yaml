@@ -12,7 +12,6 @@ resources:
   - ./language-tools/ks.yaml
   - ./libreddit/ks.yaml
   - ./miniflux/ks.yaml
-  - ./nitter/ks.yaml
   - ./paperless/ks.yaml
   - ./pleroma-rebased/ks.yaml
   - ./radicale/ks.yaml
@@ -27,3 +26,4 @@ resources:
   - ./atuin/ks.yaml
   - ./roundcube/ks.yaml
   - ./afterlogic-webmail/ks.yaml
+  - ./maloja/ks.yaml
