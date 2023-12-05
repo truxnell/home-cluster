@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Maloja",
+    "enable": true,
+    "data": {
+      "url": "http://maloja.services.svc.cluster.local:42010",
+      "apiKey": "{{ .MALOJA_API_KEY }}"
+    }
+  },
+  {
+    "name": "Plex",
+    "enable": true,
+    "clients": [],
+    "data": {
+      "user": [],
+      "libraries": ["music"],
+      "options": {
+        "logFilterFailure": "warn"
+      }
+    }
+  }
+]

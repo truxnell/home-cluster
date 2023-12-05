@@ -43,11 +43,8 @@ spec:
               repository: ghcr.io/foxxmd/multi-scrobbler
               tag: 0.6.2
             env:
-              MALOJA_URL: maloja.services.svc.cluster.local:42010
+              MALOJA_URL:
 
-            envFrom:
-              - secretRef:
-                  name: *app
             # resources:
             #   requests:
             #     cpu: 10m
@@ -77,6 +74,10 @@ spec:
               - *host
 
     persistence:
-      config:
-        enabled: true
-        existingClaim: multi-scrobbler-config-v1
+      config-file:
+        type: secret
+        name: multi-scrobbler
+        globalMounts:
+          - path: /config/config.js
+            subPath: config.js
+            readOnly: true
