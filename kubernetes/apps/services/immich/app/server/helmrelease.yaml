@@ -57,6 +57,21 @@ spec:
         ports:
           http:
             port: 3001
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "external-nginx"
+        annotations:
+          external-dns.alpha.kubernetes.io/target: ingress-ext.${EXTERNAL_DOMAIN}
+          nignx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          hajimari.io/appName: "Immich"
+          hajimari.io/icon: heroicons:photo
+        hosts:
+          - host: &host "photos.${EXTERNAL_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
     persistence:
       library:
         enabled: true
