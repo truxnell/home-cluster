@@ -25,6 +25,7 @@
       "clients": [],
       "data": {
         "libraries": ["Music"],
+        "servers": ["NatFlix V2"],
         "options": {
           "logFilterFailure": "warn"
         }
