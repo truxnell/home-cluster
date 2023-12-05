@@ -78,6 +78,6 @@ spec:
         type: secret
         name: multi-scrobbler
         globalMounts:
-          - path: /config/config.js
-            subPath: config.js
+          - path: /config/config.json
+            subPath: config.json
             readOnly: true
