@@ -5,6 +5,7 @@ namespace: services
 resources:
   - ./helmrelease.yaml
   - ./externalsecret.yaml
+  - ./pvc.yaml
 configMapGenerator:
   - name: multi-scrobbler-tpl
     files:

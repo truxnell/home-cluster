@@ -42,8 +42,6 @@ spec:
             image:
               repository: ghcr.io/foxxmd/multi-scrobbler
               tag: 0.6.2
-            env:
-              MALOJA_URL:
 
             # resources:
             #   requests:
@@ -74,6 +72,9 @@ spec:
               - *host
 
     persistence:
+      config:
+        enabled: true
+        existingClaim: multi-scrobbler-config-v1
       config-file:
         type: secret
         name: multi-scrobbler
