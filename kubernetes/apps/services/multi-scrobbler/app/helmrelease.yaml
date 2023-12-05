@@ -59,7 +59,7 @@ spec:
     ingress:
       main:
         enabled: true
-        className: "external-nginx"
+        className: "internal-nginx"
         hosts:
           - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
