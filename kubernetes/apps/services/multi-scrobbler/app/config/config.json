@@ -20,6 +20,7 @@
   },
   "sources": [
     {
+      "type": "plex",
       "name": "Plex",
       "enable": true,
       "clients": [],
