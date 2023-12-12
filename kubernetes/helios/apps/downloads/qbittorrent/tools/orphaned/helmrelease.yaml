@@ -37,7 +37,7 @@ spec:
           main:
             image:
               repository: ghcr.io/buroa/qbtools
-              tag: v0.10.1@sha256:684c5e1993fa66281327059e9c33ec3cbbd00a06cd3560dff08c1920fa0479f5
+              tag: v0.11.0@sha256:b7b867a87257a5add56824d0a0c2f3c3bd2c77f9253859561be3eb7cdcb5bc1b
             args: [
                 "orphaned",
                 "--exclude-pattern",
