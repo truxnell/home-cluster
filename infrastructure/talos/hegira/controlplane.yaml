@@ -315,7 +315,7 @@ cluster:
     # API server specific configuration options.
     apiServer:
         # renovate: docker-image
-        image: registry.k8s.io/kube-apiserver:v1.28.4
+        image: registry.k8s.io/kube-apiserver:v1.29.0
 
         # Extra certificate subject alternative names for the API server's certificate.
         certSANs:
