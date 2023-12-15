@@ -31,7 +31,7 @@ spec:
               name: *app
     image:
       repository: ghcr.io/onedr0p/home-assistant
-      tag: 2023.11.3@sha256:7f0778711bf9bb84f2e51bf13fdd1974afe5142843b75ca975edbfb33d2cec11
+      tag: 2023.12.3@sha256:4de48fcfd5a5bc1b90ca1803c70d550d5cbe1f75eb5d86f8b7cc11da1010acfa
     env:
       HASS_IP: ${LB_HOMEASSISTANT}
     envFrom:
