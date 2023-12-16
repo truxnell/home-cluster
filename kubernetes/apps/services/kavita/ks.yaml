@@ -2,12 +2,12 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-nitter
+  name: cluster-apps-kavita
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: 'true'
 spec:
-  path: './kubernetes/apps/services/nitter/app/'
+  path: './kubernetes/apps/services/kavita/app/'
   prune: true
   sourceRef:
     kind: GitRepository
@@ -18,7 +18,5 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: nitter
+      name: kavita
       namespace: services
-  dependsOn:
-    - name: cluster-apps-redis

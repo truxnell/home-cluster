@@ -28,3 +28,4 @@ resources:
   - ./afterlogic-webmail/ks.yaml
   - ./maloja/ks.yaml
   - ./multi-scrobbler/ks.yaml
+  - ./kavita/ks.yaml

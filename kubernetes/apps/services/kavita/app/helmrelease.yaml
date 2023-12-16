@@ -1,0 +1,74 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app kavita
+  namespace: services
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    fullNameOverride: *app
+    image:
+      repository: docker.io/kizaing/kavita
+      tag: 0.8.4@sha256:222ea6ed103bf7a5bdff06b1042ef96725dd70a7d92108f769e782f2e7808218
+
+    service:
+      main:
+        ports:
+          http:
+            port: 5000
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "external-nginx"
+        annotations:
+          external-dns.alpha.kubernetes.io/target: ingress-ext.${EXTERNAL_DOMAIN}
+          hajimari.io/icon: mdi:book
+        hosts:
+          - host: &host "kavita.${EXTERNAL_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    resources:
+      requests:
+        cpu: 5m
+        memory: 50Mi
+      limits:
+        memory: 250Mi
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: kavita-config-v1
+        mountPath: /kavita/config
+      media:
+        enabled: true
+        type: nfs
+        server: "helios.${INTERNAL_DOMAIN}"
+        path: /tank/natflix/books/
+        mountPath: /Data
+      backups:
+        enabled: true
+        type: nfs
+        server: "helios.${INTERNAL_DOMAIN}"
+        path: /tank/backup/kubernetes/apps/kavita
+        mountPath: /kavita/config/backups
