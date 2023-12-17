@@ -29,3 +29,4 @@ resources:
   - ./maloja/ks.yaml
   - ./multi-scrobbler/ks.yaml
   - ./kavita/ks.yaml
+  - ./searxng/ks.yaml
