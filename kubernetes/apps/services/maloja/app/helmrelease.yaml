@@ -40,7 +40,7 @@ spec:
           main:
             image:
               repository: krateng/maloja
-              tag: 3.2.1
+              tag: 3.2.2@sha256:c76bca4be5b382118df83a8ab6be5b7a2c69622503a24f0948d04ff22caacde2
             env:
               MALOJA_DATA_DIRECTORY: /config
 
