@@ -34,8 +34,8 @@ spec:
       SEARXNG_URL: "https://searxng.${EXTERNAL_DOMAIN}"
       SEARXNG_PORT: &http "8080"
     envFrom:
-      secretRef:
-        - *app
+      - secretRef:
+          name: *app
     service:
       main:
         ports:
