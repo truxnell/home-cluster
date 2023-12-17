@@ -30,7 +30,7 @@ spec:
       SEARXNG_BASE_URL: "https://searxng.${EXTERNAL_DOMAIN}/"
       SEARXNG_URL: "https://searxng.${EXTERNAL_DOMAIN}"
       SEARXNG_PORT: &http "8080"
-      SEARXNG_REDIS_URL: "redis://redis.databases.svc.cluster.local/15"
+      SEARXNG_REDIS_URL: "redis://redis-single.databases.svc.cluster.local/15"
     service:
       main:
         ports:
