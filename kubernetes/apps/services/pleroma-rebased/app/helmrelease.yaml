@@ -61,7 +61,7 @@ spec:
       config-exa:
         enabled: true
         type: configMap
-        defaultMode: 0660
+        defaultMode: 660
         name: pleroma-rebased-config
         subPath: config.exs
         mountPath: /configmap/config.exs

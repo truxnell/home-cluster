@@ -5,20 +5,16 @@ metadata:
   name: cluster-apps-pleroma-rebased
   namespace: flux-system
   labels:
-    substitution.flux.home.arpa/enabled: 'true'
+    substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: './kubernetes/apps/services/pleroma-rebased/app/'
+  path: "./kubernetes/apps/services/pleroma-rebased/app/"
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: pleroma-rebased
-      namespace: services
   dependsOn:
     - name: cluster-apps-rook-ceph-cluster
