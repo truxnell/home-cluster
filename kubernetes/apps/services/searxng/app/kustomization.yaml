@@ -1,6 +1,18 @@
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: services
 resources:
   - ./helmrelease.yaml
   - ./externalsecret.yaml
+commonLabels:
+  app.kubernetes.io/name: searxng
+  app.kubernetes.io/instance: searxng
+configMapGenerator:
+  - name: searxng
+    files:
+      - config/settings.yml
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled

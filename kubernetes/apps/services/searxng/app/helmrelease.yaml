@@ -74,3 +74,10 @@ spec:
         type: emptyDir
         medium: Memory
         mountPath: /etc/searxng
+      config:
+        enabled: true
+        type: configMap
+        name: *app
+        subPath: settings.yml
+        mountPath: /etc/searxng/settings.yml
+        readOnly: true
