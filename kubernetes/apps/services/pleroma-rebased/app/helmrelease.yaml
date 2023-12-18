@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta2.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -9,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -28,49 +29,54 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
 
-    initContainers:
-      init-db:
-        image: ghcr.io/onedr0p/postgres-initdb:14.8@sha256:0141cf427c47f2d534711a3f9e8c5f9008bc6b585463ccd9288cf0f027e20deb
-        imagePullPolicy: IfNotPresent
-        envFrom:
-          - secretRef:
-              name: *app
-    image:
-      repository: ghcr.io/truxnell/rebased-soapbox
-      tag: 2023.12.14@sha256:8d3ae9b662c38246668d6e822200347000cc441dd1cdb6b2ea89683976813ae7
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/truxnell/rebased-soapbox
+              tag: 2023.12.14@sha256:8d3ae9b662c38246668d6e822200347000cc441dd1cdb6b2ea89683976813ae7
 
-    env:
-      DOMAIN: &host "fedi.voltaicforge.com"
-      INSTANCE_NAME: "NatFlix Fediverse"
+            env:
+              DOMAIN: &host "fedi.voltaicforge.com"
+              INSTANCE_NAME: "NatFlix Fediverse"
 
-    envFrom:
-      - secretRef:
-          name: *app
+            envFrom:
+              - secretRef:
+                  name: *app
+
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: &port 5000
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+
+            resources:
+              requests:
+                cpu: 5m
+                memory: 100Mi
+              limits:
+                memory: 3250Mi
 
     service:
       main:
         ports:
           http:
-            port: &port 5000
-
-    persistence:
-      uploads:
-        enabled: true
-        existingClaim: pleroma-images-config-v1
-        mountPath: /var/lib/pleroma/uploads
-      config-exa:
-        enabled: true
-        type: configMap
-        defaultMode: 660
-        name: pleroma-rebased-config
-        subPath: config.exs
-        mountPath: /configmap/config.exs
-        readOnly: true
+            port: *port
 
     ingress:
       main:
-        enabled: true
-        ingressClassName: "external-nginx"
+        className: "external-nginx"
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-production
           external-dns.alpha.kubernetes.io/target: ingress-ext.voltaicforge.com
@@ -80,38 +86,30 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+            service:
+              name: main
+              port: http
         tls:
           - hosts:
               - *host
             secretName: soapbox.tls
 
-    podSecurityContext:
-      runAsUser: 101
-      runAsGroup: 65534
-      fsGroup: 65534
-      fsGroupChangePolicy: "OnRootMismatch"
-      supplementalGroups:
-        - 65534
-
-    probes:
-      liveness: &probes
-        enabled: true
-        custom: true
-        spec:
-          httpGet:
-            path: /
-            port: *port
-          initialDelaySeconds: 0
-          periodSeconds: 10
-          timeoutSeconds: 1
-          failureThreshold: 3
-      readiness: *probes
-      startup:
-        enabled: false
-
-    resources:
-      requests:
-        cpu: 5m
-        memory: 100Mi
-      limits:
-        memory: 3250Mi
+    persistence:
+      uploads:
+        existingClaim: pleroma-images-config-v1
+        mountPath: /var/lib/pleroma/uploads
+      config-exa:
+        type: configMap
+        defaultMode: 0660
+        name: pleroma-rebased-config
+        subPath: config.exs
+        mountPath: /configmap/config.exs
+        readOnly: true
+    defaultPodOptions:
+      podSecurityContext:
+        runAsUser: 101
+        runAsGroup: 65534
+        fsGroup: 65534
+        fsGroupChangePolicy: "OnRootMismatch"
+        supplementalGroups:
+          - 65534
