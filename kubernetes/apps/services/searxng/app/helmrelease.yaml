@@ -70,7 +70,7 @@ spec:
         hosts:
           - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
-              - path: /opensearch.xml?*
+              - path: /opensearch.xml?.*
                 pathType: Prefix
         tls:
           - hosts:
