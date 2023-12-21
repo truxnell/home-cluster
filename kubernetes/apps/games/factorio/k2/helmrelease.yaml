@@ -33,7 +33,7 @@ spec:
       RCON_PORT: &rcon 27017
     initContainers:
       copy-configmap:
-        image: busybox@sha256:3fbc632167424a6d997e74f52b878d7cc478225cffac6bc977eedfe51c7f4e79
+        image: busybox@sha256:ba76950ac9eaa407512c9d859cea48114eeff8a6f12ebaa5d32ce79d4a017dd8
         imagePullPolicy: IfNotPresent
         command:
           - "sh"
