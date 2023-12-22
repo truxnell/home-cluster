@@ -33,17 +33,17 @@ provider "registry.terraform.io/aminueza/minio" {
 }
 
 provider "registry.terraform.io/backblaze/b2" {
-  version     = "0.8.5"
-  constraints = "0.8.5"
+  version     = "0.8.6"
+  constraints = "0.8.6"
   hashes = [
-    "h1:/C/EPWH5+pxj1cyrsRgs545e+l2jUB3HKB6orx7p2ZA=",
-    "h1:4aDFGwDvFdtbtcfZ9kxn6467uW5iGghkR3iYieprjwc=",
-    "h1:R13QZAbSR1dSd64RMVXl2ux4PyZwa0hewFcsf18Aayw=",
-    "h1:cjAiYHuS8ww+cE+3T/Xmn5Sooj+kqxXMm6X2CvA3e+w=",
-    "zh:448af90015c7fa2c34d67f7c863188c71b573c816a03e6c1be01b47851fdf943",
-    "zh:92dfd1345e3fd5b7d872dc0d3c28094684daa94ed09e96910ccaf737ee4ab472",
-    "zh:9a08deb85ea85375a23e3d6cc1f8f05fe54868bc344d3fd85e3105ae476a4240",
-    "zh:a5a2dcbe6c8862f9d701ffc479ad89522255ba9a24c0bb122a9c715cf62d6575",
+    "h1:FUV3MlKORho03jB7xK4RHLqIoesXEpwDY3Q7j2niEtU=",
+    "h1:IrLEpFdBpV+deJVsxn7sXU4YinQp+Qpo3mEvcrz8q4w=",
+    "h1:d1N+yXGYMvMlubgZMAtiN7UycJbd0IzEYkn/3iJuikU=",
+    "h1:eeze5Iif//JYFL609QOnFsp/OWsGJoqVxKzE8P5Ml28=",
+    "zh:301cb0e9ad3f094e6cb182ffd1496234273d3e9138d03cbf234baf4edabaf0fb",
+    "zh:3b39c96c0b3081c5d9f372a355527835d26792ffaf6dc06fb390d2c76d09c394",
+    "zh:736a6d688bb261a3154970f7b487e142e02b02d1e4d877cce763539f4222cc8d",
+    "zh:ba26881679d2ce35b5f35f75309f5d480060fb29d655fd0e201dbbd55aabd345",
   ]
 }
 
