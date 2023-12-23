@@ -27,7 +27,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/lidarr-plugins
-      tag: 2.0.7.3848@sha256:939b5a692bf64b04fecbd99bb9d23474b7c82ad26491373f57f623047c4ff53d
+      tag: 2.1.1.3878@sha256:6e3d3df8f076a746b0fb9bb3131c7c970e4020c7986521df41e8b92cbf0bf0f2
     envFrom:
       - secretRef:
           name: *app
