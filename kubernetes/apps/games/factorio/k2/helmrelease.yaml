@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: factoriotools/factorio
-      tag: stable@sha256:b163e4da49f20e34097f338f97331a76a66417fc0b69b5e634cbee987565e2a8
+      tag: stable@sha256:87e991468df88c345f850a65522a044f6ac83a082e6373009cd45f825b93ef4b
     global:
       nameOverride: *app
     env:
