@@ -27,7 +27,7 @@ spec:
         reloader.stakater.com/auto: 'true'
     image:
       repository: ghcr.io/raylas/nextdns-exporter
-      tag: 0.5.2@sha256:ea0e0ef50211fc0e70eea20c85118b45cd68d3d12d84994421d3f9afa0621908
+      tag: 0.5.3@sha256:f839fb4f4c623a319ff54c03948c6477c4be453265c6d7b167be1994fe52d2cf
     envFrom:
       - secretRef:
           name: *app
