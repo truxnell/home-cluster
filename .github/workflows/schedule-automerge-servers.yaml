@@ -17,7 +17,7 @@ jobs:
          private_key: ${{ secrets.TRUXNELL_APP_PRIVATE_KEY }}
 
      - name: automerge-servers
-       uses: "pascalgn/automerge-action@v0.15.6"
+       uses: "pascalgn/automerge-action@v0.16.0"
        env:
          GITHUB_TOKEN: "${{ steps.generate-token.outputs.token }}"
          MERGE_METHOD: rebase
