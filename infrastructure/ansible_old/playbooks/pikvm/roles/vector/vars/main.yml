@@ -4,7 +4,7 @@
 #
 
 # renovate: datasource=github-releases depName=vectordotdev/vector
-vector_version: "v0.34.1"
+vector_version: "v0.35.0"
 vector_download_url: "https://github.com/vectordotdev/vector/releases/download/{{ vector_version }}/vector-{{ vector_version[1:] }}-armv7-unknown-linux-gnueabihf.tar.gz"
 
 vector_aggregator_addr: "10.8.20.220"
