@@ -27,7 +27,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/radarr-develop
-      tag: 5.2.5.8361@sha256:c6b3d06ce98faacdd2e91e70763d0c96ab1421aa4858f45957a14d91ff9490a0
+      tag: 5.3.1.8438@sha256:bec5e121dd84b3d6533c55e598837ff158e709d4d115d071475e95754951771c
     env:
       PUSHOVER_DEBUG: "false"
       PUSHOVER_APP_URL: &host "{{ .Release.Name }}.trux.dev"
