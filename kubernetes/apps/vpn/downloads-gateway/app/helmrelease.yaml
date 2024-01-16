@@ -24,10 +24,11 @@ spec:
       vpn:
         enabled: true
         type: gluetun
-        image:
-          # TODO: Replace with ghcr.io/qdm12/gluetun when a versioned tag is available
-          repository: docker.io/qmcgaw/gluetun
-          tag: v3.36.0@sha256:011bea4f0743864d4eda5a569217a6fe18e3a52f5d6df31b4ceb9f7763bfbf6b
+        gluetun:
+          image:
+            # TODO: Replace with ghcr.io/qdm12/gluetun when a versioned tag is available
+            repository: docker.io/qmcgaw/gluetun
+            tag: v3.36.0@sha256:011bea4f0743864d4eda5a569217a6fe18e3a52f5d6df31b4ceb9f7763bfbf6b
         env:
           - name: VPN_SERVICE_PROVIDER
             value: mullvad
