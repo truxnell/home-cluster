@@ -326,7 +326,7 @@ cluster:
     # Controller manager server specific configuration options.
     controllerManager:
         # renovate: docker-image
-        image: registry.k8s.io/kube-controller-manager:v1.29.0
+        image: registry.k8s.io/kube-controller-manager:v1.29.1
 
     # Kube-proxy server-specific configuration options
     proxy:
