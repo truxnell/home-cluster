@@ -25,7 +25,7 @@ spec:
     fullNameOverride: *app
     image:
       repository: ghcr.io/kareadita/kavita
-      tag: 0.7.12@sha256:6283f38c275f27f2dbb7bf0b3d528e97f45da4039c00401efa5b2efbfd261135
+      tag: 0.7.13@sha256:1ba9c6378b35a284a67d7e37362dcac9704f285d737fbb953d6aa2228e27511b
 
     service:
       main:
