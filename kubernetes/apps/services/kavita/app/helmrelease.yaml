@@ -23,9 +23,14 @@ spec:
       retries: 5
   values:
     fullNameOverride: *app
-    image:
-      repository: jvmilazz0/kavita
-      tag: 0.7.13@sha256:89a59531955241acf6c746b6909e2b3bd7e93bc4e4ea795fcc182b07a6f6c6a9
+
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: jvmilazz0/kavita
+              tag: 0.7.13@sha256:89a59531955241acf6c746b6909e2b3bd7e93bc4e4ea795fcc182b07a6f6c6a9
 
     service:
       main:
