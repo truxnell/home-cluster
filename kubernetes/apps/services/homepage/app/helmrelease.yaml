@@ -3,14 +3,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: atuin
+  name: homepage
   namespace: services
 spec:
   interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 2.0.3
+      version: 2.5.0
       interval: 30m
       sourceRef:
         kind: HelmRepository
@@ -30,60 +30,61 @@ spec:
   values:
     controllers:
       main:
+        replicas: 2
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
-
-        pod:
-          enableServiceLinks: false
-
         containers:
           main:
             image:
-              repository: ghcr.io/atuinsh/atuin
-              tag: v17.2.1@sha256:149ba8c5445c205f4ca7f88256eb409ef36820fc2a74fd462869a489721d03d3
-            args:
-              - server
-              - start
-            env:
-              ATUIN_DB_URI:
-                valueFrom:
-                  secretKeyRef:
-                    name: database-atuin-user
-                    key: POSTGRES_URL
-                    optional: false
-              ATUIN_HOST: 0.0.0.0
-              ATUIN_PORT: &port 8888
-              ATUIN_OPEN_REGISTRATION: "false"
+              repository: ghcr.io/gethomepage/homepage
+              tag: v0.8.4
+            # envFrom:
+            #   - secretRef:
+            #       name: homepage-secret
             resources:
               requests:
-                cpu: 10m
-                memory: 128Mi
+                cpu: 15m
+                memory: 200M
               limits:
-                memory: 512Mi
-
+                memory: 2G
     service:
       main:
         ports:
           http:
-            port: *port
-
+            port: 3000
     ingress:
       main:
         enabled: true
-        className: "internal-nginx"
+        className: internal
         hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+          - host: &host home.${EXTERNAL_DOMAIN}
             paths:
               - path: /
+                pathType: Prefix
                 service:
                   name: main
                   port: http
         tls:
           - hosts:
               - *host
-
     persistence:
-      config:
-        enabled: true
-        type: emptyDir
+      # config:
+      #   enabled: true
+      #   type: configMap
+      #   name: homepage-config
+      #   globalMounts:
+      #     - subPath: bookmarks.yaml
+      #       path: /app/config/bookmarks.yaml
+      #     - subPath: docker.yaml
+      #       path: /app/config/docker.yaml
+      #     - subPath: kubernetes.yaml
+      #       path: /app/config/kubernetes.yaml
+      #     - subPath: services.yaml
+      #       path: /app/config/services.yaml
+      #     - subPath: settings.yaml
+      #       path: /app/config/settings.yaml
+      #     - subPath: widgets.yaml
+      #       path: /app/config/widgets.yaml
+    serviceAccount:
+      create: true

@@ -30,3 +30,4 @@ resources:
   - ./multi-scrobbler/ks.yaml
   - ./kavita/ks.yaml
   - ./searxng/ks.yaml
+  - ./homepage/ks.yaml
