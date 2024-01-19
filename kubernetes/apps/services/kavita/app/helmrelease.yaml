@@ -40,8 +40,7 @@ spec:
 
     ingress:
       main:
-        enabled: true
-        ingressClassName: "external-nginx"
+        className: "external-nginx"
         annotations:
           nginx.ingress.kubernetes.io/auth-method: GET
           nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Name,Remote-Groups,Remote-Email
@@ -55,6 +54,9 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
@@ -67,18 +69,17 @@ spec:
 
     persistence:
       config:
-        enabled: true
         existingClaim: kavita-config-v1
         mountPath: /kavita/config
       media:
-        enabled: true
         type: nfs
         server: "helios.${INTERNAL_DOMAIN}"
         path: /tank/natflix/
-        mountPath: /media
+        globalMounts:
+          - path: /media
       backups:
-        enabled: true
         type: nfs
         server: "helios.${INTERNAL_DOMAIN}"
         path: /tank/backup/kubernetes/apps/kavita
-        mountPath: /kavita/config/backups
+        globalMounts:
+          - path: /kavita/config/backups
