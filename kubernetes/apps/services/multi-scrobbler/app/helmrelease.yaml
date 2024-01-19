@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.0.3
+      version: 2.5.0
       interval: 30m
       sourceRef:
         kind: HelmRepository
@@ -41,7 +41,7 @@ spec:
           main:
             image:
               repository: ghcr.io/foxxmd/multi-scrobbler
-              tag: 0.6.2
+              tag: 0.6.3@sha256:6af2e4ae7aa1e449ea5f342e3cfd104a6bff54bd39a6ce95d12a026e7eb02950
 
             # resources:
             #   requests:

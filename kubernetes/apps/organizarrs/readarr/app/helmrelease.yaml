@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.5.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -27,7 +27,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/onedr0p/readarr-nightly
-      tag: 0.3.15.2376@sha256:b4d2f0bfd9bdc32e88a99aa16816be8f6a6dd449a809fe8876df6e62d2ea4cdf
+      tag: 0.3.16.2387@sha256:5a4e09992e6bf7e3079159ae5f58d457ecd2a6882fe450edf3e0f45d750c10ea
     env:
       READARR__INSTANCE_NAME: Readarr (Audio)
       READARR__LOG_LEVEL: info

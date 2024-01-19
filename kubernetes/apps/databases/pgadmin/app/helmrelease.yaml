@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.5.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: dpage/pgadmin4
-      tag: "7.8@sha256:eb35f6ffc94c0cd8114273fe32a3bd5d2c51cb3e2a1d56fa8afa27a696d1cf64"
+      tag: "8.2@sha256:3b480788bfd84c9c46f09ce4984867f36fa8b8d8736b2044b376506cb0702ae2"
     # controller:
     #   replicas: 3
     #   strategy: RollingUpdate

@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.5.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: ghcr.io/bjw-s/calibre-web
-      tag: 0.6.21@sha256:3a0822def7b5d34251ade9a37287ed77c7032ce51f58ea9be055718452c946c2
+      tag: 0.6.21@sha256:7de93fa6120c4db296ae70ea6debd648fe5a83d1da76396d4d1e924f83c85214
 
     podSecurityContext:
       runAsUser: 568

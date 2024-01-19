@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.5.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -27,7 +27,7 @@ spec:
         reloader.stakater.com/auto: 'true'
     image:
       repository: factoriotools/factorio
-      tag: stable@sha256:67324ccad64e6e21b73085abad7e4a33823c6f43b074a55be10f48caf02ed1eb
+      tag: stable@sha256:1b80fd35e0c84e044cffc672d292d3f2759677a5296cff2baf93bc8c6d7cad1d
     global:
       nameOverride: *app
     env:
@@ -36,7 +36,7 @@ spec:
       RCON_PORT: &rcon 27020
     initContainers:
       copy-configmap:
-        image: busybox@sha256:3fbc632167424a6d997e74f52b878d7cc478225cffac6bc977eedfe51c7f4e79
+        image: busybox@sha256:ba76950ac9eaa407512c9d859cea48114eeff8a6f12ebaa5d32ce79d4a017dd8
         imagePullPolicy: IfNotPresent
         command:
           - 'sh'

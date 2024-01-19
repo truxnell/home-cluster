@@ -3,9 +3,9 @@ collections:
   - name: community.crypto
     version: 2.16.2
   - name: community.general
-    version: 7.5.2
+    version: 8.2.0
   - name: kubernetes.core
-    version: 2.4.0
+    version: 3.0.0
   - name: community.sops
     version: 1.6.7
   - name: community.docker
@@ -17,6 +17,6 @@ collections:
 
 roles:
   - src: geerlingguy.pip
-    version: 2.2.0
+    version: 3.0.1
   - src: geerlingguy.docker
     version: 7.0.2

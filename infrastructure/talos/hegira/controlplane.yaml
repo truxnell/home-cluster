@@ -315,7 +315,7 @@ cluster:
     # API server specific configuration options.
     apiServer:
         # renovate: docker-image
-        image: registry.k8s.io/kube-apiserver:v1.29.0
+        image: registry.k8s.io/kube-apiserver:v1.29.1
 
         # Extra certificate subject alternative names for the API server's certificate.
         certSANs:
@@ -326,7 +326,7 @@ cluster:
     # Controller manager server specific configuration options.
     controllerManager:
         # renovate: docker-image
-        image: registry.k8s.io/kube-controller-manager:v1.29.0
+        image: registry.k8s.io/kube-controller-manager:v1.29.1
 
     # Kube-proxy server-specific configuration options
     proxy:
@@ -336,7 +336,7 @@ cluster:
     # Scheduler server specific configuration options.
     scheduler:
         # renovate: docker-image
-        image: registry.k8s.io/kube-scheduler:v1.29.0
+        image: registry.k8s.io/kube-scheduler:v1.29.1
 
     # Configures cluster member discovery.
     discovery:

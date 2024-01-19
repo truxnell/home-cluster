@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.5.0
       interval: 15m
       sourceRef:
         kind: HelmRepository
@@ -25,7 +25,7 @@ spec:
               name: *app
     image:
       repository: ghcr.io/paperless-ngx/paperless-ngx
-      tag: 1.17.4@sha256:2daa90449bc5a57ce6b58792f873f0da6d09039b74caa9f89e28010e40ef770e
+      tag: 2.3.3@sha256:cd46a1c76309c2e4dd996fad662c1cc3a840a5fe333f86d0cc6c896a925192a3
     env:
       COMPOSE_PROJECT_NAME: paperless
       PAPERLESS_OCR_LANGUAGE: eng
@@ -91,11 +91,11 @@ spec:
     sidecars:
       redis:
         name: redis
-        image: public.ecr.aws/docker/library/redis:7.2.3@sha256:a7cee7c8178ff9b5297cb109e6240f5072cdaaafd775ce6b586c3c704b06458e
+        image: public.ecr.aws/docker/library/redis:7.2.4@sha256:b5ddcd52d425a8e354696c022f392fe45fca928f68d6289e6bb4a709c3a74668
         imagePullPolicy: IfNotPresent
       gotenburg:
         name: gotenburg
-        image: thecodingmachine/gotenberg:7.10.2@sha256:5feea235f2b3da85d3e68cf6e63c29b6b83ff894bad283b9f0c559375e8eedb7
+        image: thecodingmachine/gotenberg:8.0.1@sha256:4c441b60ce90a0844c3f68e086daec29df95efd236b5f4e411c4ea3ed44edba2
         env:
           - name: DISABLE_GOOGLE_CHROME
             value: "1"
