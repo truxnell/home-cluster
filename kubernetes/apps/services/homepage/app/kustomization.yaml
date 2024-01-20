@@ -4,3 +4,14 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./rbac.yaml
+configMapGenerator:
+  - name: homepage
+    files:
+      # - bookmarks.yaml=./resources/bookmarks.yaml.txt
+      - docker.yaml=./resources/docker.yaml
+      - kubernetes.yaml=./resources/kubernetes.yaml
+      # - services.yaml=./resources/services.yaml.txt
+      # - settings.yaml=./resources/settings.yaml
+      # - widgets.yaml=./resources/widgets.yaml.txt
+generatorOptions:
+  disableNameSuffixHash: true
