@@ -15,12 +15,12 @@ spec:
         name: bjw-s-charts
         namespace: flux-system
   install:
-    timeout: 20m
+    timeout: 5m
     createNamespace: true
     remediation: # perform remediation when helm install fails
       retries: 3
   upgrade:
-    timeout: 20m
+    timeout: 5m
     remediation: # perform remediation when helm upgrade fails
       retries: 3
       remediateLastFailure: true # remediate the last failure, when no retries remain
@@ -41,7 +41,7 @@ spec:
                 redis-server --requirepass $REDIS_PASSWORD
             envFrom:
               - secretRef:
-                name: *app
+                  name: *app
 
     service:
       main:
