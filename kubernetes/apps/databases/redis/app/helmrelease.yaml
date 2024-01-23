@@ -39,6 +39,9 @@ spec:
               - -c
               - >-
                 redis-server --requirepass $REDIS_PASSWORD
+            envFrom:
+              - secretRef:
+                name: *app
 
     service:
       main:
