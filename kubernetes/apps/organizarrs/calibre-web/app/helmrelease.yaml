@@ -22,15 +22,21 @@ spec:
     remediation:
       retries: 5
   values:
-    image:
-      repository: ghcr.io/bjw-s/calibre-web
-      tag: 0.6.21@sha256:7de93fa6120c4db296ae70ea6debd648fe5a83d1da76396d4d1e924f83c85214
+    controllers:
+      main:
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            fsGroup: 1000
+            fsGroupChangePolicy: "OnRootMismatch"
+      containers:
+        main:
+          image:
+            main:  
+            repository: ghcr.io/bjw-s/calibre-web
+            tag: 0.6.21@sha256:1a738c3e89df1e855643fcc341f166152df7b191a833367c6537130973676913
 
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 1000
-      fsGroupChangePolicy: "OnRootMismatch"
 
     service:
       main:
@@ -47,6 +53,9 @@ spec:
           - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
