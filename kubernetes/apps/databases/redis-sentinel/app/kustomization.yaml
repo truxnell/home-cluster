@@ -5,13 +5,3 @@ namespace: databases
 resources:
   - ./helmrelease.yaml
   - ./configmap.yaml
-configMapGenerator:
-  - name: redis-dashboard
-    files:
-      - redis-dashboard.json=https://grafana.com/api/dashboards/12776/revisions/2/download
-generatorOptions:
-  disableNameSuffixHash: true
-  annotations:
-    kustomize.toolkit.fluxcd.io/substitute: disabled
-  labels:
-    grafana_dashboard: 'true'
