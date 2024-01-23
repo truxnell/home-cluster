@@ -9,6 +9,7 @@ metadata:
 spec:
   path: './kubernetes/apps/home-automation/home-assistant/app/'
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
@@ -16,6 +17,4 @@ spec:
   retryInterval: 1m
   timeout: 3m
   dependsOn:
-    - name: cluster-apps-emqx
     - name: cluster-apps-zalando-postgres
-    - name: cluster-apps-rook-ceph-cluster

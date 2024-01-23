@@ -9,6 +9,7 @@ spec:
   interval: 10m
   path: "./kubernetes/helios/apps/monitoring/prometheus-operator-crds/app"
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes

@@ -9,19 +9,13 @@ metadata:
 spec:
   path: './kubernetes/apps/monitoring/vector/agent/'
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: vector-agent
-      namespace: monitoring
-  dependsOn:
-    - name: cluster-apps-vector-aggregator
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -33,16 +27,10 @@ metadata:
 spec:
   path: './kubernetes/apps/monitoring/vector/aggregator/'
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: vector-aggregator
-      namespace: monitoring
-  dependsOn:
-    - name: cluster-apps-loki

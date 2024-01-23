@@ -9,6 +9,7 @@ metadata:
 spec:
   path: "./kubernetes/helios/apps/default/deemix/app/"
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes

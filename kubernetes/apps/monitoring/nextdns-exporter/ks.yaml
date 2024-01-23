@@ -9,6 +9,7 @@ metadata:
 spec:
   path: './kubernetes/apps/monitoring/nextdns-exporter/trusted/'
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
@@ -17,11 +18,6 @@ spec:
   timeout: 3m
   dependsOn:
     - name: cluster-apps-external-secrets-operator
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: nextdns-exporter-trusted
-      namespace: monitoring
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -33,6 +29,7 @@ metadata:
 spec:
   path: './kubernetes/apps/monitoring/nextdns-exporter/kids/'
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
@@ -41,8 +38,3 @@ spec:
   timeout: 3m
   dependsOn:
     - name: cluster-apps-external-secrets-operator
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: nextdns-exporter-trusted
-      namespace: monitoring

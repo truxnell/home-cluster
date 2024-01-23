@@ -9,14 +9,10 @@ metadata:
 spec:
   path: './kubernetes/apps/security/glauth/app/'
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: glauth
-      namespace: security

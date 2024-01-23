@@ -9,17 +9,13 @@ metadata:
 spec:
   path: './kubernetes/apps/networking/metallb/app/'
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: metallb
-      namespace: networking
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -31,6 +27,7 @@ metadata:
 spec:
   path: './kubernetes/apps/networking/metallb/config/'
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes

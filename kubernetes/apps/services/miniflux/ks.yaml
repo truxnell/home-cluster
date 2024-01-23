@@ -9,19 +9,13 @@ metadata:
 spec:
   path: "./kubernetes/apps/services/miniflux/app/"
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: miniflux
-      namespace: services
-  dependsOn:
-    - name: cluster-apps-zalando-postgres
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -33,14 +27,10 @@ metadata:
 spec:
   path: "./kubernetes/apps/services/miniflux/reminiflux/"
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: reminiflux
-      namespace: services

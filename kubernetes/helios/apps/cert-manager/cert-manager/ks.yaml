@@ -9,13 +9,13 @@ metadata:
 spec:
   path: "./kubernetes/helios/apps/cert-manager/cert-manager/app/"
   prune: true
+  wait: true
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  wait: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -27,13 +27,13 @@ metadata:
 spec:
   path: "./kubernetes/helios/apps/cert-manager/cert-manager/issuers/"
   prune: true
+  wait: true
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  wait: true
   dependsOn:
     - name: cluster-apps-cert-manager
     - name: cluster-apps-external-secrets-operator

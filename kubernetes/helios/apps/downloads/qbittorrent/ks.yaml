@@ -9,6 +9,7 @@ metadata:
 spec:
   path: "./kubernetes/helios/apps/downloads/qbittorrent/app/"
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
@@ -27,6 +28,7 @@ metadata:
 spec:
   path: "./kubernetes/helios/apps/downloads/qbittorrent/readarr/"
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
@@ -45,6 +47,7 @@ metadata:
 spec:
   path: "./kubernetes/helios/apps/downloads/qbittorrent/lidarr/"
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
@@ -63,6 +66,7 @@ metadata:
 spec:
   path: "./kubernetes/helios/apps/downloads/qbittorrent/tools/"
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes

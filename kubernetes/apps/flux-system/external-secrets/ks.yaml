@@ -9,16 +9,10 @@ metadata:
 spec:
   path: './kubernetes/apps/flux-system/external-secrets/operator/'
   prune: true
+  wait: true
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: external-secrets-operator
-      namespace: flux-system
-  dependsOn:
-    - name: cluster-apps-cert-manager

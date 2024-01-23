@@ -9,16 +9,10 @@ metadata:
 spec:
   path: './kubernetes/apps/home-automation/ecowitt2mqtt/app/'
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: ecowitt2mqtt
-      namespace: home-automation
-  dependsOn:
-    - name: cluster-apps-emqx

@@ -9,13 +9,12 @@ metadata:
 spec:
   path: "./kubernetes/apps/services/roundcube/app/"
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
-  wait: false
   interval: 30m
   retryInterval: 1m
   timeout: 3m
   dependsOn:
-    - name: cluster-apps-ext-postgres-operator
     - name: cluster-apps-zalando-postgres-cluster

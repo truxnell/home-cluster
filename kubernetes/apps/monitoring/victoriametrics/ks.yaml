@@ -9,6 +9,7 @@ metadata:
 spec:
   path: "./kubernetes/apps/monitoring/victoriametrics/crd/"
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
@@ -27,6 +28,7 @@ metadata:
 spec:
   path: "./kubernetes/apps/monitoring/victoriametrics/app/"
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes

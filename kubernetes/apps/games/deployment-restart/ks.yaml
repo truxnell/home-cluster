@@ -9,6 +9,7 @@ metadata:
 spec:
   path: './kubernetes/apps/games/deployment-restart/app/'
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes

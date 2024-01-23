@@ -9,17 +9,13 @@ metadata:
 spec:
   path: './kubernetes/apps/kube-system/node-feature-discovery/app/'
   prune: true
+  wait: true
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: node-feature-discovery
-      namespace: kube-system
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -31,11 +27,10 @@ metadata:
 spec:
   path: './kubernetes/apps/kube-system/node-feature-discovery/rules/'
   prune: true
+  wait: true
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  dependsOn:
-    - name: cluster-apps-node-feature-discovery

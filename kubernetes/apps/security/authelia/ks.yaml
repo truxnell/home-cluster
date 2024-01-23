@@ -9,18 +9,12 @@ metadata:
 spec:
   path: './kubernetes/apps/security/authelia/app/'
   prune: true
+  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
   interval: 30m
   retryInterval: 1m
   timeout: 3m
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
-      kind: HelmRelease
-      name: authelia
-      namespace: security
   dependsOn:
-    - name: cluster-apps-glauth
-    - name: cluster-apps-redis
     - name: cluster-apps-zalando-postgres
