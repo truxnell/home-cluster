@@ -30,12 +30,12 @@ spec:
             runAsGroup: 568
             fsGroup: 1000
             fsGroupChangePolicy: "OnRootMismatch"
-      containers:
-        main:
-          image:
-            main:  
-            repository: ghcr.io/bjw-s/calibre-web
-            tag: 0.6.21@sha256:1a738c3e89df1e855643fcc341f166152df7b191a833367c6537130973676913
+        containers:
+          main:
+            image:
+              main:  
+              repository: ghcr.io/bjw-s/calibre-web
+              tag: 0.6.21@sha256:1a738c3e89df1e855643fcc341f166152df7b191a833367c6537130973676913
 
 
     service:
