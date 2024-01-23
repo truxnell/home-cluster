@@ -88,10 +88,8 @@ spec:
                     - icarus
     resources:
       requests:
-        gpu.intel.com/i915: 1
         cpu: 100m
         memory: 2000Mi
       limits:
-        gpu.intel.com/i915: 1
         cpu: 2000m
         memory: 10000Mi
