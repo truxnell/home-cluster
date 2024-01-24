@@ -40,6 +40,7 @@ spec:
 
     ingress:
       main:
+        enabled: true
         className: "internal-nginx"
         annotations:
           # nginx.ingress.kubernetes.io/auth-method: GET
