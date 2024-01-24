@@ -39,7 +39,7 @@ spec:
               AUTOBRR__CHECKFORUPDATES: "false"
               AUTOBRR__HOST: 0.0.0.0
               AUTOBRR__PORT: &port 80
-              AUTOBRR__LOGLEVEL: TRACE
+              AUTOBRR__LOGLEVEL: DEBUG
               AUTOBRR__DATABASETYPE: postgres
               AUTOBRR__POSTGRESDATABASE:
                 valueFrom:
