@@ -88,7 +88,7 @@ spec:
     ingress:
       main:
         enabled: true
-        className: internal
+        className: internal-nginx
         hosts:
           - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
