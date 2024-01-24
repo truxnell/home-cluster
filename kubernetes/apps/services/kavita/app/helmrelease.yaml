@@ -72,7 +72,8 @@ spec:
       config:
         enabled: true
         existingClaim: kavita-config-v1
-        mountPath: /kavita/config
+        globalMounts:
+          - path: /kavita/config
       media:
         enabled: true
         type: nfs
