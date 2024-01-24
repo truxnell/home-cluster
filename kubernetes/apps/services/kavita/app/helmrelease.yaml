@@ -70,15 +70,18 @@ spec:
 
     persistence:
       config:
+        enabled: true
         existingClaim: kavita-config-v1
         mountPath: /kavita/config
       media:
+        enabled: true
         type: nfs
         server: "helios.${INTERNAL_DOMAIN}"
         path: /tank/natflix/
         globalMounts:
           - path: /media
       backups:
+        enabled: true
         type: nfs
         server: "helios.${INTERNAL_DOMAIN}"
         path: /tank/backup/kubernetes/apps/kavita
