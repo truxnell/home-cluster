@@ -40,7 +40,7 @@ spec:
             - 'patch'
     ingress:
       enabled: true
-      className: 'nginx'
+      className: 'internal-nginx'
       annotations:
         hajimari.io/icon: mdi:sawtooth-wave
       hosts:
