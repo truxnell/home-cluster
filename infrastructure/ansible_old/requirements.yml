@@ -21,4 +21,4 @@ roles:
     version: b80e84d6938eb7730faeffc7ff7d8aa06ad5bef7
   - name: xanmanning.k3s
     src: https://github.com/PyratLabs/ansible-role-k3s.git
-    version: v3.4.3
+    version: v3.4.4
