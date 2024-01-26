@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.4.0
+      version: 2.5.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -35,7 +35,7 @@ spec:
           main:
             image:
               repository: ghcr.io/truxnell/rebased-soapbox
-              tag: 2023.12.14@sha256:8d3ae9b662c38246668d6e822200347000cc441dd1cdb6b2ea89683976813ae7
+              tag: 2023.12.14@sha256:f4718c8a0e395212bd5f85abba331416efcd945f5eb4124a06df14f080955017
 
             env:
               DOMAIN: &host "fedi.voltaicforge.com"
@@ -68,6 +68,14 @@ spec:
               limits:
                 memory: 3250Mi
 
+            securityContext:
+              runAsUser: 101
+              runAsGroup: 65534
+              fsGroup: 65534
+              fsGroupChangePolicy: "OnRootMismatch"
+              supplementalGroups:
+                - 65534
+
     service:
       main:
         ports:
@@ -98,18 +106,12 @@ spec:
       uploads:
         existingClaim: pleroma-images-config-v1
         mountPath: /var/lib/pleroma/uploads
+
       config-exa:
         type: configMap
         defaultMode: 0660
         name: pleroma-rebased-config
-        subPath: config.exs
-        mountPath: /configmap/config.exs
-        readOnly: true
-    defaultPodOptions:
-      podSecurityContext:
-        runAsUser: 101
-        runAsGroup: 65534
-        fsGroup: 65534
-        fsGroupChangePolicy: "OnRootMismatch"
-        supplementalGroups:
-          - 65534
+        globalMounts:
+          - path: /configmap/config.exs
+            subPath: config.exs
+            readOnly: true
