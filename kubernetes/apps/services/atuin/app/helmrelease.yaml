@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.0.3
+      version: 2.5.0
       interval: 30m
       sourceRef:
         kind: HelmRepository
@@ -34,9 +34,6 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
 
-        pod:
-          enableServiceLinks: false
-
         containers:
           main:
             image:
@@ -55,12 +52,24 @@ spec:
               ATUIN_HOST: 0.0.0.0
               ATUIN_PORT: &port 8888
               ATUIN_OPEN_REGISTRATION: "false"
+
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+
             resources:
               requests:
                 cpu: 10m
-                memory: 128Mi
               limits:
-                memory: 512Mi
+                memory: 256Mi
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
 
     service:
       main:
