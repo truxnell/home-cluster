@@ -62,8 +62,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: tls.qbit
-            hosts:
+          - hosts:
               - *host
     podSecurityContext:
       runAsUser: 568

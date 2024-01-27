@@ -58,8 +58,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: tls.syncthing
-            hosts:
+          - hosts:
               - *host
 
     podSecurityContext:

@@ -59,8 +59,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: tls.filebrowser
-            hosts:
+          - hosts:
               - *host
     persistence:
       config:

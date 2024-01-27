@@ -54,8 +54,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: tls.sabnzbd
-            hosts:
+          - hosts:
               - *host
     podSecurityContext:
       runAsUser: 568

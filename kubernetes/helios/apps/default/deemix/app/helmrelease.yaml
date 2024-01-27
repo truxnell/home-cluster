@@ -44,8 +44,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: tls.deemix
-            hosts:
+          - hosts:
               - *host
     env:
       DEEMIX_SINGLE_USER: "true"

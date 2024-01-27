@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   # Flux-Kustomizations
   - ./syncthing/ks.yaml
-  # - ./minio/ks.yaml
   # - ./vector/ks.yaml
   - ./kopia-photos-to-b2/ks.yaml
   - ./filebrowser/ks.yaml

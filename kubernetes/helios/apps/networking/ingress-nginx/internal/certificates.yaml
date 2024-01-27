@@ -3,7 +3,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: "trux.dev"
-  namespace: default
+  namespace: networking
 spec:
   secretName: "trux.dev-tls"
   issuerRef:

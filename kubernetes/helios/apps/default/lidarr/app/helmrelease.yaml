@@ -54,8 +54,7 @@ spec:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: tls.lidarr
-            hosts:
+          - hosts:
               - *host
     persistence:
       config:
