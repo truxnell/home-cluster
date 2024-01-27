@@ -10,7 +10,6 @@ spec:
   path: "./kubernetes/helios/apps/monitoring/node-exporter/app/"
   prune: true
   wait: false
-  wait: false
   sourceRef:
     kind: GitRepository
     name: home-cluster-kubernetes
