@@ -5,5 +5,4 @@ resources:
   - ./helmrelease.yaml
   - ./externalsecret.yaml
   - ./database.yaml
-generatorOptions:
-  disableNameSuffixHash: true
+  - ./pvc.yaml

@@ -6,7 +6,6 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./calibre/ks.yaml
-  - ./calibre-web/ks.yaml
   - ./overseerr/ks.yaml
   - ./prowlarr/ks.yaml
   - ./recyclarr/ks.yaml

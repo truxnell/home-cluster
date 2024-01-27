@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.5.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -87,9 +87,10 @@ spec:
                   name: main
                   port: http
                   
-    volumeClaimTemplates:
-      - name: config
-        mountPath: /config
-        accessMode: ReadWriteOnce
-        size: 5Gi
-        storageClass: ceph-block
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: dmarc-config-v1
+        globalMounts:
+          - path: /config
