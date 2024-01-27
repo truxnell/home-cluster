@@ -36,32 +36,32 @@ spec:
               repository: ghcr.io/autobrr/autobrr
               tag: v1.35.1@sha256:6b259dd61a2749300d138f7f74a8ac99ee7bcd4391391443bd9d6fa88c1e1cf9
             env:
-              AUTOBRR__CHECKFORUPDATES: "false"
+              AUTOBRR__CHECK_FOR_UPDATES: "false"
               AUTOBRR__HOST: 0.0.0.0
               AUTOBRR__PORT: &port 80
               AUTOBRR__LOGLEVEL: DEBUG
               AUTOBRR__DATABASETYPE: postgres
-              AUTOBRR__POSTGRESDATABASE:
+              AUTOBRR__POSTGRES_DATABASE:
                 valueFrom:
                   secretKeyRef:
                     name: database-autobrr-user
                     key: DATABASE_NAME
-              AUTOBRR__POSTGRESHOST:
+              AUTOBRR__POSTGRES_HOST:
                 valueFrom:
                   secretKeyRef:
                     name: database-autobrr-user
                     key: HOST
-              AUTOBRR__POSTGRESUSER:
+              AUTOBRR__POSTGRES_USER:
                 valueFrom:
                   secretKeyRef:
                     name: database-autobrr-user
                     key: LOGIN
-              AUTOBRR__POSTGRESPASS:
+              AUTOBRR__POSTGRES_PASS:
                 valueFrom:
                   secretKeyRef:
                     name: database-autobrr-user
                     key: PASSWORD
-              AUTOBRR__POSTGRESPORT: "5432"
+              AUTOBRR__POSTGRES_PORT: "5432"
             envFrom: &envFrom
               - secretRef:
                   name: autobrr
