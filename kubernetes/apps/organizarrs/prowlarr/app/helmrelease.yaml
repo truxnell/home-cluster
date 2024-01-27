@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.5.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s-charts
@@ -22,40 +22,100 @@ spec:
     remediation:
       retries: 5
   values:
-    controller:
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/onedr0p/prowlarr-nightly
-      tag: 1.13.1.4243@sha256:1577bb6c7f29b75ee414804ad952945fd3bc4ed6b9c7b6a150632a7e45f4c8a5
-    env:
-      PROWLARR__INSTANCE_NAME: Prowlarr
-      PROWLARR__LOG_LEVEL: info
-      PROWLARR__AUTHENTICATION_METHOD: External
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+            envFrom: &envFrom
+              - secretRef:
+                  name: prowlarr-secret
+        containers:
+          main:
+            image:
+              repository: ghcr.io/onedr0p/prowlarr-develop
+              tag: 1.12.2.4211@sha256:14fc79c3380bba72cd635dc6fa5949ac149c29f8a1afea8308ffe5490d0208f9
+            env:
+              PROWLARR__INSTANCE_NAME: Prowlarr
+              PROWLARR__LOG_LEVEL: info
+              PROWLARR__AUTHENTICATION_METHOD: External
+              PROWLARR__POSTGRES_DATABASE:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-prowlarr-user
+                    key: DATABASE_NAME
+              PROWLARR__POSTGRES_HOST:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-prowlarr-user
+                    key: HOST
+              PROWLARR__POSTGRES_USER:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-prowlarr-user
+                    key: LOGIN
+              PROWLARR__POSTGRES_PASS:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-prowlarr-user
+                    key: PASSWORD
+              PROWLARR__POSTGRES_PORT: "5432"
+              PROWLARR__THEME: dark
+
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /ping
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+                
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+              
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 1Gi
+
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            runAsNonRoot: true
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+
+
     envFrom:
       - secretRef:
           name: *app
+
     service:
       main:
         ports:
           http:
             port: 9696
+
     ingress:
       main:
         enabled: true
         ingressClassName: "internal-nginx"
-        annotations:
-          external-dns.alpha.kubernetes.io/target: ingress-ext.${EXTERNAL_DOMAIN}
-          nginx.ingress.kubernetes.io/auth-method: GET
-          nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Name,Remote-Groups,Remote-Email
-          nginx.ingress.kubernetes.io/auth-signin: https://auth.${EXTERNAL_DOMAIN}?rm=$request_method
-          nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Method $request_method;
-          nginx.ingress.kubernetes.io/auth-url: http://authelia.security.svc.cluster.local/api/verify
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${EXTERNAL_DOMAIN}/css/base/prowlarr/plex.css"></head>';
-            sub_filter_once on;
-          hajimari.io/icon: mdi:movie-search
         hosts:
           - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
@@ -64,42 +124,10 @@ spec:
         tls:
           - hosts:
               - *host
-      api:
-        enabled: true
-        ingressClassName: "external-nginx"
-        annotations:
-          nginx.ingress.kubernetes.io/use-regex: "true"
-          hajimari.io/enabled: "false"
-        hosts:
-          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
-            paths:
-              - path: /[0-9][0-9]?/*
-                pathType: Prefix
-              - path: /api/
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-    podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
+
     persistence:
       config:
         enabled: true
-        existingClaim: prowlarr-config-v1
-      backup:
-        enabled: true
-        type: nfs
-        server: "helios.${INTERNAL_DOMAIN}"
-        path: /tank/backup/kubernetes/apps/prowlarr
-        mountPath: /config/Backups
-    # podAnnotations:
-    #   setGateway: 'true'
-    resources:
-      requests:
-        cpu: 10m
-        memory: 100Mi
-      limits:
-        memory: 500Mi
+        type: emptyDir
+      tmp:
+        type: emptyDir
