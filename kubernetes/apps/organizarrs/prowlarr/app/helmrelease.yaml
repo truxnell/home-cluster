@@ -43,6 +43,7 @@ spec:
               PROWLARR__INSTANCE_NAME: Prowlarr
               PROWLARR__LOG_LEVEL: info
               PROWLARR__AUTHENTICATION_METHOD: External
+              PROWLARR__PORT: &port 9696
               PROWLARR__POSTGRES_DATABASE:
                 valueFrom:
                   secretKeyRef:
@@ -81,12 +82,12 @@ spec:
               readiness: *probes
               startup:
                 enabled: false
-                
+
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities: { drop: ["ALL"] }
-              
+
             resources:
               requests:
                 cpu: 10m
@@ -101,7 +102,6 @@ spec:
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
 
-
     envFrom:
       - secretRef:
           name: *app
@@ -110,7 +110,7 @@ spec:
       main:
         ports:
           http:
-            port: 9696
+            port: *port
 
     ingress:
       main:
