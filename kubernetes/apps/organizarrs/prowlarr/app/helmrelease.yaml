@@ -52,13 +52,15 @@ spec:
                   secretKeyRef:
                     name: database-prowlarr-user
                     key: LOGIN
-              PROWLARR__POSTGRES_PASS:
+              PROWLARR__POSTGRES_PASSWORD:
                 valueFrom:
                   secretKeyRef:
                     name: database-prowlarr-user
                     key: PASSWORD
               PROWLARR__POSTGRES_PORT: "5432"
               PROWLARR__THEME: dark
+              PROWLARR__POSTGRES_MAIN_DB: prowlarr_main
+              PROWLARR__POSTGRES_LOG_DB: prowlarr_log
 
             probes:
               liveness: &probes
