@@ -26,46 +26,48 @@ spec:
       remediateLastFailure: true # remediate the last failure, when no retries remain
     cleanupOnFail: true
   values:
-    controller:
-      type: statefulset
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/szinn/dmarc-report
-      tag: 1.4.1@sha256:3bdb6549f9f577ec75034a415d13beb77fec9e296428d1a1e88c955be4f20592
-      pullPolicy: IfNotPresent
-    env:
-      PARSER_IMAP_READ_FOLDER: "dmarc_reports"
-      PARSER_IMAP_MOVE_FOLDER: "dmarc_processed"
-      PARSER_IMAP_MOVE_FOLDER_ERR: "dmarc_error"
-      PARSER_IMAP_SSL: 1
-      PARSER_IMAP_TLS: 0
-      REPORT_DB_TYPE: "pgsql"
-      REPORT_DB_PORT: "5432"
-      REPORT_DB_HOST:
-        valueFrom:
-          secretKeyRef:
-            name: database-dmarc-report-user
-            key: HOST
-      REPORT_DB_NAME:
-        valueFrom:
-          secretKeyRef:
-            name: database-dmarc-report-user
-            key: DATABASE_NAME
-      REPORT_DB_USER:
-        valueFrom:
-          secretKeyRef:
-            name: database-dmarc-report-user
-            key: ROLE
-      REPORT_DB_PASS:
-        valueFrom:
-          secretKeyRef:
-            name: database-dmarc-report-user
-            key: PASSWORD
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/szinn/dmarc-report
+              tag: 1.4.1@sha256:3bdb6549f9f577ec75034a415d13beb77fec9e296428d1a1e88c955be4f20592
+              pullPolicy: IfNotPresent
+            env:
+              PARSER_IMAP_READ_FOLDER: "dmarc_reports"
+              PARSER_IMAP_MOVE_FOLDER: "dmarc_processed"
+              PARSER_IMAP_MOVE_FOLDER_ERR: "dmarc_error"
+              PARSER_IMAP_SSL: 1
+              PARSER_IMAP_TLS: 0
+              REPORT_DB_TYPE: "pgsql"
+              REPORT_DB_PORT: "5432"
+              REPORT_DB_HOST:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-dmarc-report-user
+                    key: HOST
+              REPORT_DB_NAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-dmarc-report-user
+                    key: DATABASE_NAME
+              REPORT_DB_USER:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-dmarc-report-user
+                    key: ROLE
+              REPORT_DB_PASS:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-dmarc-report-user
+                    key: PASSWORD
 
-    envFrom:
-      - secretRef:
-          name: *app
+            envFrom:
+              - secretRef:
+                  name: *app
     service:
       main:
         ports:
@@ -81,7 +83,10 @@ spec:
           - host: "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
-                pathType: Prefix
+                service:
+                  name: main
+                  port: http
+                  
     volumeClaimTemplates:
       - name: config
         mountPath: /config
