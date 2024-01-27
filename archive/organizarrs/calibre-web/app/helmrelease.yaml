@@ -64,12 +64,12 @@ spec:
       config:
         enabled: true
         existingClaim: calibre-web-config-v1
-      media:
-        enabled: true
-        type: nfs
-        server: "helios.${INTERNAL_DOMAIN}"
-        path: /tank/
-        mountPath: /media
+      # media: ## WRONG
+      #   enabled: true 
+      #   type: nfs
+      #   server: "helios.${INTERNAL_DOMAIN}"
+      #   path: /tank/
+      #   mountPath: /media
 
     resources:
       requests:
