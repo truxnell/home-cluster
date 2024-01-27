@@ -26,7 +26,14 @@ spec:
       main:
         annotations:
           reloader.stakater.com/auto: "true"
-
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+            envFrom: &envFrom
+              - secretRef:
+                  name: *app
         containers:
           main:
             image:
@@ -37,25 +44,9 @@ spec:
               PROWLARR__LOG_LEVEL: info
               PROWLARR__AUTHENTICATION_METHOD: External
               PROWLARR__PORT: &port 9696
-              PROWLARR__POSTGRES_HOST:
-                valueFrom:
-                  secretKeyRef:
-                    name: database-prowlarr-user
-                    key: HOST
-              PROWLARR__POSTGRES_USER:
-                valueFrom:
-                  secretKeyRef:
-                    name: database-prowlarr-user
-                    key: LOGIN
-              PROWLARR__POSTGRES_PASSWORD:
-                valueFrom:
-                  secretKeyRef:
-                    name: database-prowlarr-user
-                    key: PASSWORD
-              PROWLARR__POSTGRES_PORT: "5432"
               PROWLARR__THEME: dark
-              PROWLARR__POSTGRES_MAIN_DB: prowlarr-db-main
-              PROWLARR__POSTGRES_LOG_DB: prowlarr-db-log
+
+            envFrom: *envFrom
 
             probes:
               liveness: &probes
