@@ -6,21 +6,21 @@ metadata:
   namespace: databases
 spec:
   postgresVersion: 15
-  dataSource:
-    pgbackrest:
-      stanza: db
-      configuration:
-        - secret:
-            name: crunchy-postgres-s3-creds
-      global:
-        repo1-path: "/crunchy-postgres/repo1"
-        repo1-s3-uri-style: path
-      repo:
-        name: repo1
-        s3:
-          bucket: "crunchy-postgres"
-          endpoint: "s3.${INTERNAL_DOMAIN}"
-          region: "us-east-1"
+  # dataSource:
+  #   pgbackrest:
+  #     stanza: db
+  #     configuration:
+  #       - secret:
+  #           name: crunchy-postgres-s3-creds
+  #     global:
+  #       repo1-path: "/crunchy-postgres/repo1"
+  #       repo1-s3-uri-style: path
+  #     repo:
+  #       name: repo1
+  #       s3:
+  #         bucket: "crunchy-postgres"
+  #         endpoint: "s3.${INTERNAL_DOMAIN}"
+  #         region: "us-east-1"
   patroni:
     dynamicConfiguration:
       synchronous_mode: true
