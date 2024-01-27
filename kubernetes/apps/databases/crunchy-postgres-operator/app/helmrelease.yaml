@@ -1,9 +1,9 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: crunchy-postgres-operator
+  name: &app crunchy-postgres-operator
+  namespace: databases
 spec:
   interval: 30m
   chart:
@@ -15,10 +15,7 @@ spec:
         name: crunchydata
         namespace: flux-system
       interval: 5m
-  install:
-    crds: CreateReplace
-  upgrade:
-    crds: CreateReplace
+
   values:
     install:
       clusterLabels:
