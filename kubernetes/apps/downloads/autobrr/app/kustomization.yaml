@@ -7,9 +7,3 @@ resources:
   - ./helmrelease.yaml
   - ./database.yaml
   - ./externalsecret.yaml
-configMapGenerator:
-  - name: autobrr-configmap
-    files:
-      - config.toml=./config/config.toml
-generatorOptions:
-  disableNameSuffixHash: true
