@@ -80,6 +80,12 @@ spec:
               readiness: *probes
               startup:
                 enabled: false
+
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+
             resources:
               requests:
                 memory: 128Mi
