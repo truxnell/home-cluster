@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: &app loki
@@ -39,7 +39,7 @@ spec:
           grpc_server_max_send_msg_size: 8388608
 
         memberlist:
-          join_members: ['loki-memberlist']
+          join_members: ["loki-memberlist"]
 
         limits_config:
           retention_period: 14d
@@ -57,7 +57,7 @@ spec:
 
         schema_config:
           configs:
-            - from: '2021-08-01'
+            - from: "2021-08-01"
               store: boltdb-shipper
               object_store: s3
               schema: v11
@@ -126,7 +126,7 @@ spec:
         enabled: true
         ingressClassName: "internal-nginx"
         hosts:
-          - host: &host 'loki.${EXTERNAL_DOMAIN}'
+          - host: &host "loki.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -205,7 +205,7 @@ spec:
         annotations:
           kustomize.toolkit.fluxcd.io/substitute: disabled
         labels:
-          grafana_dashboard: 'true'
+          grafana_dashboard: "true"
       rules:
         enabled: true
       serviceMonitor:

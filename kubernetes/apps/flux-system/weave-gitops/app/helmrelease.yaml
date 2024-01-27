@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: &app weave-gitops
@@ -31,20 +31,20 @@ spec:
         - *admin_user
       additionalRules:
         - apiGroups:
-            - 'infra.contrib.fluxcd.io'
+            - "infra.contrib.fluxcd.io"
           resources:
-            - 'terraforms'
+            - "terraforms"
           verbs:
-            - 'get'
-            - 'list'
-            - 'patch'
+            - "get"
+            - "list"
+            - "patch"
     ingress:
       enabled: true
-      className: 'internal-nginx'
+      className: "internal-nginx"
       annotations:
         hajimari.io/icon: mdi:sawtooth-wave
       hosts:
-        - host: &host 'weave-gitops.${EXTERNAL_DOMAIN}'
+        - host: &host "weave-gitops.${EXTERNAL_DOMAIN}"
           paths:
             - path: /
               pathType: Prefix

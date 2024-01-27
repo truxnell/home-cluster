@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: &app authelia
@@ -32,7 +32,7 @@ spec:
       replicas: 3
       strategy: RollingUpdate
       annotations:
-        reloader.stakater.com/auto: 'true'
+        reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/authelia/authelia
       tag: 4.37.5
@@ -51,7 +51,7 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: 'external-nginx'
+        ingressClassName: "external-nginx"
         annotations:
           external-dns.alpha.kubernetes.io/target: ingress-ext.${EXTERNAL_DOMAIN}
           nginx.ingress.kubernetes.io/configuration-snippet: |
@@ -61,7 +61,7 @@ spec:
             add_header X-XSS-Protection "1; mode=block";
           hajimari.io/icon: mdi:shield-account
         hosts:
-          - host: &host 'auth.${EXTERNAL_DOMAIN}'
+          - host: &host "auth.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
@@ -72,7 +72,7 @@ spec:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
-      fsGroupChangePolicy: 'OnRootMismatch'
+      fsGroupChangePolicy: "OnRootMismatch"
     persistence:
       config:
         enabled: true

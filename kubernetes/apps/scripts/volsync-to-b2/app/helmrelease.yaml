@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: &app volsync-to-b2
@@ -19,14 +19,22 @@ spec:
     controller:
       type: cronjob
       cronjob:
-        schedule: '@daily'
+        schedule: "@daily"
         ttlSecondsAfterFinished: 86400
     restartPolicy: OnFailure
     image:
       repository: ghcr.io/truxnell/b2
       tag: 3.15.0@sha256:e4f402cfce6c011269a94cb622224216fe08321e3af3e98ec6eef3b6dfbb06bb
-    command: ['b2']
-    args: ['sync','/data','b2://trux-volsync-backup-A73B8D/','--keepDays','7','--replaceNewer']
+    command: ["b2"]
+    args:
+      [
+        "sync",
+        "/data",
+        "b2://trux-volsync-backup-A73B8D/",
+        "--keepDays",
+        "7",
+        "--replaceNewer",
+      ]
     envFrom:
       - secretRef:
           name: *app

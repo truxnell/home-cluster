@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: &app factorio-deathworld
@@ -24,14 +24,14 @@ spec:
   values:
     controller:
       annotations:
-        reloader.stakater.com/auto: 'true'
+        reloader.stakater.com/auto: "true"
     image:
       repository: factoriotools/factorio
       tag: stable@sha256:a9d8ea1323fe73959901ffbfc90de9b693a34f7dc172c6b4f30fdc18a6d79196
     global:
       nameOverride: *app
     env:
-      UPDATE_MODS_ON_START: 'true'
+      UPDATE_MODS_ON_START: "true"
       PORT: &port 34200
       RCON_PORT: &rcon 27016
     initContainers:
@@ -39,8 +39,8 @@ spec:
         image: busybox@sha256:6d9ac9237a84afe1516540f40a0fafdc86859b2141954b4d643af7066d598b74
         imagePullPolicy: IfNotPresent
         command:
-          - 'sh'
-          - '-c'
+          - "sh"
+          - "-c"
           - |
             mkdir -p /factorio/config
             cp -vL /helmconfig/* /factorio/config/
@@ -55,7 +55,7 @@ spec:
       main:
         type: LoadBalancer # Setting Ip external to cluster for easy port forward
         externalTrafficPolicy: Cluster
-        loadBalancerIP: '${LB_FACTORIO}'
+        loadBalancerIP: "${LB_FACTORIO}"
         annotations:
           metallb.universe.tf/allow-shared-ip: factorio
         ports:
@@ -82,8 +82,8 @@ spec:
         mountPath: /factorio
         existingClaim: factorio-deathworld-config-v1
       helmconfig:
-        enabled: 'true'
-        type: 'secret'
+        enabled: "true"
+        type: "secret"
         name: *app
     startupProbe:
       enabled: true

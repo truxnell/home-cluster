@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: &app ecowitt2mqtt
@@ -33,7 +33,7 @@ spec:
       ECOWITT2MQTT_MQTT_PORT: 1883
       ECOWITT2MQTT_MQTT_TOPIC: ecowitt2mqtt/pws
       ECOWITT2MQTT_PORT: &port 8080
-      ECOWITT2MQTT_HASS_DISCOVERY: 'true'
+      ECOWITT2MQTT_HASS_DISCOVERY: "true"
       ECOWITT2MQTT_OUTPUT_UNIT_SYSTEM: metric # Come on guys nobody want to use freedum units
     envFrom:
       - secretRef:
@@ -48,9 +48,9 @@ spec:
         enabled: true
         ingressClassName: "internal-nginx"
         annotations:
-          hajimari.io/enable: 'false'
+          hajimari.io/enable: "false"
         hosts:
-          - host: &host '{{ .Release.Name }}.${EXTERNAL_DOMAIN}'
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix

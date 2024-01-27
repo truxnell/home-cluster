@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: &app vector-aggregator
@@ -39,18 +39,18 @@ spec:
       replicas: 3
       strategy: RollingUpdate
       annotations:
-        reloader.stakater.com/auto: 'true'
+        reloader.stakater.com/auto: "true"
     image:
       # https://github.com/vectordotdev/vector/issues/6715
       repository: ghcr.io/onedr0p/vector
       tag: 0.34.1-debian@sha256:329ceb648d40a26fca9f72c851e9abbacef74cc50b7956d9cf7eb1929d57f35c
 
-    args: ['--config', '/etc/vector/vector.yaml']
+    args: ["--config", "/etc/vector/vector.yaml"]
 
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: '${LB_VECTOR_AGGREGATOR}'
+        loadBalancerIP: "${LB_VECTOR_AGGREGATOR}"
         externalTrafficPolicy: Local
         ports:
           http:

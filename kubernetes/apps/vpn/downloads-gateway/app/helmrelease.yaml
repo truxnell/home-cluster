@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: &app downloads-gateway
@@ -37,9 +37,9 @@ spec:
           - name: VPN_INTERFACE
             value: wg0
           - name: FIREWALL
-            value: 'off'
+            value: "off"
           - name: DOT
-            value: 'off'
+            value: "off"
           - name: HEALTH_VPN_DURATION_INITIAL
             value: 30s
           - name: SERVER_COUNTRIES
@@ -65,7 +65,6 @@ spec:
       netshoot:
         enabled: true
 
-
     podAnnotations:
       configmap.reloader.stakater.com/reload: *app
       secret.reloader.stakater.com/reload: *app
@@ -89,7 +88,7 @@ spec:
       VPN_BLOCK_OTHER_TRAFFIC: true
       VPN_INTERFACE: wg0
       VPN_LOCAL_CIDRS: 10.0.0.0/8 192.168.0.0/16
-      VPN_TRAFFIC_PORT: '51820'
+      VPN_TRAFFIC_PORT: "51820"
       VXLAN_ID: 43
       VXLAN_IP_NETWORK: 172.16.1
 
