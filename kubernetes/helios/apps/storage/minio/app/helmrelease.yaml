@@ -79,6 +79,11 @@ spec:
                 service:
                   name: main
                   port: s3
+        tls:
+          - secretName: tls.lidarr
+            hosts:
+              - *host
+
 
     persistence:
       dev:
