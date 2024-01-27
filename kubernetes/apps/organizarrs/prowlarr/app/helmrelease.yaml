@@ -37,11 +37,6 @@ spec:
               PROWLARR__LOG_LEVEL: info
               PROWLARR__AUTHENTICATION_METHOD: External
               PROWLARR__PORT: &port 9696
-              PROWLARR__POSTGRES_DATABASE:
-                valueFrom:
-                  secretKeyRef:
-                    name: database-prowlarr-user
-                    key: DATABASE_NAME
               PROWLARR__POSTGRES_HOST:
                 valueFrom:
                   secretKeyRef:
@@ -59,8 +54,8 @@ spec:
                     key: PASSWORD
               PROWLARR__POSTGRES_PORT: "5432"
               PROWLARR__THEME: dark
-              PROWLARR__POSTGRES_MAIN_DB: prowlarr_main
-              PROWLARR__POSTGRES_LOG_DB: prowlarr_log
+              PROWLARR__POSTGRES_MAIN_DB: prowlarr-db-main
+              PROWLARR__POSTGRES_LOG_DB: prowlarr-db-log
 
             probes:
               liveness: &probes
