@@ -80,8 +80,7 @@ spec:
                   name: main
                   port: s3
         tls:
-          - secretName: tls.lidarr
-            hosts:
+          - hosts:
               - *host
               - *s3host
 
