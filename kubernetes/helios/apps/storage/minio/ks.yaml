@@ -7,7 +7,7 @@ metadata:
   labels:
     substitution.flux.home.arpa/enabled: "true"
 spec:
-  path: "./kubernetes/helios/apps/networking/minio/app/"
+  path: "./kubernetes/helios/apps/storage/minio/app/"
   prune: true
   wait: false
   sourceRef:
