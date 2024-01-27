@@ -3,7 +3,7 @@ apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
   name: prowlarr-db
-  namespace: downloads
+  namespace: organizarrs
 spec:
   database: prowlarr
 ---
@@ -11,7 +11,7 @@ apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
   name: prowlarr-user
-  namespace: downloads
+  namespace: organizarrs
 spec:
   role: prowlarr
   database: prowlarr-db
