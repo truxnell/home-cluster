@@ -11,7 +11,7 @@ spec:
   #     stanza: db
   #     configuration:
   #       - secret:
-  #           name: crunchy-postgres-s3-creds
+  #           name: crunchy-postgres
   #     global:
   #       repo1-path: "/crunchy-postgres/repo1"
   #       repo1-s3-uri-style: path
@@ -60,7 +60,7 @@ spec:
     pgbackrest:
       configuration:
         - secret:
-            name: crunchy-postgres-s3-creds
+            name: crunchy-postgres
       global:
         archive-push-queue-max: 4GiB
         repo1-retention-full: "14"
