@@ -2,7 +2,7 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
-  name: prowlarr_main
+  name: prowlarr-db-main
   namespace: organizarrs
 spec:
   database: prowlarr
@@ -10,7 +10,7 @@ spec:
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
-  name: prowlarr_log
+  name: prowlarr-db-log
   namespace: organizarrs
 spec:
   database: prowlarr
