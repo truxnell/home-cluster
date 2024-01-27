@@ -40,3 +40,4 @@ resources:
   - ./victoriametrics-charts.yaml
   - ./democratic-csi.yaml
   - ./k8tz-charts.yaml
+  - ./crunchydata.yaml
