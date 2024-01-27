@@ -58,7 +58,7 @@ spec:
       main:
         enabled: true
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          internal-nginx.ingress.kubernetes.io/router.entrypoints: websecure
           cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - host: &host "minio.trux.dev"
@@ -72,8 +72,8 @@ spec:
       s3:
         enabled: true
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          traefik.ingress.kubernetes.io/router.tls: "false"
+          internal-nginx.ingress.kubernetes.io/router.entrypoints: websecure
+          internal-nginx.ingress.kubernetes.io/router.tls: "false"
         hosts:
           - host: &host-api "s3.trux.dev"
             paths:

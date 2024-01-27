@@ -44,9 +44,9 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: traefik
+        ingressClassName: internal-nginx
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          internal-nginx.ingress.kubernetes.io/router.entrypoints: websecure
           cert-manager.io/cluster-issuer: letsencrypt-production
           nginx.ingress.kubernetes.io/configuration-snippet: |
             proxy_hide_header "x-webkit-csp";

@@ -48,9 +48,9 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: traefik
+        ingressClassName: internal-nginx
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          internal-nginx.ingress.kubernetes.io/router.entrypoints: websecure
           cert-manager.io/cluster-issuer: letsencrypt-production
           hajimari.io/icon: mdi:folder-play-outline
         hosts:

@@ -62,9 +62,9 @@ spec:
     ingress:
       main:
         enabled: true
-        className: traefik
+        className: internal-nginx
         annotations:
-          traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          internal-nginx.ingress.kubernetes.io/router.entrypoints: websecure
           cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - host: &host cross-seed.trux.dev
