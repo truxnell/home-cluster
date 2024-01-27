@@ -73,7 +73,7 @@ spec:
                 service:
                   name: main
                   port: http
-          - host: &host "s3.trux.dev"
+          - host: &s3host "s3.trux.dev"
             paths:
               - path: /
                 service:
@@ -83,6 +83,7 @@ spec:
           - secretName: tls.lidarr
             hosts:
               - *host
+              - *s3host
 
 
     persistence:
