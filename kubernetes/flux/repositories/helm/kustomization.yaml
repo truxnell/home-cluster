@@ -41,3 +41,4 @@ resources:
   - ./democratic-csi.yaml
   - ./k8tz-charts.yaml
   - ./crunchydata.yaml
+  - ./mittwald.yaml

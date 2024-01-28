@@ -26,14 +26,7 @@ spec:
       main:
         annotations:
           reloader.stakater.com/auto: "true"
-        initContainers:
-          init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16
-            envFrom: &envFrom
-              - secretRef:
-                  name: *app
+
         containers:
           main:
             image:
@@ -46,7 +39,9 @@ spec:
               PROWLARR__PORT: &port 9696
               PROWLARR__THEME: dark
 
-            envFrom: *envFrom
+            envFrom:
+              - secretRef:
+                  name: *app
 
             probes:
               liveness: &probes
