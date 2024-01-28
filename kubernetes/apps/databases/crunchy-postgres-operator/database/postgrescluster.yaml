@@ -89,4 +89,4 @@ spec:
             region: "us-east-1"
   metadata:
     annotations:
-      home.arpa.derp/derp: yep
+      replicator.v1.mittwald.de/replicate-to: "organizaars"
