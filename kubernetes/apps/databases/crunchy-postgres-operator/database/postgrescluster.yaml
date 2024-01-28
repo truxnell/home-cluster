@@ -52,8 +52,9 @@ spec:
   users:
     - name: "prowlarr"
       databases:
-        - "prowlarr"
-      options: "CREATEDB"
+        - "prowlarr_main"
+        - "prowlarr_logs"
+      # options: "CREATEDB"
       password:
         type: AlphaNumeric
   backups:
@@ -86,3 +87,6 @@ spec:
             bucket: "crunchy-postgres"
             endpoint: "s3.trux.dev"
             region: "us-east-1"
+    metadata:
+      annotations:
+        home.arpa.derp/derp: yep
