@@ -9,4 +9,4 @@ resources:
   - ./k8tz/ks.yaml
   - ./kubelet-csr-approver/ks.yaml
   - ./snapshot-controller/ks.yaml
-  - ./secret-replicator/ks.yaml
+  - ./kubernetes-replicator/ks.yaml
