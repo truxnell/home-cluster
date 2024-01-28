@@ -87,6 +87,6 @@ spec:
             bucket: "crunchy-postgres"
             endpoint: "s3.trux.dev"
             region: "us-east-1"
-    metadata:
-      annotations:
-        home.arpa.derp/derp: yep
+  metadata:
+    annotations:
+      home.arpa.derp/derp: yep
