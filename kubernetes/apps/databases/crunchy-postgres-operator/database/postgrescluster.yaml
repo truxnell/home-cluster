@@ -89,4 +89,5 @@ spec:
             region: "us-east-1"
   metadata:
     annotations:
-      replicator.v1.mittwald.de/replicate-to: "organizaars"
+      replicator.v1.mittwald.de/replication-allowed: "true"
+      replicator.v1.mittwald.de/replication-allowed-namespaces: "*"
