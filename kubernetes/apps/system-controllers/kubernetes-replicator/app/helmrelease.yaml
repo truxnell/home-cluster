@@ -34,16 +34,6 @@ spec:
     grantClusterAdmin: false
     args:
       - -resync-period=5m
-    serviceAccount:
-      create: true
-      name: replicator-kubernetes-replicator
-      privileges:
-        - apiGroups: [""]
-          resources: ["namespaces"]
-        - apiGroups: [""]
-          resources: ["secrets"]
-        - apiGroups: ["rbac.authorization.k8s.io"]
-          resources: ["roles", "rolebindings"]
     securityContext:
       capabilities:
         drop:
