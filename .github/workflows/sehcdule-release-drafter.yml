@@ -16,7 +16,7 @@ jobs:
           app_id: "${{ secrets.TRUXNELL_APP_ID }}"
           private_key: "${{ secrets.TRUXNELL_APP_PRIVATE_KEY }}"
       # Drafts your next Release notes as Pull Requests are merged into "main"
-      - uses: release-drafter/release-drafter@v5
+      - uses: release-drafter/release-drafter@v6
         with:
           # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
           config-name: release-drafter.yml
