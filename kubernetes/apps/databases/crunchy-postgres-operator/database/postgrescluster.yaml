@@ -29,6 +29,11 @@ spec:
         pg_hba:
           - hostnossl all all 10.244.0.0/16 md5
           - hostssl all all all md5
+  service:
+    type: LoadBalancer
+    externalTrafficPolicy: Local
+    loadBalancerIP: "10.8.20.217"
+
   instances:
     - name: postgres
       metadata:
