@@ -127,3 +127,9 @@ spec:
         existingClaim: prowlarr-config-v1
       tmp:
         type: emptyDir
+      backup:
+        enabled: true
+        type: nfs
+        server: "helios.${INTERNAL_DOMAIN}"
+        path: /tank/backup/kubernetes/apps/prowlarr
+        mountPath: /config/Backups
