@@ -48,14 +48,6 @@ spec:
         annotations:
           internal-nginx.ingress.kubernetes.io/router.entrypoints: websecure
           cert-manager.io/cluster-issuer: letsencrypt-production
-          nginx.ingress.kubernetes.io/configuration-snippet: |
-            proxy_hide_header "x-webkit-csp";
-            proxy_hide_header "content-security-policy";
-            proxy_hide_header "X-Frame-Options";
-            proxy_set_header Accept-Encoding "";
-            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_PUBLIC_DOMAIN}/css/base/qbittorrent/plex.css"></head>';
-            sub_filter_once on;
-          hajimari.io/icon: mdi:download
         hosts:
           - host: &host "{{ .Release.Name }}.trux.dev"
             paths:
