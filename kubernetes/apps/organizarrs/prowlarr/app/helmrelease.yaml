@@ -38,24 +38,24 @@ spec:
               PROWLARR__AUTHENTICATION_METHOD: External
               PROWLARR__PORT: &port 9696
               PROWLARR__THEME: dark
-              PROWLARR__POSTGRES_HOST:
-                valueFrom:
-                  secretKeyRef:
-                    name: postgres-pguser-prowlarr
-                    key: host
-              PROWLARR__POSTGRES_USER:
-                valueFrom:
-                  secretKeyRef:
-                    name: postgres-pguser-prowlarr
-                    key: user
-              PROWLARR__POSTGRES_PASSWORD:
-                valueFrom:
-                  secretKeyRef:
-                    name: postgres-pguser-prowlarr
-                    key: password
-              PROWLARR__POSTGRES_PORT: "5432"
-              PROWLARR__POSTGRES_LOG_DB: prowlarr_log
-              PROWLARR__POSTGRES_MAIN_DB: prowlarr_main
+              # PROWLARR__POSTGRES_HOST:
+              #   valueFrom:
+              #     secretKeyRef:
+              #       name: postgres-pguser-prowlarr
+              #       key: host
+              # PROWLARR__POSTGRES_USER:
+              #   valueFrom:
+              #     secretKeyRef:
+              #       name: postgres-pguser-prowlarr
+              #       key: user
+              # PROWLARR__POSTGRES_PASSWORD:
+              #   valueFrom:
+              #     secretKeyRef:
+              #       name: postgres-pguser-prowlarr
+              #       key: password
+              # PROWLARR__POSTGRES_PORT: "5432"
+              # PROWLARR__POSTGRES_LOG_DB: prowlarr_log
+              # PROWLARR__POSTGRES_MAIN_DB: prowlarr_main
 
             envFrom:
               - secretRef:
