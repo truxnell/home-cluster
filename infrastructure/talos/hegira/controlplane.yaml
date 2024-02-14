@@ -336,7 +336,7 @@ cluster:
     # Scheduler server specific configuration options.
     scheduler:
         # renovate: docker-image
-        image: registry.k8s.io/kube-scheduler:v1.29.1
+        image: registry.k8s.io/kube-scheduler:v1.29.2
 
     # Configures cluster member discovery.
     discovery:
