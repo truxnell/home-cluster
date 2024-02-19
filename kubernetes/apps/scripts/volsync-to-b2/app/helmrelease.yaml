@@ -24,7 +24,7 @@ spec:
     restartPolicy: OnFailure
     image:
       repository: ghcr.io/truxnell/b2
-      tag: 3.15.0@sha256:e4f402cfce6c011269a94cb622224216fe08321e3af3e98ec6eef3b6dfbb06bb
+      tag: 3.16.0@sha256:2462e7835e07a9d499535b1d0ecbae96af4366321a5017bf7cf35548fdb6fa97
     command: ["b2"]
     args:
       [
