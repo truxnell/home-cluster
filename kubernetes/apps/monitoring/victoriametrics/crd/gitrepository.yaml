@@ -9,7 +9,7 @@ spec:
   # renovate: datasource=github-releases
   url: https://github.com/VictoriaMetrics/operator.git
   ref:
-    tag: v0.40.0
+    tag: v0.41.2
   ignore: |
     # exclude all
     /*
