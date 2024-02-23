@@ -32,6 +32,7 @@ module.exports = {
 
     "https://prowlarr.trux.dev/39/api?apikey={{ .PROWLARR__API_KEY }}", // ant
     "https://prowlarr.trux.dev/45/api?apikey={{ .PROWLARR__API_KEY }}", // nbl
+    "https://prowlarr.trux.dev/55/api?apikey={{ .PROWLARR__API_KEY }}", // mtv
 
     "https://prowlarr.trux.dev/47/api?apikey={{ .PROWLARR__API_KEY }}", // crt
     "https://prowlarr.trux.dev/51/api?apikey={{ .PROWLARR__API_KEY }}", // otw
