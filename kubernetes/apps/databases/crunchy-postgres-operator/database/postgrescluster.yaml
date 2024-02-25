@@ -5,7 +5,7 @@ metadata:
   name: postgres
   namespace: databases
 spec:
-  postgresVersion: 15
+  postgresVersion: 16
   # dataSource:
   #   pgbackrest:
   #     stanza: db
