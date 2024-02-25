@@ -47,7 +47,7 @@ spec:
               HTTPS: "0"
               HTTPS_REDIRECT: "0"
               LANG: "en-AU"
-              BASE_URL: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+              BASE_URL: "https://{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
               DB_TYPE: "pgsql"
               DB_NAME: "webtrees"
               DB_PREFIX: "wt_"
@@ -88,7 +88,7 @@ spec:
         enabled: true
         className: "internal-nginx"
         hosts:
-          - host: *host
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
             paths:
               - path: /
                 service:
@@ -102,3 +102,5 @@ spec:
       config:
         enabled: true
         existingClaim: webtrees-config-v1
+        globalMounts:
+          - path: /config
