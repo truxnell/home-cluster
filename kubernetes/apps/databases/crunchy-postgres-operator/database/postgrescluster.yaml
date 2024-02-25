@@ -53,6 +53,7 @@ spec:
             matchLabels:
               postgres-operator.crunchydata.com/data: postgres
   users:
+    - name: "postgres"
     - name: "prowlarr"
       databases:
         - "prowlarr_main"
@@ -60,6 +61,8 @@ spec:
       # options: "CREATEDB"
       password:
         type: AlphaNumeric
+    - name: "webtrees"
+      databases: ["webtrees"]
   backups:
     pgbackrest:
       configuration:
