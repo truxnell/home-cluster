@@ -48,7 +48,6 @@ spec:
               LANG: "en-AU"
               BASE_URL: "https://{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
               DB_TYPE: "pgsql"
-              DB_NAME: "webtrees"
               DB_PREFIX: "wt_"
 
               PUID: "1000"
@@ -63,16 +62,17 @@ spec:
                   secretKeyRef:
                     name: postgres-pguser-webtrees
                     key: port
-              DB_USER:
+              POSTGRES_USER:
                 valueFrom:
                   secretKeyRef:
                     name: postgres-pguser-webtrees
                     key: user
-              DB_PASS:
+              POSTGRES_PASSWORD:
                 valueFrom:
                   secretKeyRef:
                     name: postgres-pguser-webtrees
                     key: password
+              POSTGRES_DB: "webtrees"
             envFrom:
               - secretRef:
                   name: *app
