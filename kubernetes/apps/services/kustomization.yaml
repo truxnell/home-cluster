@@ -31,3 +31,4 @@ resources:
   - ./kavita/ks.yaml
   - ./searxng/ks.yaml
   - ./homepage/ks.yaml
+  - ./webtrees/ks.yaml
