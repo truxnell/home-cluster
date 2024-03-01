@@ -38,7 +38,7 @@ spec:
             order: 1
             image: &image
               repository: ghcr.io/buroa/qbtools
-              tag: v0.13.0@sha256:e4b3df12cc95c0015759f1382aa00d7027ff114a528e677285fcf87f97c64960
+              tag: v0.15.0@sha256:067a68a0c7b2f522b7527e7bb48cf18614d46c16fcbcd16561d1bbc7f7f983fd
             args:
               [
                 "tagging",
