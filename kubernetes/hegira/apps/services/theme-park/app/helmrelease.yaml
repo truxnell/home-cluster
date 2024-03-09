@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/theme-park
-      tag: 1.15.1@sha256:eda794ddba4899b1e10215c53edf173ad9f4d7b68c833ccbb91dd4d7bc2fadc9
+      tag: 1.16.0@sha256:ea7df908833d0aa7b9b68dd74708d48ce4aef4e03b79ef32946e2188eecd6fc6
     controller:
       replicas: 3
       strategy: RollingUpdate
