@@ -1,8 +1,0 @@
-A Node on the Containerised Networked IRC provided by voltaicforge.com
-
-Status: status.voltaicforge.com
-
-Website: voltaicforge.com
-IRC: irc.voltaicforge.com
-Fediverse: @truxnell@voltaicforge.com
-email: admin@voltaicforge.com
