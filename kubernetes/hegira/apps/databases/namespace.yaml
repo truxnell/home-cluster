@@ -8,6 +8,4 @@ metadata:
   labels:
     pod-security.kubernetes.io/enforce: privileged
     pod-security.kubernetes.io/enforce-version: latest
-    pod-security.kubernetes.io/enforce: privileged
-    pod-security.kubernetes.io/enforce-version: latest
     kustomize.toolkit.fluxcd.io/prune: disabled
