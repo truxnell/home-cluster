@@ -85,6 +85,6 @@ spec:
         enabled: true
         type: nfs
         server: "helios.${INTERNAL_DOMAIN}"
-        path: /tank/backu./kubernetes/hegira/apps/kavita
+        path: /tank/backup/kubernetes/apps/kavita
         globalMounts:
           - path: /kavita/config/backups

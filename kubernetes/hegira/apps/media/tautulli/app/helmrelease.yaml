@@ -61,7 +61,7 @@ spec:
         enabled: true
         type: nfs
         server: &nas "helios.${INTERNAL_DOMAIN}"
-        path: /tank/backu./kubernetes/hegira/apps/tautulli
+        path: /tank/backup/kubernetes/apps/tautulli
     resources:
       requests:
         cpu: 5m

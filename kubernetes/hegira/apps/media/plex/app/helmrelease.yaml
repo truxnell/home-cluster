@@ -71,7 +71,7 @@ spec:
         enabled: true
         type: nfs
         server: *nas
-        path: /tank/backu./kubernetes/hegira/apps/plex
+        path: /tank/backup/kubernetes/apps/plex
         mountPath: /config/backup
       transcode:
         enabled: true

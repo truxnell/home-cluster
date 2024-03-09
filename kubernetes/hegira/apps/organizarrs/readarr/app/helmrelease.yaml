@@ -72,7 +72,7 @@ spec:
         enabled: true
         type: nfs
         server: "helios.${INTERNAL_DOMAIN}"
-        path: /tank/backu./kubernetes/hegira/apps/prowlarr
+        path: /tank/backup/kubernetes/apps/prowlarr
         mountPath: /config/Backups
       media:
         enabled: true

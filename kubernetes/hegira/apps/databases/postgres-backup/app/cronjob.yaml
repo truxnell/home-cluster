@@ -48,4 +48,4 @@ spec:
             - name: nas-backups
               nfs:
                 server: "helios.${INTERNAL_DOMAIN}"
-                path: /tank/backu./kubernetes/hegira/apps/postgres
+                path: /tank/backup/kubernetes/apps/postgres
