@@ -37,7 +37,7 @@ spec:
 
     image:
       repository: quay.io/invidious/invidious
-      tag: latest@sha256:7da41b32475a5619cf0591ca966041f03cc91e7bb02bff15ff8483686b698abf
+      tag: latest@sha256:ed76a9c4d976dc4ed2575b6b59a108b0cbe9e642cb581df04fd0b0321eebaa3a
     service:
       main:
         ports:
