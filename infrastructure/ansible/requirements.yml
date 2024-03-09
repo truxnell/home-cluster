@@ -17,6 +17,6 @@ collections:
 
 roles:
   - src: geerlingguy.pip
-    version: 3.0.2
+    version: 3.0.3
   - src: geerlingguy.docker
     version: 7.1.0
