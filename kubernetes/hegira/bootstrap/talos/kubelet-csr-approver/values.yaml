@@ -1,0 +1,2 @@
+---
+providerRegex: ^(xerxes|shodan|icarus)$

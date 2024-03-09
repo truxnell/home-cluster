@@ -4,7 +4,9 @@ kind: Namespace
 metadata:
   name: organizarrs
   labels:
+    pod-security.kubernetes.io/enforce: privileged
+    pod-security.kubernetes.io/enforce-version: latest
     kustomize.toolkit.fluxcd.io/prune: disabled
-    routed-gateway: 'true'
+    routed-gateway: "true"
   annotations:
     volsync.backube/privileged-movers: "true"

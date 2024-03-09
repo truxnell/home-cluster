@@ -4,6 +4,8 @@ kind: Namespace
 metadata:
   name: system-controllers
   labels:
+    pod-security.kubernetes.io/enforce: privileged
+    pod-security.kubernetes.io/enforce-version: latest
     kustomize.toolkit.fluxcd.io/prune: disabled
     k8tz.io/controller-namespace: "true"
   annotations:
