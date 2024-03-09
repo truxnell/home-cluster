@@ -43,7 +43,7 @@ spec:
           limits:
             memory: 28Mi
       api:
-        image: vikunja/api:0.22.0@sha256:91609ef6c7887f9dbf03542da675dc784807f9861907bdcdb775d4a127605646
+        image: vikunja/api:0.22.1@sha256:c9415431e6235229302bb8f9ee6660b74c24859d1e8adbc4a3e25bd418604b57
         env:
           - name: VIKUNJA_SERVICE_TIMEZONE
             value: "Australia/Melbourne"
