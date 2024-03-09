@@ -163,7 +163,6 @@ data:
 ---
 # Source: cilium/templates/cilium-agent/clusterrole.yaml
 
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -269,7 +268,6 @@ rules:
       - "*"
 ---
 # Source: cilium/templates/cilium-operator/clusterrole.yaml
-
 
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -378,7 +376,6 @@ rules:
 ---
 # Source: cilium/templates/cilium-agent/clusterrolebinding.yaml
 
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -399,7 +396,6 @@ subjects:
 ---
 # Source: cilium/templates/cilium-operator/clusterrolebinding.yaml
 
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -419,7 +415,6 @@ subjects:
     namespace: kube-system
 ---
 # Source: cilium/templates/cilium-agent/daemonset.yaml
-
 
 apiVersion: apps/v1
 kind: DaemonSet
@@ -546,7 +541,7 @@ spec:
                   key: custom-cni-conf
                   optional: true
             - name: KUBERNETES_SERVICE_HOST
-              value: "hegira.natallan.com"
+              value: "10.8.20.30"
             - name: KUBERNETES_SERVICE_PORT
               value: "6443"
           lifecycle:
@@ -634,7 +629,7 @@ spec:
                   key: clean-cilium-bpf-state
                   optional: true
             - name: KUBERNETES_SERVICE_HOST
-              value: "hegira.natallan.com"
+              value: "10.8.20.30"
             - name: KUBERNETES_SERVICE_PORT
               value: "6443"
           securityContext:
@@ -713,7 +708,6 @@ spec:
 ---
 # Source: cilium/templates/cilium-operator/deployment.yaml
 
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -785,7 +779,7 @@ spec:
                   name: cilium-config
                   optional: true
             - name: KUBERNETES_SERVICE_HOST
-              value: "hegira.natallan.com"
+              value: "10.8.20.30"
             - name: KUBERNETES_SERVICE_PORT
               value: "6443"
           livenessProbe:

@@ -1,7 +1,7 @@
 clusterName: hegira
-talosVersion: v1.4.4
-kubernetesVersion: 1.26.4
-endpoint: https://hegira.${DOMAINNAME}:6443
+talosVersion: v1.6.6
+kubernetesVersion: 1.27.7
+endpoint: https://10.8.20.30:6443
 allowSchedulingOnMasters: true
 cniConfig:
   name: none
@@ -21,6 +21,8 @@ nodes:
       - interface: eth0
         mtu: 0
         dhcp: true
+        vip:
+          ip: 10.8.20.30
   - hostname: shodan.${DOMAINNAME}
     ipAddress: 10.8.20.42
     controlPlane: true
@@ -30,6 +32,8 @@ nodes:
       - interface: eth0
         mtu: 0
         dhcp: true
+        vip:
+          ip: 10.8.20.30
   - hostname: icarus.${DOMAINNAME}
     ipAddress: 10.8.20.44
     controlPlane: true
@@ -39,6 +43,8 @@ nodes:
       - interface: eth0
         mtu: 0
         dhcp: true
+        vip:
+          ip: 10.8.20.30
 controlPlane:
   inlinePatch:
     cluster:
@@ -50,7 +56,6 @@ controlPlane:
         admissionControl: []
         certSANs:
           - ${CLUSTERENDPOINTIP}
-          - heigra.${DOMAINNAME}
         extraArgs:
           feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
       ca:
@@ -89,7 +94,6 @@ controlPlane:
         key: ${MACHINECERTKEY}
       certSANs:
         - ${CLUSTERENDPOINTIP}
-        - hegira.${DOMAINNAME}
       files:
         - content: |
             [plugins."io.containerd.grpc.v1.cri"]
