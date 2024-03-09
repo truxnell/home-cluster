@@ -1,0 +1,10 @@
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: bgp-pool
+  namespace: networking
+spec:
+  addresses:
+    - ${LB_RANGE}
+  autoAssign: true

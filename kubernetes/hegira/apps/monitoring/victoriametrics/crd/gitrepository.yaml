@@ -1,0 +1,17 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: victoria-crd-source
+  namespace: flux-system
+spec:
+  interval: 30m
+  # renovate: datasource=github-releases
+  url: https://github.com/VictoriaMetrics/operator.git
+  ref:
+    tag: v0.41.2
+  ignore: |
+    # exclude all
+    /*
+    # path to crds
+    !/config/crd/

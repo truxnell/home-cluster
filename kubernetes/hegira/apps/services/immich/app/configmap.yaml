@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: immich-configmap
+  namespace: services
+data:
+  DB_PORT: "5432"
+  DISABLE_REVERSE_GEOCODING: "true"
+  ENABLE_MAPBOX: "false"
+  LOG_LEVEL: log
+  NODE_ENV: "production"
+  REDIS_URL: ioredis://eyJkYiI6MTUsInNlbnRpbmVscyI6W3siaG9zdCI6InJlZGlzLW5vZGUtMC5yZWRpcy1oZWFkbGVzcy5kYXRhYmFzZXMuc3ZjLmNsdXN0ZXIubG9jYWwiLCJwb3J0IjoyNjM3OX0seyJob3N0IjoicmVkaXMtbm9kZS0xLnJlZGlzLWhlYWRsZXNzLmRhdGFiYXNlcy5zdmMuY2x1c3Rlci5sb2NhbCIsInBvcnQiOjI2Mzc5fSx7Imhvc3QiOiJyZWRpcy1ub2RlLTIucmVkaXMtaGVhZGxlc3MuZGF0YWJhc2VzLnN2Yy5jbHVzdGVyLmxvY2FsIiwicG9ydCI6MjYzNzl9XSwibmFtZSI6InJlZGlzLW1hc3RlciJ9
+  TYPESENSE_HOST: immich-typesense.services.svc.cluster.local
+  TYPESENSE_PORT: "8108"
+  TYPESENSE_PROTOCOL: http
+  TYPESENSE_DATA_DIR: /config
+  IMMICH_WEB_URL: http://immich-web.services.svc.cluster.local:3000
+  IMMICH_SERVER_URL: http://immich-server.services.svc.cluster.local:3001
+  IMMICH_MACHINE_LEARNING_URL: http://immich-machine-learning.services.svc.cluster.local:3003
+  # Below are deprecated and can only be set in the Immich Admin settings
+  # OAUTH_ENABLED: "true"
+  # OAUTH_ISSUER_URL: https://auth.trux.dev/.well-known/openid-configuration
+  # OAUTH_CLIENT_ID: immich
+  # OAUTH_CLIENT_SECRET: "${SECRET_IMMICH_OAUTH_CLIENT_SECRET}"
+  # OAUTH_AUTO_REGISTER: "true"
+  # OAUTH_BUTTON_TEXT: "Login with Authelia"

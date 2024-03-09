@@ -1,0 +1,83 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app searxng
+  namespace: services
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
+    fullNameOverride: *app
+    image:
+      repository: docker.io/searxng/searxng
+      tag: 2023.11.1-b5a8ddfec
+    env:
+      SEARXNG_BASE_URL: "https://searxng.${EXTERNAL_DOMAIN}/"
+      SEARXNG_URL: "https://searxng.${EXTERNAL_DOMAIN}"
+    envFrom:
+      - secretRef:
+          name: *app
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "external-nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/auth-method: GET
+          nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Name,Remote-Groups,Remote-Email
+          nginx.ingress.kubernetes.io/auth-signin: https://auth.${EXTERNAL_DOMAIN}?rm=$request_method
+          nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Method $request_method;
+          nginx.ingress.kubernetes.io/auth-url: http://authelia.security.svc.cluster.local/api/verify
+          external-dns.alpha.kubernetes.io/target: ingress-ext.${EXTERNAL_DOMAIN}
+          hajimari.io/icon: mdi:book
+        hosts:
+          - host: &host "searxng.${EXTERNAL_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    resources:
+      requests:
+        cpu: 5m
+        memory: 50Mi
+      # limits:
+      #   memory: 250Mi
+
+    persistence:
+      tmp:
+        enabled: true
+        type: emptyDir
+        medium: Memory
+        mountPath: /etc/searxng
+      config:
+        enabled: true
+        type: configMap
+        name: *app
+        subPath: settings.yml
+        mountPath: /etc/searxng/settings.yml
+        readOnly: true

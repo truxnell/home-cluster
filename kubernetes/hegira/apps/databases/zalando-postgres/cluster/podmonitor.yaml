@@ -1,0 +1,23 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: postgresql
+  namespace: databases
+spec:
+  selector:
+    matchLabels:
+      application: spilo # (1)
+  namespaceSelector:
+    any: true # (2)
+  podMetricsEndpoints:
+    - port: exporter # (3)
+      interval: 15s
+      scrapeTimeout: 10s
+    - targetPort: 8008 # (4)
+      interval: 15s
+      scrapeTimeout: 10s
+  podTargetLabels: # (5)
+    - spilo-role
+    - cluster-name
+    - team

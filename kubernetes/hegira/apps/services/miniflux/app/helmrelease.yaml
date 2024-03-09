@@ -1,0 +1,101 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app miniflux
+  namespace: services
+spec:
+  interval: 15m
+  timeout: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    initContainers:
+      init-db:
+        image: ghcr.io/onedr0p/postgres-initdb:14.8@sha256:0141cf427c47f2d534711a3f9e8c5f9008bc6b585463ccd9288cf0f027e20deb
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: *app
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: ghcr.io/miniflux/miniflux
+      tag: 2.1.0@sha256:5cba6169f26dc5a4b7d9672d605b5f3c9f58b80efb57472adcd8685659205f26
+    env:
+      BASE_URL: "https://{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+      CREATE_ADMIN: "1"
+      DEBUG: "1"
+      LOG_DATE_TIME: "1"
+      METRICS_ALLOWED_NETWORKS: "${NETWORK_K8S_POD_CIDR}"
+      METRICS_COLLECTOR: "1"
+      OAUTH2_CLIENT_ID: miniflux
+      OAUTH2_USER_CREATION: "1"
+      OAUTH2_OIDC_DISCOVERY_ENDPOINT: "https://auth.${EXTERNAL_DOMAIN}"
+      OAUTH2_PROVIDER: oidc
+      OAUTH2_REDIRECT_URL: "https://miniflux.${EXTERNAL_DOMAIN}/oauth2/oidc/callback"
+      POLLING_SCHEDULER: entry_frequency
+      POLLING_FREQUENCY: "15"
+      RUN_MIGRATIONS: "1"
+    envFrom:
+      - secretRef:
+          name: *app
+    service:
+      main:
+        ports:
+          http:
+            port: &port 8080
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "external-nginx"
+        annotations:
+          external-dns.alpha.kubernetes.io/target: ingress-ext.${EXTERNAL_DOMAIN}
+          nginx.ingress.kubernetes.io/auth-method: GET
+          nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Name,Remote-Groups,Remote-Email
+          nginx.ingress.kubernetes.io/auth-signin: https://auth.${EXTERNAL_DOMAIN}?rm=$request_method
+          nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Method $request_method;
+          nginx.ingress.kubernetes.io/auth-url: http://authelia.security.svc.cluster.local/api/verify
+          hajimari.io/icon: mdi:rss
+        hosts:
+          - host: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    probes:
+      liveness: &probes
+        enabled: true
+        custom: true
+        spec:
+          httpGet:
+            path: /healthcheck
+            port: *port
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 1
+          failureThreshold: 3
+      readiness: *probes
+      startup:
+        enabled: false
+    resources:
+      requests:
+        cpu: 10m
+        memory: 100Mi
+      limits:
+        memory: 750Mi

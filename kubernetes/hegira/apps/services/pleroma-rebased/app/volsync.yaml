@@ -1,0 +1,61 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterSecretStore
+metadata:
+  name: &name pleroma-rebased-restic
+  namespace: services
+spec:
+  provider:
+    doppler:
+      project: restic-template
+      config: prd
+      auth:
+        secretRef:
+          dopplerToken:
+            name: doppler-token-auth-api
+            key: dopplerToken
+            namespace: flux-system
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: &name pleroma-rebased-restic
+  namespace: services
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: *name
+  target:
+    name: *name
+    template:
+      engineVersion: v2
+      data:
+        RESTIC_REPOSITORY: "{{ .REPOSITORY_TEMPLATE }}/pleroma-rebased"
+        RESTIC_PASSWORD: "{{ .RESTIC_PASSWORD }}"
+        AWS_ACCESS_KEY_ID: "{{ .AWS_ACCESS_KEY_ID }}"
+        AWS_SECRET_ACCESS_KEY: "{{ .AWS_SECRET_ACCESS_KEY }}"
+  dataFrom:
+    - find:
+        name:
+          regexp: .*
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: pleroma-rebased
+  namespace: services
+spec:
+  sourcePVC: pleroma-images-config-v1
+  trigger:
+    schedule: "0 4 * * *"
+  restic:
+    copyMethod: Snapshot
+    pruneIntervalDays: 10
+    repository: pleroma-rebased-restic
+    cacheCapacity: 2Gi
+    volumeSnapshotClassName: csi-ceph-blockpool
+    storageClassName: ceph-block
+    cacheStorageClassName: local-hostpath
+    retain:
+      daily: 10
+      within: 3d

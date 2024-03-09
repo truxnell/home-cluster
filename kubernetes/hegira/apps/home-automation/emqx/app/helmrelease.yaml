@@ -1,0 +1,87 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app emqx
+  namespace: home-automation
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: emqx
+      version: 5.4.1
+      sourceRef:
+        kind: HelmRepository
+        name: emqx-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    image:
+      repository: public.ecr.aws/emqx/emqx
+    replicaCount: 2
+    recreatePods: true
+    emqxConfig:
+      EMQX_ALLOW_ANONYMOUS: "false"
+      EMQX_AUTH__MNESIA__PASSWORD_HASH: plain
+
+    service:
+      type: LoadBalancer
+      loadBalancerIP: "${LB_EMQX}"
+      externalTrafficPolicy: Local
+    ingress:
+      dashboard:
+        enabled: true
+        ingressClassName: internal-nginx
+        annotations:
+          hajimari.io/appName: "EMQX"
+          hajimari.io/icon: simple-icons:eclipsemosquitto
+        path: /
+        pathType: Prefix
+        hosts:
+          - &host "emqx.${EXTERNAL_DOMAIN}"
+        tls:
+          - hosts:
+              - *host
+    metrics:
+      enabled: false
+    persistence:
+      enabled: true
+      storageClassName: local-hostpath
+      size: 250Mi
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - emqx
+              topologyKey: kubernetes.io/hostname
+    resources:
+      requests:
+        cpu: 10m
+        memory: 150Mi
+      limits:
+        memory: 512Mi
+  valuesFrom:
+    - targetPath: emqxConfig.EMQX_DASHBOARD__DEFAULT_PASSWORD
+      kind: Secret
+      name: *app
+      valuesKey: ADMIN_PASSWORD
+    - targetPath: emqxConfig.EMQX_AUTH__USER__1__USERNAME
+      kind: Secret
+      name: *app
+      valuesKey: USER_1_USERNAME
+    - targetPath: emqxConfig.EMQX_AUTH__USER__1__PASSWORD
+      kind: Secret
+      name: *app
+      valuesKey: USER_1_PASSWORD

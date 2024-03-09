@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: organizarrs
+  labels:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+    routed-gateway: 'true'
+  annotations:
+    volsync.backube/privileged-movers: "true"

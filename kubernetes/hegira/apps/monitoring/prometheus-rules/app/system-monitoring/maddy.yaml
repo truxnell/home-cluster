@@ -1,0 +1,42 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: maddy-smtp-alerts
+  namespace: monitoring
+spec:
+  groups:
+    - name: maddy-smtp-alerts
+      rules:
+        - alert: MaddySMTPFailedLogins
+          expr: sum by (module) (maddy_smtp_failed_logins{module="smtp_out"}) > 5
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Maddy SMTP relay authentication failures"
+            description: "There have been more than 5 authentication failures for the Maddy SMTP relay in the past 5 minutes."
+        - alert: MaddySMTPFailedCommands
+          expr: sum by (module, command) (maddy_smtp_failed_commands{module="smtp_out"}) > 5
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Maddy SMTP relay failed SMTP transaction commands"
+            description: "There have been more than 5 failed SMTP transaction commands for the Maddy SMTP relay in the past 5 minutes."
+        - alert: MaddySMTPRatelimitDeferred
+          expr: sum by (module) (maddy_smtp_ratelimit_deferred{module="smtp_out"}) > 1
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Maddy SMTP relay ratelimited messages"
+            description: "There have been more than 1 messages rejected due to ratelimiting for the Maddy SMTP relay in the past 5 minutes."
+        - alert: MaddySMTPQueueLength
+          expr: sum by (module, location) (maddy_queue_length{module="smtp_out"}) > 2
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Maddy SMTP relay queue length"
+            description: "The queue length for the Maddy SMTP relay has exceeded 2 messages for more than 5 minutes."

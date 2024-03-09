@@ -1,0 +1,48 @@
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+  namespace: cert-manager
+spec:
+  acme:
+    email: acme@${EXTERNAL_DOMAIN}
+    preferredChain: ""
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    solvers:
+      - selector:
+          dnsZones:
+            - ${EXTERNAL_DOMAIN}
+            - voltaicforge.com
+        dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              key: API_TOKEN
+              name: cloudflare-api-token-secret
+            email: acme@${EXTERNAL_DOMAIN}
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-production
+  namespace: cert-manager
+spec:
+  acme:
+    email: acme@${EXTERNAL_DOMAIN}
+    preferredChain: ""
+    privateKeySecretRef:
+      name: letsencrypt-production
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers:
+      - selector:
+          dnsZones:
+            - ${EXTERNAL_DOMAIN}
+            - voltaicforge.com
+        dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              key: API_TOKEN
+              name: cloudflare-api-token-secret
+            email: acme@${EXTERNAL_DOMAIN}

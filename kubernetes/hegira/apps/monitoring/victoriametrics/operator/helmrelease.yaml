@@ -1,0 +1,31 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: victoria-metrics-operator
+  namespace: monitoring
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: victoria-metrics-operator
+      version: 0.18.0
+      sourceRef:
+        kind: HelmRepository
+        name: victoria-metrics-charts
+        namespace: flux-system
+  values:
+    enabled: true
+    # -- use crd dir
+    createCRD: false
+    operator:
+      psp_auto_creation_enabled: false
+    rbac:
+      pspEnabled: false
+    cleanupSA:
+      create: true
+      name: ""
+    kubectlImage:
+      repository: gcr.io/google_containers/hyperkube
+      tag: v1.18.6
+      pullPolicy: IfNotPresent

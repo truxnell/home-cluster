@@ -1,0 +1,88 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app readarr
+  namespace: organizarrs
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: ghcr.io/onedr0p/readarr-nightly
+      tag: 0.3.17.2406@sha256:c6d71de42fa9bf6cdda664a846678d3bbc70e5cf91fc13358fe60ff4a322ebb4
+    env:
+      READARR__INSTANCE_NAME: Readarr (Audio)
+      READARR__LOG_LEVEL: info
+    envFrom:
+      - secretRef:
+          name: *app
+    service:
+      main:
+        ports:
+          http:
+            port: 8787
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "internal-nginx"
+        annotations:
+          nginx.ingress.kubernetes.io/configuration-snippet: |-
+            proxy_set_header Accept-Encoding "";
+            sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.trux.dev/css/base/readarr/plex.css"></head>';
+            sub_filter_once on;
+          hajimari.io/icon: "book-open"
+        hosts:
+          - host: &host "{{ .Release.Name }}.trux.dev"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 100
+    persistence:
+      config:
+        enabled: true
+        existingClaim: readarr-config-v1
+      backup:
+        enabled: true
+        type: nfs
+        server: "helios.${INTERNAL_DOMAIN}"
+        path: /tank/backu./kubernetes/hegira/apps/prowlarr
+        mountPath: /config/Backups
+      media:
+        enabled: true
+        type: nfs
+        server: "helios.${INTERNAL_DOMAIN}"
+        path: /tank/natflix
+        mountPath: /media
+    resources:
+      requests:
+        cpu: 10m
+        memory: 1200Mi
+      limits:
+        memory: 2000Mi

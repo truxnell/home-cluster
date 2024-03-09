@@ -1,0 +1,50 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app volsync-to-b2
+  namespace: scripts
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  values:
+    controller:
+      type: cronjob
+      cronjob:
+        schedule: "@daily"
+        ttlSecondsAfterFinished: 86400
+    restartPolicy: OnFailure
+    image:
+      repository: ghcr.io/truxnell/b2
+      tag: 3.16.0@sha256:2462e7835e07a9d499535b1d0ecbae96af4366321a5017bf7cf35548fdb6fa97
+    command: ["b2"]
+    args:
+      [
+        "sync",
+        "/data",
+        "b2://trux-volsync-backup-A73B8D/",
+        "--keepDays",
+        "7",
+        "--replaceNewer",
+      ]
+    envFrom:
+      - secretRef:
+          name: *app
+    service:
+      main:
+        enabled: false
+    persistence:
+      data:
+        enabled: true
+        type: nfs
+        server: "helios.${INTERNAL_DOMAIN}"
+        path: /tank/minio/restic/
+        mountPath: /data

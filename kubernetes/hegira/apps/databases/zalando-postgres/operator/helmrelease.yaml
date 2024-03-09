@@ -1,0 +1,84 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: zalando-postgres
+  namespace: databases
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://raw.githubusercontent.com/zalando/postgres-operator/master/charts/postgres-operator/
+      chart: postgres-operator
+      version: 1.10.1
+      sourceRef:
+        kind: HelmRepository
+        name: zalando-postgres-operator
+        namespace: flux-system
+      interval: 5m
+  # https://github.com/zalando/postgres-operator/blob/master/charts/postgres-operator/values.yaml
+  values:
+    configMajorVersionUpgrade:
+      # "off": no upgrade, "manual": manifest triggers action, "full": minimal version violation triggers too
+      major_version_upgrade_mode: full
+    configKubernetes:
+      enable_pod_antiaffinity: true
+      enable_cross_namespace_secret: true
+      #pod_environment_configmap: "postgres-pod-config"
+      watched_namespace: "*"
+      #list of labels that can be inherited from the cluster manifest
+      inherited_labels:
+        - application
+        - environment
+      # Disable PDB since they prevent the drain
+      # https://github.com/zalando/postgres-operator/issues/547
+      enable_pod_disruption_budget: false
+      # configure resource requests for the Postgres pods
+
+      pod_environment_configmap: zalando-postgres-pod-configmap
+      # pod_environment_secret: zalando-postgres-pod-secrets
+
+    configPostgresPodResources:
+      # CPU limits for the postgres containers
+      default_cpu_limit: "2"
+      # CPU request value for the postgres containers
+      default_cpu_request: 20m
+      # memory limits for the postgres containers
+      default_memory_limit: 2500Mi
+      # memory request value for the postgres containers
+      default_memory_request: 700Mi
+
+      # hard CPU minimum required to properly run a Postgres cluster
+      min_cpu_limit: 250m
+      # hard memory minimum required to properly run a Postgres cluster
+      min_memory_limit: 250Mi
+
+    resources:
+      limits:
+        memory: 100M
+      requests:
+        cpu: 5m
+        memory: 32M
+    configGeneral:
+      sidecars:
+        - name: "exporter"
+          image: "quay.io/prometheuscommunity/postgres-exporter:v0.15.0@sha256:386b12d19eab2a37d7cd8ca8b4c7491cc7a830d9581f49af6c98a393da9605e6"
+          ports:
+            - name: exporter
+              containerPort: 9187
+              protocol: TCP
+          resources:
+            limits:
+              memory: 256M
+            requests:
+              cpu: 100m
+              memory: 200M
+          env:
+            - name: "DATA_SOURCE_URI"
+              value: "$(POD_NAME)/postgres?sslmode=require"
+            - name: "DATA_SOURCE_USER"
+              value: "$(POSTGRES_USER)"
+            - name: "DATA_SOURCE_PASS"
+              value: "$(POSTGRES_PASSWORD)"
+            - name: "PG_EXPORTER_AUTO_DISCOVER_DATABASES"
+              value: "true"

@@ -1,0 +1,81 @@
+---
+session:
+  redis:
+    high_availability:
+      sentinel_name: redis-master
+      nodes:
+        - host: redis-node-0.redis-headless.databases.svc.cluster.local
+          port: 26379
+        - host: redis-node-1.redis-headless.databases.svc.cluster.local
+          port: 26379
+        - host: redis-node-2.redis-headless.databases.svc.cluster.local
+          port: 26379
+
+access_control:
+  default_policy: two_factor
+  networks:
+    - name: internal
+      networks: ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"]
+  rules:
+    - domain: ["*"]
+      networks: ["internal"]
+      policy: bypass
+    - domain: ["grafana.${EXTERNAL_DOMAIN}"]
+      policy: bypass
+    - domain:
+        - "filebrowser.${EXTERNAL_DOMAIN}"
+      resources:
+        - "^/api/public/dl/*"
+        - "/share/*"
+        - "/static/js/*"
+        - "/static/css/*"
+        - "/static/img/*"
+        - "/static/themes/*"
+        - "/static/fonts/*"
+      policy: bypass
+
+identity_providers:
+  oidc:
+    cors:
+      endpoints: ["authorization", "token", "revocation", "introspection"]
+      allowed_origins_from_client_redirect_uris: true
+    clients:
+      - id: grafana
+        description: Grafana
+        secret: "${GRAFANA_OAUTH_CLIENT_SECRET}"
+        public: false
+        authorization_policy: two_factor
+        pre_configured_consent_duration: 1y
+        scopes: ["openid", "profile", "groups", "email"]
+        redirect_uris:
+          ["https://grafana.${EXTERNAL_DOMAIN}/login/generic_oauth"]
+        userinfo_signing_algorithm: none
+      - id: miniflux
+        description: Miniflux
+        secret: "${MINIFLUX_OAUTH_CLIENT_SECRET}"
+        public: false
+        authorization_policy: two_factor
+        pre_configured_consent_duration: 1y
+        scopes: ["openid", "profile", "groups", "email"]
+        redirect_uris:
+          ["https://miniflux.${EXTERNAL_DOMAIN}/oauth2/oidc/callback"]
+        userinfo_signing_algorithm: none
+      - id: vikunja
+        description: Vikunja
+        secret: "${VIKUNJA_OAUTH_CLIENT_SECRET}"
+        public: false
+        authorization_policy: two_factor
+        pre_configured_consent_duration: 1y
+        scopes: ["openid", "profile", "groups", "email"]
+        redirect_uris: ["https://tasks.${EXTERNAL_DOMAIN}/auth/openid/authelia"]
+        userinfo_signing_algorithm: none
+      - id: immich
+        description: Immich
+        secret: "${IMMICH_OAUTH_CLIENT_SECRET}"
+        public: false
+        authorization_policy: two_factor
+        pre_configured_consent_duration: 1y
+        scopes: ["openid", "profile", "email"]
+        redirect_uris:
+          ["https://photos.${EXTERNAL_DOMAIN}/auth/login", "app.immich:/"]
+        userinfo_signing_algorithm: none

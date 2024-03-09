@@ -1,0 +1,95 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app dmarc-report
+  namespace: security
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+      interval: 15m
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation: # perform remediation when helm upgrade fails
+      retries: 3
+      remediateLastFailure: true # remediate the last failure, when no retries remain
+    cleanupOnFail: true
+  values:
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/szinn/dmarc-report
+              tag: 1.4.1@sha256:3bdb6549f9f577ec75034a415d13beb77fec9e296428d1a1e88c955be4f20592
+              pullPolicy: IfNotPresent
+            env:
+              PARSER_IMAP_READ_FOLDER: "dmarc_reports"
+              PARSER_IMAP_MOVE_FOLDER: "dmarc_processed"
+              PARSER_IMAP_MOVE_FOLDER_ERR: "dmarc_error"
+              PARSER_IMAP_SSL: 1
+              PARSER_IMAP_TLS: 0
+              REPORT_DB_TYPE: "pgsql"
+              REPORT_DB_PORT: "5432"
+              REPORT_DB_HOST:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-dmarc-report-user
+                    key: HOST
+              REPORT_DB_NAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-dmarc-report-user
+                    key: DATABASE_NAME
+              REPORT_DB_USER:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-dmarc-report-user
+                    key: ROLE
+              REPORT_DB_PASS:
+                valueFrom:
+                  secretKeyRef:
+                    name: database-dmarc-report-user
+                    key: PASSWORD
+
+            envFrom:
+              - secretRef:
+                  name: *app
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "internal-nginx"
+        annotations:
+          ingress.home.arpa/type: "internal"
+        hosts:
+          - host: "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: dmarc-config-v1
+        globalMounts:
+          - path: /config

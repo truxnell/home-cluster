@@ -1,0 +1,45 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: &app yt-dlp-jon-ong
+  namespace: scripts
+  labels:
+    app: *app
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: *app
+          image: ghcr.io/truxnell/yt-dlp:2023.11.16@sha256:818fb66ce025c62a79a498498c155437d9b5eda713970f0c115d8bebacceb202
+          imagePullPolicy: IfNotPresent
+          command: ['/usr/local/bin/yt-dlp']
+          args:
+            - -f
+            - ba
+            - https://www.twitch.tv/videos/1665385955
+            - --remux-video
+            - opus
+            - -o
+            - /music/Jonathan Ong/Twitch Highlights/%(title)s.%(ext)s
+            - --add-metadata
+            - --embed-thumbnail
+            - --parse-metadata
+            - Twitch Highlights:%(meta_album)s
+            - --parse-metadata
+            - Jonathan Ong:%(meta_artist)s
+            - --parse-metadata
+            - Jonathan Ong:%(meta_album_artist)s
+            - --parse-metadata
+            - Knights who say Ni:%(meta_title)s
+            - --download-sections
+            - '*2:14:54-2:15:53'
+          volumeMounts:
+            - mountPath: /music
+              name: nas
+      volumes:
+        - name: nas
+          nfs:
+            server: 'helios'
+            path: /tank/natflix/music/

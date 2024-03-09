@@ -1,0 +1,117 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app pleroma-rebased
+  namespace: services
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    fullNameOverride: *app
+
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
+
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/truxnell/rebased-soapbox
+              tag: 2023.12.14@sha256:f35fa78d2c62906f8c57d80ed687654a6b3d1b823b4a57cec1570564f9cdb5ab
+
+            env:
+              DOMAIN: &host "fedi.voltaicforge.com"
+              INSTANCE_NAME: "NatFlix Fediverse"
+
+            envFrom:
+              - secretRef:
+                  name: *app
+
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: &port 5000
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+
+            resources:
+              requests:
+                cpu: 5m
+                memory: 100Mi
+              limits:
+                memory: 3250Mi
+
+            securityContext:
+              runAsUser: 101
+              runAsGroup: 65534
+              fsGroup: 65534
+              fsGroupChangePolicy: "OnRootMismatch"
+              supplementalGroups:
+                - 65534
+
+    service:
+      main:
+        ports:
+          http:
+            port: *port
+
+    ingress:
+      main:
+        className: "external-nginx"
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          external-dns.alpha.kubernetes.io/target: ingress-ext.voltaicforge.com
+          hajimari.io/icon: simple-icons:pleroma
+        hosts:
+          - host: *host
+            paths:
+              - path: /
+                pathType: Prefix
+            service:
+              name: main
+              port: http
+        tls:
+          - hosts:
+              - *host
+            secretName: soapbox.tls
+
+    persistence:
+      uploads:
+        existingClaim: pleroma-images-config-v1
+        mountPath: /var/lib/pleroma/uploads
+
+      config-exa:
+        type: configMap
+        defaultMode: 0660
+        name: pleroma-rebased-config
+        globalMounts:
+          - path: /configmap/config.exs
+            subPath: config.exs
+            readOnly: true

@@ -1,0 +1,59 @@
+{
+  "debugMode": false,
+  "sourceDefaults": {
+    "maxPollRetries": 1,
+    "maxRequestRetries": 1,
+    "retryMultiplier": 1.5,
+    "scrobbleThresholds": {
+      "duration": 30,
+      "percent": 50
+    },
+    "options": {
+      "logPayload": false,
+      "logFilterFailure": "warn",
+      "logPlayerState": false
+    }
+  },
+  "clientDefaults": {
+    "maxRequestRetries": 1,
+    "retryMultiplier": 1.5
+  },
+  "sources": [
+    {
+      "type": "plex",
+      "name": "Plex",
+      "enable": true,
+      "clients": [],
+      "data": {
+        "libraries": ["Music"],
+        "servers": ["NatFlix V2"],
+        "options": {
+          "logFilterFailure": "warn"
+        }
+      }
+    },
+    {
+      "type": "spotify",
+      "enable": true,
+      "clients": ["myConfig"],
+      "name": "Spotify",
+      "data": {
+        "clientId": "{{ .SPOTIFY_CLIENT_ID }}",
+        "clientSecret": "{{ .SPOTIFY_CLIENT_SECRET }}",
+        "redirectUri": "http://multi-scrobbler.trux.dev/callback"
+      }
+    }
+  ],
+  "clients": [
+    {
+      "type": "maloja",
+      "enable": true,
+      "name": "myConfig",
+      "data": {
+        "url": "http://maloja.services.svc.cluster.local:42010",
+        "apiKey": "{{ .MALOJA_API_KEY }}"
+      }
+    }
+  ],
+  "webhooks": []
+}

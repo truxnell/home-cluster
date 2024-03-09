@@ -1,0 +1,14 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  # Pre Flux-Kustomizations
+  - ./namespace.yaml
+  # Flux-Kustomizations
+  - ./ext-postgres-operator/ks.yaml
+  - ./pgadmin/ks.yaml
+  - ./postgres-backup/ks.yaml
+  - ./redis/ks.yaml
+  - ./redis-sentinel/ks.yaml
+  - ./zalando-postgres/ks.yaml
+  - ./crunchy-postgres-operator/ks.yaml

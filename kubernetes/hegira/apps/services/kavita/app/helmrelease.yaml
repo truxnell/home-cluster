@@ -1,0 +1,90 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app kavita
+  namespace: services
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    fullNameOverride: *app
+
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: jvmilazz0/kavita
+              tag: 0.7.13@sha256:89a59531955241acf6c746b6909e2b3bd7e93bc4e4ea795fcc182b07a6f6c6a9
+
+    service:
+      main:
+        ports:
+          http:
+            port: 5000
+
+    ingress:
+      main:
+        enabled: true
+        className: "internal-nginx"
+        annotations:
+          # nginx.ingress.kubernetes.io/auth-method: GET
+          # nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Name,Remote-Groups,Remote-Email
+          # nginx.ingress.kubernetes.io/auth-signin: https://auth.${EXTERNAL_DOMAIN}?rm=$request_method
+          # nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Method $request_method;
+          # nginx.ingress.kubernetes.io/auth-url: http://authelia.security.svc.cluster.local/api/verify
+          # external-dns.alpha.kubernetes.io/target: ingress-ext.${EXTERNAL_DOMAIN}
+          # hajimari.io/icon: mdi:book
+        hosts:
+          - host: &host "kavita.${EXTERNAL_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
+    resources:
+      requests:
+        cpu: 5m
+        memory: 50Mi
+      # limits:
+      #   memory: 250Mi
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: kavita-config-v1
+        globalMounts:
+          - path: /kavita/config
+      media:
+        enabled: true
+        type: nfs
+        server: "helios.${INTERNAL_DOMAIN}"
+        path: /tank/natflix/
+        globalMounts:
+          - path: /media
+      backups:
+        enabled: true
+        type: nfs
+        server: "helios.${INTERNAL_DOMAIN}"
+        path: /tank/backu./kubernetes/hegira/apps/kavita
+        globalMounts:
+          - path: /kavita/config/backups

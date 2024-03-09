@@ -1,0 +1,96 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app factorio-ribbonworld
+  namespace: games
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+  values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: factoriotools/factorio
+      tag: stable@sha256:6eef66ffa85fab3f72c637264ee1fa59e92bda4454fc74d45e031af06da3d790
+    global:
+      nameOverride: *app
+    env:
+      PORT: &port 34197
+      RCON_PORT: &rcon 27015
+    initContainers:
+      copy-configmap:
+        image: busybox@sha256:6d9ac9237a84afe1516540f40a0fafdc86859b2141954b4d643af7066d598b74
+        imagePullPolicy: IfNotPresent
+        command:
+          - "sh"
+          - "-c"
+          - |
+            mkdir -p /factorio/config
+            cp -vL /helmconfig/* /factorio/config/
+        volumeMounts:
+          - name: helmconfig
+            mountPath: /helmconfig/
+          - name: config
+            mountPath: /factorio/
+        securityContext:
+          runAsUser: 0
+    service:
+      main:
+        type: LoadBalancer # Setting Ip external to cluster for easy port forward
+        externalTrafficPolicy: Cluster
+        loadBalancerIP: "${LB_FACTORIO}"
+        annotations:
+          metallb.universe.tf/allow-shared-ip: factorio
+        ports:
+          http:
+            enabled: false
+            primary: false
+          server:
+            enabled: true
+            port: *port
+            protocol: UDP
+          rcon:
+            enabled: true
+            primary: true
+            port: *rcon
+            protocol: TCP
+    # podSecurityContext:
+    #   runAsUser: 568
+    #   runAsGroup: 568
+    #   fsGroup: 568
+    #   fsGroupChangePolicy: "OnRootMismatch"
+    persistence:
+      config:
+        enabled: true
+        mountPath: /factorio
+        existingClaim: factorio-ribbonworld-config-v1
+      helmconfig:
+        enabled: "true"
+        type: "secret"
+        name: *app
+    startupProbe:
+      enabled: true
+      failureThreshold: 30
+      periodSeconds: 10
+    resources:
+      requests:
+        cpu: 15m
+        memory: 1555M
+      limits:
+        memory: 8006M

@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: irc-voltaicforge-com-tls
+  namespace: networking
+spec:
+  secretName: irc-voltaicforge-com-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: irc.voltaicforge.com
+  dnsNames:
+    - "irc.voltaicforge.com"

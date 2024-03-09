@@ -1,0 +1,31 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: snmp-exporter
+  namespace: monitoring
+spec:
+  groups:
+    - name: snmp-exporter
+      rules:
+        - alert: SnmpExporterAbsent
+          annotations:
+            description: SNMP Exporter has disappeared from Prometheus target discovery.
+            summary: SNMP Exporter is down.
+          expr: |
+            absent(up{job=~".*snmp.*"} == 1)
+          for: 5m
+          labels:
+            severity: critical
+        - alert: SnmpExporterScrapeSlow
+          annotations:
+            description:
+              SNMP Exporter is experiencing slow scraping of {{ $labels.target }}
+              with a duration of {{ $value }} seconds.
+            summary: SNMP Exporter slow scraping.
+          expr: |
+            sum(snmp_scrape_duration_seconds) by (target)
+              > 10
+          for: 5m
+          labels:
+            severity: critical

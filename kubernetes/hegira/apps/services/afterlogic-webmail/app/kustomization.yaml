@@ -1,0 +1,17 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: services
+resources:
+  - ./database.yaml
+  - ./helmrelease.yaml
+  - ./pvc.yaml
+configMapGenerator:
+  - name: afterlogic-configmap
+    files:
+      - ./config/afterlogic.php
+      - ./config/config.json
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled

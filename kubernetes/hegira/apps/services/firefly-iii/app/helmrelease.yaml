@@ -1,0 +1,97 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app fireflyiii
+  namespace: services
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      interval: 15m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s-charts
+        namespace: flux-system
+  values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
+
+    initContainers:
+      init-db:
+        image: ghcr.io/onedr0p/postgres-initdb:14.8@sha256:0141cf427c47f2d534711a3f9e8c5f9008bc6b585463ccd9288cf0f027e20deb
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: *app
+
+    image:
+      repository: fireflyiii/core
+      tag: version-6.0.5
+
+    env:
+      APP_URL: &host "{{ .Release.Name }}.${EXTERNAL_DOMAIN}"
+      TRUSTED_PROXIES: "**" #TODO: Change this
+      DB_CONNECTION: pgsql
+      DB_HOST:
+        valueFrom:
+          secretKeyRef:
+            name: *app
+            key: POSTGRES_HOST
+      DB_PORT: 5432
+      DB_DATABASE:
+        valueFrom:
+          secretKeyRef:
+            name: *app
+            key: POSTGRES_DB
+      DB_USERNAME:
+        valueFrom:
+          secretKeyRef:
+            name: *app
+            key: POSTGRES_USER
+      DB_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: *app
+            key: POSTGRES_PASS
+      APP_KEY:
+        valueFrom:
+          secretKeyRef:
+            name: *app
+            key: APP_KEY
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "internal-nginx"
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: "simple-icons:money"
+        hosts:
+          - host: *host
+            paths:
+              - path: /
+        tls:
+          - hosts:
+              - *host
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: fireflyiii-config-v1
+        mountPath: /var/www/html/firefly-iii/storage/upload
+# resources:
+#   requests:
+#     cpu: 15m
+#     memory: 79M
+#   limits:
+#     memory: 79M
