@@ -7,5 +7,5 @@ resources:
   # Flux-Kustomizations
   - ./authelia/ks.yaml
   - ./glauth/ks.yaml
-  - ./dmarc-report/ks.yaml
-  - ./lldap/ks.yaml
+  # - ./dmarc-report/ks.yaml
+  # - ./lldap/ks.yaml

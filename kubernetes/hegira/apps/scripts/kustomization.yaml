@@ -6,5 +6,5 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./mailbackup/ks.yaml
-  - ./yt-dlp-jon-ong/ks.yaml
+  # - ./yt-dlp-jon-ong/ks.yaml
   # - ./volsync-to-b2/ks.yaml

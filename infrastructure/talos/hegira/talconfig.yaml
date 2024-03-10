@@ -81,3 +81,13 @@ controlPlane:
         path: /cluster/proxy/extraArgs
         value:
           bind-address: 0.0.0.0
+    - |-
+      machine:
+        files:
+          - op: create
+            path: /etc/cri/conf.d/20-customization.part
+            content: |
+              [plugins]
+                [plugins."io.containerd.grpc.v1.cri"]
+                  enable_unprivileged_ports = true
+                  enable_unprivileged_icmp = true
