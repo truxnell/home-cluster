@@ -42,3 +42,4 @@ resources:
   - ./k8tz-charts.yaml
   - ./crunchydata.yaml
   - ./mittwald.yaml
+  - ./k8s-gateway.yaml

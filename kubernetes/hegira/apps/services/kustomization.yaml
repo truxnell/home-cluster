@@ -5,20 +5,20 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./excalidraw/ks.yaml
-  - ./hajimari/ks.yaml
+  # - ./excalidraw/ks.yaml
+  # - ./hajimari/ks.yaml
   - ./immich/ks.yaml
   - ./invidious-server/ks.yaml
   - ./language-tools/ks.yaml
   - ./libreddit/ks.yaml
-  - ./miniflux/ks.yaml
+  # - ./miniflux/ks.yaml
   - ./paperless/ks.yaml
-  - ./pleroma-rebased/ks.yaml
+  # - ./pleroma-rebased/ks.yaml
   - ./radicale/ks.yaml
   - ./red-discord-bot/ks.yaml
-  - ./scribe/ks.yaml
-  - ./theme-park/ks.yaml
-  - ./vikunja/ks.yaml
+  # - ./scribe/ks.yaml
+  # - ./theme-park/ks.yaml
+  # - ./vikunja/ks.yaml
   - ./whoogle/ks.yaml
   - ./firefly-iii/ks.yaml
   - ./inspircd/ks.yaml
@@ -30,5 +30,5 @@ resources:
   - ./multi-scrobbler/ks.yaml
   - ./kavita/ks.yaml
   - ./searxng/ks.yaml
-  - ./homepage/ks.yaml
-  - ./webtrees/ks.yaml
+  # - ./homepage/ks.yaml
+  # - ./webtrees/ks.yaml

@@ -11,3 +11,4 @@ resources:
   # - ./static-routes/ks.yaml
   - ./cloudflared/ks.yaml
   # - ./echo-server/ks.yaml
+  - ./helmrelease.yaml
