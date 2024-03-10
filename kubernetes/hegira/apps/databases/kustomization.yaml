@@ -11,4 +11,4 @@ resources:
   - ./redis/ks.yaml
   - ./redis-sentinel/ks.yaml
   - ./zalando-postgres/ks.yaml
-  - ./crunchy-postgres-operator/ks.yaml
+  # - ./crunchy-postgres-operator/ks.yaml
