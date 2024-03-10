@@ -5,9 +5,9 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./cilium/ks.yaml
+  # - ./cilium/ks.yaml
   - ./intel-gpu-plugin/ks.yaml
-  - ./metrics-server/ks.yaml
-  - ./node-feature-discovery/ks.yaml
+  # - ./metrics-server/ks.yaml
+  # - ./node-feature-discovery/ks.yaml
   - ./reloader/ks.yaml
   - ./democratic-csi/ks.yaml
