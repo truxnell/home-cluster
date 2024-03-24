@@ -38,7 +38,7 @@ spec:
           main:
             image:
               repository: ghcr.io/gethomepage/homepage
-              tag: v0.8.7@sha256:06203a4aeb0dac75a8419f86d950ea01f3b9e5ca3f1fcd6c7065e34d3700b05f
+              tag: v0.8.10@sha256:fc0d6e8b469ea8756d7c5bc542eb5c89064b9c47c3fa85f19b70a695c65cb782
             # envFrom:
             #   - secretRef:
             #       name: homepage-secret
