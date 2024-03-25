@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: tomsquest/docker-radicale
-      tag: 3.1.8.3@sha256:b5dac16dafcb003520a1ea95d3e25a24d0955cc552b0d6d447163f0e070780ff
+      tag: 3.1.9.1@sha256:603f1fbe2e31ba532faa96763265af9eac9e1b2c9b93f23f1cc8f5cc221914ab
     podAnnotations:
       configmap.reloader.stakater.com/reload: *app
       secret.reloader.stakater.com/reload: *app
