@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/qbittorrent
-      tag: 4.6.3@sha256:a4ad890e8c4a287c17d12ca22eb1d84a046aba2efbd882bf7d6eb12459f6a70c
+      tag: 4.6.4@sha256:85f185207a81ec03e84b8302db06f1694c533c99e0efdb2acf0316d554d332e3
     env:
       QBITTORRENT__BT_PORT: &port-bt 32191
     hostname: qbittorrent
