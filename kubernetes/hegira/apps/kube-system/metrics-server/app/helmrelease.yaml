@@ -27,7 +27,7 @@ spec:
   values:
     image:
       repository: registry.k8s.io/metrics-server/metrics-server
-      tag: v0.7.0@sha256:1c0419326500f1704af580d12a579671b2c3a06a8aa918cd61d0a35fb2d6b3ce
+      tag: v0.7.1@sha256:db3800085a0957083930c3932b17580eec652cfb6156a05c0f79c7543e80d17a
     resources:
       requests:
         cpu: 15m
