@@ -40,7 +40,7 @@ repos:
         additional_dependencies: []
 
   - repo: https://github.com/sirosen/texthooks
-    rev: 0.6.3
+    rev: 0.6.6
     hooks:
       - id: fix-smartquotes
       - id: fix-ligatures
