@@ -40,7 +40,7 @@ spec:
           main:
             image:
               repository: ghcr.io/nathanvaughn/webtrees
-              tag: 2.1.18@sha256:8f5dcdffe2c886da9e223499fa6db9d63211381a675210bd92c33dac27dae324
+              tag: 2.1.20@sha256:f2051f50f76573b1c44781870ec853fcac7bd1c2ca4656885cac2ba1400786c8
             env:
               PRETTY_URLS: "1"
               HTTPS: "0"
