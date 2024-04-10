@@ -1,6 +1,6 @@
 ---
 # renovate: datasource=github-releases depName=vectordotdev/vector
-vector_version: "v0.35.0"
+vector_version: "v0.37.1"
 vector_asset: |-
   {%- if ansible_architecture == "armv7l" -%}
     vector-{{ vector_version }}-armv7-unknown-linux-gnueabihf.tar.gz
