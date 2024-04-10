@@ -11,7 +11,7 @@ resources:
   # - ./hs110-exporter-rack/ks.yaml
   # - ./kube-cleanup-operator/ks.yaml
   # - ./kube-prometheus-stack/ks.yaml
-  # - ./kubernetes-dashboard/ks.yaml
+  - ./kubernetes-dashboard/ks.yaml
   # - ./loki/ks.yaml
   # - ./thanos/ks.yaml
   # - ./prometheus-smartctl/ks.yaml
