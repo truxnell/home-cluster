@@ -48,6 +48,7 @@ spec:
   sourcePVC: factorio-freight-forwarding-config-v1
   trigger:
     schedule: "0 4 * * *"
+    manual: my-manual-id-1
   restic:
     copyMethod: Snapshot
     pruneIntervalDays: 10
