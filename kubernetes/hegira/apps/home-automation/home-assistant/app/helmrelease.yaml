@@ -71,7 +71,7 @@ spec:
         enabled: true
         image:
           repository: ghcr.io/coder/code-server
-          tag: 4.21.1@sha256:c9f78fb7e8ac5fdd3bea856142dd5c5dda0f5183131254516af74135dc97c773
+          tag: 4.23.1@sha256:897b358eed18114061b371f2b2f1416bc7acbed9442877428ecc0855523031ad
         workingDir: "/config"
         args:
           - --auth
