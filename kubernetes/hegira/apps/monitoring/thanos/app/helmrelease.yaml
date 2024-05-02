@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: thanos
-      version: 12.22.0
+      version: 12.23.2
       sourceRef:
         kind: HelmRepository
         name: bitnami-charts
@@ -35,7 +35,7 @@ spec:
     image:
       registry: quay.io
       repository: thanos/thanos
-      tag: v0.34.0@sha256:2356a5f131fd80965d7a0617b70b14e4facae1aee5ec43f117f8bfbe20d987fc
+      tag: v0.35.0@sha256:fa1d28718df00b68d6ad85d7c7d4703bd9f59e5cd8be8da6540ea398cf701a1f
     objstoreConfig:
       type: s3
       config:
