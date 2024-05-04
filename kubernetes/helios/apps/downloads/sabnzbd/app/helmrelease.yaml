@@ -24,7 +24,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/sabnzbd
-      tag: 4.2.1@sha256:c9f2577a9483ed1a53295ed6315f4ebfcf9e99507c1095f49b5bc2f0cf080179
+      tag: 4.3.1@sha256:10aa04902725e2fb8325b71fc6bbdf3399e63d6520028c2571220d54fd928aee
     env:
       SABNZBD__HOST_WHITELIST_ENTRIES: >-
         sabnzbd, sabnzbd.default, sabnzbd.default.svc, sabnzbd.default.svc.cluster, sabnzbd.default.svc.cluster.local, sabnzbd.trux.dev
