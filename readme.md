@@ -20,6 +20,7 @@
 > k8s journey.
 >
 > My new homelab repo is built with Nix + NixOS at can be found at:
+> 
 > github: https://github.com/truxnell/nix-config
 > 
 > docs: https://truxnell.github.io/nix-config/
