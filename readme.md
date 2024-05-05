@@ -13,6 +13,19 @@
 
 </div>
 
+> [!IMPORTANT]
+> As of April 14th, 2024, I am no longer using Kubernetes in my homelab
+> 
+> Thankyou to everyone that has followed, had questions and learnt from my 
+> k8s journey.
+>
+> My new homelab repo is built with Nix + NixOS at can be found at:
+> github: https://github.com/truxnell/nix-config
+> docs: https://truxnell.github.io/nix-config/
+>
+> This will be publically archived for learning purposes but please note
+> that it will be outdated.
+
 <div align="center">
 
 ![Home Internet](https://status.voltaicforge.com/api/badge/15/status?style=for-the-badge&label=Home%20Internet)
